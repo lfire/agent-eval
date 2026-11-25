@@ -1,7 +1,5 @@
-name: Configure GitHub Pages
+name: Deploy to GitHub Pages
 
-# 用 Actions 自带的 GITHUB_TOKEN 修正 Pages 源为 main 分支根目录，
-# 避免本机 token 失效时无法调用 Pages API 的问题。
 on:
   push:
     branches: [main]
@@ -10,46 +8,54 @@ on:
 permissions:
   contents: read
   pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
 
 jobs:
-  configure:
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
     runs-on: ubuntu-latest
     steps:
-      - name: Set Pages source to main / root
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Diagnose current Pages config
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           REPO: ${{ github.repository }}
         run: |
-          set -euo pipefail
-          API="https://api.github.com/repos/${REPO}/pages"
-          AUTH="Authorization: Bearer ${GH_TOKEN}"
-          ACCEPT="Accept: application/vnd.github+json"
-          CTYPE="Content-Type: application/json"
-          BODY='{"source":{"branch":"main","path":"/"}}'
-
-          CODE=$(curl -sS -o /tmp/pages.json -w "%{http_code}" -H "$AUTH" -H "$ACCEPT" "$API")
-          echo "GET /pages -> ${CODE}"
-
-          if [ "$CODE" = "200" ]; then
-            echo "Pages site exists, updating source..."
-            curl -sS -f -X PUT -H "$AUTH" -H "$ACCEPT" -H "$CTYPE" -d "$BODY" "$API" > /tmp/result.json
-          else
-            echo "Pages site missing (${CODE}), creating..."
-            curl -sS -f -X POST -H "$AUTH" -H "$ACCEPT" -H "$CTYPE" -d "$BODY" "$API" > /tmp/result.json
-          fi
-
-          echo "--- resulting config ---"
-          python3 -c "import json;d=json.load(open('/tmp/result.json'));print(json.dumps({k:d.get(k) for k in ['url','status','html_url','source','build_type']},indent=2))"
-
-      - name: Trigger a Pages build
-        env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          REPO: ${{ github.repository }}
-        run: |
-          curl -sS -o /tmp/build.json -w "POST /pages/builds -> %{http_code}\n" \
-            -X POST \
+          CODE=$(curl -sS -o /tmp/pages.json -w "%{http_code}" \
             -H "Authorization: Bearer ${GH_TOKEN}" \
             -H "Accept: application/vnd.github+json" \
-            "https://api.github.com/repos/${REPO}/pages/builds" || true
-          cat /tmp/build.json | head -c 400 || true
-          echo
+            "https://api.github.com/repos/${REPO}/pages")
+          echo "GET /pages -> ${CODE}"
+          echo "::notice::Pages API GET ${CODE}: $(head -c 220 /tmp/pages.json | tr '\n' ' ')"
+
+      - name: Build static site
+        run: |
+          rm -rf _site
+          mkdir -p _site
+          cp index.html _site/
+          touch _site/.nojekyll
+          cp -R rag-evaluation-tutorial agent-evaluation-tutorial agent-eval-driven-tutorial _site/
+          echo "Site files:"
+          find _site -type f | wc -l
+
+      - name: Configure Pages (enable if needed)
+        uses: actions/configure-pages@v5
+        with:
+          enablement: true
+
+      - name: Upload Pages artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: _site
+
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
