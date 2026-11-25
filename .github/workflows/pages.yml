@@ -1,0 +1,55 @@
+name: Configure GitHub Pages
+
+# 用 Actions 自带的 GITHUB_TOKEN 修正 Pages 源为 main 分支根目录，
+# 避免本机 token 失效时无法调用 Pages API 的问题。
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+
+jobs:
+  configure:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Set Pages source to main / root
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          REPO: ${{ github.repository }}
+        run: |
+          set -euo pipefail
+          API="https://api.github.com/repos/${REPO}/pages"
+          AUTH="Authorization: Bearer ${GH_TOKEN}"
+          ACCEPT="Accept: application/vnd.github+json"
+          CTYPE="Content-Type: application/json"
+          BODY='{"source":{"branch":"main","path":"/"}}'
+
+          CODE=$(curl -sS -o /tmp/pages.json -w "%{http_code}" -H "$AUTH" -H "$ACCEPT" "$API")
+          echo "GET /pages -> ${CODE}"
+
+          if [ "$CODE" = "200" ]; then
+            echo "Pages site exists, updating source..."
+            curl -sS -f -X PUT -H "$AUTH" -H "$ACCEPT" -H "$CTYPE" -d "$BODY" "$API" > /tmp/result.json
+          else
+            echo "Pages site missing (${CODE}), creating..."
+            curl -sS -f -X POST -H "$AUTH" -H "$ACCEPT" -H "$CTYPE" -d "$BODY" "$API" > /tmp/result.json
+          fi
+
+          echo "--- resulting config ---"
+          python3 -c "import json;d=json.load(open('/tmp/result.json'));print(json.dumps({k:d.get(k) for k in ['url','status','html_url','source','build_type']},indent=2))"
+
+      - name: Trigger a Pages build
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          REPO: ${{ github.repository }}
+        run: |
+          curl -sS -o /tmp/build.json -w "POST /pages/builds -> %{http_code}\n" \
+            -X POST \
+            -H "Authorization: Bearer ${GH_TOKEN}" \
+            -H "Accept: application/vnd.github+json" \
+            "https://api.github.com/repos/${REPO}/pages/builds" || true
+          cat /tmp/build.json | head -c 400 || true
+          echo
