@@ -1,0 +1,873 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Agent 评测体系 · 完全教程｜视频逐帧还原 + 系统化补全</title>
+<style>
+:root{
+  --bg:#f6f7f9; --card:#fff; --ink:#1e2430; --muted:#667085; --line:#e4e7ec;
+  --brand:#2563eb; --brand-soft:#eff4ff; --code:#111827;
+  --yellow:#fff4cc; --yellow-b:#d9a92e; --blue:#dce9ff; --blue-b:#5b8def;
+  --green:#dcf5e6; --green-b:#39a97a; --purple:#efe7ff; --purple-b:#9575e0;
+  --red:#ffe4e9; --red-b:#e0728d;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);
+  font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Hiragino Sans GB","Microsoft YaHei",Segoe UI,sans-serif;
+  font-size:15.5px;line-height:1.85;-webkit-font-smoothing:antialiased}
+a{color:var(--brand);text-decoration:none}a:hover{text-decoration:underline}
+.wrap{display:flex;gap:30px;max-width:1480px;margin:0 auto;padding:0 26px}
+nav.toc{width:252px;flex:none;position:sticky;top:0;height:100vh;overflow-y:auto;padding:28px 12px 60px 0;font-size:13.5px}
+nav.toc .brand{font-weight:800;font-size:16px;margin-bottom:4px}
+nav.toc .sub{color:var(--muted);font-size:12px;margin-bottom:18px}
+nav.toc ul{list-style:none;margin:0;padding:0}
+nav.toc li{margin:2px 0}
+nav.toc a{display:block;padding:5px 10px;border-radius:7px;color:#41495a}
+nav.toc a:hover,nav.toc a.active{background:var(--brand-soft);text-decoration:none;color:var(--brand);font-weight:700}
+nav.toc .lv1{font-weight:700;margin-top:12px;color:var(--ink)}
+nav.toc .lv2{padding-left:22px;font-size:12.8px}
+main{flex:1;min-width:0;max-width:1080px;padding:28px 0 100px}
+.hero{background:linear-gradient(135deg,#eef3ff 0%,#f8fbff 55%,#f0fbf5 100%);
+  border:1px solid #dce6f7;border-radius:16px;padding:34px 36px;margin-bottom:26px}
+.hero h1{font-size:31px;line-height:1.35;margin:0 0 10px;letter-spacing:.3px}
+.hero .lead{font-size:16px;color:#3f4a5f;margin:0 0 18px}
+.hero .meta{display:flex;flex-wrap:wrap;gap:9px}
+.hero .meta span{background:#fff;border:1px solid #dde5f2;border-radius:20px;padding:4px 13px;font-size:12.5px;color:#46536a}
+.srclink{font-size:13px;color:#46536a;margin:14px 0 0}
+.srclink a{font-weight:600}
+h2{font-size:24px;margin:52px 0 14px;padding-bottom:10px;border-bottom:2px solid var(--brand);letter-spacing:.2px}
+h3{font-size:19px;margin:34px 0 12px;color:#1b2a4a}
+h4{font-size:16px;margin:24px 0 8px;color:#344054}
+p{margin:12px 0}
+.sec{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:24px 28px;margin:20px 0;box-shadow:0 1px 2px rgba(16,24,40,.03)}
+.tag{display:inline-block;font-size:11.5px;font-weight:700;padding:2px 9px;border-radius:5px;vertical-align:2px;margin-right:6px;white-space:nowrap}
+.t-video{background:var(--brand-soft);color:#1d4ed8;border:1px solid #cddcfb}
+.t-extra{background:#fff2e0;color:#a85b00;border:1px solid #f5dcb8}
+.t-redraw{background:#e9f8ef;color:#177a52;border:1px solid #c7ecd7}
+.note{background:#f8fafc;border-left:4px solid var(--brand);border-radius:0 9px 9px 0;padding:13px 18px;margin:16px 0;color:#3b4557;font-size:14.5px}
+.warn{background:#fff8ec;border-left:4px solid #e9a23b;border-radius:0 9px 9px 0;padding:13px 18px;margin:16px 0;color:#5a451f;font-size:14.5px}
+.key{background:#eef6ff;border:1px solid #d6e6ff;border-radius:10px;padding:14px 18px;margin:16px 0}
+.leadin{color:#5a6475;font-size:14.5px;background:#f8fafc;border-left:3px solid #c7d7f5;border-radius:0 8px 8px 0;padding:9px 14px;margin:0 0 18px}
+table{border-collapse:collapse;width:100%;margin:16px 0;font-size:14px;background:#fff}
+th,td{border:1px solid var(--line);padding:9px 12px;text-align:left;vertical-align:top}
+th{background:#f2f5f9;font-weight:700;color:#2b3547}
+tr:nth-child(even) td{background:#fbfcfe}
+td code,th code,p code,li code{background:#f1f4f9;border-radius:4px;padding:1px 5px;font-size:12.8px;color:#1d4ed8;font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace}
+pre{background:var(--code);color:#e6edf7;border-radius:11px;padding:17px 19px;overflow:auto;font-size:12.8px;line-height:1.72;margin:16px 0;font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace}
+pre code{background:none;color:inherit;padding:0;font-size:inherit}
+ul,ol{padding-left:24px;margin:12px 0}li{margin:5px 0}
+.figure{background:#fff;border:1px solid var(--line);border-radius:13px;padding:18px 20px 14px;margin:22px 0}
+.figure svg{width:100%;height:auto;display:block}
+.figure .cap{font-size:12.8px;color:var(--muted);margin-top:10px;text-align:center}
+.summary{background:linear-gradient(135deg,#f4f8ff,#f7fdf9);border:1px solid #dce7f7;border-radius:14px;padding:22px 26px;margin:0 0 26px}
+.summary h2{margin:0 0 10px;font-size:20px;border:0;padding:0}
+.summary .route{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:16px}
+.summary .route div{background:#fff;border:1px solid #e0e8f4;border-radius:10px;padding:11px 13px;font-size:13px}
+.summary .route b{display:block;color:#1d4ed8;margin-bottom:3px}
+.summary table th:last-child,.summary table td:last-child{white-space:nowrap;padding-left:16px;padding-right:16px}
+.timeline td:first-child{white-space:nowrap;font-family:ui-monospace,Menlo,monospace;color:var(--brand);font-weight:700}
+.footer{margin-top:60px;padding-top:22px;border-top:1px solid var(--line);color:var(--muted);font-size:13px}
+#progress{position:fixed;top:0;left:0;height:3px;width:0;background:linear-gradient(90deg,#2563eb,#39a97a);z-index:120;transition:width .08s linear}
+#totop{position:fixed;right:24px;bottom:26px;z-index:110;border:1px solid #cddcfb;background:#fff;color:#1d4ed8;border-radius:22px;padding:8px 15px;font-size:13px;cursor:pointer;box-shadow:0 3px 12px rgba(16,24,40,.10);display:none}
+@media(max-width:980px){nav.toc{display:none}.summary .route{grid-template-columns:1fr}.hero{padding:24px}.sec{padding:18px}}
+@media print{nav.toc{display:none}.sec,.figure{break-inside:avoid}body{background:#fff}}
+</style>
+</head>
+<body>
+<div id="progress" aria-hidden="true"></div>
+<button id="totop" type="button" aria-label="回到顶部">↑ 回到顶部</button>
+<div class="wrap">
+<nav class="toc">
+  <div class="brand">Agent 评测体系 · 完全教程</div>
+  <div class="sub">视频逐帧还原 + 系统化补全</div>
+  <ul>
+    <li><a class="lv1" href="#s0">0. 视频速览与保真约定</a></li>
+    <li><a class="lv1" href="#s1">1. 体系架构：三层 × 五步</a></li>
+    <li><a class="lv1" href="#s2">2. 详解</a></li>
+    <li><a class="lv2" href="#s21">2.1 三层分类（评什么）</a></li>
+    <li><a class="lv2" href="#s22">2.2 生产里看哪几个指标</a></li>
+    <li><a class="lv2" href="#s23">2.3 一条流程（怎么评）</a></li>
+    <li><a class="lv1" href="#s3">3. 上线与迭代</a></li>
+    <li><a class="lv1" href="#s4">4. 补充篇</a></li>
+    <li><a class="lv2" href="#s41">4.1 专业名词速查</a></li>
+    <li><a class="lv2" href="#s42">4.2 框架与基准全景</a></li>
+    <li><a class="lv2" href="#s43">4.3 与 RAG 评测的衔接</a></li>
+    <li><a class="lv2" href="#s44">4.4 可运行实战代码</a></li>
+    <li><a class="lv2" href="#s45">4.5 常见误区与归因</a></li>
+    <li><a class="lv1" href="#s5">5. 附录</a></li>
+    <li><a class="lv2" href="#s51">5.1 章节时间轴</a></li>
+    <li><a class="lv2" href="#s52">5.2 配图速查</a></li>
+    <li><a class="lv2" href="#s53">5.3 摘要措辞校正</a></li>
+    <li><a class="lv2" href="#s54">5.4 还原方法与资料来源</a></li>
+  </ul>
+</nav>
+
+<main>
+<div class="hero">
+  <h1>Agent 评测体系 · 完全教程</h1>
+  <p class="lead">基于抖音 @Harbor404《5min 带你搞懂 Agent 评测体系》（Agent 系列第 21 集，RAG 评测的姊妹篇）逐帧还原，并补齐视频未展开的术语、原理、代码与工程实践。</p>
+  <div class="meta">
+    <span>视频时长 5:42</span><span>发布 2026-10-15</span><span>1080P 逐帧核对</span>
+    <span>8 张结构图重绘</span><span>全文无视频截图</span><span>45+ 专业名词</span>
+  </div>
+  <p class="srclink">原视频：<a href="https://v.douyin.com/30rDH60axoo/" target="_blank" rel="noopener">抖音分享链接</a> ｜ <a href="https://www.douyin.com/video/7696585286075125011" target="_blank" rel="noopener">网页版直链</a> ｜ 视频 ID <code>7696585286075125011</code></p>
+</div>
+
+<section class="summary">
+<h2>一页速览：整期视频的 5 个结论</h2>
+<table style="margin-top:6px">
+<tr><th>#</th><th>结论</th><th>展开位置</th></tr>
+<tr><td>1</td><td><strong>一条公式</strong>：Agent 评测 = 三层分类（评什么）× 一条流程（怎么评），两者正交</td><td><a href="#s1">第 1 章</a></td></tr>
+<tr><td>2</td><td><strong>三层是诊断栈不是三张卷子</strong>：端到端 → 轨迹 → 表现，逐层下钻定位问题</td><td><a href="#s21">2.1</a></td></tr>
+<tr><td>3</td><td><strong>生产只盯 6 个指标</strong>：Task Completion / Plan Adherence / Tool Correctness / Argument Correctness / Token 成本·延迟 / pass^k</td><td><a href="#s22">2.2</a></td></tr>
+<tr><td>4</td><td><strong>三集数据 × 三种判据</strong>：黄金集/回归集/挑战集；程序判断/大模型 rubric/人工校准</td><td><a href="#s23">2.3</a></td></tr>
+<tr><td>5</td><td><strong>离线守已知、在线发现未知</strong>；线上 bad case 回流评测集，门槛越卡越准</td><td><a href="#s3">第 3 章</a></td></tr>
+</table>
+<div class="route">
+<div><b>只想复现视频</b>读第 1–3 章；标【视频原述】的内容与 8 张重绘图即覆盖全部画面要点</div>
+<div><b>想弄懂指标</b>读 2.2 节，再查 <a href="#s41">4.1 专业名词速查</a></div>
+<div><b>想落地工程</b>读 <a href="#s44">4.4 实战代码</a> + 第 3 章上线闭环</div>
+</div>
+</section>
+
+<section class="sec" id="s0">
+<h2>0. 视频速览与保真约定</h2>
+<p class="leadin">先说明来源与还原口径，避免把补充内容误当成视频原述。</p>
+<p><span class="tag t-video">视频原述</span>这是「Agent」系列合集的<strong>第 21 集</strong>，作者 <strong>Harbor404</strong>，标题《5min 带你搞懂 Agent 评测体系》，话题标签 <code>#Agent #AI #大模型 #Agent评测 #RAG</code>。实际时长 <strong>5 分 42 秒</strong>。画面是一份名为《Agent 评测体系》的文档滚动讲解 + 右上角虚拟形象 + 底部烧录字幕；承接上一集（第 20 集《10 分钟带你彻底搞懂 rag 评测》）。</p>
+<p>视频左侧大纲（逐字还原）：</p>
+<pre>Agent 评测体系
+一、体系架构
+二、详解
+    2.1 三层分类（评什么）
+        2.1.1 端到端评测
+        2.1.2 轨迹评测
+        2.1.3 表现评测
+    2.2 生产里看哪几个指标（重点）
+    2.3 一条流程（怎么评）
+        ① 定数据集  ② 定标准  ③ 跑测试  ④ 看指标归因  ⑤ 持续迭代
+三、上线与迭代</pre>
+<div class="key">
+<strong>三条保真约定</strong>
+<ul>
+<li><span class="tag t-video">视频原述</span> / <span class="tag t-redraw">结构重绘</span>：严格按视频画面还原，含术语原文、表格每一行、指标名、数值与举例。经「下载 1080P 原视频 → 每 5 秒抽帧 68 张 → 全帧中文 OCR → 关键页放大逐字目视校对」核对。</li>
+<li><span class="tag t-extra">补充</span>：视频未讲或未展开的官方定义、术语、代码、框架与工程实践，单独标注。</li>
+<li>口播按平台官方章节要点与烧录字幕归纳，<strong>不做逐字转写</strong>；知识性结论以画面文档为准。</li>
+</ul>
+</div>
+<div class="warn"><strong>关于本期「配图」：</strong>与上一集不同，本期视频画面是一份纯文本文档（浅灰框 ＋ 表格 ＋ 项目符号），<strong>没有独立的彩色架构图</strong>。因此本教程的 8 张 SVG 是<strong>按视频文档结构绘制的示意图</strong>（每张图注均标明依据），不是视频原图的临摹；视频中出现过的<strong>全部表格均已逐行还原</strong>到 HTML 与 Markdown 两版。图 2 底部另附视频「诊断栈」原文，避免把「定位到具体组件」误归到表现评测层。</div>
+
+<div class="note"><strong>与上一集的关系：</strong>视频明确说「RAG 评测评的是『一问一答』，Agent 评测评的是『一条多步执行的轨迹』」。上一集（<a href="../rag-evaluation-tutorial/index.html">RAG 评测教程</a>）讲检索+生成两层，这一集讲结果/路径/代价三层与整条执行轨迹。</div>
+</section>
+
+<section class="sec" id="s1">
+<h2>1. 体系架构：三层分类 × 一条流程</h2>
+<p class="leadin">整期视频只有一条公式，后面所有章节都是它的展开。</p>
+<p><span class="tag t-video">视频原述</span>文档「一、体系架构」浅灰框原文：</p>
+<pre>Agent 评测 = 三层分类（评什么）× 一条流程（怎么评）
+三层分类：① 端到端 → ② 轨迹 → ③ 表现
+一条流程：① 定数据集 → ② 定标准 → ③ 跑测试 → ④ 看指标归因 → ⑤ 持续迭代</pre>
+<div class="figure">
+<svg viewBox="0 0 900 320" xmlns="http://www.w3.org/2000/svg" font-family="-apple-system,PingFang SC,Microsoft YaHei,sans-serif">
+  <g text-anchor="middle">
+    <text x="450" y="26" font-size="15" font-weight="800" fill="#1e2430">Agent 评测 = 三层分类（评什么）× 一条流程（怎么评）</text>
+    <text x="450" y="46" font-size="11" fill="#7a8496">三层分类：① 端到端 → ② 轨迹 → ③ 表现</text>
+    <g font-size="12">
+      <rect x="60" y="60" width="240" height="76" rx="11" fill="#eaf1ff" stroke="#5b8def" stroke-width="1.7"/>
+      <text x="180" y="88" font-size="14" font-weight="800" fill="#1d4ed8">① 端到端评测</text>
+      <text x="180" y="108" font-size="11" fill="#4a5b7a">End-to-End · 最终结果</text>
+      <text x="180" y="126" font-size="11" fill="#4a5b7a">任务完成了吗</text>
+      <rect x="330" y="60" width="240" height="76" rx="11" fill="#fff8dd" stroke="#d9a92e" stroke-width="1.7"/>
+      <text x="450" y="88" font-size="14" font-weight="800" fill="#8a5f00">② 轨迹评测</text>
+      <text x="450" y="108" font-size="11" fill="#7a6330">Trajectory · 执行过程</text>
+      <text x="450" y="126" font-size="11" fill="#7a6330">路径对吗、工具用对没</text>
+      <rect x="600" y="60" width="240" height="76" rx="11" fill="#e9f9f0" stroke="#39a97a" stroke-width="1.7"/>
+      <text x="720" y="88" font-size="14" font-weight="800" fill="#177a52">③ 表现评测</text>
+      <text x="720" y="108" font-size="11" fill="#3c6b55">Performance · 运行时指标</text>
+      <text x="720" y="126" font-size="11" fill="#3c6b55">快吗、贵吗、稳吗</text>
+    </g>
+    <g stroke="#8a94a6" stroke-width="1.6">
+      <line x1="302" y1="98" x2="326" y2="98"/><line x1="572" y1="98" x2="596" y2="98"/>
+    </g>
+    <text x="450" y="172" font-size="24" font-weight="800" fill="#5b6478">×</text>
+    <text x="450" y="194" font-size="11" fill="#7a8496">一条流程：① 定数据集 → ② 定标准 → ③ 跑测试 → ④ 看指标归因 → ⑤ 持续迭代</text>
+    <g font-size="12">
+      <rect x="24" y="208" width="164" height="58" rx="10" fill="#f3edff" stroke="#9575e0" stroke-width="1.6"/>
+      <text x="106" y="243" font-size="13" font-weight="700" fill="#6d42c9">① 定数据集</text>
+      <rect x="200" y="208" width="164" height="58" rx="10" fill="#f3edff" stroke="#9575e0" stroke-width="1.6"/>
+      <text x="282" y="243" font-size="13" font-weight="700" fill="#6d42c9">② 定标准</text>
+      <rect x="376" y="208" width="164" height="58" rx="10" fill="#f3edff" stroke="#9575e0" stroke-width="1.6"/>
+      <text x="458" y="243" font-size="13" font-weight="700" fill="#6d42c9">③ 跑测试</text>
+      <rect x="552" y="208" width="164" height="58" rx="10" fill="#f3edff" stroke="#9575e0" stroke-width="1.6"/>
+      <text x="634" y="243" font-size="13" font-weight="700" fill="#6d42c9">④ 看指标归因</text>
+      <rect x="728" y="208" width="164" height="58" rx="10" fill="#f3edff" stroke="#9575e0" stroke-width="1.6"/>
+      <text x="810" y="243" font-size="13" font-weight="700" fill="#6d42c9">⑤ 持续迭代</text>
+    </g>
+    <g stroke="#9575e0" stroke-width="1.5">
+      <line x1="190" y1="237" x2="197" y2="237"/><line x1="366" y1="237" x2="373" y2="237"/>
+      <line x1="542" y1="237" x2="549" y2="237"/><line x1="718" y1="237" x2="725" y2="237"/>
+    </g>
+    <text x="450" y="294" font-size="11" fill="#7a8496">三层分类和流程是正交：任何一次具体评测，都落在「某一层 × 某一步」的交叉点上</text>
+  </g>
+</svg>
+<div class="cap">图 1｜体系架构：三层分类 × 一条流程（按视频文档「一、体系架构」结构化重绘）</div>
+</div>
+<p><strong>和 RAG 评测的关系</strong>：RAG 评测评的是「一问一答」，Agent 评测评的是「一条多步执行的轨迹」。所以 Agent 评测要回答三个问题——<strong>做成了没、怎么做的、代价多大</strong>，对应三层分类；而不管评哪一层，流程都是同一条五步。</p>
+<p><strong>正交关系</strong>：三层分类和流程是正交的——任何一次具体评测，都落在「某一层 × 某一步」的交叉点上。</p>
+<div class="note">这也是本集与上一集最本质的区别：RAG 评测按<strong>组件</strong>（检索 / 生成）拆，Agent 评测按<strong>结果 / 路径 / 代价</strong>拆，并且必须围绕完整 <code>trace</code>（执行轨迹）而非单次输入输出。</div>
+</section>
+
+<section class="sec" id="s2">
+<h2>2. 详解</h2>
+<p class="leadin">按文档 2.1–2.3 顺序展开；表格逐行还原，图示按文档结构重绘。</p>
+
+<h3 id="s21">2.1 三层分类（评什么）</h3>
+<table>
+<tr><th>层</th><th>官方术语</th><th>评什么</th><th>核心问题</th></tr>
+<tr><td>①</td><td><strong>端到端评测</strong>（End-to-End）</td><td>最终结果</td><td>任务完成了吗</td></tr>
+<tr><td>②</td><td><strong>轨迹评测</strong>（Trajectory）</td><td>执行过程</td><td>路径对吗、工具用对没</td></tr>
+<tr><td>③</td><td><strong>表现评测</strong>（Performance）</td><td>运行时指标</td><td>快吗、贵吗、稳吗</td></tr>
+</table>
+<p><span class="tag t-video">视频原述</span>「三层不是并列的三张卷子，而是一个<strong>诊断栈</strong>：先看结果有没有问题 → 结果有问题再看路径 → 路径有问题再定位到具体组件。」</p>
+<div class="figure">
+<svg viewBox="0 0 900 280" xmlns="http://www.w3.org/2000/svg" font-family="-apple-system,PingFang SC,Microsoft YaHei,sans-serif">
+  <g text-anchor="middle">
+    <text x="450" y="24" font-size="15" font-weight="800" fill="#1e2430">三层不是并列的三张卷子，而是一个诊断栈</text>
+    <rect x="100" y="46" width="700" height="56" rx="11" fill="#eaf1ff" stroke="#5b8def" stroke-width="1.7"/>
+    <text x="450" y="70" font-size="13.5" font-weight="800" fill="#1d4ed8">① 端到端评测　·　先看结果有没有问题</text>
+    <text x="450" y="90" font-size="11" fill="#4a5b7a">Task Completion：任务完成了吗</text>
+    <rect x="100" y="116" width="700" height="56" rx="11" fill="#fff8dd" stroke="#d9a92e" stroke-width="1.7"/>
+    <text x="450" y="140" font-size="13.5" font-weight="800" fill="#8a5f00">② 轨迹评测　·　结果有问题再看路径</text>
+    <text x="450" y="160" font-size="11" fill="#7a6330">Plan Adherence / Step Efficiency / Tool Correctness / Argument Correctness</text>
+    <rect x="100" y="186" width="700" height="56" rx="11" fill="#e9f9f0" stroke="#39a97a" stroke-width="1.7"/>
+    <text x="450" y="210" font-size="13.5" font-weight="800" fill="#177a52">③ 表现评测　·　运行时指标</text>
+    <text x="450" y="230" font-size="11" fill="#3c6b55">Token 成本 / 延迟 / pass^k：快吗、贵吗、稳吗</text>
+    <g stroke="#8a94a6" stroke-width="1.8">
+      <line x1="450" y1="104" x2="450" y2="112"/><line x1="450" y1="174" x2="450" y2="182"/>
+    </g>
+    <text x="450" y="266" font-size="11" fill="#7a8496">视频原文诊断链：先看结果有没有问题 → 结果有问题再看路径 → 路径有问题再定位到具体组件</text>
+  </g>
+</svg>
+<div class="cap">图 2｜三层分类与诊断链（按视频三层分类表重绘；底部为「诊断栈」原文，定位到具体组件不属于表现评测层）</div>
+</div>
+
+<h4>2.1.1 端到端评测</h4>
+<ul>
+<li><strong>是什么</strong>：把整个 Agent 当黑盒，只看输入 → 最终输出。</li>
+<li><strong>核心指标</strong>：<code>Task Completion</code>（任务完成率）、答案正确性／可用性。</li>
+<li><strong>特点</strong>：全自动、成本低；只回答「成没成」，不回答「为什么」。</li>
+<li><strong>局限</strong>：完成率从 68% 掉到 55%，它能拉响警报，但说不清哪一步坏了。</li>
+<li><strong>典型做法</strong>：给 Agent 一个任务，跑完看终态对不对（如 <code>τ-bench</code> 比对会话结束时的数据库状态与目标状态）。</li>
+</ul>
+
+<h4>2.1.2 轨迹评测</h4>
+<ul>
+<li><strong>是什么</strong>：评 Agent 的完整决策与行动序列——中间每一步。</li>
+<li><strong>为什么需要</strong>：端到端只知道「没做成」，轨迹才能回答「哪一步搞砸了」。</li>
+<li><strong>评三个方面</strong>（视频表格逐行还原）：</li>
+</ul>
+<table>
+<tr><th>维度</th><th>指标</th><th>含义</th></tr>
+<tr><td>规划</td><td><code>Plan Quality / Plan Adherence</code></td><td>计划合理吗 / 按计划走了吗</td></tr>
+<tr><td>步骤</td><td><code>Step Efficiency</code></td><td>有没有绕路、无效步骤</td></tr>
+<tr><td>工具调用</td><td><code>Tool Correctness</code></td><td>工具选对没</td></tr>
+<tr><td>（同上）</td><td><code>Argument Correctness</code></td><td>参数传对没</td></tr>
+</table>
+
+<h4>2.1.3 表现评测</h4>
+<p><span class="tag t-video">视频原述</span>该层在三层分类表中给出「Performance / 运行时指标 / 快吗、贵吗、稳吗」；视频画面<strong>未滚动到 2.1.3 的独立展开段落</strong>，其具体内容由 2.2 的「Token 成本／延迟」「★ pass^k」以及 2.3 ④ 的「表现看延迟／成本／稳定」体现。</p>
+<p><span class="tag t-extra">补充</span>表现评测常见维度：P50/P95/P99 延迟、单任务 Token 与费用、工具调用次数与重试率、成功率与稳定性（pass^k）、并发下的错误率与超时率、安全事件数。它不判断答案对不对，只判断系统跑得<strong>快不快、贵不贵、稳不稳</strong>。</p>
+
+<h3 id="s22">2.2 生产里看哪几个指标（重点）</h3>
+<p><span class="tag t-video">视频原述</span>「DeepEval 有 50+ 指标，但生产不是全看。实际盯就 6 个：」</p>
+<div class="figure">
+<svg viewBox="0 0 900 300" xmlns="http://www.w3.org/2000/svg" font-family="-apple-system,PingFang SC,Microsoft YaHei,sans-serif">
+  <g text-anchor="middle">
+    <text x="450" y="24" font-size="15" font-weight="800" fill="#1e2430">DeepEval 有 50+ 指标，但生产实际盯就 6 个</text>
+    <rect x="40" y="44" width="820" height="62" rx="11" fill="#eaf1ff" stroke="#5b8def" stroke-width="1.6"/>
+    <text x="92" y="80" font-size="12" font-weight="800" fill="#1d4ed8" text-anchor="start">端到端</text>
+    <rect x="180" y="54" width="660" height="42" rx="8" fill="#fff" stroke="#c9d8f5"/>
+    <text x="510" y="80" font-size="12.5" font-weight="700" fill="#1d4ed8">① Task Completion　·　总账——任务成没成</text>
+
+    <rect x="40" y="116" width="820" height="96" rx="11" fill="#fff8dd" stroke="#d9a92e" stroke-width="1.6"/>
+    <text x="92" y="168" font-size="12" font-weight="800" fill="#8a5f00" text-anchor="start">轨迹</text>
+    <rect x="180" y="126" width="212" height="76" rx="8" fill="#fff" stroke="#e9dcaa"/>
+    <text x="286" y="156" font-size="11.5" font-weight="700" fill="#8a5f00">② Plan Adherence</text><text x="286" y="176" font-size="10" fill="#6b5a30">含 Plan Quality</text><text x="286" y="192" font-size="10" fill="#6b5a30">跑偏没</text>
+    <rect x="404" y="126" width="212" height="76" rx="8" fill="#fff" stroke="#e9dcaa"/>
+    <text x="510" y="156" font-size="11.5" font-weight="700" fill="#8a5f00">③ Tool Correctness</text><text x="510" y="176" font-size="10" fill="#6b5a30">工具选对没</text>
+    <rect x="628" y="126" width="212" height="76" rx="8" fill="#fff" stroke="#e9dcaa"/>
+    <text x="734" y="156" font-size="11.5" font-weight="700" fill="#8a5f00">④ Argument Correctness</text><text x="734" y="176" font-size="10" fill="#6b5a30">参数传对没</text>
+
+    <rect x="40" y="222" width="820" height="62" rx="11" fill="#e9f9f0" stroke="#39a97a" stroke-width="1.6"/>
+    <text x="92" y="258" font-size="12" font-weight="800" fill="#177a52" text-anchor="start">表现</text>
+    <rect x="180" y="232" width="323" height="42" rx="8" fill="#fff" stroke="#bfe6d1"/>
+    <text x="341" y="258" font-size="11.5" font-weight="700" fill="#177a52">⑤ Token 成本 / 延迟　·　贵不贵、慢不慢</text>
+    <rect x="515" y="232" width="325" height="42" rx="8" fill="#fff" stroke="#bfe6d1"/>
+    <text x="677" y="258" font-size="11.5" font-weight="700" fill="#177a52">⑥ ★ pass^k　·　稳不稳</text>
+  </g>
+</svg>
+<div class="cap">图 3｜生产里实际盯的 6 个指标（按视频 2.2 表格分层重绘；③④ 必须成对看：工具选对但参数传错＝一样废）</div>
+</div>
+<table>
+<tr><th>#</th><th>指标</th><th>层</th><th>看什么</th></tr>
+<tr><td>①</td><td><code>Task Completion</code></td><td>端到端</td><td>总账——任务成没成</td></tr>
+<tr><td>②</td><td><code>Plan Adherence</code>（含 Plan Quality）</td><td>轨迹</td><td>跑偏没——按计划走了吗</td></tr>
+<tr><td>③</td><td><code>Tool Correctness</code></td><td>轨迹</td><td>工具选对没</td></tr>
+<tr><td>④</td><td><code>Argument Correctness</code></td><td>轨迹</td><td>参数传对没</td></tr>
+<tr><td>⑤</td><td><code>Token 成本 / 延迟</code></td><td>表现</td><td>贵不贵、慢不慢</td></tr>
+<tr><td>⑥</td><td><code>★ pass^k</code></td><td>表现</td><td>稳不稳——同任务跑 k 次全成的概率</td></tr>
+</table>
+<div class="warn"><strong>③④ 必须成对看</strong>：工具选对但参数传错 = 一样废。</div>
+<p><strong>场景加看（默认不开）</strong>：</p>
+<table>
+<tr><th>触发条件</th><th>加看</th></tr>
+<tr><td>带 RAG</td><td><code>Faithfulness</code>、<code>Answer Relevancy</code></td></tr>
+<tr><td>涉用户隐私</td><td><code>PII Leakage</code></td></tr>
+<tr><td>有危险操作（转账 / 删库）</td><td><code>Tool Permission</code>、<code>Misuse</code></td></tr>
+<tr><td>对 C 端</td><td><code>Toxicity</code>、<code>Bias</code></td></tr>
+</table>
+<p><strong>⚠️ 核心原则：指标是渐进的，别一上来全开。</strong></p>
+<ul>
+<li><strong>顺序</strong>：先只上 <code>Task Completion</code>（看总账）→ 有问题再加轨迹指标（定位哪步坏）→ 再按业务挂场景指标。</li>
+<li><strong>依据</strong>：先做 <code>error analysis</code>，再决定写哪些指标（美团 / Anthropic 共识）。</li>
+<li><strong>反例</strong>：50 个指标全开 → 成本爆炸、噪音淹没信号、没人看。</li>
+</ul>
+
+<h3 id="s23">2.3 一条流程（怎么评）</h3>
+<p><span class="tag t-video">视频原述</span>「不管评哪一层，流程都是同一条：① 定数据集 → ② 定标准 → ③ 跑测试 → ④ 看指标归因 → ⑤ 持续迭代」</p>
+<div class="figure">
+<svg viewBox="0 0 900 112" xmlns="http://www.w3.org/2000/svg" font-family="-apple-system,PingFang SC,Microsoft YaHei,sans-serif">
+  <g text-anchor="middle">
+    <text x="450" y="24" font-size="14" font-weight="800" fill="#1e2430">不管评哪一层，流程都是同一条</text>
+    <g font-size="12.5" font-weight="700">
+      <rect x="24" y="44" width="164" height="56" rx="10" fill="#eaf1ff" stroke="#5b8def"/><text x="106" y="78" fill="#1d4ed8">① 定数据集</text>
+      <rect x="200" y="44" width="164" height="56" rx="10" fill="#f3edff" stroke="#9575e0"/><text x="282" y="78" fill="#6d42c9">② 定标准</text>
+      <rect x="376" y="44" width="164" height="56" rx="10" fill="#fff8dd" stroke="#d9a92e"/><text x="458" y="78" fill="#8a5f00">③ 跑测试</text>
+      <rect x="552" y="44" width="164" height="56" rx="10" fill="#e9f9f0" stroke="#39a97a"/><text x="634" y="78" fill="#177a52">④ 看指标归因</text>
+      <rect x="728" y="44" width="164" height="56" rx="10" fill="#ffecef" stroke="#e0728d"/><text x="810" y="78" fill="#b93e60">⑤ 持续迭代</text>
+    </g>
+    <g stroke="#8a94a6" stroke-width="1.7">
+      <line x1="190" y1="72" x2="197" y2="72"/><line x1="366" y1="72" x2="373" y2="72"/>
+      <line x1="542" y1="72" x2="549" y2="72"/><line x1="718" y1="72" x2="725" y2="72"/>
+    </g>
+  </g>
+</svg>
+<div class="cap">图 4｜一条流程五步（按视频 2.3 流程条 1:1 重绘）</div>
+</div>
+
+<h4>① 定数据集</h4>
+<p><strong>一个用例 = 三元组：问题 ＋ 参考答案 ＋ 评价标准。</strong>按用途分三类：</p>
+<div class="figure">
+<svg viewBox="0 0 900 250" xmlns="http://www.w3.org/2000/svg" font-family="-apple-system,PingFang SC,Microsoft YaHei,sans-serif">
+  <g text-anchor="middle">
+    <text x="450" y="24" font-size="15" font-weight="800" fill="#1e2430">按用途分三类数据集</text>
+    <rect x="30" y="46" width="270" height="164" rx="11" fill="#fff8dd" stroke="#d9a92e" stroke-width="1.7"/>
+    <text x="165" y="76" font-size="14" font-weight="800" fill="#8a5f00">黄金集</text>
+    <text x="165" y="98" font-size="11" font-style="italic" fill="#7a6330">golden set</text>
+    <line x1="60" y1="110" x2="270" y2="110" stroke="#e9dcaa"/>
+    <text x="165" y="136" font-size="11.5" fill="#4a4230">人工精标，</text><text x="165" y="156" font-size="11.5" fill="#4a4230">定义「好的下限」</text>
+    <text x="165" y="188" font-size="12" font-weight="700" fill="#8a5f00">起步 20~50 条</text>
+
+    <rect x="315" y="46" width="270" height="164" rx="11" fill="#eaf1ff" stroke="#5b8def" stroke-width="1.7"/>
+    <text x="450" y="76" font-size="14" font-weight="800" fill="#1d4ed8">回归集</text>
+    <text x="450" y="98" font-size="11" font-style="italic" fill="#4a5b7a">regression set</text>
+    <line x1="345" y1="110" x2="555" y2="110" stroke="#c9d8f5"/>
+    <text x="450" y="136" font-size="11.5" fill="#4a4230">以前能做对的，</text><text x="450" y="156" font-size="11.5" fill="#4a4230">防止回退</text>
+    <text x="450" y="188" font-size="12" font-weight="700" fill="#1d4ed8">要求 ≈100%</text>
+
+    <rect x="600" y="46" width="270" height="164" rx="11" fill="#e9f9f0" stroke="#39a97a" stroke-width="1.7"/>
+    <text x="735" y="76" font-size="14" font-weight="800" fill="#177a52">挑战集</text>
+    <text x="735" y="98" font-size="11" font-style="italic" fill="#3c6b55">capability set</text>
+    <line x1="630" y1="110" x2="840" y2="110" stroke="#bfe6d1"/>
+    <text x="735" y="136" font-size="11.5" fill="#4a4230">专攻当前难题，</text><text x="735" y="156" font-size="11.5" fill="#4a4230">标定能力边界</text>
+    <text x="735" y="188" font-size="12" font-weight="700" fill="#177a52">从低起步</text>
+    <text x="450" y="236" font-size="11" fill="#7a8496">一个用例＝问题 ＋ 参考答案 ＋ 评价标准（三元组）</text>
+  </g>
+</svg>
+<div class="cap">图 5｜三类数据集（按视频 2.3「按用途分三类」表重绘）</div>
+</div>
+<table>
+<tr><th>类型</th><th>英文</th><th>作用</th><th>通过率</th></tr>
+<tr><td>黄金集</td><td><code>golden set</code></td><td>人工精标，定义「好的下限」</td><td>起步 20~50 条</td></tr>
+<tr><td>回归集</td><td><code>regression set</code></td><td>以前能做对的，防止回退</td><td>要求 ≈100%</td></tr>
+<tr><td>挑战集</td><td><code>capability set</code></td><td>专攻当前难题，标定能力边界</td><td>从低起步</td></tr>
+</table>
+
+<h4>② 定标准</h4>
+<p><span class="tag t-video">视频原述</span>「标准按『判得清不清』分三类，对应三种判据」：</p>
+<div class="figure">
+<svg viewBox="0 0 900 270" xmlns="http://www.w3.org/2000/svg" font-family="-apple-system,PingFang SC,Microsoft YaHei,sans-serif">
+  <g text-anchor="middle">
+    <text x="450" y="24" font-size="15" font-weight="800" fill="#1e2430">标准按「判得清不清」分三类，对应三种判据</text>
+    <rect x="30" y="46" width="270" height="184" rx="11" fill="#eaf1ff" stroke="#5b8def" stroke-width="1.7"/>
+    <text x="165" y="76" font-size="14" font-weight="800" fill="#1d4ed8">程序判断</text>
+    <text x="165" y="102" font-size="11" fill="#4a5b7a">清晰的指标</text>
+    <text x="165" y="122" font-size="10.5" fill="#4a5b7a">工具名 / 参数 / 格式 / 终态状态</text>
+    <line x1="60" y1="136" x2="270" y2="136" stroke="#c9d8f5"/>
+    <text x="165" y="160" font-size="11" fill="#2b3547">代码确定性断言</text>
+    <text x="165" y="180" font-size="10.5" fill="#2b3547">EQ / CONTAINS / REGEX</text>
+    <text x="165" y="212" font-size="11.5" font-weight="700" fill="#1d4ed8">快、稳、可复现</text>
+
+    <rect x="315" y="46" width="270" height="184" rx="11" fill="#fff8dd" stroke="#d9a92e" stroke-width="1.7"/>
+    <text x="450" y="76" font-size="14" font-weight="800" fill="#8a5f00">大模型判断</text>
+    <text x="450" y="102" font-size="11" fill="#7a6330">模糊的指标</text>
+    <text x="450" y="122" font-size="10.5" fill="#7a6330">答案质量 / 规划合理性 / 沟通质量</text>
+    <line x1="345" y1="136" x2="555" y2="136" stroke="#e9dcaa"/>
+    <text x="450" y="160" font-size="11" fill="#2b3547">rubric 评分细则</text>
+    <text x="450" y="180" font-size="10.5" fill="#2b3547">尽量二元化：是 / 否 / 未知</text>
+    <text x="450" y="212" font-size="11.5" font-weight="700" fill="#8a5f00">懂语义，但需与人工校准</text>
+
+    <rect x="600" y="46" width="270" height="184" rx="11" fill="#f3edff" stroke="#9575e0" stroke-width="1.7"/>
+    <text x="735" y="76" font-size="14" font-weight="800" fill="#6d42c9">人工判断</text>
+    <text x="735" y="102" font-size="11" fill="#5a4d7a">需要校准时</text>
+    <text x="735" y="122" font-size="10.5" fill="#5a4d7a">校准程序判断与大模型 rubric</text>
+    <line x1="630" y1="136" x2="840" y2="136" stroke="#d9cdf7"/>
+    <text x="735" y="160" font-size="11" fill="#2b3547">人评结构化打分</text>
+    <text x="735" y="180" font-size="10.5" fill="#2b3547">统一口径，由一人拍板</text>
+    <text x="735" y="212" font-size="11.5" font-weight="700" fill="#6d42c9">金标准，贵、慢</text>
+    <text x="450" y="256" font-size="11" fill="#7a8496">分工原则：能确定性就确定性——清晰的就用程序，模糊的才上 rubric，人工用来校准</text>
+  </g>
+</svg>
+<div class="cap">图 6｜三种判据（按视频 2.3「定标准」表重绘）</div>
+</div>
+<table>
+<tr><th>判据</th><th>适用</th><th>怎么判</th><th>特点</th></tr>
+<tr><td><strong>程序判断</strong></td><td>清晰的指标（工具名、参数、格式、终态状态）</td><td>代码确定性断言（<code>EQ / CONTAINS / REGEX</code>）</td><td>快、稳、可复现</td></tr>
+<tr><td><strong>大模型判断</strong></td><td>模糊的指标（答案质量、规划合理性、沟通质量）</td><td><code>rubric</code>（评分细则，尽量二元化：是 / 否 / 未知）</td><td>懂语义，但需与人工校准</td></tr>
+<tr><td><strong>人工判断</strong></td><td>需要校准时</td><td>人评结构化打分</td><td>金标准，贵、慢</td></tr>
+</table>
+<p><strong>分工原则</strong>：能确定性就确定性——清晰的就用程序，模糊的才上 rubric，人工用来校准。</p>
+
+<p><strong>① 程序判断（清晰指标）</strong></p>
+<ul>
+<li>判什么：工具名／参数／格式／环境终态。</li>
+<li>例：<code>ToolCorrectness</code> → 实际工具序列 == 期望序列（== 1.0 通过）。</li>
+</ul>
+
+<p><strong>② 大模型判断（模糊指标 → rubric）</strong></p>
+<ul>
+<li>判什么：无唯一正确答案的质量维度。</li>
+<li>关键：<strong>rubric 二元化</strong>——把模糊概念拆成一组「是／否／未知」的具体检查项。</li>
+<li>例：<code>AnswerCorrectness</code> → rubric（0-2 错 / 3-6 大体对 / 7-9 漏细节 / 10 全对）→ 阈值 ≥ 7。</li>
+<li>前提：<strong>人机一致率达标</strong>（机器评测与人工评测一致），否则只能算「机器标注」，不算自动化评测。</li>
+</ul>
+
+<p><strong>③ 人工判断</strong></p>
+<ul>
+<li>用途：校准前面两者，尤其校准大模型 rubric。</li>
+<li>原则：1 个「独裁者」好过 10 个「民主者」——统一口径，由一个人拍板。</li>
+</ul>
+
+<h4>③ 跑测试</h4>
+<p>按「在哪跑、有没有参考答案」分两种：</p>
+<div class="figure">
+<svg viewBox="0 0 900 280" xmlns="http://www.w3.org/2000/svg" font-family="-apple-system,PingFang SC,Microsoft YaHei,sans-serif">
+  <g text-anchor="middle">
+    <text x="450" y="24" font-size="15" font-weight="800" fill="#1e2430">按「在哪跑、有没有参考答案」分两种测试</text>
+    <rect x="40" y="46" width="395" height="184" rx="11" fill="#eaf1ff" stroke="#5b8def" stroke-width="1.7"/>
+    <text x="237" y="76" font-size="14" font-weight="800" fill="#1d4ed8">离线评测（offline）</text>
+    <text x="237" y="102" font-size="11.5" fill="#4a5b7a">在哪跑：评测集上</text>
+    <text x="237" y="124" font-size="11.5" fill="#4a5b7a">有参考答案（reference-based）</text>
+    <text x="237" y="146" font-size="11.5" fill="#4a5b7a">用途：上线前回归、对比版本</text>
+    <line x1="70" y1="158" x2="405" y2="158" stroke="#c9d8f5"/>
+    <text x="237" y="182" font-size="11" fill="#2b3547">实现：跑评测集</text>
+    <text x="237" y="204" font-size="10.5" fill="#2b3547">含回放 replay（历史 trace 重放验证新版本）</text>
+
+    <rect x="465" y="46" width="395" height="184" rx="11" fill="#e9f9f0" stroke="#39a97a" stroke-width="1.7"/>
+    <text x="662" y="76" font-size="14" font-weight="800" fill="#177a52">在线评测（online）</text>
+    <text x="662" y="102" font-size="11.5" fill="#3c6b55">在哪跑：生产真实流量</text>
+    <text x="662" y="124" font-size="11.5" fill="#3c6b55">无参考答案（reference-free）</text>
+    <text x="662" y="146" font-size="11.5" fill="#3c6b55">用途：发现未知问题</text>
+    <line x1="495" y1="158" x2="830" y2="158" stroke="#bfe6d1"/>
+    <text x="662" y="182" font-size="11" fill="#2b3547">实现：影子模式 / A/B / 巡检</text>
+    <text x="662" y="204" font-size="10.5" fill="#2b3547">影子兜底、AB 验业务价值、巡检盯基本盘</text>
+
+    <rect x="40" y="240" width="820" height="32" rx="8" fill="#fff8dd" stroke="#d9a92e"/>
+    <text x="450" y="261" font-size="12.5" font-weight="700" fill="#8a5f00">一句话：离线守已知，在线发现未知</text>
+  </g>
+</svg>
+<div class="cap">图 7｜离线评测 vs 在线评测（按视频 2.3「③ 跑测试」表重绘）</div>
+</div>
+<table>
+<tr><th>场景</th><th>在哪跑</th><th>有参考答案吗</th><th>用途</th></tr>
+<tr><td>离线评测（offline）</td><td>评测集上</td><td>有（<code>reference-based</code>）</td><td>上线前回归、对比版本</td></tr>
+<tr><td>在线评测（online）</td><td>生产真实流量</td><td>无（<code>reference-free</code>）</td><td>发现未知问题</td></tr>
+</table>
+<ul>
+<li><strong>离线的实现</strong>：跑评测集（含回放 <code>replay</code>——用历史 trace 重放验证新版本）。</li>
+<li><strong>在线的实现</strong>：影子模式（上线前用真实流量兜底）、A/B（上线后确认业务价值）、巡检（日常盯基本盘）。</li>
+</ul>
+<div class="key"><strong>一句话：离线守已知，在线发现未知。</strong></div>
+
+<h4>④ 看指标归因</h4>
+<ul>
+<li><strong>看指标</strong>：端到端看 <code>Task Completion</code>，轨迹看 <code>Tool Correctness / Plan Adherence</code>，表现看延迟／成本／稳定／安全。</li>
+<li><strong>归因</strong>：把失败的 trace 归类成 <code>failure taxonomy</code>，定位「哪一层的哪一步坏了」。</li>
+<li><strong>原则</strong>：先做 <code>error analysis</code>，再决定写哪些指标。</li>
+</ul>
+<p style="font-size:13px;color:var(--muted)">画面差异：视频前段该句写作「表现看延迟／成本／稳定」，后段画面补为「稳定/安全」；本教程取更完整的后段写法。</p>
+
+<div class="warn"><strong>关键认知</strong>：离线只是门控，线上 A/B 看业务指标才是黄金标准。</div>
+
+<h4>⑤ 持续迭代</h4>
+<p>把线上失败的 case 回灌进评测集，形成闭环——<strong>评测集越滚越大，门槛越卡越准</strong>。</p>
+</section>
+
+<section class="sec" id="s3">
+<h2>3. 上线与迭代</h2>
+<p class="leadin">流程跑通后，评测要接进研发流程才有约束力；这一章与上一集 RAG 评测的闭环同源。</p>
+<p><span class="tag t-video">视频原述</span>「流程跑通后，评测要接进研发流程才有约束力。」</p>
+<div class="figure">
+<svg viewBox="0 0 900 400" xmlns="http://www.w3.org/2000/svg" font-family="-apple-system,PingFang SC,Microsoft YaHei,sans-serif">
+  <defs>
+    <marker id="ag1" markerWidth="9" markerHeight="9" refX="7" refY="4.5" orient="auto"><path d="M0,0 L9,4.5 L0,9 z" fill="#39a97a"/></marker>
+    <marker id="ag2" markerWidth="9" markerHeight="9" refX="7" refY="4.5" orient="auto"><path d="M0,0 L9,4.5 L0,9 z" fill="#d9a92e"/></marker>
+    <marker id="ag3" markerWidth="9" markerHeight="9" refX="7" refY="4.5" orient="auto"><path d="M0,0 L9,4.5 L0,9 z" fill="#e0728d"/></marker>
+    <marker id="ag4" markerWidth="9" markerHeight="9" refX="7" refY="4.5" orient="auto"><path d="M0,0 L9,4.5 L0,9 z" fill="#5b8def"/></marker>
+  </defs>
+  <g>
+    <text x="450" y="24" font-size="15" font-weight="800" text-anchor="middle" fill="#1e2430">三、上线与迭代：评测接进研发流程才有约束力</text>
+    <line x1="372" y1="118" x2="528" y2="118" stroke="#39a97a" stroke-width="2" marker-end="url(#ag1)"/>
+    <text x="450" y="110" font-size="10.5" text-anchor="middle" fill="#3c6b55">达标 → 灰度</text>
+    <line x1="695" y1="192" x2="695" y2="256" stroke="#d9a92e" stroke-width="2" marker-end="url(#ag2)"/>
+    <text x="770" y="228" font-size="10.5" text-anchor="middle" fill="#8a6a20">放量后盯</text>
+    <line x1="528" y1="330" x2="372" y2="330" stroke="#e0728d" stroke-width="2" marker-end="url(#ag3)"/>
+    <text x="450" y="322" font-size="10.5" text-anchor="middle" fill="#a34c67">出问题 → 回滚</text>
+    <line x1="205" y1="256" x2="205" y2="192" stroke="#5b8def" stroke-width="2" stroke-dasharray="6 4" marker-end="url(#ag4)"/>
+    <text x="130" y="228" font-size="10.5" text-anchor="middle" fill="#4a5b7a">回流 → 再评</text>
+
+    <rect x="40" y="46" width="330" height="144" rx="12" fill="#eaf1ff" stroke="#5b8def" stroke-width="1.8"/>
+    <text x="56" y="72" font-size="13.5" font-weight="800" fill="#1d4ed8">① 放行标准（跟上一版比）</text>
+    <g font-size="10" fill="#4a5b7a">
+      <text x="56" y="96">优化项 ≥ 上一版，且统计显著</text>
+      <text x="56" y="118">其余指标下降需在容差内（如 ±2%）</text>
+      <text x="56" y="140">红线指标（延迟、安全）不超预算</text>
+      <text x="56" y="162">→ 一票否决</text>
+    </g>
+
+    <rect x="530" y="46" width="330" height="144" rx="12" fill="#e9f9f0" stroke="#39a97a" stroke-width="1.8"/>
+    <text x="546" y="72" font-size="13.5" font-weight="800" fill="#177a52">② 灰度发布</text>
+    <g font-size="10.5" text-anchor="middle" fill="#3c6b55">
+      <rect x="546" y="84" width="298" height="22" rx="11" fill="#fff" stroke="#bfe6d1"/><text x="695" y="99">影子流量</text>
+      <rect x="546" y="110" width="298" height="22" rx="11" fill="#fff" stroke="#bfe6d1"/><text x="695" y="125">小流量 A/B</text>
+      <rect x="546" y="136" width="298" height="22" rx="11" fill="#fff" stroke="#bfe6d1"/><text x="695" y="151">放量 → 全量</text>
+    </g>
+
+    <rect x="530" y="260" width="330" height="120" rx="12" fill="#fff8dd" stroke="#d9a92e" stroke-width="1.8"/>
+    <text x="546" y="286" font-size="13.5" font-weight="800" fill="#8a5f00">③ 线上监控</text>
+    <g font-size="10" fill="#6b5a30">
+      <text x="546" y="310">系统指标（延迟 / 成本）</text>
+      <text x="546" y="332">质量指标（在线 Judge）</text>
+      <text x="546" y="354">漂移检测（query 分布）</text>
+    </g>
+
+    <rect x="40" y="260" width="330" height="120" rx="12" fill="#ffecef" stroke="#e0728d" stroke-width="1.8"/>
+    <text x="56" y="286" font-size="13.5" font-weight="800" fill="#b93e60">④ 回滚 / 迭代</text>
+    <g font-size="10.5" fill="#7a4455">
+      <text x="56" y="312">把线上 bad case 回流评测集</text>
+      <text x="56" y="334">评测集越滚越大，门槛越卡越准</text>
+    </g>
+
+    <circle cx="450" cy="224" r="56" fill="#fbfcfe" stroke="#b9c2d0" stroke-width="1.6" stroke-dasharray="6 4"/>
+    <text x="450" y="220" font-size="12.5" font-weight="800" text-anchor="middle" fill="#2b3547">数据闭环</text>
+    <text x="450" y="240" font-size="10.5" text-anchor="middle" fill="#7a8496">越卡越准</text>
+  </g>
+</svg>
+<div class="cap">图 8｜上线与迭代示意闭环（依视频「三、上线与迭代」四个文字环节绘制；该章原文为文字段落，并非独立配图）</div>
+</div>
+<h4>放行标准（跟上一版比）</h4>
+<ul>
+<li>① 优化项 ≥ 上一版，且统计显著。</li>
+<li>② 其余指标下降需在容差内（如 ±2%）。</li>
+<li>③ 红线指标（延迟、安全）不超预算 → 一票否决。</li>
+</ul>
+<h4>灰度发布</h4>
+<p>影子流量 → 小流量 A/B → 放量 → 全量。</p>
+<h4>线上监控</h4>
+<p>系统指标（延迟 / 成本）、质量指标（在线 Judge）、漂移检测（query 分布）。</p>
+<h4>回滚 / 迭代</h4>
+<p>把线上 bad case 回流评测集，形成闭环。</p>
+<p><span class="tag t-extra">补充 · 工程落地</span>影子流量指复制真实请求打给新版本但「只记不答」；A/B 需保证同一用户稳定分桶；在线 Judge 通常只抽 5%–10% 流量异步执行，避免压进主链路；红线要自动化，触发即回滚；bad case 回流需人工去标识化与打标后再并入回归集，防止评测集被脏样本污染。</p>
+</section>
+
+<section class="sec" id="s4">
+<h2>4. 补充篇</h2>
+<p class="leadin">视频没展开的部分集中在这里，可按需要跳读；全部标注为【补充】。</p>
+
+<h3 id="s41">4.1 专业名词速查</h3>
+<table>
+<tr><th>名词</th><th>含义</th></tr>
+<tr><td><strong>Agent</strong></td><td>能自主规划、调用工具、多步执行以完成目标的 LLM 系统；评测对象是完整执行过程而非单次问答。</td></tr>
+<tr><td><strong>Trace / Span</strong></td><td>一次完整执行轨迹 / 轨迹中的单个组件调用（LLM、工具、子 Agent）；轨迹评测必须基于 trace。</td></tr>
+<tr><td><strong>端到端评测 End-to-End</strong></td><td>把 Agent 当黑盒，只看输入 → 最终输出，回答「任务完成了吗」。</td></tr>
+<tr><td><strong>轨迹评测 Trajectory</strong></td><td>评完整决策与行动序列，回答「哪一步搞砸了」。</td></tr>
+<tr><td><strong>表现评测 Performance</strong></td><td>运行时指标：延迟、成本、稳定性、错误率，回答「快吗、贵吗、稳吗」。</td></tr>
+<tr><td><strong>Task Completion</strong></td><td>任务完成率／完成度；端到端的总账指标，常由 LLM 依据整个 trace 判定。</td></tr>
+<tr><td><strong>Plan Quality</strong></td><td>生成的计划是否逻辑合理、完整、高效（DeepEval 轨迹指标）。</td></tr>
+<tr><td><strong>Plan Adherence</strong></td><td>执行是否按自己生成的计划走；计划好却不照做是典型失败模式「计划抛弃」。</td></tr>
+<tr><td><strong>Step Efficiency</strong></td><td>是否避免了绕路与冗余步骤；与视频 2.1.2「步骤」维度对应。</td></tr>
+<tr><td><strong>Tool Correctness</strong></td><td>工具选对没；reference-based，比较实际工具序列与期望序列。</td></tr>
+<tr><td><strong>Argument Correctness</strong></td><td>工具参数传对没；常为 referenceless，由 LLM judge 结合输入判断。</td></tr>
+<tr><td><strong>pass^k</strong></td><td>τ-bench 引入：同一任务独立跑 k 次<strong>全部成功</strong>的概率，衡量可靠性；与代码生成的 <code>pass@k</code>（至少一次成功）相反。</td></tr>
+<tr><td><strong>τ-bench</strong></td><td>Sierra 2024 的 tool-agent-user 基准：模拟用户 + 领域策略 + 工具 API，以「会话结束后的数据库终态」与目标状态比对判分。</td></tr>
+<tr><td><strong>DeepEval</strong></td><td>Pytest 风格的 LLM 评测框架，50+ 指标；Agent 侧有 6 个指标，轨迹指标需 tracing。</td></tr>
+<tr><td><strong>golden set</strong></td><td>黄金集：人工精标，定义质量下限，起步 20~50 条。</td></tr>
+<tr><td><strong>regression set</strong></td><td>回归集：历史上能做对的用例，防止版本回退，要求通过率 ≈100%。</td></tr>
+<tr><td><strong>capability set</strong></td><td>挑战集：专攻当前难题，用来标定能力边界，通过率从低起步。</td></tr>
+<tr><td><strong>用例三元组</strong></td><td>问题 ＋ 参考答案 ＋ 评价标准；视频给出的最小评测单元。</td></tr>
+<tr><td><strong>rubric</strong></td><td>评分细则；把模糊质量维度拆成可判定的检查项，尽量二元化（是／否／未知）。</td></tr>
+<tr><td><strong>二元化</strong></td><td>把连续/主观打分改造成离散断言，降低 LLM judge 的随机性与口径漂移。</td></tr>
+<tr><td><strong>人机一致率</strong></td><td>机器评测与人工评测的一致程度；未达标时机器结果只能算「机器标注」，不能称自动化评测。</td></tr>
+<tr><td><strong>reference-based / free</strong></td><td>有参考答案 / 无参考答案；对应离线评测集与在线真实流量。</td></tr>
+<tr><td><strong>error analysis</strong></td><td>先人工归类失败样本，再决定要写哪些指标；视频强调的指标选取顺序。</td></tr>
+<tr><td><strong>failure taxonomy</strong></td><td>失败类型学：把失败 trace 归类，定位「哪一层的哪一步坏了」。</td></tr>
+<tr><td><strong>replay</strong></td><td>回放：用历史 trace 重放验证新版本，属于离线评测。</td></tr>
+<tr><td><strong>影子模式 shadow mode</strong></td><td>用真实流量打新版本但不返回结果给用户，零风险兜底。</td></tr>
+<tr><td><strong>A/B 测试</strong></td><td>小流量对比新旧版本的业务价值；视频称线上 A/B 是黄金标准。</td></tr>
+<tr><td><strong>巡检</strong></td><td>日常抽样盯基本盘，属于在线评测的常规实现。</td></tr>
+<tr><td><strong>在线 Judge</strong></td><td>在生产流量上异步调用 LLM 打分，通常抽样执行。</td></tr>
+<tr><td><strong>漂移检测</strong></td><td>监控 query 分布变化，防止离线评测集与线上真实分布脱节。</td></tr>
+<tr><td><strong>PII Leakage</strong></td><td>个人敏感信息泄露指标；涉用户隐私场景才加看。</td></tr>
+<tr><td><strong>Tool Permission / Misuse</strong></td><td>工具权限与误用；转账、删库等危险操作场景才加看。</td></tr>
+<tr><td><strong>Toxicity / Bias</strong></td><td>毒性与偏见；对 C 端场景才加看。</td></tr>
+<tr><td><strong>Faithfulness / Answer Relevancy</strong></td><td>忠实度 / 答案相关性；Agent 内带 RAG 时才挂的检索-生成指标。</td></tr>
+<tr><td><strong>LLM-as-a-Judge</strong></td><td>用大模型按 rubric 当裁判；需与人工标注做一致性校准。</td></tr>
+<tr><td><strong>G-Eval / DAG</strong></td><td>DeepEval 的自定义指标机制：自然语言准则打分 / 图结构确定性打分。</td></tr>
+<tr><td><strong>threshold</strong></td><td>指标通过阈值；DeepEval 默认 0.5，视频的 rubric 例子用 ≥7（10 分制）。</td></tr>
+<tr><td><strong>统计显著</strong></td><td>优化项相对上一版的提升需排除随机波动，常配合 bootstrap 置信区间。</td></tr>
+<tr><td><strong>容差</strong></td><td>非优化指标允许的小幅下降范围，视频给的是如 ±2%。</td></tr>
+<tr><td><strong>红线指标</strong></td><td>延迟、安全等不可突破的硬约束，超预算一票否决。</td></tr>
+<tr><td><strong>灰度发布</strong></td><td>影子流量 → 小流量 A/B → 放量 → 全量的渐进放量过程。</td></tr>
+<tr><td><strong>数据闭环 / 飞轮</strong></td><td>线上 bad case 回流评测集 → 门槛更严 → 下一轮更准的正循环。</td></tr>
+<tr><td><strong>CI 质量门禁</strong></td><td>每次改 prompt / 模型 / 工具都跑固定评测集，未达阈值阻断合入。</td></tr>
+<tr><td><strong>P95 延迟 / Token 成本</strong></td><td>95 分位响应耗时 / 单次任务的大模型 Token 开销，表现层主指标。</td></tr>
+<tr><td><strong>环境终态</strong></td><td>任务结束后数据库/文件系统的状态；τ-bench 以此判分，避免比对措辞。</td></tr>
+<tr><td><strong>多轮 / 用户模拟器</strong></td><td>τ-bench 用 LLM 模拟用户进行多轮交互，更接近真实客服场景。</td></tr>
+<tr><td><strong>observability / tracing</strong></td><td>可观测性与链路追踪；轨迹指标的前提，DeepEval 用 <code>@observe</code> / <code>evals_iterator</code>。</td></tr>
+<tr><td><strong>正交</strong></td><td>三层分类与五步流程互不依赖：任何评测都是「某一层 × 某一步」。</td></tr>
+</table>
+
+<h3 id="s42">4.2 框架与基准全景</h3>
+<table>
+<tr><th>工具 / 基准</th><th>定位</th><th>与本视频体系的关系</th></tr>
+<tr><td><strong>DeepEval</strong></td><td>Pytest 风格 LLM 评测框架，50+ 指标、G-Eval / DAG、CI 友好</td><td>视频 2.2 六指标的来源；6 个 agentic 指标分 full-trace 与 component-level 两类</td></tr>
+<tr><td><strong>τ-bench / τ²-bench / τ³-bench</strong></td><td>Sierra 的 tool-agent-user 基准，数据库终态比对 + pass^k</td><td>视频 2.1.1「典型做法」与 2.2 的 pass^k 均出自此；版本不同分数不可比</td></tr>
+<tr><td><strong>AgentBench / WebArena / GAIA</strong></td><td>通用 Agent 能力基准，覆盖多环境任务</td><td>偏「能力上限」，与生产「可靠性/回归」互补</td></tr>
+<tr><td><strong>BFCL</strong></td><td>函数调用能力基准（工具选择 / 参数）</td><td>对应 Tool / Argument Correctness 的专项能力评估</td></tr>
+<tr><td><strong>LangSmith / Arize Phoenix / TruLens</strong></td><td>Trace 可观测性 + 在线评估</td><td>提供 trace 采集，是轨迹评测与在线 Judge 的基础设施</td></tr>
+<tr><td><strong>OpenAI Evals / Confident AI</strong></td><td>评测运行与报告平台</td><td>承载评测集、报告与版本对比</td></tr>
+<tr><td><strong>RAGAS / RAG 指标</strong></td><td>RAG 检索与生成质量指标</td><td>视频 2.2「带 RAG」场景才加看 Faithfulness、Answer Relevancy</td></tr>
+</table>
+<div class="note">口径提醒：DeepEval 官方把 Agent 指标分为 <strong>轨迹级</strong>（Task Completion、Step Efficiency、Plan Adherence、Plan Quality，需 tracing）与 <strong>组件级</strong>（Tool Correctness、Argument Correctness，挂在具体 span 上）。视频把 Task Completion 归入「端到端」、把 pass^k 与成本延迟归入「表现」，是<strong>生产视角</strong>的再分层，二者并不冲突。</div>
+
+<h3 id="s43">4.3 与 RAG 评测的衔接（承接第 20 集）</h3>
+<table>
+<tr><th>维度</th><th>RAG 评测（第 20 集）</th><th>Agent 评测（本集）</th></tr>
+<tr><td>评测对象</td><td>一问一答：检索片段 + 生成答案</td><td>一条多步执行的轨迹</td></tr>
+<tr><td>拆分方式</td><td>按组件：检索 / 生成</td><td>按问题：结果 / 路径 / 代价</td></tr>
+<tr><td>代表指标</td><td>Recall / NDCG / Faithfulness / AnswerCorrectness</td><td>Task Completion / Tool Correctness / pass^k</td></tr>
+<tr><td>数据形态</td><td>3 个 JSONL + 1 张四字段表</td><td>问题 + 参考答案 + 评价标准的三元组，分三类集合</td></tr>
+<tr><td>评测流程</td><td>选框架 → baselines → 数据 → 跑 → 算指标 → 上线闭环</td><td>定数据集 → 定标准 → 跑测试 → 看指标归因 → 持续迭代</td></tr>
+<tr><td>组合方式</td><td colspan="2">Agent 内部含 RAG 时，在检索/生成 span 上挂 RAG 指标，在整条 trace 上挂 Agent 指标；分开采集、分开告警</td></tr>
+</table>
+
+<h3 id="s44">4.4 可运行实战代码</h3>
+<h4>① 三类评测集（三元组结构）</h4>
+<pre><code>import json
+
+cases = [
+  {"id": "gold_001", "set": "golden",
+   "question": "帮我查订单 12345 的物流并改送到新地址",
+   "reference": "订单状态与改址结果（数据库终态）",
+   "criteria": {"tool_sequence": ["OrderLookup", "UpdateAddress"],
+                "final_state": {"address": "新地址"}}},
+  {"id": "reg_001", "set": "regression",
+   "question": "查询订单 12345 的物流", "reference": "已发货，3 月 12 日送达",
+   "criteria": {"must_contain": ["已发货"]}},
+  {"id": "cap_001", "set": "capability",
+   "question": "同时取消订单并申请退款，且不得越权", "reference": "两操作均完成且符合策略",
+   "criteria": {"policy": "no_refund_without_permission"}},
+]
+with open("agent_cases.jsonl", "w", encoding="utf-8") as f:
+    for c in cases:
+        f.write(json.dumps(c, ensure_ascii=False) + "\n")</code></pre>
+<h4>② 程序判断：Tool / Argument Correctness</h4>
+<pre><code>def tool_correctness(actual_tools, expected_tools):
+    return 1.0 if actual_tools == expected_tools else 0.0
+
+def tool_with_args(actual_calls, expected_calls):
+    # ③④ 必须成对看：工具选对但参数传错一样废
+    return 1.0 if actual_calls == expected_calls else 0.0
+
+print(tool_correctness(["OrderLookup"], ["OrderLookup"]))            # 1.0
+print(tool_with_args([("OrderLookup", {"id": 999})],
+                     [("OrderLookup", {"id": 12345})]))              # 0.0</code></pre>
+<h4>③ DeepEval：轨迹指标需 tracing</h4>
+<pre><code>from deepeval.dataset import EvaluationDataset, Golden
+from deepeval.metrics import TaskCompletionMetric, ToolCorrectnessMetric
+from deepeval.tracing import observe
+
+@observe()
+def trip_agent(user_input):
+    # 真实 Agent：规划 → 工具调用 → 生成答案
+    return "行程已生成"
+
+dataset = EvaluationDataset(goldens=[Golden(input="Plan a two-day trip to Paris")])
+for golden in dataset.evals_iterator(metrics=[TaskCompletionMetric(threshold=0.9)]):
+    trip_agent(golden.input)
+# 组件级指标（ToolCorrectnessMetric / ArgumentCorrectnessMetric）挂到具体 span 上
+# 需 @observe(metrics=[...]) 与 update_current_span(...)</code></pre>
+<h4>④ rubric 二元化（把模糊指标拆成是/否/未知）</h4>
+<pre><code>RUBRIC = [
+  "答案是否覆盖了参考结论中的全部关键事实？",
+  "是否包含参考结论中没有的、无法验证的新事实？",
+  "工具调用失败时是否明确告知用户而不是假装成功？",
+]
+def judge_prompt(answer, context):
+    return ("逐条回答下面的检查项，只能输出 是 / 否 / 未知，并各给一句依据：\n"
+            + "\n".join(f"{i+1}. {q}" for i, q in enumerate(RUBRIC))
+            + f"\n\n待评答案：{answer}\n可用上下文：{context}")
+
+# 聚合成 10 分制：每条「是」得分，「未知」不计入，阈值 ≥7 才通过（视频示例）</code></pre>
+<h4>⑤ pass^k：可靠性而非通过率</h4>
+<pre><code>def pass_hat_k(runs, k):
+    """runs: {task_id: [bool, ...]}，每个任务独立跑 k 次；返回全部 k 次都成功的比例"""
+    ok = sum(1 for rs in runs.values() if len(rs) >= k and all(rs[:k]))
+    return ok / len(runs)
+
+runs = {"t1": [True, True, True], "t2": [True, False, True], "t3": [True, True, False]}
+print("pass^1 =", pass_hat_k(runs, 1))   # 1.000
+print("pass^3 =", pass_hat_k(runs, 3))   # 0.333  ← 视频强调的「稳不稳」</code></pre>
+<h4>⑥ CI 门禁（放行标准）</h4>
+<pre><code>GATES = {"task_completion": 0.90, "tool_correctness": 0.95,
+         "argument_correctness": 0.95, "p95_latency_s": 3.0}
+
+def release_gate(current, previous, tolerance=0.02):
+    for k, threshold in GATES.items():
+        v = current[k]
+        if k == "p95_latency_s":
+            assert v &lt;= threshold, f"红线 {k} 超预算: {v}"
+        else:
+            assert v &gt;= threshold, f"{k} 未达门槛: {v}"
+            assert v &gt;= previous[k] * (1 - tolerance), f"{k} 下降超容差"
+    return True  # 统计显著需另做 bootstrap / 配对检验</code></pre>
+
+<h3 id="s45">4.5 常见误区与失败归因</h3>
+<table>
+<tr><th>误区</th><th>正确做法</th></tr>
+<tr><td>一上来把 50+ 指标全开</td><td>先 Task Completion 看总账，再按 error analysis 渐进加指标</td></tr>
+<tr><td>只看 Task Completion 就宣布「没问题」</td><td>完成率相同也可能是绕路/参数错/靠运气，需轨迹指标下钻</td></tr>
+<tr><td>③④ 分开看或只看其中一个</td><td>Tool Correctness 与 Argument Correctness 成对看，否则等于没测</td></tr>
+<tr><td>把 pass^k 当成 pass@k</td><td>pass^k 要求 k 次全成（可靠性），pass@k 只要一次成功，含义相反</td></tr>
+<tr><td>rubric 不做人机一致率校准</td><td>先用人工打分校准，达标后才算自动化评测</td></tr>
+<tr><td>多人各自人工打分取平均</td><td>统一口径、由一人拍板（视频：1 个独裁者好过 10 个民主者）</td></tr>
+<tr><td>离线分数漂亮就全量上线</td><td>离线只是门控，线上 A/B 看业务指标才是黄金标准</td></tr>
+<tr><td>评测集一次建好不再维护</td><td>线上 bad case 回流，评测集越滚越大、门槛越卡越准</td></tr>
+<tr><td>忽略线上 query 漂移</td><td>做漂移检测，定期更新黄金集与挑战集</td></tr>
+<tr><td>用平均延迟代替 P95 / P99</td><td>长尾失败才伤用户体验，表现层要看分位数</td></tr>
+</table>
+<h4>失败归因速查（failure taxonomy）</h4>
+<table>
+<tr><th>症状</th><th>先看的层</th><th>定位指标</th><th>可能动作</th></tr>
+<tr><td>Task Completion 掉点</td><td>端到端</td><td>Task Completion</td><td>先确认是结果问题，再下钻轨迹</td></tr>
+<tr><td>结果错但工具都对</td><td>轨迹</td><td>Plan Adherence / Plan Quality</td><td>改规划 prompt、补计划自检</td></tr>
+<tr><td>工具调用序列不对</td><td>轨迹</td><td>Tool Correctness</td><td>改工具描述/路由、补 few-shot</td></tr>
+<tr><td>工具对但结果不对</td><td>轨迹</td><td>Argument Correctness</td><td>约束参数抽取、做 schema 校验</td></tr>
+<tr><td>步数异常多</td><td>轨迹</td><td>Step Efficiency</td><td>去冗余工具、加重试上限</td></tr>
+<tr><td>延迟/成本上涨</td><td>表现</td><td>Token 成本 / P95 延迟</td><td>缓存、换模型、并发与超时控制</td></tr>
+<tr><td>偶发失败、复现不了</td><td>表现</td><td>pass^k</td><td>降温度、固定种子、幂等与重试</td></tr>
+</table>
+</section>
+
+<section class="sec" id="s5">
+<h2>5. 附录</h2>
+<p class="leadin">时间轴、配图速查、措辞校正与还原方法，用于核对与溯源。</p>
+
+<h3 id="s51">5.1 视频官方章节时间轴</h3>
+<table class="timeline">
+<tr><th>时间</th><th>章节</th><th>平台章节要点（原文）</th></tr>
+<tr><td>00:00</td><td>引言</td><td>—</td></tr>
+<tr><td>00:24</td><td>评测体系架构</td><td>agent 评测体系包括端到端评测、轨迹评测、表现评测，评测流程与 RAG 相似。</td></tr>
+<tr><td>01:48</td><td>数据集</td><td>数据集分为黄金数据集、回归数据集、挑战数据集，每个数据集包含问题和答案。</td></tr>
+<tr><td>02:28</td><td>评判标准</td><td>评判标准分为清晰指标和模糊指标，模糊指标需通过评分细则二元化，还需人工判断。</td></tr>
+<tr><td>03:30</td><td>测试</td><td>测试分为离线评测和在线评测，离线评测依赖已有数据，在线评测使用生产真实流量。</td></tr>
+<tr><td>04:11</td><td>上线与迭代</td><td>上线后需判断指标是否准确，逐渐灰度上线，关注线上系统指标，形成数据飞轮。</td></tr>
+<tr><td>04:48</td><td>总结</td><td>agent 评测体系包括三类评测、数据集、评判标准、测试、上线与迭代。</td></tr>
+</table>
+
+<h3 id="s52">5.2 配图速查（8 张按文档结构绘制的示意图）</h3>
+<p>本期视频画面为文档与表格，下列 8 张为教程依文档结构绘制的示意图；视频中的表格已在正文逐行还原。</p>
+<table>
+<tr><th>图号</th><th>名称</th><th>所在章节</th><th>还原要点</th></tr>
+<tr><td>图 1</td><td>体系架构：三层分类 × 一条流程</td><td><a href="#s1">1. 体系架构</a></td><td>三层框 + 五步流程条 + 正交说明</td></tr>
+<tr><td>图 2</td><td>三层分类与诊断链</td><td><a href="#s21">2.1 三层分类</a></td><td>三层表 + 视频诊断栈原文；定位到具体组件不属于表现评测层</td></tr>
+<tr><td>图 3</td><td>生产 6 指标分层</td><td><a href="#s22">2.2 生产指标</a></td><td>端到端 1 / 轨迹 3 / 表现 2，③④ 成对看</td></tr>
+<tr><td>图 4</td><td>一条流程五步</td><td><a href="#s23">2.3 一条流程</a></td><td>定数据集 → 定标准 → 跑测试 → 归因 → 迭代</td></tr>
+<tr><td>图 5</td><td>三类数据集</td><td><a href="#s23">2.3 ① 定数据集</a></td><td>黄金 / 回归 / 挑战集的作用与通过率</td></tr>
+<tr><td>图 6</td><td>三种判据</td><td><a href="#s23">2.3 ② 定标准</a></td><td>程序 / 大模型 rubric / 人工，分工原则</td></tr>
+<tr><td>图 7</td><td>离线 vs 在线评测</td><td><a href="#s23">2.3 ③ 跑测试</a></td><td>reference-based / free，离线守已知在线发现未知</td></tr>
+<tr><td>图 8</td><td>上线与迭代示意闭环</td><td><a href="#s3">3. 上线与迭代</a></td><td>依该章四个文字环节绘制；视频该章为文字段落，并非独立配图</td></tr>
+</table>
+
+<h3 id="s53">5.3 平台摘要措辞 → 画面原文 对照</h3>
+<p>本期自动摘要没有明显的语音识别错字，但用了概括性措辞；下表对齐到画面文档原文，便于精确引用。</p>
+<table>
+<tr><th>章节摘要写法</th><th>画面文档原文</th></tr>
+<tr><td>黄金数据集 / 回归数据集 / 挑战数据集</td><td><strong>黄金集 golden set / 回归集 regression set / 挑战集 capability set</strong></td></tr>
+<tr><td>准备数据集、定义评判标准、进行测试、计算指标并归因</td><td><strong>① 定数据集 → ② 定标准 → ③ 跑测试 → ④ 看指标归因 → ⑤ 持续迭代</strong></td></tr>
+<tr><td>每个数据集包含问题和答案</td><td><strong>一个用例 = 三元组：问题 ＋ 参考答案 ＋ 评价标准</strong></td></tr>
+<tr><td>计算指标并归因</td><td><strong>看指标归因</strong>，并归类成 failure taxonomy</td></tr>
+<tr><td>形成数据飞轮</td><td><strong>评测集越滚越大，门槛越卡越准</strong></td></tr>
+<tr><td>评测流程与 RAG 相似</td><td>视频原文：RAG 评「一问一答」，Agent 评「一条多步执行的轨迹」；流程同为五步</td></tr>
+<tr><td>④ 看指标归因：表现看延迟／成本／稳定</td><td>视频<strong>前段</strong>画面为「稳定」，<strong>后段</strong>画面补为「稳定/安全」；教程采用后段更完整写法并在正文标注</td></tr>
+</table>
+
+<h3 id="s54">5.4 还原方法与资料来源</h3>
+<p class="srclink"><strong>原视频链接</strong>：<a href="https://v.douyin.com/30rDH60axoo/" target="_blank" rel="noopener">抖音分享短链</a>（<code>https://v.douyin.com/30rDH60axoo/</code>） ｜ <a href="https://www.douyin.com/video/7696585286075125011" target="_blank" rel="noopener">抖音网页版</a>（<code>https://www.douyin.com/video/7696585286075125011</code>） ｜ @Harbor404《5min 带你搞懂 Agent 评测体系》，2026-10-15 发布。</p>
+<p><strong>还原流程</strong>：解析分享短链取得视频 ID <code>7696585286075125011</code> → 取得官方详情（标题、作者、时长 341.681 秒、7 段章节列表）→ 下载 1080P 视频（1662×1080，15.7 MB）→ 每 5 秒抽帧共 68 张 → 全帧中文 OCR（约 3,900 行）→ 关键页面放大逐字目视校对 → 与平台章节要点、烧录字幕交叉验证。所有术语、指标名、表格行、数值与举例均以<strong>画面文档</strong>为准。本期画面没有独立彩色配图，教程中的 8 张 SVG 与 Mermaid 图均为按文档结构绘制的示意图，图注已逐张标明依据。</p>
+<p><strong>补充内容的核实资料</strong>：</p>
+<ul>
+<li><a href="https://deepeval.com/docs/metrics-introduction" target="_blank" rel="noopener">DeepEval 官方文档 · Metrics Introduction</a>：50+ 指标、6 个 agentic 指标（Task Completion / Step Efficiency / Plan Adherence / Plan Quality / Tool Correctness / Argument Correctness）、轨迹指标需 tracing、分数 0–1 与默认阈值 0.5。</li>
+<li><a href="https://sierra.ai/blog/benchmarking-ai-agents" target="_blank" rel="noopener">Sierra · τ-bench 官方介绍</a>：数据库终态比对、用户模拟、pass^k（k 次独立运行全部成功）；与代码生成 pass@k 的区别。</li>
+<li>τ²-bench / τ³-bench、AgentBench、LangSmith / TruLens / Arize Phoenix 等公开文档与 2026 年 Agent 评测横评资料。</li>
+</ul>
+<div class="warn"><strong>口径提示</strong>：视频把 Task Completion 归「端到端」、pass^k 与成本延迟归「表现」，是生产视角的分层；DeepEval 官方按「轨迹级 / 组件级」分类。教程在 4.2 节同时给出两种口径，避免混用导致误解。</div>
+</section>
+
+<div class="footer">
+<p>本教程为学习整理用途，视频内容版权归原作者 @Harbor404 所有；框架与指标的官方定义以各项目文档为准。</p>
+</div>
+</main>
+</div>
+<script>
+(function () {
+  var bar = document.getElementById('progress');
+  var top = document.getElementById('totop');
+  var links = Array.prototype.slice.call(document.querySelectorAll('nav.toc a'));
+  var byId = {};
+  links.forEach(function (a) {
+    var id = a.getAttribute('href').slice(1);
+    if (document.getElementById(id)) byId[id] = a;
+  });
+  function update() {
+    var doc = document.documentElement;
+    var scrollTop = window.scrollY || doc.scrollTop || 0;
+    var max = doc.scrollHeight - doc.clientHeight;
+    if (bar) bar.style.width = (max > 0 ? Math.min(100, scrollTop / max * 100) : 0) + '%';
+    if (top) top.style.display = scrollTop > 600 ? 'block' : 'none';
+    var current = null;
+    Object.keys(byId).forEach(function (id) {
+      var el = document.getElementById(id);
+      if (el && el.getBoundingClientRect().top <= 150) current = id;
+    });
+    links.forEach(function (a) { a.classList.remove('active'); });
+    if (current && byId[current]) byId[current].classList.add('active');
+  }
+  window.addEventListener('scroll', update, { passive: true });
+  window.addEventListener('resize', update);
+  if (top) top.addEventListener('click', function () { window.scrollTo({ top: 0, behavior: 'smooth' }); });
+  update();
+})();
+</script>
+</body>
+</html>

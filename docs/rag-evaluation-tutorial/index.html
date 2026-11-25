@@ -1,0 +1,1225 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>RAG 评测体系 · 完全教程｜视频逐帧还原 + 系统化补全</title>
+<style>
+:root{
+  --bg:#f6f7f9; --card:#fff; --ink:#1e2430; --muted:#667085; --line:#e4e7ec;
+  --brand:#2563eb; --brand-soft:#eff4ff; --code:#111827;
+  --yellow:#fff4cc; --yellow-b:#d9a92e; --blue:#dce9ff; --blue-b:#5b8def;
+  --green:#dcf5e6; --green-b:#39a97a; --purple:#efe7ff; --purple-b:#9575e0;
+  --red:#ffe4e9; --red-b:#e0728d; --orange:#fff0e2;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);
+  font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Hiragino Sans GB","Microsoft YaHei",Segoe UI,sans-serif;
+  font-size:15.5px;line-height:1.85;-webkit-font-smoothing:antialiased}
+a{color:var(--brand);text-decoration:none}
+a:hover{text-decoration:underline}
+.wrap{display:flex;gap:30px;max-width:1480px;margin:0 auto;padding:0 26px}
+nav.toc{width:252px;flex:none;position:sticky;top:0;height:100vh;overflow-y:auto;padding:28px 12px 60px 0;font-size:13.5px}
+nav.toc .brand{font-weight:800;font-size:16px;margin-bottom:4px}
+nav.toc .sub{color:var(--muted);font-size:12px;margin-bottom:18px}
+nav.toc ul{list-style:none;margin:0;padding:0}
+nav.toc li{margin:2px 0}
+nav.toc a{display:block;padding:5px 10px;border-radius:7px;color:#41495a}
+nav.toc a:hover{background:var(--brand-soft);text-decoration:none;color:var(--brand)}
+nav.toc .lv1{font-weight:700;margin-top:12px;color:var(--ink)}
+nav.toc .lv2{padding-left:22px;font-size:12.8px}
+main{flex:1;min-width:0;max-width:1080px;padding:28px 0 100px}
+.hero{background:linear-gradient(135deg,#eef3ff 0%,#f8fbff 55%,#f0fbf5 100%);
+  border:1px solid #dce6f7;border-radius:16px;padding:34px 36px;margin-bottom:30px}
+.hero h1{font-size:31px;line-height:1.35;margin:0 0 10px;letter-spacing:.3px}
+.hero .lead{font-size:16px;color:#3f4a5f;margin:0 0 18px}
+.hero .meta{display:flex;flex-wrap:wrap;gap:9px}
+.hero .meta span{background:#fff;border:1px solid #dde5f2;border-radius:20px;padding:4px 13px;font-size:12.5px;color:#46536a}
+.srclink{font-size:13px;color:#46536a;margin:14px 0 0}
+.srclink a{font-weight:600}
+.summary table th:last-child,.summary table td:last-child{white-space:nowrap;padding-left:16px;padding-right:16px}
+h2{font-size:24px;margin:52px 0 14px;padding-bottom:10px;border-bottom:2px solid var(--brand);letter-spacing:.2px}
+h3{font-size:19px;margin:34px 0 12px;color:#1b2a4a}
+h4{font-size:16px;margin:24px 0 8px;color:#344054}
+p{margin:12px 0}
+.sec{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:24px 28px;margin:20px 0;box-shadow:0 1px 2px rgba(16,24,40,.03)}
+.tag{display:inline-block;font-size:11.5px;font-weight:700;padding:2px 9px;border-radius:5px;vertical-align:2px;margin-right:6px;white-space:nowrap}
+.t-video{background:var(--brand-soft);color:#1d4ed8;border:1px solid #cddcfb}
+.t-extra{background:#fff2e0;color:#a85b00;border:1px solid #f5dcb8}
+.t-redraw{background:#e9f8ef;color:#177a52;border:1px solid #c7ecd7}
+.note{background:#f8fafc;border-left:4px solid var(--brand);border-radius:0 9px 9px 0;padding:13px 18px;margin:16px 0;color:#3b4557;font-size:14.5px}
+.warn{background:#fff8ec;border-left:4px solid #e9a23b;border-radius:0 9px 9px 0;padding:13px 18px;margin:16px 0;color:#5a451f;font-size:14.5px}
+.key{background:#eef6ff;border:1px solid #d6e6ff;border-radius:10px;padding:14px 18px;margin:16px 0}
+table{border-collapse:collapse;width:100%;margin:16px 0;font-size:14px;background:#fff}
+th,td{border:1px solid var(--line);padding:9px 12px;text-align:left;vertical-align:top}
+th{background:#f2f5f9;font-weight:700;color:#2b3547}
+tr:nth-child(even) td{background:#fbfcfe}
+td code,th code,p code,li code{background:#f1f4f9;border-radius:4px;padding:1px 5px;font-size:12.8px;color:#1d4ed8;font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace}
+pre{background:var(--code);color:#e6edf7;border-radius:11px;padding:17px 19px;overflow:auto;font-size:12.8px;line-height:1.72;margin:16px 0;font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace}
+pre code{background:none;color:inherit;padding:0;font-size:inherit}
+ul,ol{padding-left:24px;margin:12px 0}
+li{margin:5px 0}
+.figure{background:#fff;border:1px solid var(--line);border-radius:13px;padding:18px 20px 14px;margin:22px 0}
+.figure svg{width:100%;height:auto;display:block}
+.figure .cap{font-size:12.8px;color:var(--muted);margin-top:10px;text-align:center}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.kpi{background:#fff;border:1px solid var(--line);border-radius:10px;padding:13px 15px;font-size:13.5px}
+.kpi b{display:block;font-size:15px;margin-bottom:4px}
+.qcard{border:1px solid #d9e3f2;border-radius:10px;padding:14px 16px;background:#fbfdff;font-size:13.5px}
+.qcard h5{margin:0 0 8px;font-size:15px;color:#1d4ed8}
+.qcard .row{display:flex;justify-content:space-between;border-bottom:1px dashed #e6ebf3;padding:3px 0}
+.qcard .row:last-child{border:0}
+.avg{display:inline-block;background:var(--yellow);border:1px solid var(--yellow-b);border-radius:8px;padding:7px 12px;font-size:13px;margin:5px;font-weight:600}
+.footer{margin-top:60px;padding-top:22px;border-top:1px solid var(--line);color:var(--muted);font-size:13px}
+.timeline td:first-child{white-space:nowrap;font-family:ui-monospace,Menlo,monospace;color:var(--brand);font-weight:700}
+/* 阅读体验：进度条、目录高亮、章节导读、速览卡、回到顶部 */
+#progress{position:fixed;top:0;left:0;height:3px;width:0;background:linear-gradient(90deg,#2563eb,#39a97a);z-index:120;transition:width .08s linear}
+nav.toc a.active{background:var(--brand-soft);color:var(--brand);font-weight:700}
+.leadin{color:#5a6475;font-size:14.5px;background:#f8fafc;border-left:3px solid #c7d7f5;border-radius:0 8px 8px 0;padding:9px 14px;margin:0 0 18px}
+.summary{background:linear-gradient(135deg,#f4f8ff,#f7fdf9);border:1px solid #dce7f7;border-radius:14px;padding:22px 26px;margin:0 0 26px}
+.summary h2{margin:0 0 10px;font-size:20px;border:0;padding:0}
+.summary .route{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:16px}
+.summary .route div{background:#fff;border:1px solid #e0e8f4;border-radius:10px;padding:11px 13px;font-size:13px}
+.summary .route b{display:block;color:#1d4ed8;margin-bottom:3px}
+#totop{position:fixed;right:24px;bottom:26px;z-index:110;border:1px solid #cddcfb;background:#fff;color:#1d4ed8;border-radius:22px;padding:8px 15px;font-size:13px;cursor:pointer;box-shadow:0 3px 12px rgba(16,24,40,.10);display:none}
+#totop:hover{background:var(--brand-soft)}
+@media(max-width:980px){nav.toc{display:none}.grid2,.grid3,.summary .route{grid-template-columns:1fr}.hero{padding:24px}.sec{padding:18px}.summary{padding:18px}}
+@media print{nav.toc{display:none}.sec,.figure{break-inside:avoid}body{background:#fff}}
+</style>
+</head>
+<body>
+<div id="progress" aria-hidden="true"></div>
+<button id="totop" type="button" aria-label="回到顶部">↑ 回到顶部</button>
+<div class="wrap">
+<nav class="toc">
+  <div class="brand">RAG 评测体系 · 完全教程</div>
+  <div class="sub">视频逐帧还原 + 系统化补全</div>
+  <ul>
+    <li><a class="lv1" href="#s0">0. 视频速览与保真约定</a></li>
+    <li><a class="lv1" href="#s1">1. 体系架构：五步流程</a></li>
+    <li><a class="lv1" href="#s2">2. 详解（2.1–2.6）</a></li>
+    <li><a class="lv2" href="#s21">2.1 选框架：三框架架构</a></li>
+    <li><a class="lv2" href="#s22">2.2 设计 baselines</a></li>
+    <li><a class="lv2" href="#s23">2.3 准备数据：两套数据集</a></li>
+    <li><a class="lv2" href="#s24">2.4 跑 baselines</a></li>
+    <li><a class="lv2" href="#s25">2.5 计算指标（MTEB / RAGAS）</a></li>
+    <li><a class="lv2" href="#s26">2.6 评测方法架构思考</a></li>
+    <li><a class="lv1" href="#s3">3. 上线与迭代：闭环</a></li>
+    <li><a class="lv1" href="#s4">4. 补充篇</a></li>
+    <li><a class="lv2" href="#s41">4.1 专业名词速查</a></li>
+    <li><a class="lv2" href="#s42">4.2 框架全景与选型</a></li>
+    <li><a class="lv2" href="#s43">4.3 指标归因与测试集</a></li>
+    <li><a class="lv2" href="#s44">4.4 可运行实战代码</a></li>
+    <li><a class="lv2" href="#s45">4.5 常见误区与 Agent 衔接</a></li>
+    <li><a class="lv1" href="#s5">5. 附录</a></li>
+    <li><a class="lv2" href="#s51">5.1 章节时间轴</a></li>
+    <li><a class="lv2" href="#s52">5.2 架构图速查</a></li>
+    <li><a class="lv2" href="#s53">5.3 自动摘要错字校正</a></li>
+    <li><a class="lv2" href="#s54">5.4 还原方法与资料来源</a></li>
+  </ul>
+</nav>
+
+<main>
+<div class="hero">
+  <h1>RAG 评测体系 · 完全教程</h1>
+  <p class="lead">基于抖音 @Harbor404《10 分钟带你彻底搞懂 rag 评测》（Agent 系列第 20 集）逐帧还原，并补齐视频未展开的术语、原理、代码与工程实践。</p>
+  <div class="meta">
+    <span>视频时长 13:03</span><span>发布 2026-10-14</span><span>1080P 逐帧核对</span>
+    <span>8 张架构图精确重绘</span><span>全文无视频截图</span><span>40+ 专业名词</span>
+  </div>
+  <p class="srclink">原视频：<a href="https://v.douyin.com/ABG22aehmWk/" target="_blank" rel="noopener">抖音分享链接</a> ｜ <a href="https://www.douyin.com/video/7696458980251487515" target="_blank" rel="noopener">网页版直链</a> ｜ 视频 ID <code>7696458980251487515</code></p>
+</div>
+
+<section class="summary">
+<h2>一页速览：整期视频的 5 个结论</h2>
+<table style="margin-top:6px">
+<tr><th>#</th><th>结论</th><th>展开位置</th></tr>
+<tr><td>1</td><td><strong>先拆两层</strong>：RAG = 检索 + 生成，评测也必须拆成检索评测与生成评测</td><td><a href="#s1">第 1 章</a></td></tr>
+<tr><td>2</td><td><strong>三框架分工</strong>：EvalScope 统一调度 / MTEB 评检索 / RAGAS 评生成</td><td><a href="#s21">2.1 选框架</a></td></tr>
+<tr><td>3</td><td><strong>两套数据</strong>：3 个 JSONL（corpus / queries / qrels）+ 1 张 4 字段表（user_input / reference / retrieved_contexts / response）</td><td><a href="#s23">2.3 准备数据</a></td></tr>
+<tr><td>4</td><td><strong>两族指标</strong>：MTEB 五个检索指标 + RAGAS 五个生成/上下文指标；逐 query 算完再取平均</td><td><a href="#s25">2.5 计算指标</a></td></tr>
+<tr><td>5</td><td><strong>一条闭环</strong>：上线门槛 → 灰度发布 → 线上监控 → 回滚/迭代，中心是数据飞轮</td><td><a href="#s3">第 3 章</a></td></tr>
+</table>
+<div class="route">
+<div><b>只想复现视频</b>读第 1–3 章；标【视频原述】的内容与 8 张重绘图即覆盖全部画面要点</div>
+<div><b>想弄懂指标</b>读 2.5 节，再查 <a href="#s41">4.1 专业名词速查</a></div>
+<div><b>想落地工程</b>读 <a href="#s43">4.3 测试集与门禁</a> + <a href="#s44">4.4 实战代码</a> + 第 3 章闭环</div>
+</div>
+</section>
+
+<section class="sec" id="s0">
+<h2>0. 视频速览与保真约定</h2>
+<p><span class="tag t-video">视频原述</span>这是「Agent」系列合集的<strong>第 20 集</strong>，作者 <strong>Harbor404</strong>，视频标题为《10 分钟带你彻底搞懂 rag 评测》，话题标签 <code>#RAG评测 #Agent评测 #RAG #Agent</code>。实际时长 <strong>13 分 03 秒</strong>，画面是一份名为《RAG 评测体系》的文档滚动讲解 + 右上角虚拟形象 + 底部烧录字幕。</p>
+<p>整份文档的结构（视频左侧大纲，逐字还原）：</p>
+<pre>RAG 评测体系
+一、体系架构
+二、详解
+    2.1 选框架          → EvalScope-调度器 / MTEB-检索评测框架 / RAGAS-生成评测框架
+    2.2 设计 baselines
+    2.3 准备数据
+    2.4 跑 baselines
+    2.5 跑评测框架，计算指标 → MTEB 指标 / RAGAS 指标 / 联系
+    评测方法架构思考
+三、上线与迭代</pre>
+
+<div class="key">
+<strong>本教程的三条保真约定</strong>
+<ul>
+<li><span class="tag t-video">视频原述</span> / <span class="tag t-redraw">原图重绘</span>：严格按视频画面还原，包括框架名、指标名、字段名、公式、示例数值与配色结构。这些内容经过「原视频下载 → 每 5 秒抽帧 157 张 → 全帧中文 OCR → 关键图示放大逐字目视校对」四道工序核对；本页所有图示均为按画面重绘的矢量图，不嵌入视频截图。</li>
+<li><span class="tag t-extra">补充</span>：视频没有讲、或只提了一句的内容（官方定义、术语、代码、其他框架、工程落地），单独标注，不与视频原述混写。</li>
+<li>口播内容按平台官方章节要点与画面烧录字幕归纳，<strong>不做逐字转写</strong>；所有知识性结论以画面文档为准，避免语音转写误差污染术语。</li>
+</ul>
+</div>
+
+<div class="warn"><strong>先纠正一个坑：</strong>平台为该视频自动生成的「章节要点」是语音识别产物，含有多处错字（如 <code>MTB</code>、<code>Jason</code>、<code>NGCG</code>、<code>蒸汽匹配</code>、<code>REC 系统</code>、<code>评测级</code>）。本教程一律以画面文档为准，并在 <a href="#s53">5.3 节</a>给出完整对照表。</div>
+</section>
+
+<section class="sec" id="s1">
+<h2>1. 体系架构：五步流程</h2>
+<p class="leadin">这一章只有一条流程，但它是后面所有内容的骨架：先记住五步顺序，再看每一步怎么拆。</p>
+<p><span class="tag t-video">视频原述</span>视频开篇给出的核心判断：</p>
+<div class="note"><strong>「RAG 本身包含检索和大模型生成两部分，所以评测也相应拆成两部分。」</strong><br>后续所有框架、数据、指标的选择，都是这句话的展开。</div>
+<p>文档「一、体系架构」只给了一条五步流程，它是整期视频的骨架：</p>
+
+<div class="figure">
+<svg viewBox="0 0 940 108" xmlns="http://www.w3.org/2000/svg" font-family="-apple-system,PingFang SC,Microsoft YaHei,sans-serif">
+  <g text-anchor="middle">
+    <rect x="24" y="24" width="892" height="46" rx="6" fill="#f7f8fa" stroke="#e4e7ec"/>
+    <text x="470" y="54" font-size="16" fill="#3b4353">① 选框架　→　② 设计 baselines　→　③ 准备数据　→　④ 跑 baselines　→　⑤ 跑评测</text>
+    <text x="470" y="92" font-size="11" fill="#8a94a6">视频文档「一、体系架构」原文步骤条：一行带圈数字与箭头</text>
+  </g>
+</svg>
+<div class="cap">图 1｜体系架构五步步骤条（按视频文档 1:1 还原；五步的具体展开见 2.1–2.5 节）</div>
+</div>
+
+
+<p><span class="tag t-extra">补充</span>为什么必须「先拆再测」：RAG 的失败有两个独立来源——<strong>检索没找到对的资料</strong>，或<strong>资料找到了但模型没照着说</strong>。只用一个端到端分数（如「答案准确率」）无法区分二者，也就无法判断该换 embedding、改切分、加 rerank，还是该改 prompt / 模型。分层评测的价值在于<strong>可归因</strong>。</p>
+</section>
+
+<section class="sec" id="s2">
+<h2>2. 详解：从选框架到评测方法架构</h2>
+<p class="leadin">按视频文档的 2.1–2.6 顺序展开；每节先给【视频原述】，再给【补充】，图示全部为矢量重绘。</p>
+
+<h3 id="s21">2.1 选框架：EvalScope + MTEB + RAGAS</h3>
+<p><span class="tag t-video">视频原述</span>「框架选型的思路是：<strong>用 EvalScope 做统一调度，底层用 MTEB 和 RAGAS 分别负责检索评测和生成评测。</strong>」</p>
+
+<div class="figure">
+<svg viewBox="0 0 900 500" xmlns="http://www.w3.org/2000/svg" font-family="-apple-system,PingFang SC,Microsoft YaHei,sans-serif">
+  <defs><marker id="ar2" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#7b8496"/></marker></defs>
+  <g text-anchor="middle">
+    <text x="450" y="24" font-size="14" font-weight="700" fill="#1e2430">RAG 评测框架</text>
+    <text x="450" y="43" font-size="11.5" fill="#7a8496">RAG 拆成「检索 + 生成」两部分 → 分别用 MTEB / RAGAS 评测，由 EvalScope 统一编排</text>
+    <!-- EvalScope -->
+    <rect x="110" y="60" width="680" height="62" rx="12" fill="#fff4cc" stroke="#d9a92e" stroke-width="1.8"/>
+    <text x="450" y="88" font-size="17" font-weight="800" fill="#8a5f00">EvalScope（统一调度器）</text>
+    <text x="450" y="109" font-size="11.5" fill="#7a6330">负责编排、统一结果格式、可视化 Dashboard ｜ 自身不实现指标</text>
+    <line x1="450" y1="124" x2="450" y2="148" stroke="#7b8496" stroke-width="1.7" marker-end="url(#ar2)"/>
+    <text x="492" y="141" font-size="11" fill="#7b8496" text-anchor="start">编排 / 调度</text>
+    <!-- RAG system -->
+    <rect x="220" y="152" width="460" height="58" rx="12" fill="#dce9ff" stroke="#5b8def" stroke-width="1.8"/>
+    <text x="450" y="180" font-size="17" font-weight="800" fill="#1d4ed8">RAG 系统</text>
+    <text x="450" y="199" font-size="11.5" fill="#4a5b7a">（评测对象：一次完整的检索 + 生成链路）</text>
+    <!-- branch lines -->
+    <path d="M370,212 L215,262" stroke="#7b8496" stroke-width="1.7" fill="none" marker-end="url(#ar2)"/>
+    <path d="M530,212 L685,262" stroke="#7b8496" stroke-width="1.7" fill="none" marker-end="url(#ar2)"/>
+    <!-- retrieval -->
+    <rect x="60" y="266" width="330" height="76" rx="12" fill="#fff4cc" stroke="#d9a92e" stroke-width="1.8"/>
+    <text x="225" y="292" font-size="15.5" font-weight="800" fill="#8a5f00">检索部分</text>
+    <text x="225" y="311" font-size="11.5" fill="#7a6330">Retrieval Evaluation（检索评测）</text>
+    <text x="225" y="330" font-size="11.5" fill="#7a6330">评：检索出来的文档对不对</text>
+    <!-- generation -->
+    <rect x="510" y="266" width="330" height="76" rx="12" fill="#dcf5e6" stroke="#39a97a" stroke-width="1.8"/>
+    <text x="675" y="292" font-size="15.5" font-weight="800" fill="#177a52">生成部分</text>
+    <text x="675" y="311" font-size="11.5" fill="#3c6b55">Generation Evaluation（生成评测）</text>
+    <text x="675" y="330" font-size="11.5" fill="#3c6b55">评：答案答得好不好、有没有编</text>
+    <line x1="225" y1="344" x2="225" y2="368" stroke="#7b8496" stroke-width="1.7" marker-end="url(#ar2)"/>
+    <line x1="675" y1="344" x2="675" y2="368" stroke="#7b8496" stroke-width="1.7" marker-end="url(#ar2)"/>
+    <!-- MTEB -->
+    <rect x="60" y="372" width="330" height="96" rx="10" fill="#fffdf6" stroke="#d9a92e" stroke-width="1.6" stroke-dasharray="6 4"/>
+    <text x="225" y="396" font-size="15.5" font-weight="800" fill="#8a5f00">MTEB</text>
+    <text x="225" y="414" font-size="11" fill="#6b6147">Massive Text Embedding Benchmark</text>
+    <text x="225" y="432" font-size="11" fill="#6b6147">检索评测实现 · 人工标注 qrels 判分</text>
+    <text x="225" y="450" font-size="11" fill="#6b6147">Recall / Precision / NDCG / MRR / HitRate</text>
+    <!-- RAGAS -->
+    <rect x="510" y="372" width="330" height="96" rx="10" fill="#f8fffb" stroke="#39a97a" stroke-width="1.6" stroke-dasharray="6 4"/>
+    <text x="675" y="396" font-size="15.5" font-weight="800" fill="#177a52">RAGAS</text>
+    <text x="675" y="414" font-size="11" fill="#426454">Retrieval Augmented Generation Assessment</text>
+    <text x="675" y="432" font-size="11" fill="#426454">生成评测实现 · LLM as a Judge 判分</text>
+    <text x="675" y="450" font-size="11" fill="#426454">Context Precision/Recall, Faithfulness, Relevancy</text>
+    <text x="450" y="486" font-size="11.5" fill="#7a8496">RAG 评测 = 检索评测（MTEB）+ 生成评测（RAGAS），由 EvalScope 统一调度</text>
+  </g>
+</svg>
+<div class="cap">图 2｜RAG 评测框架（视频 2.1 节核心架构图，节点文字与配色逐字还原）</div>
+</div>
+
+
+<table>
+<tr><th>框架</th><th>视频给出的定位</th><th>评测对象</th><th>判分方式</th><th>代表指标 / 输出</th></tr>
+<tr><td><strong>EvalScope</strong></td><td>统一调度器；阿里魔搭（ModelScope）出的评测调度框架；负责统一编排、统一结果格式、统一可视化（Dashboard），<strong>自身不实现任何指标</strong>。类比「考试组织方」——不命题、不批卷，只负责安排考什么、汇总成绩</td><td>整个评测流程</td><td>不判分，只编排</td><td>Dashboard、统一结果格式</td></tr>
+<tr><td><strong>MTEB</strong></td><td>检索评测框架；全称 <em>Massive Text Embedding Benchmark</em>（大规模文本嵌入基准）</td><td>检索 / embedding 层</td><td>人工标注 <code>qrels</code> 判分</td><td>Recall@K、Precision@K、NDCG@K、MRR、HitRate@K</td></tr>
+<tr><td><strong>RAGAS</strong></td><td>生成评测框架；全称 <em>Retrieval Augmented Generation Assessment</em></td><td>生成层（及上下文质量）</td><td><code>LLM as a Judge</code> 判分</td><td>Faithfulness、AnswerRelevancy、ContextPrecision、ContextRecall、AnswerCorrectness</td></tr>
+</table>
+
+<p><span class="tag t-extra">补充 · 官方口径校准</span>视频把 EvalScope 概括为「不实现任何指标的调度器」，在<strong>本视频的 RAG 评测链路语境下是准确的</strong>；但从框架全局看需要补一句：EvalScope 是魔搭社区官方的模型评测与性能基准框架，其 <code>RAGEval</code> 后端确实支持「用 MTEB/CMTEB 独立评测 embedding 与 reranker 模型 + 用 RAGAS 做端到端 RAG 评测」；同时它还有 Native / OpenCompass / VLMEvalKit 等评测后端，内置 MMLU、CMMLU、C-Eval、GSM8K 等基准与相应指标。也就是说「自身不实现指标」指的是<strong>在 RAG 评测这条链路里它不做判分</strong>，而非框架整体没有指标实现。</p>
+<p><span class="tag t-extra">补充 · 三者并非同一层级</span>MTEB 原是面向<strong>文本嵌入模型</strong>的大规模基准（检索、重排、分类、聚类、STS 等任务），检索任务沿用 BEIR 风格的 <code>corpus / queries / qrels</code> 三件套，主指标常用 <code>NDCG@10</code>；RAGAS 是面向 <strong>RAG 流水线输出</strong>的指标库，多数指标以 LLM 作裁判。把两者接到同一调度层下，是视频这套体系的工程价值。</p>
+
+<h3 id="s22">2.2 设计 baselines：横向方案 × 纵向参数</h3>
+<p><span class="tag t-video">视频原述</span>「从两个正交维度设计 baseline」：</p>
+<ul>
+<li><strong>横向 · 方案结构</strong>：变方案 → 产生新 baseline（比如 <code>纯向量</code> / <code>向量 + BM25</code> / <code>向量 + BM25 + 重排</code>）。</li>
+<li><strong>纵向 · 参数取值</strong>：变参数 → 属于同一 baseline 的 <code>parameter sweep</code>（比如 <code>top_k</code>、<code>rerank_top_n</code>）。</li>
+<li>「两个维度正交组合 → 实验矩阵（每格一次完整 RAG 跑 + 评测），<strong>矩阵总格数 = 各条 baseline 的 sweep 次数之和（Σ）</strong>。」</li>
+</ul>
+
+<div class="figure">
+<svg viewBox="0 0 900 560" xmlns="http://www.w3.org/2000/svg" font-family="-apple-system,PingFang SC,Microsoft YaHei,sans-serif">
+  <defs><marker id="ar3" markerWidth="9" markerHeight="9" refX="7" refY="4.5" orient="auto"><path d="M0,0 L9,4.5 L0,9 z" fill="#8a94a6"/></marker></defs>
+  <g text-anchor="middle">
+    <text x="450" y="22" font-size="14" font-weight="700" fill="#1e2430">实验设计：两个维度 → 实验矩阵</text>
+    <text x="450" y="40" font-size="11.5" fill="#7a8496">baseline 决定「用哪个方案」，sweep 决定「这个方案参数设多少」——两者正交，组合成矩阵后逐格跑</text>
+    <rect x="30" y="54" width="400" height="130" rx="12" fill="#eaf1ff" stroke="#5b8def" stroke-width="1.7"/>
+    <text x="230" y="78" font-size="14" font-weight="800" fill="#1d4ed8">维度 1 · 横向：方案结构</text>
+    <text x="230" y="96" font-size="11" fill="#5a6478">变的是「方案」→ 产生新 baseline</text>
+    <g font-size="11.5" fill="#2b3547">
+      <rect x="50" y="104" width="360" height="21" rx="5" fill="#fff" stroke="#c9d8f5"/><text x="230" y="119">baseline_纯向量检索</text>
+      <rect x="50" y="129" width="360" height="21" rx="5" fill="#fff" stroke="#c9d8f5"/><text x="230" y="144">baseline_向量 + BM25（混合）</text>
+      <rect x="50" y="154" width="360" height="21" rx="5" fill="#fff" stroke="#c9d8f5"/><text x="230" y="169">baseline_向量 + BM25 + 重排</text>
+    </g>
+    <rect x="470" y="54" width="400" height="130" rx="12" fill="#f3edff" stroke="#9575e0" stroke-width="1.7"/>
+    <text x="670" y="78" font-size="14" font-weight="800" fill="#6d42c9">维度 2 · 纵向：参数取值</text>
+    <text x="670" y="96" font-size="11" fill="#5a6478">变的是「参数」→ 属于同一 baseline 的 sweep</text>
+    <g font-size="11.5" fill="#2b3547">
+      <rect x="490" y="104" width="360" height="21" rx="5" fill="#fff" stroke="#d9cdf7"/><text x="670" y="119">top_k ∈ {1, 3, 5, 10}</text>
+      <rect x="490" y="129" width="360" height="21" rx="5" fill="#fff" stroke="#d9cdf7"/><text x="670" y="144">rerank_top_n ∈ {1, 3, 5}</text>
+      <rect x="490" y="154" width="360" height="21" rx="5" fill="#fff" stroke="#d9cdf7"/><text x="670" y="169">（「调旋钮」，不换方案）</text>
+    </g>
+    <line x1="230" y1="186" x2="230" y2="222" stroke="#8a94a6" stroke-width="1.6" marker-end="url(#ar3)"/>
+    <line x1="670" y1="186" x2="670" y2="222" stroke="#8a94a6" stroke-width="1.6" marker-end="url(#ar3)"/>
+    <text x="450" y="220" font-size="11" fill="#7a8496">两个维度正交 → 组合成实验矩阵</text>
+    <!-- matrix -->
+    <text x="450" y="244" font-size="12" font-weight="700" fill="#1e2430">baseline（横向，方案结构）</text>
+    <g font-size="12" fill="#2b3547">
+      <rect x="265" y="252" width="120" height="26" rx="5" fill="#dce9ff" stroke="#5b8def"/><text x="325" y="270" font-weight="700">纯向量</text>
+      <rect x="390" y="252" width="120" height="26" rx="5" fill="#dce9ff" stroke="#5b8def"/><text x="450" y="270" font-weight="700">混合</text>
+      <rect x="515" y="252" width="120" height="26" rx="5" fill="#dce9ff" stroke="#5b8def"/><text x="575" y="270" font-weight="700">重排</text>
+    </g>
+    <g font-size="11.5" fill="#6b7280">
+      <rect x="125" y="284" width="90" height="22" rx="11" fill="#efe7ff" stroke="#9575e0"/><text x="170" y="299" fill="#6d42c9">top_k = 1</text>
+      <rect x="125" y="326" width="90" height="22" rx="11" fill="#efe7ff" stroke="#9575e0"/><text x="170" y="341" fill="#6d42c9">top_k = 3</text>
+      <rect x="125" y="368" width="90" height="22" rx="11" fill="#efe7ff" stroke="#9575e0"/><text x="170" y="383" fill="#6d42c9">top_k = 5</text>
+      <rect x="265" y="282" width="120" height="40" rx="6" fill="#fff" stroke="#dfe4ec"/><text x="325" y="307">运行</text>
+      <rect x="390" y="282" width="120" height="40" rx="6" fill="#fff" stroke="#dfe4ec"/><text x="450" y="307">运行</text>
+      <rect x="515" y="282" width="120" height="40" rx="6" fill="#fff" stroke="#dfe4ec"/><text x="575" y="307">运行</text>
+      <rect x="225" y="324" width="290" height="40" rx="6" fill="#fffbe9" stroke="#d9b84a" stroke-width="1.4" stroke-dasharray="7 4"/>
+      <rect x="515" y="324" width="120" height="40" rx="6" fill="#fff" stroke="#d7dee8"/>
+      <text x="575" y="341" font-size="9" text-anchor="middle" fill="#8a6a20">← 我们这次实际</text>
+      <text x="575" y="355" font-size="9" text-anchor="middle" fill="#8a6a20">只做了这一行</text>
+      <rect x="265" y="366" width="120" height="40" rx="6" fill="#fff" stroke="#dfe4ec"/><text x="325" y="391">运行</text>
+      <rect x="390" y="366" width="120" height="40" rx="6" fill="#fff" stroke="#dfe4ec"/><text x="450" y="391">运行</text>
+      <rect x="515" y="366" width="120" height="40" rx="6" fill="#fff" stroke="#dfe4ec"/><text x="575" y="391">运行</text>
+    </g>
+    <text x="160" y="426" font-size="10.5" fill="#7a8496">↑ 每列 = 一条 baseline 的 sweep 曲线</text>
+    <text x="450" y="426" font-size="10.5" fill="#7a8496">每格 = 一次完整 RAG 跑 + 评测</text>
+    <text x="740" y="426" font-size="10.5" fill="#7a8496">→ 每行 = 同参数下方案对比</text>
+    <rect x="30" y="430" width="400" height="64" rx="9" fill="#eaf1ff" stroke="#5b8def"/>
+    <text x="230" y="446" font-size="12.5" font-weight="700" fill="#1d4ed8">baseline 对比</text>
+    <text x="230" y="464" font-size="10" fill="#4a5b7a">变方案（加/减模块）：少（3–5 条）× 几个点</text>
+    <text x="230" y="482" font-size="10" fill="#4a5b7a">目的：验证「某优化有没有用」→ 粗略　⇒ 决定「用不用」</text>
+    <rect x="470" y="430" width="400" height="64" rx="9" fill="#f3edff" stroke="#9575e0"/>
+    <text x="670" y="446" font-size="12.5" font-weight="700" fill="#6d42c9">parameter sweep</text>
+    <text x="670" y="464" font-size="10" fill="#5a4d7a">变参数（调旋钮）：多（同一串值）→ 一条曲线</text>
+    <text x="670" y="482" font-size="10" fill="#5a4d7a">目的：找「最优参数值 / 拐点」→ 精细　⇒ 决定「设多少」</text>
+    <rect x="30" y="504" width="840" height="40" rx="9" fill="#fff8dd" stroke="#d9a92e" stroke-width="1.4"/>
+    <text x="50" y="530" font-size="12" font-weight="700" text-anchor="start" fill="#8a5f00">总运行次数 = Σ n_i（每条 baseline × 该 baseline 的 sweep 次数）</text>
+    <text x="850" y="530" font-size="9.5" text-anchor="end" fill="#8a7a52">Σ = baseline 条数　n_i = 第 i 条 baseline 的 sweep 次数</text>
+  </g>
+</svg>
+<div class="cap">图 3｜实验矩阵：横向方案结构 × 纵向参数取值（按视频「实验设计」图还原：top_k=3 行以黄色虚线框标出、本行不写「运行」，第三列为注释框；图下方黄色公式条给出总运行次数）</div>
+</div>
+
+<p><span class="tag t-video">视频原述</span>图中 <code>top_k=3</code> 这一行<strong>不写「运行」</strong>：前两列区域是一个黄色虚线框（框内留白），第三列位置另放白色注释框「← 我们这次实际只做了这一行」，箭头指向黄色框；<code>top_k=1</code> 与 <code>top_k=5</code> 两行的三格均为「运行」。矩阵下方黄色公式条：<strong>总运行次数 = Σ n_i（每条 baseline × 该 baseline 的 sweep 次数）</strong>，其中 <code>Σ = baseline 条数</code>、<code>n_i = 第 i 条 baseline 的 sweep 次数</code>。</p>
+
+<table>
+<tr><th>维度</th><th>变的是什么</th><th>产出</th><th>回答问题</th><th>视频中的例子</th></tr>
+<tr><td>横向：baseline 对比</td><td>方案结构（加减模块）</td><td>3–5 条候选方案，粒度粗</td><td>「某个优化有没有用」→ 决定<strong>用不用</strong></td><td>纯向量 / 向量+BM25 / 向量+BM25+重排</td></tr>
+<tr><td>纵向：parameter sweep</td><td>参数取值（调旋钮）</td><td>每个方案一条曲线，粒度细</td><td>「最优参数值 / 拐点」→ 决定<strong>设多少</strong></td><td><code>top_k ∈ {1,3,5,10}</code>、<code>rerank_top_n ∈ {1,3,5}</code></td></tr>
+</table>
+<p><span class="tag t-video">视频原述</span>最佳实践顺序（文档同页小字）：<strong>「先横向对照（决定用不用某模块），再纵向 sweep（决定参数取多少）」</strong>。</p>
+<p><span class="tag t-extra">补充</span>这本质是<strong>消融实验（ablation）</strong> + <strong>超参搜索</strong>的组合：横向每加一个模块都在做控制变量，纵向是网格搜索（grid search）；参数多时改用随机搜索 / 贝叶斯优化更省算力。实验必须固定随机种子、语料版本、judge 模型与 prompt 版本，否则「指标提升」可能只是噪声；样本量小时建议用配对比较 + 显著性检验（如 bootstrap 置信区间），而不是直接比两位小数。</p>
+</section>
+
+<section class="sec" id="s23">
+<h3>2.3 准备数据：两套互不复用的评测数据集</h3>
+<p><span class="tag t-video">视频原述</span>「实际上就是两套评测数据集的构建：<strong>检索评测一套（3 个 JSONL，喂 MTEB）、生成评测一套（1 张表，喂 RAGAS）</strong>。」</p>
+
+<div class="figure">
+<svg viewBox="0 0 1000 660" xmlns="http://www.w3.org/2000/svg" font-family="-apple-system,PingFang SC,Microsoft YaHei,sans-serif">
+  <g>
+    <text x="500" y="24" font-size="17" font-weight="800" text-anchor="middle" fill="#1e2430">评测数据集构建：两套数据</text>
+    <line x1="360" y1="32" x2="640" y2="32" stroke="#c9d2e0" stroke-width="1.2"/>
+    <text x="500" y="52" font-size="11" text-anchor="middle" fill="#7a8496">检索评测准备 3 个 JSONL 文件（MTEB）；生成评测准备 1 张表（RAGAS）—— 每份都多条记录，逐条对齐</text>
+
+    <!-- ① 左侧：检索评测数据 -->
+    <rect x="20" y="66" width="470" height="560" rx="12" fill="#fffaf0" stroke="#d9a92e" stroke-width="1.8"/>
+    <text x="40" y="94" font-size="15" font-weight="800" fill="#8a5f00">① 检索评测数据</text>
+    <text x="40" y="112" font-size="10.5" fill="#7a6330">3 个 JSONL 文件 → 喂给 MTEB（每条一行 JSON）</text>
+
+    <rect x="38" y="124" width="434" height="158" rx="8" fill="#fff" stroke="#e6cf8c"/>
+    <rect x="48" y="134" width="126" height="22" rx="6" fill="#fff4cc" stroke="#d9a92e"/>
+    <text x="111" y="149" font-size="11" font-weight="700" text-anchor="middle" fill="#8a5f00">corpus.jsonl</text>
+    <text x="184" y="149" font-size="10" fill="#7a6330">语料库（文档全集）</text>
+    <g font-family="ui-monospace,Menlo,monospace" font-size="10.5" fill="#4a4230">
+      <text x="50" y="180">{"_id":"doc1", "title":"光合作用", "text":"绿色植物将光能转化为化学能…"}</text>
+      <text x="50" y="206">{"_id":"doc2", "title":"细胞呼吸", "text":"细胞分解葡萄糖释放能量…"}</text>
+      <text x="50" y="232">{"_id":"doc3", "title":"蒸腾作用", "text":"水分从叶片气孔散失…"}</text>
+    </g>
+    <text x="50" y="260" font-size="10.5" fill="#8a7a52">每行一个文档；_id 供 qrels 引用</text>
+
+    <rect x="38" y="288" width="434" height="158" rx="8" fill="#fff" stroke="#e6cf8c"/>
+    <rect x="48" y="298" width="126" height="22" rx="6" fill="#fff4cc" stroke="#d9a92e"/>
+    <text x="111" y="313" font-size="11" font-weight="700" text-anchor="middle" fill="#8a5f00">queries.jsonl</text>
+    <text x="184" y="313" font-size="10" fill="#7a6330">问题集</text>
+    <g font-family="ui-monospace,Menlo,monospace" font-size="10.5" fill="#4a4230">
+      <text x="50" y="342">{"_id":"q1", "text":"植物如何将光能转化为化学能？"}</text>
+      <text x="50" y="368">{"_id":"q2", "text":"细胞怎样释放能量？"}</text>
+      <text x="50" y="394">{"_id":"q3", "text":"水在植物体内怎么运输？"}</text>
+    </g>
+
+    <rect x="38" y="452" width="434" height="158" rx="8" fill="#fff" stroke="#e6cf8c"/>
+    <rect x="48" y="462" width="126" height="22" rx="6" fill="#fff4cc" stroke="#d9a92e"/>
+    <text x="111" y="477" font-size="11" font-weight="700" text-anchor="middle" fill="#8a5f00">qrels.jsonl</text>
+    <text x="184" y="477" font-size="10" fill="#7a6330">相关性标注 ★ 最费人力（1 个 query 对应多个 doc）</text>
+    <g font-family="ui-monospace,Menlo,monospace" font-size="10.5" fill="#4a4230">
+      <text x="50" y="500">{"query-id":"q1", "corpus-id":"doc1", "score":2} # 强相关</text>
+      <text x="50" y="528">{"query-id":"q1", "corpus-id":"doc3", "score":1} # 弱相关</text>
+      <text x="50" y="556">{"query-id":"q1", "corpus-id":"doc2", "score":0} # 不相关</text>
+    </g>
+    <text x="50" y="586" font-size="10.5" fill="#8a7a52">score 为相关度等级；它不是答案，是检索指标的唯一比对基准</text>
+
+    <!-- ② 右侧：生成评测数据 -->
+    <rect x="510" y="66" width="470" height="560" rx="12" fill="#f3fdf7" stroke="#39a97a" stroke-width="1.8"/>
+    <text x="530" y="94" font-size="15" font-weight="800" fill="#177a52">② 生成评测数据</text>
+    <text x="530" y="112" font-size="10.5" fill="#3c6b55">1 张表 → 喂给 RAGAS（每行一条记录、4 个字段）</text>
+
+    <!-- 表头：前两列蓝（提前准备），后两列黄（跑完 baseline 回填） -->
+    <g font-size="10.5" font-weight="700" text-anchor="middle">
+      <rect x="528" y="124" width="108" height="26" rx="5" fill="#dce9ff" stroke="#5b8def"/>
+      <text x="582" y="142" fill="#1d4ed8">user_input</text>
+      <rect x="636" y="124" width="108" height="26" rx="5" fill="#dce9ff" stroke="#5b8def"/>
+      <text x="690" y="142" fill="#1d4ed8">reference</text>
+      <rect x="744" y="124" width="108" height="26" rx="5" fill="#fff4cc" stroke="#d9a92e"/>
+      <text x="798" y="142" fill="#8a5f00">retrieved_contexts</text>
+      <rect x="852" y="124" width="108" height="26" rx="5" fill="#fff4cc" stroke="#d9a92e"/>
+      <text x="906" y="142" fill="#8a5f00">response</text>
+    </g>
+
+    <g stroke="#d8e4f2" stroke-width="1.1">
+      <line x1="636" y1="152" x2="636" y2="256"/><line x1="744" y1="152" x2="744" y2="256"/><line x1="852" y1="152" x2="852" y2="256"/>
+      <line x1="636" y1="258" x2="636" y2="362"/><line x1="744" y1="258" x2="744" y2="362"/><line x1="852" y1="258" x2="852" y2="362"/>
+      <line x1="636" y1="364" x2="636" y2="468"/><line x1="744" y1="364" x2="744" y2="468"/><line x1="852" y1="364" x2="852" y2="468"/>
+    </g>
+    <!-- 记录 1 -->
+    <rect x="528" y="152" width="432" height="104" rx="5" fill="#fbfdff" stroke="#e2ecf5"/>
+    <g font-size="10.5" fill="#3c4757">
+      <text x="534" y="196">植物如何将光能</text><text x="534" y="216">转化为化学能？</text>
+      <text x="642" y="196">绿色植物利用光能，</text><text x="642" y="216">将二氧化碳和水…</text>
+      <text x="750" y="196">[ "绿色植物…",</text><text x="750" y="216">"叶绿体…", … ]</text>
+      <text x="858" y="196">植物通过光合作用</text><text x="858" y="216">把光能变成化学能</text>
+    </g>
+    <text x="948" y="246" font-size="9" text-anchor="end" fill="#8a94a6">记录1</text>
+
+    <!-- 记录 2 -->
+    <rect x="528" y="258" width="432" height="104" rx="5" fill="#fff" stroke="#e2ecf5"/>
+    <g font-size="10.5" fill="#3c4757">
+      <text x="534" y="300">细胞怎样释放</text><text x="534" y="320">能量？</text>
+      <text x="642" y="300">细胞分解葡萄糖，</text><text x="642" y="320">释放能量叫呼吸…</text>
+      <text x="750" y="300">[ "细胞分解…",</text><text x="750" y="320">"线粒体…", … ]</text>
+      <text x="858" y="300">细胞通过呼吸作用</text><text x="858" y="320">分解葡萄糖释放能量</text>
+    </g>
+    <text x="948" y="352" font-size="9" text-anchor="end" fill="#8a94a6">记录2</text>
+
+    <!-- 记录 3 -->
+    <rect x="528" y="364" width="432" height="104" rx="5" fill="#fbfdff" stroke="#e2ecf5"/>
+    <g font-size="10.5" fill="#3c4757">
+      <text x="534" y="404">水在植物体内</text><text x="534" y="424">怎么运输？</text>
+      <text x="642" y="404">水分由根吸收，</text><text x="642" y="424">经导管运到叶片…</text>
+      <text x="750" y="404">[ "水分从根…",</text><text x="750" y="424">"蒸腾作用…", … ]</text>
+      <text x="858" y="404">水靠蒸腾拉力</text><text x="858" y="424">在导管中向上运输</text>
+    </g>
+    <text x="948" y="458" font-size="9" text-anchor="end" fill="#8a94a6">记录3</text>
+
+    <!-- 字段说明 -->
+    <rect x="528" y="482" width="432" height="128" rx="8" fill="#fffdf5" stroke="#d9a92e" stroke-dasharray="6 4"/>
+    <text x="540" y="500" font-size="11.5" font-weight="700" fill="#8a5f00">字段说明</text>
+    <g font-size="10" fill="#4a4230">
+      <text x="540" y="520" font-family="ui-monospace,Menlo,monospace">user_input</text><text x="672" y="520">用户问题</text><text x="790" y="520" fill="#177a52">✅ 提前准备</text>
+      <text x="540" y="540" font-family="ui-monospace,Menlo,monospace">reference</text><text x="672" y="540">标准答案</text><text x="790" y="540" fill="#177a52">✅ 提前准备</text>
+      <text x="540" y="560" font-family="ui-monospace,Menlo,monospace">retrieved_contexts</text><text x="672" y="560">召回的文档</text><text x="790" y="560" fill="#a06a12">⏳ 跑完 baseline 回填</text>
+      <text x="540" y="580" font-family="ui-monospace,Menlo,monospace">response</text><text x="672" y="580">生成答案</text><text x="790" y="580" fill="#a06a12">⏳ 跑完 baseline 回填</text>
+    </g>
+
+    <text x="500" y="648" font-size="11" text-anchor="middle" fill="#7a8496">两套数据、两个框架，互不混用：MTEB 读 3 个 JSONL 算检索指标，RAGAS 读 1 张表算生成指标</text>
+  </g>
+</svg>
+<div class="cap">图 4｜评测数据集构建：两套数据（按视频配图逐字还原：左 3 个 JSONL、右 1 张四字段表 3 条记录；蓝色列＝提前准备，黄色列＝跑完 baseline 回填；信息较密，下方表格逐字段展开）</div>
+</div>
+
+
+
+<p style="font-size:13.5px;color:var(--muted)">图 4 信息密度较高，下表把视频配图中的 3 条示例记录逐字段展开，便于阅读与核对：</p>
+<table>
+<tr><th>记录</th><th>user_input（提前准备）</th><th>reference（提前准备）</th><th>retrieved_contexts（跑完 baseline 回填）</th><th>response（跑完 baseline 回填）</th></tr>
+<tr><td>记录 1</td><td>植物如何将光能转化为化学能？</td><td>绿色植物利用光能，将二氧化碳和水合成葡萄糖…</td><td>「绿色植物将光能转化为化学能…」「叶绿体是光合作用的场所」「光反应与暗反应两阶段…」</td><td>植物通过光合作用把光能变成化学能</td></tr>
+<tr><td>记录 2</td><td>细胞怎样释放能量？</td><td>细胞分解葡萄糖，释放能量的过程叫呼吸作用…</td><td>「细胞分解葡萄糖释放能量…」「线粒体是有氧呼吸的主要场所…」</td><td>细胞通过呼吸作用分解葡萄糖释放能量</td></tr>
+<tr><td>记录 3</td><td>水在植物体内怎么运输？</td><td>水分由根吸收，经导管向上运输到叶片…</td><td>「水分从根经导管运输到叶片」「蒸腾作用提供向上拉力…」「导管位于木质部」</td><td>水靠蒸腾拉力在导管中自下而上运输</td></tr>
+</table>
+
+<p><span class="tag t-video">视频原述 · 关键点</span></p>
+<ul>
+<li><strong>检索三件套</strong>：<code>corpus.jsonl</code>（语料库）、<code>queries.jsonl</code>（问题集）、<code>qrels.jsonl</code>（相关性标注，★ 最费人力，<strong>不是答案</strong>）。</li>
+<li><strong>生成四字段</strong>：<code>user_input</code> / <code>reference</code> 可提前准备；<code>retrieved_contexts</code>（召回的文档，多条）/ <code>response</code> 需跑完 baseline 回填——<strong>但要把表先建好</strong>。</li>
+<li><strong>对齐</strong>：每份都多条记录，逐条对齐（<code>q1 ↔ doc1 ↔ 问题1 ↔ 答案1</code>）。</li>
+</ul>
+<p><span class="tag t-extra">补充 · 为什么 qrels 最贵</span>qrels（query relevance judgments）是「问题—文档」相关性的人工标注，是检索指标的<strong>唯一基准真相</strong>。它需要标注员逐条判断 Top-K 候选是否真的能回答该问题，且每个 query 要覆盖多个 doc；标注不一致会直接污染 Recall / NDCG。工程上常用「 pooling（汇总多个检索系统的 Top-K 去重后交标注）」+ 双人标注 + Cohen's Kappa 一致性检查来控制质量。</p>
+<p><span class="tag t-extra">补充 · 测试集要覆盖的题型</span>简单单跳查询、多跳 / 多文档查询、含错别字与口语的模糊查询、知识库<strong>根本没有答案</strong>的问题（检验拒答而非幻觉）、新旧文档冲突、带权限差异的查询、超长 / 表格 / 图片型文档。只测「一问一答送分题」会得到虚高分数。</p>
+</section>
+
+<section class="sec" id="s24">
+<h3>2.4 跑 baselines：逐格执行 + 只回填生成数据表</h3>
+<p><span class="tag t-video">视频原述</span>「对照实验矩阵，逐格执行每次 rag baseline。」每一格执行一次完整链路：</p>
+<pre>问题 →【检索】→ 召回文档（contexts）→【生成】→ 答案（response）
+                              ↓
+                    回填到「生成数据表」的对应空位</pre>
+<p><strong>跑完后：</strong></p>
+<ul>
+<li><strong>生成数据表</strong>：<code>retrieved_contexts + response</code> 已回填齐全 → 4 字段凑齐，可喂 RAGAS。</li>
+<li><strong>检索数据表</strong>：<strong>不用回填</strong>（<code>corpus / queries / qrels</code> 是只读的比对基准）。系统跑出的实际排名只用于和 <code>qrels</code> 比对算指标（<code>Recall@K / NDCG@K</code> 等），不写回这三个文件。</li>
+</ul>
+<p><span class="tag t-extra">补充</span>这是评测工程里最容易搞混的一点：<strong>检索评测 = 用「系统实际排名」对比「qrels 期望」</strong>，实际排名是运行时产物而不是新数据集；<strong>生成评测 = 用「真实跑出来的 contexts + response」填表</strong>。切勿用标准答案倒推 contexts（会人为抬高 Faithfulness / ContextRecall）。每一格还要记录元信息：baseline 名、参数快照、embedding / rerank / LLM 版本、prompt 版本、语料版本、随机种子、耗时与 Token 成本。</p>
+</section>
+
+<section class="sec" id="s25">
+<h3>2.5 跑评测框架，计算指标</h3>
+<p><span class="tag t-video">视频原述</span>「分两个框架的两套指标。」</p>
+
+<h4>2.5.1 MTEB 侧：5 个检索指标</h4>
+<table>
+<tr><th>指标</th><th>含义（视频原表）</th></tr>
+<tr><td><code>Recall@K</code></td><td>Top-K 命中相关文档的比例</td></tr>
+<tr><td><code>Precision@K</code></td><td>Top-K 里相关文档的比例</td></tr>
+<tr><td><code>NDCG@K</code></td><td>带相关度等级的排序质量（<strong>最常用</strong>）</td></tr>
+<tr><td><code>MRR</code></td><td>第一个相关文档的排名倒数</td></tr>
+<tr><td><code>HitRate@K</code></td><td>是否至少命中一个相关文档</td></tr>
+</table>
+<p><strong>检索指标的本质</strong>：<code>qrels</code> 给出「哪些文档相关」（期望），系统给出「实际排名」，两者一比。而且<strong>不是算一次，是每个 query 各算一遍，再取平均</strong>。</p>
+
+<h4>2.5.2 逐 query 计算示例（视频数值，1:1 还原）</h4>
+<p><span class="tag t-video">视频原述</span>「检索指标不是『一次排序』的分数，而是『一批 query』各自算完再平均」——视频用 2 个 query 演示：</p>
+<div class="figure">
+<svg viewBox="0 0 940 430" xmlns="http://www.w3.org/2000/svg" font-family="-apple-system,PingFang SC,Microsoft YaHei,sans-serif">
+  <g>
+    <text x="470" y="24" font-size="15" font-weight="800" text-anchor="middle" fill="#1e2430">检索指标：逐 query 算 → 再取平均</text>
+    <text x="470" y="43" font-size="10.5" text-anchor="middle" fill="#7a8496">检索指标不是「一次排序」的分数，而是「一批 query」各自算完再平均 —— 下面用 2 个 query 演示</text>
+
+    <!-- Query 1 -->
+    <rect x="24" y="56" width="438" height="212" rx="10" fill="#fbfdff" stroke="#cfe0f5" stroke-width="1.5"/>
+    <text x="38" y="78" font-size="12.5" font-weight="800" fill="#1d4ed8">Query 1　植物如何把光能转化为化学能？</text>
+    <g font-size="10.5" fill="#3c4757">
+      <text x="38" y="100">期望 qrels：doc1(rel2)　doc2(rel1)　doc3(rel2)</text>
+      <text x="38" y="120">实际排名：1.doc3✓ &gt; 2.doc7✗ &gt; 3.doc1✓ &gt; 4.doc9✗ &gt; 5.doc2✓</text>
+      <line x1="38" y1="130" x2="448" y2="130" stroke="#e4eaf3"/>
+      <text x="38" y="150">Recall@5　命中 3 / 相关 3<tspan x="360">= <tspan font-weight="700" fill="#1d4ed8">1.000</tspan></tspan></text>
+      <text x="38" y="170">Precision@5　命中 3 / 返回 5<tspan x="360">= <tspan font-weight="700" fill="#1d4ed8">0.600</tspan></tspan></text>
+      <text x="38" y="190">HitRate@5　3 个命中，1 → 是<tspan x="360">= <tspan font-weight="700" fill="#1d4ed8">1.000</tspan></tspan></text>
+      <text x="38" y="210">MRR　第 1 个相关在第 1 位<tspan x="360">= <tspan font-weight="700" fill="#1d4ed8">1.000</tspan></tspan></text>
+      <text x="38" y="230">NDCG@5　DCG / IDCG（位置折损）<tspan x="360">= <tspan font-weight="700" fill="#1d4ed8">0.906</tspan></tspan></text>
+    </g>
+    <text x="448" y="258" font-size="9.5" text-anchor="end" fill="#8a94a6">K = 5</text>
+
+    <!-- Query 2 -->
+    <rect x="478" y="56" width="438" height="212" rx="10" fill="#fbfdff" stroke="#cfe0f5" stroke-width="1.5"/>
+    <text x="492" y="78" font-size="12.5" font-weight="800" fill="#1d4ed8">Query 2　细胞怎样释放能量？</text>
+    <g font-size="10.5" fill="#3c4757">
+      <text x="492" y="100">期望 qrels：doc5(rel2)　doc6(rel1)</text>
+      <text x="492" y="120">实际排名：1.doc8✗ &gt; 2.doc5✓ &gt; 3.doc2✗ &gt; 4.doc6✓</text>
+      <line x1="492" y1="130" x2="902" y2="130" stroke="#e4eaf3"/>
+      <text x="492" y="150">Recall@4　命中 2 / 相关 2<tspan x="814">= <tspan font-weight="700" fill="#1d4ed8">1.000</tspan></tspan></text>
+      <text x="492" y="170">Precision@4　命中 2 / 返回 4<tspan x="814">= <tspan font-weight="700" fill="#1d4ed8">0.500</tspan></tspan></text>
+      <text x="492" y="190">HitRate@4　2 个命中，1 → 是<tspan x="814">= <tspan font-weight="700" fill="#1d4ed8">1.000</tspan></tspan></text>
+      <text x="492" y="210">MRR　第 1 个相关在第 2 位<tspan x="814">= <tspan font-weight="700" fill="#1d4ed8">0.500</tspan></tspan></text>
+      <text x="492" y="230">NDCG@4　DCG / IDCG（位置折损）<tspan x="814">= <tspan font-weight="700" fill="#1d4ed8">0.640</tspan></tspan></text>
+    </g>
+    <text x="902" y="258" font-size="9.5" text-anchor="end" fill="#8a94a6">K = 4</text>
+
+    <!-- 平均条 -->
+    <rect x="24" y="278" width="892" height="34" rx="8" fill="#eef4ff" stroke="#c9d8f5"/>
+    <text x="470" y="300" font-size="12.5" font-weight="700" text-anchor="middle" fill="#1d4ed8">整个数据集得分 = 所有 query 的算术平均</text>
+
+    <!-- 五个平均卡片 -->
+    <g text-anchor="middle">
+      <rect x="25" y="324" width="170" height="66" rx="9" fill="#fff4cc" stroke="#d9a92e"/>
+      <text x="110" y="344" font-size="11.5" font-weight="800" fill="#8a5f00">Recall</text>
+      <text x="110" y="362" font-size="10" fill="#6b6147">Q1 1.000 / Q2 1.000</text>
+      <text x="110" y="380" font-size="11" font-weight="700" fill="#8a5f00">平均 1.000</text>
+
+      <rect x="205" y="324" width="170" height="66" rx="9" fill="#fff4cc" stroke="#d9a92e"/>
+      <text x="290" y="344" font-size="11.5" font-weight="800" fill="#8a5f00">Precision</text>
+      <text x="290" y="362" font-size="10" fill="#6b6147">Q1 0.600 / Q2 0.500</text>
+      <text x="290" y="380" font-size="11" font-weight="700" fill="#8a5f00">平均 0.550</text>
+
+      <rect x="385" y="324" width="170" height="66" rx="9" fill="#fff4cc" stroke="#d9a92e"/>
+      <text x="470" y="344" font-size="11.5" font-weight="800" fill="#8a5f00">HitRate</text>
+      <text x="470" y="362" font-size="10" fill="#6b6147">Q1 1.000 / Q2 1.000</text>
+      <text x="470" y="380" font-size="11" font-weight="700" fill="#8a5f00">平均 1.000</text>
+
+      <rect x="565" y="324" width="170" height="66" rx="9" fill="#fff4cc" stroke="#d9a92e"/>
+      <text x="650" y="344" font-size="11.5" font-weight="800" fill="#8a5f00">MRR</text>
+      <text x="650" y="362" font-size="10" fill="#6b6147">Q1 1.000 / Q2 0.500</text>
+      <text x="650" y="380" font-size="11" font-weight="700" fill="#8a5f00">平均 0.750</text>
+
+      <rect x="745" y="324" width="170" height="66" rx="9" fill="#fff4cc" stroke="#d9a92e"/>
+      <text x="830" y="344" font-size="11.5" font-weight="800" fill="#8a5f00">NDCG</text>
+      <text x="830" y="362" font-size="10" fill="#6b6147">Q1 0.906 / Q2 0.640</text>
+      <text x="830" y="380" font-size="11" font-weight="700" fill="#8a5f00">平均 0.773</text>
+    </g>
+    <text x="470" y="414" font-size="10.5" text-anchor="middle" fill="#7a8496">单次排序只给一个分数，评测报告里报的是「整批 query 的平均」—— 这才是可比、可复现的指标</text>
+  </g>
+</svg>
+<div class="cap">图 5｜检索指标：逐 query 算 → 再取平均（按视频 2.5 节示例图还原：两个 Query 卡片 + 五个平均值卡片，数值逐字核对）</div>
+</div>
+<p>图中数值明细如下（K 随实际返回结果数变化：Query 1 为 @5、Query 2 为 @4）：</p>
+<table>
+<tr><th>指标</th><th>Query 1</th><th>Query 2</th><th>数据集平均</th></tr>
+<tr><td><code>Recall</code></td><td>命中 3 / 相关 3 = 1.000</td><td>命中 2 / 相关 2 = 1.000</td><td><strong>1.000</strong></td></tr>
+<tr><td><code>Precision</code></td><td>命中 3 / 返回 5 = 0.600</td><td>命中 2 / 返回 4 = 0.500</td><td><strong>0.550</strong></td></tr>
+<tr><td><code>HitRate</code></td><td>命中 → 1.000</td><td>命中 → 1.000</td><td><strong>1.000</strong></td></tr>
+<tr><td><code>MRR</code></td><td>首个相关在第 1 位 = 1.000</td><td>首个相关在第 2 位 = 0.500</td><td><strong>0.750</strong></td></tr>
+<tr><td><code>NDCG</code></td><td>DCG / IDCG = 0.906</td><td>DCG / IDCG = 0.640</td><td><strong>0.773</strong></td></tr>
+</table>
+<p style="font-size:13.5px;color:var(--muted)">视频小字：「单次排序只给一个分数，评测报告里报的是『整批 query 的平均』——这才是可比、可复现的指标。」</p>
+
+<h4>2.5.3 五个指标的算法（视频原表）</h4>
+<table>
+<tr><th>指标</th><th>算法</th><th>一句话含义</th></tr>
+<tr><td><code>Recall@K</code></td><td>命中的相关文档数 / 全部相关文档数</td><td>相关文档找全了没有</td></tr>
+<tr><td><code>Precision@K</code></td><td>命中的相关文档数 / 返回的 K 个</td><td>返回的结果准不准（掺没掺噪声）</td></tr>
+<tr><td><code>HitRate@K</code></td><td>实际结果里是否至少命中 1 个相关文档（是=1，否=0）</td><td>有没有命中相关文档</td></tr>
+<tr><td><code>MRR</code></td><td>1 / 第一个相关文档在实际检索结果里的排名</td><td>第一个对的结果排得靠不靠前</td></tr>
+<tr><td><code>NDCG@K</code></td><td>DCG / IDCG（按位置折减的累计相关度除以理想值）</td><td>整体排序质量好不好（结合位置与相关等级）</td></tr>
+</table>
+<p>视频补充说明：「其中 NDCG 的 DCG 用 <code>Σ(2^rel − 1) / log₂(位置+1)</code>，IDCG 是『把相关文档排到最前』的理想 DCG。」</p>
+<p><span class="tag t-extra">补充 · 公式写严谨</span>设位置 <code>i</code> 上文档的相关度等级为 <code>rel_i</code>，则
+<code>DCG@K = Σ_{i=1..K} (2^{rel_i} − 1) / log₂(i + 1)</code>；<code>IDCG@K</code> 是把所有文档按 <code>rel</code> 降序排列后算出的 DCG；<code>NDCG@K = DCG@K / IDCG@K</code>，取值 0–1。<code>MRR = (1/|Q|)·Σ_q 1/rank_q</code>。注意 <code>rel</code> 可以是多级（视频示例用 <code>rel2 / rel1</code>），这正是 NDCG 比 HitRate 更细的原因。</p>
+
+<h4>2.5.4 RAGAS 侧：四元素 × 五指标</h4>
+<p><span class="tag t-video">视频原述</span>「四个元素两两比较，每条连线 = 一个评测指标；标签居中压线」「指标 = 两个元素之间『比一比』：5 条有效连线对应 5 个指标」。</p>
+
+<div class="figure">
+<svg viewBox="0 0 900 470" xmlns="http://www.w3.org/2000/svg" font-family="-apple-system,PingFang SC,Microsoft YaHei,sans-serif">
+  <g text-anchor="middle">
+    <text x="450" y="24" font-size="14" font-weight="700" fill="#1e2430">RAGAS 四元素 × 五指标</text>
+    <text x="450" y="43" font-size="11.5" fill="#7a8496">四个元素两两比较，每条连线 = 一个评测指标；标签居中压线</text>
+
+    <!-- 五条连线：四条斜向虚线 + ②③ 之间一条完整水平实线 -->
+    <g stroke="#9aa5b5" stroke-width="1.6" stroke-dasharray="5 4">
+      <line x1="390" y1="132" x2="200" y2="222"/>
+      <line x1="510" y1="132" x2="700" y2="222"/>
+      <line x1="200" y1="298" x2="390" y2="358"/>
+      <line x1="700" y1="298" x2="510" y2="358"/>
+    </g>
+    <line x1="290" y1="260" x2="610" y2="260" stroke="#5b8def" stroke-width="1.9"/>
+
+    <!-- 四个元素节点：严格上下左右对称，中心 x=450 -->
+    <rect x="360" y="76" width="180" height="56" rx="11" fill="#dce9ff" stroke="#5b8def" stroke-width="1.8"/>
+    <text x="450" y="100" font-size="14.5" font-weight="800" fill="#1d4ed8">① 用户问题</text>
+    <text x="450" y="118" font-size="11" fill="#4a5b7a">user_input（用户提问）</text>
+
+    <rect x="110" y="222" width="180" height="76" rx="11" fill="#fff4cc" stroke="#d9a92e" stroke-width="1.8"/>
+    <text x="200" y="248" font-size="14.5" font-weight="800" fill="#8a5f00">② 检索上下文</text>
+    <text x="200" y="266" font-size="11" fill="#7a6330">retrieved_contexts</text>
+    <text x="200" y="284" font-size="11" fill="#7a6330">检索出来的文档片段</text>
+
+    <rect x="610" y="222" width="180" height="76" rx="11" fill="#dcf5e6" stroke="#39a97a" stroke-width="1.8"/>
+    <text x="700" y="248" font-size="14.5" font-weight="800" fill="#177a52">③ 生成回答</text>
+    <text x="700" y="266" font-size="11" fill="#3c6b55">response</text>
+    <text x="700" y="284" font-size="11" fill="#3c6b55">LLM 生成的答案</text>
+
+    <rect x="360" y="358" width="180" height="56" rx="11" fill="#efe7ff" stroke="#9575e0" stroke-width="1.8"/>
+    <text x="450" y="382" font-size="14.5" font-weight="800" fill="#6d42c9">④ 预期回答</text>
+    <text x="450" y="400" font-size="11" fill="#5a4d7a">reference（标准答案）</text>
+
+    <!-- 五个指标标签：白底圆角框居中压线，线在框两侧可见 -->
+    <g font-size="11" font-weight="700">
+      <rect x="230" y="160" width="130" height="34" rx="13" fill="#fff" stroke="#d9a92e"/>
+      <text x="295" y="175" fill="#8a5f00">ContextPrecision</text>
+      <text x="295" y="188" font-size="9" font-weight="400" fill="#7a6330">检索准不准</text>
+
+      <rect x="540" y="160" width="130" height="34" rx="13" fill="#fff" stroke="#39a97a"/>
+      <text x="605" y="175" fill="#177a52">AnswerRelevancy</text>
+      <text x="605" y="188" font-size="9" font-weight="400" fill="#3c6b55">答案切不切题</text>
+
+      <rect x="385" y="243" width="130" height="34" rx="13" fill="#fff" stroke="#5b8def"/>
+      <text x="450" y="258" fill="#1d4ed8">Faithfulness</text>
+      <text x="450" y="271" font-size="9" font-weight="400" fill="#4a5b7a">忠于上下文（编没编）</text>
+
+      <rect x="230" y="311" width="130" height="34" rx="13" fill="#fff" stroke="#9575e0"/>
+      <text x="295" y="326" fill="#6d42c9">ContextRecall</text>
+      <text x="295" y="339" font-size="9" font-weight="400" fill="#5a4d7a">该找的找全了吗</text>
+
+      <rect x="535" y="311" width="140" height="34" rx="13" fill="#fff" stroke="#e0728d"/>
+      <text x="605" y="326" fill="#b93e60">AnswerCorrectness</text>
+      <text x="605" y="339" font-size="9" font-weight="400" fill="#a34c67">答案对不对</text>
+    </g>
+
+    <!-- 图例：右下，不遮挡菱形 -->
+    <rect x="690" y="320" width="190" height="126" rx="10" fill="#fbfcfe" stroke="#dfe4ec" stroke-dasharray="5 4"/>
+    <g text-anchor="start">
+      <text x="704" y="340" font-size="11.5" font-weight="700" fill="#2b3547">图例</text>
+      <rect x="704" y="350" width="11" height="11" rx="3" fill="#dce9ff" stroke="#5b8def"/>
+      <text x="721" y="360" font-size="10" fill="#4a5568">① 问题 user_input</text>
+      <rect x="704" y="369" width="11" height="11" rx="3" fill="#fff4cc" stroke="#d9a92e"/>
+      <text x="721" y="379" font-size="10" fill="#4a5568">② 上下文 retrieved_contexts</text>
+      <rect x="704" y="388" width="11" height="11" rx="3" fill="#dcf5e6" stroke="#39a97a"/>
+      <text x="721" y="398" font-size="10" fill="#4a5568">③ 回答 response</text>
+      <rect x="704" y="407" width="11" height="11" rx="3" fill="#efe7ff" stroke="#9575e0"/>
+      <text x="721" y="417" font-size="10" fill="#4a5568">④ 标准答案 reference</text>
+      <text x="704" y="437" font-size="9.5" fill="#6b7280">标签边框色 = 坐标色，居中压在线上</text>
+    </g>
+
+    <text x="450" y="440" font-size="11" fill="#7a8496">指标 = 两个元素之间「比一比」｜5 条有效连线对应 5 个指标</text>
+  </g>
+</svg>
+<div class="cap">图 6｜RAGAS 四元素 × 五指标（按视频架构图精确重绘：四节点严格对称、五条连线含 ②↔③ 水平实线、配色与标签位置）</div>
+</div>
+
+<table>
+<tr><th>指标</th><th>连线（元素关系）</th><th>视频表格中的「一句话含义」</th></tr>
+<tr><td><code>ContextPrecision</code></td><td>问题 ↔ 上下文</td><td>检索准不准</td></tr>
+<tr><td><code>ContextRecall</code></td><td>上下文 ↔ 标准答案</td><td>该找的找全了吗</td></tr>
+<tr><td><code>Faithfulness</code></td><td>回答 ↔ 上下文</td><td>答案忠于上下文吗（编没编）</td></tr>
+<tr><td><code>AnswerRelevancy</code></td><td>回答 ↔ 问题</td><td>答案切不切题</td></tr>
+<tr><td><code>AnswerCorrectness</code></td><td>回答 ↔ 标准答案</td><td>答案对不对</td></tr>
+</table>
+
+<p><span class="tag t-video">视频原述</span>「每个指标 = 两个元素的关系。出自 RAGAS 官方源码。核心规律：<strong>「LLM 做局部判断 + 确定性公式聚合」</strong>。」</p>
+<table>
+<tr><th>指标</th><th>步骤（视频原表）</th><th>公式（视频原表）</th></tr>
+<tr><td><code>Faithfulness</code></td><td>① LLM 拆答案成陈述句 → ② LLM 逐句判「能否从上下文推出」</td><td>忠实句数 / 总句数</td></tr>
+<tr><td><code>AnswerRelevancy</code></td><td>① LLM 只看答案反推「这答案在回答什么问题」 → ② 算假想问题与原问题的余弦相似度</td><td><code>mean(余弦相似度)</code></td></tr>
+<tr><td><code>ContextPrecision</code></td><td>① LLM 逐文档判是否相关 → ② 算平均精度</td><td><code>Σ(相关位置 k · 前 k 个中的相关数 / k) / 总相关数</code></td></tr>
+<tr><td><code>ContextRecall</code></td><td>① 把标准答案拆句 → ② LLM 逐句判「能否归因于上下文」</td><td>被覆盖句数 / 标准答案总句数</td></tr>
+<tr><td><code>AnswerCorrectness</code></td><td>① 双方拆句 → ② LLM 分 TP/FP/FN 算事实 F1</td><td><code>0.75 × 事实 F1 + 0.25 × 语义相似度</code></td></tr>
+</table>
+<p><span class="tag t-extra">补充 · 版本口径</span>上表是 RAGAS 0.2.x 时代 <code>AnswerCorrectness</code> 的典型权重（事实 F1 : 语义相似度 = 0.75 : 0.25）；新版本已将事实正确性拆为 <code>FactualCorrectness</code>、把语义相似度拆为 <code>SemanticSimilarity</code>，并新增 <code>NonLLMContextPrecisionWithReference</code> 等免 LLM 变体、以及 Agent 相关指标（<code>ToolCallAccuracy</code>、<code>AgentGoalAccuracy</code> 等）。<strong>写评测代码时请锁定 RAGAS 版本</strong>，否则同一份数据跨版本分数不可比。</p>
+
+<h4>2.5.5 联系：两套指标其实有重叠</h4>
+<p><span class="tag t-video">视频原述</span>「两部分指标不是绝对分割，而是有重合的。最明显的重合：<code>ContextPrecision / ContextRecall</code> vs MTEB 的 <code>Precision / Recall</code>——都在衡量『召回得对不对』，只是思想不同」：</p>
+<table>
+<tr><th>对比项</th><th>MTEB 的 Precision / Recall</th><th>RAGAS 的 ContextPrecision / ContextRecall</th></tr>
+<tr><td>判断「相关」依据</td><td>人工标注 <code>qrels</code>（标准答案）</td><td>LLM 现场判断</td></tr>
+<tr><td>参照物</td><td>文档 ID 标注</td><td>标准答案（自然语言）</td></tr>
+<tr><td>视角</td><td>检索器视角</td><td>生成器视角</td></tr>
+</table>
+<p><strong>所以指标按评测对象可再归位：</strong></p>
+<ul>
+<li>评<strong>检索</strong>：MTEB 全部 + RAGAS 的 Context 系列（后者本质也在评检索，只是换成 LLM 判）。</li>
+<li>评<strong>生成</strong>：RAGAS 其余三个（<code>Faithfulness / AnswerRelevancy / AnswerCorrectness</code>）。</li>
+</ul>
+<div class="note">这个「归位」是视频最有价值的方法论之一：<strong>不要按框架名归类指标，要按被评测对象归类指标</strong>。RAGAS 名字里有 Generation，但它的两个 Context 指标测的其实是检索质量。</div>
+<p><span class="tag t-extra">补充 · 从指标到动作</span></p>
+<table>
+<tr><th>症状</th><th>最可能出问题的层</th><th>优先排查 / 动作</th></tr>
+<tr><td>Recall 低、ContextRecall 低</td><td>检索召回</td><td>切分粒度、embedding 模型、Top-K、混合检索（BM25）、查询改写</td></tr>
+<tr><td>Recall 高但 ContextPrecision / NDCG 低</td><td>排序 / 噪声</td><td>加 rerank、调 <code>rerank_top_n</code>、去冗余、上下文压缩</td></tr>
+<tr><td>ContextRecall 高但 Faithfulness 低</td><td>生成</td><td>prompt 约束、引用格式、换更强生成模型、降低温度</td></tr>
+<tr><td>Faithfulness 高但 AnswerRelevancy 低</td><td>意图 / 改写</td><td>问题理解、多轮指代消解、答案组织方式</td></tr>
+<tr><td>Faithfulness 高但 AnswerCorrectness 低</td><td>语料 / 标准答案</td><td>知识库过期、文档冲突、reference 标注错误</td></tr>
+<tr><td>知识库无答案时仍硬答</td><td>拒答策略</td><td>补「不可回答」样本、设置置信阈值与拒答模板</td></tr>
+</table>
+</section>
+
+<section class="sec" id="s26">
+<h3>2.6 评测方法架构思考：四级方法谱系</h3>
+<p><span class="tag t-video">视频原述</span>视频给出一条从「最可信」到「最便宜」的方法谱系：</p>
+<div class="figure">
+<svg viewBox="0 0 900 125" xmlns="http://www.w3.org/2000/svg" font-family="-apple-system,PingFang SC,Microsoft YaHei,sans-serif">
+  <defs><marker id="ar4" markerWidth="9" markerHeight="9" refX="7" refY="4.5" orient="auto"><path d="M0,0 L9,4.5 L0,9 z" fill="#8a94a6"/></marker></defs>
+  <g text-anchor="middle">
+    <rect x="12" y="34" width="196" height="76" rx="11" fill="#f3edff" stroke="#9575e0" stroke-width="1.7"/>
+    <text x="110" y="60" font-size="14" font-weight="800" fill="#6d42c9">人工评测</text>
+    <text x="110" y="79" font-size="11" fill="#5a4d7a">（最贵 / 最可信）</text>
+    <text x="110" y="97" font-size="11" fill="#5a4d7a">人打分</text>
+    <rect x="238" y="34" width="196" height="76" rx="11" fill="#eaf1ff" stroke="#5b8def" stroke-width="1.7"/>
+    <text x="336" y="60" font-size="14" font-weight="800" fill="#1d4ed8">LLM as a Judge</text>
+    <text x="336" y="79" font-size="11" fill="#4a5b7a">（便宜 / 较可信）</text>
+    <text x="336" y="97" font-size="11" fill="#4a5b7a">大模型打分</text>
+    <rect x="464" y="34" width="196" height="76" rx="11" fill="#fff4cc" stroke="#d9a92e" stroke-width="1.7"/>
+    <text x="562" y="60" font-size="14" font-weight="800" fill="#8a5f00">传统自动指标</text>
+    <text x="562" y="79" font-size="11" fill="#7a6330">（便宜 / 死板）</text>
+    <text x="562" y="97" font-size="11" fill="#7a6330">BLEU / ROUGE / 余弦</text>
+    <rect x="690" y="34" width="196" height="76" rx="11" fill="#e9f9f0" stroke="#39a97a" stroke-width="1.7"/>
+    <text x="788" y="60" font-size="14" font-weight="800" fill="#177a52">精确匹配</text>
+    <text x="788" y="79" font-size="11" fill="#3c6b55">（最便宜 / 最死板）</text>
+    <text x="788" y="97" font-size="11" fill="#3c6b55">正则 / 匹配</text>
+    <g stroke="#8a94a6" stroke-width="1.7" marker-end="url(#ar4)">
+      <line x1="210" y1="72" x2="234" y2="72"/><line x1="436" y1="72" x2="460" y2="72"/><line x1="662" y1="72" x2="686" y2="72"/>
+    </g>
+  </g>
+</svg>
+<div class="cap">图 7｜评测方法谱系（按视频四级流程条 1:1 还原；平台自动摘要把「精确匹配」误写成「蒸汽匹配」）</div>
+</div>
+<table>
+<tr><th>方法</th><th>本体系中对应（视频原表）</th></tr>
+<tr><td>人工评测</td><td>MTEB 的 <code>qrels</code>（人工标注相关性）</td></tr>
+<tr><td>LLM as a Judge</td><td>RAGAS 全部指标</td></tr>
+<tr><td>传统自动指标</td><td><code>NDCG / MRR</code>、余弦相似度</td></tr>
+</table>
+<div class="key"><strong>视频结论：</strong>「成熟方案是<strong>三重校验</strong>：自动指标打底 + LLM Judge 规模化 + 人工抽样校准。」</div>
+<p><span class="tag t-extra">补充</span>四类方法的取舍：人工评测贵但能捕捉语气、有用性、业务合规等隐性质量；LLM Judge 可规模化，但有<strong>裁判偏见</strong>（同厂商模型互评偏宽松）、位置偏见、长度偏见与Prompt 敏感，必须与人工标注做一致性校准（相关系数 / Kappa）；BLEU、ROUGE 这类基于 n-gram 重叠的传统指标对「换一种说法但完全正确」的答案极不友好，只适合摘要、抽取等字面相似性场景；精确匹配（Exact Match / 正则）适合结构化输出、JSON 字段、拒答标记等确定性断言，是 CI 里最稳的硬门槛。</p>
+</section>
+
+
+<section class="sec" id="s3">
+<h2>3. 上线与迭代：从评测到上线的一个闭环</h2>
+<p class="leadin">离线分数只是入场券。本章把上线后「怎么盯、怎么退、怎么再往前走」收成一个闭环。</p>
+<p><span class="tag t-video">视频原述</span>「<strong>评测不是终点。离线分数只是入场券</strong>，真正决定成败的是上线后怎么盯、怎么退、怎么再往前走。」</p>
+<p>「从评测到上线：一个闭环」——小字：「评测不是一次性动作 → 上线即持续监控，跑出 bad case 回流，再跑一轮」。</p>
+
+<div class="figure">
+<svg viewBox="0 0 900 470" xmlns="http://www.w3.org/2000/svg" font-family="-apple-system,PingFang SC,Microsoft YaHei,sans-serif">
+  <defs>
+    <marker id="bG" markerWidth="9" markerHeight="9" refX="7" refY="4.5" orient="auto"><path d="M0,0 L9,4.5 L0,9 z" fill="#39a97a"/></marker>
+    <marker id="bY" markerWidth="9" markerHeight="9" refX="7" refY="4.5" orient="auto"><path d="M0,0 L9,4.5 L0,9 z" fill="#d9a92e"/></marker>
+    <marker id="bR" markerWidth="9" markerHeight="9" refX="7" refY="4.5" orient="auto"><path d="M0,0 L9,4.5 L0,9 z" fill="#e0728d"/></marker>
+    <marker id="bB" markerWidth="9" markerHeight="9" refX="7" refY="4.5" orient="auto"><path d="M0,0 L9,4.5 L0,9 z" fill="#5b8def"/></marker>
+  </defs>
+  <g>
+    <text x="450" y="24" font-size="14" font-weight="700" text-anchor="middle" fill="#1e2430">从评测到上线：一个闭环</text>
+    <text x="450" y="42" font-size="10.5" text-anchor="middle" fill="#7a8496">评测不是一次性动作 → 上线后持续监控、捞出 bad case 回流，再走一轮</text>
+
+    <!-- 四条箭头：上下左右居中对称 -->
+    <line x1="372" y1="141" x2="528" y2="141" stroke="#39a97a" stroke-width="2" marker-end="url(#bG)"/>
+    <text x="450" y="133" font-size="10.5" text-anchor="middle" fill="#3c6b55">够格 → 发布</text>
+    <line x1="695" y1="218" x2="695" y2="298" stroke="#d9a92e" stroke-width="2" marker-end="url(#bY)"/>
+    <text x="770" y="258" font-size="10.5" text-anchor="middle" fill="#8a6a20">放量后盯</text>
+    <line x1="528" y1="375" x2="372" y2="375" stroke="#e0728d" stroke-width="2" marker-end="url(#bR)"/>
+    <text x="450" y="367" font-size="10.5" text-anchor="middle" fill="#a34c67">出问题 → 回滚</text>
+    <line x1="205" y1="298" x2="205" y2="218" stroke="#5b8def" stroke-width="2" stroke-dasharray="6 4" marker-end="url(#bB)"/>
+    <text x="130" y="258" font-size="10.5" text-anchor="middle" fill="#4a5b7a">补评测集 → 再评测</text>
+
+    <!-- ① 上线门槛（等宽 330 × 150） -->
+    <rect x="40" y="66" width="330" height="150" rx="12" fill="#eaf1ff" stroke="#5b8def" stroke-width="1.8"/>
+    <text x="56" y="90" font-size="14" font-weight="800" fill="#1d4ed8">① 上线门槛</text>
+    <text x="354" y="90" font-size="10.5" text-anchor="end" fill="#4a5b7a">够格才上</text>
+    <g font-size="9.8" fill="#4a5b7a">
+      <text x="56" y="110">看三层主指标：检索 Recall / NDCG</text>
+      <text x="56" y="126">生成 Faithfulness / Correctness</text>
+      <text x="56" y="142">系统 延迟</text>
+    </g>
+    <rect x="56" y="152" width="298" height="58" rx="7" fill="#fff" stroke="#c9d8f5"/>
+    <g font-size="9.2" fill="#2b3547">
+      <text x="64" y="166">判定标准（相对上一版）</text>
+      <text x="64" y="180">① 优化项 ≥ 上一版且统计显著</text>
+      <text x="64" y="194">② 其余下降须在容差内（±2%）</text>
+      <text x="64" y="207">③ 红线（延迟）不超预算 → 一票否决</text>
+    </g>
+
+    <!-- ② 灰度发布 -->
+    <rect x="530" y="66" width="330" height="150" rx="12" fill="#e9f9f0" stroke="#39a97a" stroke-width="1.8"/>
+    <text x="546" y="90" font-size="14" font-weight="800" fill="#177a52">② 灰度发布</text>
+    <text x="844" y="90" font-size="10.5" text-anchor="end" fill="#3c6b55">分步放量</text>
+    <g font-size="10.5" text-anchor="middle" fill="#3c6b55">
+      <rect x="546" y="102" width="298" height="24" rx="12" fill="#fff" stroke="#bfe6d1"/><text x="695" y="118">影子流量（只记不答）</text>
+      <rect x="546" y="130" width="298" height="24" rx="12" fill="#fff" stroke="#bfe6d1"/><text x="695" y="146">小流量 AB（5%）</text>
+      <rect x="546" y="158" width="298" height="24" rx="12" fill="#fff" stroke="#bfe6d1"/><text x="695" y="174">逐步放量（30%→70%）</text>
+      <rect x="546" y="186" width="298" height="22" rx="11" fill="#fff" stroke="#bfe6d1"/><text x="695" y="201">全量</text>
+    </g>
+
+    <!-- ③ 线上监控 -->
+    <rect x="530" y="300" width="330" height="150" rx="12" fill="#fff8dd" stroke="#d9a92e" stroke-width="1.8"/>
+    <text x="546" y="326" font-size="14" font-weight="800" fill="#8a5f00">③ 线上监控</text>
+    <text x="844" y="326" font-size="10.5" text-anchor="end" fill="#7a6330">一直盯</text>
+    <g font-size="10" fill="#6b5a30">
+      <rect x="546" y="338" width="298" height="32" rx="7" fill="#fff" stroke="#e9dcaa"/>
+      <text x="556" y="358">系统　延迟 / 成本 / 错误率</text>
+      <rect x="546" y="374" width="298" height="32" rx="7" fill="#fff" stroke="#e9dcaa"/>
+      <text x="556" y="394">质量　LLM Judge 抽样 + 用户 👍👎</text>
+      <rect x="546" y="410" width="298" height="32" rx="7" fill="#fff" stroke="#e9dcaa"/>
+      <text x="556" y="430">漂移　query 分布变了没有</text>
+    </g>
+
+    <!-- ④ 回滚 / 迭代 -->
+    <rect x="40" y="300" width="330" height="150" rx="12" fill="#ffecef" stroke="#e0728d" stroke-width="1.8"/>
+    <text x="56" y="326" font-size="14" font-weight="800" fill="#b93e60">④ 回滚 / 迭代</text>
+    <text x="354" y="326" font-size="10.5" text-anchor="end" fill="#a34c67">不行就退 · 回炉</text>
+    <g font-size="10.5" fill="#7a4455">
+      <text x="56" y="352">指标掉 → 立刻回滚到老版本</text>
+      <text x="56" y="372">捞出 bad case → 补进评测集</text>
+    </g>
+    <rect x="56" y="384" width="298" height="58" rx="7" fill="#fff" stroke="#f0c6d1"/>
+    <g font-size="10" fill="#7a4455">
+      <text x="66" y="406">评测集越滚越大 → 下次门槛更严</text>
+      <text x="66" y="426">（这才是长期护城河）</text>
+    </g>
+
+    <!-- 数据飞轮：四框几何中心 (450, 258) -->
+    <circle cx="450" cy="258" r="56" fill="#fbfcfe" stroke="#b9c2d0" stroke-width="1.6" stroke-dasharray="6 4"/>
+    <text x="450" y="254" font-size="13.5" font-weight="800" text-anchor="middle" fill="#2b3547">数据飞轮</text>
+    <text x="450" y="274" font-size="11" text-anchor="middle" fill="#7a8496">越转越准</text>
+  </g>
+</svg>
+<div class="cap">图 8｜从评测到上线：一个闭环（按视频闭环图逐字还原：四节点等宽对称、四条箭头标注、中心数据飞轮精确居中）</div>
+</div>
+
+<table>
+<tr><th>节点</th><th>视频画面中的内容（逐条还原）</th></tr>
+<tr><td><strong>① 上线门槛</strong>（够格才上）</td><td>看三层主指标：检索 <code>Recall / NDCG</code>、生成 <code>Faithfulness / AnswerCorrectness</code>、系统 <code>延迟</code>；判定标准相对上一版：① 优化项 ≥ 上一版且统计显著；② 其余下降须在容差内（±2%）；③ 红线（延迟）不超预算 → 一票否决。</td></tr>
+<tr><td><strong>② 灰度发布</strong>（分步放量）</td><td>影子流量（只记不答）→ 小流量 A/B（5%）→ 逐步放量（30%–70%）→ 全量。</td></tr>
+<tr><td><strong>③ 线上监控</strong>（一直盯）</td><td>系统：延迟 / 成本 / 错误率；质量：LLM Judge 抽样 + 用户 👍👎 反馈；漂移：query 分布变了没有。</td></tr>
+<tr><td><strong>④ 回滚 / 迭代</strong>（不行就退 · 回滚 + 回炉）</td><td>指标掉 → 立刻回滚到老版本；捞出 bad case → 补进评测集；评测集越滚越大 → 下次门槛更严（这才是长期护城河）。</td></tr>
+<tr><td><strong>中心：数据飞轮</strong></td><td>越转越准；四个节点顺时针流转：够格→发布、放量后盯、出问题→回滚、补评测集→再评测。</td></tr>
+</table>
+<p><span class="tag t-video">视频原述</span>结尾小节「① 上线门槛 —— 够格才上（放行标准）」：「先明确看哪几个指标，生产里只看三层主指标」，表格表头为 <code>层 | 主指标 | 看什么</code>，可见首行为 <code>检索 | Recall / NDCG | 找全了没、排序好不好</code>；视频在此处结束，后两行未在画面中完整出现。</p>
+<p><span class="tag t-extra">补充 · 把这张表补完整</span>按视频「三层主指标」的表述可自然补全为：</p>
+<table>
+<tr><th>层</th><th>主指标</th><th>看什么</th></tr>
+<tr><td>检索</td><td><code>Recall / NDCG</code></td><td>找全了没、排序好不好</td></tr>
+<tr><td>生成</td><td><code>Faithfulness / AnswerCorrectness</code></td><td>编没编、答得对不对</td></tr>
+<tr><td>系统</td><td><code>P95 延迟 / 单次成本 / 错误率</code></td><td>能不能扛住线上 SLA</td></tr>
+</table>
+<p><span class="tag t-extra">补充 · 工程落地要点</span>影子流量（shadow traffic）指把真实请求复制一份打到新版本但<strong>不把结果返回给用户</strong>，用来零风险对比；A/B 要保证分流稳定（同一用户始终落同一桶）；LLM Judge 线上通常只抽 5%–10% 流量并异步执行，避免把评测成本压进主链路；「query 分布漂移」可用 embedding 聚类、类目占比、拒答率、新词率等指标监测；视频中的红线是「延迟不超预算」；工程上还应预先定义幻觉率、越权检索、P95 超时等红线，且回滚动作要自动化；bad case 回流需经人工去标识化与打标，再并入 golden dataset，形成数据飞轮。</p>
+</section>
+
+<section class="sec" id="s4">
+<h2>4. 补充篇：视频没讲完的部分</h2>
+<p class="leadin">视频没有展开的内容集中在这里：术语、框架选型、测试集、代码与误区，可按需要跳读。</p>
+<p>本章全部为 <span class="tag t-extra">补充</span> 内容，用于把视频中的「面试级框架」变成「可直接落地的工程方案」。</p>
+
+<h3 id="s41">4.1 专业名词速查</h3>
+<table>
+<tr><th>名词</th><th>含义</th></tr>
+<tr><td><strong>RAG</strong></td><td>Retrieval-Augmented Generation，检索增强生成：先从外部知识库召回片段，再把片段与问题一起交给 LLM 生成答案。</td></tr>
+<tr><td><strong>检索 / 生成两层</strong></td><td>RAG 的两段流水线；视频全部评测设计的出发点就是「两层分别测」。</td></tr>
+<tr><td><strong>chunk / 切分</strong></td><td>把长文档切成可检索片段；切太大噪声多，切太小语义断，直接决定 Recall 上限。</td></tr>
+<tr><td><strong>embedding / 向量检索</strong></td><td>把文本映射为向量并按语义相似度召回；擅长同义改写，弱于精确术语与编号。</td></tr>
+<tr><td><strong>BM25 / 混合检索</strong></td><td>BM25 是基于词频的经典稀疏检索；与向量检索融合称混合检索（视频 baseline 的第 2 条）。</td></tr>
+<tr><td><strong>rerank（重排）</strong></td><td>用交叉编码器等模型对初召回结果二次排序，提升 NDCG / ContextPrecision；<code>rerank_top_n</code> 是保留条数。</td></tr>
+<tr><td><strong>Top-K / top_k</strong></td><td>检索返回的前 K 条结果；K 变大通常 Recall↑、Precision↓、成本↑。</td></tr>
+<tr><td><strong>baseline</strong></td><td>作为比较基准的一套固定方案；「跑 baseline」= 用该方案完整跑一遍 RAG 链路。</td></tr>
+<tr><td><strong>parameter sweep</strong></td><td>同一方案内只改参数、逐个取值跑一遍，形成指标—参数曲线，用于找拐点。</td></tr>
+<tr><td><strong>消融实验（ablation）</strong></td><td>逐个加减模块观察指标变化，对应视频的「横向 baseline 对比」。</td></tr>
+<tr><td><strong>corpus / queries / qrels</strong></td><td>语料库（文档全集）、问题集、相关性标注；BEIR / MTEB 检索评测的标准三件套（JSONL，每行一条 JSON）。</td></tr>
+<tr><td><strong>qrels / rel / score</strong></td><td>query–doc 的人工相关性判断；<code>score / rel</code> 可为二值（0/1）或多级（0/1/2），多级支撑 NDCG。</td></tr>
+<tr><td><strong>ground truth / reference / golden dataset</strong></td><td>标准答案（自然语言）；带标准答案与证据标注的高质量评测集常称 golden dataset。</td></tr>
+<tr><td><strong>Recall@K</strong></td><td>前 K 条中命中的相关文档数 / 全部相关文档数；「该找的找全了吗」。</td></tr>
+<tr><td><strong>Precision@K</strong></td><td>前 K 条中命中的相关文档数 / K；「返回里掺了多少噪声」。</td></tr>
+<tr><td><strong>HitRate@K</strong></td><td>前 K 条里是否至少有一个相关文档（0/1），对多跳问题过宽松。</td></tr>
+<tr><td><strong>MRR</strong></td><td>Mean Reciprocal Rank，第一个相关文档排名倒数的均值；关注「第一条对不对」。</td></tr>
+<tr><td><strong>NDCG@K</strong></td><td>Normalized Discounted Cumulative Gain；DCG 除以理想 DCG，同时考虑<strong>位置</strong>与<strong>相关度等级</strong>，是检索排序最常用指标。</td></tr>
+<tr><td><strong>DCG / IDCG</strong></td><td><code>DCG = Σ(2^rel−1)/log₂(i+1)</code>；IDCG 是把相关文档按 rel 降序排列后的 DCG。</td></tr>
+<tr><td><strong>Faithfulness / 忠实度</strong></td><td>答案中的每个事实是否都能由检索上下文推出；对应「幻觉」检测，但<strong>不等于</strong>答案正确（上下文本身可能错）。</td></tr>
+<tr><td><strong>Groundedness / 有据性</strong></td><td>与 Faithfulness 近义，TruLens 的 RAG Triad 之一，强调回答有据可查。</td></tr>
+<tr><td><strong>AnswerRelevancy</strong></td><td>答案是否切题；RAGAS 的经典做法是从答案反推「假想问题」，再算与原问题的余弦相似度。</td></tr>
+<tr><td><strong>ContextPrecision / ContextRecall</strong></td><td>上下文精确率（相关片段是否排在前面）/ 上下文召回率（标准答案中的句子能否归因到上下文）；<strong>本质是检索层指标</strong>。</td></tr>
+<tr><td><strong>AnswerCorrectness</strong></td><td>答案相对标准答案的事实正确性；视频公式为 <code>0.75×事实F1 + 0.25×语义相似度</code>。</td></tr>
+<tr><td><strong>事实 F1 / TP·FP·FN</strong></td><td>把答案与标准答案拆成原子事实，按真阳性 / 假阳性 / 假阴性算 F1。</td></tr>
+<tr><td><strong>LLM-as-a-Judge</strong></td><td>用大模型按评分细则当裁判；可规模化，但存在裁判偏见、位置/长度偏见与 prompt 敏感。</td></tr>
+<tr><td><strong>BLEU / ROUGE</strong></td><td>基于 n-gram 重叠的传统生成指标；对「换个说法但正确」的答案不友好，只适合字面相似场景。</td></tr>
+<tr><td><strong>余弦相似度 / 语义相似度</strong></td><td>用 embedding 向量夹角衡量语义接近程度；常用于 AnswerRelevancy 与答案相似度。</td></tr>
+<tr><td><strong>Exact Match（精确匹配）</strong></td><td>字符串 / 正则 / 结构化字段完全一致才通过；最便宜也最死板，适合 JSON 字段、拒答标记断言。</td></tr>
+<tr><td><strong>EvalScope</strong></td><td>魔搭社区官方模型评测与性能基准框架；RAGEval 后端串联 MTEB/CMTEB 与 RAGAS，本视频中作「统一调度器」。</td></tr>
+<tr><td><strong>MTEB / CMTEB / BEIR</strong></td><td>Massive Text Embedding Benchmark（大规模文本嵌入基准）/ 中文版 / 检索评测数据集格式与基准的常用来源。</td></tr>
+<tr><td><strong>RAGAS</strong></td><td>Retrieval Augmented Generation Assessment；面向 RAG 的指标库，多数指标用 LLM 做局部判断再确定性聚合。</td></tr>
+<tr><td><strong>Dashboard</strong></td><td>统一结果可视化面板；视频中 EvalScope 的三大职责之一。</td></tr>
+<tr><td><strong>A/B 测试 / 灰度发布</strong></td><td>小比例真实流量对比新旧版本；灰度按比例逐步放量。</td></tr>
+<tr><td><strong>影子流量（shadow traffic）</strong></td><td>复制线上请求打给新版本但「只记不答」，用于零风险离线对比。</td></tr>
+<tr><td><strong>回滚（rollback）</strong></td><td>指标触发红线时切回上一版本；需预先定义红线与自动化开关。</td></tr>
+<tr><td><strong>数据飞轮</strong></td><td>bad case 回流 → 补进评测集 → 门槛更严 → 下一轮更准的正循环。</td></tr>
+<tr><td><strong>bad case</strong></td><td>线上真实失败样本；比人工构造的送分题更有价值。</td></tr>
+<tr><td><strong>query 漂移 / 数据漂移</strong></td><td>线上问题分布随时间变化（新词、新类目、新问法），会让离线评测集失效。</td></tr>
+<tr><td><strong>P95 延迟 / Token 成本</strong></td><td>95 分位响应耗时、单次请求的大模型 Token 开销；属于「系统层」主指标，也是上线门槛的一部分。</td></tr>
+<tr><td><strong>CI 回归 / 质量门禁</strong></td><td>每次改 prompt、embedding、切分或模型版本，自动跑固定评测集并对指标设阈值，未达标阻断合入。</td></tr>
+<tr><td><strong>拒答 / 幻觉</strong></td><td>知识库无答案时应明确说明资料不足；硬编答案即幻觉，是最高优先级红线。</td></tr>
+<tr><td><strong>judge bias / 人工抽检校准</strong></td><td>裁判模型系统性偏差；需定期用人工打分做一致性校准（相关系数 / Kappa）。</td></tr>
+<tr><td><strong>Trace / Span（Agent 评测）</strong></td><td>一次完整执行轨迹 / 轨迹中的单个组件调用；Agent 评测按 span 定位失败，比 RAG 指标更细。</td></tr>
+</table>
+
+<h3 id="s42">4.2 框架全景与选型</h3>
+<p>视频只用了 <strong>EvalScope（编排）+ MTEB（检索）+ RAGAS（生成）</strong> 三件套。业界常见组合如下，注意它们常常<strong>互补而非互斥</strong>：</p>
+<table>
+<tr><th>工具</th><th>定位</th><th>最适合的场景</th><th>与视频体系的关系</th></tr>
+<tr><td><strong>EvalScope</strong></td><td>评测与性能基准框架、统一编排与报告</td><td>多后端统一调度、模型横评、压测、Dashboard</td><td>视频中的「统一调度器」</td></tr>
+<tr><td><strong>MTEB / CMTEB</strong></td><td>embedding / reranker 模型基准</td><td>选 embedding 模型、检索层离线指标</td><td>视频中的「检索评测框架」</td></tr>
+<tr><td><strong>RAGAS</strong></td><td>RAG 专项指标库（含 LLM Judge）</td><td>批量评测 RAG 输出、无需 ground truth 的部分指标</td><td>视频中的「生成评测框架」</td></tr>
+<tr><td><strong>DeepEval</strong></td><td>Pytest 风格的 LLM 测试框架</td><td>CI/CD 质量门禁、自定义 G-Eval、Agent 指标</td><td>可把视频的阈值门禁直接写成测试用例</td></tr>
+<tr><td><strong>TruLens</strong></td><td>Tracing + Feedback Functions</td><td>生产链路可观测、定位「哪个 chunk 被忽略」</td><td>补齐视频「线上监控」节点的追踪能力</td></tr>
+<tr><td><strong>LangSmith / Arize Phoenix</strong></td><td>可观测性平台</td><td>全链路日志、trace 上跑评估、漂移检测</td><td>线上监控与数据飞轮的基础设施</td></tr>
+<tr><td><strong>ARES / RAGBench / RGB / CRUD-RAG</strong></td><td>研究型评测框架 / 基准数据集</td><td>学术论文对比、抗噪声与鲁棒性专项</td><td>需要更严格实验结论时补充</td></tr>
+<tr><td><strong>BEIR / 自建 golden dataset</strong></td><td>检索评测数据格式与业务评测集</td><td>让指标贴合真实业务问题分布</td><td>视频 2.3 节「准备数据」的落地形态</td></tr>
+</table>
+<div class="note">落地建议：<strong>开发期用 RAGAS 快速迭代 → CI 用 DeepEval / 自写断言设门禁 → 生产用 TruLens / LangSmith 抽样监控</strong>；EvalScope 负责把多后端结果统一成一份报告。不同框架的 judge 模型与 prompt 不同，<strong>不要跨框架直接比分数</strong>。</div>
+
+<h3 id="s43">4.3 测试集与质量门禁设计</h3>
+<h4>评测集分层清单</h4>
+<table>
+<tr><th>样本类型</th><th>考察点</th><th>建议占比（参考）</th></tr>
+<tr><td>单跳事实查询</td><td>基础检索与生成是否跑通</td><td>40%</td></tr>
+<tr><td>多跳 / 跨文档</td><td>Recall、上下文组装、答案完整性</td><td>20%</td></tr>
+<tr><td>模糊 / 口语 / 错别字 / 多轮指代</td><td>查询改写、意图识别</td><td>15%</td></tr>
+<tr><td>知识库无答案（应拒答）</td><td>幻觉红线、拒答率</td><td>10%</td></tr>
+<tr><td>新旧文档冲突 / 时效性</td><td>版本选择、元数据过滤</td><td>5%</td></tr>
+<tr><td>权限隔离 / 敏感信息</td><td>越权检索、注入防护</td><td>5%</td></tr>
+<tr><td>线上 bad case 回流</td><td>真实分布、持续回归</td><td>持续追加</td></tr>
+</table>
+<h4>门禁阈值怎么写</h4>
+<ul>
+<li><strong>分层设阈值，不用单一加权总分</strong>：例如 <code>NDCG@10 ≥ 0.80</code>、<code>Recall@10 ≥ 0.90</code>、<code>Faithfulness ≥ 0.90</code>、<code>AnswerCorrectness ≥ 0.80</code>、<code>P95 ≤ 2s</code>、<code>拒答正确率 ≥ 0.95</code>。</li>
+<li><strong>相对上一版</strong>：优化项需显著改善，其余指标下降不超过容差（视频给的是 ±2%）。</li>
+<li><strong>红线一票否决</strong>：视频红线是「延迟不超预算」；工程上还常把幻觉、越权、敏感信息泄露、超时一并列入。</li>
+<li><strong>保留逐 query 明细</strong>：视频强调「整批平均」才可比可复现，但排障必须能下钻到单条样本。</li>
+</ul>
+
+<h3 id="s44">4.4 可运行实战代码</h3>
+<p>以下代码可直接复现视频中的数据集结构、五个检索指标及其示例数值。</p>
+<h4>① 构造两套评测数据（视频 2.3 节）</h4>
+<pre><code>import json
+
+corpus = [
+    {"_id": "doc1", "title": "光合作用", "text": "绿色植物通过叶绿体将光能转化为化学能。"},
+    {"_id": "doc2", "title": "细胞呼吸", "text": "细胞分解葡萄糖释放能量。"},
+    {"_id": "doc3", "title": "能量转化", "text": "光能转化为化学能并储存在有机物中。"},
+]
+queries = [
+    {"_id": "q1", "text": "绿色植物如何将光能转化为化学能？"},
+    {"_id": "q2", "text": "细胞怎样释放能量？"},
+]
+qrels = [  # score: 2=强相关 1=弱相关 0=不相关（★ 人工标注，最费人力）
+    {"query-id": "q1", "corpus-id": "doc1", "score": 2},
+    {"query-id": "q1", "corpus-id": "doc3", "score": 2},
+    {"query-id": "q1", "corpus-id": "doc2", "score": 1},
+    {"query-id": "q2", "corpus-id": "doc5", "score": 2},
+    {"query-id": "q2", "corpus-id": "doc6", "score": 1},
+]
+
+def write_jsonl(path, rows):
+    with open(path, "w", encoding="utf-8") as f:
+        for r in rows:
+            f.write(json.dumps(r, ensure_ascii=False) + "\n")
+
+write_jsonl("corpus.jsonl", corpus)      # 喂 MTEB
+write_jsonl("queries.jsonl", queries)
+write_jsonl("qrels.jsonl", qrels)
+
+# 生成评测表：先建好 4 字段，跑完 baseline 再回填后两列
+samples = [{"user_input": "绿色植物如何将光能转化为化学能？",
+            "reference": "通过光合作用把光能转化为化学能储存在有机物中。",
+            "retrieved_contexts": [],   # 待回填：实际召回的文档片段（多条）
+            "response": ""}]            # 待回填：baseline 生成的答案
+write_jsonl("ragas_samples.jsonl", [samples[0]])   # 喂 RAGAS</code></pre>
+<h4>② 纯 Python 实现视频的 5 个检索指标（可复现 0.906 / 0.640 / 0.773）</h4>
+<pre><code>import math
+from collections import defaultdict
+
+def dcg(gains):
+    return sum((2 ** rel - 1) / math.log2(i + 2) for i, rel in enumerate(gains))
+
+def evaluate_one(ranked, qrel):
+    """ranked: 实际排名得到的 doc id 列表; qrel: {doc_id: 相关度等级}"""
+    k = len(ranked)
+    gains = [qrel.get(d, 0) for d in ranked]
+    relevant = {d for d, r in qrel.items() if r &gt; 0}
+    hits = sum(1 for d in ranked if d in relevant)
+    first = next((i for i, d in enumerate(ranked, 1) if d in relevant), None)
+    ideal = sorted((r for r in qrel.values() if r &gt; 0), reverse=True)
+    idcg = dcg(ideal[:k]) or 1.0
+    return {
+        f"Recall@{k}":    hits / len(relevant),
+        f"Precision@{k}": hits / k,
+        f"HitRate@{k}":   1.0 if hits &gt; 0 else 0.0,
+        "MRR":            1.0 / first if first else 0.0,
+        f"NDCG@{k}":      dcg(gains) / idcg,
+    }
+
+cases = [
+    # Query 1：视频示例，K=5
+    (["doc3", "doc7", "doc1", "doc9", "doc2"], {"doc1": 2, "doc2": 1, "doc3": 2}),
+    # Query 2：视频示例，K=4
+    (["doc8", "doc5", "doc2", "doc6"], {"doc5": 2, "doc6": 1}),
+]
+results = [evaluate_one(*c) for c in cases]
+for i, r in enumerate(results, 1):
+    print("Query", i, {k: round(v, 3) for k, v in r.items()})
+
+# 整个数据集得分 = 所有 query 的算术平均（视频 5 张黄色卡片）
+keys = ["Recall", "Precision", "HitRate", "MRR", "NDCG"]
+for key in keys:
+    vals = [next(v for k, v in r.items() if k.startswith(key)) for r in results]
+    print(key, "平均 =", round(sum(vals) / len(vals), 3))
+# 输出：Recall 1.000 / Precision 0.550 / HitRate 1.000 / MRR 0.750 / NDCG 0.773</code></pre>
+<h4>③ RAGAS 评测调用（以 0.2.x API 为例）</h4>
+<pre><code>from datasets import Dataset
+from ragas import evaluate
+from ragas.metrics import (faithfulness, answer_relevancy, context_precision,
+                           context_recall, answer_correctness)
+
+# 每行必须齐 4 个字段：user_input / retrieved_contexts / response / reference
+ds = Dataset.from_dict({
+    "user_input": ["绿色植物如何将光能转化为化学能？"],
+    "retrieved_contexts": [["绿色植物通过叶绿体将光能转化为化学能。",
+                            "光能转化为化学能并储存在有机物中。"]],
+    "response": ["绿色植物通过光合作用把光能转化为化学能储存在有机物中。"],
+    "reference": ["通过光合作用把光能转化为化学能储存在有机物中。"],
+})
+result = evaluate(ds, metrics=[faithfulness, answer_relevancy, context_precision,
+                               context_recall, answer_correctness])
+print(result)          # 逐样本 + 聚合分
+# 注意：锁定 ragas 版本；0.4+ 改用 SingleTurnSample / EvaluationDataset API</code></pre>
+<h4>④ EvalScope 串联 MTEB（官方 RAGEval 配置形态）</h4>
+<pre><code>from evalscope.run import run_task
+
+task_cfg = {
+    "eval_backend": "RAGEval",
+    "eval_config": {
+        "tool": "MTEB",
+        "models": [{"model_name_or_path": "your-embedding-model",
+                    "encode_kwargs": {"batch_size": 32}}],
+        "eval": {"task_names": ["your-retrieval-task"], "top_k": 10,
+                 "output_folder": "outputs"},
+    },
+}
+run_task(task_cfg=task_cfg)   # 报告落在 outputs/，含 NDCG@10 等主分数</code></pre>
+<h4>⑤ CI 质量门禁（把视频「上线门槛」写成断言）</h4>
+<pre><code>GATES = {"ndcg@10": 0.80, "recall@10": 0.90, "faithfulness": 0.90,
+         "answer_correctness": 0.80, "p95_latency_s": 2.0}
+
+def check(current, baseline=None, tolerance=0.02):
+    for k, threshold in GATES.items():
+        v = current[k]
+        if k == "p95_latency_s":
+            assert v &lt;= threshold, f"{k} 超时: {v}"
+        else:
+            assert v &gt;= threshold, f"{k} 未达门槛: {v} &lt; {threshold}"
+        if baseline and k != "p95_latency_s":
+            assert v &gt;= baseline[k] * (1 - tolerance), f"{k} 相对上一版下降超容差"
+    assert current["hallucination_redline_hits"] == 0, "触发幻觉红线，一票否决"
+    return True</code></pre>
+
+<h3 id="s45">4.5 常见误区与 Agent 评测衔接</h3>
+<table>
+<tr><th>误区</th><th>正确做法</th></tr>
+<tr><td>只看一个「答案准确率」</td><td>检索层与生成层分开测，才能归因到该换 embedding 还是该改 prompt</td></tr>
+<tr><td>用 reference 倒推 retrieved_contexts</td><td>必须回填真实跑出来的 contexts，否则 Faithfulness / ContextRecall 虚高</td></tr>
+<tr><td>测试集全是「一问一答」送分题</td><td>补多跳、不可回答、冲突、口语、权限等题型</td></tr>
+<tr><td>换 judge 模型 / prompt / embedding 后直接比分数</td><td>锁定版本，或在同一次实验里跑完所有 baseline</td></tr>
+<tr><td>只看平均分</td><td>保留逐 query 明细，重点看低分样本与长尾</td></tr>
+<tr><td>把 RAGAS 的 Context 系列当「生成指标」</td><td>按评测对象归位：Context 系列本质是检索指标</td></tr>
+<tr><td>Faithfulness 高就认为答案正确</td><td>还要看 AnswerCorrectness；上下文本身可能过期或错误</td></tr>
+<tr><td>离线分数漂亮就直接全量上线</td><td>灰度 + 影子流量 + 线上监控 + 红线回滚</td></tr>
+<tr><td>评测集一次建好不再维护</td><td>bad case 回流、定期去噪、监控 query 漂移</td></tr>
+<tr><td>用同厂商模型当裁判且不校准</td><td>换不同模型族做 judge，定期人工抽检算一致性</td></tr>
+<tr><td>忽略延迟 / Token 成本</td><td>系统层与质量层一起设门槛，看 P95 而非均值</td></tr>
+</table>
+<p><strong>与 Agent 评测的衔接</strong>：本视频是「Agent」合集第 20 集，紧邻的第 21 集是《5min 带你搞懂 Agent 评测体系》。RAG 指标回答的是「说得好不好」，Agent 评测还要回答「做得对不对、省不省」：</p>
+<table>
+<tr><th>层次</th><th>关注对象</th><th>典型指标</th></tr>
+<tr><td>RAG 层（本视频）</td><td>检索片段 + 生成答案</td><td>Recall / NDCG / Faithfulness / AnswerCorrectness 等</td></tr>
+<tr><td>Agent 层（延伸）</td><td>完整执行轨迹（Trace / Span）</td><td>任务完成度、规划合理性、工具选择与参数正确性、步骤效率、循环/重试检测、多轮主题一致性</td></tr>
+</table>
+<p>两者互补：Agent 内部往往包含 RAG 检索这一步，应在对应 span 上挂 RAG 指标，在整条 trace 上挂 Agent 指标，分开采集、分开告警，避免故障归因混乱。</p>
+</section>
+
+<section class="sec" id="s5">
+<h2>5. 附录</h2>
+<p class="leadin">章节时间轴、架构图速查、错字校正与还原方法，用于核对与溯源。</p>
+<h3 id="s51">5.1 视频官方章节时间轴</h3>
+<table class="timeline">
+<tr><th>时间</th><th>章节</th><th>平台章节要点（原文，含识别错字）</th></tr>
+<tr><td>00:00</td><td>引言</td><td>—</td></tr>
+<tr><td>00:34</td><td>架构</td><td>评测体系包括选框架、设计 baselines、准备评测级、跑 baselines、计算评测指标。</td></tr>
+<tr><td>01:02</td><td>选择框架</td><td>可选择开源框架或自研框架，适应业内常用的开源框架，如 REC 系统。</td></tr>
+<tr><td>01:51</td><td>设计 baselines</td><td>设计 baselines 有横向和纵向两个维度，横向确定不同方案，纵向确定具体参数。</td></tr>
+<tr><td>02:58</td><td>准备数据</td><td>准备两套数据，MTB 框架需要 3 个 Jason，RAG assessment 框架需要一张表。</td></tr>
+<tr><td>04:48</td><td>计算指标</td><td>MTB 框架计算 5 个指标，RAG assessment 框架计算 5 个指标，线上主要关注召回率和 NGCG。</td></tr>
+<tr><td>11:06</td><td>评测方法架构思考</td><td>评测方法架构包括人工评测、大模型评测、自动指标评测、蒸汽匹配。</td></tr>
+<tr><td>11:55</td><td>上线和迭代</td><td>上线和迭代包括检测指标、灰度发布、线上监控、数据飞轮。</td></tr>
+</table>
+
+<h3 id="s52">5.2 架构图速查（8 张重绘）</h3>
+<p>本页所有图示均为按视频画面重绘的矢量图，可无损缩放、便于阅读；下表用图号索引到对应章节。</p>
+<table>
+<tr><th>图号</th><th>名称</th><th>所在章节</th><th>还原要点</th></tr>
+<tr><td>图 1</td><td>体系架构五步流程</td><td><a href="#s1">1. 体系架构</a></td><td>选框架 → 设计 baselines → 准备数据 → 跑 baselines → 跑评测</td></tr>
+<tr><td>图 2</td><td>RAG 评测框架</td><td><a href="#s21">2.1 选框架</a></td><td>EvalScope → RAG 系统 → 检索/生成 → MTEB/RAGAS，含各框小字说明</td></tr>
+<tr><td>图 3</td><td>实验矩阵</td><td><a href="#s22">2.2 设计 baselines</a></td><td>横向 3 种方案 × 纵向 top_k 取值，每格一次完整 RAG 跑 + 评测</td></tr>
+<tr><td>图 4</td><td>两套评测数据集</td><td><a href="#s23">2.3 准备数据</a></td><td>3 个 JSONL（含字段示例）+ 1 张 4 字段生成评测表</td></tr>
+<tr><td>图 5</td><td>检索指标：逐 query 算 → 再取平均</td><td><a href="#s25">2.5 计算指标</a></td><td>两个 Query 卡片 + 5 个平均值卡片，示例数值逐字核对</td></tr>
+<tr><td>图 6</td><td>RAGAS 四元素 × 五指标</td><td><a href="#s25">2.5 计算指标</a></td><td>四节点菱形、5 条连线、配色与图例</td></tr>
+<tr><td>图 7</td><td>评测方法四级谱系</td><td><a href="#s26">2.6 架构思考</a></td><td>人工评测 → LLM as a Judge → 传统自动指标 → 精确匹配</td></tr>
+<tr><td>图 8</td><td>从评测到上线：一个闭环</td><td><a href="#s3">3. 上线与迭代</a></td><td>四节点文字、箭头标注与中心数据飞轮</td></tr>
+</table>
+
+<h3 id="s53">5.3 平台自动章节摘要 → 画面文字 校正表</h3>
+<table>
+<tr><th>章节摘要中的写法</th><th>视频画面中的正确写法</th><th>说明</th></tr>
+<tr><td>MTB 框架</td><td><strong>MTEB</strong></td><td>Massive Text Embedding Benchmark</td></tr>
+<tr><td>RAG assessment 框架</td><td><strong>RAGAS</strong></td><td>Retrieval Augmented Generation Assessment</td></tr>
+<tr><td>3 个 Jason</td><td><strong>3 个 JSONL</strong></td><td>corpus.jsonl / queries.jsonl / qrels.jsonl</td></tr>
+<tr><td>NGCG</td><td><strong>NDCG</strong></td><td>Normalized Discounted Cumulative Gain</td></tr>
+<tr><td>蒸汽匹配</td><td><strong>精确匹配</strong></td><td>Exact Match / 正则 / 匹配</td></tr>
+<tr><td>评测级</td><td><strong>评测集</strong>（数据集）</td><td>2.3 节「准备数据」构建的两套数据集</td></tr>
+<tr><td>REC 系统</td><td><strong>RAG 系统</strong>（结合 2.1 节上下文）</td><td>架构图中的「RAG 系统（评测对象：一次完整的检索 + 生成链路）」</td></tr>
+<tr><td>检测指标</td><td><strong>上线门槛 / 主指标</strong></td><td>③ 节「三层主指标」与放行标准</td></tr>
+</table>
+
+<h3 id="s54">5.4 还原方法与资料来源</h3>
+<p class="srclink"><strong>原视频链接</strong>：<a href="https://v.douyin.com/ABG22aehmWk/" target="_blank" rel="noopener">抖音分享短链</a>（<code>https://v.douyin.com/ABG22aehmWk/</code>） ｜ <a href="https://www.douyin.com/video/7696458980251487515" target="_blank" rel="noopener">抖音网页版</a>（<code>https://www.douyin.com/video/7696458980251487515</code>） ｜ @Harbor404《10 分钟带你彻底搞懂 rag 评测》，2026-10-14 发布。</p>
+<p><strong>视频还原流程：</strong>解析分享短链取得视频 ID <code>7696458980251487515</code> → 通过渲染后的网页取得官方视频详情（标题、作者、时长 783.208 秒、章节列表）→ 下载 1080P 无水印视频（1662×1080，35.7 MB）→ 每 5 秒抽帧共 157 张 → 全帧中文 OCR（macOS Vision，约 1 万行识别结果）→ 对核心图示做局部放大逐字目视校对 → 与平台章节要点、烧录字幕交叉验证。所有框架名、指标名、字段名、公式、示例数值均以<strong>画面文档</strong>为准。</p>
+<p><strong>补充内容的核实资料：</strong></p>
+<ul>
+<li><a href="https://evalscope.readthedocs.io/en/v0.11.0/get_started/introduction.html" target="_blank" rel="noopener">EvalScope 官方文档 · Introduction</a>：RAGEval 后端支持 MTEB/CMTEB 独立评测与 RAGAS 端到端评测、整体架构与可视化能力。</li>
+<li><a href="https://evalscope.readthedocs.io/en/v1.15.0/user_guides/backend/rageval_backend/mteb.html" target="_blank" rel="noopener">EvalScope 官方文档 · MTEB 文本嵌入评测</a>：JSONL 自定义数据集格式、<code>_id / query-id / corpus-id / score</code> 字段、检索主分数 NDCG@10。</li>
+<li><a href="https://docs.ragas.io/" target="_blank" rel="noopener">RAGAS 官方文档</a> 与 <a href="https://learn.microsoft.com/zh-cn/azure/databricks/mlflow3/genai/eval-monitor/third-party-scorers/ragas" target="_blank" rel="noopener">Azure Databricks · RAGAS 记分器清单</a>：指标定义、非 LLM 变体与 Agent 类指标。</li>
+<li>主流框架对比参考：DeepEval / TruLens / LangSmith / Arize Phoenix 的公开文档与 2026 年评测框架横评资料。</li>
+</ul>
+<div class="warn"><strong>口径提示：</strong>视频中的 RAGAS 公式（尤其 <code>AnswerCorrectness = 0.75×事实F1 + 0.25×语义相似度</code>）对应 RAGAS 0.2.x 时代的典型实现；新版已拆分指标。教程保留视频原式以保真，并在 2.5.4 标注版本差异。</div>
+</section>
+
+
+<div class="footer">
+<p>本教程为学习整理用途，视频内容版权归原作者 @Harbor404 所有；框架与指标的官方定义以各项目文档为准。</p>
+</div>
+</main>
+</div>
+<script>
+(function () {
+  var bar = document.getElementById('progress');
+  var top = document.getElementById('totop');
+  var links = Array.prototype.slice.call(document.querySelectorAll('nav.toc a'));
+  var byId = {};
+  links.forEach(function (a) {
+    var id = a.getAttribute('href').slice(1);
+    if (document.getElementById(id)) byId[id] = a;
+  });
+  function update() {
+    var doc = document.documentElement;
+    var scrollTop = window.scrollY || doc.scrollTop || 0;
+    var max = doc.scrollHeight - doc.clientHeight;
+    if (bar) bar.style.width = (max > 0 ? Math.min(100, scrollTop / max * 100) : 0) + '%';
+    if (top) top.style.display = scrollTop > 600 ? 'block' : 'none';
+    var current = null;
+    Object.keys(byId).forEach(function (id) {
+      var el = document.getElementById(id);
+      if (el && el.getBoundingClientRect().top <= 150) current = id;
+    });
+    links.forEach(function (a) { a.classList.remove('active'); });
+    if (current && byId[current]) byId[current].classList.add('active');
+  }
+  window.addEventListener('scroll', update, { passive: true });
+  window.addEventListener('resize', update);
+  if (top) top.addEventListener('click', function () { window.scrollTo({ top: 0, behavior: 'smooth' }); });
+  update();
+})();
+</script>
+</body>
+</html>
