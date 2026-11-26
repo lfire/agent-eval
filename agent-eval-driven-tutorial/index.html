@@ -111,6 +111,14 @@ main{padding-top:22px}
 </style>
   <link rel="stylesheet" href="../assets/code-blocks.css">
   <script src="../assets/code-blocks.js" defer></script>
+<style>
+.ts-box{margin:14px 0;padding:10px 14px;background:#f8fafc;border:1px solid #e5e9f0;border-radius:9px}
+.ts-box>summary{cursor:pointer;font-weight:700;color:#2563eb;font-size:13px}
+.ts-lines{margin-top:10px;max-height:430px;overflow:auto;padding-right:6px}
+.ts-line{font-size:12.5px;line-height:1.95;color:#46536a;padding:1px 0}
+.ts-t{color:#98a2b3;font-variant-numeric:tabular-nums;margin-right:8px}
+@media print{.ts-lines{max-height:none}.ts-box{break-inside:avoid}}
+</style>
 </head>
 <body>
 <div class="topbar">
@@ -313,6 +321,25 @@ main{padding-top:22px}
 <tr><td>12:34</td><td>结语</td><td><a href="#s12">第 12 章</a></td><td>核心任务 / 初始条件 / 成功标准 / 重复试跑 / 旧版 vs 新版 / 上线？</td></tr>
 </table>
 <div class="note">全片可压成一句话：<strong>评什么（三层）→ 用什么框架评（组件图）→ 拿什么评（任务集）→ 谁来判（评分器）→ 怎么算通过（主指标 + 护栏）→ 怎么信分数（概率指标）→ 怎么长期用（能力/回归 + 指标地图）→ 从简单开始。</strong></div>
+<details class="ts-box"><summary>本章语音逐字稿（ASR · 已校正）（逐字 · 16 句）</summary>
+<div class="ts-lines">
+<div class="ts-line"><span class="ts-t">[00:00]</span> 很多 Agent 的看起来很惊艳</div>
+<div class="ts-line"><span class="ts-t">[00:02]</span> 但是上线之后问题才开始暴露</div>
+<div class="ts-line"><span class="ts-t">[00:04]</span> 任务失败</div>
+<div class="ts-line"><span class="ts-t">[00:05]</span> 工具调用不稳定</div>
+<div class="ts-line"><span class="ts-t">[00:06]</span> 上下文丢失</div>
+<div class="ts-line"><span class="ts-t">[00:07]</span> 刚修好了一个 bad case</div>
+<div class="ts-line"><span class="ts-t">[00:09]</span> 又引入了一个新的问题</div>
+<div class="ts-line"><span class="ts-t">[00:10]</span> Agent 之间真正拉开差距的</div>
+<div class="ts-line"><span class="ts-t">[00:12]</span> 要看谁能在生产环境里持续稳定的完成任务</div>
+<div class="ts-line"><span class="ts-t">[00:16]</span> 这既考验 Harness 的设计</div>
+<div class="ts-line"><span class="ts-t">[00:17]</span> 也考验团队能不能判断</div>
+<div class="ts-line"><span class="ts-t">[00:19]</span> 每次修改到底有没有让产品变好</div>
+<div class="ts-line"><span class="ts-t">[00:21]</span> 而这里经常被忽视的一环就是评测</div>
+<div class="ts-line"><span class="ts-t">[00:24]</span> 评测却为 Agent 的迭代就很容易变成</div>
+<div class="ts-line"><span class="ts-t">[00:26]</span> 评感觉改哪有忽视</div>
+<div class="ts-line"><span class="ts-t">[00:28]</span> 所以评测必须从产品设计室就介入</div>
+</div></details>
 </section>
 
 <section class="sec" id="s2">
@@ -374,6 +401,28 @@ main{padding-top:22px}
 <p><span class="tag t-video">视频原述</span>紧接着画面依次切到两篇参考文章：Anthropic 那篇给出「怎么定义评测、怎么组织组件」，阿里技术那篇《AI Agent 应用精细化评测：评测体系设计与工程实践》「又给出了具体的工程落地思路」。主讲人还在 00:51 提前亮出了自己整理的《Agent Eval 指标地图》，并说明「大家可以按照时间轴看，想反复阅读的也可以找我要文字版」。</p>
 <div class="key"><span class="tag t-extra">补充</span><strong>为什么「演示惊艳」不等于「生产可用」</strong>：Anthropic 把这种状态称为 <em>reactive loop</em>（反应式循环）——只在生产环境里等问题冒出来，修一个故障又制造另一个；没有评测时，团队无法区分「真实退化」与「随机噪声」，也无法在发布前把改动跑过上百个场景。评测的价值是<strong>复利</strong>的：成本在前期一次性可见，收益却随 Agent 生命周期持续累积，包括免费获得 baseline 与回归测试（延迟、Token、单任务成本、错误率），以及成为产品团队与研究团队之间带宽最高的沟通渠道。</div>
 <div class="note"><span class="tag t-extra">补充</span><strong>评测驱动开发（eval-driven development）</strong>：先写评测来定义「计划中的能力」，再迭代 Agent 直到它表现良好。这与「先做 Demo 再补评测」的顺序正好相反；好处是新模型发布时，跑一遍套件就能立刻知道哪些「押注」兑现了。Anthropic 建议把定义评测任务当作检验「产品需求是否足够具体」的压力测试。</div>
+<details class="ts-box"><summary>本章语音逐字稿（ASR · 已校正）（逐字 · 19 句）</summary>
+<div class="ts-lines">
+<div class="ts-line"><span class="ts-t">[00:31]</span> 成为决定产品改什么怎么改</div>
+<div class="ts-line"><span class="ts-t">[00:33]</span> 能不能上线的关键依据</div>
+<div class="ts-line"><span class="ts-t">[00:34]</span> 今年1月</div>
+<div class="ts-line"><span class="ts-t">[00:35]</span> S-ROPE 发布了一篇 Agent 的评测的文章</div>
+<div class="ts-line"><span class="ts-t">[00:37]</span> 系统的讨论了 Agent 的评测应该怎么设计</div>
+<div class="ts-line"><span class="ts-t">[00:40]</span> 最近阿里的技术团队也发布了一篇</div>
+<div class="ts-line"><span class="ts-t">[00:42]</span> Agent 的评测体系设计与工程实践</div>
+<div class="ts-line"><span class="ts-t">[00:45]</span> 又给出了具体的工程落地思路</div>
+<div class="ts-line"><span class="ts-t">[00:47]</span> 那今天呢</div>
+<div class="ts-line"><span class="ts-t">[00:47]</span> 我们就把这两篇放在一起</div>
+<div class="ts-line"><span class="ts-t">[00:49]</span> 讲清楚 Agent 的评测到底应该怎么做</div>
+<div class="ts-line"><span class="ts-t">[00:51]</span> 视频的最后</div>
+<div class="ts-line"><span class="ts-t">[00:52]</span> 我也整理了一个评测的治疗地图</div>
+<div class="ts-line"><span class="ts-t">[00:54]</span> 方便大家对照自己的产品使用</div>
+<div class="ts-line"><span class="ts-t">[00:56]</span> 内容比较多</div>
+<div class="ts-line"><span class="ts-t">[00:57]</span> 信息密度很大</div>
+<div class="ts-line"><span class="ts-t">[00:58]</span> 大家可以按照时间轴切换到感兴趣的章节</div>
+<div class="ts-line"><span class="ts-t">[01:01]</span> 想反复阅读的也可以找我要文字版</div>
+<div class="ts-line"><span class="ts-t">[01:05]</span> 传统大模型的调用</div>
+</div></details>
 </section>
 
 <section class="sec" id="s3">
@@ -432,6 +481,59 @@ main{padding-top:22px}
 <tr><td>失败归因</td><td>只知道「不对」，不知道哪里不对</td><td>定位到感知 / 规划 / 记忆 / 工具某一环节</td></tr>
 </table>
 <div class="key"><span class="tag t-extra">补充</span><strong>output ≠ outcome（Anthropic 明确区分）</strong>：一个订票 Agent 在 transcript 末尾说「您的机票已预订」，但 <em>outcome</em> 是「环境的 SQL 数据库里是否真的存在这条预订记录」。同一篇里还举了 Opus 4.5 在 𝜏2-bench 订票题中<strong>发现政策漏洞</strong>的例子：按静态评测它「失败」了，实际却给了用户更好的解法——这提醒评测设计要给创造性解法留余地，不要死守固定路径。</div>
+<details class="ts-box"><summary>本章语音逐字稿（ASR · 已校正）（逐字 · 50 句）</summary>
+<div class="ts-lines">
+<div class="ts-line"><span class="ts-t">[01:06]</span> 输入提示词模型给出回答</div>
+<div class="ts-line"><span class="ts-t">[01:08]</span> 以前很多的评测都是围绕着最终的回答展开</div>
+<div class="ts-line"><span class="ts-t">[01:11]</span> 答案准备准确</div>
+<div class="ts-line"><span class="ts-t">[01:12]</span> 有没有幻觉</div>
+<div class="ts-line"><span class="ts-t">[01:13]</span> 先关性怎么样</div>
+<div class="ts-line"><span class="ts-t">[01:13]</span> 语言质量怎么样</div>
+<div class="ts-line"><span class="ts-t">[01:15]</span> 但 Agent 不一样</div>
+<div class="ts-line"><span class="ts-t">[01:16]</span> Agent 的街道任务要先理解需求</div>
+<div class="ts-line"><span class="ts-t">[01:18]</span> 安排步骤</div>
+<div class="ts-line"><span class="ts-t">[01:18]</span> 再调用工具读取结果</div>
+<div class="ts-line"><span class="ts-t">[01:20]</span> 再决定下一步</div>
+<div class="ts-line"><span class="ts-t">[01:21]</span> 有的时候还要改文件</div>
+<div class="ts-line"><span class="ts-t">[01:22]</span> 更新订单</div>
+<div class="ts-line"><span class="ts-t">[01:24]</span> 情况部队再调整计划</div>
+<div class="ts-line"><span class="ts-t">[01:26]</span> 所以 Agent 的错误</div>
+<div class="ts-line"><span class="ts-t">[01:27]</span> 不是只发生在最后生生答案的那一刻</div>
+<div class="ts-line"><span class="ts-t">[01:29]</span> 而是发生在整条执行面路上的任何一个地方</div>
+<div class="ts-line"><span class="ts-t">[01:32]</span> 比如说退款</div>
+<div class="ts-line"><span class="ts-t">[01:33]</span> 订单找错了</div>
+<div class="ts-line"><span class="ts-t">[01:34]</span> 后面的工具调用再顺利</div>
+<div class="ts-line"><span class="ts-t">[01:36]</span> 也是给错误的订单退款</div>
+<div class="ts-line"><span class="ts-t">[01:37]</span> 金额传错了</div>
+<div class="ts-line"><span class="ts-t">[01:38]</span> 接口返回成功</div>
+<div class="ts-line"><span class="ts-t">[01:39]</span> 退的金额也是错的</div>
+<div class="ts-line"><span class="ts-t">[01:41]</span> 所以 Agent 的评测</div>
+<div class="ts-line"><span class="ts-t">[01:42]</span> 必须是要覆盖一次完整的任务执行</div>
+<div class="ts-line"><span class="ts-t">[01:44]</span> 他说了什么</div>
+<div class="ts-line"><span class="ts-t">[01:45]</span> 做了什么</div>
+<div class="ts-line"><span class="ts-t">[01:46]</span> 最后系统变成了什么状态</div>
+<div class="ts-line"><span class="ts-t">[01:47]</span> 都得有一句</div>
+<div class="ts-line"><span class="ts-t">[01:48]</span> 而这些步骤又是连在一起的</div>
+<div class="ts-line"><span class="ts-t">[01:50]</span> 你为了修改工具</div>
+<div class="ts-line"><span class="ts-t">[01:51]</span> 改了提示词</div>
+<div class="ts-line"><span class="ts-t">[01:52]</span> 有可能会影响任务的路由</div>
+<div class="ts-line"><span class="ts-t">[01:54]</span> 为了让他记住更多的信息</div>
+<div class="ts-line"><span class="ts-t">[01:55]</span> 又可能增加干扰</div>
+<div class="ts-line"><span class="ts-t">[01:57]</span> 眼前的几个任务变好了</div>
+<div class="ts-line"><span class="ts-t">[01:58]</span> 那其他的任务有没有受影响</div>
+<div class="ts-line"><span class="ts-t">[02:00]</span> 靠感觉是看不出来的</div>
+<div class="ts-line"><span class="ts-t">[02:01]</span> 评测要改变的</div>
+<div class="ts-line"><span class="ts-t">[02:02]</span> 就是这个被动的局面</div>
+<div class="ts-line"><span class="ts-t">[02:03]</span> 让问题尽量在用户之前暴露出来</div>
+<div class="ts-line"><span class="ts-t">[02:08]</span> 不少团队做评测</div>
+<div class="ts-line"><span class="ts-t">[02:09]</span> 上来就列准确率</div>
+<div class="ts-line"><span class="ts-t">[02:10]</span> 召回率</div>
+<div class="ts-line"><span class="ts-t">[02:11]</span> 换绝率</div>
+<div class="ts-line"><span class="ts-t">[02:12]</span> 只标列了一大堆</div>
+<div class="ts-line"><span class="ts-t">[02:13]</span> 到底怎么才算是上线标准</div>
+<div class="ts-line"><span class="ts-t">[02:14]</span> 没人说得清</div>
+<div class="ts-line"><span class="ts-t">[02:15]</span> 我把这两篇文章的思路</div>
+</div></details>
 </section>
 
 <section class="sec" id="s4">
@@ -542,6 +644,98 @@ main{padding-top:22px}
 <p><span class="tag t-video">视频原述</span>「任务完成了，但调用过多、让用户干等半分钟，或者一个简单问题烧掉了大量 Token，都不能叫好用。所以还要增加<strong>成本和性能</strong>两个维度：比如模型调用次数、工具调用次数、Token 消耗、首 Token 延迟、端到端延迟。」</p>
 <p>视频 04:03 的画面是「Token 账单（老板扛不住）」+「等待太久（用户等不起）」+「调用过多」，标题写着 <strong>Experience 体验和成本</strong>。视频把它总结成：<strong>结果质量、过程质量、体验与运行成本</strong>三方面放在一起，才能说清楚你到底想把 Agent 优化成什么样——这是后面整套评测的基础。</p>
 <div class="note"><span class="tag t-extra">补充</span>阿里文章把三维度写成「<strong>质量 × 成本 × 性能</strong>」：质量维度（答案是否正确、完整、忠实、有无幻觉）是底线但不是全部；成本维度（模型调用次数、工具调用轮次、Token）；性能维度（首 Token 延迟 TTFT、端到端延迟、模块级延迟）。「回答正确但耗时 30 秒」或「每次消耗 10 万 Token」都不可持续，健康的 Agent 是三者在当前业务场景下的最优平衡。</div>
+<details class="ts-box"><summary>本章语音逐字稿（ASR · 已校正）（逐字 · 89 句）</summary>
+<div class="ts-lines">
+<div class="ts-line"><span class="ts-t">[02:17]</span> 整理成了三个层次</div>
+<div class="ts-line"><span class="ts-t">[02:18]</span> Outcome</div>
+<div class="ts-line"><span class="ts-t">[02:19]</span> Trace</div>
+<div class="ts-line"><span class="ts-t">[02:20]</span> Experience</div>
+<div class="ts-line"><span class="ts-t">[02:21]</span> 事情有没有做成</div>
+<div class="ts-line"><span class="ts-t">[02:22]</span> 过程有没有问题</div>
+<div class="ts-line"><span class="ts-t">[02:23]</span> 以及体验和成本能不能接受</div>
+<div class="ts-line"><span class="ts-t">[02:25]</span> 先说 Outcome</div>
+<div class="ts-line"><span class="ts-t">[02:26]</span> 事情能不能做成</div>
+<div class="ts-line"><span class="ts-t">[02:27]</span> Aslopic 专门区分了</div>
+<div class="ts-line"><span class="ts-t">[02:28]</span> Output 和 Outcome</div>
+<div class="ts-line"><span class="ts-t">[02:30]</span> 比如说一个 Agent 的最后告诉你</div>
+<div class="ts-line"><span class="ts-t">[02:31]</span> 退还引荐成功了</div>
+<div class="ts-line"><span class="ts-t">[02:32]</span> 这个是 Output</div>
+<div class="ts-line"><span class="ts-t">[02:34]</span> 真正区系统里面看</div>
+<div class="ts-line"><span class="ts-t">[02:35]</span> 确实成成了一笔退款记录</div>
+<div class="ts-line"><span class="ts-t">[02:37]</span> 而且状态已经变成了成功</div>
+<div class="ts-line"><span class="ts-t">[02:38]</span> 这才是 Outcome</div>
+<div class="ts-line"><span class="ts-t">[02:39]</span> 所以对于 Agent 来说</div>
+<div class="ts-line"><span class="ts-t">[02:41]</span> 不能只看他最后说了什么</div>
+<div class="ts-line"><span class="ts-t">[02:42]</span> 还要看这个任务结束以后</div>
+<div class="ts-line"><span class="ts-t">[02:44]</span> 真实的世界或者系统</div>
+<div class="ts-line"><span class="ts-t">[02:45]</span> 状态到底发生了什么</div>
+<div class="ts-line"><span class="ts-t">[02:47]</span> 所以任务完成率</div>
+<div class="ts-line"><span class="ts-t">[02:48]</span> 作为整个端道端评测的北极星指标</div>
+<div class="ts-line"><span class="ts-t">[02:51]</span> 因为不管 Agent 的内部多复杂</div>
+<div class="ts-line"><span class="ts-t">[02:52]</span> 站在用户的角度</div>
+<div class="ts-line"><span class="ts-t">[02:53]</span> 第一个问题永远是</div>
+<div class="ts-line"><span class="ts-t">[02:54]</span> 我的事情到底有没有办成</div>
+<div class="ts-line"><span class="ts-t">[02:56]</span> 一个 Agent 的查对订单</div>
+<div class="ts-line"><span class="ts-t">[02:57]</span> 完成校验</div>
+<div class="ts-line"><span class="ts-t">[02:58]</span> 顺利退款</div>
+<div class="ts-line"><span class="ts-t">[02:59]</span> 另一个连续调错工具</div>
+<div class="ts-line"><span class="ts-t">[03:00]</span> 重视了好几次</div>
+<div class="ts-line"><span class="ts-t">[03:01]</span> 最后也成功了</div>
+<div class="ts-line"><span class="ts-t">[03:02]</span> 只看结果两条都是通过</div>
+<div class="ts-line"><span class="ts-t">[03:04]</span> 但是显然你还想知道</div>
+<div class="ts-line"><span class="ts-t">[03:06]</span> 第二个问题到底出在哪</div>
+<div class="ts-line"><span class="ts-t">[03:07]</span> 所以需要看第二层 Trace</div>
+<div class="ts-line"><span class="ts-t">[03:09]</span> Trace 可以理解成 Agent 的行车记录仪</div>
+<div class="ts-line"><span class="ts-t">[03:12]</span> 在一次任务里</div>
+<div class="ts-line"><span class="ts-t">[03:13]</span> Agent 调用了什么工具</div>
+<div class="ts-line"><span class="ts-t">[03:14]</span> 传了什么参数</div>
+<div class="ts-line"><span class="ts-t">[03:15]</span> 工具返回了什么</div>
+<div class="ts-line"><span class="ts-t">[03:16]</span> 每一部花了多久</div>
+<div class="ts-line"><span class="ts-t">[03:17]</span> 都要记录在 Trace 里面</div>
+<div class="ts-line"><span class="ts-t">[03:19]</span> 而阿里的这篇时间文章</div>
+<div class="ts-line"><span class="ts-t">[03:20]</span> 在 Trace 这一层</div>
+<div class="ts-line"><span class="ts-t">[03:21]</span> 做了非常详细的拆解</div>
+<div class="ts-line"><span class="ts-t">[03:23]</span> 他把这个过程拆成四个模块</div>
+<div class="ts-line"><span class="ts-t">[03:25]</span> 感知规划记忆和工具</div>
+<div class="ts-line"><span class="ts-t">[03:27]</span> 感知解决的是看懂了没</div>
+<div class="ts-line"><span class="ts-t">[03:29]</span> 用户的意图到底有没有理解正确</div>
+<div class="ts-line"><span class="ts-t">[03:31]</span> 用户要退款</div>
+<div class="ts-line"><span class="ts-t">[03:32]</span> 还是只想问退款的规则</div>
+<div class="ts-line"><span class="ts-t">[03:34]</span> 规划解决的是想对了没</div>
+<div class="ts-line"><span class="ts-t">[03:35]</span> 应该走 Scale 知识库</div>
+<div class="ts-line"><span class="ts-t">[03:37]</span> 还是工具</div>
+<div class="ts-line"><span class="ts-t">[03:38]</span> 知识路径有没有选对</div>
+<div class="ts-line"><span class="ts-t">[03:39]</span> 那记忆解决的就是记住了没</div>
+<div class="ts-line"><span class="ts-t">[03:41]</span> 多伦对话以后</div>
+<div class="ts-line"><span class="ts-t">[03:42]</span> 前面已经确认的信息还记不记得</div>
+<div class="ts-line"><span class="ts-t">[03:46]</span> 你没有选对参数有没有传对</div>
+<div class="ts-line"><span class="ts-t">[03:48]</span> 调用有没有成功</div>
+<div class="ts-line"><span class="ts-t">[03:49]</span> 这背后的底层原则就是评测体系</div>
+<div class="ts-line"><span class="ts-t">[03:51]</span> 应该尽量和你的 Agent 的架构同购</div>
+<div class="ts-line"><span class="ts-t">[03:53]</span> 你的 Agent 是怎么工作的</div>
+<div class="ts-line"><span class="ts-t">[03:55]</span> 你的评测就要沿着这条链路去拆</div>
+<div class="ts-line"><span class="ts-t">[03:57]</span> 这样一个指标下降的时候</div>
+<div class="ts-line"><span class="ts-t">[03:58]</span> 你才能知道到底是应该改提识词</div>
+<div class="ts-line"><span class="ts-t">[04:00]</span> 还是改工具描述还是改记忆</div>
+<div class="ts-line"><span class="ts-t">[04:02]</span> 最后看 Experience 体验和成本</div>
+<div class="ts-line"><span class="ts-t">[04:05]</span> 一个简单的查询</div>
+<div class="ts-line"><span class="ts-t">[04:06]</span> 你让用户干等半分钟</div>
+<div class="ts-line"><span class="ts-t">[04:07]</span> 任务完成率再好</div>
+<div class="ts-line"><span class="ts-t">[04:08]</span> 用户也不可能想用</div>
+<div class="ts-line"><span class="ts-t">[04:10]</span> 一个简单的问题</div>
+<div class="ts-line"><span class="ts-t">[04:11]</span> 来回调了几十次模型</div>
+<div class="ts-line"><span class="ts-t">[04:12]</span> 烧掉了大量的 Token</div>
+<div class="ts-line"><span class="ts-t">[04:16]</span> 增加成本和性能两个维度</div>
+<div class="ts-line"><span class="ts-t">[04:18]</span> 比如说模型的调用次数</div>
+<div class="ts-line"><span class="ts-t">[04:19]</span> 输入输出的 Token</div>
+<div class="ts-line"><span class="ts-t">[04:20]</span> 端道端的延时等等</div>
+<div class="ts-line"><span class="ts-t">[04:22]</span> 结果质量过程质量</div>
+<div class="ts-line"><span class="ts-t">[04:23]</span> 体验与运行成本</div>
+<div class="ts-line"><span class="ts-t">[04:25]</span> 这三个方面放在一起才能说清楚</div>
+<div class="ts-line"><span class="ts-t">[04:27]</span> 你到底想把 Agent 的优化成什么样</div>
+<div class="ts-line"><span class="ts-t">[04:30]</span> 这是后面整套评测的基础</div>
+<div class="ts-line"><span class="ts-t">[04:33]</span> 明确了什么叫做好</div>
+</div></details>
 </section>
 
 <section class="sec" id="s5">
@@ -639,6 +833,35 @@ main{padding-top:22px}
 <tr><td><strong>outcome 与 grader</strong></td><td>最终状态（Final environment state）与轨迹一起送进 grader，产出 <code>Trajectory + outcome → scores</code>。</td></tr>
 </table>
 <div class="warn"><strong>关于自动章节摘要的「What / When / How」。</strong>平台把 04:35 这一章概括为「评测框架包括 What、When、How，明确输入、初始条件和成功标准，组织任务和评分器」。逐帧核对后确认：这一段画面始终是 Anthropic 文章截图，没有出现 What / When / How 三个词。它更像是对「Task = inputs + success criteria + graders + metrics」与「初始条件 / 成功条件」的机器转述，本教程不把它当作视频原述。</div>
+<details class="ts-box"><summary>本章语音逐字稿（ASR · 已校正）（逐字 · 26 句）</summary>
+<div class="ts-lines">
+<div class="ts-line"><span class="ts-t">[04:35]</span> 接下来是评测体系本身有什么构成</div>
+<div class="ts-line"><span class="ts-t">[04:37]</span> Anthropic 给了三个层级的概念</div>
+<div class="ts-line"><span class="ts-t">[04:39]</span> 一条可以重复执行的测试任务叫做 Task</div>
+<div class="ts-line"><span class="ts-t">[04:42]</span> 它要写清楚输入出使条件和成功标准</div>
+<div class="ts-line"><span class="ts-t">[04:45]</span> 做到什么才算完成</div>
+<div class="ts-line"><span class="ts-t">[04:46]</span> 有哪些行为不能发生提前约定</div>
+<div class="ts-line"><span class="ts-t">[04:49]</span> 把同一批任务按照业务或者是能力组织起来</div>
+<div class="ts-line"><span class="ts-t">[04:52]</span> 就是评测级</div>
+<div class="ts-line"><span class="ts-t">[04:53]</span> 比如说多轮对话一组</div>
+<div class="ts-line"><span class="ts-t">[04:55]</span> 工具调用一组</div>
+<div class="ts-line"><span class="ts-t">[04:56]</span> 也可以把退款取消订单</div>
+<div class="ts-line"><span class="ts-t">[04:57]</span> 转任功放在客服业务的 Suite 下面</div>
+<div class="ts-line"><span class="ts-t">[05:00]</span> 然后你需要一套系统</div>
+<div class="ts-line"><span class="ts-t">[05:01]</span> 把任务发给 Agent</div>
+<div class="ts-line"><span class="ts-t">[05:02]</span> 准备工具和环境</div>
+<div class="ts-line"><span class="ts-t">[05:04]</span> 保存之前的记录调用评分器</div>
+<div class="ts-line"><span class="ts-t">[05:05]</span> 在汇总结果</div>
+<div class="ts-line"><span class="ts-t">[05:06]</span> 这就是 Evo 的 Harness 评测框架</div>
+<div class="ts-line"><span class="ts-t">[05:09]</span> Task 向一道题</div>
+<div class="ts-line"><span class="ts-t">[05:10]</span> Suite 向一套试卷</div>
+<div class="ts-line"><span class="ts-t">[05:12]</span> Harness 是出题以后的运行记录评分都组织起来</div>
+<div class="ts-line"><span class="ts-t">[05:16]</span> 同一道题没抱歉叫 Trails</div>
+<div class="ts-line"><span class="ts-t">[05:17]</span> 也就是一次试跑</div>
+<div class="ts-line"><span class="ts-t">[05:18]</span> 每一次都有指自己的执行记录 Trace</div>
+<div class="ts-line"><span class="ts-t">[05:21]</span> 一个任务可以有多个评分器进行打分</div>
+<div class="ts-line"><span class="ts-t">[05:25]</span> 你用一堆条件齐全表达准区的问题去测 Agent</div>
+</div></details>
 </section>
 
 <section class="sec" id="s6">
@@ -803,6 +1026,110 @@ main{padding-top:22px}
 <p><span class="tag t-video">视频原述</span>「① 数据集要来自真实任务，保证测试的覆盖度，不能全都是构造数据；② 既要有正例也要有反例——你只奖励 Agent 调用搜索工具，它就会什么都搜，所以<strong>该调的时候要测，不该调的时候能不能控制住也要测</strong>；③ 测试用例要有规范，还得写<strong>初始状态、成功条件、必要约束</strong>。每条用例标注完整，这样一个 task 跑一次，就能同时判断 outcome 和 trace。」</p>
 <div class="key"><span class="tag t-extra">补充</span>Anthropic <strong>Step 2</strong> 的判据更严格：一个好任务要能让「两位领域专家独立得出相同的通过/不通过结论」；评分器要检查的一切都必须能从任务描述里看清楚（Terminal-Bench 曾出现「任务没写脚本路径、测试却假定特定路径」导致 Agent 无辜失败）；如果前沿模型在多次 trial 后仍是 <code>0% pass@100</code>，多半是<strong>任务或评分器坏了</strong>，不是模型不行。建议每条任务配一份 <em>reference solution</em>（已知能通过所有 grader 的参考解），用来证明任务可解、grader 配置正确。</div>
 <div class="key"><span class="tag t-extra">补充</span>阿里的一条完整用例字段（原文 4.2 基础技能评测集示例）包括：<code>id</code> / <code>sceneCode</code> / <code>sceneName</code> / <code>userInput</code> / <code>expectedSkill</code> / <code>expectedRoute</code> / <code>expectedIntent</code> / <code>bizCode</code> / <code>datasetType</code> / <code>evalMode</code> / <code>mockDataId</code> / <code>referenceOutput</code>。知识问答用例另有 <code>expectedKnowledge</code>；多轮用例另有有序数组 <code>conversationChain</code> 与逐轮 <code>expectedContains</code>。一条数据可同时供多个 Judge Task 使用。</div>
+<details class="ts-box"><summary>本章语音逐字稿（ASR · 已校正）（逐字 · 101 句）</summary>
+<div class="ts-lines">
+<div class="ts-line"><span class="ts-t">[05:28]</span> 它当然容易表现得很好</div>
+<div class="ts-line"><span class="ts-t">[05:30]</span> 但真实用户一开口</div>
+<div class="ts-line"><span class="ts-t">[05:31]</span> 省略指代临时改变主意全都来了</div>
+<div class="ts-line"><span class="ts-t">[05:34]</span> 接不住</div>
+<div class="ts-line"><span class="ts-t">[05:35]</span> 那早期不需要追求特别大的数据级</div>
+<div class="ts-line"><span class="ts-t">[05:37]</span> 可以从手工测试真实的日制</div>
+<div class="ts-line"><span class="ts-t">[05:39]</span> 用户反会或者线上失败里面</div>
+<div class="ts-line"><span class="ts-t">[05:41]</span> 找20-50条有代表性的任务先跑起来</div>
+<div class="ts-line"><span class="ts-t">[05:43]</span> 那它们是核心理极限发现明显的变化</div>
+<div class="ts-line"><span class="ts-t">[05:46]</span> 后面如果要识别更小的差异再增加规模</div>
+<div class="ts-line"><span class="ts-t">[05:48]</span> 预计至少要覆盖这四个情况</div>
+<div class="ts-line"><span class="ts-t">[05:50]</span> 第一类是核心任务</div>
+<div class="ts-line"><span class="ts-t">[05:51]</span> 也就是这个 Agent 的最重要最高频</div>
+<div class="ts-line"><span class="ts-t">[05:53]</span> 最能代表产品价值的任务</div>
+<div class="ts-line"><span class="ts-t">[05:54]</span> 比如说一个搜索的 Agent</div>
+<div class="ts-line"><span class="ts-t">[05:56]</span> 那它的核心任务可能就是信息的检索</div>
+<div class="ts-line"><span class="ts-t">[05:58]</span> 跨来源的总结复杂问题的拆解</div>
+<div class="ts-line"><span class="ts-t">[06:00]</span> 一个数据 Agent 核心的任务就是查数</div>
+<div class="ts-line"><span class="ts-t">[06:02]</span> 分析归因是什么图表</div>
+<div class="ts-line"><span class="ts-t">[06:03]</span> 这些产品靠它吃饭的能力</div>
+<div class="ts-line"><span class="ts-t">[06:05]</span> 必须有对应的测试</div>
+<div class="ts-line"><span class="ts-t">[06:07]</span> 第二个是真实用户的任务</div>
+<div class="ts-line"><span class="ts-t">[06:08]</span> 这类数据最好直接来自于真实的日质</div>
+<div class="ts-line"><span class="ts-t">[06:10]</span> 真实的 query 只是用户的使用记录</div>
+<div class="ts-line"><span class="ts-t">[06:12]</span> 因为产品经理自己构造的问题</div>
+<div class="ts-line"><span class="ts-t">[06:14]</span> 往往太标准表达完整</div>
+<div class="ts-line"><span class="ts-t">[06:16]</span> 一图清晰</div>
+<div class="ts-line"><span class="ts-t">[06:17]</span> 但真实的用户不会这么说</div>
+<div class="ts-line"><span class="ts-t">[06:19]</span> 第三类是历史的 Bad Case</div>
+<div class="ts-line"><span class="ts-t">[06:20]</span> 这类数据其实特别值钱</div>
+<div class="ts-line"><span class="ts-t">[06:22]</span> 线上真正出过问题</div>
+<div class="ts-line"><span class="ts-t">[06:23]</span> 被用户投诉过人工排查过的问题</div>
+<div class="ts-line"><span class="ts-t">[06:26]</span> 要求好了都应该沉淀进品测计</div>
+<div class="ts-line"><span class="ts-t">[06:28]</span> 否则一个空可能就会掉进去两次</div>
+<div class="ts-line"><span class="ts-t">[06:30]</span> 第四类就是编解 Case</div>
+<div class="ts-line"><span class="ts-t">[06:31]</span> 你的信息不够</div>
+<div class="ts-line"><span class="ts-t">[06:32]</span> 多一图长对话工具异常</div>
+<div class="ts-line"><span class="ts-t">[06:34]</span> 知识库没有答案</div>
+<div class="ts-line"><span class="ts-t">[06:35]</span> 都要主动覆盖</div>
+<div class="ts-line"><span class="ts-t">[06:36]</span> 不能只等着线上预见</div>
+<div class="ts-line"><span class="ts-t">[06:38]</span> 顾手机多了</div>
+<div class="ts-line"><span class="ts-t">[06:39]</span> 还要能快速的挑出这次应该测打鞋</div>
+<div class="ts-line"><span class="ts-t">[06:41]</span> 可以按照下面之八类基金打标</div>
+<div class="ts-line"><span class="ts-t">[06:43]</span> 组织专项的评测</div>
+<div class="ts-line"><span class="ts-t">[06:45]</span> 基础技能的评测</div>
+<div class="ts-line"><span class="ts-t">[06:46]</span> 测的就是 Agent 最核心的技术能力</div>
+<div class="ts-line"><span class="ts-t">[06:48]</span> 比如说一个任务该不该命中</div>
+<div class="ts-line"><span class="ts-t">[06:49]</span> 某个 skill 最终有没有完成</div>
+<div class="ts-line"><span class="ts-t">[06:51]</span> 知识问答评测机</div>
+<div class="ts-line"><span class="ts-t">[06:53]</span> 主要就是测 req 和知识库相关的能力</div>
+<div class="ts-line"><span class="ts-t">[06:55]</span> 该查的收查了吗</div>
+<div class="ts-line"><span class="ts-t">[06:56]</span> 检索内容对不对</div>
+<div class="ts-line"><span class="ts-t">[06:57]</span> 找到了证据的材料没有</div>
+<div class="ts-line"><span class="ts-t">[06:58]</span> 回答有没有乱编</div>
+<div class="ts-line"><span class="ts-t">[07:00]</span> 多轮对话的评测机测的就是</div>
+<div class="ts-line"><span class="ts-t">[07:01]</span> Agent 在连续多轮交互里面</div>
+<div class="ts-line"><span class="ts-t">[07:03]</span> 还能不能保持上下文</div>
+<div class="ts-line"><span class="ts-t">[07:04]</span> 能不能理解指代</div>
+<div class="ts-line"><span class="ts-t">[07:05]</span> 用户中途切换了话题之后</div>
+<div class="ts-line"><span class="ts-t">[07:07]</span> 还能不能接得住</div>
+<div class="ts-line"><span class="ts-t">[07:08]</span> 异常输入的评测机测的就是</div>
+<div class="ts-line"><span class="ts-t">[07:10]</span> 系统会不会被不正常的输入搞乱</div>
+<div class="ts-line"><span class="ts-t">[07:12]</span> 空输入超长的文本</div>
+<div class="ts-line"><span class="ts-t">[07:14]</span> 乱码特殊字符</div>
+<div class="ts-line"><span class="ts-t">[07:15]</span> 或者是一些异常的请求</div>
+<div class="ts-line"><span class="ts-t">[07:16]</span> Agent 会不会崩掉</div>
+<div class="ts-line"><span class="ts-t">[07:17]</span> 或者是胡乱回答</div>
+<div class="ts-line"><span class="ts-t">[07:18]</span> 根据调用的评测机专门测工具</div>
+<div class="ts-line"><span class="ts-t">[07:20]</span> 该不该调</div>
+<div class="ts-line"><span class="ts-t">[07:21]</span> 调哪个参数对不对</div>
+<div class="ts-line"><span class="ts-t">[07:22]</span> 失败后该怎么办都得测</div>
+<div class="ts-line"><span class="ts-t">[07:24]</span> 多一图的评测机</div>
+<div class="ts-line"><span class="ts-t">[07:25]</span> 用户已计划里同时有两三个需求</div>
+<div class="ts-line"><span class="ts-t">[07:28]</span> Agent 能不能完全识别出来</div>
+<div class="ts-line"><span class="ts-t">[07:30]</span> 而不是只处理其中一个</div>
+<div class="ts-line"><span class="ts-t">[07:31]</span> 模糊一图的评测机</div>
+<div class="ts-line"><span class="ts-t">[07:32]</span> 用户说的不清楚的时候</div>
+<div class="ts-line"><span class="ts-t">[07:33]</span> Agent 会不会正确的澄清</div>
+<div class="ts-line"><span class="ts-t">[07:35]</span> 而不是自己脑补</div>
+<div class="ts-line"><span class="ts-t">[07:36]</span> 来尝对话衰竭的评测机</div>
+<div class="ts-line"><span class="ts-t">[07:38]</span> 看对话越来越长之后</div>
+<div class="ts-line"><span class="ts-t">[07:39]</span> Agent 的 Memory 到底从第几轮开始明显下降</div>
+<div class="ts-line"><span class="ts-t">[07:42]</span> 真正创建用力的时候</div>
+<div class="ts-line"><span class="ts-t">[07:43]</span> 有三个地方尤其容易出问题</div>
+<div class="ts-line"><span class="ts-t">[07:45]</span> 第一是数据机要来自真实任务</div>
+<div class="ts-line"><span class="ts-t">[07:47]</span> 人工构造的数据</div>
+<div class="ts-line"><span class="ts-t">[07:48]</span> 可以保证测试的覆盖度</div>
+<div class="ts-line"><span class="ts-t">[07:50]</span> 但是要保留真实使用的复杂程度</div>
+<div class="ts-line"><span class="ts-t">[07:52]</span> 全都是构造数据很容易测不出问题</div>
+<div class="ts-line"><span class="ts-t">[07:54]</span> 第二是机要有正力</div>
+<div class="ts-line"><span class="ts-t">[07:56]</span> 要有反力</div>
+<div class="ts-line"><span class="ts-t">[07:57]</span> 你只奖励 Agent 的调用搜索工具</div>
+<div class="ts-line"><span class="ts-t">[07:59]</span> 它可能学会的就是</div>
+<div class="ts-line"><span class="ts-t">[08:00]</span> 遇到什么问题都搜索</div>
+<div class="ts-line"><span class="ts-t">[08:01]</span> 所以该调的时候要测</div>
+<div class="ts-line"><span class="ts-t">[08:03]</span> 不该调的时候能不能控制住也要测</div>
+<div class="ts-line"><span class="ts-t">[08:06]</span> 第三是测试用力要有规范</div>
+<div class="ts-line"><span class="ts-t">[08:07]</span> 用力不能只有问题和参考答案</div>
+<div class="ts-line"><span class="ts-t">[08:09]</span> 还得写出是状态</div>
+<div class="ts-line"><span class="ts-t">[08:10]</span> 成功条件必要约束</div>
+<div class="ts-line"><span class="ts-t">[08:12]</span> 每条用力要完整的标注了</div>
+</div></details>
 </section>
 
 <section class="sec" id="s7">
@@ -905,6 +1232,81 @@ main{padding-top:22px}
 <li><strong>结构化输出</strong>——「不要让大模型自由发挥写一篇评价，而是要让它按照严格的 JSON，方便后面自动统计」。</li>
 </ol>
 <div class="note"><span class="tag t-extra">补充</span>阿里把「依赖评测集判定的指标评测任务」归纳为<strong>六种 Judge Task 类型</strong>（二元判断 / 多标签匹配 / 行为分类等），并沉淀为内置的评测 Prompt 模板；其平台化阶段又把这六类做成可配置项。Anthropic 的对应建议是：给 LLM 一条退路——信息不足时返回 <code>Unknown</code>；把 rubric 按维度拆开、每个维度用独立的 LLM-as-judge；系统稳定后人工只需偶尔抽检。</div>
+<details class="ts-box"><summary>本章语音逐字稿（ASR · 已校正）（逐字 · 72 句）</summary>
+<div class="ts-lines">
+<div class="ts-line"><span class="ts-t">[08:14]</span> 评测链路所需要的所有信息</div>
+<div class="ts-line"><span class="ts-t">[08:16]</span> 这样一个 Task 跑一次</div>
+<div class="ts-line"><span class="ts-t">[08:18]</span> 就能同时判断</div>
+<div class="ts-line"><span class="ts-t">[08:18]</span> Outcome 和 Trace 里面的多个环节</div>
+<div class="ts-line"><span class="ts-t">[08:22]</span> 怎么判断它到底有没有作对</div>
+<div class="ts-line"><span class="ts-t">[08:24]</span> 考虑就是评分器</div>
+<div class="ts-line"><span class="ts-t">[08:25]</span> 评分器如果判错了</div>
+<div class="ts-line"><span class="ts-t">[08:26]</span> 比一次任务做错更麻烦</div>
+<div class="ts-line"><span class="ts-t">[08:28]</span> 因为你会拿着错误的分数</div>
+<div class="ts-line"><span class="ts-t">[08:29]</span> 继续把产品往错误的方向改</div>
+<div class="ts-line"><span class="ts-t">[08:31]</span> SROPEX 是把评分方式分成了三种</div>
+<div class="ts-line"><span class="ts-t">[08:34]</span> 代码评分</div>
+<div class="ts-line"><span class="ts-t">[08:35]</span> 模型评分和人工评分</div>
+<div class="ts-line"><span class="ts-t">[08:37]</span> 这三种</div>
+<div class="ts-line"><span class="ts-t">[08:37]</span> 先用代码评分</div>
+<div class="ts-line"><span class="ts-t">[08:39]</span> 工具参数对不对</div>
+<div class="ts-line"><span class="ts-t">[08:40]</span> 退款记录的订单和金额对不对</div>
+<div class="ts-line"><span class="ts-t">[08:42]</span> 状态是否成功</div>
+<div class="ts-line"><span class="ts-t">[08:43]</span> 有没有超过约定的时间</div>
+<div class="ts-line"><span class="ts-t">[08:44]</span> 用程序检查更便宜稳定</div>
+<div class="ts-line"><span class="ts-t">[08:46]</span> 而且还可以重复执行</div>
+<div class="ts-line"><span class="ts-t">[08:48]</span> 有些事情代码判断很难</div>
+<div class="ts-line"><span class="ts-t">[08:50]</span> 解释有没有回答到用户关心的问题点</div>
+<div class="ts-line"><span class="ts-t">[08:52]</span> 是否一路重要的条件</div>
+<div class="ts-line"><span class="ts-t">[08:53]</span> 有没有便利知识库和工具返回的信息</div>
+<div class="ts-line"><span class="ts-t">[08:56]</span> 那这些语异的问题</div>
+<div class="ts-line"><span class="ts-t">[08:57]</span> 都可以用模型来评分</div>
+<div class="ts-line"><span class="ts-t">[08:58]</span> 也就是 LLM as a judge</div>
+<div class="ts-line"><span class="ts-t">[09:01]</span> 但是大模型的评分</div>
+<div class="ts-line"><span class="ts-t">[09:02]</span> 不是简单的把所有内容</div>
+<div class="ts-line"><span class="ts-t">[09:03]</span> 认给一个更强的模型</div>
+<div class="ts-line"><span class="ts-t">[09:04]</span> 让它从零到一百打个分</div>
+<div class="ts-line"><span class="ts-t">[09:06]</span> 有四个很重要的原则</div>
+<div class="ts-line"><span class="ts-t">[09:07]</span> 第一个是单一指责</div>
+<div class="ts-line"><span class="ts-t">[09:08]</span> 一个 prompt 只凭一个指标</div>
+<div class="ts-line"><span class="ts-t">[09:10]</span> 判断任务有没有完成</div>
+<div class="ts-line"><span class="ts-t">[09:12]</span> 就对照完成条件</div>
+<div class="ts-line"><span class="ts-t">[09:13]</span> 判断中时度就检查</div>
+<div class="ts-line"><span class="ts-t">[09:14]</span> 有没有脱离证据乱编</div>
+<div class="ts-line"><span class="ts-t">[09:16]</span> 不要让一个模糊的总分</div>
+<div class="ts-line"><span class="ts-t">[09:17]</span> 把几个不同的问题混淆在一起</div>
+<div class="ts-line"><span class="ts-t">[09:19]</span> 复杂任务可以拆开判断</div>
+<div class="ts-line"><span class="ts-t">[09:21]</span> 第二是先推理后判断</div>
+<div class="ts-line"><span class="ts-t">[09:23]</span> 每个 prompt 都要求大模型</div>
+<div class="ts-line"><span class="ts-t">[09:24]</span> 先输出思维链的推理</div>
+<div class="ts-line"><span class="ts-t">[09:26]</span> 再给出结论</div>
+<div class="ts-line"><span class="ts-t">[09:27]</span> 这不仅提高了判断的准确性</div>
+<div class="ts-line"><span class="ts-t">[09:28]</span> 也让评测结果具备的可解释性</div>
+<div class="ts-line"><span class="ts-t">[09:31]</span> 第三是福利引导</div>
+<div class="ts-line"><span class="ts-t">[09:32]</span> 每个 prompt 都要包含</div>
+<div class="ts-line"><span class="ts-t">[09:33]</span> 典型的通过和不通过的势力</div>
+<div class="ts-line"><span class="ts-t">[09:35]</span> 最后一个是结构化输出</div>
+<div class="ts-line"><span class="ts-t">[09:37]</span> 不要让大模型自由发挥写一篇评价</div>
+<div class="ts-line"><span class="ts-t">[09:39]</span> 而是要让它按照严格的</div>
+<div class="ts-line"><span class="ts-t">[09:41]</span> 这份格式输出明确的结构化结果</div>
+<div class="ts-line"><span class="ts-t">[09:43]</span> 方便后面自动统计</div>
+<div class="ts-line"><span class="ts-t">[09:44]</span> 人工评分规则负责专业判断和校准</div>
+<div class="ts-line"><span class="ts-t">[09:47]</span> 人工特别适合两个场景</div>
+<div class="ts-line"><span class="ts-t">[09:48]</span> 一个是高度专业</div>
+<div class="ts-line"><span class="ts-t">[09:50]</span> 或者是高度主观的问题</div>
+<div class="ts-line"><span class="ts-t">[09:51]</span> 另外一个很重要的就是校准大模型</div>
+<div class="ts-line"><span class="ts-t">[09:54]</span> 比如说定期抽一批 case</div>
+<div class="ts-line"><span class="ts-t">[09:55]</span> 让领域专家和大模型同时判断</div>
+<div class="ts-line"><span class="ts-t">[09:57]</span> 看看差在哪</div>
+<div class="ts-line"><span class="ts-t">[09:58]</span> 如果模型经常和专家的结论相反</div>
+<div class="ts-line"><span class="ts-t">[10:00]</span> 那就应该先修改评分标准</div>
+<div class="ts-line"><span class="ts-t">[10:02]</span> 而不是拿错误的评分去优化 Agent</div>
+<div class="ts-line"><span class="ts-t">[10:04]</span> 代码查的清早要用代码</div>
+<div class="ts-line"><span class="ts-t">[10:05]</span> 予以判断交给模型</div>
+<div class="ts-line"><span class="ts-t">[10:07]</span> 专业判断和校准留给人工</div>
+<div class="ts-line"><span class="ts-t">[10:09]</span> 三种方式各自负责合适的部分</div>
+<div class="ts-line"><span class="ts-t">[10:11]</span> 评分才有依据</div>
+</div></details>
 </section>
 
 <section class="sec" id="s8">
@@ -972,6 +1374,48 @@ main{padding-top:22px}
 <h3 id="83-上游错了下游要跳过">8.3 上游错了，下游要跳过</h3>
 <p><span class="tag t-video">视频原述</span>「100 条任务，只执行了 10 条、本组全对，剩下 90 条没执行——<strong>跳过也要报</strong>。不能让上游的错误把下游的评分拖垮。」</p>
 <div class="key"><span class="tag t-extra">补充</span>阿里文章 5.4 给出了精确做法：知识问答用例期望路由为 <code>SKILL_MISS</code>（走 RAG），若 Agent 误路由到某个 Skill，RAG 根本没被触发，此时「幻觉率 / 检索精确率 / 检索召回率」都会因缺少检索原文而被误判为不通过。<strong>解法</strong>：在依赖 RAG 数据的 Judge Task 执行前先检测路由误触发，一旦命中就把相关下游 Judge 标为 <code>error</code> 并跳过统计，<strong>既不计入分子也不计入分母</strong>；路由错误只体现在「路由决策准确率」一项上，避免一个模块的错误雪崩式污染其他指标。</div>
+<details class="ts-box"><summary>本章语音逐字稿（ASR · 已校正）（逐字 · 39 句）</summary>
+<div class="ts-lines">
+<div class="ts-line"><span class="ts-t">[10:13]</span> 任务完成了</div>
+<div class="ts-line"><span class="ts-t">[10:14]</span> 工具调用也正确</div>
+<div class="ts-line"><span class="ts-t">[10:15]</span> 但是格式没有按照要求</div>
+<div class="ts-line"><span class="ts-t">[10:16]</span> 响应速度也很慢</div>
+<div class="ts-line"><span class="ts-t">[10:18]</span> 这算通过还是不通过</div>
+<div class="ts-line"><span class="ts-t">[10:19]</span> 阿里在这里用了一个</div>
+<div class="ts-line"><span class="ts-t">[10:20]</span> 我觉得非常实用的方法</div>
+<div class="ts-line"><span class="ts-t">[10:21]</span> 就是给不同类型的评测设置主 Agent</div>
+<div class="ts-line"><span class="ts-t">[10:24]</span> 端到端的评测</div>
+<div class="ts-line"><span class="ts-t">[10:25]</span> 重点看任务完成率</div>
+<div class="ts-line"><span class="ts-t">[10:26]</span> 工具专项评测</div>
+<div class="ts-line"><span class="ts-t">[10:27]</span> 重点看工具的选择和调用是否正确</div>
+<div class="ts-line"><span class="ts-t">[10:30]</span> 每一次评测</div>
+<div class="ts-line"><span class="ts-t">[10:31]</span> 先回答自己最关心的那个问题</div>
+<div class="ts-line"><span class="ts-t">[10:33]</span> 其他的指标不一定决定</div>
+<div class="ts-line"><span class="ts-t">[10:34]</span> 整个 case 是否通过</div>
+<div class="ts-line"><span class="ts-t">[10:35]</span> 而是作为整段信息存在</div>
+<div class="ts-line"><span class="ts-t">[10:37]</span> 在实际的产品里</div>
+<div class="ts-line"><span class="ts-t">[10:38]</span> 我觉得还可以增加一层互拦指标</div>
+<div class="ts-line"><span class="ts-t">[10:40]</span> 某些错误一旦发生</div>
+<div class="ts-line"><span class="ts-t">[10:41]</span> 不管其他指标多搞</div>
+<div class="ts-line"><span class="ts-t">[10:42]</span> 这条 case 都必须非要</div>
+<div class="ts-line"><span class="ts-t">[10:43]</span> 比如说安全</div>
+<div class="ts-line"><span class="ts-t">[10:44]</span> 隐私</div>
+<div class="ts-line"><span class="ts-t">[10:45]</span> 或者不可逆的风险操作</div>
+<div class="ts-line"><span class="ts-t">[10:46]</span> 还有一个细节</div>
+<div class="ts-line"><span class="ts-t">[10:47]</span> 上游的指标错了</div>
+<div class="ts-line"><span class="ts-t">[10:48]</span> 下游该怎么办</div>
+<div class="ts-line"><span class="ts-t">[10:49]</span> 比如说一个问题本来走 RAG</div>
+<div class="ts-line"><span class="ts-t">[10:50]</span> 但是 Agent 的路由错了</div>
+<div class="ts-line"><span class="ts-t">[10:52]</span> 直接走了 skill</div>
+<div class="ts-line"><span class="ts-t">[10:53]</span> 那这次的 RAG 根本没有执行</div>
+<div class="ts-line"><span class="ts-t">[10:55]</span> 如果直接给</div>
+<div class="ts-line"><span class="ts-t">[10:56]</span> 减缩质量打零分</div>
+<div class="ts-line"><span class="ts-t">[10:57]</span> 肯定不合适</div>
+<div class="ts-line"><span class="ts-t">[10:58]</span> 像这种情况</div>
+<div class="ts-line"><span class="ts-t">[10:58]</span> 下游的评分直接跳过统计</div>
+<div class="ts-line"><span class="ts-t">[11:00]</span> 避免上游的错误</div>
+<div class="ts-line"><span class="ts-t">[11:01]</span> 把后面几个指标一起拓地</div>
+</div></details>
 </section>
 
 <section class="sec" id="s9">
@@ -1016,6 +1460,38 @@ main{padding-top:22px}
 </table>
 <div class="key">两者在 <code>k=1</code> 时完全相同（都等于单次成功率）；到 <code>k=10</code> 时会讲出<strong>截然相反</strong>的故事：pass@k 趋近 100%，pass^k 掉到 0%。选哪个取决于产品要求，而不是哪个数字好看。</div>
 <div class="note"><span class="tag t-extra">补充</span>阿里文章虽未直接写 pass^k，但在执行引擎里做了配套设计：<code>E2E_MOCK</code> 模式注入确定性的工具返回值，消除外部依赖抖动、保证结果可复现；<code>E2E_REAL</code> 保留真实链路。多轮对话场景每组生成独立 <code>sessionId</code>、轮次间等待约 2 秒持久化完成、成本指标逐轮累加、所有轮次输出拼接后统一评判。这些都是为了让「重复执行」真的可比。</div>
+<details class="ts-box"><summary>本章语音逐字稿（ASR · 已校正）（逐字 · 29 句）</summary>
+<div class="ts-lines">
+<div class="ts-line"><span class="ts-t">[11:04]</span> 如果你算出来的评测分数是90分</div>
+<div class="ts-line"><span class="ts-t">[11:06]</span> 那是不是就说明没问题了呢</div>
+<div class="ts-line"><span class="ts-t">[11:08]</span> 这是 Agent 的评测和传统软件测试</div>
+<div class="ts-line"><span class="ts-t">[11:10]</span> 非常不同的地方</div>
+<div class="ts-line"><span class="ts-t">[11:11]</span> Agent 是一个概率系统</div>
+<div class="ts-line"><span class="ts-t">[11:12]</span> 同一个任务</div>
+<div class="ts-line"><span class="ts-t">[11:13]</span> 第一次跑可能成功</div>
+<div class="ts-line"><span class="ts-t">[11:14]</span> 第二次失败</div>
+<div class="ts-line"><span class="ts-t">[11:15]</span> 第三次又成功了</div>
+<div class="ts-line"><span class="ts-t">[11:16]</span> 如果你刚好测到那一次成功</div>
+<div class="ts-line"><span class="ts-t">[11:18]</span> 你会认为它100%没问题</div>
+<div class="ts-line"><span class="ts-t">[11:20]</span> 但对于真实的用户来说</div>
+<div class="ts-line"><span class="ts-t">[11:21]</span> 这显然不是一个稳定的产品</div>
+<div class="ts-line"><span class="ts-t">[11:22]</span> 所以对于复杂多不准的 Agent 的任务</div>
+<div class="ts-line"><span class="ts-t">[11:25]</span> 重要的 case 要重复执行</div>
+<div class="ts-line"><span class="ts-t">[11:27]</span> sropik 在这里用了两个指标来讨论这种波动</div>
+<div class="ts-line"><span class="ts-t">[11:30]</span> 一个指标可以简单理解成</div>
+<div class="ts-line"><span class="ts-t">[11:32]</span> 你给它 case 机会至少要成功一次</div>
+<div class="ts-line"><span class="ts-t">[11:34]</span> 它更适合判断 Agent 的能力边界</div>
+<div class="ts-line"><span class="ts-t">[11:36]</span> 也就是它到底有没有能力把这件事做出来</div>
+<div class="ts-line"><span class="ts-t">[11:39]</span> 那一个指标则要求连续 case 都成功</div>
+<div class="ts-line"><span class="ts-t">[11:42]</span> 对于真正面向用户的 Agent</div>
+<div class="ts-line"><span class="ts-t">[11:43]</span> 这个指标更重要</div>
+<div class="ts-line"><span class="ts-t">[11:44]</span> 因为用户每次来都希望事情办成</div>
+<div class="ts-line"><span class="ts-t">[11:47]</span> 如果测的效果连续 case 都成功了</div>
+<div class="ts-line"><span class="ts-t">[11:49]</span> 这下是不是该起火了</div>
+<div class="ts-line"><span class="ts-t">[11:51]</span> 还不行</div>
+<div class="ts-line"><span class="ts-t">[11:52]</span> 你修好了一个东西</div>
+<div class="ts-line"><span class="ts-t">[11:53]</span> 很可能同时改坏另一个东西</div>
+</div></details>
 </section>
 
 <section class="sec" id="s10">
@@ -1064,6 +1540,26 @@ main{padding-top:22px}
 </table>
 <div class="note"><span class="tag t-extra">补充</span>Anthropic 的 <strong>Step 7「监控能力集饱和（eval saturation）」</strong>：一个跑到 100% 的评测只能追回归、不再提供改进信号，此时大的能力提升在分数上只体现为很小的涨幅。SWE-bench Verified 一年内从约 40% 涨到 &gt;80% 就是典型例子；代码评审公司 Qodo 曾因一次性编码评测饱和而误判 Opus 4.5 没有进步，后来新建了 agentic 评测框架才看清长任务上的收益。</div>
 <p><span class="tag t-video">视频原述</span>「当某类能力评测的问题被 Agent 持续稳定地得以解决之后，原来它是一道难题，就变成了回归的一部分。」——这正是图 14 里「新难题 🚩 → 稳定解决后 → ✓✓✓」的箭头。</p>
+<details class="ts-box"><summary>本章语音逐字稿（ASR · 已校正）（逐字 · 17 句）</summary>
+<div class="ts-lines">
+<div class="ts-line"><span class="ts-t">[11:55]</span> 复杂任务进步了</div>
+<div class="ts-line"><span class="ts-t">[11:56]</span> 简单任务却退步了</div>
+<div class="ts-line"><span class="ts-t">[11:57]</span> 这也不能直接叫整体变好</div>
+<div class="ts-line"><span class="ts-t">[11:58]</span> 这就需要同时做能力评测和回归评测</div>
+<div class="ts-line"><span class="ts-t">[12:02]</span> 能力评测解决的是这个 Agent 还有什么不会</div>
+<div class="ts-line"><span class="ts-t">[12:04]</span> 回归评测解决的是以前它会的东西</div>
+<div class="ts-line"><span class="ts-t">[12:06]</span> 现在还会不会</div>
+<div class="ts-line"><span class="ts-t">[12:08]</span> 换模型改提是此加斯基尔</div>
+<div class="ts-line"><span class="ts-t">[12:09]</span> 以前正常的任务还是需要继续正常</div>
+<div class="ts-line"><span class="ts-t">[12:13]</span> 当某一类能力评测的问题</div>
+<div class="ts-line"><span class="ts-t">[12:14]</span> 被 Agent 持续稳定的得益解决之后</div>
+<div class="ts-line"><span class="ts-t">[12:16]</span> 它就可以毕业了</div>
+<div class="ts-line"><span class="ts-t">[12:17]</span> 进入到回归测试的数据机</div>
+<div class="ts-line"><span class="ts-t">[12:19]</span> 原来它是一道难题</div>
+<div class="ts-line"><span class="ts-t">[12:20]</span> 等解决之后它就变成了一条底线</div>
+<div class="ts-line"><span class="ts-t">[12:22]</span> 这样你的评测数据机其实是在不断演化的</div>
+<div class="ts-line"><span class="ts-t">[12:25]</span> 后这张指标地图列出了</div>
+</div></details>
 </section>
 
 <section class="sec" id="s11">
@@ -1177,6 +1673,14 @@ main{padding-top:22px}
 <tr><td><span class="pill p2">P2</span></td><td>进入规模化阶段再补充（进阶指标）</td><td>模块级延迟细分、记忆衰减曲线、热更新生效延迟、用户满意度等</td></tr>
 </table>
 <div class="note"><span class="tag t-extra">补充</span>把指标地图与前面章节对上：<strong>Quality 六项 ≈ 阿里 3.1 端到端六项「用户感知」指标</strong>；<strong>Trace 四模块 = 阿里 2.1 的感知 / 规划 / 记忆 / 工具四模块</strong>；<strong>Cost + Performance = 阿里 3.6 成本与性能指标</strong>。视频里没展开的「稳定性和回归」在地图上不是单独一栏，而是体现在 <a href="#s9">第 9 章 pass^k</a> 与 <a href="#s10">第 10 章回归集</a> 的运行方式里。另需注意：截图里个别行左侧项目符号颜色与右侧 P 标记略有出入（「输出 Token 消耗」左点浅绿、「工具选择准确率」左点红、「用户满意度」左点橙），独立 HTML 页已按原图如实保留，判定请以右侧 P0/P1/P2 为准。</div>
+<details class="ts-box"><summary>本章语音逐字稿（ASR · 已校正）（逐字 · 5 句）</summary>
+<div class="ts-lines">
+<div class="ts-line"><span class="ts-t">[12:26]</span> 结果过程体验成本</div>
+<div class="ts-line"><span class="ts-t">[12:28]</span> 以及稳定性和回归这些方向</div>
+<div class="ts-line"><span class="ts-t">[12:30]</span> 大家可以按照自己的业务和产品的阶段</div>
+<div class="ts-line"><span class="ts-t">[12:32]</span> 有针对性的选择</div>
+<div class="ts-line"><span class="ts-t">[12:33]</span> 如果你能听到这你肯定会想</div>
+</div></details>
 </section>
 
 <section class="sec" id="s12">
@@ -1236,6 +1740,29 @@ main{padding-top:22px}
 </ol>
 </div>
 <div class="note"><span class="tag t-extra">补充</span>Anthropic 的结论与之几乎一致：<em>Start early and don't wait for the perfect suite. Source realistic tasks from the failures you see. Define unambiguous, robust success criteria. Design graders thoughtfully and combine multiple types. Make sure the problems are hard enough. Iterate on the evals to improve their signal-to-noise ratio. Read the transcripts!</em> 而阿里文章的未来方向把它推得更远：<strong>变更即评测</strong>（代码 / 模型 / Prompt / 知识库变更自动触发回归）、<strong>趋势可追踪</strong>（A/B 版本 diff 报告）、<strong>多模型 A/B</strong>、<strong>评测集自演化</strong>（线上真实问题自动转成结构化用例）。</div>
+<details class="ts-box"><summary>本章语音逐字稿（ASR · 已校正）（逐字 · 20 句）</summary>
+<div class="ts-lines">
+<div class="ts-line"><span class="ts-t">[12:35]</span> 评测也太复杂了吧</div>
+<div class="ts-line"><span class="ts-t">[12:36]</span> 我搞个 Agent 都没这么复杂</div>
+<div class="ts-line"><span class="ts-t">[12:38]</span> 这不是一份所有团队都必须照着</div>
+<div class="ts-line"><span class="ts-t">[12:39]</span> 执行的标准答案</div>
+<div class="ts-line"><span class="ts-t">[12:40]</span> 而是一个思路框架</div>
+<div class="ts-line"><span class="ts-t">[12:42]</span> 真正开始做 evo 的时候</div>
+<div class="ts-line"><span class="ts-t">[12:43]</span> 反而建议从简单开始</div>
+<div class="ts-line"><span class="ts-t">[12:44]</span> 调几个最核心的任务</div>
+<div class="ts-line"><span class="ts-t">[12:46]</span> 写清楚初始条件和成功标准</div>
+<div class="ts-line"><span class="ts-t">[12:47]</span> 从真实问题和历史的 bad case 里面整理几十条</div>
+<div class="ts-line"><span class="ts-t">[12:50]</span> 先把结果测起来</div>
+<div class="ts-line"><span class="ts-t">[12:51]</span> 关键任务多跑几次</div>
+<div class="ts-line"><span class="ts-t">[12:53]</span> 再抽查评分和执行记录</div>
+<div class="ts-line"><span class="ts-t">[12:54]</span> 不是指标越多评测就越好</div>
+<div class="ts-line"><span class="ts-t">[12:56]</span> 评测应该让团队敢于改</div>
+<div class="ts-line"><span class="ts-t">[12:58]</span> 也知道什么时候该停</div>
+<div class="ts-line"><span class="ts-t">[12:59]</span> 下一次准备上线</div>
+<div class="ts-line"><span class="ts-t">[13:00]</span> 至少能拿出证据说清楚</div>
+<div class="ts-line"><span class="ts-t">[13:02]</span> 哪里变好了哪里退步了</div>
+<div class="ts-line"><span class="ts-t">[13:04]</span> 这个版本为什么值得反</div>
+</div></details>
 </section>
 
 <section class="sec" id="s13">
@@ -1844,6 +2371,549 @@ def run_suite(suite, agent, env_factory, trials=3, workers=3):
 <p class="proto-hint">下方为原型的实时内嵌视图，可直接在框内切换导航、筛选用例、展开详情；若需要更大的操作空间，请点上方「在新窗口打开原型」。</p>
 <iframe class="proto-frame" src="评测系统原型.html" title="Agent 应用智能评测平台 · 交互原型" loading="lazy"></iframe>
 <p class="proto-hint">原型文件：<a href="评测系统原型.html">评测系统原型.html</a> ｜ 配套还原图：<a href="指标地图.html">指标地图.html</a></p>
+<p><strong>附录 · 全片语音逐字稿（ASR · 483 段 · 按视频/章节分组）</strong></p>
+<p>由离线语音识别还原的完整口播，逐段保留时间码；点击标题展开。视频作者制作的烧录字幕为精简重排版，两者不完全逐字对应属正常现象。</p>
+<details class="ts-box"><summary>引言（逐字 · 35 句）</summary>
+<div class="ts-lines">
+<div class="ts-line"><span class="ts-t">[00:00]</span> 很多 Agent 的看起来很惊艳</div>
+<div class="ts-line"><span class="ts-t">[00:02]</span> 但是上线之后问题才开始暴露</div>
+<div class="ts-line"><span class="ts-t">[00:04]</span> 任务失败</div>
+<div class="ts-line"><span class="ts-t">[00:05]</span> 工具调用不稳定</div>
+<div class="ts-line"><span class="ts-t">[00:06]</span> 上下文丢失</div>
+<div class="ts-line"><span class="ts-t">[00:07]</span> 刚修好了一个 bad case</div>
+<div class="ts-line"><span class="ts-t">[00:09]</span> 又引入了一个新的问题</div>
+<div class="ts-line"><span class="ts-t">[00:10]</span> Agent 之间真正拉开差距的</div>
+<div class="ts-line"><span class="ts-t">[00:12]</span> 要看谁能在生产环境里持续稳定的完成任务</div>
+<div class="ts-line"><span class="ts-t">[00:16]</span> 这既考验 Harness 的设计</div>
+<div class="ts-line"><span class="ts-t">[00:17]</span> 也考验团队能不能判断</div>
+<div class="ts-line"><span class="ts-t">[00:19]</span> 每次修改到底有没有让产品变好</div>
+<div class="ts-line"><span class="ts-t">[00:21]</span> 而这里经常被忽视的一环就是评测</div>
+<div class="ts-line"><span class="ts-t">[00:24]</span> 评测却为 Agent 的迭代就很容易变成</div>
+<div class="ts-line"><span class="ts-t">[00:26]</span> 评感觉改哪有忽视</div>
+<div class="ts-line"><span class="ts-t">[00:28]</span> 所以评测必须从产品设计室就介入</div>
+<div class="ts-line"><span class="ts-t">[00:31]</span> 成为决定产品改什么怎么改</div>
+<div class="ts-line"><span class="ts-t">[00:33]</span> 能不能上线的关键依据</div>
+<div class="ts-line"><span class="ts-t">[00:34]</span> 今年1月</div>
+<div class="ts-line"><span class="ts-t">[00:35]</span> S-ROPE 发布了一篇 Agent 的评测的文章</div>
+<div class="ts-line"><span class="ts-t">[00:37]</span> 系统的讨论了 Agent 的评测应该怎么设计</div>
+<div class="ts-line"><span class="ts-t">[00:40]</span> 最近阿里的技术团队也发布了一篇</div>
+<div class="ts-line"><span class="ts-t">[00:42]</span> Agent 的评测体系设计与工程实践</div>
+<div class="ts-line"><span class="ts-t">[00:45]</span> 又给出了具体的工程落地思路</div>
+<div class="ts-line"><span class="ts-t">[00:47]</span> 那今天呢</div>
+<div class="ts-line"><span class="ts-t">[00:47]</span> 我们就把这两篇放在一起</div>
+<div class="ts-line"><span class="ts-t">[00:49]</span> 讲清楚 Agent 的评测到底应该怎么做</div>
+<div class="ts-line"><span class="ts-t">[00:51]</span> 视频的最后</div>
+<div class="ts-line"><span class="ts-t">[00:52]</span> 我也整理了一个评测的治疗地图</div>
+<div class="ts-line"><span class="ts-t">[00:54]</span> 方便大家对照自己的产品使用</div>
+<div class="ts-line"><span class="ts-t">[00:56]</span> 内容比较多</div>
+<div class="ts-line"><span class="ts-t">[00:57]</span> 信息密度很大</div>
+<div class="ts-line"><span class="ts-t">[00:58]</span> 大家可以按照时间轴切换到感兴趣的章节</div>
+<div class="ts-line"><span class="ts-t">[01:01]</span> 想反复阅读的也可以找我要文字版</div>
+<div class="ts-line"><span class="ts-t">[01:05]</span> 传统大模型的调用</div>
+</div></details>
+<details class="ts-box"><summary>Agent 的错误发生位置（逐字 · 50 句）</summary>
+<div class="ts-lines">
+<div class="ts-line"><span class="ts-t">[01:06]</span> 输入提示词模型给出回答</div>
+<div class="ts-line"><span class="ts-t">[01:08]</span> 以前很多的评测都是围绕着最终的回答展开</div>
+<div class="ts-line"><span class="ts-t">[01:11]</span> 答案准备准确</div>
+<div class="ts-line"><span class="ts-t">[01:12]</span> 有没有幻觉</div>
+<div class="ts-line"><span class="ts-t">[01:13]</span> 先关性怎么样</div>
+<div class="ts-line"><span class="ts-t">[01:13]</span> 语言质量怎么样</div>
+<div class="ts-line"><span class="ts-t">[01:15]</span> 但 Agent 不一样</div>
+<div class="ts-line"><span class="ts-t">[01:16]</span> Agent 的街道任务要先理解需求</div>
+<div class="ts-line"><span class="ts-t">[01:18]</span> 安排步骤</div>
+<div class="ts-line"><span class="ts-t">[01:18]</span> 再调用工具读取结果</div>
+<div class="ts-line"><span class="ts-t">[01:20]</span> 再决定下一步</div>
+<div class="ts-line"><span class="ts-t">[01:21]</span> 有的时候还要改文件</div>
+<div class="ts-line"><span class="ts-t">[01:22]</span> 更新订单</div>
+<div class="ts-line"><span class="ts-t">[01:24]</span> 情况部队再调整计划</div>
+<div class="ts-line"><span class="ts-t">[01:26]</span> 所以 Agent 的错误</div>
+<div class="ts-line"><span class="ts-t">[01:27]</span> 不是只发生在最后生生答案的那一刻</div>
+<div class="ts-line"><span class="ts-t">[01:29]</span> 而是发生在整条执行面路上的任何一个地方</div>
+<div class="ts-line"><span class="ts-t">[01:32]</span> 比如说退款</div>
+<div class="ts-line"><span class="ts-t">[01:33]</span> 订单找错了</div>
+<div class="ts-line"><span class="ts-t">[01:34]</span> 后面的工具调用再顺利</div>
+<div class="ts-line"><span class="ts-t">[01:36]</span> 也是给错误的订单退款</div>
+<div class="ts-line"><span class="ts-t">[01:37]</span> 金额传错了</div>
+<div class="ts-line"><span class="ts-t">[01:38]</span> 接口返回成功</div>
+<div class="ts-line"><span class="ts-t">[01:39]</span> 退的金额也是错的</div>
+<div class="ts-line"><span class="ts-t">[01:41]</span> 所以 Agent 的评测</div>
+<div class="ts-line"><span class="ts-t">[01:42]</span> 必须是要覆盖一次完整的任务执行</div>
+<div class="ts-line"><span class="ts-t">[01:44]</span> 他说了什么</div>
+<div class="ts-line"><span class="ts-t">[01:45]</span> 做了什么</div>
+<div class="ts-line"><span class="ts-t">[01:46]</span> 最后系统变成了什么状态</div>
+<div class="ts-line"><span class="ts-t">[01:47]</span> 都得有一句</div>
+<div class="ts-line"><span class="ts-t">[01:48]</span> 而这些步骤又是连在一起的</div>
+<div class="ts-line"><span class="ts-t">[01:50]</span> 你为了修改工具</div>
+<div class="ts-line"><span class="ts-t">[01:51]</span> 改了提示词</div>
+<div class="ts-line"><span class="ts-t">[01:52]</span> 有可能会影响任务的路由</div>
+<div class="ts-line"><span class="ts-t">[01:54]</span> 为了让他记住更多的信息</div>
+<div class="ts-line"><span class="ts-t">[01:55]</span> 又可能增加干扰</div>
+<div class="ts-line"><span class="ts-t">[01:57]</span> 眼前的几个任务变好了</div>
+<div class="ts-line"><span class="ts-t">[01:58]</span> 那其他的任务有没有受影响</div>
+<div class="ts-line"><span class="ts-t">[02:00]</span> 靠感觉是看不出来的</div>
+<div class="ts-line"><span class="ts-t">[02:01]</span> 评测要改变的</div>
+<div class="ts-line"><span class="ts-t">[02:02]</span> 就是这个被动的局面</div>
+<div class="ts-line"><span class="ts-t">[02:03]</span> 让问题尽量在用户之前暴露出来</div>
+<div class="ts-line"><span class="ts-t">[02:08]</span> 不少团队做评测</div>
+<div class="ts-line"><span class="ts-t">[02:09]</span> 上来就列准确率</div>
+<div class="ts-line"><span class="ts-t">[02:10]</span> 召回率</div>
+<div class="ts-line"><span class="ts-t">[02:11]</span> 换绝率</div>
+<div class="ts-line"><span class="ts-t">[02:12]</span> 只标列了一大堆</div>
+<div class="ts-line"><span class="ts-t">[02:13]</span> 到底怎么才算是上线标准</div>
+<div class="ts-line"><span class="ts-t">[02:14]</span> 没人说得清</div>
+<div class="ts-line"><span class="ts-t">[02:15]</span> 我把这两篇文章的思路</div>
+</div></details>
+<details class="ts-box"><summary>评测的三个层次（逐字 · 89 句）</summary>
+<div class="ts-lines">
+<div class="ts-line"><span class="ts-t">[02:17]</span> 整理成了三个层次</div>
+<div class="ts-line"><span class="ts-t">[02:18]</span> Outcome</div>
+<div class="ts-line"><span class="ts-t">[02:19]</span> Trace</div>
+<div class="ts-line"><span class="ts-t">[02:20]</span> Experience</div>
+<div class="ts-line"><span class="ts-t">[02:21]</span> 事情有没有做成</div>
+<div class="ts-line"><span class="ts-t">[02:22]</span> 过程有没有问题</div>
+<div class="ts-line"><span class="ts-t">[02:23]</span> 以及体验和成本能不能接受</div>
+<div class="ts-line"><span class="ts-t">[02:25]</span> 先说 Outcome</div>
+<div class="ts-line"><span class="ts-t">[02:26]</span> 事情能不能做成</div>
+<div class="ts-line"><span class="ts-t">[02:27]</span> Aslopic 专门区分了</div>
+<div class="ts-line"><span class="ts-t">[02:28]</span> Output 和 Outcome</div>
+<div class="ts-line"><span class="ts-t">[02:30]</span> 比如说一个 Agent 的最后告诉你</div>
+<div class="ts-line"><span class="ts-t">[02:31]</span> 退还引荐成功了</div>
+<div class="ts-line"><span class="ts-t">[02:32]</span> 这个是 Output</div>
+<div class="ts-line"><span class="ts-t">[02:34]</span> 真正区系统里面看</div>
+<div class="ts-line"><span class="ts-t">[02:35]</span> 确实成成了一笔退款记录</div>
+<div class="ts-line"><span class="ts-t">[02:37]</span> 而且状态已经变成了成功</div>
+<div class="ts-line"><span class="ts-t">[02:38]</span> 这才是 Outcome</div>
+<div class="ts-line"><span class="ts-t">[02:39]</span> 所以对于 Agent 来说</div>
+<div class="ts-line"><span class="ts-t">[02:41]</span> 不能只看他最后说了什么</div>
+<div class="ts-line"><span class="ts-t">[02:42]</span> 还要看这个任务结束以后</div>
+<div class="ts-line"><span class="ts-t">[02:44]</span> 真实的世界或者系统</div>
+<div class="ts-line"><span class="ts-t">[02:45]</span> 状态到底发生了什么</div>
+<div class="ts-line"><span class="ts-t">[02:47]</span> 所以任务完成率</div>
+<div class="ts-line"><span class="ts-t">[02:48]</span> 作为整个端道端评测的北极星指标</div>
+<div class="ts-line"><span class="ts-t">[02:51]</span> 因为不管 Agent 的内部多复杂</div>
+<div class="ts-line"><span class="ts-t">[02:52]</span> 站在用户的角度</div>
+<div class="ts-line"><span class="ts-t">[02:53]</span> 第一个问题永远是</div>
+<div class="ts-line"><span class="ts-t">[02:54]</span> 我的事情到底有没有办成</div>
+<div class="ts-line"><span class="ts-t">[02:56]</span> 一个 Agent 的查对订单</div>
+<div class="ts-line"><span class="ts-t">[02:57]</span> 完成校验</div>
+<div class="ts-line"><span class="ts-t">[02:58]</span> 顺利退款</div>
+<div class="ts-line"><span class="ts-t">[02:59]</span> 另一个连续调错工具</div>
+<div class="ts-line"><span class="ts-t">[03:00]</span> 重视了好几次</div>
+<div class="ts-line"><span class="ts-t">[03:01]</span> 最后也成功了</div>
+<div class="ts-line"><span class="ts-t">[03:02]</span> 只看结果两条都是通过</div>
+<div class="ts-line"><span class="ts-t">[03:04]</span> 但是显然你还想知道</div>
+<div class="ts-line"><span class="ts-t">[03:06]</span> 第二个问题到底出在哪</div>
+<div class="ts-line"><span class="ts-t">[03:07]</span> 所以需要看第二层 Trace</div>
+<div class="ts-line"><span class="ts-t">[03:09]</span> Trace 可以理解成 Agent 的行车记录仪</div>
+<div class="ts-line"><span class="ts-t">[03:12]</span> 在一次任务里</div>
+<div class="ts-line"><span class="ts-t">[03:13]</span> Agent 调用了什么工具</div>
+<div class="ts-line"><span class="ts-t">[03:14]</span> 传了什么参数</div>
+<div class="ts-line"><span class="ts-t">[03:15]</span> 工具返回了什么</div>
+<div class="ts-line"><span class="ts-t">[03:16]</span> 每一部花了多久</div>
+<div class="ts-line"><span class="ts-t">[03:17]</span> 都要记录在 Trace 里面</div>
+<div class="ts-line"><span class="ts-t">[03:19]</span> 而阿里的这篇时间文章</div>
+<div class="ts-line"><span class="ts-t">[03:20]</span> 在 Trace 这一层</div>
+<div class="ts-line"><span class="ts-t">[03:21]</span> 做了非常详细的拆解</div>
+<div class="ts-line"><span class="ts-t">[03:23]</span> 他把这个过程拆成四个模块</div>
+<div class="ts-line"><span class="ts-t">[03:25]</span> 感知规划记忆和工具</div>
+<div class="ts-line"><span class="ts-t">[03:27]</span> 感知解决的是看懂了没</div>
+<div class="ts-line"><span class="ts-t">[03:29]</span> 用户的意图到底有没有理解正确</div>
+<div class="ts-line"><span class="ts-t">[03:31]</span> 用户要退款</div>
+<div class="ts-line"><span class="ts-t">[03:32]</span> 还是只想问退款的规则</div>
+<div class="ts-line"><span class="ts-t">[03:34]</span> 规划解决的是想对了没</div>
+<div class="ts-line"><span class="ts-t">[03:35]</span> 应该走 Scale 知识库</div>
+<div class="ts-line"><span class="ts-t">[03:37]</span> 还是工具</div>
+<div class="ts-line"><span class="ts-t">[03:38]</span> 知识路径有没有选对</div>
+<div class="ts-line"><span class="ts-t">[03:39]</span> 那记忆解决的就是记住了没</div>
+<div class="ts-line"><span class="ts-t">[03:41]</span> 多伦对话以后</div>
+<div class="ts-line"><span class="ts-t">[03:42]</span> 前面已经确认的信息还记不记得</div>
+<div class="ts-line"><span class="ts-t">[03:46]</span> 你没有选对参数有没有传对</div>
+<div class="ts-line"><span class="ts-t">[03:48]</span> 调用有没有成功</div>
+<div class="ts-line"><span class="ts-t">[03:49]</span> 这背后的底层原则就是评测体系</div>
+<div class="ts-line"><span class="ts-t">[03:51]</span> 应该尽量和你的 Agent 的架构同购</div>
+<div class="ts-line"><span class="ts-t">[03:53]</span> 你的 Agent 是怎么工作的</div>
+<div class="ts-line"><span class="ts-t">[03:55]</span> 你的评测就要沿着这条链路去拆</div>
+<div class="ts-line"><span class="ts-t">[03:57]</span> 这样一个指标下降的时候</div>
+<div class="ts-line"><span class="ts-t">[03:58]</span> 你才能知道到底是应该改提识词</div>
+<div class="ts-line"><span class="ts-t">[04:00]</span> 还是改工具描述还是改记忆</div>
+<div class="ts-line"><span class="ts-t">[04:02]</span> 最后看 Experience 体验和成本</div>
+<div class="ts-line"><span class="ts-t">[04:05]</span> 一个简单的查询</div>
+<div class="ts-line"><span class="ts-t">[04:06]</span> 你让用户干等半分钟</div>
+<div class="ts-line"><span class="ts-t">[04:07]</span> 任务完成率再好</div>
+<div class="ts-line"><span class="ts-t">[04:08]</span> 用户也不可能想用</div>
+<div class="ts-line"><span class="ts-t">[04:10]</span> 一个简单的问题</div>
+<div class="ts-line"><span class="ts-t">[04:11]</span> 来回调了几十次模型</div>
+<div class="ts-line"><span class="ts-t">[04:12]</span> 烧掉了大量的 Token</div>
+<div class="ts-line"><span class="ts-t">[04:16]</span> 增加成本和性能两个维度</div>
+<div class="ts-line"><span class="ts-t">[04:18]</span> 比如说模型的调用次数</div>
+<div class="ts-line"><span class="ts-t">[04:19]</span> 输入输出的 Token</div>
+<div class="ts-line"><span class="ts-t">[04:20]</span> 端道端的延时等等</div>
+<div class="ts-line"><span class="ts-t">[04:22]</span> 结果质量过程质量</div>
+<div class="ts-line"><span class="ts-t">[04:23]</span> 体验与运行成本</div>
+<div class="ts-line"><span class="ts-t">[04:25]</span> 这三个方面放在一起才能说清楚</div>
+<div class="ts-line"><span class="ts-t">[04:27]</span> 你到底想把 Agent 的优化成什么样</div>
+<div class="ts-line"><span class="ts-t">[04:30]</span> 这是后面整套评测的基础</div>
+<div class="ts-line"><span class="ts-t">[04:33]</span> 明确了什么叫做好</div>
+</div></details>
+<details class="ts-box"><summary>评测框架（逐字 · 26 句）</summary>
+<div class="ts-lines">
+<div class="ts-line"><span class="ts-t">[04:35]</span> 接下来是评测体系本身有什么构成</div>
+<div class="ts-line"><span class="ts-t">[04:37]</span> Anthropic 给了三个层级的概念</div>
+<div class="ts-line"><span class="ts-t">[04:39]</span> 一条可以重复执行的测试任务叫做 Task</div>
+<div class="ts-line"><span class="ts-t">[04:42]</span> 它要写清楚输入出使条件和成功标准</div>
+<div class="ts-line"><span class="ts-t">[04:45]</span> 做到什么才算完成</div>
+<div class="ts-line"><span class="ts-t">[04:46]</span> 有哪些行为不能发生提前约定</div>
+<div class="ts-line"><span class="ts-t">[04:49]</span> 把同一批任务按照业务或者是能力组织起来</div>
+<div class="ts-line"><span class="ts-t">[04:52]</span> 就是评测级</div>
+<div class="ts-line"><span class="ts-t">[04:53]</span> 比如说多轮对话一组</div>
+<div class="ts-line"><span class="ts-t">[04:55]</span> 工具调用一组</div>
+<div class="ts-line"><span class="ts-t">[04:56]</span> 也可以把退款取消订单</div>
+<div class="ts-line"><span class="ts-t">[04:57]</span> 转任功放在客服业务的 Suite 下面</div>
+<div class="ts-line"><span class="ts-t">[05:00]</span> 然后你需要一套系统</div>
+<div class="ts-line"><span class="ts-t">[05:01]</span> 把任务发给 Agent</div>
+<div class="ts-line"><span class="ts-t">[05:02]</span> 准备工具和环境</div>
+<div class="ts-line"><span class="ts-t">[05:04]</span> 保存之前的记录调用评分器</div>
+<div class="ts-line"><span class="ts-t">[05:05]</span> 在汇总结果</div>
+<div class="ts-line"><span class="ts-t">[05:06]</span> 这就是 Evo 的 Harness 评测框架</div>
+<div class="ts-line"><span class="ts-t">[05:09]</span> Task 向一道题</div>
+<div class="ts-line"><span class="ts-t">[05:10]</span> Suite 向一套试卷</div>
+<div class="ts-line"><span class="ts-t">[05:12]</span> Harness 是出题以后的运行记录评分都组织起来</div>
+<div class="ts-line"><span class="ts-t">[05:16]</span> 同一道题没抱歉叫 Trails</div>
+<div class="ts-line"><span class="ts-t">[05:17]</span> 也就是一次试跑</div>
+<div class="ts-line"><span class="ts-t">[05:18]</span> 每一次都有指自己的执行记录 Trace</div>
+<div class="ts-line"><span class="ts-t">[05:21]</span> 一个任务可以有多个评分器进行打分</div>
+<div class="ts-line"><span class="ts-t">[05:25]</span> 你用一堆条件齐全表达准区的问题去测 Agent</div>
+</div></details>
+<details class="ts-box"><summary>任务收集（逐字 · 101 句）</summary>
+<div class="ts-lines">
+<div class="ts-line"><span class="ts-t">[05:28]</span> 它当然容易表现得很好</div>
+<div class="ts-line"><span class="ts-t">[05:30]</span> 但真实用户一开口</div>
+<div class="ts-line"><span class="ts-t">[05:31]</span> 省略指代临时改变主意全都来了</div>
+<div class="ts-line"><span class="ts-t">[05:34]</span> 接不住</div>
+<div class="ts-line"><span class="ts-t">[05:35]</span> 那早期不需要追求特别大的数据级</div>
+<div class="ts-line"><span class="ts-t">[05:37]</span> 可以从手工测试真实的日制</div>
+<div class="ts-line"><span class="ts-t">[05:39]</span> 用户反会或者线上失败里面</div>
+<div class="ts-line"><span class="ts-t">[05:41]</span> 找20-50条有代表性的任务先跑起来</div>
+<div class="ts-line"><span class="ts-t">[05:43]</span> 那它们是核心理极限发现明显的变化</div>
+<div class="ts-line"><span class="ts-t">[05:46]</span> 后面如果要识别更小的差异再增加规模</div>
+<div class="ts-line"><span class="ts-t">[05:48]</span> 预计至少要覆盖这四个情况</div>
+<div class="ts-line"><span class="ts-t">[05:50]</span> 第一类是核心任务</div>
+<div class="ts-line"><span class="ts-t">[05:51]</span> 也就是这个 Agent 的最重要最高频</div>
+<div class="ts-line"><span class="ts-t">[05:53]</span> 最能代表产品价值的任务</div>
+<div class="ts-line"><span class="ts-t">[05:54]</span> 比如说一个搜索的 Agent</div>
+<div class="ts-line"><span class="ts-t">[05:56]</span> 那它的核心任务可能就是信息的检索</div>
+<div class="ts-line"><span class="ts-t">[05:58]</span> 跨来源的总结复杂问题的拆解</div>
+<div class="ts-line"><span class="ts-t">[06:00]</span> 一个数据 Agent 核心的任务就是查数</div>
+<div class="ts-line"><span class="ts-t">[06:02]</span> 分析归因是什么图表</div>
+<div class="ts-line"><span class="ts-t">[06:03]</span> 这些产品靠它吃饭的能力</div>
+<div class="ts-line"><span class="ts-t">[06:05]</span> 必须有对应的测试</div>
+<div class="ts-line"><span class="ts-t">[06:07]</span> 第二个是真实用户的任务</div>
+<div class="ts-line"><span class="ts-t">[06:08]</span> 这类数据最好直接来自于真实的日质</div>
+<div class="ts-line"><span class="ts-t">[06:10]</span> 真实的 query 只是用户的使用记录</div>
+<div class="ts-line"><span class="ts-t">[06:12]</span> 因为产品经理自己构造的问题</div>
+<div class="ts-line"><span class="ts-t">[06:14]</span> 往往太标准表达完整</div>
+<div class="ts-line"><span class="ts-t">[06:16]</span> 一图清晰</div>
+<div class="ts-line"><span class="ts-t">[06:17]</span> 但真实的用户不会这么说</div>
+<div class="ts-line"><span class="ts-t">[06:19]</span> 第三类是历史的 Bad Case</div>
+<div class="ts-line"><span class="ts-t">[06:20]</span> 这类数据其实特别值钱</div>
+<div class="ts-line"><span class="ts-t">[06:22]</span> 线上真正出过问题</div>
+<div class="ts-line"><span class="ts-t">[06:23]</span> 被用户投诉过人工排查过的问题</div>
+<div class="ts-line"><span class="ts-t">[06:26]</span> 要求好了都应该沉淀进品测计</div>
+<div class="ts-line"><span class="ts-t">[06:28]</span> 否则一个空可能就会掉进去两次</div>
+<div class="ts-line"><span class="ts-t">[06:30]</span> 第四类就是编解 Case</div>
+<div class="ts-line"><span class="ts-t">[06:31]</span> 你的信息不够</div>
+<div class="ts-line"><span class="ts-t">[06:32]</span> 多一图长对话工具异常</div>
+<div class="ts-line"><span class="ts-t">[06:34]</span> 知识库没有答案</div>
+<div class="ts-line"><span class="ts-t">[06:35]</span> 都要主动覆盖</div>
+<div class="ts-line"><span class="ts-t">[06:36]</span> 不能只等着线上预见</div>
+<div class="ts-line"><span class="ts-t">[06:38]</span> 顾手机多了</div>
+<div class="ts-line"><span class="ts-t">[06:39]</span> 还要能快速的挑出这次应该测打鞋</div>
+<div class="ts-line"><span class="ts-t">[06:41]</span> 可以按照下面之八类基金打标</div>
+<div class="ts-line"><span class="ts-t">[06:43]</span> 组织专项的评测</div>
+<div class="ts-line"><span class="ts-t">[06:45]</span> 基础技能的评测</div>
+<div class="ts-line"><span class="ts-t">[06:46]</span> 测的就是 Agent 最核心的技术能力</div>
+<div class="ts-line"><span class="ts-t">[06:48]</span> 比如说一个任务该不该命中</div>
+<div class="ts-line"><span class="ts-t">[06:49]</span> 某个 skill 最终有没有完成</div>
+<div class="ts-line"><span class="ts-t">[06:51]</span> 知识问答评测机</div>
+<div class="ts-line"><span class="ts-t">[06:53]</span> 主要就是测 req 和知识库相关的能力</div>
+<div class="ts-line"><span class="ts-t">[06:55]</span> 该查的收查了吗</div>
+<div class="ts-line"><span class="ts-t">[06:56]</span> 检索内容对不对</div>
+<div class="ts-line"><span class="ts-t">[06:57]</span> 找到了证据的材料没有</div>
+<div class="ts-line"><span class="ts-t">[06:58]</span> 回答有没有乱编</div>
+<div class="ts-line"><span class="ts-t">[07:00]</span> 多轮对话的评测机测的就是</div>
+<div class="ts-line"><span class="ts-t">[07:01]</span> Agent 在连续多轮交互里面</div>
+<div class="ts-line"><span class="ts-t">[07:03]</span> 还能不能保持上下文</div>
+<div class="ts-line"><span class="ts-t">[07:04]</span> 能不能理解指代</div>
+<div class="ts-line"><span class="ts-t">[07:05]</span> 用户中途切换了话题之后</div>
+<div class="ts-line"><span class="ts-t">[07:07]</span> 还能不能接得住</div>
+<div class="ts-line"><span class="ts-t">[07:08]</span> 异常输入的评测机测的就是</div>
+<div class="ts-line"><span class="ts-t">[07:10]</span> 系统会不会被不正常的输入搞乱</div>
+<div class="ts-line"><span class="ts-t">[07:12]</span> 空输入超长的文本</div>
+<div class="ts-line"><span class="ts-t">[07:14]</span> 乱码特殊字符</div>
+<div class="ts-line"><span class="ts-t">[07:15]</span> 或者是一些异常的请求</div>
+<div class="ts-line"><span class="ts-t">[07:16]</span> Agent 会不会崩掉</div>
+<div class="ts-line"><span class="ts-t">[07:17]</span> 或者是胡乱回答</div>
+<div class="ts-line"><span class="ts-t">[07:18]</span> 根据调用的评测机专门测工具</div>
+<div class="ts-line"><span class="ts-t">[07:20]</span> 该不该调</div>
+<div class="ts-line"><span class="ts-t">[07:21]</span> 调哪个参数对不对</div>
+<div class="ts-line"><span class="ts-t">[07:22]</span> 失败后该怎么办都得测</div>
+<div class="ts-line"><span class="ts-t">[07:24]</span> 多一图的评测机</div>
+<div class="ts-line"><span class="ts-t">[07:25]</span> 用户已计划里同时有两三个需求</div>
+<div class="ts-line"><span class="ts-t">[07:28]</span> Agent 能不能完全识别出来</div>
+<div class="ts-line"><span class="ts-t">[07:30]</span> 而不是只处理其中一个</div>
+<div class="ts-line"><span class="ts-t">[07:31]</span> 模糊一图的评测机</div>
+<div class="ts-line"><span class="ts-t">[07:32]</span> 用户说的不清楚的时候</div>
+<div class="ts-line"><span class="ts-t">[07:33]</span> Agent 会不会正确的澄清</div>
+<div class="ts-line"><span class="ts-t">[07:35]</span> 而不是自己脑补</div>
+<div class="ts-line"><span class="ts-t">[07:36]</span> 来尝对话衰竭的评测机</div>
+<div class="ts-line"><span class="ts-t">[07:38]</span> 看对话越来越长之后</div>
+<div class="ts-line"><span class="ts-t">[07:39]</span> Agent 的 Memory 到底从第几轮开始明显下降</div>
+<div class="ts-line"><span class="ts-t">[07:42]</span> 真正创建用力的时候</div>
+<div class="ts-line"><span class="ts-t">[07:43]</span> 有三个地方尤其容易出问题</div>
+<div class="ts-line"><span class="ts-t">[07:45]</span> 第一是数据机要来自真实任务</div>
+<div class="ts-line"><span class="ts-t">[07:47]</span> 人工构造的数据</div>
+<div class="ts-line"><span class="ts-t">[07:48]</span> 可以保证测试的覆盖度</div>
+<div class="ts-line"><span class="ts-t">[07:50]</span> 但是要保留真实使用的复杂程度</div>
+<div class="ts-line"><span class="ts-t">[07:52]</span> 全都是构造数据很容易测不出问题</div>
+<div class="ts-line"><span class="ts-t">[07:54]</span> 第二是机要有正力</div>
+<div class="ts-line"><span class="ts-t">[07:56]</span> 要有反力</div>
+<div class="ts-line"><span class="ts-t">[07:57]</span> 你只奖励 Agent 的调用搜索工具</div>
+<div class="ts-line"><span class="ts-t">[07:59]</span> 它可能学会的就是</div>
+<div class="ts-line"><span class="ts-t">[08:00]</span> 遇到什么问题都搜索</div>
+<div class="ts-line"><span class="ts-t">[08:01]</span> 所以该调的时候要测</div>
+<div class="ts-line"><span class="ts-t">[08:03]</span> 不该调的时候能不能控制住也要测</div>
+<div class="ts-line"><span class="ts-t">[08:06]</span> 第三是测试用力要有规范</div>
+<div class="ts-line"><span class="ts-t">[08:07]</span> 用力不能只有问题和参考答案</div>
+<div class="ts-line"><span class="ts-t">[08:09]</span> 还得写出是状态</div>
+<div class="ts-line"><span class="ts-t">[08:10]</span> 成功条件必要约束</div>
+<div class="ts-line"><span class="ts-t">[08:12]</span> 每条用力要完整的标注了</div>
+</div></details>
+<details class="ts-box"><summary>评分器（逐字 · 72 句）</summary>
+<div class="ts-lines">
+<div class="ts-line"><span class="ts-t">[08:14]</span> 评测链路所需要的所有信息</div>
+<div class="ts-line"><span class="ts-t">[08:16]</span> 这样一个 Task 跑一次</div>
+<div class="ts-line"><span class="ts-t">[08:18]</span> 就能同时判断</div>
+<div class="ts-line"><span class="ts-t">[08:18]</span> Outcome 和 Trace 里面的多个环节</div>
+<div class="ts-line"><span class="ts-t">[08:22]</span> 怎么判断它到底有没有作对</div>
+<div class="ts-line"><span class="ts-t">[08:24]</span> 考虑就是评分器</div>
+<div class="ts-line"><span class="ts-t">[08:25]</span> 评分器如果判错了</div>
+<div class="ts-line"><span class="ts-t">[08:26]</span> 比一次任务做错更麻烦</div>
+<div class="ts-line"><span class="ts-t">[08:28]</span> 因为你会拿着错误的分数</div>
+<div class="ts-line"><span class="ts-t">[08:29]</span> 继续把产品往错误的方向改</div>
+<div class="ts-line"><span class="ts-t">[08:31]</span> SROPEX 是把评分方式分成了三种</div>
+<div class="ts-line"><span class="ts-t">[08:34]</span> 代码评分</div>
+<div class="ts-line"><span class="ts-t">[08:35]</span> 模型评分和人工评分</div>
+<div class="ts-line"><span class="ts-t">[08:37]</span> 这三种</div>
+<div class="ts-line"><span class="ts-t">[08:37]</span> 先用代码评分</div>
+<div class="ts-line"><span class="ts-t">[08:39]</span> 工具参数对不对</div>
+<div class="ts-line"><span class="ts-t">[08:40]</span> 退款记录的订单和金额对不对</div>
+<div class="ts-line"><span class="ts-t">[08:42]</span> 状态是否成功</div>
+<div class="ts-line"><span class="ts-t">[08:43]</span> 有没有超过约定的时间</div>
+<div class="ts-line"><span class="ts-t">[08:44]</span> 用程序检查更便宜稳定</div>
+<div class="ts-line"><span class="ts-t">[08:46]</span> 而且还可以重复执行</div>
+<div class="ts-line"><span class="ts-t">[08:48]</span> 有些事情代码判断很难</div>
+<div class="ts-line"><span class="ts-t">[08:50]</span> 解释有没有回答到用户关心的问题点</div>
+<div class="ts-line"><span class="ts-t">[08:52]</span> 是否一路重要的条件</div>
+<div class="ts-line"><span class="ts-t">[08:53]</span> 有没有便利知识库和工具返回的信息</div>
+<div class="ts-line"><span class="ts-t">[08:56]</span> 那这些语异的问题</div>
+<div class="ts-line"><span class="ts-t">[08:57]</span> 都可以用模型来评分</div>
+<div class="ts-line"><span class="ts-t">[08:58]</span> 也就是 LLM as a judge</div>
+<div class="ts-line"><span class="ts-t">[09:01]</span> 但是大模型的评分</div>
+<div class="ts-line"><span class="ts-t">[09:02]</span> 不是简单的把所有内容</div>
+<div class="ts-line"><span class="ts-t">[09:03]</span> 认给一个更强的模型</div>
+<div class="ts-line"><span class="ts-t">[09:04]</span> 让它从零到一百打个分</div>
+<div class="ts-line"><span class="ts-t">[09:06]</span> 有四个很重要的原则</div>
+<div class="ts-line"><span class="ts-t">[09:07]</span> 第一个是单一指责</div>
+<div class="ts-line"><span class="ts-t">[09:08]</span> 一个 prompt 只凭一个指标</div>
+<div class="ts-line"><span class="ts-t">[09:10]</span> 判断任务有没有完成</div>
+<div class="ts-line"><span class="ts-t">[09:12]</span> 就对照完成条件</div>
+<div class="ts-line"><span class="ts-t">[09:13]</span> 判断中时度就检查</div>
+<div class="ts-line"><span class="ts-t">[09:14]</span> 有没有脱离证据乱编</div>
+<div class="ts-line"><span class="ts-t">[09:16]</span> 不要让一个模糊的总分</div>
+<div class="ts-line"><span class="ts-t">[09:17]</span> 把几个不同的问题混淆在一起</div>
+<div class="ts-line"><span class="ts-t">[09:19]</span> 复杂任务可以拆开判断</div>
+<div class="ts-line"><span class="ts-t">[09:21]</span> 第二是先推理后判断</div>
+<div class="ts-line"><span class="ts-t">[09:23]</span> 每个 prompt 都要求大模型</div>
+<div class="ts-line"><span class="ts-t">[09:24]</span> 先输出思维链的推理</div>
+<div class="ts-line"><span class="ts-t">[09:26]</span> 再给出结论</div>
+<div class="ts-line"><span class="ts-t">[09:27]</span> 这不仅提高了判断的准确性</div>
+<div class="ts-line"><span class="ts-t">[09:28]</span> 也让评测结果具备的可解释性</div>
+<div class="ts-line"><span class="ts-t">[09:31]</span> 第三是福利引导</div>
+<div class="ts-line"><span class="ts-t">[09:32]</span> 每个 prompt 都要包含</div>
+<div class="ts-line"><span class="ts-t">[09:33]</span> 典型的通过和不通过的势力</div>
+<div class="ts-line"><span class="ts-t">[09:35]</span> 最后一个是结构化输出</div>
+<div class="ts-line"><span class="ts-t">[09:37]</span> 不要让大模型自由发挥写一篇评价</div>
+<div class="ts-line"><span class="ts-t">[09:39]</span> 而是要让它按照严格的</div>
+<div class="ts-line"><span class="ts-t">[09:41]</span> 这份格式输出明确的结构化结果</div>
+<div class="ts-line"><span class="ts-t">[09:43]</span> 方便后面自动统计</div>
+<div class="ts-line"><span class="ts-t">[09:44]</span> 人工评分规则负责专业判断和校准</div>
+<div class="ts-line"><span class="ts-t">[09:47]</span> 人工特别适合两个场景</div>
+<div class="ts-line"><span class="ts-t">[09:48]</span> 一个是高度专业</div>
+<div class="ts-line"><span class="ts-t">[09:50]</span> 或者是高度主观的问题</div>
+<div class="ts-line"><span class="ts-t">[09:51]</span> 另外一个很重要的就是校准大模型</div>
+<div class="ts-line"><span class="ts-t">[09:54]</span> 比如说定期抽一批 case</div>
+<div class="ts-line"><span class="ts-t">[09:55]</span> 让领域专家和大模型同时判断</div>
+<div class="ts-line"><span class="ts-t">[09:57]</span> 看看差在哪</div>
+<div class="ts-line"><span class="ts-t">[09:58]</span> 如果模型经常和专家的结论相反</div>
+<div class="ts-line"><span class="ts-t">[10:00]</span> 那就应该先修改评分标准</div>
+<div class="ts-line"><span class="ts-t">[10:02]</span> 而不是拿错误的评分去优化 Agent</div>
+<div class="ts-line"><span class="ts-t">[10:04]</span> 代码查的清早要用代码</div>
+<div class="ts-line"><span class="ts-t">[10:05]</span> 予以判断交给模型</div>
+<div class="ts-line"><span class="ts-t">[10:07]</span> 专业判断和校准留给人工</div>
+<div class="ts-line"><span class="ts-t">[10:09]</span> 三种方式各自负责合适的部分</div>
+<div class="ts-line"><span class="ts-t">[10:11]</span> 评分才有依据</div>
+</div></details>
+<details class="ts-box"><summary>评测结果的判断（逐字 · 39 句）</summary>
+<div class="ts-lines">
+<div class="ts-line"><span class="ts-t">[10:13]</span> 任务完成了</div>
+<div class="ts-line"><span class="ts-t">[10:14]</span> 工具调用也正确</div>
+<div class="ts-line"><span class="ts-t">[10:15]</span> 但是格式没有按照要求</div>
+<div class="ts-line"><span class="ts-t">[10:16]</span> 响应速度也很慢</div>
+<div class="ts-line"><span class="ts-t">[10:18]</span> 这算通过还是不通过</div>
+<div class="ts-line"><span class="ts-t">[10:19]</span> 阿里在这里用了一个</div>
+<div class="ts-line"><span class="ts-t">[10:20]</span> 我觉得非常实用的方法</div>
+<div class="ts-line"><span class="ts-t">[10:21]</span> 就是给不同类型的评测设置主 Agent</div>
+<div class="ts-line"><span class="ts-t">[10:24]</span> 端到端的评测</div>
+<div class="ts-line"><span class="ts-t">[10:25]</span> 重点看任务完成率</div>
+<div class="ts-line"><span class="ts-t">[10:26]</span> 工具专项评测</div>
+<div class="ts-line"><span class="ts-t">[10:27]</span> 重点看工具的选择和调用是否正确</div>
+<div class="ts-line"><span class="ts-t">[10:30]</span> 每一次评测</div>
+<div class="ts-line"><span class="ts-t">[10:31]</span> 先回答自己最关心的那个问题</div>
+<div class="ts-line"><span class="ts-t">[10:33]</span> 其他的指标不一定决定</div>
+<div class="ts-line"><span class="ts-t">[10:34]</span> 整个 case 是否通过</div>
+<div class="ts-line"><span class="ts-t">[10:35]</span> 而是作为整段信息存在</div>
+<div class="ts-line"><span class="ts-t">[10:37]</span> 在实际的产品里</div>
+<div class="ts-line"><span class="ts-t">[10:38]</span> 我觉得还可以增加一层互拦指标</div>
+<div class="ts-line"><span class="ts-t">[10:40]</span> 某些错误一旦发生</div>
+<div class="ts-line"><span class="ts-t">[10:41]</span> 不管其他指标多搞</div>
+<div class="ts-line"><span class="ts-t">[10:42]</span> 这条 case 都必须非要</div>
+<div class="ts-line"><span class="ts-t">[10:43]</span> 比如说安全</div>
+<div class="ts-line"><span class="ts-t">[10:44]</span> 隐私</div>
+<div class="ts-line"><span class="ts-t">[10:45]</span> 或者不可逆的风险操作</div>
+<div class="ts-line"><span class="ts-t">[10:46]</span> 还有一个细节</div>
+<div class="ts-line"><span class="ts-t">[10:47]</span> 上游的指标错了</div>
+<div class="ts-line"><span class="ts-t">[10:48]</span> 下游该怎么办</div>
+<div class="ts-line"><span class="ts-t">[10:49]</span> 比如说一个问题本来走 RAG</div>
+<div class="ts-line"><span class="ts-t">[10:50]</span> 但是 Agent 的路由错了</div>
+<div class="ts-line"><span class="ts-t">[10:52]</span> 直接走了 skill</div>
+<div class="ts-line"><span class="ts-t">[10:53]</span> 那这次的 RAG 根本没有执行</div>
+<div class="ts-line"><span class="ts-t">[10:55]</span> 如果直接给</div>
+<div class="ts-line"><span class="ts-t">[10:56]</span> 减缩质量打零分</div>
+<div class="ts-line"><span class="ts-t">[10:57]</span> 肯定不合适</div>
+<div class="ts-line"><span class="ts-t">[10:58]</span> 像这种情况</div>
+<div class="ts-line"><span class="ts-t">[10:58]</span> 下游的评分直接跳过统计</div>
+<div class="ts-line"><span class="ts-t">[11:00]</span> 避免上游的错误</div>
+<div class="ts-line"><span class="ts-t">[11:01]</span> 把后面几个指标一起拓地</div>
+</div></details>
+<details class="ts-box"><summary>评测的稳定性（逐字 · 29 句）</summary>
+<div class="ts-lines">
+<div class="ts-line"><span class="ts-t">[11:04]</span> 如果你算出来的评测分数是90分</div>
+<div class="ts-line"><span class="ts-t">[11:06]</span> 那是不是就说明没问题了呢</div>
+<div class="ts-line"><span class="ts-t">[11:08]</span> 这是 Agent 的评测和传统软件测试</div>
+<div class="ts-line"><span class="ts-t">[11:10]</span> 非常不同的地方</div>
+<div class="ts-line"><span class="ts-t">[11:11]</span> Agent 是一个概率系统</div>
+<div class="ts-line"><span class="ts-t">[11:12]</span> 同一个任务</div>
+<div class="ts-line"><span class="ts-t">[11:13]</span> 第一次跑可能成功</div>
+<div class="ts-line"><span class="ts-t">[11:14]</span> 第二次失败</div>
+<div class="ts-line"><span class="ts-t">[11:15]</span> 第三次又成功了</div>
+<div class="ts-line"><span class="ts-t">[11:16]</span> 如果你刚好测到那一次成功</div>
+<div class="ts-line"><span class="ts-t">[11:18]</span> 你会认为它100%没问题</div>
+<div class="ts-line"><span class="ts-t">[11:20]</span> 但对于真实的用户来说</div>
+<div class="ts-line"><span class="ts-t">[11:21]</span> 这显然不是一个稳定的产品</div>
+<div class="ts-line"><span class="ts-t">[11:22]</span> 所以对于复杂多不准的 Agent 的任务</div>
+<div class="ts-line"><span class="ts-t">[11:25]</span> 重要的 case 要重复执行</div>
+<div class="ts-line"><span class="ts-t">[11:27]</span> sropik 在这里用了两个指标来讨论这种波动</div>
+<div class="ts-line"><span class="ts-t">[11:30]</span> 一个指标可以简单理解成</div>
+<div class="ts-line"><span class="ts-t">[11:32]</span> 你给它 case 机会至少要成功一次</div>
+<div class="ts-line"><span class="ts-t">[11:34]</span> 它更适合判断 Agent 的能力边界</div>
+<div class="ts-line"><span class="ts-t">[11:36]</span> 也就是它到底有没有能力把这件事做出来</div>
+<div class="ts-line"><span class="ts-t">[11:39]</span> 那一个指标则要求连续 case 都成功</div>
+<div class="ts-line"><span class="ts-t">[11:42]</span> 对于真正面向用户的 Agent</div>
+<div class="ts-line"><span class="ts-t">[11:43]</span> 这个指标更重要</div>
+<div class="ts-line"><span class="ts-t">[11:44]</span> 因为用户每次来都希望事情办成</div>
+<div class="ts-line"><span class="ts-t">[11:47]</span> 如果测的效果连续 case 都成功了</div>
+<div class="ts-line"><span class="ts-t">[11:49]</span> 这下是不是该起火了</div>
+<div class="ts-line"><span class="ts-t">[11:51]</span> 还不行</div>
+<div class="ts-line"><span class="ts-t">[11:52]</span> 你修好了一个东西</div>
+<div class="ts-line"><span class="ts-t">[11:53]</span> 很可能同时改坏另一个东西</div>
+</div></details>
+<details class="ts-box"><summary>能力评测和回归评测（逐字 · 17 句）</summary>
+<div class="ts-lines">
+<div class="ts-line"><span class="ts-t">[11:55]</span> 复杂任务进步了</div>
+<div class="ts-line"><span class="ts-t">[11:56]</span> 简单任务却退步了</div>
+<div class="ts-line"><span class="ts-t">[11:57]</span> 这也不能直接叫整体变好</div>
+<div class="ts-line"><span class="ts-t">[11:58]</span> 这就需要同时做能力评测和回归评测</div>
+<div class="ts-line"><span class="ts-t">[12:02]</span> 能力评测解决的是这个 Agent 还有什么不会</div>
+<div class="ts-line"><span class="ts-t">[12:04]</span> 回归评测解决的是以前它会的东西</div>
+<div class="ts-line"><span class="ts-t">[12:06]</span> 现在还会不会</div>
+<div class="ts-line"><span class="ts-t">[12:08]</span> 换模型改提是此加斯基尔</div>
+<div class="ts-line"><span class="ts-t">[12:09]</span> 以前正常的任务还是需要继续正常</div>
+<div class="ts-line"><span class="ts-t">[12:13]</span> 当某一类能力评测的问题</div>
+<div class="ts-line"><span class="ts-t">[12:14]</span> 被 Agent 持续稳定的得益解决之后</div>
+<div class="ts-line"><span class="ts-t">[12:16]</span> 它就可以毕业了</div>
+<div class="ts-line"><span class="ts-t">[12:17]</span> 进入到回归测试的数据机</div>
+<div class="ts-line"><span class="ts-t">[12:19]</span> 原来它是一道难题</div>
+<div class="ts-line"><span class="ts-t">[12:20]</span> 等解决之后它就变成了一条底线</div>
+<div class="ts-line"><span class="ts-t">[12:22]</span> 这样你的评测数据机其实是在不断演化的</div>
+<div class="ts-line"><span class="ts-t">[12:25]</span> 后这张指标地图列出了</div>
+</div></details>
+<details class="ts-box"><summary>指标地图（逐字 · 5 句）</summary>
+<div class="ts-lines">
+<div class="ts-line"><span class="ts-t">[12:26]</span> 结果过程体验成本</div>
+<div class="ts-line"><span class="ts-t">[12:28]</span> 以及稳定性和回归这些方向</div>
+<div class="ts-line"><span class="ts-t">[12:30]</span> 大家可以按照自己的业务和产品的阶段</div>
+<div class="ts-line"><span class="ts-t">[12:32]</span> 有针对性的选择</div>
+<div class="ts-line"><span class="ts-t">[12:33]</span> 如果你能听到这你肯定会想</div>
+</div></details>
+<details class="ts-box"><summary>结语（逐字 · 20 句）</summary>
+<div class="ts-lines">
+<div class="ts-line"><span class="ts-t">[12:35]</span> 评测也太复杂了吧</div>
+<div class="ts-line"><span class="ts-t">[12:36]</span> 我搞个 Agent 都没这么复杂</div>
+<div class="ts-line"><span class="ts-t">[12:38]</span> 这不是一份所有团队都必须照着</div>
+<div class="ts-line"><span class="ts-t">[12:39]</span> 执行的标准答案</div>
+<div class="ts-line"><span class="ts-t">[12:40]</span> 而是一个思路框架</div>
+<div class="ts-line"><span class="ts-t">[12:42]</span> 真正开始做 evo 的时候</div>
+<div class="ts-line"><span class="ts-t">[12:43]</span> 反而建议从简单开始</div>
+<div class="ts-line"><span class="ts-t">[12:44]</span> 调几个最核心的任务</div>
+<div class="ts-line"><span class="ts-t">[12:46]</span> 写清楚初始条件和成功标准</div>
+<div class="ts-line"><span class="ts-t">[12:47]</span> 从真实问题和历史的 bad case 里面整理几十条</div>
+<div class="ts-line"><span class="ts-t">[12:50]</span> 先把结果测起来</div>
+<div class="ts-line"><span class="ts-t">[12:51]</span> 关键任务多跑几次</div>
+<div class="ts-line"><span class="ts-t">[12:53]</span> 再抽查评分和执行记录</div>
+<div class="ts-line"><span class="ts-t">[12:54]</span> 不是指标越多评测就越好</div>
+<div class="ts-line"><span class="ts-t">[12:56]</span> 评测应该让团队敢于改</div>
+<div class="ts-line"><span class="ts-t">[12:58]</span> 也知道什么时候该停</div>
+<div class="ts-line"><span class="ts-t">[12:59]</span> 下一次准备上线</div>
+<div class="ts-line"><span class="ts-t">[13:00]</span> 至少能拿出证据说清楚</div>
+<div class="ts-line"><span class="ts-t">[13:02]</span> 哪里变好了哪里退步了</div>
+<div class="ts-line"><span class="ts-t">[13:04]</span> 这个版本为什么值得反</div>
+</div></details>
+<p><strong>附录 · 语音识别与三重校验方法</strong></p>
+<table>
+<tr><th>项目</th><th>说明</th></tr>
+<tr><td>音轨</td><td>`ffmpeg` 从原片提取 16 kHz 单声道 WAV</td></tr>
+<tr><td>识别模型</td><td>`faster-whisper 1.2.1` + `small`，CPU int8，`beam_size=5`，离线运行</td></tr>
+<tr><td>原始输出</td><td>483 段带起止时间码的转写</td></tr>
+<tr><td>繁简归一</td><td>`OpenCC t2s`</td></tr>
+<tr><td>第一重：ASR</td><td>完整口播，覆盖字幕省略的过渡句</td></tr>
+<tr><td>第二重：烧录字幕</td><td>逐帧 OCR 还原作者精简字幕，作为文字校对基准</td></tr>
+<tr><td>第三重：官方术语</td><td>本教程术语表与官方文档，强制校正专有名词拼写</td></tr>
+<tr><td>校正量</td><td>51 处 / 7 类，逐条见下方清单</td></tr>
+<tr><td>**边界**</td><td>**未做人工逐句听校**：ASR 与 OCR 都不能保证 100% 零偏差；专名与明显误识别已全部校正并附依据，可结合字幕对照复核。</td></tr>
+</table>
+<p><strong>附录 · ASR 校正清单（7 类 / 51 处）</strong></p>
+<p>按「校正为 + 依据」聚合，全部校正项附依据，可结合下方字幕对照复核。</p>
+<table>
+<tr><th>校正为</th><th>依据</th><th>出现次数</th></tr>
+<tr><td>Agent</td><td>通用技术词规范</td><td>43</td></tr>
+<tr><td>Suite</td><td>官方术语表：suit → Suite</td><td>2</td></tr>
+<tr><td>RAG</td><td>官方缩写 RAG</td><td>2</td></tr>
+<tr><td>上下文</td><td>上下文丢失</td><td>1</td></tr>
+<tr><td>校验</td><td>通用 ASR 误识别</td><td>1</td></tr>
+<tr><td>Anthropic</td><td>官方术语表：Astropic → Anthropic</td><td>1</td></tr>
+<tr><td>LLM</td><td>通用技术词规范</td><td>1</td></tr>
+</table>
 </section>
 
 
