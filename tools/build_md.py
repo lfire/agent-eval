@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 """零第三方依赖的 Markdown -> 静态 HTML 构建器。
 
-站点只维护一份 .md 源文件；本脚本在 GitHub Actions 构建时把四份教程
+站点只维护一份 .md 源文件；本脚本在 GitHub Actions 构建时把五份教程
 渲染成带目录、表格、代码块与 Mermaid 渐进增强的 HTML 阅读页。
 本地亦可运行：python3 tools/build_md.py
 """
@@ -16,6 +16,7 @@ TARGETS = [
     ("agent-evaluation-tutorial/Agent评测体系完全教程.md", "Agent 评测体系完全教程", "agent-evaluation-tutorial/index.html", "Agent / 评测体系"),
     ("agent-eval-driven-tutorial/Agent评测驱动迭代完全教程.md", "评测驱动 Agent 迭代 · 完全教程", "agent-eval-driven-tutorial/index.html", "Agent / 迭代"),
     ("agent-architecture-tutorial/Agent开发架构选型完全教程.md", "Agent 开发架构选型 · 完全教程", "agent-architecture-tutorial/index.html", "Agent / 架构选型"),
+    ("agent-metrics-tutorial/Agent评测指标系统完全教程.md", "Agent 评测指标系统 · 完全教程", "agent-metrics-tutorial/index.html", "Agent / 评测指标"),
 ]
 
 FENCE = re.compile(r"^```([^\s`]*)\s*$")
