@@ -1,0 +1,1285 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LangChain / LangGraph / Deep Agents 框架选型 · 完全教程｜单支视频逐帧还原 + 系统化补全</title>
+<style>
+:root{
+  --bg:#f6f7f9; --card:#fff; --ink:#1e2430; --muted:#667085; --line:#e4e7ec;
+  --brand:#2563eb; --brand-soft:#eff4ff; --code:#111827;
+  --yellow:#fff4cc; --yellow-b:#d9a92e; --blue:#dce9ff; --blue-b:#5b8def;
+  --green:#dcf5e6; --green-b:#39a97a; --purple:#efe7ff; --purple-b:#9575e0;
+  --red:#ffe4e9; --red-b:#e0728d;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);
+  font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Hiragino Sans GB","Microsoft YaHei",Segoe UI,sans-serif;
+  font-size:15.5px;line-height:1.85;-webkit-font-smoothing:antialiased}
+a{color:var(--brand);text-decoration:none}a:hover{text-decoration:underline}
+.wrap{display:flex;gap:30px;max-width:1480px;margin:0 auto;padding:0 26px}
+nav.toc{width:262px;flex:none;position:sticky;top:0;height:100vh;overflow-y:auto;padding:28px 12px 60px 0;font-size:13.3px}
+nav.toc .brand{font-weight:800;font-size:16px;margin-bottom:4px}
+nav.toc .sub{color:var(--muted);font-size:12px;margin-bottom:18px}
+nav.toc ul{list-style:none;margin:0;padding:0}
+nav.toc li{margin:2px 0}
+nav.toc a{display:block;padding:5px 10px;border-radius:7px;color:#41495a}
+nav.toc a:hover,nav.toc a.active{background:var(--brand-soft);text-decoration:none;color:var(--brand);font-weight:700}
+nav.toc .lv1{font-weight:700;margin-top:10px;color:var(--ink)}
+nav.toc .lv2{padding-left:22px;font-size:12.7px}
+main{flex:1;min-width:0;max-width:1080px;padding:28px 0 100px}
+.hero{background:linear-gradient(135deg,#eef3ff 0%,#f8fbff 55%,#f0fbf5 100%);
+  border:1px solid #dce6f7;border-radius:16px;padding:34px 36px;margin-bottom:26px}
+.hero h1{font-size:31px;line-height:1.35;margin:0 0 10px;letter-spacing:.3px}
+.hero .lead{font-size:16px;color:#3f4a5f;margin:0 0 18px}
+.hero .meta{display:flex;flex-wrap:wrap;gap:9px}
+.hero .meta span{background:#fff;border:1px solid #dde5f2;border-radius:20px;padding:4px 13px;font-size:12.5px;color:#46536a}
+.srclink{font-size:13px;color:#46536a;margin:14px 0 0}
+.srclink a{font-weight:600}
+h2{font-size:24px;margin:52px 0 14px;padding-bottom:10px;border-bottom:2px solid var(--brand);letter-spacing:.2px}
+h3{font-size:19px;margin:34px 0 12px;color:#1b2a4a}
+h4{font-size:16px;margin:24px 0 8px;color:#344054}
+p{margin:12px 0}
+.sec{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:24px 28px;margin:20px 0;box-shadow:0 1px 2px rgba(16,24,40,.03)}
+.tag{display:inline-block;font-size:11.5px;font-weight:700;padding:2px 9px;border-radius:5px;vertical-align:2px;margin-right:6px;white-space:nowrap}
+.t-video{background:var(--brand-soft);color:#1d4ed8;border:1px solid #cddcfb}
+.t-extra{background:#fff2e0;color:#a85b00;border:1px solid #f5dcb8}
+.t-redraw{background:#e9f8ef;color:#177a52;border:1px solid #c7ecd7}
+.note{background:#f8fafc;border-left:4px solid var(--brand);border-radius:0 9px 9px 0;padding:13px 18px;margin:16px 0;color:#3b4557;font-size:14.5px}
+.warn{background:#fff8ec;border-left:4px solid #e9a23b;border-radius:0 9px 9px 0;padding:13px 18px;margin:16px 0;color:#5a451f;font-size:14.5px}
+.key{background:#eef6ff;border:1px solid #d6e6ff;border-radius:10px;padding:14px 18px;margin:16px 0}
+.leadin{color:#5a6475;font-size:14.5px;background:#f8fafc;border-left:3px solid #c7d7f5;border-radius:0 8px 8px 0;padding:9px 14px;margin:0 0 18px}
+table{border-collapse:collapse;width:100%;margin:16px 0;font-size:14px;background:#fff}
+th,td{border:1px solid var(--line);padding:9px 12px;text-align:left;vertical-align:top}
+th{background:#f2f5f9;font-weight:700;color:#2b3547}
+tr:nth-child(even) td{background:#fbfcfe}
+td code,th code,p code,li code{background:#f1f4f9;border-radius:4px;padding:1px 5px;font-size:12.8px;color:#1d4ed8;font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace}
+pre{background:var(--code);color:#e6edf7;border-radius:11px;padding:17px 19px;overflow:auto;font-size:12.8px;line-height:1.72;margin:16px 0;font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace}
+pre code{background:none;color:inherit;padding:0;font-size:inherit}
+ul,ol{padding-left:24px;margin:12px 0}li{margin:5px 0}
+.figure{background:#fff;border:1px solid var(--line);border-radius:13px;padding:18px 20px 14px;margin:22px 0}
+.figure svg{width:100%;height:auto;display:block}
+.figure .cap{font-size:12.8px;color:var(--muted);margin-top:10px;text-align:center}
+.summary{background:linear-gradient(135deg,#f4f8ff,#f7fdf9);border:1px solid #dce7f7;border-radius:14px;padding:22px 26px;margin:0 0 26px}
+.summary h2{margin:0 0 10px;font-size:20px;border:0;padding:0}
+.summary .route{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:16px}
+.summary .route div{background:#fff;border:1px solid #e0e8f4;border-radius:10px;padding:11px 13px;font-size:13px}
+.summary .route b{display:block;color:#1d4ed8;margin-bottom:3px}
+.summary table th:last-child,.summary table td:last-child{white-space:nowrap;padding-left:16px;padding-right:16px}
+.timeline td:first-child{white-space:nowrap;font-family:ui-monospace,Menlo,monospace;color:var(--brand);font-weight:700}
+.footer{margin-top:60px;padding-top:22px;border-top:1px solid var(--line);color:var(--muted);font-size:13px}
+#progress{position:fixed;top:0;left:0;height:3px;width:0;background:linear-gradient(90deg,#2563eb,#39a97a);z-index:120;transition:width .08s linear}
+#totop{position:fixed;right:24px;bottom:26px;z-index:110;border:1px solid #cddcfb;background:#fff;color:#1d4ed8;border-radius:22px;padding:8px 15px;font-size:13px;cursor:pointer;box-shadow:0 3px 12px rgba(16,24,40,.10);display:none}
+@media(max-width:980px){nav.toc{display:none}.summary .route{grid-template-columns:1fr}.hero{padding:24px}.sec{padding:18px}}
+@media print{nav.toc{display:none}.sec,.figure{break-inside:avoid}body{background:#fff}}
+/* ===== 顶部返回导航（与 Markdown 阅读版一致） ===== */
+.topbar{position:sticky;top:0;z-index:40;background:rgba(255,255,255,.95);
+  backdrop-filter:saturate(180%) blur(10px);border-bottom:1px solid var(--line);
+  padding:10px 22px;display:flex;align-items:center;gap:10px;flex-wrap:wrap;font-size:13px}
+.topbar .t{font-weight:800;font-size:14px;margin-right:auto;color:#1b2a4a}
+.topbar a.btn{border:1px solid #cddcfb;background:#fff;border-radius:7px;padding:5px 11px;
+  font-size:12.5px;color:var(--brand);font-weight:600;white-space:nowrap}
+.topbar a.btn:hover{background:var(--brand-soft);text-decoration:none}
+:root{--topH:56px}
+nav.toc{top:var(--topH);height:calc(100vh - var(--topH))}
+main{padding-top:22px}
+[id]{scroll-margin-top:calc(var(--topH) + 14px)}
+@media(max-width:980px){.topbar{padding:8px 14px}}
+@media print{.topbar{display:none}nav.toc{top:0;height:auto}main{padding-top:28px}}
+</style>
+  <link rel="stylesheet" href="../assets/code-blocks.css">
+  <script src="../assets/code-blocks.js" defer></script>
+</head>
+<body>
+<div class="topbar">
+  <span class="t">LangChain / LangGraph / Deep Agents 框架选型 · 完全教程 · 图文阅读版</span>
+  <a class="btn" href="../index.html">← 返回知识库</a>
+  <a class="btn" href="Agent开发框架选型完全教程.html">MD 在线阅读</a>
+  <a class="btn" href="Agent开发框架选型完全教程.md" download>下载 .md</a>
+</div>
+<div id="progress" aria-hidden="true"></div>
+<button id="totop" type="button" aria-label="回到顶部">↑ 回到顶部</button>
+<div class="wrap">
+<nav class="toc">
+  <div class="brand">LangChain / LangGraph / Deep Agents 框架选型 · 完全教程</div>
+  <div class="sub">单支视频逐帧还原 + 系统化补全</div>
+  <ul>
+    <li><a class="lv1" href="#s0">0. 视频速览与保真约定</a></li>
+    <li><a class="lv1" href="#s1">1. 全片结构地图</a></li>
+    <li><a class="lv1" href="#s2">2. 先说结论：三个抽象层次，不是三个竞品</a></li>
+    <li><a class="lv1" href="#s3">3. LangChain 的起点：一个企业智能客服</a></li>
+    <li><a class="lv2" href="#31-从零搭建的四项工作">3.1 四项工作</a></li>
+    <li><a class="lv1" href="#s4">4. LangChain 的基础组件与 create_agent</a></li>
+    <li><a class="lv2" href="#41-create_agent准备好三样东西">4.1 create_agent</a></li>
+    <li><a class="lv2" href="#42-模型工具循环">4.2 模型—工具循环</a></li>
+    <li><a class="lv1" href="#s5">5. 由模型按当前问题选择工具，以及适用场景</a></li>
+    <li><a class="lv1" href="#s6">6. 中间件扩展与 LangGraph 的引出</a></li>
+    <li><a class="lv1" href="#s7">7. LangGraph 的起点：企业售后处理系统</a></li>
+    <li><a class="lv1" href="#s8">8. 图三要素：State / Node / Edge</a></li>
+    <li><a class="lv2" href="#81-三要素落到售后例">8.1 三要素落地</a></li>
+    <li><a class="lv1" href="#s9">9. 条件流转与精确控制</a></li>
+    <li><a class="lv1" href="#s10">10. 暂停、恢复与生产级能力</a></li>
+    <li><a class="lv1" href="#s11">11. 适用场景与「代码 + 模型」分工</a></li>
+    <li><a class="lv1" href="#s12">12. Deep Agents：只给目标，由 Agent 自己规划</a></li>
+    <li><a class="lv1" href="#s13">13. 完整执行框架：建立在前两者之上</a></li>
+    <li><a class="lv1" href="#s14">14. 任务规划与子智能体协作</a></li>
+    <li><a class="lv2" href="#141-任务规划大目标--可跟踪的具体步骤">14.1 任务规划</a></li>
+    <li><a class="lv2" href="#142-子智能体把独立子任务交给专门-agent">14.2 子智能体</a></li>
+    <li><a class="lv1" href="#s15">15. 文件系统与上下文管理</a></li>
+    <li><a class="lv1" href="#s16">16. 可扩展能力、适用场景与权限边界</a></li>
+    <li><a class="lv1" href="#s17">17. 核心区别与三种能力比喻</a></li>
+    <li><a class="lv1" href="#s18">18. 三个选型问题与决策树</a></li>
+    <li><a class="lv1" href="#s19">19. 特别说明：不是所有业务都需要 Agent</a></li>
+    <li><a class="lv1" href="#s20">20. 三者能否一起用：可以，按项目需求组合</a></li>
+    <li><a class="lv1" href="#s21">21. 总结：让框架服务于业务</a></li>
+    <li><a class="lv1" href="#s22">22. 补充篇 A：专业名词速查（56 条）</a></li>
+    <li><a class="lv1" href="#s23">23. 补充篇 B：官方文档对照</a></li>
+    <li><a class="lv2" href="#231-官方功能对照节选">23.1 功能对照</a></li>
+    <li><a class="lv1" href="#s24">24. 补充篇 C：可运行代码</a></li>
+    <li><a class="lv2" href="#241-三个选型问题的决策函数">24.1 选型决策</a></li>
+    <li><a class="lv2" href="#242-用状态机模拟-state--node--edge">24.2 State/Node/Edge</a></li>
+    <li><a class="lv2" href="#243-任务规划清单与子智能体委派">24.3 规划与子 Agent</a></li>
+    <li><a class="lv2" href="#244-上下文规模控制摘要与文件卸载">24.4 上下文控制</a></li>
+    <li><a class="lv1" href="#s25">25. 补充篇 D：常见误区</a></li>
+    <li><a class="lv1" href="#s26">26. 附录</a></li>
+    <li><a class="lv2" href="#261-官方章节与画面小节导航">26.1 章节结构</a></li>
+    <li><a class="lv2" href="#262-配图速查23-张">26.2 配图速查</a></li>
+    <li><a class="lv2" href="#263-校正表ocr-与口播">26.3 校正表</a></li>
+    <li><a class="lv2" href="#264-还原方法与资料">26.4 还原方法与资料</a></li>
+  </ul>
+</nav>
+<main>
+<div class="hero">
+  <h1>LangChain / LangGraph / Deep Agents 框架选型 · 完全教程</h1>
+  <p class="lead">逐帧还原 @小k技术栈《LangChain、Langgraph、DeepAgent 开发框架怎么选？》：把 LangChain（基础组件）、LangGraph（流程编排与状态）、Deep Agents（规划与子智能体）三个抽象层次讲清楚，给出三个可操作的选型问题、组合方式，以及「不是所有业务都需要 Agent」的边界。</p>
+  <div class="meta">
+    <span>1 支视频 · 12:28</span><span>8 段官方章节</span><span>249 帧逐帧核对</span>
+    <span>23 张结构图重绘</span><span>56 条术语</span><span>4 段可运行代码</span>
+  </div>
+  <p class="srclink">原视频：<a href="https://v.douyin.com/dX1jn7y0BFA/" target="_blank" rel="noopener">《LangChain、Langgraph、DeepAgent开发框架怎么选？》</a>（@小k技术栈，2026-11-24）</p>
+</div>
+<section class="summary">
+<h2>一页速览：整期视频的 7 个结论</h2>
+<table style="margin-top:6px">
+<tr><th>#</th><th>结论</th><th>位置</th></tr>
+<tr><td>1</td><td><strong>三个抽象层次，不是三个竞品</strong>：LangChain 组件 / LangGraph 编排 / Deep Agents Harness，层层叠加</td><td><a href="#s2">第 2 章</a></td></tr>
+<tr><td>2</td><td><strong>LangChain</strong> 解决基础组件与工具集成，<code>create_agent</code> + 模型—工具循环，适合问答与工具调用</td><td><a href="#s3">第 3–6 章</a></td></tr>
+<tr><td>3</td><td><strong>LangGraph</strong> 用 State / Node / Edge 组织流程，提供检查点、中断、人工介入与恢复</td><td><a href="#s7">第 7–11 章</a></td></tr>
+<tr><td>4</td><td><strong>Deep Agents</strong> 封装规划、子智能体、文件系统与上下文管理，面向长期复杂任务</td><td><a href="#s12">第 12–16 章</a></td></tr>
+<tr><td>5</td><td><strong>核心区别</strong>：准备工具 / 设计流程 / 配备任务管理系统</td><td><a href="#s17">第 17 章</a></td></tr>
+<tr><td>6</td><td><strong>三个选型问题</strong>依次判断；流程完全固定时干脆不用 Agent</td><td><a href="#s18">第 18–19 章</a></td></tr>
+<tr><td>7</td><td><strong>可以组合使用</strong>，但不必全上；从满足当前需求的最简单方案开始</td><td><a href="#s20">第 20–21 章</a></td></tr>
+</table>
+<div class="route">
+<div><b>只想复现视频</b>读第 1–21 章；【视频原述】段落与 23 张重绘图覆盖全部画面要点</div>
+<div><b>想做技术选型</b>读 <a href="#s18">18. 三个选型问题</a> + <a href="#s23">23. 官方文档对照</a> + <a href="#s25">25. 常见误区</a></div>
+<div><b>想查概念与动手</b>读 <a href="#s22">22. 专业名词速查</a> 与 <a href="#s24">24. 可运行代码</a></div>
+</div>
+</section>
+<section class="sec" id="s0">
+<h2>0. 视频速览与保真约定</h2>
+<p><span class="tag t-extra">补充</span>本教程逐帧还原 <strong>@小k技术栈《LangChain、Langgraph、DeepAgent开发框架怎么选？》</strong>（2026-11-24，12:28，1920×1080），并按本站既有标准补齐专业名词、官方文档对照、可运行代码、常见误区与校正表。</p>
+<table>
+<tr><th>#</th><th>视频 / ID</th><th>作者 / 发布</th><th>时长 / 画面</th><th>画面结构</th></tr>
+<tr><td>①</td><td>LangChain、Langgraph、DeepAgent开发框架怎么选？ <code>7711684080711229049</code></td><td>小k技术栈 ／ 2026-11-24</td><td>12:28 ／ 1920×1080 横屏</td><td>白底手绘式幻灯片；顶部固定小节导航条 + 底部黑底烧录字幕；8 段官方章节</td></tr>
+</table>
+<table>
+<tr><th>#</th><th>官方章节</th><th>时间码</th><th>对应本教程</th></tr>
+<tr><td>1</td><td>引言</td><td>00:01</td><td>第 0–2 章</td></tr>
+<tr><td>2</td><td>LangChain</td><td>00:50</td><td>第 3–6 章</td></tr>
+<tr><td>3</td><td>LangGraph</td><td>02:41</td><td>第 7–11 章</td></tr>
+<tr><td>4</td><td>DeepAgent</td><td>05:27</td><td>第 12–16 章</td></tr>
+<tr><td>5</td><td>核心区别</td><td>08:49</td><td>第 17 章</td></tr>
+<tr><td>6</td><td>框架选择</td><td>09:43</td><td>第 18–19 章</td></tr>
+<tr><td>7</td><td>框架联用</td><td>11:05</td><td>第 20 章</td></tr>
+<tr><td>8</td><td>总结</td><td>11:51</td><td>第 21 章</td></tr>
+</table>
+<div class="warn"><strong>保真边界</strong>。① 视频标题中的「Langgraph」「DeepAgent」为作者写法，官方拼写为 <strong>LangGraph</strong>、<strong>Deep Agents</strong>（包名 <code>deepagents</code>），正文一律用官方拼写，校正表保留原写法。② 画面顶部有 39 个固定小节导航条（如「LangGraph・图的三个要素」「选型•三个选型问题」），本教程按它切分细粒度结构；官方 <code>chapter_list</code> 另给 8 段大章节，两者都在第 1 章与附录列出。③ 字幕为黑底烧录中文，OCR 噪声（如「人工車排」「沙稍隔离」「Lang Chain」）已按画面与上下文校正。④ 标注【补充】的内容来自 LangChain 官方文档与本站第四篇，不属于视频原述。⑤ 本轮未做 ASR。</div>
+</section>
+<section class="sec" id="s1">
+<h2>1. 全片结构地图</h2>
+<div class="figure">
+<svg viewBox="0 0 900 390" xmlns="http://www.w3.org/2000/svg" font-family="-apple-system,PingFang SC,Microsoft YaHei,sans-serif">
+  <g text-anchor="middle">
+    <text x="450" y="26" font-size="15" font-weight="800" fill="#1e2430">全片结构地图：8 段官方章节</text>
+    <text x="450" y="44" font-size="10.8" fill="#667085">视频 12:28 ｜ 引言 → 三个框架 → 核心区别 → 选型 → 联用 → 总结</text>
+  </g>
+<rect x="24" y="64" width="205" height="92" rx="10" fill="#eaf1ff" stroke="#5b8def" stroke-width="1.5"/>
+    <text x="126.5" y="90.0" font-size="13" font-weight="800" fill="#1d4ed8" text-anchor="middle">① 引言</text>
+    <text x="126.5" y="117.0" font-size="11.2" fill="#4a5b7a" text-anchor="middle">00:01–00:50</text>
+    <text x="126.5" y="137.0" font-size="11.2" fill="#4a5b7a" text-anchor="middle">开篇三问</text>
+<rect x="244" y="64" width="205" height="92" rx="10" fill="#eaf1ff" stroke="#5b8def" stroke-width="1.5"/>
+    <text x="346.5" y="90.0" font-size="13" font-weight="800" fill="#1d4ed8" text-anchor="middle">② LangChain</text>
+    <text x="346.5" y="117.0" font-size="11.2" fill="#4a5b7a" text-anchor="middle">00:50–02:41</text>
+    <text x="346.5" y="137.0" font-size="11.2" fill="#4a5b7a" text-anchor="middle">基础组件与工具</text>
+<rect x="464" y="64" width="205" height="92" rx="10" fill="#f3edff" stroke="#9575e0" stroke-width="1.5"/>
+    <text x="566.5" y="90.0" font-size="13" font-weight="800" fill="#6d42c9" text-anchor="middle">③ LangGraph</text>
+    <text x="566.5" y="117.0" font-size="11.2" fill="#5d4a91" text-anchor="middle">02:41–05:27</text>
+    <text x="566.5" y="137.0" font-size="11.2" fill="#5d4a91" text-anchor="middle">流程编排与状态</text>
+<rect x="684" y="64" width="205" height="92" rx="10" fill="#e9f9f0" stroke="#39a97a" stroke-width="1.5"/>
+    <text x="786.5" y="90.0" font-size="13" font-weight="800" fill="#177a52" text-anchor="middle">④ Deep Agents</text>
+    <text x="786.5" y="117.0" font-size="11.2" fill="#3c6b55" text-anchor="middle">05:27–08:49</text>
+    <text x="786.5" y="137.0" font-size="11.2" fill="#3c6b55" text-anchor="middle">规划与子智能体</text>
+<rect x="24" y="178" width="205" height="92" rx="10" fill="#fff8dd" stroke="#d9a92e" stroke-width="1.5"/>
+    <text x="126.5" y="204.0" font-size="13" font-weight="800" fill="#8a5f00" text-anchor="middle">⑤ 核心区别</text>
+    <text x="126.5" y="231.0" font-size="11.2" fill="#7a6330" text-anchor="middle">08:49–09:43</text>
+    <text x="126.5" y="251.0" font-size="11.2" fill="#7a6330" text-anchor="middle">三者一句话对照</text>
+<rect x="244" y="178" width="205" height="92" rx="10" fill="#fff8dd" stroke="#d9a92e" stroke-width="1.5"/>
+    <text x="346.5" y="204.0" font-size="13" font-weight="800" fill="#8a5f00" text-anchor="middle">⑥ 框架选择</text>
+    <text x="346.5" y="231.0" font-size="11.2" fill="#7a6330" text-anchor="middle">09:43–11:05</text>
+    <text x="346.5" y="251.0" font-size="11.2" fill="#7a6330" text-anchor="middle">三个判断问题</text>
+<rect x="464" y="178" width="205" height="92" rx="10" fill="#fff8dd" stroke="#d9a92e" stroke-width="1.5"/>
+    <text x="566.5" y="204.0" font-size="13" font-weight="800" fill="#8a5f00" text-anchor="middle">⑦ 框架联用</text>
+    <text x="566.5" y="231.0" font-size="11.2" fill="#7a6330" text-anchor="middle">11:05–11:51</text>
+    <text x="566.5" y="251.0" font-size="11.2" fill="#7a6330" text-anchor="middle">按项目需求组合</text>
+<rect x="684" y="178" width="205" height="92" rx="10" fill="#f5f7fa" stroke="#b6c0cf" stroke-width="1.5"/>
+    <text x="786.5" y="204.0" font-size="13" font-weight="800" fill="#344054" text-anchor="middle">⑧ 总结</text>
+    <text x="786.5" y="231.0" font-size="11.2" fill="#5a6475" text-anchor="middle">11:51–12:28</text>
+    <text x="786.5" y="251.0" font-size="11.2" fill="#5a6475" text-anchor="middle">让框架服务业务</text>
+<rect x="90" y="292" width="720" height="60" rx="10" fill="#f5f7fa" stroke="#b6c0cf" stroke-width="1.5"/>
+    <text x="450.0" y="326.6" font-size="13" font-weight="800" fill="#344054" text-anchor="middle">一条主线：抽象层次逐层升高 → 按业务问题选起点 → 允许组合使用</text>
+<text x="450" y="376" font-size="10.8" fill="#667085" text-anchor="middle">画面顶部还有 39 个固定小节导航条，逐帧核对后并入各章；官方章节时间码来自 aweme/detail</text>
+</svg>
+  <div class="cap">图 1｜全片结构地图（按官方章节重绘）</div>
+</div>
+<p><span class="tag t-redraw">按画面重绘</span>视频用 8 段官方章节串起「先给结论 → 逐个框架讲定位与例子 → 横向对比 → 回答怎么选 → 说明可以组合 → 收束」。画面顶部的 39 个小节导航条比大章节更细，例如 LangChain 段下依次是「智能客服 / 基础组件 / 创建 Agent / 模型与工具循环 / 按问题选择工具 / 适用场景」。</p>
+<table>
+<tr><th>阶段</th><th>画面小节导航（节选）</th><th>本教程</th></tr>
+<tr><td>开场</td><td>Agent・框架怎么选 / Agent。三个抽象层次</td><td>第 2 章</td></tr>
+<tr><td>LangChain</td><td>智能客服 / 基础组件 / 创建 Agent / 模型与工具循环 / 按问题选择工具 / 适用场景</td><td>第 3–6 章</td></tr>
+<tr><td>LangGraph</td><td>流程复杂之后 / 售后处理流程 / 明确业务规则 / 图的三个要素 / State / Node / Edge / 精确控制执行 / 暂停与恢复 / 适用场景 / 代码与模型分工</td><td>第 7–11 章</td></tr>
+<tr><td>Deep Agents</td><td>自主规划目标 / 执行与迭代 / 任务规划 / 子智能体协作 / 文件与中间产物 / 控制上下文规模 / 可扩展能力 / 适用场景 / 权限与执行环境</td><td>第 12–16 章</td></tr>
+<tr><td>收束</td><td>核心区别 / 三种能力 / 三个选型问题 / 固定流程也有简单方案 / 三者可以组合使用 / 根据需求选择 / 让框架服务业务</td><td>第 17–21 章</td></tr>
+</table>
+</section>
+<section class="sec" id="s2">
+<h2>2. 先说结论：三个抽象层次，不是三个竞品</h2>
+<div class="figure">
+<svg viewBox="0 0 900 396" xmlns="http://www.w3.org/2000/svg" font-family="-apple-system,PingFang SC,Microsoft YaHei,sans-serif">
+  <g text-anchor="middle">
+    <text x="450" y="26" font-size="15" font-weight="800" fill="#1e2430">先说结论：三个抽象层次，不是三个竞品</text>
+    <text x="450" y="44" font-size="10.8" fill="#667085">画面 f_0008 / f_0011 逐字重绘 · 层层叠加而非互相淘汰</text>
+  </g>
+<rect x="60" y="64" width="200" height="58" rx="10" fill="#eaf1ff" stroke="#5b8def" stroke-width="1.5"/>
+    <text x="160.0" y="97.5" font-size="13" font-weight="800" fill="#1d4ed8" text-anchor="middle">LangChain</text>
+<g stroke="#8a94a6" stroke-width="1.7" fill="none"><line x1="262" y1="93" x2="308" y2="93"/><line x1="300" y1="88" x2="308" y2="93"/><line x1="300" y1="98" x2="308" y2="93"/></g>
+<rect x="320" y="64" width="520" height="58" rx="10" fill="#eaf1ff" stroke="#5b8def" stroke-width="1.5"/>
+    <text x="580.0" y="97.5" font-size="13" font-weight="800" fill="#1d4ed8" text-anchor="middle">组件与工具集成</text>
+<rect x="60" y="140" width="200" height="58" rx="10" fill="#f3edff" stroke="#9575e0" stroke-width="1.5"/>
+    <text x="160.0" y="173.6" font-size="13" font-weight="800" fill="#6d42c9" text-anchor="middle">LangGraph</text>
+<g stroke="#8a94a6" stroke-width="1.7" fill="none"><line x1="262" y1="169" x2="308" y2="169"/><line x1="300" y1="164" x2="308" y2="169"/><line x1="300" y1="174" x2="308" y2="169"/></g>
+<rect x="320" y="140" width="520" height="58" rx="10" fill="#f3edff" stroke="#9575e0" stroke-width="1.5"/>
+    <text x="580.0" y="173.6" font-size="13" font-weight="800" fill="#6d42c9" text-anchor="middle">流程编排与状态管理</text>
+<rect x="60" y="216" width="200" height="58" rx="10" fill="#e9f9f0" stroke="#39a97a" stroke-width="1.5"/>
+    <text x="160.0" y="249.6" font-size="13" font-weight="800" fill="#177a52" text-anchor="middle">Deep Agents</text>
+<g stroke="#8a94a6" stroke-width="1.7" fill="none"><line x1="262" y1="245" x2="308" y2="245"/><line x1="300" y1="240" x2="308" y2="245"/><line x1="300" y1="250" x2="308" y2="245"/></g>
+<rect x="320" y="216" width="520" height="58" rx="10" fill="#e9f9f0" stroke="#39a97a" stroke-width="1.5"/>
+    <text x="580.0" y="249.6" font-size="13" font-weight="800" fill="#177a52" text-anchor="middle">规划、上下文、子智能体</text>
+<rect x="90" y="296" width="720" height="62" rx="10" fill="#f5f7fa" stroke="#b6c0cf" stroke-width="1.5"/>
+    <text x="450.0" y="331.6" font-size="13" font-weight="800" fill="#344054" text-anchor="middle">Deep Agents 建立在这些基础能力之上；三者是不同抽象层次，不是平行竞品</text>
+<text x="450" y="382" font-size="10.8" fill="#667085" text-anchor="middle">与本站《Agent 开发架构选型》的 Framework / Runtime / Harness 三层抽象一致</text>
+</svg>
+  <div class="cap">图 2｜三个抽象层次重绘</div>
+</div>
+<p><span class="tag t-video">视频原述</span>口播：「LangChain 主要解决 Agent 基础组件和工具集成问题；LangGraph 主要解决 Agent 流程编排和状态管理问题；Deep Agents 则是在这些基础能力之上，进一步封装了任务规划、上下文管理、子智能体等能力，让 Agent 能够处理更加复杂、更加长期的任务」。</p>
+<div class="key"><strong>可以把它们理解为三个不同抽象层次的开发框架，而不是三个完全平行、彼此竞争的产品。</strong></div>
+<p><span class="tag t-extra">补充</span>这与本站《Agent 开发架构选型 · 完全教程》里 Framework → Runtime → Harness 的三层抽象完全对应：LangChain 是框架层，LangGraph 是运行时层，Deep Agents 是 Harness 层。第四篇讲七个代表项目的横向对比，本篇只讲 LangChain 自家这三层怎么选、怎么联用。</p>
+</section>
+<section class="sec" id="s3">
+<h2>3. LangChain 的起点：一个企业智能客服</h2>
+<div class="figure">
+<svg viewBox="0 0 900 336" xmlns="http://www.w3.org/2000/svg" font-family="-apple-system,PingFang SC,Microsoft YaHei,sans-serif">
+  <g text-anchor="middle">
+    <text x="450" y="26" font-size="15" font-weight="800" fill="#1e2430">LangChain 的起点：一个企业智能客服</text>
+    <text x="450" y="44" font-size="10.8" fill="#667085">画面 f_0019–f_0026 逐字重绘 · 典型 Agent 应用与手写痛点</text>
+  </g>
+<rect x="24" y="64" width="400" height="150" rx="10" fill="#eaf1ff" stroke="#5b8def" stroke-width="1.5"/>
+    <text x="224.0" y="90.0" font-size="13" font-weight="800" fill="#1d4ed8" text-anchor="middle">要做的系统</text>
+    <text x="224.0" y="126.0" font-size="11.2" fill="#4a5b7a" text-anchor="middle">用户问题 → Agent</text>
+    <text x="224.0" y="146.0" font-size="11.2" fill="#4a5b7a" text-anchor="middle">→ 知识库 / 订单接口</text>
+    <text x="224.0" y="166.0" font-size="11.2" fill="#4a5b7a" text-anchor="middle">→ 查询结果整理成自然语言</text>
+    <text x="224.0" y="186.0" font-size="11.2" fill="#4a5b7a" text-anchor="middle">由模型判断下一步做什么</text>
+<rect x="444" y="64" width="432" height="150" rx="10" fill="#fff8dd" stroke="#d9a92e" stroke-width="1.5"/>
+    <text x="660.0" y="90.0" font-size="13" font-weight="800" fill="#8a5f00" text-anchor="middle">从头实现的繁琐</text>
+    <text x="660.0" y="126.0" font-size="11.2" fill="#7a6330" text-anchor="middle">模型接入：怎么接大模型</text>
+    <text x="660.0" y="146.0" font-size="11.2" fill="#7a6330" text-anchor="middle">工具定义：怎么描述工具</text>
+    <text x="660.0" y="166.0" font-size="11.2" fill="#7a6330" text-anchor="middle">工具调用：怎么让模型发起</text>
+    <text x="660.0" y="186.0" font-size="11.2" fill="#7a6330" text-anchor="middle">消息传递：模型与工具之间怎么传</text>
+<rect x="90" y="236" width="720" height="62" rx="10" fill="#f5f7fa" stroke="#b6c0cf" stroke-width="1.5"/>
+    <text x="450.0" y="271.6" font-size="13" font-weight="800" fill="#344054" text-anchor="middle">LangChain 就是为解决这类「基础组件 + 工具集成」问题而出现</text>
+<text x="450" y="322" font-size="10.8" fill="#667085" text-anchor="middle">场景：企业知识库问答、RAG 应用、智能客服、数据库 / 第三方 API 助手</text>
+</svg>
+  <div class="cap">图 3｜智能客服场景与手写痛点重绘</div>
+</div>
+<p><span class="tag t-video">视频原述</span>视频给的第一个例子是企业智能客服：系统需要查询企业知识库，或者调用订单接口，最后把查询结果整理成自然语言返回给用户。口播强调「这种场景其实就是一个比较典型 Agent 应用」。</p>
+<p><span class="tag t-video">视频原述</span>如果从头写，要自己解决四件事：怎么接入大模型、怎么定义工具、怎么让模型调用工具、模型和工具之间如何传递消息——「开发工作会比较繁琐」。</p>
+<h3 id="31-从零搭建的四项工作">3.1 从零搭建的四项工作</h3>
+<ol>
+<li><strong>模型接入</strong>：对接不同厂商的推理接口与参数。</li>
+<li><strong>工具定义</strong>：把知识库检索、订单查询等能力描述成模型可调用的函数。</li>
+<li><strong>工具调用</strong>：解析模型输出、发起调用、处理返回。</li>
+<li><strong>消息传递</strong>：维护模型与工具之间的多轮消息序列。</li>
+</ol>
+</section>
+<section class="sec" id="s4">
+<h2>4. LangChain 的基础组件与 create_agent</h2>
+<div class="figure">
+<svg viewBox="0 0 900 360" xmlns="http://www.w3.org/2000/svg" font-family="-apple-system,PingFang SC,Microsoft YaHei,sans-serif">
+  <g text-anchor="middle">
+    <text x="450" y="26" font-size="15" font-weight="800" fill="#1e2430">LangChain 提供的基础组件</text>
+    <text x="450" y="44" font-size="10.8" fill="#667085">画面 f_0028–f_0031 逐字重绘 · 组合基础组件 → Agent 应用</text>
+  </g>
+<rect x="24" y="64" width="205" height="74" rx="10" fill="#eaf1ff" stroke="#5b8def" stroke-width="1.5"/>
+    <text x="126.5" y="105.5" font-size="13" font-weight="800" fill="#1d4ed8" text-anchor="middle">模型接入</text>
+<rect x="244" y="64" width="205" height="74" rx="10" fill="#eaf1ff" stroke="#5b8def" stroke-width="1.5"/>
+    <text x="346.5" y="105.5" font-size="13" font-weight="800" fill="#1d4ed8" text-anchor="middle">Prompt</text>
+<rect x="464" y="64" width="205" height="74" rx="10" fill="#eaf1ff" stroke="#5b8def" stroke-width="1.5"/>
+    <text x="566.5" y="105.5" font-size="13" font-weight="800" fill="#1d4ed8" text-anchor="middle">消息管理</text>
+<rect x="684" y="64" width="205" height="74" rx="10" fill="#eaf1ff" stroke="#5b8def" stroke-width="1.5"/>
+    <text x="786.5" y="105.5" font-size="13" font-weight="800" fill="#1d4ed8" text-anchor="middle">工具调用</text>
+<rect x="134" y="158" width="205" height="74" rx="10" fill="#e9f9f0" stroke="#39a97a" stroke-width="1.5"/>
+    <text x="236.5" y="199.6" font-size="13" font-weight="800" fill="#177a52" text-anchor="middle">文档加载</text>
+<rect x="354" y="158" width="205" height="74" rx="10" fill="#e9f9f0" stroke="#39a97a" stroke-width="1.5"/>
+    <text x="456.5" y="199.6" font-size="13" font-weight="800" fill="#177a52" text-anchor="middle">向量数据库</text>
+<rect x="574" y="158" width="205" height="74" rx="10" fill="#e9f9f0" stroke="#39a97a" stroke-width="1.5"/>
+    <text x="676.5" y="199.6" font-size="13" font-weight="800" fill="#177a52" text-anchor="middle">检索器</text>
+<g stroke="#8a94a6" stroke-width="1.7" fill="none"><line x1="450" y1="240" x2="450" y2="258"/><line x1="445" y1="250" x2="450" y2="258"/><line x1="455" y1="250" x2="450" y2="258"/></g>
+<rect x="90" y="260" width="720" height="62" rx="10" fill="#f5f7fa" stroke="#b6c0cf" stroke-width="1.5"/>
+    <text x="450.0" y="295.6" font-size="13" font-weight="800" fill="#344054" text-anchor="middle">组合基础组件 → 快速搭建一个 Agent 应用</text>
+<text x="450" y="346" font-size="10.8" fill="#667085" text-anchor="middle">官方补充：LangChain 1.0 的 create_agent 构建于 LangGraph 运行时之上</text>
+</svg>
+  <div class="cap">图 4｜LangChain 基础组件重绘</div>
+</div>
+<p><span class="tag t-video">视频原述</span>画面列出 LangChain 提供的基础组件：模型接入、Prompt、消息管理、工具调用、文档加载、向量数据库、检索器；口播原话是「开发者可以直接使用这些组件，快速搭建一个 Agent 应用」。</p>
+<div class="figure">
+<svg viewBox="0 0 900 442" xmlns="http://www.w3.org/2000/svg" font-family="-apple-system,PingFang SC,Microsoft YaHei,sans-serif">
+  <g text-anchor="middle">
+    <text x="450" y="26" font-size="15" font-weight="800" fill="#1e2430">create_agent 与模型—工具循环</text>
+    <text x="450" y="44" font-size="10.8" fill="#667085">画面 f_0033–f_0041 逐字重绘 · 高层接口 + 一次执行的过程</text>
+  </g>
+<rect x="24" y="64" width="205" height="88" rx="10" fill="#eaf1ff" stroke="#5b8def" stroke-width="1.5"/>
+    <text x="126.5" y="112.5" font-size="13" font-weight="800" fill="#1d4ed8" text-anchor="middle">大模型</text>
+<rect x="244" y="64" width="205" height="88" rx="10" fill="#eaf1ff" stroke="#5b8def" stroke-width="1.5"/>
+    <text x="346.5" y="112.5" font-size="13" font-weight="800" fill="#1d4ed8" text-anchor="middle">工具</text>
+<rect x="464" y="64" width="205" height="88" rx="10" fill="#eaf1ff" stroke="#5b8def" stroke-width="1.5"/>
+    <text x="566.5" y="112.5" font-size="13" font-weight="800" fill="#1d4ed8" text-anchor="middle">系统提示词</text>
+<g stroke="#8a94a6" stroke-width="1.7" fill="none"><line x1="450" y1="154" x2="450" y2="174"/><line x1="445" y1="166" x2="450" y2="174"/><line x1="455" y1="166" x2="450" y2="174"/></g>
+<rect x="250" y="176" width="400" height="54" rx="10" fill="#e9f9f0" stroke="#39a97a" stroke-width="1.5"/>
+    <text x="450.0" y="207.6" font-size="13" font-weight="800" fill="#177a52" text-anchor="middle">create_agent</text>
+<g stroke="#8a94a6" stroke-width="1.7" fill="none"><line x1="450" y1="230" x2="450" y2="250"/><line x1="445" y1="242" x2="450" y2="250"/><line x1="455" y1="242" x2="450" y2="250"/></g>
+<rect x="250" y="252" width="400" height="54" rx="10" fill="#e9f9f0" stroke="#39a97a" stroke-width="1.5"/>
+    <text x="450.0" y="283.6" font-size="13" font-weight="800" fill="#177a52" text-anchor="middle">能够调用工具的 Agent</text>
+<rect x="24" y="330" width="852" height="74" rx="10" fill="#f5f7fa" stroke="#b6c0cf" stroke-width="1.5"/>
+    <text x="450.0" y="371.6" font-size="13" font-weight="800" fill="#344054" text-anchor="middle">循环：用户问题 → 大模型判断 → 选择工具 → 执行并返回 → 根据工具结果继续处理</text>
+<text x="450" y="428" font-size="10.8" fill="#667085" text-anchor="middle">开发者只需准备大模型、工具与系统提示词；判断与循环由框架接管</text>
+</svg>
+  <div class="cap">图 5｜create_agent 与工具循环重绘</div>
+</div>
+<h3 id="41-create_agent准备好三样东西">4.1 create_agent：准备好三样东西</h3>
+<p><span class="tag t-video">视频原述</span>「LangChain 提供了 <code>create_agent</code> 这样的高层接口。开发者只需要准备好大模型、工具和系统提示词，就可以创建一个能够调用工具的 Agent。」</p>
+<h3 id="42-模型工具循环">4.2 模型—工具循环</h3>
+<p><span class="tag t-video">视频原述</span>执行过程：大模型分析当前任务 → 判断是否需要调用工具 → 需要就选择合适工具执行并返回 → 大模型再根据工具结果继续处理。这个循环的调度由框架接管，开发者不必手写状态机。</p>
+<div class="note">官方文档补充：LangChain 1.0 的 <code>create_agent</code> 构建在 LangGraph 运行时之上，但「你不需要了解 LangGraph 就能用 LangChain」。这是「层层叠加」而非「必须同时使用」的直接证据。</div>
+</section>
+<section class="sec" id="s5">
+<h2>5. 由模型按当前问题选择工具，以及适用场景</h2>
+<div class="figure">
+<svg viewBox="0 0 900 412" xmlns="http://www.w3.org/2000/svg" font-family="-apple-system,PingFang SC,Microsoft YaHei,sans-serif">
+  <g text-anchor="middle">
+    <text x="450" y="26" font-size="15" font-weight="800" fill="#1e2430">由模型按当前问题选择工具</text>
+    <text x="450" y="44" font-size="10.8" fill="#667085">画面 f_0042–f_0052 逐字重绘 · 适用场景的共同特征</text>
+  </g>
+<rect x="24" y="64" width="400" height="100" rx="10" fill="#fff8dd" stroke="#d9a92e" stroke-width="1.5"/>
+    <text x="224.0" y="90.0" font-size="13" font-weight="800" fill="#8a5f00" text-anchor="middle">业务制度问题</text>
+    <text x="224.0" y="110.0" font-size="11.2" fill="#7a6330" text-anchor="middle">→ 知识库检索工具</text>
+<rect x="444" y="64" width="432" height="100" rx="10" fill="#fff8dd" stroke="#d9a92e" stroke-width="1.5"/>
+    <text x="660.0" y="90.0" font-size="13" font-weight="800" fill="#8a5f00" text-anchor="middle">查询订单状态</text>
+    <text x="660.0" y="110.0" font-size="11.2" fill="#7a6330" text-anchor="middle">→ 订单查询接口</text>
+<rect x="24" y="184" width="270" height="108" rx="10" fill="#e9f9f0" stroke="#39a97a" stroke-width="1.5"/>
+    <text x="159.0" y="210.0" font-size="13" font-weight="800" fill="#177a52" text-anchor="middle">企业知识库问答</text>
+    <text x="159.0" y="230.0" font-size="11.2" fill="#3c6b55" text-anchor="middle">RAG 应用</text>
+<rect x="315" y="184" width="270" height="108" rx="10" fill="#e9f9f0" stroke="#39a97a" stroke-width="1.5"/>
+    <text x="450.0" y="210.0" font-size="13" font-weight="800" fill="#177a52" text-anchor="middle">智能客服</text>
+    <text x="450.0" y="230.0" font-size="11.2" fill="#3c6b55" text-anchor="middle">数据库 / 第三方 API</text>
+<rect x="606" y="184" width="270" height="108" rx="10" fill="#e9f9f0" stroke="#39a97a" stroke-width="1.5"/>
+    <text x="741.0" y="210.0" font-size="13" font-weight="800" fill="#177a52" text-anchor="middle">智能助手</text>
+    <text x="741.0" y="230.0" font-size="11.2" fill="#3c6b55" text-anchor="middle">大模型判断下一步</text>
+<rect x="90" y="312" width="720" height="62" rx="10" fill="#f5f7fa" stroke="#b6c0cf" stroke-width="1.5"/>
+    <text x="450.0" y="347.6" font-size="13" font-weight="800" fill="#344054" text-anchor="middle">共同点：不需要特别复杂的流程控制，主要依靠大模型判断下一步</text>
+<text x="450" y="398" font-size="10.8" fill="#667085" text-anchor="middle">LangChain 也支持中间件扩展，但条件分支密集时更该用 LangGraph</text>
+</svg>
+  <div class="cap">图 6｜按问题选工具与适用场景重绘</div>
+</div>
+<p><span class="tag t-video">视频原述</span>画面给出两个并列例子：「用户询问企业某项业务制度 → 调用知识库检索工具」「用户想查询订单状态 → 调用订单查询接口」，并标注「由模型根据当前问题进行判断」。</p>
+<p><span class="tag t-video">视频原述</span>适用场景：企业知识库问答、RAG 应用、智能客服，以及需要调用数据库或第三方 API 的智能助手。口播总结：「这些应用通常不需要特别复杂的流程控制，主要依靠大模型判断下一步应该做什么」。</p>
+<table>
+<tr><th>场景</th><th>典型动作</th><th>为什么 LangChain 够用</th></tr>
+<tr><td>企业知识库助手</td><td>检索 → 生成回答</td><td>以问答与工具调用为主</td></tr>
+<tr><td>RAG 应用</td><td>文档加载 / 向量库 / 检索器</td><td>基础组件已内置</td></tr>
+<tr><td>智能客服</td><td>按问题选知识库或订单接口</td><td>由模型判断下一步</td></tr>
+<tr><td>简单数据查询助手</td><td>调用数据库 / 第三方 API</td><td>无需复杂流程编排</td></tr>
+</table>
+</section>
+<section class="sec" id="s6">
+<h2>6. 中间件扩展与 LangGraph 的引出</h2>
+<div class="figure">
+<svg viewBox="0 0 900 318" xmlns="http://www.w3.org/2000/svg" font-family="-apple-system,PingFang SC,Microsoft YaHei,sans-serif">
+  <g text-anchor="middle">
+    <text x="450" y="26" font-size="15" font-weight="800" fill="#1e2430">流程复杂之后：中间件扩展与 LangGraph</text>
+    <text x="450" y="44" font-size="10.8" fill="#667085">画面 f_0054–f_0057 逐字重绘 · 从「能扩展」到「必须精确控制」</text>
+  </g>
+<rect x="24" y="64" width="400" height="132" rx="10" fill="#eaf1ff" stroke="#5b8def" stroke-width="1.5"/>
+    <text x="224.0" y="90.0" font-size="13" font-weight="800" fill="#1d4ed8" text-anchor="middle">LangChain 可通过中间件扩展</text>
+    <text x="224.0" y="117.0" font-size="11.2" fill="#4a5b7a" text-anchor="middle">条件分支</text>
+    <text x="224.0" y="137.0" font-size="11.2" fill="#4a5b7a" text-anchor="middle">状态转换</text>
+    <text x="224.0" y="157.0" font-size="11.2" fill="#4a5b7a" text-anchor="middle">异常重试</text>
+    <text x="224.0" y="177.0" font-size="11.2" fill="#4a5b7a" text-anchor="middle">人工审批</text>
+<g stroke="#8a94a6" stroke-width="1.7" fill="none"><line x1="426" y1="130" x2="472" y2="130"/><line x1="464" y1="125" x2="472" y2="130"/><line x1="464" y1="135" x2="472" y2="130"/></g>
+<rect x="484" y="64" width="392" height="132" rx="10" fill="#f3edff" stroke="#9575e0" stroke-width="1.5"/>
+    <text x="680.0" y="90.0" font-size="13" font-weight="800" fill="#6d42c9" text-anchor="middle">当这些需求大量出现</text>
+    <text x="680.0" y="127.0" font-size="11.2" fill="#5d4a91" text-anchor="middle">流程不再适合全部交给模型判断</text>
+    <text x="680.0" y="147.0" font-size="11.2" fill="#5d4a91" text-anchor="middle">需要开发者明确控制顺序</text>
+    <text x="680.0" y="167.0" font-size="11.2" fill="#5d4a91" text-anchor="middle">→ 进入 LangGraph</text>
+<rect x="90" y="218" width="720" height="62" rx="10" fill="#f5f7fa" stroke="#b6c0cf" stroke-width="1.5"/>
+    <text x="450.0" y="253.6" font-size="13" font-weight="800" fill="#344054" text-anchor="middle">不是取代，而是抽象层次下移：从「让模型判断」到「让开发者定义」</text>
+<text x="450" y="304" font-size="10.8" fill="#667085" text-anchor="middle">画面原文：「LangChain 可通过中间件扩展」→ 条件分支 / 状态转换 / 异常重试 / 人工审批</text>
+</svg>
+  <div class="cap">图 7｜中间件扩展与 LangGraph 引出重绘</div>
+</div>
+<p><span class="tag t-video">视频原述</span>口播特意补了一句：「LangChain 并不只能开发简单应用，它也支持通过中间件等方式扩展 Agent 执行过程」。画面列出四类扩展：条件分支、状态转换、异常重试、人工审批。</p>
+<div class="key">但当「出现大量条件分支、状态转换、异常重试和人工审批」时，流程就不再适合全部交给模型判断——这正是 LangGraph 的主场。</div>
+<p><span class="tag t-extra">补充</span>注意这是<strong>抽象层次下移</strong>，不是产品淘汰：从「让模型判断下一步」变成「让开发者定义下一步」。</p>
+</section>
+<section class="sec" id="s7">
+<h2>7. LangGraph 的起点：企业售后处理系统</h2>
+<div class="figure">
+<svg viewBox="0 0 900 336" xmlns="http://www.w3.org/2000/svg" font-family="-apple-system,PingFang SC,Microsoft YaHei,sans-serif">
+  <g text-anchor="middle">
+    <text x="450" y="26" font-size="15" font-weight="800" fill="#1e2430">LangGraph 的起点：企业售后处理系统</text>
+    <text x="450" y="44" font-size="10.8" fill="#667085">画面 f_0059–f_0068 逐字重绘 · 固定环节与人工确认</text>
+  </g>
+<rect x="24" y="64" width="164" height="62" rx="10" fill="#eaf1ff" stroke="#5b8def" stroke-width="1.5"/>
+    <text x="106.0" y="99.5" font-size="13" font-weight="800" fill="#1d4ed8" text-anchor="middle">问题识别</text>
+<rect x="202" y="64" width="164" height="62" rx="10" fill="#eaf1ff" stroke="#5b8def" stroke-width="1.5"/>
+    <text x="284.0" y="99.5" font-size="13" font-weight="800" fill="#1d4ed8" text-anchor="middle">查询订单</text>
+<rect x="380" y="64" width="164" height="62" rx="10" fill="#f3edff" stroke="#9575e0" stroke-width="1.5"/>
+    <text x="462.0" y="99.5" font-size="13" font-weight="800" fill="#6d42c9" text-anchor="middle">风险校验</text>
+<rect x="558" y="64" width="164" height="62" rx="10" fill="#fff8dd" stroke="#d9a92e" stroke-width="1.5"/>
+    <text x="640.0" y="99.5" font-size="13" font-weight="800" fill="#8a5f00" text-anchor="middle">退款审批</text>
+<rect x="736" y="64" width="140" height="62" rx="10" fill="#ffeef1" stroke="#e0728d" stroke-width="1.5"/>
+    <text x="806.0" y="99.5" font-size="13" font-weight="800" fill="#b03a55" text-anchor="middle">其他处理</text>
+<g stroke="#8a94a6" stroke-width="1.7" fill="none"><line x1="190" y1="95" x2="200" y2="95"/><line x1="192" y1="90" x2="200" y2="95"/><line x1="192" y1="100" x2="200" y2="95"/></g>
+<g stroke="#8a94a6" stroke-width="1.7" fill="none"><line x1="368" y1="95" x2="378" y2="95"/><line x1="370" y1="90" x2="378" y2="95"/><line x1="370" y1="100" x2="378" y2="95"/></g>
+<g stroke="#8a94a6" stroke-width="1.7" fill="none"><line x1="546" y1="95" x2="556" y2="95"/><line x1="548" y1="90" x2="556" y2="95"/><line x1="548" y1="100" x2="556" y2="95"/></g>
+<g stroke="#8a94a6" stroke-width="1.7" fill="none"><line x1="724" y1="95" x2="734" y2="95"/><line x1="726" y1="90" x2="734" y2="95"/><line x1="726" y1="100" x2="734" y2="95"/></g>
+<rect x="90" y="150" width="720" height="66" rx="10" fill="#f5f7fa" stroke="#b6c0cf" stroke-width="1.5"/>
+    <text x="450.0" y="187.6" font-size="13" font-weight="800" fill="#344054" text-anchor="middle">有些环节必须由人工确认：什么时候风险校验、什么时候等待人工审批</text>
+<rect x="90" y="232" width="720" height="66" rx="10" fill="#ffeef1" stroke="#e0728d" stroke-width="1.5"/>
+    <text x="450.0" y="269.6" font-size="13" font-weight="800" fill="#b03a55" text-anchor="middle">若全部交给一个 Agent 自己判断，流程不容易控制</text>
+<text x="450" y="322" font-size="10.8" fill="#667085" text-anchor="middle">画面原文：「有些环节必须由人工确认」「不能完全交给大模型决定」</text>
+</svg>
+  <div class="cap">图 8｜售后流程与业务规则重绘</div>
+</div>
+<p><span class="tag t-video">视频原述</span>第二个例子是企业售后处理系统：先识别问题类型，然后查询订单，接着进行风险校验；符合就进入退款审批，不符合就转入其他处理流程。</p>
+<p><span class="tag t-video">视频原述</span>口播强调：「不能完全交给大模型决定」「什么时候必须进行风险校验，什么时候需要等待人工审批」——这些是明确的业务规则，不是模型的自由裁量。</p>
+<div class="note">画面小节导航依次为「LangGraph•售后处理流程」「LangGraph•明确业务规则」「LangGraph•图的三个要素」「LangGraph • State 共享状态」「LangGraph・Node 执行任务」「LangGraph • Edge 条件流转」「LangGraph•精确控制执行」。</div>
+</section>
+<section class="sec" id="s8">
+<h2>8. 图三要素：State / Node / Edge</h2>
+<div class="figure">
+<svg viewBox="0 0 900 304" xmlns="http://www.w3.org/2000/svg" font-family="-apple-system,PingFang SC,Microsoft YaHei,sans-serif">
+  <g text-anchor="middle">
+    <text x="450" y="26" font-size="15" font-weight="800" fill="#1e2430">LangGraph 用图结构组织执行流程：三个要素</text>
+    <text x="450" y="44" font-size="10.8" fill="#667085">画面 f_0072 逐字重绘 · State / Node / Edge</text>
+  </g>
+<rect x="24" y="64" width="270" height="118" rx="10" fill="#eaf1ff" stroke="#5b8def" stroke-width="1.5"/>
+    <text x="159.0" y="90.0" font-size="13" font-weight="800" fill="#1d4ed8" text-anchor="middle">State</text>
+    <text x="159.0" y="120.0" font-size="11.2" fill="#4a5b7a" text-anchor="middle">共享数据</text>
+    <text x="159.0" y="140.0" font-size="11.2" fill="#4a5b7a" text-anchor="middle">工作流执行过程中</text>
+    <text x="159.0" y="160.0" font-size="11.2" fill="#4a5b7a" text-anchor="middle">需要共享的状态</text>
+<rect x="315" y="64" width="270" height="118" rx="10" fill="#f3edff" stroke="#9575e0" stroke-width="1.5"/>
+    <text x="450.0" y="90.0" font-size="13" font-weight="800" fill="#6d42c9" text-anchor="middle">Node</text>
+    <text x="450.0" y="120.0" font-size="11.2" fill="#5d4a91" text-anchor="middle">具体任务</text>
+    <text x="450.0" y="140.0" font-size="11.2" fill="#5d4a91" text-anchor="middle">一个节点执行</text>
+    <text x="450.0" y="160.0" font-size="11.2" fill="#5d4a91" text-anchor="middle">一个明确任务</text>
+<rect x="606" y="64" width="270" height="118" rx="10" fill="#e9f9f0" stroke="#39a97a" stroke-width="1.5"/>
+    <text x="741.0" y="90.0" font-size="13" font-weight="800" fill="#177a52" text-anchor="middle">Edge</text>
+    <text x="741.0" y="120.0" font-size="11.2" fill="#3c6b55" text-anchor="middle">流转关系</text>
+    <text x="741.0" y="140.0" font-size="11.2" fill="#3c6b55" text-anchor="middle">定义节点之间</text>
+    <text x="741.0" y="160.0" font-size="11.2" fill="#3c6b55" text-anchor="middle">下一步去哪里</text>
+<rect x="90" y="204" width="720" height="62" rx="10" fill="#f5f7fa" stroke="#b6c0cf" stroke-width="1.5"/>
+    <text x="450.0" y="239.6" font-size="13" font-weight="800" fill="#344054" text-anchor="middle">图结构 = 共享数据（State）+ 具体任务（Node）+ 流转关系（Edge）</text>
+<text x="450" y="290" font-size="10.8" fill="#667085" text-anchor="middle">画面原文：State 共享数据 ｜ Node 具体任务 ｜ Edge 流转关系</text>
+</svg>
+  <div class="cap">图 9｜图三要素重绘</div>
+</div>
+<p><span class="tag t-video">视频原述</span>「LangGraph 使用图结构来组织整个执行流程」，三个概念：State（状态，保存工作流执行过程中需要共享的数据）、Node（节点，例如调用大模型识别问题类型、查询订单信息、执行风险校验）、Edge（定义节点之间的流转关系）。</p>
+<div class="figure">
+<svg viewBox="0 0 900 316" xmlns="http://www.w3.org/2000/svg" font-family="-apple-system,PingFang SC,Microsoft YaHei,sans-serif">
+  <g text-anchor="middle">
+    <text x="450" y="26" font-size="15" font-weight="800" fill="#1e2430">把售后流程拆成 State / Node / Edge</text>
+    <text x="450" y="44" font-size="10.8" fill="#667085">画面 f_0075–f_0089 逐字重绘 · 三要素与业务一一对应</text>
+  </g>
+<rect x="24" y="64" width="270" height="130" rx="10" fill="#eaf1ff" stroke="#5b8def" stroke-width="1.5"/>
+    <text x="159.0" y="90.0" font-size="13" font-weight="800" fill="#1d4ed8" text-anchor="middle">State 共享状态</text>
+    <text x="159.0" y="126.0" font-size="11.2" fill="#4a5b7a" text-anchor="middle">退款申请</text>
+    <text x="159.0" y="146.0" font-size="11.2" fill="#4a5b7a" text-anchor="middle">订单信息</text>
+    <text x="159.0" y="166.0" font-size="11.2" fill="#4a5b7a" text-anchor="middle">风险校验结果</text>
+<rect x="315" y="64" width="270" height="130" rx="10" fill="#f3edff" stroke="#9575e0" stroke-width="1.5"/>
+    <text x="450.0" y="90.0" font-size="13" font-weight="800" fill="#6d42c9" text-anchor="middle">Node 具体任务</text>
+    <text x="450.0" y="126.0" font-size="11.2" fill="#5d4a91" text-anchor="middle">识别问题类型</text>
+    <text x="450.0" y="146.0" font-size="11.2" fill="#5d4a91" text-anchor="middle">查询订单信息</text>
+    <text x="450.0" y="166.0" font-size="11.2" fill="#5d4a91" text-anchor="middle">执行风险校验</text>
+<rect x="606" y="64" width="270" height="130" rx="10" fill="#e9f9f0" stroke="#39a97a" stroke-width="1.5"/>
+    <text x="741.0" y="90.0" font-size="13" font-weight="800" fill="#177a52" text-anchor="middle">Edge 条件流转</text>
+    <text x="741.0" y="136.0" font-size="11.2" fill="#3c6b55" text-anchor="middle">通过 → 退款审批</text>
+    <text x="741.0" y="156.0" font-size="11.2" fill="#3c6b55" text-anchor="middle">未通过 → 异常处理</text>
+<rect x="90" y="216" width="720" height="62" rx="10" fill="#f5f7fa" stroke="#b6c0cf" stroke-width="1.5"/>
+    <text x="450.0" y="251.6" font-size="13" font-weight="800" fill="#344054" text-anchor="middle">开发者能够明确控制每个环节的执行顺序</text>
+<text x="450" y="302" font-size="10.8" fill="#667085" text-anchor="middle">核心价值：精确控制 Agent 的执行过程，而不是让模型自由发挥</text>
+</svg>
+  <div class="cap">图 10｜三要素落地重绘</div>
+</div>
+<h3 id="81-三要素落到售后例">8.1 三要素落到售后例</h3>
+<table>
+<tr><th>要素</th><th>画面原文</th><th>售后系统里的具体值</th></tr>
+<tr><td>State</td><td>共享数据</td><td>用户提交的退款申请、订单信息、风险校验结果</td></tr>
+<tr><td>Node</td><td>具体任务</td><td>识别问题类型、查询订单信息、执行风险校验</td></tr>
+<tr><td>Edge</td><td>流转关系</td><td>风险校验通过 → 退款审批；未通过 → 异常处理</td></tr>
+</table>
+<p><span class="tag t-video">视频原述</span>「一个节点执行一个具体任务」「根据条件决定下一步执行哪个节点」，于是整个售后流程被拆成多个节点，开发者能明确控制每个环节的执行顺序。</p>
+</section>
+<section class="sec" id="s9">
+<h2>9. 条件流转与精确控制</h2>
+<div class="figure">
+<svg viewBox="0 0 900 340" xmlns="http://www.w3.org/2000/svg" font-family="-apple-system,PingFang SC,Microsoft YaHei,sans-serif">
+  <g text-anchor="middle">
+    <text x="450" y="26" font-size="15" font-weight="800" fill="#1e2430">条件流转：由业务规则决定下一步</text>
+    <text x="450" y="44" font-size="10.8" fill="#667085">画面 f_0082–f_0090 逐字重绘 · 精确控制执行过程</text>
+  </g>
+<rect x="90" y="64" width="205" height="58" rx="10" fill="#eaf1ff" stroke="#5b8def" stroke-width="1.5"/>
+    <text x="192.5" y="97.5" font-size="13" font-weight="800" fill="#1d4ed8" text-anchor="middle">问题识别</text>
+<rect x="315" y="64" width="205" height="58" rx="10" fill="#eaf1ff" stroke="#5b8def" stroke-width="1.5"/>
+    <text x="417.5" y="97.5" font-size="13" font-weight="800" fill="#1d4ed8" text-anchor="middle">订单查询</text>
+<rect x="540" y="64" width="205" height="58" rx="10" fill="#f3edff" stroke="#9575e0" stroke-width="1.5"/>
+    <text x="642.5" y="97.5" font-size="13" font-weight="800" fill="#6d42c9" text-anchor="middle">风险校验</text>
+<g stroke="#8a94a6" stroke-width="1.7" fill="none"><line x1="297" y1="93" x2="313" y2="93"/><line x1="305" y1="88" x2="313" y2="93"/><line x1="305" y1="98" x2="313" y2="93"/></g>
+<g stroke="#8a94a6" stroke-width="1.7" fill="none"><line x1="522" y1="93" x2="538" y2="93"/><line x1="530" y1="88" x2="538" y2="93"/><line x1="530" y1="98" x2="538" y2="93"/></g>
+<rect x="330" y="158" width="205" height="58" rx="10" fill="#e9f9f0" stroke="#39a97a" stroke-width="1.5"/>
+    <text x="432.5" y="191.6" font-size="13" font-weight="800" fill="#177a52" text-anchor="middle">通过 → 退款审批</text>
+<rect x="555" y="158" width="205" height="58" rx="10" fill="#ffeef1" stroke="#e0728d" stroke-width="1.5"/>
+    <text x="657.5" y="191.6" font-size="13" font-weight="800" fill="#b03a55" text-anchor="middle">未通过 → 异常处理</text>
+<g stroke="#8a94a6" stroke-width="1.7" fill="none"><line x1="642" y1="122" x2="642" y2="156"/><line x1="637" y1="148" x2="642" y2="156"/><line x1="647" y1="148" x2="642" y2="156"/></g>
+<rect x="90" y="240" width="720" height="62" rx="10" fill="#f5f7fa" stroke="#b6c0cf" stroke-width="1.5"/>
+    <text x="450.0" y="275.6" font-size="13" font-weight="800" fill="#344054" text-anchor="middle">整个流程拆成多个节点，开发者精确控制每个环节的执行顺序</text>
+<text x="450" y="326" font-size="10.8" fill="#667085" text-anchor="middle">画面原文：「开发者精确控制 Agent 执行过程」</text>
+</svg>
+  <div class="cap">图 11｜条件流转与精确控制重绘</div>
+</div>
+<p><span class="tag t-video">视频原述</span>画面用「风险校验 → 通过 / 未通过 → 退款审批 / 异常处理」演示条件边。核心价值口播原话：「它让开发者能够更加精确地控制 Agent 的执行过程」。</p>
+<div class="key">LangGraph 的价值不在于「让 Agent 更聪明」，而在于「让流程更可控」——把确定性环节固定下来，把需要判断的环节留给模型。</div>
+</section>
+<section class="sec" id="s10">
+<h2>10. 暂停、恢复与生产级能力</h2>
+<div class="figure">
+<svg viewBox="0 0 900 362" xmlns="http://www.w3.org/2000/svg" font-family="-apple-system,PingFang SC,Microsoft YaHei,sans-serif">
+  <g text-anchor="middle">
+    <text x="450" y="26" font-size="15" font-weight="800" fill="#1e2430">LangGraph 的生产级能力：暂停、恢复、人工介入</text>
+    <text x="450" y="44" font-size="10.8" fill="#667085">画面 f_0092–f_0098 逐字重绘 · 持久化检查点</text>
+  </g>
+<rect x="24" y="64" width="205" height="92" rx="10" fill="#eaf1ff" stroke="#5b8def" stroke-width="1.5"/>
+    <text x="126.5" y="90.0" font-size="13" font-weight="800" fill="#1d4ed8" text-anchor="middle">持久化检查点</text>
+    <text x="126.5" y="110.0" font-size="11.2" fill="#4a5b7a" text-anchor="middle">保存状态</text>
+<rect x="244" y="64" width="205" height="92" rx="10" fill="#eaf1ff" stroke="#5b8def" stroke-width="1.5"/>
+    <text x="346.5" y="90.0" font-size="13" font-weight="800" fill="#1d4ed8" text-anchor="middle">流式输出</text>
+    <text x="346.5" y="110.0" font-size="11.2" fill="#4a5b7a" text-anchor="middle">实时可见</text>
+<rect x="464" y="64" width="205" height="92" rx="10" fill="#f3edff" stroke="#9575e0" stroke-width="1.5"/>
+    <text x="566.5" y="90.0" font-size="13" font-weight="800" fill="#6d42c9" text-anchor="middle">执行中断</text>
+    <text x="566.5" y="110.0" font-size="11.2" fill="#5d4a91" text-anchor="middle">可暂停</text>
+<rect x="684" y="64" width="205" height="92" rx="10" fill="#e9f9f0" stroke="#39a97a" stroke-width="1.5"/>
+    <text x="786.5" y="90.0" font-size="13" font-weight="800" fill="#177a52" text-anchor="middle">人工介入</text>
+    <text x="786.5" y="110.0" font-size="11.2" fill="#3c6b55" text-anchor="middle">可确认</text>
+<rect x="90" y="180" width="720" height="66" rx="10" fill="#f5f7fa" stroke="#b6c0cf" stroke-width="1.5"/>
+    <text x="450.0" y="217.6" font-size="13" font-weight="800" fill="#344054" text-anchor="middle">运行 → 暂停等待 → 人工确认 → 从检查点恢复并继续执行</text>
+<rect x="90" y="262" width="720" height="62" rx="10" fill="#ffeef1" stroke="#e0728d" stroke-width="1.5"/>
+    <text x="450.0" y="297.6" font-size="13" font-weight="800" fill="#b03a55" text-anchor="middle">任务异常时，结合持久化检查点保存的状态恢复执行</text>
+<text x="450" y="348" font-size="10.8" fill="#667085" text-anchor="middle">画面原文：「检查点保存状态 → 恢复执行」</text>
+</svg>
+  <div class="cap">图 12｜暂停与恢复重绘</div>
+</div>
+<p><span class="tag t-video">视频原述</span>「除此之外，LangGraph 还提供了持久化检查点、流式输出、执行中断和人工介入等能力」。例子：退款流程执行到人工审批环节，系统先暂停运行，等人工审批完成后，再从之前暂停的位置继续执行；任务异常时也可结合检查点保存的状态恢复执行。</p>
+<table>
+<tr><th>能力</th><th>画面文字</th><th>解决什么</th></tr>
+<tr><td>持久化检查点</td><td>检查点保存状态 → 恢复执行</td><td>长时间运行 / 故障恢复</td></tr>
+<tr><td>流式输出</td><td>流式输出</td><td>过程可见、逐步返回</td></tr>
+<tr><td>执行中断</td><td>暂停等待</td><td>在关键节点停下来</td></tr>
+<tr><td>人工介入</td><td>人工确认 → 继续执行</td><td>审批与人工把关</td></tr>
+</table>
+</section>
+<section class="sec" id="s11">
+<h2>11. 适用场景与「代码 + 模型」分工</h2>
+<div class="figure">
+<svg viewBox="0 0 900 318" xmlns="http://www.w3.org/2000/svg" font-family="-apple-system,PingFang SC,Microsoft YaHei,sans-serif">
+  <g text-anchor="middle">
+    <text x="450" y="26" font-size="15" font-weight="800" fill="#1e2430">LangGraph 适用场景与「代码 + 模型」分工</text>
+    <text x="450" y="44" font-size="10.8" fill="#667085">画面 f_0100–f_0107 逐字重绘 · 并非每一步都需要大模型</text>
+  </g>
+<rect x="24" y="64" width="400" height="132" rx="10" fill="#f3edff" stroke="#9575e0" stroke-width="1.5"/>
+    <text x="224.0" y="90.0" font-size="13" font-weight="800" fill="#6d42c9" text-anchor="middle">适合 LangGraph</text>
+    <text x="224.0" y="117.0" font-size="11.2" fill="#5d4a91" text-anchor="middle">多步骤业务流程</text>
+    <text x="224.0" y="137.0" font-size="11.2" fill="#5d4a91" text-anchor="middle">复杂条件分支 / 循环重试</text>
+    <text x="224.0" y="157.0" font-size="11.2" fill="#5d4a91" text-anchor="middle">人工审批</text>
+    <text x="224.0" y="177.0" font-size="11.2" fill="#5d4a91" text-anchor="middle">保存状态并支持中断恢复</text>
+<rect x="444" y="64" width="432" height="132" rx="10" fill="#e9f9f0" stroke="#39a97a" stroke-width="1.5"/>
+    <text x="660.0" y="90.0" font-size="13" font-weight="800" fill="#177a52" text-anchor="middle">代码与模型分工</text>
+    <text x="660.0" y="117.0" font-size="11.2" fill="#3c6b55" text-anchor="middle">确定性业务逻辑 → 普通代码</text>
+    <text x="660.0" y="137.0" font-size="11.2" fill="#3c6b55" text-anchor="middle">理解与判断任务 → 大模型</text>
+    <text x="660.0" y="157.0" font-size="11.2" fill="#3c6b55" text-anchor="middle">既发挥智能能力</text>
+    <text x="660.0" y="177.0" font-size="11.2" fill="#3c6b55" text-anchor="middle">又保证业务流程可控</text>
+<rect x="90" y="218" width="720" height="62" rx="10" fill="#f5f7fa" stroke="#b6c0cf" stroke-width="1.5"/>
+    <text x="450.0" y="253.6" font-size="13" font-weight="800" fill="#344054" text-anchor="middle">画面原文：「并非每一步都需要大模型」</text>
+<text x="450" y="304" font-size="10.8" fill="#667085" text-anchor="middle">典型场景：订单处理、退款审批、企业工单系统</text>
+</svg>
+  <div class="cap">图 13｜适用场景与分工重绘</div>
+</div>
+<p><span class="tag t-video">视频原述</span>适用场景：多步骤业务流程、复杂条件分支、循环重试、人工审批，以及需要保存状态并支持中断恢复的 Agent 系统；典型如订单处理、退款审批、企业工单系统。</p>
+<p><span class="tag t-video">视频原述</span>视频特意强调：「LangGraph 并不意味着所有步骤都必须交给大模型处理。相反，它非常适合把确定性的业务逻辑交给普通代码，把需要理解和判断的任务交给大模型」。</p>
+<div class="key">判断标准：这一步的结果是否<strong>只能由语义理解得出</strong>？不是，就写普通代码；是，才交给模型。</div>
+</section>
+<section class="sec" id="s12">
+<h2>12. Deep Agents：只给目标，由 Agent 自己规划</h2>
+<div class="figure">
+<svg viewBox="0 0 900 382" xmlns="http://www.w3.org/2000/svg" font-family="-apple-system,PingFang SC,Microsoft YaHei,sans-serif">
+  <g text-anchor="middle">
+    <text x="450" y="26" font-size="15" font-weight="800" fill="#1e2430">Deep Agents：只给目标，由 Agent 自己规划</text>
+    <text x="450" y="44" font-size="10.8" fill="#667085">画面 f_0111–f_0127 逐字重绘 · 代码仓库修复示例</text>
+  </g>
+<rect x="24" y="64" width="270" height="112" rx="10" fill="#eaf1ff" stroke="#5b8def" stroke-width="1.5"/>
+    <text x="159.0" y="90.0" font-size="13" font-weight="800" fill="#1d4ed8" text-anchor="middle">LangChain</text>
+    <text x="159.0" y="110.0" font-size="11.2" fill="#4a5b7a" text-anchor="middle">基础组件与工具调用</text>
+<rect x="315" y="64" width="270" height="112" rx="10" fill="#f3edff" stroke="#9575e0" stroke-width="1.5"/>
+    <text x="450.0" y="90.0" font-size="13" font-weight="800" fill="#6d42c9" text-anchor="middle">LangGraph</text>
+    <text x="450.0" y="110.0" font-size="11.2" fill="#5d4a91" text-anchor="middle">复杂流程编排</text>
+<rect x="606" y="64" width="270" height="112" rx="10" fill="#e9f9f0" stroke="#39a97a" stroke-width="1.5"/>
+    <text x="741.0" y="90.0" font-size="13" font-weight="800" fill="#177a52" text-anchor="middle">Deep Agents</text>
+    <text x="741.0" y="110.0" font-size="11.2" fill="#3c6b55" text-anchor="middle">规划并持续完成复杂目标</text>
+<rect x="90" y="196" width="720" height="66" rx="10" fill="#f5f7fa" stroke="#b6c0cf" stroke-width="1.5"/>
+    <text x="450.0" y="233.6" font-size="13" font-weight="800" fill="#344054" text-anchor="middle">目标：修复登录模块问题 ｜ 用户给目标，执行步骤由 Agent 规划</text>
+<rect x="90" y="278" width="720" height="66" rx="10" fill="#fff8dd" stroke="#d9a92e" stroke-width="1.5"/>
+    <text x="450.0" y="315.6" font-size="13" font-weight="800" fill="#8a5f00" text-anchor="middle">理解目标 → 分析仓库 → 修复计划 → 修改代码 → 运行测试 → 修复报告</text>
+<text x="450" y="368" font-size="10.8" fill="#667085" text-anchor="middle">测试失败 → 分析错误 → 调整代码；过程涉及大量文件与工具调用</text>
+</svg>
+  <div class="cap">图 14｜Deep Agents 定位与代码修复任务重绘</div>
+</div>
+<p><span class="tag t-video">视频原述</span>第三个例子：给 AI 一个任务「分析当前项目的代码仓库，找出登录模块存在的问题，修复相关代码，然后运行测试」——「注意，这个任务并没有规定具体应该执行哪些步骤」。</p>
+<p><span class="tag t-video">视频原述</span>Agent 需要自己理解目标、分析代码仓库、找到相关文件、制定修复计划、修改代码、运行测试；「测试失败 → 分析错误 → 调整代码」，直到达到预期结果。整个过程涉及大量文件和工具调用，还需要保存中间发现的信息。</p>
+<p><span class="tag t-video">视频原述</span>「如果这些功能全部由开发者自己实现，工作量较大」，而 Deep Agents 就是为这类复杂任务提供更完整的执行框架。</p>
+</section>
+<section class="sec" id="s13">
+<h2>13. 完整执行框架：建立在前两者之上</h2>
+<div class="figure">
+<svg viewBox="0 0 900 440" xmlns="http://www.w3.org/2000/svg" font-family="-apple-system,PingFang SC,Microsoft YaHei,sans-serif">
+  <g text-anchor="middle">
+    <text x="450" y="26" font-size="15" font-weight="800" fill="#1e2430">Deep Agents 的完整执行框架</text>
+    <text x="450" y="44" font-size="10.8" fill="#667085">画面 f_0129–f_0132 逐字重绘 · 底层能力向上封装，不是向下流程</text>
+  </g>
+<rect x="90" y="64" width="720" height="56" rx="10" fill="#ffeef1" stroke="#e0728d" stroke-width="1.5"/>
+    <text x="450.0" y="96.5" font-size="13" font-weight="800" fill="#b03a55" text-anchor="middle">自行实现这些能力：工作量较大</text>
+<rect x="90" y="152" width="720" height="76" rx="10" fill="#e9f9f0" stroke="#39a97a" stroke-width="1.5"/>
+    <text x="450.0" y="194.6" font-size="13" font-weight="800" fill="#177a52" text-anchor="middle">规划 / 上下文 / 文件系统 / 子智能体</text>
+<g stroke="#8a94a6" stroke-width="1.7" fill="none"><line x1="450" y1="258" x2="450" y2="230"/><line x1="445" y1="238" x2="450" y2="230"/><line x1="455" y1="238" x2="450" y2="230"/></g>
+<rect x="90" y="260" width="720" height="62" rx="10" fill="#eaf1ff" stroke="#5b8def" stroke-width="1.5"/>
+    <text x="450.0" y="295.6" font-size="13" font-weight="800" fill="#1d4ed8" text-anchor="middle">LangChain + LangGraph 相关能力</text>
+<rect x="90" y="340" width="720" height="62" rx="10" fill="#f5f7fa" stroke="#b6c0cf" stroke-width="1.5"/>
+    <text x="450.0" y="375.6" font-size="13" font-weight="800" fill="#344054" text-anchor="middle">Deep Agents 把这些能力封装成完整执行框架</text>
+<text x="450" y="426" font-size="10.8" fill="#667085" text-anchor="middle">画面为自下而上的堆叠：基础能力在下，封装能力在上；顶部文字是「自行实现成本」的提示</text>
+</svg>
+  <div class="cap">图 15｜完整执行框架重绘</div>
+</div>
+<p><span class="tag t-video">视频原述</span>画面给出一张堆叠图：底层是「LangChain + LangGraph 相关能力」，上层是「规划 / 上下文 / 文件系统 / 子智能体」，顶部标注「自行实现：工作量较大」。口播：「它建立在 LangChain 和 LangGraph 的相关能力之上，进一步整合了任务规划、上下文管理、文件系统和子智能体等能力」。</p>
+<table>
+<tr><th>层</th><th>内容</th><th>来源</th></tr>
+<tr><td>底层</td><td>模型 / 工具组件 + 持久执行 / 状态管理</td><td>LangChain + LangGraph</td></tr>
+<tr><td>上层</td><td>规划、上下文、文件系统、子智能体</td><td>Deep Agents 封装</td></tr>
+<tr><td>可选</td><td>Skills、长期记忆、人工介入、沙箱与执行工具</td><td>按配置启用</td></tr>
+</table>
+</section>
+<section class="sec" id="s14">
+<h2>14. 任务规划与子智能体协作</h2>
+<div class="figure">
+<svg viewBox="0 0 900 332" xmlns="http://www.w3.org/2000/svg" font-family="-apple-system,PingFang SC,Microsoft YaHei,sans-serif">
+  <g text-anchor="middle">
+    <text x="450" y="26" font-size="15" font-weight="800" fill="#1e2430">任务规划与子智能体协作</text>
+    <text x="450" y="44" font-size="10.8" fill="#667085">画面 f_0135–f_0146 逐字重绘 · 大目标 → 可跟踪的具体步骤</text>
+  </g>
+<rect x="90" y="64" width="720" height="62" rx="10" fill="#e9f9f0" stroke="#39a97a" stroke-width="1.5"/>
+    <text x="450.0" y="99.5" font-size="13" font-weight="800" fill="#177a52" text-anchor="middle">大目标 → 代码分析 / 问题定位 / 代码修改 / 测试验证 / 结果整理</text>
+<rect x="90" y="146" width="300" height="62" rx="10" fill="#eaf1ff" stroke="#5b8def" stroke-width="1.5"/>
+    <text x="240.0" y="181.6" font-size="13" font-weight="800" fill="#1d4ed8" text-anchor="middle">主 Agent：整体规划</text>
+<rect x="410" y="146" width="190" height="62" rx="10" fill="#f3edff" stroke="#9575e0" stroke-width="1.5"/>
+    <text x="505.0" y="172.0" font-size="13" font-weight="800" fill="#6d42c9" text-anchor="middle">子 Agent</text>
+    <text x="505.0" y="192.0" font-size="11.2" fill="#5d4a91" text-anchor="middle">分析代码结构</text>
+<rect x="620" y="146" width="190" height="62" rx="10" fill="#f3edff" stroke="#9575e0" stroke-width="1.5"/>
+    <text x="715.0" y="172.0" font-size="13" font-weight="800" fill="#6d42c9" text-anchor="middle">子 Agent</text>
+    <text x="715.0" y="192.0" font-size="11.2" fill="#5d4a91" text-anchor="middle">检查测试结果</text>
+<g stroke="#8a94a6" stroke-width="1.7" fill="none"><line x1="392" y1="177" x2="408" y2="177"/><line x1="400" y1="172" x2="408" y2="177"/><line x1="400" y1="182" x2="408" y2="177"/></g>
+<g stroke="#8a94a6" stroke-width="1.7" fill="none"><line x1="602" y1="177" x2="618" y2="177"/><line x1="610" y1="172" x2="618" y2="177"/><line x1="610" y1="182" x2="618" y2="177"/></g>
+<rect x="90" y="232" width="720" height="62" rx="10" fill="#f5f7fa" stroke="#b6c0cf" stroke-width="1.5"/>
+    <text x="450.0" y="267.6" font-size="13" font-weight="800" fill="#344054" text-anchor="middle">子任务结果返回 → 主 Agent 汇总处理</text>
+<text x="450" y="318" font-size="10.8" fill="#667085" text-anchor="middle">画面原文：「子任务交给专门的 Agent」「子任务结果返回 → 主 Agent 汇总处理」</text>
+</svg>
+  <div class="cap">图 16｜任务规划与子智能体重绘</div>
+</div>
+<h3 id="141-任务规划大目标--可跟踪的具体步骤">14.1 任务规划：大目标 → 可跟踪的具体步骤</h3>
+<p><span class="tag t-video">视频原述</span>「Agent 可以把任务拆分成多个具体步骤，并跟踪每个步骤执行情况」。代码修复任务可拆成代码分析、问题定位、代码修改、测试验证、结果整理。</p>
+<h3 id="142-子智能体把独立子任务交给专门-agent">14.2 子智能体：把独立子任务交给专门 Agent</h3>
+<p><span class="tag t-video">视频原述</span>主 Agent 负责整体任务规划；一个子 Agent 分析代码结构，另一个子 Agent 检查测试结果；完成后「子任务结果返回 → 主 Agent 汇总处理」。</p>
+<div class="note">官方文档补充：规划工具 <code>write_todos</code> 在新版为可选中间件（<code>TodoListMiddleware</code>）；子智能体通过内置 <code>task</code> 工具创建，默认隔离上下文并只返回一份最终结果。</div>
+</section>
+<section class="sec" id="s15">
+<h2>15. 文件系统与上下文管理</h2>
+<div class="figure">
+<svg viewBox="0 0 900 318" xmlns="http://www.w3.org/2000/svg" font-family="-apple-system,PingFang SC,Microsoft YaHei,sans-serif">
+  <g text-anchor="middle">
+    <text x="450" y="26" font-size="15" font-weight="800" fill="#1e2430">文件系统与上下文管理：让长期任务跑得下去</text>
+    <text x="450" y="44" font-size="10.8" fill="#667085">画面 f_0149–f_0161 逐字重绘 · 减少对话上下文堆积</text>
+  </g>
+<rect x="24" y="64" width="400" height="132" rx="10" fill="#e9f9f0" stroke="#39a97a" stroke-width="1.5"/>
+    <text x="224.0" y="90.0" font-size="13" font-weight="800" fill="#177a52" text-anchor="middle">文件系统 / 中间产物</text>
+    <text x="224.0" y="117.0" font-size="11.2" fill="#3c6b55" text-anchor="middle">研究资料</text>
+    <text x="224.0" y="137.0" font-size="11.2" fill="#3c6b55" text-anchor="middle">任务计划</text>
+    <text x="224.0" y="157.0" font-size="11.2" fill="#3c6b55" text-anchor="middle">中间产物</text>
+    <text x="224.0" y="177.0" font-size="11.2" fill="#3c6b55" text-anchor="middle">文件读写，减少上下文堆积</text>
+<rect x="444" y="64" width="432" height="132" rx="10" fill="#fff8dd" stroke="#d9a92e" stroke-width="1.5"/>
+    <text x="660.0" y="90.0" font-size="13" font-weight="800" fill="#8a5f00" text-anchor="middle">控制上下文规模</text>
+    <text x="660.0" y="117.0" font-size="11.2" fill="#7a6330" text-anchor="middle">对话历史越来越长</text>
+    <text x="660.0" y="137.0" font-size="11.2" fill="#7a6330" text-anchor="middle">工具返回结果越来越多</text>
+    <text x="660.0" y="157.0" font-size="11.2" fill="#7a6330" text-anchor="middle">→ 摘要</text>
+    <text x="660.0" y="177.0" font-size="11.2" fill="#7a6330" text-anchor="middle">→ 文件卸载</text>
+<rect x="90" y="218" width="720" height="62" rx="10" fill="#f5f7fa" stroke="#b6c0cf" stroke-width="1.5"/>
+    <text x="450.0" y="253.6" font-size="13" font-weight="800" fill="#344054" text-anchor="middle">Agent 执行时间越长、调用工具越多，越需要显式的上下文管理</text>
+<text x="450" y="304" font-size="10.8" fill="#667085" text-anchor="middle">官方补充：Skills 按需加载、AGENTS.md 长期记忆、自动摘要与大结果卸载</text>
+</svg>
+  <div class="cap">图 17｜文件系统与上下文管理重绘</div>
+</div>
+<p><span class="tag t-video">视频原述</span>「在复杂任务中，Agent 可能需要读取大量文件，也可能需要把中间结果保存下来」。Deep Agents 提供文件系统能力，通过文件读写保存研究资料、任务计划和中间产物，「减少所有信息都堆积在对话上下文中的情况」。</p>
+<p><span class="tag t-video">视频原述</span>口播点出根因：「Agent 执行时间越长，调用工具越多，对话历史和工具返回结果就可能越来越多」，所以需要「通过摘要、文件卸载等方式控制上下文规模」。</p>
+<table>
+<tr><th>机制</th><th>画面文字</th><th>作用</th></tr>
+<tr><td>文件读写</td><td>研究资料 / 任务计划 / 中间产物</td><td>把大结果移出对话</td></tr>
+<tr><td>摘要</td><td>摘要</td><td>压缩历史对话</td></tr>
+<tr><td>文件卸载</td><td>文件卸载</td><td>卸载大工具结果</td></tr>
+<tr><td>Skills</td><td>可复用知识与流程</td><td>按需加载领域知识</td></tr>
+<tr><td>长期记忆</td><td>按配置使用</td><td>跨会话保留偏好</td></tr>
+</table>
+</section>
+<section class="sec" id="s16">
+<h2>16. 可扩展能力、适用场景与权限边界</h2>
+<div class="figure">
+<svg viewBox="0 0 900 316" xmlns="http://www.w3.org/2000/svg" font-family="-apple-system,PingFang SC,Microsoft YaHei,sans-serif">
+  <g text-anchor="middle">
+    <text x="450" y="26" font-size="15" font-weight="800" fill="#1e2430">可扩展能力，以及越自主越要设边界</text>
+    <text x="450" y="44" font-size="10.8" fill="#667085">画面 f_0162–f_0177 逐字重绘 · 适用场景与执行环境</text>
+  </g>
+<rect x="24" y="64" width="270" height="130" rx="10" fill="#e9f9f0" stroke="#39a97a" stroke-width="1.5"/>
+    <text x="159.0" y="90.0" font-size="13" font-weight="800" fill="#177a52" text-anchor="middle">可扩展能力</text>
+    <text x="159.0" y="116.0" font-size="11.2" fill="#3c6b55" text-anchor="middle">Skills：可复用知识与流程</text>
+    <text x="159.0" y="136.0" font-size="11.2" fill="#3c6b55" text-anchor="middle">长期记忆：按配置使用</text>
+    <text x="159.0" y="156.0" font-size="11.2" fill="#3c6b55" text-anchor="middle">人工介入</text>
+    <text x="159.0" y="176.0" font-size="11.2" fill="#3c6b55" text-anchor="middle">沙箱与执行工具</text>
+<rect x="315" y="64" width="270" height="130" rx="10" fill="#eaf1ff" stroke="#5b8def" stroke-width="1.5"/>
+    <text x="450.0" y="90.0" font-size="13" font-weight="800" fill="#1d4ed8" text-anchor="middle">适用场景</text>
+    <text x="450.0" y="116.0" font-size="11.2" fill="#4a5b7a" text-anchor="middle">深度研究</text>
+    <text x="450.0" y="136.0" font-size="11.2" fill="#4a5b7a" text-anchor="middle">代码分析与修复</text>
+    <text x="450.0" y="156.0" font-size="11.2" fill="#4a5b7a" text-anchor="middle">复杂资料整理</text>
+    <text x="450.0" y="176.0" font-size="11.2" fill="#4a5b7a" text-anchor="middle">多个子智能体协作</text>
+<rect x="606" y="64" width="270" height="130" rx="10" fill="#ffeef1" stroke="#e0728d" stroke-width="1.5"/>
+    <text x="741.0" y="90.0" font-size="13" font-weight="800" fill="#b03a55" text-anchor="middle">注意权限与执行环境</text>
+    <text x="741.0" y="116.0" font-size="11.2" fill="#8c4a5b" text-anchor="middle">文件修改 / 命令执行</text>
+    <text x="741.0" y="136.0" font-size="11.2" fill="#8c4a5b" text-anchor="middle">数据库写入</text>
+    <text x="741.0" y="156.0" font-size="11.2" fill="#8c4a5b" text-anchor="middle">权限控制</text>
+    <text x="741.0" y="176.0" font-size="11.2" fill="#8c4a5b" text-anchor="middle">沙箱隔离 / 人工审批</text>
+<rect x="90" y="216" width="720" height="62" rx="10" fill="#ffeef1" stroke="#e0728d" stroke-width="1.5"/>
+    <text x="450.0" y="251.6" font-size="13" font-weight="800" fill="#b03a55" text-anchor="middle">不能默认让 Agent 无限制地执行操作</text>
+<text x="450" y="302" font-size="10.8" fill="#667085" text-anchor="middle">画面原文：「注意权限和执行环境」「权限控制 / 沙箱隔离 / 人工审批」</text>
+</svg>
+  <div class="cap">图 18｜可扩展能力与权限边界重绘</div>
+</div>
+<p><span class="tag t-video">视频原述</span>可扩展能力：Skills（可复用知识与流程）、长期记忆（按配置使用）、人工介入、沙箱与执行工具（按配置运行）。适用场景：深度研究、自动化代码分析与修复、复杂资料整理、多个子智能体协作。</p>
+<div class="warn">口播提醒：「越自主，越需要注意权限和执行环境」，尤其是文件修改、命令执行和数据库写入时，「一定要做好沙箱隔离、权限控制和人工审批，不能默认让 Agent 无限制地执行操作」。</div>
+<p><span class="tag t-extra">补充</span>官方补充：<code>interrupt_on</code> 可在敏感工具调用前暂停等待人工批准；虚拟文件系统后端支持声明式读写权限，执行环境可配置沙箱。</p>
+</section>
+<section class="sec" id="s17">
+<h2>17. 核心区别与三种能力比喻</h2>
+<div class="figure">
+<svg viewBox="0 0 900 300" xmlns="http://www.w3.org/2000/svg" font-family="-apple-system,PingFang SC,Microsoft YaHei,sans-serif">
+  <g text-anchor="middle">
+    <text x="450" y="26" font-size="15" font-weight="800" fill="#1e2430">核心区别：三者一句话对照 + 三种能力比喻</text>
+    <text x="450" y="44" font-size="10.8" fill="#667085">画面 f_0178–f_0195 逐字重绘 · 工具 / 流程 / 任务管理系统</text>
+  </g>
+<rect x="24" y="64" width="270" height="100" rx="10" fill="#eaf1ff" stroke="#5b8def" stroke-width="1.5"/>
+    <text x="159.0" y="90.0" font-size="13" font-weight="800" fill="#1d4ed8" text-anchor="middle">LangChain</text>
+    <text x="159.0" y="121.0" font-size="11.2" fill="#4a5b7a" text-anchor="middle">快速搭建工具型智能体</text>
+    <text x="159.0" y="141.0" font-size="11.2" fill="#4a5b7a" text-anchor="middle">准备好各种工具</text>
+<rect x="315" y="64" width="270" height="100" rx="10" fill="#f3edff" stroke="#9575e0" stroke-width="1.5"/>
+    <text x="450.0" y="90.0" font-size="13" font-weight="800" fill="#6d42c9" text-anchor="middle">LangGraph</text>
+    <text x="450.0" y="121.0" font-size="11.2" fill="#5d4a91" text-anchor="middle">控制流程、状态与恢复</text>
+    <text x="450.0" y="141.0" font-size="11.2" fill="#5d4a91" text-anchor="middle">设计好工作流程</text>
+<rect x="606" y="64" width="270" height="100" rx="10" fill="#e9f9f0" stroke="#39a97a" stroke-width="1.5"/>
+    <text x="741.0" y="90.0" font-size="13" font-weight="800" fill="#177a52" text-anchor="middle">Deep Agents</text>
+    <text x="741.0" y="121.0" font-size="11.2" fill="#3c6b55" text-anchor="middle">自主执行复杂任务</text>
+    <text x="741.0" y="141.0" font-size="11.2" fill="#3c6b55" text-anchor="middle">配备任务管理系统</text>
+<rect x="90" y="186" width="720" height="66" rx="10" fill="#f5f7fa" stroke="#b6c0cf" stroke-width="1.5"/>
+    <text x="450.0" y="223.6" font-size="13" font-weight="800" fill="#344054" text-anchor="middle">LangChain 给工具 ｜ LangGraph 定流程 ｜ Deep Agents 拆解目标、安排任务、调用工具与协作</text>
+<text x="450" y="276" font-size="10.8" fill="#667085" text-anchor="middle">画面原文：「拆解目标 · 安排任务 · 调用工具 · 协作」</text>
+</svg>
+  <div class="cap">图 19｜核心区别与能力比喻重绘</div>
+</div>
+<table>
+<tr><th>框架</th><th>画面「核心区别」</th><th>画面「三种能力」比喻</th></tr>
+<tr><td>LangChain</td><td>快速搭建工具型智能体</td><td>给 Agent 准备好各种工具</td></tr>
+<tr><td>LangGraph</td><td>控制流程、状态与恢复</td><td>给 Agent 设计好工作流程</td></tr>
+<tr><td>Deep Agents</td><td>自主执行复杂任务</td><td>给 Agent 配备一个任务管理系统</td></tr>
+</table>
+<p><span class="tag t-video">视频原述</span>口播把第三层展开为「让它能够自己拆解目标、安排任务、调用工具，必要时还可以安排其他 Agent 协助完成工作」；画面收束为「拆解目标・安排任务・调用工具・协作」。</p>
+</section>
+<section class="sec" id="s18">
+<h2>18. 三个选型问题与决策树</h2>
+<div class="figure">
+<svg viewBox="0 0 900 318" xmlns="http://www.w3.org/2000/svg" font-family="-apple-system,PingFang SC,Microsoft YaHei,sans-serif">
+  <g text-anchor="middle">
+    <text x="450" y="26" font-size="15" font-weight="800" fill="#1e2430">三个选型问题：按顺序问自己</text>
+    <text x="450" y="44" font-size="10.8" fill="#667085">画面 f_0197–f_0216 逐字重绘 · 先看业务形态，再选框架</text>
+  </g>
+<rect x="24" y="64" width="270" height="132" rx="10" fill="#eaf1ff" stroke="#5b8def" stroke-width="1.5"/>
+    <text x="159.0" y="90.0" font-size="13" font-weight="800" fill="#1d4ed8" text-anchor="middle">① 以问答和工具调用为主？</text>
+    <text x="159.0" y="117.0" font-size="11.2" fill="#4a5b7a" text-anchor="middle">用户提问 → 查询知识库 / 接口</text>
+    <text x="159.0" y="137.0" font-size="11.2" fill="#4a5b7a" text-anchor="middle">→ 生成回答</text>
+    <text x="159.0" y="157.0" font-size="11.2" fill="#4a5b7a" text-anchor="middle">→ LangChain</text>
+    <text x="159.0" y="177.0" font-size="11.2" fill="#4a5b7a" text-anchor="middle">知识库助手 / 智能客服</text>
+<rect x="315" y="64" width="270" height="132" rx="10" fill="#f3edff" stroke="#9575e0" stroke-width="1.5"/>
+    <text x="450.0" y="90.0" font-size="13" font-weight="800" fill="#6d42c9" text-anchor="middle">② 流程需要严格控制？</text>
+    <text x="450.0" y="117.0" font-size="11.2" fill="#5d4a91" text-anchor="middle">固定环节 + 条件分支</text>
+    <text x="450.0" y="137.0" font-size="11.2" fill="#5d4a91" text-anchor="middle">人工审批 / 异常重试</text>
+    <text x="450.0" y="157.0" font-size="11.2" fill="#5d4a91" text-anchor="middle">状态恢复 → LangGraph</text>
+    <text x="450.0" y="177.0" font-size="11.2" fill="#5d4a91" text-anchor="middle">订单处理 / 退款审批</text>
+<rect x="606" y="64" width="270" height="132" rx="10" fill="#e9f9f0" stroke="#39a97a" stroke-width="1.5"/>
+    <text x="741.0" y="90.0" font-size="13" font-weight="800" fill="#177a52" text-anchor="middle">③ 只给目标，Agent 自己规划？</text>
+    <text x="741.0" y="117.0" font-size="11.2" fill="#3c6b55" text-anchor="middle">拆解目标 / 管理上下文</text>
+    <text x="741.0" y="137.0" font-size="11.2" fill="#3c6b55" text-anchor="middle">多工具 / 子 Agent 协作</text>
+    <text x="741.0" y="157.0" font-size="11.2" fill="#3c6b55" text-anchor="middle">→ Deep Agents</text>
+    <text x="741.0" y="177.0" font-size="11.2" fill="#3c6b55" text-anchor="middle">技术研究 / 仓库修复</text>
+<rect x="90" y="218" width="720" height="62" rx="10" fill="#f5f7fa" stroke="#b6c0cf" stroke-width="1.5"/>
+    <text x="450.0" y="253.6" font-size="13" font-weight="800" fill="#344054" text-anchor="middle">三个问题依次判断：越靠后，交给 Agent 的自主权越大</text>
+<text x="450" y="304" font-size="10.8" fill="#667085" text-anchor="middle">画面原文：「根据三个问题判断」01 / 02 / 03</text>
+</svg>
+  <div class="cap">图 20｜三个选型问题重绘</div>
+</div>
+<p><span class="tag t-video">视频原述</span>「实际开发的时候，这里可以根据三个问题来判断」，画面编号 01 / 02 / 03。</p>
+<table>
+<tr><th>#</th><th>判断问题</th><th>画面动作链</th><th>结论 / 例子</th></tr>
+<tr><td>01</td><td>业务是不是以问答和工具调用为主？</td><td>用户提问 → 知识库 / 接口 → 生成回答</td><td>LangChain：知识库助手、智能客服、简单查询</td></tr>
+<tr><td>02</td><td>业务流程是不是需要严格控制？</td><td>固定环节 + 条件分支 / 审批重试 / 状态恢复</td><td>LangGraph：订单处理、退款审批、企业工单</td></tr>
+<tr><td>03</td><td>用户是不是只给一个目标，由 Agent 自己规划？</td><td>拆解目标 → 管理上下文 → 调用工具 → 子 Agent</td><td>Deep Agents：技术研究与报告、仓库分析修复与测试</td></tr>
+</table>
+<div class="key">三个问题<strong>按顺序</strong>问：越靠后，交给 Agent 的自主权越大，需要的基础设施也越多。</div>
+</section>
+<section class="sec" id="s19">
+<h2>19. 特别说明：不是所有业务都需要 Agent</h2>
+<div class="figure">
+<svg viewBox="0 0 900 312" xmlns="http://www.w3.org/2000/svg" font-family="-apple-system,PingFang SC,Microsoft YaHei,sans-serif">
+  <g text-anchor="middle">
+    <text x="450" y="26" font-size="15" font-weight="800" fill="#1e2430">特别说明：不是所有业务都需要 Agent</text>
+    <text x="450" y="44" font-size="10.8" fill="#667085">画面 f_0219–f_0222 逐字重绘 · 固定流程也有更简单方案</text>
+  </g>
+<rect x="24" y="64" width="400" height="126" rx="10" fill="#fff8dd" stroke="#d9a92e" stroke-width="1.5"/>
+    <text x="224.0" y="90.0" font-size="13" font-weight="800" fill="#8a5f00" text-anchor="middle">业务流程完全固定</text>
+    <text x="224.0" y="124.0" font-size="11.2" fill="#7a6330" text-anchor="middle">无需模型自主判断</text>
+    <text x="224.0" y="144.0" font-size="11.2" fill="#7a6330" text-anchor="middle">没有条件分支与例外</text>
+    <text x="224.0" y="164.0" font-size="11.2" fill="#7a6330" text-anchor="middle">结果可预期</text>
+<g stroke="#8a94a6" stroke-width="1.7" fill="none"><line x1="426" y1="127" x2="472" y2="127"/><line x1="464" y1="122" x2="472" y2="127"/><line x1="464" y1="132" x2="472" y2="127"/></g>
+<rect x="484" y="64" width="392" height="126" rx="10" fill="#e9f9f0" stroke="#39a97a" stroke-width="1.5"/>
+    <text x="680.0" y="90.0" font-size="13" font-weight="800" fill="#177a52" text-anchor="middle">更简单的方案</text>
+    <text x="680.0" y="124.0" font-size="11.2" fill="#3c6b55" text-anchor="middle">普通 Python 代码</text>
+    <text x="680.0" y="144.0" font-size="11.2" fill="#3c6b55" text-anchor="middle">传统工作流系统</text>
+    <text x="680.0" y="164.0" font-size="11.2" fill="#3c6b55" text-anchor="middle">无需引入 Agent 框架</text>
+<rect x="90" y="212" width="720" height="62" rx="10" fill="#f5f7fa" stroke="#b6c0cf" stroke-width="1.5"/>
+    <text x="450.0" y="247.6" font-size="13" font-weight="800" fill="#344054" text-anchor="middle">并非所有业务都需要开发成 Agent</text>
+<text x="450" y="298" font-size="10.8" fill="#667085" text-anchor="middle">画面原文：「并非所有业务都需要 Agent」</text>
+</svg>
+  <div class="cap">图 21｜固定流程的简单方案重绘</div>
+</div>
+<p><span class="tag t-video">视频原述</span>「还有一种情况需要特别说明：业务流程完全固定、无需模型自主判断，那么直接使用普通 Python 代码或者传统工作流系统，可能反而更加简单」。画面结语：「并非所有业务都需要 Agent」。</p>
+<div class="note">这条常被忽略，但它是整支视频最实用的边界条件：先把「需不需要 Agent」问清楚，再问「用哪个框架」。</div>
+</section>
+<section class="sec" id="s20">
+<h2>20. 三者能否一起用：可以，按项目需求组合</h2>
+<div class="figure">
+<svg viewBox="0 0 900 396" xmlns="http://www.w3.org/2000/svg" font-family="-apple-system,PingFang SC,Microsoft YaHei,sans-serif">
+  <g text-anchor="middle">
+    <text x="450" y="26" font-size="15" font-weight="800" fill="#1e2430">三者能否一起用：可以，按项目需求组合</text>
+    <text x="450" y="44" font-size="10.8" fill="#667085">画面 f_0223–f_0237 逐字重绘 · 层层叠加的技术联系</text>
+  </g>
+<rect x="60" y="64" width="200" height="58" rx="10" fill="#eaf1ff" stroke="#5b8def" stroke-width="1.5"/>
+    <text x="160.0" y="97.5" font-size="13" font-weight="800" fill="#1d4ed8" text-anchor="middle">LangChain</text>
+<g stroke="#8a94a6" stroke-width="1.7" fill="none"><line x1="262" y1="93" x2="308" y2="93"/><line x1="300" y1="88" x2="308" y2="93"/><line x1="300" y1="98" x2="308" y2="93"/></g>
+<rect x="320" y="64" width="520" height="58" rx="10" fill="#eaf1ff" stroke="#5b8def" stroke-width="1.5"/>
+    <text x="580.0" y="97.5" font-size="13" font-weight="800" fill="#1d4ed8" text-anchor="middle">模型、工具和 Agent 组件</text>
+<rect x="60" y="140" width="200" height="58" rx="10" fill="#f3edff" stroke="#9575e0" stroke-width="1.5"/>
+    <text x="160.0" y="173.6" font-size="13" font-weight="800" fill="#6d42c9" text-anchor="middle">LangGraph</text>
+<g stroke="#8a94a6" stroke-width="1.7" fill="none"><line x1="262" y1="169" x2="308" y2="169"/><line x1="300" y1="164" x2="308" y2="169"/><line x1="300" y1="174" x2="308" y2="169"/></g>
+<rect x="320" y="140" width="520" height="58" rx="10" fill="#f3edff" stroke="#9575e0" stroke-width="1.5"/>
+    <text x="580.0" y="173.6" font-size="13" font-weight="800" fill="#6d42c9" text-anchor="middle">状态管理与流程编排</text>
+<rect x="60" y="216" width="200" height="58" rx="10" fill="#e9f9f0" stroke="#39a97a" stroke-width="1.5"/>
+    <text x="160.0" y="249.6" font-size="13" font-weight="800" fill="#177a52" text-anchor="middle">Deep Agents</text>
+<g stroke="#8a94a6" stroke-width="1.7" fill="none"><line x1="262" y1="245" x2="308" y2="245"/><line x1="300" y1="240" x2="308" y2="245"/><line x1="300" y1="250" x2="308" y2="245"/></g>
+<rect x="320" y="216" width="520" height="58" rx="10" fill="#e9f9f0" stroke="#39a97a" stroke-width="1.5"/>
+    <text x="580.0" y="249.6" font-size="13" font-weight="800" fill="#177a52" text-anchor="middle">规划、上下文、子智能体</text>
+<rect x="90" y="296" width="720" height="62" rx="10" fill="#f5f7fa" stroke="#b6c0cf" stroke-width="1.5"/>
+    <text x="450.0" y="331.6" font-size="13" font-weight="800" fill="#344054" text-anchor="middle">例：在 LangGraph 节点中调用 LangChain 的模型与工具；LangGraph 也可以独立使用</text>
+<text x="450" y="382" font-size="10.8" fill="#667085" text-anchor="middle">画面原文：「可以，按项目需求组合」「这并不意味着一个项目必须同时使用三个框架」</text>
+</svg>
+  <div class="cap">图 22｜三者联用重绘</div>
+</div>
+<p><span class="tag t-video">视频原述</span>「答案是可以，而且它们之间本身就存在比较紧密的技术联系」：LangChain 提供模型、工具和 Agent 等基础组件；LangGraph 提供底层状态管理和流程编排；Deep Agents 在前两者之上封装任务规划、上下文管理和子智能体。</p>
+<p><span class="tag t-video">视频原述</span>具体组合方式：「我们可以在 LangGraph 的节点中调用 LangChain 提供的模型和工具，也可以使用 Deep Agents 提供的任务规划和子智能体能力，再根据实际业务需求进行定制」。画面还标注「LangGraph 可以独立使用」。</p>
+<div class="key">「这并不意味着开发一个项目就必须同时使用三个框架，应该根据项目需求决定」。</div>
+</section>
+<section class="sec" id="s21">
+<h2>21. 总结：让框架服务于业务</h2>
+<div class="figure">
+<svg viewBox="0 0 900 304" xmlns="http://www.w3.org/2000/svg" font-family="-apple-system,PingFang SC,Microsoft YaHei,sans-serif">
+  <g text-anchor="middle">
+    <text x="450" y="26" font-size="15" font-weight="800" fill="#1e2430">总结：让框架服务于业务</text>
+    <text x="450" y="44" font-size="10.8" fill="#667085">画面 f_0239–f_0249 逐字重绘 · 从满足当前需求的最简单方案开始</text>
+  </g>
+<rect x="24" y="64" width="270" height="118" rx="10" fill="#eaf1ff" stroke="#5b8def" stroke-width="1.5"/>
+    <text x="159.0" y="90.0" font-size="13" font-weight="800" fill="#1d4ed8" text-anchor="middle">LangChain</text>
+    <text x="159.0" y="120.0" font-size="11.2" fill="#4a5b7a" text-anchor="middle">知识库助手 / 工具型客服</text>
+    <text x="159.0" y="140.0" font-size="11.2" fill="#4a5b7a" text-anchor="middle">问答与工具调用为主</text>
+    <text x="159.0" y="160.0" font-size="11.2" fill="#4a5b7a" text-anchor="middle">快速搭建</text>
+<rect x="315" y="64" width="270" height="118" rx="10" fill="#f3edff" stroke="#9575e0" stroke-width="1.5"/>
+    <text x="450.0" y="90.0" font-size="13" font-weight="800" fill="#6d42c9" text-anchor="middle">LangGraph</text>
+    <text x="450.0" y="120.0" font-size="11.2" fill="#5d4a91" text-anchor="middle">分支流程 / 人工审批</text>
+    <text x="450.0" y="140.0" font-size="11.2" fill="#5d4a91" text-anchor="middle">明确流程与状态恢复</text>
+    <text x="450.0" y="160.0" font-size="11.2" fill="#5d4a91" text-anchor="middle">精确控制</text>
+<rect x="606" y="64" width="270" height="118" rx="10" fill="#e9f9f0" stroke="#39a97a" stroke-width="1.5"/>
+    <text x="741.0" y="90.0" font-size="13" font-weight="800" fill="#177a52" text-anchor="middle">Deep Agents</text>
+    <text x="741.0" y="120.0" font-size="11.2" fill="#3c6b55" text-anchor="middle">自主规划 / 长期任务协作</text>
+    <text x="741.0" y="140.0" font-size="11.2" fill="#3c6b55" text-anchor="middle">复杂目标与多 Agent</text>
+    <text x="741.0" y="160.0" font-size="11.2" fill="#3c6b55" text-anchor="middle">完整 Harness</text>
+<rect x="90" y="204" width="720" height="62" rx="10" fill="#f5f7fa" stroke="#b6c0cf" stroke-width="1.5"/>
+    <text x="450.0" y="239.6" font-size="13" font-weight="800" fill="#344054" text-anchor="middle">从满足当前需求的最简单方案开始，不要一上来就引入过多框架和复杂架构</text>
+<text x="450" y="290" font-size="10.8" fill="#667085" text-anchor="middle">画面结语：「从满足当前需求最简单方案开始」「让框架服务于业务」</text>
+</svg>
+  <div class="cap">图 23｜总结选型矩阵重绘</div>
+</div>
+<p><span class="tag t-video">视频原述</span>口播收束：简单知识库助手或能调用几个工具的智能客服 → LangChain；有明确业务流程、复杂条件分支和人工审批 → LangGraph；希望 Agent 自主规划、管理上下文、调用多个工具甚至安排子智能体协作完成长期任务 → Deep Agents。</p>
+<div class="key">「实际开发中，建议从满足当前需求最简单方案开始，不要一上来就引入过多框架和复杂架构。真正合适的技术选型，是让框架服务于业务。」</div>
+<p><span class="tag t-extra">补充</span>与本站第四篇互读：第四篇用 Framework / Runtime / Harness 三层抽象横向对比七个代表项目，本篇沿同一条轴线纵向拆开 LangChain 自家三层，并给出可操作的三个判断问题。</p>
+</section>
+<section class="sec" id="s22">
+<h2>22. 补充篇 A：专业名词速查（56 条）</h2>
+<p><span class="tag t-extra">补充</span>按「框架 → 编排 → Harness → 选型」分组，英文 / 别名按官方文档拼写。</p>
+<table>
+<tr><th>术语</th><th>英文 / 别名</th><th>释义</th></tr>
+<tr><td>Agent 框架</td><td>Agent Framework</td><td>提供模型、工具与 Agent 循环的标准抽象</td></tr>
+<tr><td>Agent 运行时</td><td>Agent Runtime</td><td>提供持久执行、流式、人工介入与状态持久化</td></tr>
+<tr><td>Agent Harness</td><td>运行载体 / 工具集</td><td>开箱即用的完整执行框架，内置工具与提示</td></tr>
+<tr><td>LangChain</td><td>langchain</td><td>框架层：基础组件、集成与 create_agent</td></tr>
+<tr><td>LangGraph</td><td>langgraph</td><td>运行时层：图编排、状态与持久执行</td></tr>
+<tr><td>Deep Agents</td><td>deepagents</td><td>Harness 层：规划、文件系统、子智能体</td></tr>
+<tr><td>Deep Agents SDK</td><td>deepagents 包</td><td>自托管形态的 Deep Agents</td></tr>
+<tr><td>Managed Deep Agents</td><td>托管形态</td><td>无需自管基础设施的生产运行方式</td></tr>
+<tr><td>create_agent</td><td>LangChain 高层接口</td><td>由模型 + 工具 + 系统提示词创建 Agent</td></tr>
+<tr><td>create_deep_agent</td><td>Deep Agents 入口</td><td>创建带内置能力的 deep agent</td></tr>
+<tr><td>Agent Loop</td><td>模型—工具循环</td><td>判断 → 选工具 → 执行 → 依据结果继续</td></tr>
+<tr><td>Tool Calling</td><td>工具调用</td><td>模型选择并调用外部函数</td></tr>
+<tr><td>Middleware</td><td>中间件</td><td>在 Agent 循环前后注入逻辑的扩展机制</td></tr>
+<tr><td>Prompt</td><td>提示词</td><td>系统指令与上下文组织</td></tr>
+<tr><td>Message</td><td>消息</td><td>模型与工具之间的多轮消息序列</td></tr>
+<tr><td>Document Loader</td><td>文档加载</td><td>把外部资料载入应用</td></tr>
+<tr><td>Vector Store</td><td>向量数据库</td><td>检索用的向量存储</td></tr>
+<tr><td>Retriever</td><td>检索器</td><td>按查询返回相关文档</td></tr>
+<tr><td>RAG</td><td>检索增强生成</td><td>检索资料后再生成回答</td></tr>
+<tr><td>State</td><td>状态</td><td>工作流执行过程中共享的数据</td></tr>
+<tr><td>Node</td><td>节点</td><td>一个节点执行一个具体任务</td></tr>
+<tr><td>Edge</td><td>边</td><td>定义节点之间的流转关系</td></tr>
+<tr><td>Conditional Edge</td><td>条件边</td><td>按条件决定下一个节点</td></tr>
+<tr><td>Graph</td><td>图</td><td>State + Node + Edge 构成的执行结构</td></tr>
+<tr><td>Checkpointer</td><td>持久化检查点</td><td>保存状态以支持中断恢复</td></tr>
+<tr><td>Durable Execution</td><td>持久执行</td><td>故障后从中断处恢复、长时间运行</td></tr>
+<tr><td>Streaming</td><td>流式输出</td><td>逐步返回过程与结果</td></tr>
+<tr><td>Interrupt</td><td>执行中断</td><td>在关键节点暂停</td></tr>
+<tr><td>Human-in-the-loop</td><td>HITL / 人工介入</td><td>检查或修改状态、等待人工批准</td></tr>
+<tr><td>Thread-level Persistence</td><td>线程级持久化</td><td>同一会话内的状态保存</td></tr>
+<tr><td>Cross-thread Persistence</td><td>跨线程持久化</td><td>跨会话的长期状态保存</td></tr>
+<tr><td>Subgraph</td><td>子图</td><td>LangGraph 里的模块化子流程</td></tr>
+<tr><td>Task Planning</td><td>任务规划</td><td>把大目标拆成可跟踪的具体步骤</td></tr>
+<tr><td>write_todos</td><td>TodoListMiddleware</td><td>结构化的待办清单工具</td></tr>
+<tr><td>Subagent</td><td>子智能体</td><td>处理隔离子任务并向主 Agent 汇报</td></tr>
+<tr><td>task 工具</td><td>委派工具</td><td>主 Agent 创建子 Agent 的内置工具</td></tr>
+<tr><td>Isolated Context</td><td>隔离上下文</td><td>子任务独立上下文、只回传结果</td></tr>
+<tr><td>Virtual Filesystem</td><td>虚拟文件系统</td><td>可插拔后端的读写文件能力</td></tr>
+<tr><td>StateBackend</td><td>状态后端</td><td>把文件保存在 Agent 状态里</td></tr>
+<tr><td>FilesystemBackend</td><td>本地文件后端</td><td>把文件写到真实磁盘</td></tr>
+<tr><td>Context Offloading</td><td>文件卸载</td><td>把大工具结果移出对话上下文</td></tr>
+<tr><td>Summarization</td><td>摘要 / 压缩</td><td>压缩历史对话与中间结果</td></tr>
+<tr><td>Skills</td><td>技能</td><td>按需加载的可复用知识与流程</td></tr>
+<tr><td>SKILL.md</td><td>技能描述文件</td><td>技能的入口说明</td></tr>
+<tr><td>AGENTS.md</td><td>长期记忆文件</td><td>启动时加载的持久偏好与约定</td></tr>
+<tr><td>Long-term Memory</td><td>长期记忆</td><td>跨会话保留的指令与偏好</td></tr>
+<tr><td>Sandbox</td><td>沙箱</td><td>隔离的命令与代码执行环境</td></tr>
+<tr><td>Filesystem Permissions</td><td>文件系统权限</td><td>声明式控制可读写路径</td></tr>
+<tr><td>interrupt_on</td><td>人工审批参数</td><td>在敏感工具调用前暂停</td></tr>
+<tr><td>LangSmith</td><td>可观测平台</td><td>追踪、评测、监控与部署治理</td></tr>
+<tr><td>Agent Server</td><td>自托管服务</td><td>自定义部署形态</td></tr>
+<tr><td>Framework / Runtime / Harness</td><td>三层抽象</td><td>本站第四篇的横向对比坐标</td></tr>
+<tr><td>MCP</td><td>模型上下文协议</td><td>工具与上下文的标准接入方式</td></tr>
+<tr><td>Vibe Coding</td><td>氛围编程</td><td>视频话题标签，非技术术语</td></tr>
+<tr><td>StoreBackend</td><td>LangGraph Store 后端</td><td>把虚拟文件持久化到跨线程存储</td></tr>
+<tr><td>Prompt Caching</td><td>提示缓存</td><td>静态提示段缓存，降低长任务推理成本</td></tr>
+</table>
+</section>
+<section class="sec" id="s23">
+<h2>23. 补充篇 B：官方文档对照</h2>
+<p><span class="tag t-extra">补充</span>视频讲的是「怎么选」，LangChain 官方 <code>Runtimes, frameworks, and harnesses</code> 文档给的是同一套三分法的权威定义；以下为<strong>补充</strong>，不属于视频原述。</p>
+<table>
+<tr><th>层</th><th>官方定义</th><th>价值 / 何时使用</th><th>同类选项</th></tr>
+<tr><td>Framework（LangChain）</td><td>提供结构化内容块、Agent 循环、中间件等抽象</td><td>快速上手、标准化团队构建方式、无复杂编排的简单 Agent</td><td>Vercel AI SDK、CrewAI、OpenAI Agents SDK、Google ADK、LlamaIndex</td></tr>
+<tr><td>Runtime（LangGraph）</td><td>低层编排框架与运行时，支持持久执行、流式、HITL、持久化</td><td>需要细粒度控制、长时有状态 Agent、确定性 + Agentic 混合工作流</td><td>Temporal、Inngest</td></tr>
+<tr><td>Harness（Deep Agents SDK）</td><td>有明确取向、内置工具与能力的完整框架</td><td>更自主的 Agent、复杂非确定性任务、长期多步骤工作</td><td>Claude Agent SDK、Manus、编码 CLI</td></tr>
+</table>
+<h3 id="231-官方功能对照节选">23.1 官方功能对照（节选）</h3>
+<table>
+<tr><th>能力</th><th>LangGraph</th><th>LangChain</th><th>Deep Agents</th></tr>
+<tr><td>短期记忆</td><td>Short-term memory</td><td>Short-term memory</td><td>StateBackend</td></tr>
+<tr><td>长期记忆</td><td>Long-term memory</td><td>Long-term memory</td><td>Long-term memory</td></tr>
+<tr><td>Skills</td><td>—</td><td>Multi-agent skills</td><td>Skills</td></tr>
+<tr><td>子智能体</td><td>Subgraphs</td><td>Multi-agent subagents</td><td>Subagents</td></tr>
+<tr><td>人工介入</td><td>Interrupts</td><td>HITL middleware</td><td>interrupt_on</td></tr>
+<tr><td>流式</td><td>Streaming</td><td>Agent Streaming</td><td>Streaming</td></tr>
+</table>
+<div class="note">官方还明确：「LangChain 1.0 构建于 LangGraph 之上」「Deep Agents SDK 构建于 LangGraph 之上」「虽然三者能完成相似任务，但集成它们的层次不同」。这与视频「三个抽象层次、不是竞品」完全一致。</div>
+<p><span class="tag t-extra">补充</span>参考：<a href="https://docs.langchain.com/oss/concepts/products">Runtimes, frameworks, and harnesses</a> ｜ <a href="https://docs.langchain.com/oss/python/deepagents/overview">Deep Agents overview</a> ｜ <a href="https://www.langchain.com/oss-overview">LangChain OSS overview</a> ｜ 中文版 <a href="https://docs.langchain.org.cn/oss/python/concepts/products">框架、运行时与封装</a>。</p>
+</section>
+<section class="sec" id="s24">
+<h2>24. 补充篇 C：可运行代码</h2>
+<p><span class="tag t-extra">补充</span>以下四段均为纯 Python 标准库，可直接运行；用于把视频里的判断逻辑与图结构概念固化成可验证的骨架，不依赖任何框架。</p>
+<h3 id="241-三个选型问题的决策函数">24.1 三个选型问题的决策函数</h3>
+<pre><code>def pick_framework(qa_first, strict_flow, goal_only, need_model_judgement=True):
+    """按视频的三个问题依次判断；完全固定且不依赖模型判断时不需要 Agent。"""
+    if not need_model_judgement:
+        return "普通 Python 代码 / 传统工作流系统"
+    if goal_only:
+        return "Deep Agents"
+    if strict_flow:
+        return "LangGraph"
+    if qa_first:
+        return "LangChain"
+    return "普通 Python 代码 / 传统工作流系统"
+
+
+cases = [
+    ("企业知识库助手", True, False, False, True),
+    ("退款审批系统", False, True, False, True),
+    ("仓库分析与修复", False, False, True, True),
+    ("每日固定报表", False, False, False, False),
+]
+for name, a, b, c, d in cases:
+    print(f"{name}: {pick_framework(a, b, c, d)}")</code></pre>
+<h3 id="242-用状态机模拟-state--node--edge">24.2 用状态机模拟 State / Node / Edge</h3>
+<pre><code>from dataclasses import dataclass, field
+
+
+@dataclass
+class State:
+    question: str = ""
+    problem_type: str = ""
+    order: dict = field(default_factory=dict)
+    risk_ok: bool = False
+    result: str = ""
+
+
+def identify(s):
+    s.problem_type = "refund"
+    return s
+
+
+def query_order(s):
+    s.order = {"id": "A100", "amount": 199}
+    return s
+
+
+def risk_check(s):
+    s.risk_ok = s.order["amount"] &lt; 500
+    return s
+
+
+def edge(s):
+    return "退款审批" if s.risk_ok else "异常处理"
+
+
+nodes = {"问题识别": identify, "查询订单": query_order, "风险校验": risk_check}
+s = State(question="我要退款")
+for name, fn in nodes.items():
+    s = fn(s)
+    print(f"Node {name}: {s}")
+print("Edge 下一节点:", edge(s))</code></pre>
+<h3 id="243-任务规划清单与子智能体委派">24.3 任务规划清单与子智能体委派</h3>
+<pre><code>todos = [
+    {"task": "分析仓库", "status": "pending"},
+    {"task": "问题定位", "status": "pending"},
+    {"task": "修改代码", "status": "pending"},
+    {"task": "测试验证", "status": "pending"},
+    {"task": "结果整理", "status": "pending"},
+]
+
+
+def run_task(i, worker):
+    todos[i]["status"] = "in_progress"
+    report = worker(todos[i]["task"])
+    todos[i]["status"] = "completed"
+    return report
+
+
+reports = [
+    run_task(0, lambda t: f"{t}: 找到 12 个相关文件"),
+    run_task(3, lambda t: f"{t}: 3 通过 / 1 失败（子 Agent 返回）"),
+]
+print("主 Agent 汇总:", reports)
+print("任务状态:", [(x["task"], x["status"]) for x in todos])</code></pre>
+<h3 id="244-上下文规模控制摘要与文件卸载">24.4 上下文规模控制（摘要与文件卸载）</h3>
+<pre><code>import json
+from pathlib import Path
+
+
+def offload(history, tool_results, threshold=120):
+    """把大工具结果写到文件，只在上下文里保留摘要与路径。"""
+    context, offloaded = [], []
+    for item in history + tool_results:
+        if len(item) &gt; threshold:
+            path = Path(f"artifact_{len(offloaded) + 1}.txt")
+            path.write_text(item, encoding="utf-8")
+            offloaded.append(str(path))
+            context.append(f"[已卸载 → {path}] {item[:24]}...")
+        else:
+            context.append(item)
+    return context, offloaded
+
+
+history = ["用户：修复登录模块", "Agent：开始分析仓库"]
+results = ["工具返回：" + ("登录流程日志 " * 20), "工具返回：OK"]
+ctx, files = offload(history, results)
+print("上下文:", json.dumps(ctx, ensure_ascii=False, indent=1))
+print("卸载到文件:", files)
+for f in files:
+    Path(f).unlink()</code></pre>
+<div class="note">官方 API 名称（需 <code>pip install langchain deepagents</code>，此处不作为可运行代码）：<code>from langchain.agents import create_agent</code>、<code>from deepagents import create_deep_agent</code>、<code>TodoListMiddleware</code>、<code>interrupt_on</code>、<code>StateBackend</code>。</div>
+</section>
+<section class="sec" id="s25">
+<h2>25. 补充篇 D：常见误区</h2>
+<table>
+<tr><th>#</th><th>误区</th><th>为什么错</th><th>正确做法</th></tr>
+<tr><td>1</td><td>把三者当成互相竞争的同类产品</td><td>它们是三个抽象层次，层层叠加</td><td>按需要的抽象层次选起点</td></tr>
+<tr><td>2</td><td>认为用 Deep Agents 就必须同时装三个框架</td><td>Deep Agents 已封装下层能力</td><td>按项目需求决定，LangGraph 也可独立使用</td></tr>
+<tr><td>3</td><td>用 LangChain 硬写大量条件分支与人工审批</td><td>流程控制不是它的主场</td><td>流程复杂时下移到 LangGraph</td></tr>
+<tr><td>4</td><td>用 LangGraph 就每一步都调大模型</td><td>确定性逻辑用普通代码更可控</td><td>代码管确定性，模型管理解与判断</td></tr>
+<tr><td>5</td><td>简单知识库问答直接上 Deep Agents</td><td>引入了用不到的规划与子智能体</td><td>从满足当前需求的最简单方案开始</td></tr>
+<tr><td>6</td><td>把固定报表流程做成 Agent</td><td>完全固定、无需模型判断</td><td>普通 Python / 传统工作流系统</td></tr>
+<tr><td>7</td><td>把人工审批交给模型自己决定</td><td>业务规则不能靠自由裁量</td><td>用条件边 + interrupt + 人工确认</td></tr>
+<tr><td>8</td><td>长时间任务把全部中间结果留在对话里</td><td>对话历史与工具结果会撑爆上下文</td><td>摘要 + 文件卸载 + 子 Agent 隔离</td></tr>
+<tr><td>9</td><td>子智能体共享全部主对话上下文</td><td>上下文被重型子任务污染</td><td>默认隔离上下文，只回传最终结果</td></tr>
+<tr><td>10</td><td>给 Deep Agents 无限制的文件与命令权限</td><td>可能误改文件、执行命令、写库</td><td>权限控制 + 沙箱隔离 + 人工审批</td></tr>
+<tr><td>11</td><td>以为 LangGraph 只是「流程图库」</td><td>还提供持久执行、流式、HITL、恢复</td><td>把它当运行时层来评估</td></tr>
+<tr><td>12</td><td>把 LangChain 中间件当成流程编排替代品</td><td>扩展点不等于显式图结构</td><td>大量分支/状态时用图</td></tr>
+<tr><td>13</td><td>用「哪个框架最新」做选型依据</td><td>新旧不代表替代关系</td><td>按三个业务问题判断</td></tr>
+<tr><td>14</td><td>认为 LangGraph 节点里不能调 LangChain 工具</td><td>两者本就设计为可组合</td><td>在节点中复用模型与工具组件</td></tr>
+<tr><td>15</td><td>忽略视频标题里的拼写差异直接照抄</td><td>官方是 LangGraph / Deep Agents</td><td>校正后按官方名检索文档</td></tr>
+</table>
+</section>
+<section class="sec" id="s26">
+<h2>26. 附录</h2>
+<h3 id="261-官方章节与画面小节导航">26.1 官方章节与画面小节导航</h3>
+<table>
+<tr><th>来源</th><th>数量</th><th>说明</th></tr>
+<tr><td>官方 chapter_list</td><td>8 段</td><td>引言 / LangChain / LangGraph / DeepAgent / 核心区别 / 框架选择 / 框架联用 / 总结</td></tr>
+<tr><td>画面顶部固定导航条</td><td>39 条</td><td>比大章节更细，本教程按它拆 3–21 章</td></tr>
+<tr><td>画面幻灯片</td><td>161 条去重文字</td><td>逐帧 OCR 后按相似度去重</td></tr>
+<tr><td>烧录字幕</td><td>216 条</td><td>底部黑底中文，按时间线整理</td></tr>
+</table>
+<h3 id="262-配图速查23-张">26.2 配图速查（23 张）</h3>
+<table>
+<tr><th>#</th><th>图名</th><th>来源</th></tr>
+<tr><td>1–2</td><td>结构地图 / 三个抽象层次</td><td>官方章节与画面 f_0008 / f_0011</td></tr>
+<tr><td>3–7</td><td>智能客服 / 基础组件 / create_agent / 选工具 / 中间件</td><td>画面 f_0019–f_0057</td></tr>
+<tr><td>8–13</td><td>售后流程 / 图三要素 / 条件流转 / 暂停恢复 / 分工</td><td>画面 f_0059–f_0107</td></tr>
+<tr><td>14–18</td><td>代码修复 / 执行框架 / 规划与子 Agent / 文件系统 / 权限边界</td><td>画面 f_0111–f_0177</td></tr>
+<tr><td>19–23</td><td>核心区别 / 三个选型问题 / 固定流程 / 三者联用 / 总结</td><td>画面 f_0178–f_0249</td></tr>
+</table>
+<h3 id="263-校正表ocr-与口播">26.3 校正表（OCR 与口播）</h3>
+<table>
+<tr><th>来源写成了</th><th>正确写法</th><th>依据</th></tr>
+<tr><td><code>Lang Chain</code> / <code>Lang Chain</code> 混排</td><td><code>LangChain</code></td><td>画面 f_0002 清晰帧 + 官方包名</td></tr>
+<tr><td><code>Lang Graph</code> / <code>LangGrapn</code> / <code>Langgraph</code></td><td><code>LangGraph</code></td><td>画面 f_0009 与官方文档</td></tr>
+<tr><td><code>DeepAgent</code> / <code>Deep Agents</code> 混用</td><td><code>Deep Agents</code>（包名 <code>deepagents</code>）</td><td>官方 Deep Agents SDK 文档</td></tr>
+<tr><td><code>人工車排</code></td><td><code>人工审批</code></td><td>画面 f_0056 放大 + 字幕 02:42</td></tr>
+<tr><td><code>酒过</code> / <code>晋通代码</code></td><td><code>通过</code> / <code>普通代码</code></td><td>画面 f_0082 / f_0106 与上下文</td></tr>
+<tr><td><code>沙稍隔离</code> / <code>沙稲隔离</code> / <code>杈限</code></td><td><code>沙箱隔离</code> / <code>权限</code></td><td>画面 f_0174–f_0177 多帧对照</td></tr>
+<tr><td><code>AP1</code> / <code>Eage</code></td><td><code>API</code> / <code>Edge</code></td><td>画面 f_0049 / f_0072 与口播</td></tr>
+<tr><td>字幕「壳争」「沙稍」</td><td><code>竞争</code> / <code>沙箱</code></td><td>口播 00:45 / 08:39 语义校正</td></tr>
+<tr><td><code>13.4S</code> 等计时水印</td><td>画面固定计时器，非内容</td><td>与本站第六篇同类水印一致</td></tr>
+</table>
+<h3 id="264-还原方法与资料">26.4 还原方法与资料</h3>
+<ol>
+<li><strong>视频</strong>：<a href="https://v.douyin.com/dX1jn7y0BFA/">LangChain、Langgraph、DeepAgent开发框架怎么选？</a>（ID <code>7711684080711229049</code>，@小k技术栈，2026-11-24，12:28）。</li>
+<li><strong>逐帧</strong>：最高档 1920×1080 原片 10 MB，3 秒抽帧 249 张，macOS Vision OCR 1,673 行；按 y=0.10 / 0.80 分离顶部固定导航、画面主体与底部烧录字幕，用序列相似度去重。</li>
+<li><strong>校对</strong>：三个抽象层次、基础组件、图三要素、售后流程、执行框架、三个选型问题、联用与总结等 10 张关键帧放大逐字复核。</li>
+<li><strong>补充资料</strong>：LangChain 官方 <a href="https://docs.langchain.com/oss/concepts/products">Runtimes, frameworks, and harnesses</a>、<a href="https://docs.langchain.com/oss/python/deepagents/overview">Deep Agents overview</a>、<a href="https://www.langchain.com/oss-overview">LangChain OSS overview</a>；本站 <a href="../agent-architecture-tutorial/index.html">Agent 开发架构选型 · 完全教程</a>。</li>
+</ol>
+</section>
+<div class="footer">
+  <p>本教程为学习整理产物：单支视频按最高清晰度原片逐帧核对后综合重述；标注【补充】的内容来自 LangChain 官方文档与本系列既有教程，不属于视频原述。原视频与项目版权归各自作者所有。</p>
+  <p>姊妹篇：<a href="../rag-evaluation-tutorial/index.html">RAG 评测完全教程</a> ｜ <a href="../agent-evaluation-tutorial/index.html">Agent 评测体系完全教程</a> ｜ <a href="../agent-eval-driven-tutorial/index.html">评测驱动 Agent 迭代完全教程</a> ｜ <a href="../agent-architecture-tutorial/index.html">Agent 开发架构选型完全教程</a> ｜ <a href="../agent-metrics-tutorial/index.html">Agent 评测指标系统完全教程</a> ｜ <a href="../agent-eval-method-tutorial/index.html">Agent 评测方法论完全教程</a> ｜ <a href="../agent-judge-bias-tutorial/index.html">消除 LLM Judge 偏见完全教程</a> ｜ <a href="../agent-eval-system-tutorial/index.html">从 0 到 1 搭建 Agent 评测系统</a> ｜ <a href="../index.html">返回知识库首页</a></p>
+</div>
+</main>
+</div>
+<script>
+(function () {
+  var bar = document.getElementById('progress');
+  var top = document.getElementById('totop');
+  var links = Array.prototype.slice.call(document.querySelectorAll('nav.toc a'));
+  var byId = {};
+  links.forEach(function (a) {
+    var id = a.getAttribute('href').slice(1);
+    if (document.getElementById(id)) byId[id] = a;
+  });
+  function update() {
+    var doc = document.documentElement;
+    var scrollTop = window.scrollY || doc.scrollTop || 0;
+    var max = doc.scrollHeight - doc.clientHeight;
+    if (bar) bar.style.width = (max > 0 ? Math.min(100, scrollTop / max * 100) : 0) + '%';
+    if (top) top.style.display = scrollTop > 600 ? 'block' : 'none';
+    var current = null;
+    Object.keys(byId).forEach(function (id) {
+      var el = document.getElementById(id);
+      if (el && el.getBoundingClientRect().top <= 150) current = id;
+    });
+    links.forEach(function (a) { a.classList.remove('active'); });
+    if (current && byId[current]) byId[current].classList.add('active');
+  }
+  window.addEventListener('scroll', update, { passive: true });
+  window.addEventListener('resize', update);
+  if (top) top.addEventListener('click', function () { window.scrollTo({ top: 0, behavior: 'smooth' }); });
+  update();
+})();
+</script>
+<script>
+(function(){
+  var bar=document.querySelector('.topbar'), root=document.documentElement;
+  function sync(){ if(bar) root.style.setProperty('--topH', Math.round(bar.getBoundingClientRect().height)+'px'); }
+  sync(); window.addEventListener('resize', sync);
+})();
+</script>
+</body>
+</html>

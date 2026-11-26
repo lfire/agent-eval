@@ -1,7 +1,7 @@
 name: Deploy to GitHub Pages
 
 # 单一内容源：仓库根目录只保留一份正文（.md 与 index.html）。
-# 构建时由 tools/build_md.py 把八份教程 .md 渲染成 HTML 阅读页，再统一发布。
+# 构建时由 tools/build_md.py 把九份教程 .md 渲染成 HTML 阅读页，再统一发布。
 on:
   push:
     branches: [main]
@@ -35,7 +35,7 @@ jobs:
           mkdir -p _site
           cp index.html _site/
           cp -R assets _site/
-          cp -R rag-evaluation-tutorial agent-evaluation-tutorial agent-eval-driven-tutorial agent-architecture-tutorial agent-metrics-tutorial agent-eval-method-tutorial agent-judge-bias-tutorial agent-eval-system-tutorial _site/
+          cp -R rag-evaluation-tutorial agent-evaluation-tutorial agent-eval-driven-tutorial agent-architecture-tutorial agent-metrics-tutorial agent-eval-method-tutorial agent-judge-bias-tutorial agent-eval-system-tutorial agent-framework-tutorial _site/
           echo "Published files: $(find _site -type f | wc -l)"
 
       - name: Configure Pages
