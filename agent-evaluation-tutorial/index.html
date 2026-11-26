@@ -91,6 +91,14 @@ main{padding-top:22px}
 </style>
   <link rel="stylesheet" href="../assets/code-blocks.css">
   <script src="../assets/code-blocks.js" defer></script>
+<style>
+.ts-box{margin:14px 0;padding:10px 14px;background:#f8fafc;border:1px solid #e5e9f0;border-radius:9px}
+.ts-box>summary{cursor:pointer;font-weight:700;color:#2563eb;font-size:13px}
+.ts-lines{margin-top:10px;max-height:430px;overflow:auto;padding-right:6px}
+.ts-line{font-size:12.5px;line-height:1.95;color:#46536a;padding:1px 0}
+.ts-t{color:#98a2b3;font-variant-numeric:tabular-nums;margin-right:8px}
+@media print{.ts-lines{max-height:none}.ts-box{break-inside:avoid}}
+</style>
 </head>
 <body>
 <div class="topbar">
@@ -239,6 +247,66 @@ main{padding-top:22px}
 <p><strong>和 RAG 评测的关系</strong>：RAG 评测评的是「一问一答」，Agent 评测评的是「一条多步执行的轨迹」。所以 Agent 评测要回答三个问题——<strong>做成了没、怎么做的、代价多大</strong>，对应三层分类；而不管评哪一层，流程都是同一条五步。</p>
 <p><strong>正交关系</strong>：三层分类和流程是正交的——任何一次具体评测，都落在「某一层 × 某一步」的交叉点上。</p>
 <div class="note">这也是本集与上一集最本质的区别：RAG 评测按<strong>组件</strong>（检索 / 生成）拆，Agent 评测按<strong>结果 / 路径 / 代价</strong>拆，并且必须围绕完整 <code>trace</code>（执行轨迹）而非单次输入输出。</div>
+<details class="ts-box"><summary>本章语音逐字稿（ASR · 已校正）（逐字 · 57 句）</summary>
+<div class="ts-lines">
+<div class="ts-line"><span class="ts-t">[00:00]</span> Hello 大家好我是小副</div>
+<div class="ts-line"><span class="ts-t">[00:01]</span> 那上一期视频我们整体讲了一下 RAG 的评测体系</div>
+<div class="ts-line"><span class="ts-t">[00:04]</span> 那今天就来说一下 Agent 的评测体系</div>
+<div class="ts-line"><span class="ts-t">[00:07]</span> 那不多说我们现在直接开始</div>
+<div class="ts-line"><span class="ts-t">[00:09]</span> 那这个视频大体也会分为三部分</div>
+<div class="ts-line"><span class="ts-t">[00:11]</span> 第一部分会说一下我们 Agent 的评测体系架构是什么样子的</div>
+<div class="ts-line"><span class="ts-t">[00:14]</span> 第二部分会说一下每一部分的详解</div>
+<div class="ts-line"><span class="ts-t">[00:17]</span> 包括它有哪些分类</div>
+<div class="ts-line"><span class="ts-t">[00:18]</span> 看哪个指标</div>
+<div class="ts-line"><span class="ts-t">[00:19]</span> 第三部分会讲它的上线迭代</div>
+<div class="ts-line"><span class="ts-t">[00:22]</span> 那不多说我们直接开始</div>
+<div class="ts-line"><span class="ts-t">[00:23]</span> 首先 Agent 的评测的体系其实跟我们 RAG 有些相似</div>
+<div class="ts-line"><span class="ts-t">[00:28]</span> 但是又不完全相同</div>
+<div class="ts-line"><span class="ts-t">[00:29]</span> 你可以认为 Agent 的评测是包含我们的 RAG</div>
+<div class="ts-line"><span class="ts-t">[00:31]</span> 只不过我们上一期讲的更精细化</div>
+<div class="ts-line"><span class="ts-t">[00:34]</span> 那我们现在就在这里介绍一下</div>
+<div class="ts-line"><span class="ts-t">[00:36]</span> 首先 Agent 的评测主要分为三种</div>
+<div class="ts-line"><span class="ts-t">[00:38]</span> 第一种叫做端到端的评测</div>
+<div class="ts-line"><span class="ts-t">[00:40]</span> 第二种叫做这个轨迹评测</div>
+<div class="ts-line"><span class="ts-t">[00:42]</span> 第三种叫做表现评测</div>
+<div class="ts-line"><span class="ts-t">[00:43]</span> 这三个评测其实是 deep evaluate</div>
+<div class="ts-line"><span class="ts-t">[00:45]</span> 这个非常出名的开源组织他们去定义的</div>
+<div class="ts-line"><span class="ts-t">[00:49]</span> 那具体来说</div>
+<div class="ts-line"><span class="ts-t">[00:50]</span> 端到端的评测其实就是一个黑盒评测</div>
+<div class="ts-line"><span class="ts-t">[00:52]</span> 它不看你整件的过程只看你最正的输出</div>
+<div class="ts-line"><span class="ts-t">[00:54]</span> 你的任务发生不怎么样</div>
+<div class="ts-line"><span class="ts-t">[00:56]</span> 那轨迹评测就是一个白盒评测</div>
+<div class="ts-line"><span class="ts-t">[00:58]</span> 它不仅要看最后的结果</div>
+<div class="ts-line"><span class="ts-t">[00:59]</span> 它还要看你证件执行过程中</div>
+<div class="ts-line"><span class="ts-t">[01:01]</span> 对吧</div>
+<div class="ts-line"><span class="ts-t">[01:02]</span> 你的规划是不是合理的</div>
+<div class="ts-line"><span class="ts-t">[01:04]</span> 你具体每一步有没有绕路</div>
+<div class="ts-line"><span class="ts-t">[01:06]</span> 有没有无效的步骤</div>
+<div class="ts-line"><span class="ts-t">[01:07]</span> 并且你的工具有没有选对</div>
+<div class="ts-line"><span class="ts-t">[01:09]</span> 你的参数有没有传统</div>
+<div class="ts-line"><span class="ts-t">[01:11]</span> 那第三个表现评测其实指的就是</div>
+<div class="ts-line"><span class="ts-t">[01:13]</span> 我们的一些其他的非性能指标</div>
+<div class="ts-line"><span class="ts-t">[01:16]</span> 比如说我们的这个</div>
+<div class="ts-line"><span class="ts-t">[01:18]</span> 整个系统的一个成本延迟怎么样</div>
+<div class="ts-line"><span class="ts-t">[01:20]</span> 对吧</div>
+<div class="ts-line"><span class="ts-t">[01:21]</span> 还有一个稳定性</div>
+<div class="ts-line"><span class="ts-t">[01:22]</span> 我会看一个指标叫做 pass@k^k</div>
+<div class="ts-line"><span class="ts-t">[01:23]</span> 还会看它的一些</div>
+<div class="ts-line"><span class="ts-t">[01:26]</span> 安全性有没有阅权</div>
+<div class="ts-line"><span class="ts-t">[01:28]</span> 那讲完了这个分类和指标</div>
+<div class="ts-line"><span class="ts-t">[01:29]</span> 我们下面来具体看一下</div>
+<div class="ts-line"><span class="ts-t">[01:31]</span> 整个评测的流程是什么样子的</div>
+<div class="ts-line"><span class="ts-t">[01:32]</span> 其实这个评测的流程</div>
+<div class="ts-line"><span class="ts-t">[01:33]</span> 和我们 RAG 测试的很像</div>
+<div class="ts-line"><span class="ts-t">[01:35]</span> 第一步还是我们去定数率级</div>
+<div class="ts-line"><span class="ts-t">[01:37]</span> 对吧</div>
+<div class="ts-line"><span class="ts-t">[01:38]</span> 第二步是定你评判的一个标准</div>
+<div class="ts-line"><span class="ts-t">[01:41]</span> 第三步是你要跑测试</div>
+<div class="ts-line"><span class="ts-t">[01:42]</span> 第四步你要把这个</div>
+<div class="ts-line"><span class="ts-t">[01:43]</span> 测试的结果传出指标来</div>
+<div class="ts-line"><span class="ts-t">[01:45]</span> 并且归因</div>
+<div class="ts-line"><span class="ts-t">[01:45]</span> 第五步做一个 loop 持续迭代</div>
+</div></details>
 </section>
 
 <section class="sec" id="s2">
@@ -535,6 +603,106 @@ main{padding-top:22px}
 
 <h4>⑤ 持续迭代</h4>
 <p>把线上失败的 case 回灌进评测集，形成闭环——<strong>评测集越滚越大，门槛越卡越准</strong>。</p>
+<details class="ts-box"><summary>本章语音逐字稿（ASR · 已校正）（逐字 · 97 句）</summary>
+<div class="ts-lines">
+<div class="ts-line"><span class="ts-t">[01:48]</span> 那首先</div>
+<div class="ts-line"><span class="ts-t">[01:49]</span> 我们第一步准备数率级</div>
+<div class="ts-line"><span class="ts-t">[01:51]</span> 那数率级其实就分为三类</div>
+<div class="ts-line"><span class="ts-t">[01:52]</span> 第一类叫做这个高登赛的</div>
+<div class="ts-line"><span class="ts-t">[01:54]</span> 黄金数率级</div>
+<div class="ts-line"><span class="ts-t">[01:56]</span> 这里其实就是</div>
+<div class="ts-line"><span class="ts-t">[01:57]</span> 相对于你整个系统来说</div>
+<div class="ts-line"><span class="ts-t">[01:58]</span> 我们会仍更评测出</div>
+<div class="ts-line"><span class="ts-t">[01:59]</span> 各种各样的数率级</div>
+<div class="ts-line"><span class="ts-t">[02:00]</span> 作为一些</div>
+<div class="ts-line"><span class="ts-t">[02:01]</span> 最基本的最重要的功能</div>
+<div class="ts-line"><span class="ts-t">[02:03]</span> 那以后我们每次测试都要跑流数率级</div>
+<div class="ts-line"><span class="ts-t">[02:06]</span> 那带着一个回归级</div>
+<div class="ts-line"><span class="ts-t">[02:07]</span> 那回归级就是指</div>
+<div class="ts-line"><span class="ts-t">[02:09]</span> 哦</div>
+<div class="ts-line"><span class="ts-t">[02:09]</span> 我系统我以前的一些功能</div>
+<div class="ts-line"><span class="ts-t">[02:11]</span> 看了一些数据</div>
+<div class="ts-line"><span class="ts-t">[02:13]</span> 防止的就是你新功能上线之后</div>
+<div class="ts-line"><span class="ts-t">[02:14]</span> 影响了我旧的功能的一个稳定</div>
+<div class="ts-line"><span class="ts-t">[02:16]</span> 第三个挑战级</div>
+<div class="ts-line"><span class="ts-t">[02:18]</span> 你就说要验证</div>
+<div class="ts-line"><span class="ts-t">[02:18]</span> 你这次修改了这部分功能</div>
+<div class="ts-line"><span class="ts-t">[02:20]</span> 有没有真正的实现</div>
+<div class="ts-line"><span class="ts-t">[02:22]</span> 这就是我们三类数率级</div>
+<div class="ts-line"><span class="ts-t">[02:23]</span> 然后每个数据级</div>
+<div class="ts-line"><span class="ts-t">[02:24]</span> 它里面的数据都是包括一个问题</div>
+<div class="ts-line"><span class="ts-t">[02:26]</span> 一个答案</div>
+<div class="ts-line"><span class="ts-t">[02:27]</span> 那订完数据级之后</div>
+<div class="ts-line"><span class="ts-t">[02:29]</span> 我们现在就来定一下</div>
+<div class="ts-line"><span class="ts-t">[02:29]</span> 我的标准</div>
+<div class="ts-line"><span class="ts-t">[02:30]</span> 就是我们具体用哪些指标</div>
+<div class="ts-line"><span class="ts-t">[02:32]</span> 以及我们这个标准什么样子的</div>
+<div class="ts-line"><span class="ts-t">[02:34]</span> 这里其实主要分为三类</div>
+<div class="ts-line"><span class="ts-t">[02:35]</span> 比较清晰的指标</div>
+<div class="ts-line"><span class="ts-t">[02:36]</span> 我们就可以用一些程序做断言</div>
+<div class="ts-line"><span class="ts-t">[02:39]</span> 比如说相不相当</div>
+<div class="ts-line"><span class="ts-t">[02:40]</span> 包不包涵</div>
+<div class="ts-line"><span class="ts-t">[02:41]</span> 对吧</div>
+<div class="ts-line"><span class="ts-t">[02:42]</span> 以及它的政责</div>
+<div class="ts-line"><span class="ts-t">[02:43]</span> 满不满足</div>
+<div class="ts-line"><span class="ts-t">[02:45]</span> 那第二类是我们的抹糊的指标</div>
+<div class="ts-line"><span class="ts-t">[02:46]</span> 抹糊的指标我们叫做 Rubric</div>
+<div class="ts-line"><span class="ts-t">[02:48]</span> 什么意思呢</div>
+<div class="ts-line"><span class="ts-t">[02:49]</span> 我们就要把这些指标</div>
+<div class="ts-line"><span class="ts-t">[02:51]</span> 通过评分细则去把它二远化</div>
+<div class="ts-line"><span class="ts-t">[02:53]</span> 比如说我们前面 Rubric 提过了一个准确率</div>
+<div class="ts-line"><span class="ts-t">[02:55]</span> 这个准确率是个分</div>
+<div class="ts-line"><span class="ts-t">[02:56]</span> 那可能是0.907</div>
+<div class="ts-line"><span class="ts-t">[02:58]</span> 0.802</div>
+<div class="ts-line"><span class="ts-t">[02:59]</span> 这种数据你很难说</div>
+<div class="ts-line"><span class="ts-t">[03:01]</span> 去评讯的断言</div>
+<div class="ts-line"><span class="ts-t">[03:03]</span> 所以说你要交给大模型</div>
+<div class="ts-line"><span class="ts-t">[03:04]</span> 让大模型给你输出一个0到10分</div>
+<div class="ts-line"><span class="ts-t">[03:06]</span> 就是说它把这个数据做一个转换</div>
+<div class="ts-line"><span class="ts-t">[03:08]</span> 比如说0到2分就是错</div>
+<div class="ts-line"><span class="ts-t">[03:09]</span> 对吧</div>
+<div class="ts-line"><span class="ts-t">[03:10]</span> 3到6分就是大体队</div>
+<div class="ts-line"><span class="ts-t">[03:11]</span> 7到9分就是露细节</div>
+<div class="ts-line"><span class="ts-t">[03:12]</span> 10分是全队</div>
+<div class="ts-line"><span class="ts-t">[03:14]</span> 这样的话就完成一个二远化</div>
+<div class="ts-line"><span class="ts-t">[03:16]</span> 那除了这两个之外</div>
+<div class="ts-line"><span class="ts-t">[03:17]</span> 我们还要做一些人工的判断</div>
+<div class="ts-line"><span class="ts-t">[03:18]</span> 就是因为人工其实是最准的</div>
+<div class="ts-line"><span class="ts-t">[03:20]</span> 最合理的</div>
+<div class="ts-line"><span class="ts-t">[03:21]</span> 这个时候我们需要人工可以抽取</div>
+<div class="ts-line"><span class="ts-t">[03:23]</span> 或者说有问题出现的时候</div>
+<div class="ts-line"><span class="ts-t">[03:25]</span> 可以做一个校准</div>
+<div class="ts-line"><span class="ts-t">[03:27]</span> 这就是我们标准的定义</div>
+<div class="ts-line"><span class="ts-t">[03:29]</span> 我们定完标准之后</div>
+<div class="ts-line"><span class="ts-t">[03:30]</span> 下一步我们就来看一下我们的测试</div>
+<div class="ts-line"><span class="ts-t">[03:33]</span> 具体测试的时候其实也分两种</div>
+<div class="ts-line"><span class="ts-t">[03:34]</span> 如果说在我们的评测级上去评测</div>
+<div class="ts-line"><span class="ts-t">[03:36]</span> 就是一个离线评测</div>
+<div class="ts-line"><span class="ts-t">[03:37]</span> 对吧</div>
+<div class="ts-line"><span class="ts-t">[03:38]</span> 它主要依赖的是我们移入了一些数据</div>
+<div class="ts-line"><span class="ts-t">[03:40]</span> 我们最终的效果</div>
+<div class="ts-line"><span class="ts-t">[03:41]</span> 肯定还是要去跑生产的</div>
+<div class="ts-line"><span class="ts-t">[03:43]</span> 我们生产的时候也可以再先去跑评测</div>
+<div class="ts-line"><span class="ts-t">[03:45]</span> 它里面的数据就是我们生产的真实流量</div>
+<div class="ts-line"><span class="ts-t">[03:47]</span> 可能会发现一些未知的问题</div>
+<div class="ts-line"><span class="ts-t">[03:49]</span> 那跑完之后</div>
+<div class="ts-line"><span class="ts-t">[03:50]</span> 我们就根据具体跑的结果</div>
+<div class="ts-line"><span class="ts-t">[03:51]</span> 去算我们的指标</div>
+<div class="ts-line"><span class="ts-t">[03:53]</span> 如果是端端端的话</div>
+<div class="ts-line"><span class="ts-t">[03:54]</span> 你就看它的认完成率</div>
+<div class="ts-line"><span class="ts-t">[03:55]</span> 如果是轨迹的话</div>
+<div class="ts-line"><span class="ts-t">[03:55]</span> 你就看它的工具调样</div>
+<div class="ts-line"><span class="ts-t">[03:57]</span> 对吧</div>
+<div class="ts-line"><span class="ts-t">[03:57]</span> 是不是准确</div>
+<div class="ts-line"><span class="ts-t">[03:58]</span> 规划是不是准确</div>
+<div class="ts-line"><span class="ts-t">[04:00]</span> 对吧</div>
+<div class="ts-line"><span class="ts-t">[04:01]</span> 表现的话你要看你的延迟</div>
+<div class="ts-line"><span class="ts-t">[04:02]</span> 虫本稳定</div>
+<div class="ts-line"><span class="ts-t">[04:03]</span> 以及这个安全</div>
+<div class="ts-line"><span class="ts-t">[04:05]</span> 对吧</div>
+<div class="ts-line"><span class="ts-t">[04:07]</span> 并且把这个指标做一个回音</div>
+<div class="ts-line"><span class="ts-t">[04:09]</span> 看计证是哪一步错了</div>
+</div></details>
 </section>
 
 <section class="sec" id="s3">
@@ -612,6 +780,66 @@ main{padding-top:22px}
 <h4>回滚 / 迭代</h4>
 <p>把线上 bad case 回流评测集，形成闭环。</p>
 <p><span class="tag t-extra">补充 · 工程落地</span>影子流量指复制真实请求打给新版本但「只记不答」；A/B 需保证同一用户稳定分桶；在线 Judge 通常只抽 5%–10% 流量异步执行，避免压进主链路；红线要自动化，触发即回滚；bad case 回流需人工去标识化与打标后再并入回归集，防止评测集被脏样本污染。</p>
+<details class="ts-box"><summary>本章语音逐字稿（ASR · 已校正）（逐字 · 57 句）</summary>
+<div class="ts-lines">
+<div class="ts-line"><span class="ts-t">[04:11]</span> 那我们评算完之后</div>
+<div class="ts-line"><span class="ts-t">[04:11]</span> 我们就要上线了</div>
+<div class="ts-line"><span class="ts-t">[04:12]</span> 对吧</div>
+<div class="ts-line"><span class="ts-t">[04:13]</span> 那上线其实是一个数据的飞轮</div>
+<div class="ts-line"><span class="ts-t">[04:15]</span> 要留持一些的迭代</div>
+<div class="ts-line"><span class="ts-t">[04:16]</span> 对吧</div>
+<div class="ts-line"><span class="ts-t">[04:17]</span> 第一部分我要判断</div>
+<div class="ts-line"><span class="ts-t">[04:18]</span> 你这个指标准不准</div>
+<div class="ts-line"><span class="ts-t">[04:20]</span> 达到我的标准</div>
+<div class="ts-line"><span class="ts-t">[04:21]</span> 它的误差有没有在农村的范围内</div>
+<div class="ts-line"><span class="ts-t">[04:23]</span> 那第二步就是逐渐的挥度上线</div>
+<div class="ts-line"><span class="ts-t">[04:26]</span> 那第三步</div>
+<div class="ts-line"><span class="ts-t">[04:27]</span> 我们到了线上的系统</div>
+<div class="ts-line"><span class="ts-t">[04:28]</span> 我们要看系统里面的一些指标</div>
+<div class="ts-line"><span class="ts-t">[04:30]</span> 对吧</div>
+<div class="ts-line"><span class="ts-t">[04:30]</span> 包括你的延迟成本</div>
+<div class="ts-line"><span class="ts-t">[04:32]</span> 包括你的稳定线</div>
+<div class="ts-line"><span class="ts-t">[04:34]</span> 包括你们一些 query 没有漂移等等</div>
+<div class="ts-line"><span class="ts-t">[04:37]</span> 有问题我们就回滚</div>
+<div class="ts-line"><span class="ts-t">[04:38]</span> 或者说把一些 bad case</div>
+<div class="ts-line"><span class="ts-t">[04:39]</span> 回流进我的评测级</div>
+<div class="ts-line"><span class="ts-t">[04:41]</span> 这样的话</div>
+<div class="ts-line"><span class="ts-t">[04:41]</span> 可以承认一整个数据分轮</div>
+<div class="ts-line"><span class="ts-t">[04:43]</span> 那这样的话</div>
+<div class="ts-line"><span class="ts-t">[04:43]</span> 才是我们整个 Agent 的评测的</div>
+<div class="ts-line"><span class="ts-t">[04:45]</span> 一个体系框架</div>
+<div class="ts-line"><span class="ts-t">[04:47]</span> 对吧</div>
+<div class="ts-line"><span class="ts-t">[04:47]</span> 我们最后来总结一下</div>
+<div class="ts-line"><span class="ts-t">[04:49]</span> 首先 Agent 的评测分为三类</div>
+<div class="ts-line"><span class="ts-t">[04:51]</span> 分别是端了端轨迹表现</div>
+<div class="ts-line"><span class="ts-t">[04:53]</span> 然后还有一个等级的流程</div>
+<div class="ts-line"><span class="ts-t">[04:55]</span> 第一步就是先进数据级</div>
+<div class="ts-line"><span class="ts-t">[04:57]</span> 你要准备好你的 Golden Dataset</div>
+<div class="ts-line"><span class="ts-t">[04:58]</span> 你的回归的数据级</div>
+<div class="ts-line"><span class="ts-t">[04:59]</span> 包括你的挑战数据级</div>
+<div class="ts-line"><span class="ts-t">[05:02]</span> 那第二步一定要定标准</div>
+<div class="ts-line"><span class="ts-t">[05:03]</span> 对吧</div>
+<div class="ts-line"><span class="ts-t">[05:03]</span> 对一些准确的东西</div>
+<div class="ts-line"><span class="ts-t">[05:04]</span> 你要用程序断言去做</div>
+<div class="ts-line"><span class="ts-t">[05:06]</span> 对于一些模糊的东西</div>
+<div class="ts-line"><span class="ts-t">[05:08]</span> 你要跑成 Rubric</div>
+<div class="ts-line"><span class="ts-t">[05:09]</span> 用大型去把它练化</div>
+<div class="ts-line"><span class="ts-t">[05:11]</span> 然后第三步你就要跑 baselines</div>
+<div class="ts-line"><span class="ts-t">[05:14]</span> 那跑的话可以是带</div>
+<div class="ts-line"><span class="ts-t">[05:16]</span> 离线跑可以是带线跑</div>
+<div class="ts-line"><span class="ts-t">[05:17]</span> 那跑完之后你要看它具体的指标</div>
+<div class="ts-line"><span class="ts-t">[05:19]</span> 然后把它归音</div>
+<div class="ts-line"><span class="ts-t">[05:20]</span> 最后的话要把这个指标做一个持续的迭代</div>
+<div class="ts-line"><span class="ts-t">[05:23]</span> 做一个数据飞轮</div>
+<div class="ts-line"><span class="ts-t">[05:24]</span> 里面就包括达米达达上线的要求</div>
+<div class="ts-line"><span class="ts-t">[05:27]</span> 包括这个挥度发布</div>
+<div class="ts-line"><span class="ts-t">[05:29]</span> 包括线上系统的一个稳定线</div>
+<div class="ts-line"><span class="ts-t">[05:32]</span> 包括你最后要不要回滚</div>
+<div class="ts-line"><span class="ts-t">[05:34]</span> 以及你的 bad case 如何回流</div>
+<div class="ts-line"><span class="ts-t">[05:36]</span> 这就是我们一整个提一下的</div>
+<div class="ts-line"><span class="ts-t">[05:38]</span> 那大家有什么问题可以在评测期跟我交流</div>
+<div class="ts-line"><span class="ts-t">[05:40]</span> 拜拜</div>
+</div></details>
 </section>
 
 <section class="sec" id="s4">
@@ -857,6 +1085,273 @@ def release_gate(current, previous, tolerance=0.02):
 <li>τ²-bench / τ³-bench、AgentBench、LangSmith / TruLens / Arize Phoenix 等公开文档与 2026 年 Agent 评测横评资料。</li>
 </ul>
 <div class="warn"><strong>口径提示</strong>：视频把 Task Completion 归「端到端」、pass^k 与成本延迟归「表现」，是生产视角的分层；DeepEval 官方按「轨迹级 / 组件级」分类。教程在 4.2 节同时给出两种口径，避免混用导致误解。</div>
+<p><strong>附录 · 全片语音逐字稿（ASR · 211 段 · 按视频/章节分组）</strong></p>
+<p>由离线语音识别还原的完整口播，逐段保留时间码；点击标题展开。视频作者制作的烧录字幕为精简重排版，两者不完全逐字对应属正常现象。</p>
+<details class="ts-box"><summary>引言（逐字 · 12 句）</summary>
+<div class="ts-lines">
+<div class="ts-line"><span class="ts-t">[00:00]</span> Hello 大家好我是小副</div>
+<div class="ts-line"><span class="ts-t">[00:01]</span> 那上一期视频我们整体讲了一下 RAG 的评测体系</div>
+<div class="ts-line"><span class="ts-t">[00:04]</span> 那今天就来说一下 Agent 的评测体系</div>
+<div class="ts-line"><span class="ts-t">[00:07]</span> 那不多说我们现在直接开始</div>
+<div class="ts-line"><span class="ts-t">[00:09]</span> 那这个视频大体也会分为三部分</div>
+<div class="ts-line"><span class="ts-t">[00:11]</span> 第一部分会说一下我们 Agent 的评测体系架构是什么样子的</div>
+<div class="ts-line"><span class="ts-t">[00:14]</span> 第二部分会说一下每一部分的详解</div>
+<div class="ts-line"><span class="ts-t">[00:17]</span> 包括它有哪些分类</div>
+<div class="ts-line"><span class="ts-t">[00:18]</span> 看哪个指标</div>
+<div class="ts-line"><span class="ts-t">[00:19]</span> 第三部分会讲它的上线迭代</div>
+<div class="ts-line"><span class="ts-t">[00:22]</span> 那不多说我们直接开始</div>
+<div class="ts-line"><span class="ts-t">[00:23]</span> 首先 Agent 的评测的体系其实跟我们 RAG 有些相似</div>
+</div></details>
+<details class="ts-box"><summary>评测体系架构（逐字 · 45 句）</summary>
+<div class="ts-lines">
+<div class="ts-line"><span class="ts-t">[00:28]</span> 但是又不完全相同</div>
+<div class="ts-line"><span class="ts-t">[00:29]</span> 你可以认为 Agent 的评测是包含我们的 RAG</div>
+<div class="ts-line"><span class="ts-t">[00:31]</span> 只不过我们上一期讲的更精细化</div>
+<div class="ts-line"><span class="ts-t">[00:34]</span> 那我们现在就在这里介绍一下</div>
+<div class="ts-line"><span class="ts-t">[00:36]</span> 首先 Agent 的评测主要分为三种</div>
+<div class="ts-line"><span class="ts-t">[00:38]</span> 第一种叫做端到端的评测</div>
+<div class="ts-line"><span class="ts-t">[00:40]</span> 第二种叫做这个轨迹评测</div>
+<div class="ts-line"><span class="ts-t">[00:42]</span> 第三种叫做表现评测</div>
+<div class="ts-line"><span class="ts-t">[00:43]</span> 这三个评测其实是 deep evaluate</div>
+<div class="ts-line"><span class="ts-t">[00:45]</span> 这个非常出名的开源组织他们去定义的</div>
+<div class="ts-line"><span class="ts-t">[00:49]</span> 那具体来说</div>
+<div class="ts-line"><span class="ts-t">[00:50]</span> 端到端的评测其实就是一个黑盒评测</div>
+<div class="ts-line"><span class="ts-t">[00:52]</span> 它不看你整件的过程只看你最正的输出</div>
+<div class="ts-line"><span class="ts-t">[00:54]</span> 你的任务发生不怎么样</div>
+<div class="ts-line"><span class="ts-t">[00:56]</span> 那轨迹评测就是一个白盒评测</div>
+<div class="ts-line"><span class="ts-t">[00:58]</span> 它不仅要看最后的结果</div>
+<div class="ts-line"><span class="ts-t">[00:59]</span> 它还要看你证件执行过程中</div>
+<div class="ts-line"><span class="ts-t">[01:01]</span> 对吧</div>
+<div class="ts-line"><span class="ts-t">[01:02]</span> 你的规划是不是合理的</div>
+<div class="ts-line"><span class="ts-t">[01:04]</span> 你具体每一步有没有绕路</div>
+<div class="ts-line"><span class="ts-t">[01:06]</span> 有没有无效的步骤</div>
+<div class="ts-line"><span class="ts-t">[01:07]</span> 并且你的工具有没有选对</div>
+<div class="ts-line"><span class="ts-t">[01:09]</span> 你的参数有没有传统</div>
+<div class="ts-line"><span class="ts-t">[01:11]</span> 那第三个表现评测其实指的就是</div>
+<div class="ts-line"><span class="ts-t">[01:13]</span> 我们的一些其他的非性能指标</div>
+<div class="ts-line"><span class="ts-t">[01:16]</span> 比如说我们的这个</div>
+<div class="ts-line"><span class="ts-t">[01:18]</span> 整个系统的一个成本延迟怎么样</div>
+<div class="ts-line"><span class="ts-t">[01:20]</span> 对吧</div>
+<div class="ts-line"><span class="ts-t">[01:21]</span> 还有一个稳定性</div>
+<div class="ts-line"><span class="ts-t">[01:22]</span> 我会看一个指标叫做 pass@k^k</div>
+<div class="ts-line"><span class="ts-t">[01:23]</span> 还会看它的一些</div>
+<div class="ts-line"><span class="ts-t">[01:26]</span> 安全性有没有阅权</div>
+<div class="ts-line"><span class="ts-t">[01:28]</span> 那讲完了这个分类和指标</div>
+<div class="ts-line"><span class="ts-t">[01:29]</span> 我们下面来具体看一下</div>
+<div class="ts-line"><span class="ts-t">[01:31]</span> 整个评测的流程是什么样子的</div>
+<div class="ts-line"><span class="ts-t">[01:32]</span> 其实这个评测的流程</div>
+<div class="ts-line"><span class="ts-t">[01:33]</span> 和我们 RAG 测试的很像</div>
+<div class="ts-line"><span class="ts-t">[01:35]</span> 第一步还是我们去定数率级</div>
+<div class="ts-line"><span class="ts-t">[01:37]</span> 对吧</div>
+<div class="ts-line"><span class="ts-t">[01:38]</span> 第二步是定你评判的一个标准</div>
+<div class="ts-line"><span class="ts-t">[01:41]</span> 第三步是你要跑测试</div>
+<div class="ts-line"><span class="ts-t">[01:42]</span> 第四步你要把这个</div>
+<div class="ts-line"><span class="ts-t">[01:43]</span> 测试的结果传出指标来</div>
+<div class="ts-line"><span class="ts-t">[01:45]</span> 并且归因</div>
+<div class="ts-line"><span class="ts-t">[01:45]</span> 第五步做一个 loop 持续迭代</div>
+</div></details>
+<details class="ts-box"><summary>数据集（逐字 · 28 句）</summary>
+<div class="ts-lines">
+<div class="ts-line"><span class="ts-t">[01:48]</span> 那首先</div>
+<div class="ts-line"><span class="ts-t">[01:49]</span> 我们第一步准备数率级</div>
+<div class="ts-line"><span class="ts-t">[01:51]</span> 那数率级其实就分为三类</div>
+<div class="ts-line"><span class="ts-t">[01:52]</span> 第一类叫做这个高登赛的</div>
+<div class="ts-line"><span class="ts-t">[01:54]</span> 黄金数率级</div>
+<div class="ts-line"><span class="ts-t">[01:56]</span> 这里其实就是</div>
+<div class="ts-line"><span class="ts-t">[01:57]</span> 相对于你整个系统来说</div>
+<div class="ts-line"><span class="ts-t">[01:58]</span> 我们会仍更评测出</div>
+<div class="ts-line"><span class="ts-t">[01:59]</span> 各种各样的数率级</div>
+<div class="ts-line"><span class="ts-t">[02:00]</span> 作为一些</div>
+<div class="ts-line"><span class="ts-t">[02:01]</span> 最基本的最重要的功能</div>
+<div class="ts-line"><span class="ts-t">[02:03]</span> 那以后我们每次测试都要跑流数率级</div>
+<div class="ts-line"><span class="ts-t">[02:06]</span> 那带着一个回归级</div>
+<div class="ts-line"><span class="ts-t">[02:07]</span> 那回归级就是指</div>
+<div class="ts-line"><span class="ts-t">[02:09]</span> 哦</div>
+<div class="ts-line"><span class="ts-t">[02:09]</span> 我系统我以前的一些功能</div>
+<div class="ts-line"><span class="ts-t">[02:11]</span> 看了一些数据</div>
+<div class="ts-line"><span class="ts-t">[02:13]</span> 防止的就是你新功能上线之后</div>
+<div class="ts-line"><span class="ts-t">[02:14]</span> 影响了我旧的功能的一个稳定</div>
+<div class="ts-line"><span class="ts-t">[02:16]</span> 第三个挑战级</div>
+<div class="ts-line"><span class="ts-t">[02:18]</span> 你就说要验证</div>
+<div class="ts-line"><span class="ts-t">[02:18]</span> 你这次修改了这部分功能</div>
+<div class="ts-line"><span class="ts-t">[02:20]</span> 有没有真正的实现</div>
+<div class="ts-line"><span class="ts-t">[02:22]</span> 这就是我们三类数率级</div>
+<div class="ts-line"><span class="ts-t">[02:23]</span> 然后每个数据级</div>
+<div class="ts-line"><span class="ts-t">[02:24]</span> 它里面的数据都是包括一个问题</div>
+<div class="ts-line"><span class="ts-t">[02:26]</span> 一个答案</div>
+<div class="ts-line"><span class="ts-t">[02:27]</span> 那订完数据级之后</div>
+</div></details>
+<details class="ts-box"><summary>评判标准（逐字 · 41 句）</summary>
+<div class="ts-lines">
+<div class="ts-line"><span class="ts-t">[02:29]</span> 我们现在就来定一下</div>
+<div class="ts-line"><span class="ts-t">[02:29]</span> 我的标准</div>
+<div class="ts-line"><span class="ts-t">[02:30]</span> 就是我们具体用哪些指标</div>
+<div class="ts-line"><span class="ts-t">[02:32]</span> 以及我们这个标准什么样子的</div>
+<div class="ts-line"><span class="ts-t">[02:34]</span> 这里其实主要分为三类</div>
+<div class="ts-line"><span class="ts-t">[02:35]</span> 比较清晰的指标</div>
+<div class="ts-line"><span class="ts-t">[02:36]</span> 我们就可以用一些程序做断言</div>
+<div class="ts-line"><span class="ts-t">[02:39]</span> 比如说相不相当</div>
+<div class="ts-line"><span class="ts-t">[02:40]</span> 包不包涵</div>
+<div class="ts-line"><span class="ts-t">[02:41]</span> 对吧</div>
+<div class="ts-line"><span class="ts-t">[02:42]</span> 以及它的政责</div>
+<div class="ts-line"><span class="ts-t">[02:43]</span> 满不满足</div>
+<div class="ts-line"><span class="ts-t">[02:45]</span> 那第二类是我们的抹糊的指标</div>
+<div class="ts-line"><span class="ts-t">[02:46]</span> 抹糊的指标我们叫做 Rubric</div>
+<div class="ts-line"><span class="ts-t">[02:48]</span> 什么意思呢</div>
+<div class="ts-line"><span class="ts-t">[02:49]</span> 我们就要把这些指标</div>
+<div class="ts-line"><span class="ts-t">[02:51]</span> 通过评分细则去把它二远化</div>
+<div class="ts-line"><span class="ts-t">[02:53]</span> 比如说我们前面 Rubric 提过了一个准确率</div>
+<div class="ts-line"><span class="ts-t">[02:55]</span> 这个准确率是个分</div>
+<div class="ts-line"><span class="ts-t">[02:56]</span> 那可能是0.907</div>
+<div class="ts-line"><span class="ts-t">[02:58]</span> 0.802</div>
+<div class="ts-line"><span class="ts-t">[02:59]</span> 这种数据你很难说</div>
+<div class="ts-line"><span class="ts-t">[03:01]</span> 去评讯的断言</div>
+<div class="ts-line"><span class="ts-t">[03:03]</span> 所以说你要交给大模型</div>
+<div class="ts-line"><span class="ts-t">[03:04]</span> 让大模型给你输出一个0到10分</div>
+<div class="ts-line"><span class="ts-t">[03:06]</span> 就是说它把这个数据做一个转换</div>
+<div class="ts-line"><span class="ts-t">[03:08]</span> 比如说0到2分就是错</div>
+<div class="ts-line"><span class="ts-t">[03:09]</span> 对吧</div>
+<div class="ts-line"><span class="ts-t">[03:10]</span> 3到6分就是大体队</div>
+<div class="ts-line"><span class="ts-t">[03:11]</span> 7到9分就是露细节</div>
+<div class="ts-line"><span class="ts-t">[03:12]</span> 10分是全队</div>
+<div class="ts-line"><span class="ts-t">[03:14]</span> 这样的话就完成一个二远化</div>
+<div class="ts-line"><span class="ts-t">[03:16]</span> 那除了这两个之外</div>
+<div class="ts-line"><span class="ts-t">[03:17]</span> 我们还要做一些人工的判断</div>
+<div class="ts-line"><span class="ts-t">[03:18]</span> 就是因为人工其实是最准的</div>
+<div class="ts-line"><span class="ts-t">[03:20]</span> 最合理的</div>
+<div class="ts-line"><span class="ts-t">[03:21]</span> 这个时候我们需要人工可以抽取</div>
+<div class="ts-line"><span class="ts-t">[03:23]</span> 或者说有问题出现的时候</div>
+<div class="ts-line"><span class="ts-t">[03:25]</span> 可以做一个校准</div>
+<div class="ts-line"><span class="ts-t">[03:27]</span> 这就是我们标准的定义</div>
+<div class="ts-line"><span class="ts-t">[03:29]</span> 我们定完标准之后</div>
+</div></details>
+<details class="ts-box"><summary>测试（逐字 · 28 句）</summary>
+<div class="ts-lines">
+<div class="ts-line"><span class="ts-t">[03:30]</span> 下一步我们就来看一下我们的测试</div>
+<div class="ts-line"><span class="ts-t">[03:33]</span> 具体测试的时候其实也分两种</div>
+<div class="ts-line"><span class="ts-t">[03:34]</span> 如果说在我们的评测级上去评测</div>
+<div class="ts-line"><span class="ts-t">[03:36]</span> 就是一个离线评测</div>
+<div class="ts-line"><span class="ts-t">[03:37]</span> 对吧</div>
+<div class="ts-line"><span class="ts-t">[03:38]</span> 它主要依赖的是我们移入了一些数据</div>
+<div class="ts-line"><span class="ts-t">[03:40]</span> 我们最终的效果</div>
+<div class="ts-line"><span class="ts-t">[03:41]</span> 肯定还是要去跑生产的</div>
+<div class="ts-line"><span class="ts-t">[03:43]</span> 我们生产的时候也可以再先去跑评测</div>
+<div class="ts-line"><span class="ts-t">[03:45]</span> 它里面的数据就是我们生产的真实流量</div>
+<div class="ts-line"><span class="ts-t">[03:47]</span> 可能会发现一些未知的问题</div>
+<div class="ts-line"><span class="ts-t">[03:49]</span> 那跑完之后</div>
+<div class="ts-line"><span class="ts-t">[03:50]</span> 我们就根据具体跑的结果</div>
+<div class="ts-line"><span class="ts-t">[03:51]</span> 去算我们的指标</div>
+<div class="ts-line"><span class="ts-t">[03:53]</span> 如果是端端端的话</div>
+<div class="ts-line"><span class="ts-t">[03:54]</span> 你就看它的认完成率</div>
+<div class="ts-line"><span class="ts-t">[03:55]</span> 如果是轨迹的话</div>
+<div class="ts-line"><span class="ts-t">[03:55]</span> 你就看它的工具调样</div>
+<div class="ts-line"><span class="ts-t">[03:57]</span> 对吧</div>
+<div class="ts-line"><span class="ts-t">[03:57]</span> 是不是准确</div>
+<div class="ts-line"><span class="ts-t">[03:58]</span> 规划是不是准确</div>
+<div class="ts-line"><span class="ts-t">[04:00]</span> 对吧</div>
+<div class="ts-line"><span class="ts-t">[04:01]</span> 表现的话你要看你的延迟</div>
+<div class="ts-line"><span class="ts-t">[04:02]</span> 虫本稳定</div>
+<div class="ts-line"><span class="ts-t">[04:03]</span> 以及这个安全</div>
+<div class="ts-line"><span class="ts-t">[04:05]</span> 对吧</div>
+<div class="ts-line"><span class="ts-t">[04:07]</span> 并且把这个指标做一个回音</div>
+<div class="ts-line"><span class="ts-t">[04:09]</span> 看计证是哪一步错了</div>
+</div></details>
+<details class="ts-box"><summary>上线与迭代（逐字 · 28 句）</summary>
+<div class="ts-lines">
+<div class="ts-line"><span class="ts-t">[04:11]</span> 那我们评算完之后</div>
+<div class="ts-line"><span class="ts-t">[04:11]</span> 我们就要上线了</div>
+<div class="ts-line"><span class="ts-t">[04:12]</span> 对吧</div>
+<div class="ts-line"><span class="ts-t">[04:13]</span> 那上线其实是一个数据的飞轮</div>
+<div class="ts-line"><span class="ts-t">[04:15]</span> 要留持一些的迭代</div>
+<div class="ts-line"><span class="ts-t">[04:16]</span> 对吧</div>
+<div class="ts-line"><span class="ts-t">[04:17]</span> 第一部分我要判断</div>
+<div class="ts-line"><span class="ts-t">[04:18]</span> 你这个指标准不准</div>
+<div class="ts-line"><span class="ts-t">[04:20]</span> 达到我的标准</div>
+<div class="ts-line"><span class="ts-t">[04:21]</span> 它的误差有没有在农村的范围内</div>
+<div class="ts-line"><span class="ts-t">[04:23]</span> 那第二步就是逐渐的挥度上线</div>
+<div class="ts-line"><span class="ts-t">[04:26]</span> 那第三步</div>
+<div class="ts-line"><span class="ts-t">[04:27]</span> 我们到了线上的系统</div>
+<div class="ts-line"><span class="ts-t">[04:28]</span> 我们要看系统里面的一些指标</div>
+<div class="ts-line"><span class="ts-t">[04:30]</span> 对吧</div>
+<div class="ts-line"><span class="ts-t">[04:30]</span> 包括你的延迟成本</div>
+<div class="ts-line"><span class="ts-t">[04:32]</span> 包括你的稳定线</div>
+<div class="ts-line"><span class="ts-t">[04:34]</span> 包括你们一些 query 没有漂移等等</div>
+<div class="ts-line"><span class="ts-t">[04:37]</span> 有问题我们就回滚</div>
+<div class="ts-line"><span class="ts-t">[04:38]</span> 或者说把一些 bad case</div>
+<div class="ts-line"><span class="ts-t">[04:39]</span> 回流进我的评测级</div>
+<div class="ts-line"><span class="ts-t">[04:41]</span> 这样的话</div>
+<div class="ts-line"><span class="ts-t">[04:41]</span> 可以承认一整个数据分轮</div>
+<div class="ts-line"><span class="ts-t">[04:43]</span> 那这样的话</div>
+<div class="ts-line"><span class="ts-t">[04:43]</span> 才是我们整个 Agent 的评测的</div>
+<div class="ts-line"><span class="ts-t">[04:45]</span> 一个体系框架</div>
+<div class="ts-line"><span class="ts-t">[04:47]</span> 对吧</div>
+<div class="ts-line"><span class="ts-t">[04:47]</span> 我们最后来总结一下</div>
+</div></details>
+<details class="ts-box"><summary>总结（逐字 · 29 句）</summary>
+<div class="ts-lines">
+<div class="ts-line"><span class="ts-t">[04:49]</span> 首先 Agent 的评测分为三类</div>
+<div class="ts-line"><span class="ts-t">[04:51]</span> 分别是端了端轨迹表现</div>
+<div class="ts-line"><span class="ts-t">[04:53]</span> 然后还有一个等级的流程</div>
+<div class="ts-line"><span class="ts-t">[04:55]</span> 第一步就是先进数据级</div>
+<div class="ts-line"><span class="ts-t">[04:57]</span> 你要准备好你的 Golden Dataset</div>
+<div class="ts-line"><span class="ts-t">[04:58]</span> 你的回归的数据级</div>
+<div class="ts-line"><span class="ts-t">[04:59]</span> 包括你的挑战数据级</div>
+<div class="ts-line"><span class="ts-t">[05:02]</span> 那第二步一定要定标准</div>
+<div class="ts-line"><span class="ts-t">[05:03]</span> 对吧</div>
+<div class="ts-line"><span class="ts-t">[05:03]</span> 对一些准确的东西</div>
+<div class="ts-line"><span class="ts-t">[05:04]</span> 你要用程序断言去做</div>
+<div class="ts-line"><span class="ts-t">[05:06]</span> 对于一些模糊的东西</div>
+<div class="ts-line"><span class="ts-t">[05:08]</span> 你要跑成 Rubric</div>
+<div class="ts-line"><span class="ts-t">[05:09]</span> 用大型去把它练化</div>
+<div class="ts-line"><span class="ts-t">[05:11]</span> 然后第三步你就要跑 baselines</div>
+<div class="ts-line"><span class="ts-t">[05:14]</span> 那跑的话可以是带</div>
+<div class="ts-line"><span class="ts-t">[05:16]</span> 离线跑可以是带线跑</div>
+<div class="ts-line"><span class="ts-t">[05:17]</span> 那跑完之后你要看它具体的指标</div>
+<div class="ts-line"><span class="ts-t">[05:19]</span> 然后把它归音</div>
+<div class="ts-line"><span class="ts-t">[05:20]</span> 最后的话要把这个指标做一个持续的迭代</div>
+<div class="ts-line"><span class="ts-t">[05:23]</span> 做一个数据飞轮</div>
+<div class="ts-line"><span class="ts-t">[05:24]</span> 里面就包括达米达达上线的要求</div>
+<div class="ts-line"><span class="ts-t">[05:27]</span> 包括这个挥度发布</div>
+<div class="ts-line"><span class="ts-t">[05:29]</span> 包括线上系统的一个稳定线</div>
+<div class="ts-line"><span class="ts-t">[05:32]</span> 包括你最后要不要回滚</div>
+<div class="ts-line"><span class="ts-t">[05:34]</span> 以及你的 bad case 如何回流</div>
+<div class="ts-line"><span class="ts-t">[05:36]</span> 这就是我们一整个提一下的</div>
+<div class="ts-line"><span class="ts-t">[05:38]</span> 那大家有什么问题可以在评测期跟我交流</div>
+<div class="ts-line"><span class="ts-t">[05:40]</span> 拜拜</div>
+</div></details>
+<p><strong>附录 · 语音识别与三重校验方法</strong></p>
+<table>
+<tr><th>项目</th><th>说明</th></tr>
+<tr><td>音轨</td><td>`ffmpeg` 从原片提取 16 kHz 单声道 WAV</td></tr>
+<tr><td>识别模型</td><td>`faster-whisper 1.2.1` + `small`，CPU int8，`beam_size=5`，离线运行</td></tr>
+<tr><td>原始输出</td><td>211 段带起止时间码的转写</td></tr>
+<tr><td>繁简归一</td><td>`OpenCC t2s`</td></tr>
+<tr><td>第一重：ASR</td><td>完整口播，覆盖字幕省略的过渡句</td></tr>
+<tr><td>第二重：烧录字幕</td><td>逐帧 OCR 还原作者精简字幕，作为文字校对基准</td></tr>
+<tr><td>第三重：官方术语</td><td>本教程术语表与官方文档，强制校正专有名词拼写</td></tr>
+<tr><td>校正量</td><td>28 处 / 15 类，逐条见下方清单</td></tr>
+<tr><td>**边界**</td><td>**未做人工逐句听校**：ASR 与 OCR 都不能保证 100% 零偏差；专名与明显误识别已全部校正并附依据，可结合字幕对照复核。</td></tr>
+</table>
+<p><strong>附录 · ASR 校正清单（15 类 / 28 处）</strong></p>
+<p>按「校正为 + 依据」聚合，全部校正项附依据，可结合下方字幕对照复核。</p>
+<table>
+<tr><th>校正为</th><th>依据</th><th>出现次数</th></tr>
+<tr><td>Agent</td><td>通用技术词规范</td><td>7</td></tr>
+<tr><td>RAG</td><td>通用技术词规范</td><td>4</td></tr>
+<tr><td>不多说</td><td>口播习惯语</td><td>2</td></tr>
+<tr><td>端到端的评测</td><td>三层分类①端到端</td><td>2</td></tr>
+<tr><td>轨迹评测</td><td>三层分类②轨迹</td><td>2</td></tr>
+<tr><td>Rubric</td><td>官方术语 Rubric</td><td>2</td></tr>
+<tr><td>详解</td><td>第二部分详解</td><td>1</td></tr>
+<tr><td>上线迭代</td><td>第三部分</td><td>1</td></tr>
+<tr><td>pass^k</td><td>官方指标 pass^k</td><td>1</td></tr>
+<tr><td>pass@k</td><td>官方术语表：pass → pass@k</td><td>1</td></tr>
+<tr><td>bad case</td><td>失败案例</td><td>1</td></tr>
+<tr><td>Golden Dataset</td><td>黄金数据集</td><td>1</td></tr>
+<tr><td>Rubric</td><td>通用技术词规范</td><td>1</td></tr>
+<tr><td>Baseline</td><td>基线</td><td>1</td></tr>
+<tr><td>baselines</td><td>官方术语表：Baseline → baselines</td><td>1</td></tr>
+</table>
 </section>
 
 <div class="footer">
