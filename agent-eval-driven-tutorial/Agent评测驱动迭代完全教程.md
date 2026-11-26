@@ -8,7 +8,7 @@
 >
 > 配套文件：[index.html（图文阅读版，18 张 SVG）](index.html) ｜ [指标地图.html（视频截图逐字重绘）](指标地图.html) ｜ [评测系统原型.html（参考文章界面还原的静态交互原型）](评测系统原型.html)
 >
-> 姊妹篇：[RAG 评测完全教程](../rag-evaluation-tutorial/RAG评测完全教程.md) ｜ [Agent 评测体系完全教程](../agent-evaluation-tutorial/Agent评测体系完全教程.md)
+> 姊妹篇：[RAG 评测完全教程（在线阅读）](../rag-evaluation-tutorial/index.html) ｜ [Agent 评测体系完全教程（在线阅读）](../agent-evaluation-tutorial/index.html)
 
 ---
 

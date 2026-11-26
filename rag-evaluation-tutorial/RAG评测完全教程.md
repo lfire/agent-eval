@@ -4,7 +4,7 @@
 >
 > 配套图文版：[`index.html`](./index.html)（含 8 张精确重绘架构图与一页速览，不嵌入视频截图；视频原图对照见本文 5.1 节）。
 >
-> **原视频**：[抖音分享链接](https://v.douyin.com/ABG22aehmWk/) ｜ [网页版](https://www.douyin.com/video/7696458980251487515) ｜ 视频 ID `7696458980251487515` ｜ @Harbor404《10 分钟带你彻底搞懂 rag 评测》（2026-10-14 发布）。姊妹篇：[Agent 评测完全教程](../agent-evaluation-tutorial/Agent评测体系完全教程.md)。
+> **原视频**：[抖音分享链接](https://v.douyin.com/ABG22aehmWk/) ｜ [网页版](https://www.douyin.com/video/7696458980251487515) ｜ 视频 ID `7696458980251487515` ｜ @Harbor404《10 分钟带你彻底搞懂 rag 评测》（2026-10-14 发布）。姊妹篇：[Agent 评测体系完全教程（在线阅读）](../agent-evaluation-tutorial/index.html)。
 
 ## 保真约定
 

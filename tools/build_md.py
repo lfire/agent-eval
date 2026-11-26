@@ -359,8 +359,14 @@ def main():
         idx = ROOT / figure_url
         figures = FIG_RE.findall(idx.read_text(encoding="utf-8"))
         r = Renderer(md.read_text(encoding="utf-8"), figures)
+        body = r.render()
+        # 阅读页内互链指向同风格的在线阅读页，而不是图文版
+        body = (body
+                .replace("../rag-evaluation-tutorial/index.html", "../rag-evaluation-tutorial/RAG评测完全教程.html")
+                .replace("../agent-evaluation-tutorial/index.html", "../agent-evaluation-tutorial/Agent评测体系完全教程.html")
+                .replace("../agent-eval-driven-tutorial/index.html", "../agent-eval-driven-tutorial/Agent评测驱动迭代完全教程.html"))
         out = md.with_suffix(".html")
-        out.write_text(page(title, subtitle, figure_url, md, r.render(), r.toc), encoding="utf-8")
+        out.write_text(page(title, subtitle, figure_url, md, body, r.toc), encoding="utf-8")
         print(f"OK  {md.relative_to(ROOT)}  ->  {out.relative_to(ROOT)}  "
               f"({len(r.toc)} TOC / {r.fig_idx} SVG figures)")
 

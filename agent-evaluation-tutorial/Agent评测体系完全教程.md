@@ -2,7 +2,7 @@
 
 > 基于抖音 @Harbor404《5min 带你搞懂 Agent 评测体系》（Agent 系列第 21 集，2026-10-15 发布，实际时长 5:42）逐帧还原，并补齐视频未展开的术语、原理、代码与工程实践。
 >
-> 配套图文版：[`index.html`](./index.html)（8 张结构重绘 SVG、一页速览，全文无视频截图）。姊妹篇：[RAG 评测完全教程](../rag-evaluation-tutorial/RAG评测完全教程.md)。
+> 配套图文版：[`index.html`](./index.html)（8 张结构重绘 SVG、一页速览，全文无视频截图）。姊妹篇：[RAG 评测完全教程（在线阅读）](../rag-evaluation-tutorial/index.html)。
 >
 > **原视频**：[抖音分享链接](https://v.douyin.com/30rDH60axoo/) ｜ [网页版](https://www.douyin.com/video/7696585286075125011) ｜ 视频 ID `7696585286075125011` ｜ @Harbor404《5min 带你搞懂 Agent 评测体系》（2026-10-15 发布）。
 
