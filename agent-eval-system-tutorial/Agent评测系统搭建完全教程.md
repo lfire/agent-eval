@@ -45,9 +45,9 @@
 | # | 结论 | 位置 |
 |---|---|---|
 | 1 | **Evaluation 贯穿整个开发生命周期** | [第 2 章](#2-为什么-evaluation-要贯穿整个生命周期) |
-| 2 | **完整系统分三段且必须连成环** | [第 3 章](#3-一套完整-evaluation-system-的架构全景) |
+| 2 | **完整系统分三段且必须连成环** | [第 3–4 章](#3-一套完整-evaluation-system-的架构全景) |
 | 3 | **五步落地法** | [第 5 章](#5-产品经理如何从-0-到-1-搭五步落地法) |
-| 4 | **核心是评估数据飞轮 + 四条踩坑** | [第 6 章](#6-核心逻辑构建评估数据飞轮) |
+| 4 | **核心是评估数据飞轮 + 四条踩坑** | [第 6–7 章](#6-核心逻辑构建评估数据飞轮) |
 | 5 | **第一层任务集三步** | [第 9 章](#9-第一层三步真实任务--稳定判断--正反平衡) |
 | 6 | **第二层运行评分五步** | [第 15 章](#15-第二层五步让评分可解释可复查) |
 | 7 | **链路闭环与错误归因回流** | [第 20 章](#20-综合闭环与本站体系对齐) |
@@ -117,7 +117,7 @@ flowchart LR
 
 ## 3. 一套完整 Evaluation System 的架构全景
 
-**【视频原述】** 视频 ① 用一张纵向手绘英文流程图给出全貌，它不是并列的模块清单，而是一条**闭合回路**。按画面自上而下：顶部是 Metrics 容器（Quality / Cost / Latency / Safety / Business KPI），其下依次 Dashboard、Release Decision、Error Analysis；左侧 User Real Request 进入 Trace Collection（Online Logs / Bad Cases），与 Dataset Evolution 一起汇入 Dataset Manager（Synthetic + Human + Real），再经 Agent Runtime（LLM + Memory + Tool + Workflow）、Trajectory Store（Prompt / Tool / Reasoning / Output）到达底部 Evaluation Engine 容器（Rule Judge / LLM Judge / Human Judge）。最关键的是画面右侧那条长回流线：Evaluation Engine 的评分结果一路向上汇总为 Metrics，再驱动发布决策与失败归因，回流数据集后重新评测。下面按画面纵向顺序逐节点重绘，节点文字保留英文原名。
+**【按画面重绘】** 视频 ① 用一张纵向手绘英文流程图给出全貌，它不是并列的模块清单，而是一条**闭合回路**。按画面自上而下：顶部是 Metrics 容器（Quality / Cost / Latency / Safety / Business KPI），其下依次 Dashboard、Release Decision、Error Analysis；左侧 User Real Request 进入 Trace Collection（Online Logs / Bad Cases），与 Dataset Evolution 一起汇入 Dataset Manager（Synthetic + Human + Real），再经 Agent Runtime（LLM + Memory + Tool + Workflow）、Trajectory Store（Prompt / Tool / Reasoning / Output）到达底部 Evaluation Engine 容器（Rule Judge / LLM Judge / Human Judge）。最关键的是画面右侧那条长回流线：Evaluation Engine 的评分结果一路向上汇总为 Metrics，再驱动发布决策与失败归因，回流数据集后重新评测。下面按画面纵向顺序逐节点重绘，节点文字保留英文原名。
 
 ```mermaid
 flowchart TB
@@ -145,7 +145,7 @@ flowchart TB
 | Dashboard | 看板：管理指标趋势 |
 | Release Decision | 这次更新到底要不要发布 |
 
-> 闭环含义：Metrics 不是流程终点，而是「评分结果的汇总视图」；真正让体系转起来的是两段回流——**Evaluation Engine → Metrics** 的指标回流，以及 **Release Decision → Error Analysis → Dataset Evolution → Dataset Manager** 的失败回流。这正是本教程第 6 章「评估数据飞轮」的核心。版式说明：画面里 Metrics 与 Evaluation Engine 两个容器内的子项为纵向排列，此处改为横排以压缩高度，节点与子项文字逐字保留。
+> 闭环含义：Metrics 不是流程终点，而是**评分结果的汇总视图**——Evaluation Engine 的判分先汇总为五类指标，再驱动 Dashboard 与 Release Decision；发布后的失败经 Error Analysis → Dataset Evolution 回流到 Dataset Manager 重新评测，这才形成闭环。这正是本教程第 6 章「评估数据飞轮」的核心。版式说明：画面里 Metrics 与 Evaluation Engine 两个容器内的子项为纵向排列，此处改为横排以压缩高度，节点与子项文字逐字保留。
 
 ---
 
@@ -189,7 +189,7 @@ flowchart LR
 
 ## 6. 核心逻辑：构建「评估数据飞轮」
 
-**【视频原述】** 画面 f_0088 的标题是「构建『评估数据飞轮』」。它**不是另一套架构**，而是图 3 那条闭环的另一种说法：评分结果回流为指标、发布决策后的失败归因回流数据集、重新评测——飞轮每转一圈，回归集更厚。因此本章不再单独配图，七个节点按画面顺序列在下表，可直接对照图 3 的 Metrics → Dashboard → Release Decision → Error Analysis → Dataset Evolution → Dataset Manager → Evaluation Engine 一段。
+**【视频原述】** 画面 f_0088 的标题是「构建『评估数据飞轮』」，七个节点按画面从上到下的顺序列在下表。
 
 | 顺序 | 节点（画面原文） | 含义 |
 |---|---|---|
@@ -200,6 +200,8 @@ flowchart LR
 | 4 | Metrics Dashboard | 指标与趋势可见 |
 | 5 | Prompt / Tools / Models | 据结果改提示词、工具或模型 |
 | 6 | Redeploy System | 重新发布，回到线上 |
+
+**【补充】** 这七个节点描述的是**同一条闭环**，只是镜头对准「据指标改动 → 重新发布 → 再回到线上」这一段：Online User 与 Bad Case Analysis 对应图 3 的 User Real Request / Trace Collection / Error Analysis，Dataset Construction 对应 Dataset Evolution → Dataset Manager，Evaluation Engine 与 Metrics Dashboard 对应图 3 的 Evaluation Engine → Metrics → Dashboard，Prompt / Tools / Models 与 Redeploy System 是发布后回到线上的改动动作。因此本章不再单独配图，读者可沿图 3 的完整闭环（含 Agent Runtime、Trajectory Store）对照。
 
 **【视频原述】** 口播点题：「不是为了拿一个分，而是为了构建数据飞轮」；黄金数据集会越来越多、失败率越来越低，翻车过的题都要加入**回归数据集**。
 
