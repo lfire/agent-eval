@@ -463,6 +463,8 @@ print(tool_with_args([("OrderLookup", {"id": 999})],
 
 **③ DeepEval：轨迹指标需 tracing**
 
+> 以下为 DeepEval 框架用法示例，需先安装 `pip install deepeval` 并配置模型 API Key；不依赖框架的纯标准库实现见 4.4 ①②。
+
 ```python
 from deepeval.dataset import EvaluationDataset, Golden
 from deepeval.metrics import TaskCompletionMetric, ToolCorrectnessMetric

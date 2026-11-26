@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Agent 评测方法论 · 从 Test 到 Evaluation｜四支视频综合还原 + 系统化补全</title>
+<title>Agent 评测方法论 · 从 Test 到 Evaluation｜两支视频综合还原 + 系统化补全</title>
 <style>
 :root{
   --bg:#f6f7f9; --card:#fff; --ink:#1e2430; --muted:#667085; --line:#e4e7ec;
@@ -130,7 +130,7 @@ main{padding-top:22px}
     <li><a class="lv2" href="#181-反向闭环线上-case-回流-dataset">18.1 反向闭环</a></li>
     <li><a class="lv2" href="#182-上线后数据分析记录完整-trajectory">18.2 上线后 Trajectory</a></li>
     <li><a class="lv1" href="#s19">19. 一句话总结与本站体系对齐</a></li>
-    <li><a class="lv1" href="#s20">20. 补充篇 A：专业名词速查（56 条）</a></li>
+    <li><a class="lv1" href="#s20">20. 补充篇 A：专业名词速查（54 条）</a></li>
     <li><a class="lv1" href="#s21">21. 补充篇 B：可运行代码</a></li>
     <li><a class="lv2" href="#211-test-与-evaluation-判定器">21.1 Test 与 Evaluation 判定器</a></li>
     <li><a class="lv2" href="#212-三层价值指标计算器含成功定义对比">21.2 三层价值指标计算器</a></li>
@@ -150,7 +150,7 @@ main{padding-top:22px}
   <p class="lead">综合抖音 @煮caicai 两支连续视频：从「为什么 AI 产品不能再叫 Test」到三层价值框架、Golden Dataset、三种判据、三层粒度与线上回流闭环，整理成一套可落地的 Agent 评测方法论。</p>
   <div class="meta">
     <span>2 支视频 · 9:21</span><span>9 段官方章节</span><span>187 帧逐帧核对</span>
-    <span>20 张结构图重绘</span><span>56 条术语</span><span>4 段可运行代码</span>
+    <span>20 张结构图重绘</span><span>54 条术语</span><span>4 段可运行代码</span>
   </div>
   <p class="srclink">原视频：<a href="https://v.douyin.com/traQcUR8ESs/" target="_blank" rel="noopener">① AI产品经理：Agent要怎么评测？</a> ｜ <a href="https://v.douyin.com/TNwXekWUnuE/" target="_blank" rel="noopener">② 从 Test 到 Evaluation（按内容拟题）</a></p>
 </div>
@@ -958,7 +958,7 @@ main{padding-top:22px}
 <div class="note"><strong>【补充】</strong> 两支视频没有展开 pass@k / pass^k、并发隔离、执行引擎参数等工程细节，需要时见第三篇与阿里工程实践章节。</div>
 </section>
 <section class="sec" id="s20">
-<h2>20. 补充篇 A：专业名词速查（56 条）</h2>
+<h2>20. 补充篇 A：专业名词速查（54 条）</h2>
 <p><strong>【补充】</strong> 按「认识论 → 三层价值 → 数据集与判据 → 工程闭环」分组。</p>
 <table>
 <tr><th>术语</th><th>英文 / 别名</th><th>释义</th></tr>
@@ -1178,7 +1178,6 @@ if __name__ == "__main__":
 <tr><td><code>Demystifying evals for Al agents</code> / <code>evalvation</code> / <code>evar</code></td><td><code>Demystifying evals for AI agents</code> / <code>evaluation</code> / <code>eval</code></td><td>Anthropic 官方文章名 + 画面搜索结果</td></tr>
 <tr><td><code>ROl</code> / <code>Task完成率</code> 等大小写混排</td><td><code>ROI</code> / <code>Task 完成率</code></td><td>文档字体与 OCR 形近字</td></tr>
 <tr><td><code>1. 底盘：Golden...</code> / <code>2. 评测方法：三…</code></td><td>「底盘：Golden Dataset」「评测方法：三种手段组合用」</td><td>Notion 左侧目录被截断，按正文补全</td></tr>
-<tr><td><code>Layer 1–3</code> 表格列错位</td><td>按「组件 / 任务 / E2E」三行重排</td><td>f_0091–f_0093 帧放大校对</td></tr>
 <tr><td>口播「第一层是救术」「用户情猪」等</td><td>「第一层是技术」「用户情绪」</td><td>字幕 OCR 音近误字，按画面文档校正</td></tr>
 <tr><td>官方章节名「从test到evalua…」「evaluation的关…」</td><td>按 detail 字段补全为「从 Test 到 Evaluation」「evaluation 的关键要素」</td><td>接口章节名截断，按 detail 与画面还原</td></tr>
 </table>

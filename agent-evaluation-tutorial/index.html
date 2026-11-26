@@ -727,6 +727,7 @@ print(tool_correctness(["OrderLookup"], ["OrderLookup"]))            # 1.0
 print(tool_with_args([("OrderLookup", {"id": 999})],
                      [("OrderLookup", {"id": 12345})]))              # 0.0</code></pre>
 <h4>③ DeepEval：轨迹指标需 tracing</h4>
+<div class="note">以下为 DeepEval 框架用法示例，需先安装 <code>pip install deepeval</code> 并配置模型 API Key；不依赖框架的纯标准库实现见 4.4 ①②。</div>
 <pre><code>from deepeval.dataset import EvaluationDataset, Golden
 from deepeval.metrics import TaskCompletionMetric, ToolCorrectnessMetric
 from deepeval.tracing import observe
