@@ -104,31 +104,51 @@ main{padding-top:22px}
   <div class="brand">Agent 开发架构选型 · 完全教程</div>
   <div class="sub">视频逐帧还原 + 系统化补全</div>
   <ul>
+  <ul>
     <li><a class="lv1" href="#s0">0. 视频速览与保真约定</a></li>
     <li><a class="lv1" href="#s1">1. 全片结构地图</a></li>
     <li><a class="lv1" href="#s2">2. 三层抽象与演进</a></li>
-    <li><a class="lv2" href="#s21">2.1 Framework（2022–2023）</a></li>
-    <li><a class="lv2" href="#s22">2.2 Runtime（2024）</a></li>
-    <li><a class="lv2" href="#s23">2.3 Harness（2025 起）</a></li>
+    <li><a class="lv2" href="#s21">2.1 第一阶段：Agent Framework</a></li>
+    <li><a class="lv2" href="#s22">2.2 第二阶段：Agent Runtime</a></li>
+    <li><a class="lv2" href="#s23">2.3 第三阶段：Agent Harness</a></li>
     <li><a class="lv1" href="#s3">3. 开发起点与三类划分</a></li>
     <li><a class="lv1" href="#s4">4. 综合任务类</a></li>
-    <li><a class="lv2" href="#s41">4.1 Claude Agent SDK</a></li>
-    <li><a class="lv2" href="#s42">4.2 Deep Agents</a></li>
+    <li><a class="lv2" href="#s41">4.1 Claude Agent SDK：把成熟 Harness 封装成可直接用的执行系统</a></li>
+    <li><a class="lv2" href="#s42">4.2 Deep Agents：在 LangGraph 之上把执行策略做成可组合模块</a></li>
     <li><a class="lv1" href="#s5">5. 编码类</a></li>
-    <li><a class="lv2" href="#s51">5.1 Pi</a></li>
-    <li><a class="lv2" href="#s52">5.2 OpenCode</a></li>
+    <li><a class="lv2" href="#s51">5.1 Pi：极简，把更多设计留给开发者</a></li>
+    <li><a class="lv2" href="#s52">5.2 OpenCode：预置一整套软件开发工作机制</a></li>
     <li><a class="lv1" href="#s6">6. 个人助手类</a></li>
-    <li><a class="lv2" href="#s61">6.1 OpenClaw</a></li>
-    <li><a class="lv2" href="#s62">6.2 Hermes Agent</a></li>
+    <li><a class="lv2" href="#s61">6.1 OpenClaw：个人助手的管理中心</a></li>
+    <li><a class="lv2" href="#s62">6.2 Hermes Agent：持续学习，把经验沉淀成 Skill</a></li>
     <li><a class="lv1" href="#s7">7. 特殊存在：DeepSeek Harness</a></li>
+    <li><a class="lv2" href="#71-与-pi-的对比两种灵活不是一回事">7.1 与 Pi 的对比：两种「灵活」不是一回事</a></li>
     <li><a class="lv1" href="#s8">8. 七个 Harness 横向对比</a></li>
+    <li><a class="lv2" href="#81-但是控制权--一定越好">8.1 但是：控制权 ≠ 一定越好</a></li>
     <li><a class="lv1" href="#s9">9. 怎么用 Harness：三个层次</a></li>
+    <li><a class="lv2" href="#91-层次一extension--skill--产品还是-pi">9.1 层次一：Extension / Skill</a></li>
+    <li><a class="lv2" href="#92-层次二pi-sdk--产品是你的底层复用-pi">9.2 层次二：Pi SDK</a></li>
+    <li><a class="lv2" href="#93-层次三改源码--扩展接口不够用时">9.3 层次三：改源码</a></li>
     <li><a class="lv1" href="#s10">10. 回到开头：怎么选</a></li>
     <li><a class="lv1" href="#s11">11. 补充篇 A：专业名词速查</a></li>
+    <li><a class="lv2" href="#111-抽象与架构10-条">11.1 抽象与架构</a></li>
+    <li><a class="lv2" href="#112-harness-内部组件18-条">11.2 Harness 内部组件</a></li>
+    <li><a class="lv2" href="#113-控制与扩展16-条">11.3 控制与扩展</a></li>
+    <li><a class="lv2" href="#114-工程与运维12-条">11.4 工程与运维</a></li>
+    <li><a class="lv2" href="#115-项目专有12-条">11.5 项目专有</a></li>
     <li><a class="lv1" href="#s12">12. 补充篇 B：七项目事实核对</a></li>
+    <li><a class="lv2" href="#121-一张控制粒度阶梯表">12.1 一张「控制粒度阶梯」表</a></li>
     <li><a class="lv1" href="#s13">13. 补充篇 C：架构全景与选型方法</a></li>
+    <li><a class="lv2" href="#131-五步选型法">13.1 五步选型法</a></li>
+    <li><a class="lv2" href="#132-需求--最低档位对照表">13.2 需求 → 最低档位对照表</a></li>
+    <li><a class="lv2" href="#133-与评测体系的衔接">13.3 与评测体系的衔接</a></li>
     <li><a class="lv1" href="#s14">14. 补充篇 D：可运行代码</a></li>
+    <li><a class="lv2" href="#141-两轴选型打分器">14.1 两轴选型打分器</a></li>
+    <li><a class="lv2" href="#142-一个能跑起来的最小-harness">14.2 一个能跑起来的最小 Harness</a></li>
+    <li><a class="lv2" href="#143-三档控制粒度拦截--替换策略--替换核心">14.3 三档控制粒度：拦截 → 替换策略 → 替换核心</a></li>
+    <li><a class="lv2" href="#144-三层次判定器插件--sdk--源码改造">14.4 三层次判定器：插件 / SDK / 源码改造</a></li>
     <li><a class="lv1" href="#s15">15. 补充篇 E：常见误区</a></li>
+    <li><a class="lv2" href="#151-按症状归因速查">15.1 按症状归因速查</a></li>
     <li><a class="lv1" href="#s16">16. 附录</a></li>
     <li><a class="lv2" href="#s161">16.1 章节时间轴</a></li>
     <li><a class="lv2" href="#s162">16.2 配图速查</a></li>
@@ -805,7 +825,7 @@ agent = create_agent(
 export const name = "my-agent-loop";
 ctx.provide("agent-loop", new PlanThenAct());   // 不改框架核心代码</code></pre>
 <p><span class="tag t-video">视频原述</span>画面左侧两行小字点明底层：<code>底层：Cordis 插件架构</code>、<code>模块协作 · 组合出执行方式</code>，并列出 <code>model · tools · session · loop 全部可替换</code>。也就是说，它把不同功能做成相互协作的模块，让开发者组合出不同的执行方式。</p>
-<h3>7.1 与 Pi 的对比：两种「灵活」不是一回事</h3>
+<h3 id="71-与-pi-的对比两种灵活不是一回事">7.1 与 Pi 的对比：两种「灵活」不是一回事</h3>
 <p><span class="tag t-video">视频原述</span>「它和 Pi 虽然都强调灵活，但思路不同：<strong>Pi 是尽量让核心保持简单</strong>；<strong>而 DeepSeek Harness 是把核心本身也做成了可以替换的模块</strong>。」</p>
 <div class="figure">
 <svg viewBox="0 0 900 279" xmlns="http://www.w3.org/2000/svg" font-family="-apple-system,PingFang SC,Microsoft YaHei,sans-serif">
@@ -914,7 +934,7 @@ ctx.provide("agent-loop", new PlanThenAct());   // 不改框架核心代码</cod
 <tr><td><strong>Hermes Agent</strong></td><td>持续学习 · 经验沉淀</td><td>Memory / Skill 与人工审批</td></tr>
 </table>
 <div class="note"><span class="tag t-extra">补充</span>为什么三个场景化项目不落轴？因为它们的差异主要来自<strong>场景外壳</strong>（消息渠道、定时任务、工作流预置、记忆与技能积累），而不是「默认机制 × 控制权」这一对通用维度。把它们硬塞进坐标图会掩盖真正的选型信号：先判断你要不要这个场景外壳，再在同一场景内比较控制粒度。</div>
-<h3>8.1 但是：控制权 ≠ 一定越好</h3>
+<h3 id="81-但是控制权--一定越好">8.1 但是：控制权 ≠ 一定越好</h3>
 <div class="figure">
 <svg viewBox="0 0 900 271" xmlns="http://www.w3.org/2000/svg" font-family="-apple-system,PingFang SC,Microsoft YaHei,sans-serif">
   <g text-anchor="middle">
@@ -996,11 +1016,11 @@ ctx.provide("agent-loop", new PlanThenAct());   // 不改框架核心代码</cod
 <li><strong>改造底层的 Harness</strong>：对现成的核心机制都不满意，希望自己修改甚至重新设计。</li>
 </ol>
 <p><span class="tag t-video">视频原述</span>「这三个层次的开发目标不一样，<strong>技术能力要求也不同</strong>。我们就用 Pi 举个例子。」</p>
-<h3>9.1 层次一：Extension / Skill —— 产品还是 Pi</h3>
+<h3 id="91-层次一extension--skill--产品还是-pi">9.1 层次一：Extension / Skill —— 产品还是 Pi</h3>
 <p><span class="tag t-video">视频原述</span>「假设你是一名程序员，公司在用 <strong>Pi CLI</strong> 做编程工具，希望它更符合公司开发流程：比如 <code>+ 自动检查代码规范</code>、<code>+ 按要求生成 PR 描述</code>。你只需要在安装好的 Pi CLI 基础上，通过 <strong>Extension 或 Skill</strong> 加上这些功能，让它变得更符合你们自己的要求 —— <strong>产品还是 Pi</strong>。」</p>
-<h3>9.2 层次二：Pi SDK —— 产品是你的，底层复用 Pi</h3>
+<h3 id="92-层次二pi-sdk--产品是你的底层复用-pi">9.2 层次二：Pi SDK —— 产品是你的，底层复用 Pi</h3>
 <p><span class="tag t-video">视频原述</span>「现在你打算出去创业，做自己的 <strong>AI 编程产品</strong>：界面、用户管理、任务系统、运行测试都要自己做。这个时候就可以用 <strong>Pi SDK</strong>，把 Pi 的执行能力集成到自己的应用里 —— <strong>产品是你的，只是底层复用了 Pi Harness</strong>。」</p>
-<h3>9.3 层次三：改源码 —— 扩展接口不够用时</h3>
+<h3 id="93-层次三改源码--扩展接口不够用时">9.3 层次三：改源码 —— 扩展接口不够用时</h3>
 <p><span class="tag t-video">视频原述</span>「假设你认为 Pi 默认的 Agent Loop 不够好，想重新设计<strong>模型如何决策、如何执行、整个任务如何循环</strong>，那就需要 fork、改它的核心源码，搭出自己的 Harness。」</p>
 <p><span class="tag t-video">视频原述</span>「所以<strong>插件 · SDK · 源码改造是三个不同的问题</strong>：插件 / Skill 解决『如何扩展现有 Agent』；SDK 解决『复用现成的执行能力，开发自己的应用』；改源码是『现有的扩展接口无法满足需求的时候』才需要。」</p>
 <div class="key"><span class="tag t-video">视频原述</span>「因此在做技术选型时，要<strong>先想清楚自己的开发目标</strong>：让现有 Agent 更好用 → 插件和 Skill；开发独立的 Agent 产品 → SDK；深入改造 Harness → 才需要关注源码的开放程度。」画面最后强调一句：<strong>「开发自己的 Agent 产品 ≠ 开发自己的 Harness」</strong>。</div>
@@ -1095,7 +1115,7 @@ ctx.provide("agent-loop", new PlanThenAct());   // 不改框架核心代码</cod
 <h2>11. 补充篇 A：专业名词速查（68 条）</h2>
 <p class="leadin"><span class="tag t-extra">补充</span>视频口播里出现但没展开的英文名，按「抽象层 → Harness 组件 → 控制与扩展 → 工程与运维 → 项目专有」分组给出定义。所有条目都是本片语境下的含义，不是通用词典释义。</p>
 
-<h3>11.1 抽象与架构（10 条）</h3>
+<h3 id="111-抽象与架构10-条">11.1 抽象与架构（10 条）</h3>
 <table>
 <tr><th>术语</th><th>英文 / 别名</th><th>释义</th><th>本片落点</th></tr>
 <tr><td>Agent</td><td>智能体</td><td>能基于模型输出自主决定下一步、调用工具并持续执行直到达成目标的系统</td><td>全片对象</td></tr>
@@ -1110,7 +1130,7 @@ ctx.provide("agent-loop", new PlanThenAct());   // 不改框架核心代码</cod
 <tr><td>场景外壳</td><td>product shell</td><td>消息渠道、定时任务、用户体系、渠道适配等产品层能力</td><td>个人助手类 ≠ 单纯 Harness</td></tr>
 </table>
 
-<h3>11.2 Harness 内部组件（18 条）</h3>
+<h3 id="112-harness-内部组件18-条">11.2 Harness 内部组件（18 条）</h3>
 <table>
 <tr><th>术语</th><th>英文 / 别名</th><th>释义</th></tr>
 <tr><td>上下文</td><td>Context</td><td>每轮送给模型的全部信息：系统提示词、历史、工具结果、文件内容</td></tr>
@@ -1133,7 +1153,7 @@ ctx.provide("agent-loop", new PlanThenAct());   // 不改框架核心代码</cod
 <tr><td>沙箱</td><td>Sandbox</td><td>隔离执行环境，限制文件系统与网络权限</td></tr>
 </table>
 
-<h3>11.3 控制与扩展（16 条）</h3>
+<h3 id="113-控制与扩展16-条">11.3 控制与扩展（16 条）</h3>
 <table>
 <tr><th>术语</th><th>英文 / 别名</th><th>释义</th></tr>
 <tr><td>钩子</td><td>Hook</td><td>在生命周期节点插入自定义逻辑，可拦截、校验、阻止</td></tr>
@@ -1154,7 +1174,7 @@ ctx.provide("agent-loop", new PlanThenAct());   // 不改框架核心代码</cod
 <tr><td>停止条件 / 验证</td><td>Stop Condition / Verification</td><td>判断何时结束循环、结果是否真的达成目标</td></tr>
 </table>
 
-<h3>11.4 工程与运维（12 条）</h3>
+<h3 id="114-工程与运维12-条">11.4 工程与运维（12 条）</h3>
 <table>
 <tr><th>术语</th><th>英文 / 别名</th><th>释义</th></tr>
 <tr><td>氛围编程</td><td>Vibe Coding</td><td>借助 AI 完成开发、弱化手写代码的工作方式；视频用它说明 SDK 的低门槛</td></tr>
@@ -1171,7 +1191,7 @@ ctx.provide("agent-loop", new PlanThenAct());   // 不改框架核心代码</cod
 <tr><td>技术锁定</td><td>Lock-in</td><td>深度依赖某套默认机制后，迁移成本变高</td></tr>
 </table>
 
-<h3>11.5 项目专有（12 条）</h3>
+<h3 id="115-项目专有12-条">11.5 项目专有（12 条）</h3>
 <table>
 <tr><th>术语</th><th>释义</th></tr>
 <tr><td>Claude Code</td><td>Anthropic 的终端 Coding Agent，其执行机制被 Claude Agent SDK 复用</td></tr>
@@ -1203,7 +1223,7 @@ ctx.provide("agent-loop", new PlanThenAct());   // 不改框架核心代码</cod
 <tr><td><strong>DeepSeek Harness</strong></td><td>高度插件化的 Harness 研究 / 平台项目；官方表述 <em>Model + Harness = Agent</em></td><td>不预设业务场景；以服务声明 + 实现包 + 组合点装配出执行方式</td><td>model / tools / session / loop 全部可替换；<code>ctx.provide("agent-loop", …)</code> 换默认 Loop</td><td>内部机制多、组合与维护复杂；普通业务未必需要这么高的自由度</td></tr>
 </table>
 <div class="warn"><strong>核对边界。</strong>视频中的产品定位、优缺点与画面代码均按逐帧文字保留；许可证、语言、内部包名、LSP / FTS5 / E-A-A-S 等实现细节属于【补充】，来自各项目公开文档与仓库。这些项目迭代很快，具体 API 名称请以官方最新文档为准，本表用于理解架构差异，不作为版本兼容承诺。</div>
-<h3>12.1 一张「控制粒度阶梯」表</h3>
+<h3 id="121-一张控制粒度阶梯表">12.1 一张「控制粒度阶梯」表</h3>
 <table>
 <tr><th>档位</th><th>能改什么</th><th>代表</th><th>对应风险</th></tr>
 <tr><td>L0 配置</td><td>提示词、工具白名单、模型选择</td><td>全部项目</td><td>最低；改动可枚举</td></tr>
@@ -1258,7 +1278,7 @@ ctx.provide("agent-loop", new PlanThenAct());   // 不改框架核心代码</cod
 </svg>
   <div class="cap">图 20｜补充：生产级 Harness 通用职责分层</div>
 </div>
-<h3>13.1 五步选型法</h3>
+<h3 id="131-五步选型法">13.1 五步选型法</h3>
 <ol>
 <li><strong>判定流程可枚举性</strong>：能写出固定步骤 → Framework；需要暂停/恢复/人工确认 → Runtime；流程无法枚举 → 进入下一步。</li>
 <li><strong>判定场景外壳</strong>：是否需要 IM 渠道、定时任务、长期记忆、代码库理解？需要则先圈定场景化项目（OpenCode / OpenClaw / Hermes）。</li>
@@ -1266,7 +1286,7 @@ ctx.provide("agent-loop", new PlanThenAct());   // 不改框架核心代码</cod
 <li><strong>定位控制粒度</strong>：上表 L0–L4，找到满足需求的最低档位；能用 L1 解决就不要上 L3/L4。</li>
 <li><strong>评估责任成本</strong>：设计、调试、维护、上游升级回归，以及有没有评测集能证明改动没退步。</li>
 </ol>
-<h3>13.2 需求 → 最低档位对照表</h3>
+<h3 id="132-需求--最低档位对照表">13.2 需求 → 最低档位对照表</h3>
 <table>
 <tr><th>需求</th><th>最低档位</th><th>典型做法</th></tr>
 <tr><td>换个系统提示词 / 限定工具</td><td>L0</td><td>配置 <code>system_prompt</code> / <code>allowed_tools</code></td></tr>
@@ -1275,7 +1295,7 @@ ctx.provide("agent-loop", new PlanThenAct());   // 不改框架核心代码</cod
 <tr><td>改「先规划后执行」的决策顺序</td><td>L3</td><td>服务注册替换 Agent Loop</td></tr>
 <tr><td>连工具执行语义都要重写</td><td>L4</td><td>fork 源码，自建回归评测</td></tr>
 </table>
-<h3>13.3 与评测体系的衔接</h3>
+<h3 id="133-与评测体系的衔接">13.3 与评测体系的衔接</h3>
 <p>本系列前三篇讲的是<strong>怎么证明 Agent 变好了</strong>，本篇讲的是<strong>Agent 的执行系统怎么选</strong>。两者在「验证层」交汇：无论选 L0 还是 L4，只要改动了默认机制，就应该有一组固定任务（Outcome）+ 执行轨迹（Trace）+ 成本 / 时延护栏，用来判断这次改动是进步还是退步。尤其 L3/L4 改了 Loop，表面成功率可能不变，但步骤数、重试次数、工具误用率会明显漂移 —— 这类差异只有 trace 级指标能发现。详见 <a href="../agent-eval-driven-tutorial/index.html">评测驱动 Agent 迭代 · 完全教程</a> 与 <a href="../agent-evaluation-tutorial/index.html">Agent 评测体系完全教程</a>。</p>
 </section>
 
@@ -1283,7 +1303,7 @@ ctx.provide("agent-loop", new PlanThenAct());   // 不改框架核心代码</cod
 <h2>14. 补充篇 D：可运行代码</h2>
 <p class="leadin"><span class="tag t-extra">补充</span>以下四段均为<strong>纯 Python 标准库、可直接运行</strong>的最小实现，用来把本篇的抽象概念变成可触摸的行为：两轴打分、最小 Harness、三档控制粒度、三层次判定。不依赖任何 LLM API。</p>
 
-<h3>14.1 两轴选型打分器</h3>
+<h3 id="141-两轴选型打分器">14.1 两轴选型打分器</h3>
 <p>把「默认机制 × 控制权」两根轴量化：先给项目打四维分，再按业务需求的权重排序。<code>fit</code> 越接近需求画像越合适，<code>cost</code> 是必须自己承担的责任分。</p>
 <pre><code># harness_select.py —— python3 harness_select.py
 PROJECTS = {
@@ -1318,7 +1338,7 @@ if __name__ == "__main__":
         print(f"  {name:&lt;18} 差距={gap} 责任惩罚={pen} 综合={score}")</code></pre>
 <div class="note"><strong>实测输出（择要）</strong>：场景 A 首选 <code>Claude Agent SDK</code>（差距 0）；场景 B <code>DeepSeek Harness</code> 与 <code>Pi</code> 并列第一（差距均为 1）；场景 C 首选 <code>OpenCode / OpenClaw / Hermes</code> 这一组场景化项目。分数只用于把讨论结构化，不能替业务判断。</div>
 
-<h3>14.2 一个能跑起来的最小 Harness</h3>
+<h3 id="142-一个能跑起来的最小-harness">14.2 一个能跑起来的最小 Harness</h3>
 <p>用规则模拟「模型决策」，把 Harness 的五件事做全：工具注册、上下文组装与压缩、权限门、停止条件、trace 记录。运行后会看到完整执行轨迹。</p>
 <pre><code># mini_harness.py —— python3 mini_harness.py
 import json
@@ -1371,7 +1391,7 @@ if __name__ == "__main__":
     print(json.dumps(h2.run("调研 Harness 选型"), ensure_ascii=False, indent=2))</code></pre>
 <div class="note"><strong>实测结论</strong>：只放行 <code>search</code> 时，Agent 在第 2 步被权限门 <code>BLOCKED</code>，循环提前终止；放行两个工具后走完 <code>search → write → finish</code>，并在上下文超过阈值时触发 <code>COMPACT</code>。这正好复现了视频里「上下文越来越长怎么控制」「工具权限怎么管」两个追问的最小形态。</div>
 
-<h3>14.3 三档控制粒度：拦截 → 替换策略 → 替换核心</h3>
+<h3 id="143-三档控制粒度拦截--替换策略--替换核心">14.3 三档控制粒度：拦截 → 替换策略 → 替换核心</h3>
 <p>把第 12.1 节的 L1/L2/L3 写成一个内核，直观看出每多开一个控制点会发生什么。</p>
 <pre><code># control_granularity.py —— python3 control_granularity.py
 class Kernel:
@@ -1409,7 +1429,7 @@ if __name__ == "__main__":
     print("L3 换核:", k.loop(["read", "write"]))</code></pre>
 <div class="note"><strong>实测输出</strong>：<code>L1 拦截: BLOCKED</code>；<code>默认 Loop: ['ACT read', 'ACT write']</code>；<code>L2 压缩: ['[摘要]', 'read:a.md']</code>；<code>L3 换核: ['PLAN read,write', 'ACT read', 'ACT write']</code>。三段分别对应 Claude Agent SDK 的 Hook、Deep Agents 的 Middleware、DeepSeek Harness 的服务注册。</div>
 
-<h3>14.4 三层次判定器：插件 / SDK / 源码改造</h3>
+<h3 id="144-三层次判定器插件--sdk--源码改造">14.4 三层次判定器：插件 / SDK / 源码改造</h3>
 <p>输入你的开发目标，输出应该停在哪个层次，避免「为加个按钮去 fork」。</p>
 <pre><code># three_levels.py —— python3 three_levels.py
 def decide(*, own_product=False, custom_ui=False, own_users=False,
@@ -1453,7 +1473,7 @@ if __name__ == "__main__":
 <tr><td>11</td><td>改了默认机制，看成功率没变就算没退步</td><td>Loop 改动常表现为步骤数、重试、工具误用率漂移，成功率可能不变</td><td>同时看 Outcome 与 Trace，配护栏指标</td></tr>
 <tr><td>12</td><td>SDK 自带权限就等于生产安全</td><td>权限白名单、审批与沙箱是三件事；client-server 架构还有额外攻击面</td><td>最小权限 + 人工审批 + 隔离沙箱 + 命令审计</td></tr>
 </table>
-<h3>15.1 按症状归因速查</h3>
+<h3 id="151-按症状归因速查">15.1 按症状归因速查</h3>
 <table>
 <tr><th>症状</th><th>优先检查</th><th>可能落在</th></tr>
 <tr><td>上下文越来越长、成本飙升</td><td>压缩策略、大工具结果是否落盘</td><td>信息层 / L2</td></tr>

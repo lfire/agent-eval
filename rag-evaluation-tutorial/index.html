@@ -374,7 +374,7 @@ main{padding-top:22px}
 </section>
 
 <section class="sec" id="s23">
-<h3>2.3 准备数据：两套互不复用的评测数据集</h3>
+<h3 id="23-准备数据两套互不复用的评测数据集">2.3 准备数据：两套互不复用的评测数据集</h3>
 <p><span class="tag t-video">视频原述</span>「实际上就是两套评测数据集的构建：<strong>检索评测一套（3 个 JSONL，喂 MTEB）、生成评测一套（1 张表，喂 RAGAS）</strong>。」</p>
 
 <div class="figure">
@@ -510,7 +510,7 @@ main{padding-top:22px}
 </section>
 
 <section class="sec" id="s24">
-<h3>2.4 跑 baselines：逐格执行 + 只回填生成数据表</h3>
+<h3 id="24-跑-baselines逐格执行--只回填生成数据表">2.4 跑 baselines：逐格执行 + 只回填生成数据表</h3>
 <p><span class="tag t-video">视频原述</span>「对照实验矩阵，逐格执行每次 rag baseline。」每一格执行一次完整链路：</p>
 <pre>问题 →【检索】→ 召回文档（contexts）→【生成】→ 答案（response）
                               ↓
@@ -524,7 +524,7 @@ main{padding-top:22px}
 </section>
 
 <section class="sec" id="s25">
-<h3>2.5 跑评测框架，计算指标</h3>
+<h3 id="25-跑评测框架计算指标">2.5 跑评测框架，计算指标</h3>
 <p><span class="tag t-video">视频原述</span>「分两个框架的两套指标。」</p>
 
 <h4>2.5.1 MTEB 侧：5 个检索指标</h4>
@@ -764,7 +764,7 @@ main{padding-top:22px}
 </section>
 
 <section class="sec" id="s26">
-<h3>2.6 评测方法架构思考：四级方法谱系</h3>
+<h3 id="26-评测方法架构思考四级方法谱系">2.6 评测方法架构思考：四级方法谱系</h3>
 <p><span class="tag t-video">视频原述</span>视频给出一条从「最可信」到「最便宜」的方法谱系：</p>
 <div class="figure">
 <svg viewBox="0 0 900 125" xmlns="http://www.w3.org/2000/svg" font-family="-apple-system,PingFang SC,Microsoft YaHei,sans-serif">

@@ -126,32 +126,63 @@ main{padding-top:22px}
   <div class="brand">评测驱动 Agent 迭代 · 完全教程</div>
   <div class="sub">视频逐帧还原 + 系统化补全</div>
   <ul>
+  <ul>
     <li><a class="lv1" href="#s0">0. 视频速览与保真约定</a></li>
     <li><a class="lv1" href="#s1">1. 全片结构地图</a></li>
     <li><a class="lv1" href="#s2">2. 引言：评测必须前置</a></li>
     <li><a class="lv1" href="#s3">3. 错误发生在执行链路上</a></li>
     <li><a class="lv1" href="#s4">4. 什么叫「做得好」：三层</a></li>
-    <li><a class="lv2" href="#s41">4.1 Outcome：事情做成没有</a></li>
+    <li><a class="lv2" href="#s41">4.1 Outcome：事情到底做成没有</a></li>
     <li><a class="lv2" href="#s42">4.2 Trace：过程有没有问题</a></li>
-    <li><a class="lv2" href="#s43">4.3 Experience：体验与成本</a></li>
+    <li><a class="lv2" href="#s43">4.3 Experience：体验和成本</a></li>
     <li><a class="lv1" href="#s5">5. 评测框架：Anthropic 组件图</a></li>
+    <li><a class="lv2" href="#51-八个必须分清的术语">5.1 八个必须分清的术语</a></li>
+    <li><a class="lv2" href="#52-三个容易混淆的关系">5.2 三个容易混淆的关系</a></li>
     <li><a class="lv1" href="#s6">6. 任务收集：从哪来、怎么标</a></li>
+    <li><a class="lv2" href="#61-四类来源">6.1 四类来源</a></li>
+    <li><a class="lv2" href="#62-八类评测集打标维度">6.2 八类评测集</a></li>
+    <li><a class="lv2" href="#63-用例规范三个最容易出问题的地方">6.3 用例规范：三个最容易出问题的地方</a></li>
     <li><a class="lv1" href="#s7">7. 评分器：三类判据与四条原则</a></li>
+    <li><a class="lv2" href="#71-大模型评分的四条原则">7.1 大模型评分的四条原则</a></li>
     <li><a class="lv1" href="#s8">8. 结果判断：主指标与护栏</a></li>
+    <li><a class="lv2" href="#81-按目的选主指标">8.1 按目的选主指标</a></li>
+    <li><a class="lv2" href="#82-护栏指标高分不能抵消">8.2 护栏指标：高分不能抵消</a></li>
+    <li><a class="lv2" href="#83-上游错了下游要跳过">8.3 上游错了，下游要跳过</a></li>
     <li><a class="lv1" href="#s9">9. 稳定性：pass@k / pass^k</a></li>
     <li><a class="lv1" href="#s10">10. 能力评测 → 回归评测</a></li>
     <li><a class="lv1" href="#s11">11. 指标地图（完整 41 项）</a></li>
+    <li><a class="lv2" href="#111-全部指标逐条清单">11.1 全部指标逐条清单</a></li>
+    <li><a class="lv2" href="#112-使用建议与优先级">11.2 使用建议与优先级</a></li>
     <li><a class="lv1" href="#s12">12. 结语：从简单开始</a></li>
     <li><a class="lv1" href="#s13">13. 补充篇 A：专业名词速查</a></li>
+    <li><a class="lv2" href="#131-评测对象与组件">13.1 评测对象与组件</a></li>
+    <li><a class="lv2" href="#132-指标与统计">13.2 指标与统计</a></li>
+    <li><a class="lv2" href="#133-数据集工程与框架">13.3 数据集、工程与框架</a></li>
     <li><a class="lv1" href="#s14">14. 补充篇 B：Anthropic 全景</a></li>
+    <li><a class="lv2" href="#141-四类-agent-与对应基准">14.1 四类 Agent 与对应基准</a></li>
+    <li><a class="lv2" href="#142-六类理解-agent-表现的方法swiss-cheese-model">14.2 六类理解 Agent 表现的方法</a></li>
+    <li><a class="lv2" href="#143-五个可直接选用的评测框架">14.3 五个可直接选用的评测框架</a></li>
+    <li><a class="lv2" href="#144-两个值得记住的反面案例">14.4 两个值得记住的反面案例</a></li>
     <li><a class="lv1" href="#s15">15. 补充篇 C：阿里工程落地</a></li>
+    <li><a class="lv2" href="#151-三条设计原则与四个核心模块">15.1 三条设计原则与四个核心模块</a></li>
+    <li><a class="lv2" href="#152-评测范围--数据集--指标的自动装配">15.2 评测范围 → 数据集 → 指标的自动装配</a></li>
+    <li><a class="lv2" href="#153-执行引擎">15.3 执行引擎</a></li>
+    <li><a class="lv2" href="#154-可视化看板与产品化">15.4 可视化看板与产品化</a></li>
+    <li><a class="lv2" href="#155-新旧方法对比原文-91">15.5 新旧方法对比</a></li>
     <li><a class="lv1" href="#s16">16. 补充篇 D：可运行代码</a></li>
+    <li><a class="lv2" href="#161-passk-与-passk复现原文-42">16.1 pass@k 与 pass^k</a></li>
+    <li><a class="lv2" href="#162-主指标--护栏--上游跳过复现-100--10--90">16.2 主指标 + 护栏 + 上游跳过</a></li>
+    <li><a class="lv2" href="#163-一个符合四原则的-judge-prompt-模板">16.3 一个符合四原则的 Judge Prompt 模板</a></li>
+    <li><a class="lv2" href="#164-一条完整任务anthropic-yaml-示例的精简版">16.4 一条完整任务</a></li>
+    <li><a class="lv2" href="#165-一条阿里风格的评测用例">16.5 一条阿里风格的评测用例</a></li>
+    <li><a class="lv2" href="#166-最小评测-harness并发--隔离--汇总">16.6 最小评测 Harness</a></li>
     <li><a class="lv1" href="#s17">17. 补充篇 E：误区与失败分类</a></li>
+    <li><a class="lv2" href="#171-按模块的失败归因速查">17.1 按模块的失败归因速查</a></li>
     <li><a class="lv1" href="#s18">18. 附录</a></li>
-    <li><a class="lv2" href="#s181">18.1 章节时间轴</a></li>
+    <li><a class="lv2" href="#s181">18.1 官方章节时间轴</a></li>
     <li><a class="lv2" href="#s182">18.2 配图速查</a></li>
     <li><a class="lv2" href="#s183">18.3 校正表</a></li>
-    <li><a class="lv2" href="#s184">18.4 还原方法与资料</a></li>
+    <li><a class="lv2" href="#s184">18.4 还原方法与资料来源</a></li>
     <li><a class="lv1" href="#s19">19. 附：评测系统交互原型</a></li>
     <li><a class="lv2" href="#s191">19.1 内嵌预览</a></li>
   </ul>
@@ -585,7 +616,7 @@ main{padding-top:22px}
 </svg>
   <div class="cap">图 6｜Anthropic《Components of Evaluations for Agents》组件架构图（按视频画面逐框重绘）</div>
 </div>
-<h3>5.1 八个必须分清的术语</h3>
+<h3 id="51-八个必须分清的术语">5.1 八个必须分清的术语</h3>
 <table>
 <tr><th>英文</th><th>中文</th><th>Anthropic 原文定义（要点）</th><th>视频里的说法</th></tr>
 <tr><td><code>evaluation / eval</code></td><td>评测</td><td>给 AI 一个输入，对输出套用评分逻辑来衡量成功；本文聚焦开发期无需真实用户的 <strong>automated evals</strong></td><td>决定改什么、怎么改、能不能上线</td></tr>
@@ -599,7 +630,7 @@ main{padding-top:22px}
 <tr><td><code>evaluation suite</code></td><td>评测套件</td><td>为衡量特定能力/行为而组织的一组 task，通常共享一个宏观目标（如客服套件测退款、取消、升级）</td><td>把同批任务按业务组织起来</td></tr>
 </table>
 <div class="note"><span class="tag t-extra">补充</span>组件图里的那张示例 YAML（Anthropic 原文，视频 04:33–05:21 画面中可见片段）把上述概念落到了一个「修复鉴权绕过漏洞」的 task 上：<code>deterministic_tests</code> / <code>llm_rubric</code> / <code>static_analysis</code> / <code>state_check</code> / <code>tool_calls</code> 五类 grader，加上 <code>n_turns</code> / <code>n_toolcalls</code> / <code>n_total_tokens</code> 与 <code>time_to_first_token</code> 等 tracked metrics。原文特别提醒：这个例子是为了展示全部 grader 类型，实践中通常「单元测试判正确性 + 一个 LLM rubric 判代码质量」就够了。</div>
-<h3>5.2 三个容易混淆的关系</h3>
+<h3 id="52-三个容易混淆的关系">5.2 三个容易混淆的关系</h3>
 <table>
 <tr><th>关系</th><th>说明</th></tr>
 <tr><td><strong>suite 与 task</strong></td><td>suite 是任务的集合；task 是最小评测单位。图 6 中黄色大框是 suite，里面每个橙色框是 task。</td></tr>
@@ -615,7 +646,7 @@ main{padding-top:22px}
 <p><span class="tag t-video">视频原述</span>「别一上来就用表达准确的『标准题』去测 Agent——真实用户那里省略、指代、临时改主意全都来了，你都接不住。可以<strong>从手工测试、真实的日志、用户反馈或者线上失败里面，找 20–50 条有代表性的任务先跑起来</strong>。后面如果要识别更小的差异，再逐步扩充。」</p>
 <div class="key"><span class="tag t-extra">补充</span>这正是 Anthropic 的 <strong>Step 0「Start early」</strong>：团队常因为「以为需要几百条任务」而迟迟不动手，其实早期每次改动的效果量很大，小样本就够；等 Agent 成熟后才需要更大更难的评测集来分辨细小差异。原文原话是「最好一开始采用 80/20 法则」「评测越晚建越难建」。</div>
 
-<h3>6.1 四类来源</h3>
+<h3 id="61-四类来源">6.1 四类来源</h3>
 <div class="figure">
 <svg viewBox="0 0 900 300" xmlns="http://www.w3.org/2000/svg" font-family="-apple-system,PingFang SC,Microsoft YaHei,sans-serif">
   <g text-anchor="middle">
@@ -670,7 +701,7 @@ main{padding-top:22px}
 <tr><td>④ 边界 case</td><td>「工具异常、空输入、超长文本……不能只等着线上遇见」</td><td>测鲁棒性与降级，属于安全护栏</td></tr>
 </table>
 
-<h3>6.2 八类评测集（打标维度）</h3>
+<h3 id="62-八类评测集打标维度">6.2 八类评测集（打标维度）</h3>
 <p><span class="tag t-video">视频原述</span>「挑出这次应该测哪些，可以按照下面这 8 类进行打标」：</p>
 <div class="figure">
 <svg viewBox="0 0 900 290" xmlns="http://www.w3.org/2000/svg" font-family="-apple-system,PingFang SC,Microsoft YaHei,sans-serif">
@@ -733,7 +764,7 @@ main{padding-top:22px}
 </table>
 <div class="note"><span class="tag t-extra">补充</span>阿里文章把这 8 类称为「<strong>基础覆盖 + 专项探测</strong>」：基础技能与知识问答验证核心能力闭环、是基座；其余 6 类从不同维度切入，定位感知/规划/记忆/工具的具体短板。文章还给出<strong>评测范围 → 数据集 → 指标</strong>的自动装配映射（共 15 种评测范围），以及基于语雀文档 + Prompt 模板自动生成用例、「LLM 生成 → 人工审核 → 入库」的半自动工作流。</div>
 
-<h3>6.3 用例规范：三个最容易出问题的地方</h3>
+<h3 id="63-用例规范三个最容易出问题的地方">6.3 用例规范：三个最容易出问题的地方</h3>
 <div class="figure">
 <svg viewBox="0 0 900 300" xmlns="http://www.w3.org/2000/svg" font-family="-apple-system,PingFang SC,Microsoft YaHei,sans-serif">
   <g text-anchor="middle">
@@ -825,7 +856,7 @@ main{padding-top:22px}
 <p><span class="tag t-video">视频原述</span>「<strong>代码查得清的要用代码，专业判断和校准留给人工，三种方式各自负责合适的部分。</strong>」如果人工与模型评分出现系统性偏差，「那就应该先修改评分标准」。</p>
 <div class="key"><span class="tag t-extra">补充</span>Anthropic 对每个 task 的计分方式给了三种：<strong>weighted</strong>（加权总分过阈值）、<strong>binary</strong>（所有 grader 全过）、<strong>hybrid</strong>（混合）。同时提醒一个常见误区：不要执着于检查「是否按特定顺序调用了特定工具」——这太死板，Agent 常找到设计者没预料到的合法路径；<strong>宁可评它产出了什么，也别死守它走了哪条路</strong>。多组件任务应给部分分（partial credit）。</div>
 
-<h3>7.1 大模型评分的四条原则</h3>
+<h3 id="71-大模型评分的四条原则">7.1 大模型评分的四条原则</h3>
 <p><span class="tag t-video">视频原述</span>「但是大模型的评分不是简单地把所有内容扔给一个更强的模型，有四个很重要的原则」：</p>
 <div class="figure">
 <svg viewBox="0 0 900 270" xmlns="http://www.w3.org/2000/svg" font-family="-apple-system,PingFang SC,Microsoft YaHei,sans-serif">
@@ -918,7 +949,7 @@ main{padding-top:22px}
 </svg>
   <div class="cap">图 12｜10:15「按目的选主指标」+ 10:36「未经授权 / 高分不能抵消」+ 10:48「跳过也要报」重绘</div>
 </div>
-<h3>8.1 按目的选主指标</h3>
+<h3 id="81-按目的选主指标">8.1 按目的选主指标</h3>
 <p><span class="tag t-video">视频原述</span>「给不同类型的评测设<strong>主指标</strong>，每一次评测先回答：哪个指标决定整个 case 是否通过？端到端的评测重点看<strong>任务完成率</strong>，工具专项评测重点看<strong>工具调用</strong>。格式要求、响应速度这些作为质量维度单独衡量，不参与最终通过判定。」</p>
 <p><span class="tag t-video">视频原述</span>「比如内容完全正确，但是格式没有按照要求，就因为格式把整个回答否掉，评测结果的真实性会严重偏离。」</p>
 <table>
@@ -934,11 +965,11 @@ main{padding-top:22px}
 </table>
 <div class="note">原文还规定：<strong>评测模式的优先级高于评测数据集</strong>——先按模式（端到端 / 分模块）定主指标，模式未指定时再按数据集类型定。</div>
 
-<h3>8.2 护栏指标：高分不能抵消</h3>
+<h3 id="82-护栏指标高分不能抵消">8.2 护栏指标：高分不能抵消</h3>
 <p><span class="tag t-video">视频原述</span>「在实际的产品里，某些错误一旦发生，这条 case 都必须 fail：比如不可逆的风险操作、<strong>未经授权</strong>。任务完成、格式要求、时限要求都摆在那儿，但<strong>高分不能抵消</strong>红线。」画面是一辆写着「任务完成 ✓」的小车被红色「未经授权 ✗」横杆拦下。</p>
 <div class="key"><span class="tag t-extra">补充</span>这与 Anthropic 的 <em>binary / hybrid</em> 计分思路一致：对不可接受的行为用「一票否决」的硬约束，而不是让它淹没在加权总分里。工程上通常把这类检查实现为独立的 <code>state_check</code> / <code>tool_calls</code> 断言，并在报告中单列「护栏通过率」。</div>
 
-<h3>8.3 上游错了，下游要跳过</h3>
+<h3 id="83-上游错了下游要跳过">8.3 上游错了，下游要跳过</h3>
 <p><span class="tag t-video">视频原述</span>「100 条任务，只执行了 10 条、本组全对，剩下 90 条没执行——<strong>跳过也要报</strong>。不能让上游的错误把下游的评分拖垮。」</p>
 <div class="key"><span class="tag t-extra">补充</span>阿里文章 5.4 给出了精确做法：知识问答用例期望路由为 <code>SKILL_MISS</code>（走 RAG），若 Agent 误路由到某个 Skill，RAG 根本没被触发，此时「幻觉率 / 检索精确率 / 检索召回率」都会因缺少检索原文而被误判为不通过。<strong>解法</strong>：在依赖 RAG 数据的 Judge Task 执行前先检测路由误触发，一旦命中就把相关下游 Judge 标为 <code>error</code> 并跳过统计，<strong>既不计入分子也不计入分母</strong>；路由错误只体现在「路由决策准确率」一项上，避免一个模块的错误雪崩式污染其他指标。</div>
 </section>
@@ -1085,7 +1116,7 @@ main{padding-top:22px}
 <li>两栏之间的过渡：「如果结果不理想，进一步下钻 Trace，定位问题出在哪里」。</li>
 <li>右下引用：「这不是一份必须全部完成的清单，而是一张帮助你做出更好选择的地图。—— 让评测真正为产品创造价值」。</li>
 </ul>
-<h3>11.1 全部指标逐条清单</h3>
+<h3 id="111-全部指标逐条清单">11.1 全部指标逐条清单</h3>
 <table>
 <tr><th>视角</th><th>分组</th><th>指标（中文）</th><th>英文（截图原文）</th><th>优先级</th></tr>
 <tr><td>Outcome · 结果表现</td><td><strong>Quality 任务质量</strong></td><td>任务完成率</td><td><code>Task Completion Rate</code></td><td><span class="pill p0">P0</span></td></tr>
@@ -1131,7 +1162,7 @@ main{padding-top:22px}
 <tr><td></td><td>工具／行动</td><td>工具热更新生效延迟</td><td><code>Hot Update Latency</code></td><td><span class="pill p2">P2</span></td></tr>
 </table>
 <p class="leadin">共 <strong>41</strong> 项指标：Outcome 16 项（Quality 6 / Cost 5 / Performance 5），Trace 25 项（感知 7 / 规划 5 / 记忆 6 / 工具 7）。分组名、中文名、英文名与 P0/P1/P2 均与截图逐字一致。</p>
-<h3>11.2 使用建议与优先级</h3>
+<h3 id="112-使用建议与优先级">11.2 使用建议与优先级</h3>
 <table>
 <tr><th>#</th><th>使用建议（逐字）</th></tr>
 <tr><td>1</td><td>不需要全部测。根据你的 Agent 架构、核心任务和产品阶段，选择最值得关注的指标。</td></tr>
@@ -1211,7 +1242,7 @@ main{padding-top:22px}
 <h2>13. 补充篇 A：专业名词速查（70+ 条）</h2>
 <p class="leadin">以下内容<strong>不属于视频原述</strong>，用于补足视频中一带而过的英文术语、框架名与指标口径。首次出现处给出中文释义与出处。</p>
 
-<h3>13.1 评测对象与组件</h3>
+<h3 id="131-评测对象与组件">13.1 评测对象与组件</h3>
 <table>
 <tr><th>术语</th><th>中文 / 释义</th><th>出处与要点</th></tr>
 <tr><td><code>Agent</code></td><td>智能体</td><td>在多轮中调用工具、修改环境状态、依据中间结果自适应；自治性、智能、灵活性同时也是「难评」的根源</td></tr>
@@ -1237,7 +1268,7 @@ main{padding-top:22px}
 <tr><td><code>dogfooding</code></td><td>内部自用</td><td>团队自己先用产品，早期发现问题的常见手段</td></tr>
 </table>
 
-<h3>13.2 指标与统计</h3>
+<h3 id="132-指标与统计">13.2 指标与统计</h3>
 <table>
 <tr><th>术语</th><th>中文 / 释义</th><th>口径与注意点</th></tr>
 <tr><td><code>Task Completion Rate</code></td><td>任务完成率</td><td>北极星指标；按语义完成度判定，不要求字面匹配</td></tr>
@@ -1269,7 +1300,7 @@ main{padding-top:22px}
 <tr><td><code>partial credit</code></td><td>部分分</td><td>多组件任务中，识别问题并验证身份但没退款成功，应好于立刻失败</td></tr>
 </table>
 
-<h3>13.3 数据集、工程与框架</h3>
+<h3 id="133-数据集工程与框架">13.3 数据集、工程与框架</h3>
 <table>
 <tr><th>术语</th><th>中文 / 释义</th><th>要点</th></tr>
 <tr><td><code>golden set / regression set / capability set</code></td><td>黄金集 / 回归集 / 挑战集</td><td>分别定义「好的下限」「防回退」「能力边界」（姊妹篇 Agent 评测体系教程口径）</td></tr>
@@ -1352,7 +1383,7 @@ main{padding-top:22px}
   <div class="cap">图 17｜补充：Anthropic 从 0 到 1 的 9 步路线图（Step 0–8）</div>
 </div>
 
-<h3>14.1 四类 Agent 与对应基准</h3>
+<h3 id="141-四类-agent-与对应基准">14.1 四类 Agent 与对应基准</h3>
 <table>
 <tr><th>类型</th><th>评测难点</th><th>推荐做法</th><th>代表基准</th></tr>
 <tr><td><strong>Coding agents</strong> 编码</td><td>需要稳定测试环境与完备测试</td><td>确定性 grader 天然适用：跑不跑得起来、测试过不过；再用 rubric 评工具调用与代码质量</td><td>SWE-bench Verified、Terminal-Bench</td></tr>
@@ -1362,7 +1393,7 @@ main{padding-top:22px}
 </table>
 <p><span class="tag t-extra">补充</span>Anthropic 特别提醒：评「Agent」时<strong>不要从零发明评测</strong>——上述方法可直接作为地基，再按领域扩展；且评分器应「宁可评产出，不评路径」，以免惩罚 Agent 找到的合法新解法。</p>
 
-<h3>14.2 六类理解 Agent 表现的方法（Swiss Cheese Model）</h3>
+<h3 id="142-六类理解-agent-表现的方法swiss-cheese-model">14.2 六类理解 Agent 表现的方法（Swiss Cheese Model）</h3>
 <table>
 <tr><th>方法</th><th>优势</th><th>代价 / 局限</th></tr>
 <tr><td>自动化评测 Automated evals</td><td>迭代快、完全可复现、不影响用户、可每次 commit 跑、无需上线即可大规模测场景</td><td>前期投入大；需随产品/模型演进持续维护以防漂移；与真实用法不符时会产生虚假信心</td></tr>
@@ -1374,7 +1405,7 @@ main{padding-top:22px}
 </table>
 <div class="key"><strong>分层使用</strong>：自动化评测用于上线前与 CI/CD 的第一道防线；生产监控用于上线后捕捉分布漂移；A/B 测试验证重大改动；用户反馈与轨迹阅读是日常补课；系统性人评留给「校准 LLM grader」或需要人类共识作参考的主观输出。像瑞士奶酪一样，单层都有洞，多层叠加才兜得住。</div>
 
-<h3>14.3 五个可直接选用的评测框架</h3>
+<h3 id="143-五个可直接选用的评测框架">14.3 五个可直接选用的评测框架</h3>
 <table>
 <tr><th>框架</th><th>定位</th><th>适合谁</th></tr>
 <tr><td><strong>Harbor</strong></td><td>容器化运行 Agent，跨云大规模 trial，标准化 task / grader 格式；Terminal-Bench 2.0 通过其 registry 分发</td><td>要跑标准基准 + 自定义套件、需要隔离环境的团队</td></tr>
@@ -1385,7 +1416,7 @@ main{padding-top:22px}
 </table>
 <div class="note">原文的态度很务实：很多团队混用多个工具、自己写框架，甚至就从一个简单评测脚本起步。<strong>框架只是加速器，真正决定效果的是你跑进去的评测任务与 grader 质量</strong>；快速选一个顺手的，然后把精力投在迭代高质量用例上。</div>
 
-<h3>14.4 两个值得记住的反面案例</h3>
+<h3 id="144-两个值得记住的反面案例">14.4 两个值得记住的反面案例</h3>
 <ul>
 <li><strong>评分器过严会冤枉模型</strong>：Opus 4.5 在 CORE-Bench 初始只得 42%，研究者发现是评分把「96.12」硬匹配「96.124991…」、任务描述有歧义、随机任务无法精确复现；修正评分与放宽 scaffold 后升至 <strong>95%</strong>。METR 也发现过「要求达到阈值、评分却要求超过阈值」的配置错误，反而惩罚了遵循指令的模型。</li>
 <li><strong>静态评测会误判创造性解法</strong>：Opus 4.5 在 𝜏2-bench 订票题里发现政策漏洞，按原评分「失败」，实际给了用户更好的方案。</li>
@@ -1397,7 +1428,7 @@ main{padding-top:22px}
 <h2>15. 补充篇 C：阿里的工程落地（视频未展开的部分）</h2>
 <p class="leadin">视频引用了阿里文章的「四模块 / 8 类评测集 / 主指标 / 跳过机制」，但没讲执行引擎、平台与产品化。这里按原文第 2、4、6、7、8、9 章补齐。</p>
 
-<h3>15.1 三条设计原则与四个核心模块</h3>
+<h3 id="151-三条设计原则与四个核心模块">15.1 三条设计原则与四个核心模块</h3>
 <table>
 <tr><th>原则</th><th>原文表述</th></tr>
 <tr><td>评测面向架构</td><td>按感知、规划、记忆、工具四大模块逐层拆解，让每层质量都可独立观测</td></tr>
@@ -1412,7 +1443,7 @@ main{padding-top:22px}
 <tr><td>工具</td><td>MCP 协议自动发现注册远程工具（多 Server / 统一调用）+ 文件系统 Skill 管理（按 Agent 隔离、热更新）</td><td>调错 MCP、参数填错</td></tr>
 </table>
 
-<h3>15.2 评测范围 → 数据集 → 指标的自动装配</h3>
+<h3 id="152-评测范围--数据集--指标的自动装配">15.2 评测范围 → 数据集 → 指标的自动装配</h3>
 <table>
 <tr><th>评测模式</th><th>覆盖的数据集</th><th>覆盖的埋点指标</th></tr>
 <tr><td>端到端评测</td><td>基础技能、知识问答、多轮对话、异常输入</td><td>模型 / 工具调用次数、Token、首 Token 延迟、端到端延迟、模块级延迟</td></tr>
@@ -1424,7 +1455,7 @@ main{padding-top:22px}
 </table>
 <p>平台共设计 <strong>15 种评测范围</strong>：指定数据集 8 种 + 端到端 1 种 + 分模块 4 种 + 核心模块 / 全量等。选择范围后自动装配数据集并筛选对应埋点指标，无需人工逐个对接数据源。</p>
 
-<h3>15.3 执行引擎</h3>
+<h3 id="153-执行引擎">15.3 执行引擎</h3>
 <div class="figure">
 <svg viewBox="0 0 900 330" xmlns="http://www.w3.org/2000/svg" font-family="-apple-system,PingFang SC,Microsoft YaHei,sans-serif">
   <g text-anchor="middle">
@@ -1496,7 +1527,7 @@ main{padding-top:22px}
 <tr><td>报告</td><td>输出质量 × 成本 × 性能三类指标；每条用例通过与否由对应主指标决定</td></tr>
 </table>
 
-<h3>15.4 可视化看板与产品化</h3>
+<h3 id="154-可视化看板与产品化">15.4 可视化看板与产品化</h3>
 <table>
 <tr><th>层次</th><th>能力</th></tr>
 <tr><td>评测流程</td><td>顶部评测范围选择器（数据集 8 种 + 评测模式）；一键提交；实时状态（运行中 / 已完成 / 失败 / 已取消）；历史记录含时间、通过率、通过/失败/总数，支持 JSON 导入做跨环境对比</td></tr>
@@ -1506,7 +1537,7 @@ main{padding-top:22px}
 </table>
 <p><strong>为什么必须产品化</strong>：最初的看板把「评哪些数据集、用哪些指标、按什么链路跑」硬编码在一个 Agent 上；接入第二个 Agent 约等于 fork 一份评测逻辑。解耦之后，评测才从「一次性脚本」变成可复用基础设施。</p>
 
-<h3>15.5 新旧方法对比（原文 9.1）</h3>
+<h3 id="155-新旧方法对比原文-91">15.5 新旧方法对比（原文 9.1）</h3>
 <table>
 <tr><th></th><th>旧版：只评最终答案质量</th><th>新版：端到端 + 核心模块评测</th></tr>
 <tr><td>评测方法</td><td>LLM-as-Judge</td><td>Judge Task + Agent 应用埋点</td></tr>
@@ -1521,7 +1552,7 @@ main{padding-top:22px}
 <h2>16. 补充篇 D：可运行的最小实现</h2>
 <p class="leadin">六段纯 Python / YAML，覆盖视频与两篇文章的核心机制；代码均可直接运行，不依赖第三方库。</p>
 
-<h3>16.1 pass@k 与 pass^k（复现原文 42%）</h3>
+<h3 id="161-passk-与-passk复现原文-42">16.1 pass@k 与 pass^k（复现原文 42%）</h3>
 <pre><code>import random
 
 def pass_at_k(p, k):        # k 次里至少一次成功
@@ -1545,7 +1576,7 @@ for k in (1, 3, 10):
     print(f"k={k:2d}  pass@k={pass_at_k(p,k):.4f}  pass^k={pass_power_k(p,k):.4f}")</code></pre>
 <div class="note">运行结果：<code>pass^1 = pass@1 = 0.75</code>，<code>pass@3 ≈ 0.984</code> 而 <code>pass^3 ≈ 0.422</code>；到 <code>k=10</code>，<code>pass@10 ≈ 0.9999</code> 而 <code>pass^10 ≈ 0.056</code>。这正是视频强调「重要 case 要重复执行」的数学原因。</div>
 
-<h3>16.2 主指标 + 护栏 + 上游跳过（复现 100 / 10 / 90）</h3>
+<h3 id="162-主指标--护栏--上游跳过复现-100--10--90">16.2 主指标 + 护栏 + 上游跳过（复现 100 / 10 / 90）</h3>
 <pre><code>MAIN_METRIC = {
     "END_TO_END": "task_completion",
     "PERCEPTION": "intent_accuracy",
@@ -1585,7 +1616,7 @@ print("护栏/跳过示例：", judge_case({"unauthorized_action": True,
       "scores": {"task_completion": 1}}, "END_TO_END"))</code></pre>
 <div class="note">输出：<code>总数 100 ｜ 已执行 10 ｜ 未执行(error) 90 ｜ 通过率 = 10/10 = 1.0</code>，同时明确报出 90 条未执行；另演示了「任务完成率满分但越权」仍判 FAIL。若把 error 当成失败计入分母，通过率会被误报成 10% —— 这就是视频里「跳过也要报」但要「单独报」的原因。</div>
 
-<h3>16.3 一个符合四原则的 Judge Prompt 模板</h3>
+<h3 id="163-一个符合四原则的-judge-prompt-模板">16.3 一个符合四原则的 Judge Prompt 模板</h3>
 <pre><code>JUDGE_PROMPT = """
 你只评测一个指标：任务完成率（Task Completion Rate）。不要评价格式、语气或忠实性。
 
@@ -1607,7 +1638,7 @@ print("护栏/跳过示例：", judge_case({"unauthorized_action": True,
 【工具返回 / 检索片段】{trace_evidence}
 """</code></pre>
 
-<h3>16.4 一条完整任务（Anthropic YAML 示例的精简版）</h3>
+<h3 id="164-一条完整任务anthropic-yaml-示例的精简版">16.4 一条完整任务（Anthropic YAML 示例的精简版）</h3>
 <pre><code>task:
   id: "fix-auth-bypass_1"
   desc: "Fix authentication bypass when password field is empty"
@@ -1629,7 +1660,7 @@ print("护栏/跳过示例：", judge_case({"unauthorized_action": True,
       metrics: [time_to_first_token, output_tokens_per_sec, time_to_last_token]
   reference_solution: "known-good patch that passes every grader"</code></pre>
 
-<h3>16.5 一条阿里风格的评测用例</h3>
+<h3 id="165-一条阿里风格的评测用例">16.5 一条阿里风格的评测用例</h3>
 <pre><code>{
   "id": "BF-TRACE-001",
   "sceneCode": "i18n-ic-trace-analyzer",
@@ -1645,7 +1676,7 @@ print("护栏/跳过示例：", judge_case({"unauthorized_action": True,
   "referenceOutput": "Agent应调用trace分析工具…"
 }</code></pre>
 
-<h3>16.6 最小评测 Harness（并发 + 隔离 + 汇总）</h3>
+<h3 id="166-最小评测-harness并发--隔离--汇总">16.6 最小评测 Harness（并发 + 隔离 + 汇总）</h3>
 <pre><code>from concurrent.futures import ThreadPoolExecutor
 
 def run_trial(task, agent, env_factory):
@@ -1692,7 +1723,7 @@ def run_suite(suite, agent, env_factory, trials=3, workers=3):
 <tr><td>16</td><td>把评测脚本当一次性交付</td><td>每接一个新 Agent 就 fork 一份逻辑</td><td>配置化、平台化：数据 / 指标 / 场景 / 可观测性解耦</td></tr>
 </table>
 
-<h3>17.1 按模块的失败归因速查</h3>
+<h3 id="171-按模块的失败归因速查">17.1 按模块的失败归因速查</h3>
 <table>
 <tr><th>现象</th><th>优先看的指标</th><th>对应模块 / 动作</th></tr>
 <tr><td>答案跑偏、答非所问</td><td>意图识别准确率 / 召回率、路由决策准确率</td><td>感知 / 规划 → 改提示词、补 Skill 描述</td></tr>
