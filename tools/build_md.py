@@ -301,7 +301,10 @@ details.mermaid-src summary{cursor:pointer;padding:4px 0}
 details.mermaid-src pre{margin:8px 0 0}
 .footer{margin-top:34px;padding-top:16px;border-top:1px solid var(--line);color:var(--muted);font-size:12.5px}
 @media(max-width:980px){nav.toc{display:none}article{padding:20px}.wrap{padding:0 14px}}
-@media print{nav.toc,.topbar{display:none}article{border:0;box-shadow:none}}
+#progress{position:fixed;top:0;left:0;height:3px;width:0;background:linear-gradient(90deg,#2563eb,#39a97a);z-index:120;transition:width .08s linear}
+#totop{position:fixed;right:24px;bottom:26px;z-index:110;border:1px solid #cddcfb;background:#fff;color:var(--brand);border-radius:22px;padding:8px 15px;font-size:13px;cursor:pointer;box-shadow:0 3px 12px rgba(16,24,40,.10);display:none}
+#totop:hover{background:var(--soft)}
+@media print{nav.toc,.topbar{display:none}article{border:0;box-shadow:none}#progress,#totop{display:none!important}}
 """
 
 JS = r"""
@@ -315,6 +318,21 @@ JS = r"""
     links.forEach(function(a){ a.classList.toggle('on', a.getAttribute('href')==='#'+cur); });
   }
   window.addEventListener('scroll',upd,{passive:true}); upd();
+})();
+</script>
+<script>
+(function(){
+  var prog=document.getElementById('progress'), top=document.getElementById('totop');
+  function upd(){
+    var doc=document.documentElement;
+    var st=window.scrollY||doc.scrollTop||0, max=doc.scrollHeight-doc.clientHeight;
+    if(prog) prog.style.width=(max>0?Math.min(100,st/max*100):0)+'%';
+    if(top) top.style.display=st>600?'block':'none';
+  }
+  window.addEventListener('scroll',upd,{passive:true});
+  window.addEventListener('resize',upd);
+  if(top) top.addEventListener('click',function(){ window.scrollTo({top:0,behavior:'smooth'}); });
+  upd();
 })();
 </script>
 """
@@ -336,6 +354,8 @@ def page(title, subtitle, figure_url, md_path, body, toc):
 <script src="../assets/code-blocks.js" defer></script>
 </head>
 <body>
+<div id="progress" aria-hidden="true"></div>
+<button id="totop" type="button" aria-label="回到顶部">↑ 回到顶部</button>
 <div class="topbar">
   <span class="t">{html.escape(title)} · Markdown 阅读版</span>
   <a class="btn" href="../index.html">← 返回知识库</a>

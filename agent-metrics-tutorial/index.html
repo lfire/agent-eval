@@ -1468,13 +1468,41 @@ if __name__ == "__main__":
 </main>
 </div>
 <script>
+(function () {
+  var bar = document.getElementById('progress');
+  var top = document.getElementById('totop');
+  var links = Array.prototype.slice.call(document.querySelectorAll('nav.toc a'));
+  var byId = {};
+  links.forEach(function (a) {
+    var id = a.getAttribute('href').slice(1);
+    if (document.getElementById(id)) byId[id] = a;
+  });
+  function update() {
+    var doc = document.documentElement;
+    var scrollTop = window.scrollY || doc.scrollTop || 0;
+    var max = doc.scrollHeight - doc.clientHeight;
+    if (bar) bar.style.width = (max > 0 ? Math.min(100, scrollTop / max * 100) : 0) + '%';
+    if (top) top.style.display = scrollTop > 600 ? 'block' : 'none';
+    var current = null;
+    Object.keys(byId).forEach(function (id) {
+      var el = document.getElementById(id);
+      if (el && el.getBoundingClientRect().top <= 150) current = id;
+    });
+    links.forEach(function (a) { a.classList.remove('active'); });
+    if (current && byId[current]) byId[current].classList.add('active');
+  }
+  window.addEventListener('scroll', update, { passive: true });
+  window.addEventListener('resize', update);
+  if (top) top.addEventListener('click', function () { window.scrollTo({ top: 0, behavior: 'smooth' }); });
+  update();
+})();
+</script>
+<script>
 (function(){
   var bar=document.querySelector('.topbar'), root=document.documentElement;
   function sync(){ if(bar) root.style.setProperty('--topH', Math.round(bar.getBoundingClientRect().height)+'px'); }
   sync(); window.addEventListener('resize', sync);
 })();
 </script>
-</body>
-
 </body>
 </html>
