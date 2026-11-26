@@ -1,0 +1,50 @@
+/* ============================================================
+   code-blocks.css — 全站代码块增强样式（零外部依赖）
+   配合 code-blocks.js 使用；适配深色代码块 + 浅色页面主题。
+   ============================================================ */
+.cb-wrap{margin:18px 0;border:1px solid #2b3648;border-radius:11px;overflow:hidden;
+  background:#111827;box-shadow:0 1px 3px rgba(16,24,40,.08)}
+.cb-head{display:flex;align-items:center;gap:10px;flex-wrap:wrap;padding:7px 12px;
+  background:#1a2331;border-bottom:1px solid #2b3648;color:#93a4bd;
+  font:12px/1.4 -apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",Segoe UI,sans-serif;
+  user-select:none}
+.cb-lang{font-size:10.5px;font-weight:800;letter-spacing:.6px;color:#9dc0ff;
+  background:#233252;border:1px solid #35507e;border-radius:5px;padding:2px 7px}
+.cb-meta{font-size:11px;color:#7d8ba1;white-space:nowrap}
+.cb-spacer{flex:1}
+.cb-btn{font:11.5px/1.4 inherit;font-family:inherit;cursor:pointer;white-space:nowrap;
+  background:#243147;color:#c6d4ea;border:1px solid #3a4a63;border-radius:6px;
+  padding:3px 10px;transition:background .15s ease,color .15s ease}
+.cb-btn:hover{background:#304260;color:#fff}
+.cb-btn:focus-visible{outline:2px solid #8ab4ff;outline-offset:2px}
+.cb-btn.ok{background:#1d4534;color:#8be6ad;border-color:#2f6b4d}
+.cb-btn.fail{background:#4a2630;color:#ffb3c0;border-color:#7a3a49}
+.cb-body{overflow:auto;max-width:100%}
+.cb-wrap pre{margin:0!important;border:0!important;border-radius:0!important;
+  background:transparent!important;padding:13px 16px!important;
+  font-size:12.8px;line-height:1.72;color:#e6edf7;overflow:visible}
+.cb-wrap code{display:block;background:none!important;color:#e6edf7!important;
+  padding:0!important;font-size:inherit!important;line-height:inherit;
+  white-space:pre;min-width:max-content;counter-reset:cbline;font-family:inherit}
+.cb-line{display:block;counter-increment:cbline;min-height:1.72em}
+.cb-line::before{content:counter(cbline);display:inline-block;width:2.5em;
+  margin-right:1.1em;padding-right:.7em;text-align:right;color:#5b6b85;
+  border-right:1px solid #2b3648;user-select:none;-webkit-user-select:none}
+/* 语法着色 */
+.tok-cm{color:#7c8aa1;font-style:italic}
+.tok-st{color:#a5e3b0}
+.tok-nu{color:#f5b97a}
+.tok-kw{color:#c9a2f5;font-weight:600}
+.tok-bi{color:#ffd08a}
+.tok-fn{color:#8ab4ff}
+/* 折叠 */
+.cb-wrap.collapsed .cb-body{display:none}
+.cb-wrap.collapsed .cb-head{border-bottom:0}
+/* Mermaid 源码已由 <details> 提供折叠，隐藏重复按钮 */
+details.mermaid-src .cb-wrap{margin:8px 0 0}
+details.mermaid-src .cb-toggle{display:none}
+/* 窄屏：语言标签与按钮仍可换行 */
+@media(max-width:640px){.cb-head{gap:7px;padding:6px 9px}.cb-wrap pre{font-size:12px;padding:11px 10px!important}}
+/* 打印时隐藏交互控件，并强制展开 */
+@media print{.cb-btn{display:none!important}.cb-wrap.collapsed .cb-body{display:block!important}
+  .cb-wrap{break-inside:avoid;box-shadow:none}}

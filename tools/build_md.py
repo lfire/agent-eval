@@ -331,6 +331,8 @@ def page(title, subtitle, figure_url, md_path, body, toc):
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>{html.escape(title)} · Markdown 阅读版</title>
 <style>{CSS}</style>
+<link rel="stylesheet" href="../assets/code-blocks.css">
+<script src="../assets/code-blocks.js" defer></script>
 </head>
 <body>
 <div class="topbar">
