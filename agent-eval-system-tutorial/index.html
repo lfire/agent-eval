@@ -1,0 +1,1249 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>从 0 到 1 搭建 Agent 评测系统 · 完全教程｜三支视频综合还原 + 系统化补全</title>
+<style>
+:root{
+  --bg:#f6f7f9; --card:#fff; --ink:#1e2430; --muted:#667085; --line:#e4e7ec;
+  --brand:#2563eb; --brand-soft:#eff4ff; --code:#111827;
+  --yellow:#fff4cc; --yellow-b:#d9a92e; --blue:#dce9ff; --blue-b:#5b8def;
+  --green:#dcf5e6; --green-b:#39a97a; --purple:#efe7ff; --purple-b:#9575e0;
+  --red:#ffe4e9; --red-b:#e0728d;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);
+  font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Hiragino Sans GB","Microsoft YaHei",Segoe UI,sans-serif;
+  font-size:15.5px;line-height:1.85;-webkit-font-smoothing:antialiased}
+a{color:var(--brand);text-decoration:none}a:hover{text-decoration:underline}
+.wrap{display:flex;gap:30px;max-width:1480px;margin:0 auto;padding:0 26px}
+nav.toc{width:262px;flex:none;position:sticky;top:0;height:100vh;overflow-y:auto;padding:28px 12px 60px 0;font-size:13.3px}
+nav.toc .brand{font-weight:800;font-size:16px;margin-bottom:4px}
+nav.toc .sub{color:var(--muted);font-size:12px;margin-bottom:18px}
+nav.toc ul{list-style:none;margin:0;padding:0}
+nav.toc li{margin:2px 0}
+nav.toc a{display:block;padding:5px 10px;border-radius:7px;color:#41495a}
+nav.toc a:hover,nav.toc a.active{background:var(--brand-soft);text-decoration:none;color:var(--brand);font-weight:700}
+nav.toc .lv1{font-weight:700;margin-top:10px;color:var(--ink)}
+nav.toc .lv2{padding-left:22px;font-size:12.7px}
+main{flex:1;min-width:0;max-width:1080px;padding:28px 0 100px}
+.hero{background:linear-gradient(135deg,#eef3ff 0%,#f8fbff 55%,#f0fbf5 100%);
+  border:1px solid #dce6f7;border-radius:16px;padding:34px 36px;margin-bottom:26px}
+.hero h1{font-size:31px;line-height:1.35;margin:0 0 10px;letter-spacing:.3px}
+.hero .lead{font-size:16px;color:#3f4a5f;margin:0 0 18px}
+.hero .meta{display:flex;flex-wrap:wrap;gap:9px}
+.hero .meta span{background:#fff;border:1px solid #dde5f2;border-radius:20px;padding:4px 13px;font-size:12.5px;color:#46536a}
+.srclink{font-size:13px;color:#46536a;margin:14px 0 0}
+.srclink a{font-weight:600}
+h2{font-size:24px;margin:52px 0 14px;padding-bottom:10px;border-bottom:2px solid var(--brand);letter-spacing:.2px}
+h3{font-size:19px;margin:34px 0 12px;color:#1b2a4a}
+h4{font-size:16px;margin:24px 0 8px;color:#344054}
+p{margin:12px 0}
+.sec{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:24px 28px;margin:20px 0;box-shadow:0 1px 2px rgba(16,24,40,.03)}
+.tag{display:inline-block;font-size:11.5px;font-weight:700;padding:2px 9px;border-radius:5px;vertical-align:2px;margin-right:6px;white-space:nowrap}
+.t-video{background:var(--brand-soft);color:#1d4ed8;border:1px solid #cddcfb}
+.t-extra{background:#fff2e0;color:#a85b00;border:1px solid #f5dcb8}
+.t-redraw{background:#e9f8ef;color:#177a52;border:1px solid #c7ecd7}
+.note{background:#f8fafc;border-left:4px solid var(--brand);border-radius:0 9px 9px 0;padding:13px 18px;margin:16px 0;color:#3b4557;font-size:14.5px}
+.warn{background:#fff8ec;border-left:4px solid #e9a23b;border-radius:0 9px 9px 0;padding:13px 18px;margin:16px 0;color:#5a451f;font-size:14.5px}
+.key{background:#eef6ff;border:1px solid #d6e6ff;border-radius:10px;padding:14px 18px;margin:16px 0}
+.leadin{color:#5a6475;font-size:14.5px;background:#f8fafc;border-left:3px solid #c7d7f5;border-radius:0 8px 8px 0;padding:9px 14px;margin:0 0 18px}
+table{border-collapse:collapse;width:100%;margin:16px 0;font-size:14px;background:#fff}
+th,td{border:1px solid var(--line);padding:9px 12px;text-align:left;vertical-align:top}
+th{background:#f2f5f9;font-weight:700;color:#2b3547}
+tr:nth-child(even) td{background:#fbfcfe}
+td code,th code,p code,li code{background:#f1f4f9;border-radius:4px;padding:1px 5px;font-size:12.8px;color:#1d4ed8;font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace}
+pre{background:var(--code);color:#e6edf7;border-radius:11px;padding:17px 19px;overflow:auto;font-size:12.8px;line-height:1.72;margin:16px 0;font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace}
+pre code{background:none;color:inherit;padding:0;font-size:inherit}
+ul,ol{padding-left:24px;margin:12px 0}li{margin:5px 0}
+.figure{background:#fff;border:1px solid var(--line);border-radius:13px;padding:18px 20px 14px;margin:22px 0}
+.figure svg{width:100%;height:auto;display:block}
+.figure .cap{font-size:12.8px;color:var(--muted);margin-top:10px;text-align:center}
+.summary{background:linear-gradient(135deg,#f4f8ff,#f7fdf9);border:1px solid #dce7f7;border-radius:14px;padding:22px 26px;margin:0 0 26px}
+.summary h2{margin:0 0 10px;font-size:20px;border:0;padding:0}
+.summary .route{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:16px}
+.summary .route div{background:#fff;border:1px solid #e0e8f4;border-radius:10px;padding:11px 13px;font-size:13px}
+.summary .route b{display:block;color:#1d4ed8;margin-bottom:3px}
+.summary table th:last-child,.summary table td:last-child{white-space:nowrap;padding-left:16px;padding-right:16px}
+.timeline td:first-child{white-space:nowrap;font-family:ui-monospace,Menlo,monospace;color:var(--brand);font-weight:700}
+.footer{margin-top:60px;padding-top:22px;border-top:1px solid var(--line);color:var(--muted);font-size:13px}
+#progress{position:fixed;top:0;left:0;height:3px;width:0;background:linear-gradient(90deg,#2563eb,#39a97a);z-index:120;transition:width .08s linear}
+#totop{position:fixed;right:24px;bottom:26px;z-index:110;border:1px solid #cddcfb;background:#fff;color:#1d4ed8;border-radius:22px;padding:8px 15px;font-size:13px;cursor:pointer;box-shadow:0 3px 12px rgba(16,24,40,.10);display:none}
+@media(max-width:980px){nav.toc{display:none}.summary .route{grid-template-columns:1fr}.hero{padding:24px}.sec{padding:18px}}
+@media print{nav.toc{display:none}.sec,.figure{break-inside:avoid}body{background:#fff}}
+/* ===== 顶部返回导航（与 Markdown 阅读版一致） ===== */
+.topbar{position:sticky;top:0;z-index:40;background:rgba(255,255,255,.95);
+  backdrop-filter:saturate(180%) blur(10px);border-bottom:1px solid var(--line);
+  padding:10px 22px;display:flex;align-items:center;gap:10px;flex-wrap:wrap;font-size:13px}
+.topbar .t{font-weight:800;font-size:14px;margin-right:auto;color:#1b2a4a}
+.topbar a.btn{border:1px solid #cddcfb;background:#fff;border-radius:7px;padding:5px 11px;
+  font-size:12.5px;color:var(--brand);font-weight:600;white-space:nowrap}
+.topbar a.btn:hover{background:var(--brand-soft);text-decoration:none}
+:root{--topH:56px}
+nav.toc{top:var(--topH);height:calc(100vh - var(--topH))}
+main{padding-top:22px}
+[id]{scroll-margin-top:calc(var(--topH) + 14px)}
+@media(max-width:980px){.topbar{padding:8px 14px}}
+@media print{.topbar{display:none}nav.toc{top:0;height:auto}main{padding-top:28px}}
+</style>
+  <link rel="stylesheet" href="../assets/code-blocks.css">
+  <script src="../assets/code-blocks.js" defer></script>
+</head>
+<body>
+<div class="topbar">
+  <span class="t">从 0 到 1 搭建 Agent 评测系统 · 完全教程 · 图文阅读版</span>
+  <a class="btn" href="../index.html">← 返回知识库</a>
+  <a class="btn" href="Agent评测系统搭建完全教程.html">MD 在线阅读</a>
+  <a class="btn" href="Agent评测系统搭建完全教程.md" download>下载 .md</a>
+</div>
+<div id="progress" aria-hidden="true"></div>
+<button id="totop" type="button" aria-label="回到顶部">↑ 回到顶部</button>
+<div class="wrap">
+<nav class="toc">
+  <div class="brand">从 0 到 1 搭建 Agent 评测系统 · 完全教程</div>
+  <div class="sub">三支视频综合 · 逐帧还原 + 系统化补全</div>
+  <ul>
+    <li><a class="lv1" href="#s0">0. 三支视频速览与保真约定</a></li>
+    <li><a class="lv1" href="#s1">1. 全片结构地图</a></li>
+    <li><a class="lv1" href="#s2">2. 为什么 evaluation 要贯穿整个生命周期</a></li>
+    <li><a class="lv1" href="#s3">3. 一套完整 Evaluation System 的架构全景</a></li>
+    <li><a class="lv1" href="#s4">4. 架构分三段：数据侧 / 执行观测侧 / 决策侧</a></li>
+    <li><a class="lv1" href="#s5">5. 产品经理如何从 0 到 1 搭：五步落地法</a></li>
+    <li><a class="lv1" href="#s6">6. 核心逻辑：构建「评估数据飞轮」</a></li>
+    <li><a class="lv1" href="#s7">7. 踩坑实录：四条经验</a></li>
+    <li><a class="lv1" href="#s8">8. 两层框架：任务集 × 运行评分</a></li>
+    <li><a class="lv1" href="#s9">9. 第一层三步：真实任务 → 稳定判断 → 正反平衡</a></li>
+    <li><a class="lv1" href="#s10">10. 第一步：建立第一批真实任务</a></li>
+    <li><a class="lv1" href="#s11">11. 第二步：把 Task 写到可以稳定判断</a></li>
+    <li><a class="lv1" href="#s12">12. 两个检查方法：把「写清楚了」变成可验证</a></li>
+    <li><a class="lv1" href="#s13">13. 第三步：同时设计正向和反向任务</a></li>
+    <li><a class="lv1" href="#s14">14. 三步收束：第一层的三个产物</a></li>
+    <li><a class="lv1" href="#s15">15. 第二层五步：让评分可解释、可复查</a></li>
+    <li><a class="lv1" href="#s16">16. 第一步：让每次 Trial 从可比环境开始</a></li>
+    <li><a class="lv1" href="#s17">17. 第二步：同时保留 Outcome 与 Transcript</a></li>
+    <li><a class="lv1" href="#s18">18. 第三步：三类 Grader 分工</a></li>
+    <li><a class="lv1" href="#s19">19. 第四、五步：硬条件评分与 Grader 自测</a></li>
+    <li><a class="lv2" href="#191-别让一个总分掩盖关键失败">19.1 硬条件评分</a></li>
+    <li><a class="lv2" href="#192-先测-grader再用-grader-测-agent">19.2 Grader 自测</a></li>
+    <li><a class="lv1" href="#s20">20. 综合闭环与本站体系对齐</a></li>
+    <li><a class="lv1" href="#s21">21. 补充篇 A：专业名词速查（51 条）</a></li>
+    <li><a class="lv1" href="#s22">22. 补充篇 B：可运行代码</a></li>
+    <li><a class="lv2" href="#221-eval-task-结构校验与专家一致性">22.1 Task 校验</a></li>
+    <li><a class="lv2" href="#222-平衡问题集检查器">22.2 平衡问题集</a></li>
+    <li><a class="lv2" href="#223-隔离-harness-与无效运行">22.3 隔离 Harness</a></li>
+    <li><a class="lv2" href="#224-三类-grader--硬条件软质量--grader-自测">22.4 Grader 流水线</a></li>
+    <li><a class="lv1" href="#s23">23. 补充篇 C：常见误区</a></li>
+    <li><a class="lv1" href="#s24">24. 附录</a></li>
+    <li><a class="lv2" href="#241-画面章节结构三支均无官方自动章节">24.1 章节结构</a></li>
+    <li><a class="lv2" href="#242-配图速查20-张">24.2 配图速查</a></li>
+    <li><a class="lv2" href="#243-校正表ocr-与口播">24.3 校正表</a></li>
+    <li><a class="lv2" href="#244-还原方法与资料">24.4 还原方法与资料</a></li>
+  </ul>
+</nav>
+<main>
+<div class="hero">
+  <h1>从 0 到 1 搭建 Agent 评测系统 · 完全教程</h1>
+  <p class="lead">综合三支视频：煮caicai 的完整 Evaluation System 架构与评估数据飞轮、观远数据 VOL.052 的第一层任务集、VOL.053 的第二层运行与评分系统，拼成一套可落地的 0→1 工程链路。</p>
+  <div class="meta">
+    <span>3 支视频 · 18:34</span><span>2 位作者</span><span>372 帧逐帧核对</span>
+    <span>20 张结构图重绘</span><span>51 条术语</span><span>4 段可运行代码</span>
+  </div>
+  <p class="srclink">原视频：<a href="https://v.douyin.com/jQ3PCzp5d6Y/" target="_blank" rel="noopener">① 0→1 搭建评估系统</a> ｜ <a href="https://v.douyin.com/yQCqzZPemOM/" target="_blank" rel="noopener">② 第一层框架</a> ｜ <a href="https://v.douyin.com/Vq7UwPruXt0/" target="_blank" rel="noopener">③ 运行与评分</a></p>
+</div>
+<section class="summary">
+<h2>一页速览：三支视频的 7 个结论</h2>
+<table style="margin-top:6px">
+<tr><th>#</th><th>结论</th><th>位置</th></tr>
+<tr><td>1</td><td><strong>Evaluation 贯穿整个开发生命周期</strong>，不是发布前一次测试</td><td><a href="#s2">第 2 章</a></td></tr>
+<tr><td>2</td><td><strong>完整系统分三段</strong>：数据侧 / 执行观测侧 / 决策侧，且必须连成环</td><td><a href="#s3">第 3–4 章</a></td></tr>
+<tr><td>3</td><td><strong>五步落地</strong>：定业务目标 → 建 Dataset → 设计 Judge → 定 Metrics → 建 Dashboard</td><td><a href="#s5">第 5 章</a></td></tr>
+<tr><td>4</td><td><strong>核心是评估数据飞轮</strong>：线上失败回流数据集，越转越可信；四条踩坑</td><td><a href="#s6">第 6–7 章</a></td></tr>
+<tr><td>5</td><td><strong>第一层任务集三步</strong>：20–50 条真实任务 / 写清 Task / 正反平衡</td><td><a href="#s9">第 9–14 章</a></td></tr>
+<tr><td>6</td><td><strong>第二层运行评分五步</strong>：隔离环境 / Outcome+Transcript / 三类 Grader / 硬条件 / 先测 Grader</td><td><a href="#s15">第 15–19 章</a></td></tr>
+<tr><td>7</td><td><strong>链路闭环</strong>：评分可解释可复查 → 上线决策 → 错误归因回流</td><td><a href="#s20">第 20 章</a></td></tr>
+</table>
+<div class="route">
+<div><b>只想复现视频</b>读第 1–20 章；【视频原述】段落与 20 张重绘图覆盖全部画面要点</div>
+<div><b>想落地搭建</b>读 <a href="#s5">5. 五步法</a> + <a href="#s9">9–19. 两层框架</a> + <a href="#s22">22. 可运行代码</a></div>
+<div><b>想查概念</b>读 <a href="#s21">21. 专业名词速查</a> 与 <a href="#s23">23. 常见误区</a></div>
+</div>
+</section>
+<section class="sec" id="s0">
+<h2>0. 三支视频速览与保真约定</h2>
+<p><span class="tag t-video">视频原述</span>本教程综合三支视频：**煮caicai《如何从 0 到 1 搭建一套 Agent 评估系统？》（整体架构与数据飞轮）＋ 观远数据／向量思维《6 分钟：如何建立 Agent 评测第一层框架》（任务集）＋《7 分钟干货：0-1 搭建 Agent 评测 2》（运行与评分）。三支合起来，正好覆盖「整体架构 → 第一层测什么 → 第二层怎么测怎么判」。</p>
+<table>
+<tr><th>#</th><th>视频 / ID</th><th>作者 / 发布</th><th>时长 / 画面</th><th>画面结构</th></tr>
+<tr><td>①</td><td>从0到1搭建一套Evaluation System <code>7664976613234711523</code></td><td>煮caicai ／ 2026-07-21</td><td>5:34 ／ 1080×1086 方形</td><td>Excalidraw 英文手绘架构图；封面四问 + 五步法 + 飞轮 + 踩坑四条</td></tr>
+<tr><td>②</td><td>6分钟：如何建立Agent评测第一层框架 <code>7680547627524354219</code></td><td>向量思维（观远数据）／ 2026-09-01</td><td>5:47 ／ 1920×1080 横屏</td><td>VOL.052；顶部固定章节导航 + 手绘插画 + 底部黑条字幕</td></tr>
+<tr><td>③</td><td>7分钟干货:0-1搭建Agent评测2 <code>7680918644558148009</code></td><td>向量思维（观远数据）／ 2026-09-02</td><td>7:12 ／ 1920×1080 横屏</td><td>VOL.053；同系列第二期，六段导航 + 五步运行评分</td></tr>
+</table>
+<p>合计约 <strong>18:34</strong>。②③ 为同一系列前两期（VOL.052 / VOL.053），结尾预告第三期「分数波动解释、Capability Eval 与 Regression Eval 区分」，本教程只按前两期内容还原，第三期未展开。</p>
+<div class="key"><strong>三种标记</strong>：<strong>【视频原述】</strong>画面文字或烧录字幕确实出现过的表述；<strong>【按画面重绘】</strong>把手绘架构图 / 列表按原结构画成矢量图；<strong>【补充】</strong>由本站既有七篇教程与公开官方文档补齐，不属于视频原述。</div>
+<div class="warn"><strong>保真边界</strong>。① 三支视频<strong>均无官方自动章节</strong>（<code>chapter_list</code> 为空、无 <code>chapter_abstract</code>），②③ 的章节结构取自画面顶部固定导航条与口播，正文一律以画面与字幕为准。② ① 为英文手绘 + 浮动黑底字幕，字幕条会盖住画面节点，本教程按「跨帧稳定文字＝画面、频繁变化的中文短句＝字幕」分离，并对封面、架构图、飞轮、踩坑、权威来源、导航条逐帧放大校对。③ 字幕 OCR 噪声较多（如「价值」实为「Judge」、「Matrix」实为 Metrics、「价」「架」混用），已按画面与上下文校正；数值 20–50 条、1000 条、1300 次收藏等按画面原文保留。④ 本轮未做 ASR。</div>
+<p><strong>还原方法</strong>：解析 3 个分享短链 → 抓 <code>aweme/detail</code> 取 3 个视频 ID、时长、作者与最高清晰度地址 → 下载 1080×1086 与 1920×1080 原片共 35.2 MB（带 <code>Referer</code> + 浏览器 UA，避开 403）→ 每 3 秒抽帧 <strong>372 张</strong> → macOS Vision <code>VNRecognizeTextRequest</code> 得到 <strong>5,504 行</strong>带坐标文本 → 按三支不同版式分别设阈值，分离出 184 条画面幻灯片、353 条字幕时间线与顶部章节导航 → 关键帧放大逐字校对 → 与本站既有七篇及 Anthropic / OpenAI 公开文档交叉核对。</p>
+</section>
+<section class="sec" id="s1">
+<h2>1. 全片结构地图</h2>
+<div class="figure">
+<svg viewBox="0 0 900 316" xmlns="http://www.w3.org/2000/svg" font-family="-apple-system,PingFang SC,Microsoft YaHei,sans-serif">
+  <g text-anchor="middle">
+    <text x="450" y="26" font-size="15" font-weight="800" fill="#1e2430">三支视频 → 一套完整的 0→1 评测体系</text>
+    <text x="450" y="44" font-size="10.8" fill="#667085">① 整体架构与飞轮 ｜ ② 第一层任务集 ｜ ③ 第二层运行与评分</text>
+  </g>
+<rect x="24" y="64" width="270" height="116" rx="10" fill="#eaf1ff" stroke="#5b8def" stroke-width="1.5"/>
+    <text x="159.0" y="90.0" font-size="13" font-weight="800" fill="#1d4ed8" text-anchor="middle">① 整体架构</text>
+    <text x="159.0" y="110.0" font-size="11.2" fill="#4a5b7a" text-anchor="middle">煮caicai · 5:34</text>
+    <text x="159.0" y="129.3" font-size="11.2" fill="#4a5b7a" text-anchor="middle">完整 Evaluation System</text>
+    <text x="159.0" y="148.7" font-size="11.2" fill="#4a5b7a" text-anchor="middle">五步落地 + 数据飞轮</text>
+    <text x="159.0" y="168.0" font-size="11.2" fill="#4a5b7a" text-anchor="middle">四条踩坑</text>
+<rect x="315" y="64" width="270" height="116" rx="10" fill="#fff8dd" stroke="#d9a92e" stroke-width="1.5"/>
+    <text x="450.0" y="90.0" font-size="13" font-weight="800" fill="#8a5f00" text-anchor="middle">② 第一层：任务集</text>
+    <text x="450.0" y="110.0" font-size="11.2" fill="#7a6330" text-anchor="middle">观远数据 VOL.052 · 5:47</text>
+    <text x="450.0" y="129.3" font-size="11.2" fill="#7a6330" text-anchor="middle">真实任务 / 写清 Task</text>
+    <text x="450.0" y="148.7" font-size="11.2" fill="#7a6330" text-anchor="middle">/ 正反平衡</text>
+    <text x="450.0" y="168.0" font-size="11.2" fill="#7a6330" text-anchor="middle">20–50 条起步</text>
+<rect x="606" y="64" width="270" height="116" rx="10" fill="#e9f9f0" stroke="#39a97a" stroke-width="1.5"/>
+    <text x="741.0" y="90.0" font-size="13" font-weight="800" fill="#177a52" text-anchor="middle">③ 第二层：运行评分</text>
+    <text x="741.0" y="110.0" font-size="11.2" fill="#3c6b55" text-anchor="middle">观远数据 VOL.053 · 7:12</text>
+    <text x="741.0" y="129.3" font-size="11.2" fill="#3c6b55" text-anchor="middle">隔离环境 / Outcome+Transcript</text>
+    <text x="741.0" y="148.7" font-size="11.2" fill="#3c6b55" text-anchor="middle">三类 Grader / 硬条件</text>
+    <text x="741.0" y="168.0" font-size="11.2" fill="#3c6b55" text-anchor="middle">先测 Grader</text>
+<g stroke="#8a94a6" stroke-width="1.7" fill="none"><line x1="296" y1="122" x2="313" y2="122"/><line x1="305" y1="117" x2="313" y2="122"/><line x1="305" y1="127" x2="313" y2="122"/></g>
+<g stroke="#8a94a6" stroke-width="1.7" fill="none"><line x1="587" y1="122" x2="604" y2="122"/><line x1="596" y1="117" x2="604" y2="122"/><line x1="596" y1="127" x2="604" y2="122"/></g>
+<rect x="90" y="204" width="720" height="68" rx="10" fill="#f5f7fa" stroke="#b6c0cf" stroke-width="1.5"/>
+    <text x="450.0" y="242.6" font-size="13" font-weight="800" fill="#344054" text-anchor="middle">综合：架构定方向 → 任务集定「测什么」→ 运行评分定「怎么测、怎么判」</text>
+<text x="450" y="296" font-size="10.8" fill="#667085" text-anchor="middle">三支合计约 18:34；两支观远数据为同一系列的前两期</text>
+</svg>
+  <div class="cap">图 1｜三支视频与综合主线（按画面目录重绘）</div>
+</div>
+<p><span class="tag t-video">视频原述</span>视频 ① 封面给出四问：「一套完整的 Evaluation System 长什么样？／ 产品经理如何从 0 到 1 搭一套 Evaluation 系统？／ 核心逻辑——构建『评估数据飞轮』／ 踩坑实录」。视频 ② 的导航条为「框架与方法 / 真实任务集 / 写清 Task / 正反平衡 / 三步收束」，③ 为「问题与方法 / 隔离运行环境 / Outcome 与轨迹 / 三类 Grader / 硬条件与评分 / 校准与收束」。</p>
+<table>
+<tr><th>模块</th><th>回答什么</th><th>来源</th><th>本教程</th></tr>
+<tr><td>整体架构</td><td>系统长什么样、怎么落地</td><td>视频 ①</td><td>第 2–7 章</td></tr>
+<tr><td>第一层：任务集</td><td>测什么</td><td>视频 ②</td><td>第 8–14 章</td></tr>
+<tr><td>第二层：运行评分</td><td>怎么运行、怎么判分</td><td>视频 ③</td><td>第 15–19 章</td></tr>
+<tr><td>综合闭环</td><td>怎么串成一条链</td><td>三支综合</td><td>第 20 章</td></tr>
+</table>
+<div class="note">一句话：<strong>架构定方向，任务集定「测什么」，运行评分定「怎么测、怎么判」，三个产物都必须能解释、能复查、能回流。</strong></div>
+</section>
+<section class="sec" id="s2">
+<h2>2. 为什么 evaluation 要贯穿整个生命周期</h2>
+<div class="figure">
+<svg viewBox="0 0 900 320" xmlns="http://www.w3.org/2000/svg" font-family="-apple-system,PingFang SC,Microsoft YaHei,sans-serif">
+  <g text-anchor="middle">
+    <text x="450" y="26" font-size="15" font-weight="800" fill="#1e2430">为什么 evaluation 要贯穿整个开发生命周期</text>
+    <text x="450" y="44" font-size="10.8" fill="#667085">不是发布前的一次测试</text>
+  </g>
+<rect x="24" y="64" width="400" height="122" rx="10" fill="#eaf1ff" stroke="#5b8def" stroke-width="1.5"/>
+    <text x="224.0" y="90.0" font-size="13" font-weight="800" fill="#1d4ed8" text-anchor="middle">Anthropic</text>
+    <text x="224.0" y="112.0" font-size="11.2" fill="#4a5b7a" text-anchor="middle">《Demystifying evals for AI agents》</text>
+    <text x="224.0" y="132.0" font-size="11.2" fill="#4a5b7a" text-anchor="middle">强调 evaluation 贯穿 Agent 整个开发周期</text>
+    <text x="224.0" y="152.0" font-size="11.2" fill="#4a5b7a" text-anchor="middle">从少量高质量数据集开始</text>
+    <text x="224.0" y="172.0" font-size="11.2" fill="#4a5b7a" text-anchor="middle">随产品演进扩充、接入持续迭代</text>
+<rect x="444" y="64" width="432" height="122" rx="10" fill="#fff8dd" stroke="#d9a92e" stroke-width="1.5"/>
+    <text x="660.0" y="90.0" font-size="13" font-weight="800" fill="#8a5f00" text-anchor="middle">OpenAI</text>
+    <text x="660.0" y="112.0" font-size="11.2" fill="#7a6330" text-anchor="middle">从早期做法到 Evals API</text>
+    <text x="660.0" y="132.0" font-size="11.2" fill="#7a6330" text-anchor="middle">推动 evaluation-first 的开发方式</text>
+    <text x="660.0" y="152.0" font-size="11.2" fill="#7a6330" text-anchor="middle">评分器 / 指标 / 版本对比</text>
+    <text x="660.0" y="172.0" font-size="11.2" fill="#7a6330" text-anchor="middle">而不是零散脚本</text>
+<rect x="90" y="210" width="720" height="66" rx="10" fill="#f5f7fa" stroke="#b6c0cf" stroke-width="1.5"/>
+    <text x="450.0" y="247.6" font-size="13" font-weight="800" fill="#344054" text-anchor="middle">共同认知：Evaluation 不是「发布前测一次」，而是持续驱动迭代的工程体系</text>
+<text x="450" y="300" font-size="10.8" fill="#667085" text-anchor="middle">与本站《评测驱动 Agent 迭代》《Agent 评测方法论》的结论一致</text>
+</svg>
+  <div class="cap">图 2｜大厂观点与 evaluation-first 重绘</div>
+</div>
+<p><span class="tag t-video">视频原述</span>视频 ① 开场讨论「大厂都在疯狂卷 evaluation 是为什么」，并引用两家公开资料：</p>
+<ul>
+<li><strong>Anthropic《Demystifying evals for AI agents》</strong>：反复强调 evaluation 应贯穿 Agent 的整个开发生命周期，而不是发布前的一次测试；建议从<strong>少量高质量数据集</strong>开始，随产品演进不断扩充，并把 evaluation 接入持续迭代流程。</li>
+<li><strong>OpenAI</strong>：从早期做法到现在的 Evals API，都在推动 <strong>evaluation-first</strong> 的开发方式——有评分器、指标、版本对比，而不是零散脚本。</li>
+</ul>
+<div class="key">共同认知：<strong>Evaluation 要贯穿 Agent 的生命周期</strong>。它与本站《评测驱动 Agent 迭代》「从一次测试变成持续驱动 action 的工程体系」、《Agent 评测方法论》「eval driven development」是同一条结论。</div>
+</section>
+<section class="sec" id="s3">
+<h2>3. 一套完整 Evaluation System 的架构全景</h2>
+<p><span class="tag t-video">视频原述</span>视频 ① 用一张纵向手绘英文流程图给出全貌。下面按画面节点逐字重绘为两行（节点文字保留英文原名）。</p>
+<div class="figure">
+<svg viewBox="0 0 900 350" xmlns="http://www.w3.org/2000/svg" font-family="-apple-system,PingFang SC,Microsoft YaHei,sans-serif">
+  <g text-anchor="middle">
+    <text x="450" y="26" font-size="15" font-weight="800" fill="#1e2430">一套完整 Evaluation System 的架构全景</text>
+    <text x="450" y="44" font-size="10.8" fill="#667085">视频 ① 手绘英文架构图逐节点重绘</text>
+  </g>
+<g text-anchor="middle" font-size="10.8">
+<rect x="24" y="62" width="164" height="60" rx="10" fill="#f3edff" stroke="#9575e0" stroke-width="1.5"/>
+    <text x="106.0" y="96.5" font-size="13" font-weight="800" fill="#6d42c9" text-anchor="middle">User Real Request</text>
+<rect x="202" y="62" width="164" height="60" rx="10" fill="#fff8dd" stroke="#d9a92e" stroke-width="1.5"/>
+    <text x="284.0" y="88.0" font-size="13" font-weight="800" fill="#8a5f00" text-anchor="middle">Trace Collection</text>
+    <text x="284.0" y="108.0" font-size="11.2" fill="#7a6330" text-anchor="middle">Online Logs / Bad Cases</text>
+<rect x="380" y="62" width="164" height="60" rx="10" fill="#e9f9f0" stroke="#39a97a" stroke-width="1.5"/>
+    <text x="462.0" y="96.5" font-size="13" font-weight="800" fill="#177a52" text-anchor="middle">Dataset Evolution</text>
+<rect x="558" y="62" width="164" height="60" rx="10" fill="#eaf1ff" stroke="#5b8def" stroke-width="1.5"/>
+    <text x="640.0" y="88.0" font-size="13" font-weight="800" fill="#1d4ed8" text-anchor="middle">Dataset Manager</text>
+    <text x="640.0" y="108.0" font-size="11.2" fill="#4a5b7a" text-anchor="middle">Synthetic + Human + Real</text>
+<rect x="736" y="62" width="140" height="60" rx="10" fill="#f3edff" stroke="#9575e0" stroke-width="1.5"/>
+    <text x="806.0" y="88.0" font-size="13" font-weight="800" fill="#6d42c9" text-anchor="middle">Agent Runtime</text>
+    <text x="806.0" y="108.0" font-size="11.2" fill="#5d4a91" text-anchor="middle">LLM+Memory</text>
+</g>
+<g text-anchor="middle" font-size="10.8">
+<rect x="24" y="150" width="164" height="76" rx="10" fill="#fff8dd" stroke="#d9a92e" stroke-width="1.5"/>
+    <text x="106.0" y="176.0" font-size="13" font-weight="800" fill="#8a5f00" text-anchor="middle">Trajectory Store</text>
+    <text x="106.0" y="196.0" font-size="11.2" fill="#7a6330" text-anchor="middle">Prompt / Tool /</text>
+    <text x="106.0" y="214.0" font-size="11.2" fill="#7a6330" text-anchor="middle">Reasoning / Output</text>
+<rect x="202" y="150" width="164" height="76" rx="10" fill="#e9f9f0" stroke="#39a97a" stroke-width="1.5"/>
+    <text x="284.0" y="176.0" font-size="13" font-weight="800" fill="#177a52" text-anchor="middle">Evaluation Engine</text>
+    <text x="284.0" y="196.0" font-size="11.2" fill="#3c6b55" text-anchor="middle">Rule / LLM /</text>
+    <text x="284.0" y="214.0" font-size="11.2" fill="#3c6b55" text-anchor="middle">Human Judge</text>
+<rect x="380" y="150" width="164" height="76" rx="10" fill="#eaf1ff" stroke="#5b8def" stroke-width="1.5"/>
+    <text x="462.0" y="176.0" font-size="13" font-weight="800" fill="#1d4ed8" text-anchor="middle">Metrics</text>
+    <text x="462.0" y="196.0" font-size="11.2" fill="#4a5b7a" text-anchor="middle">Quality / Cost /</text>
+    <text x="462.0" y="214.0" font-size="11.2" fill="#4a5b7a" text-anchor="middle">Latency</text>
+<rect x="558" y="150" width="164" height="76" rx="10" fill="#f3edff" stroke="#9575e0" stroke-width="1.5"/>
+    <text x="640.0" y="176.0" font-size="13" font-weight="800" fill="#6d42c9" text-anchor="middle">Dashboard</text>
+    <text x="640.0" y="196.0" font-size="11.2" fill="#5d4a91" text-anchor="middle">趋势而非单次分数</text>
+    <text x="640.0" y="214.0" font-size="11.2" fill="#5d4a91" text-anchor="middle">指标含 Safety / 业务 KPI</text>
+<rect x="736" y="150" width="140" height="76" rx="10" fill="#ffeef1" stroke="#e0728d" stroke-width="1.5"/>
+    <text x="806.0" y="176.0" font-size="13" font-weight="800" fill="#b03a55" text-anchor="middle">Release Decision</text>
+    <text x="806.0" y="196.0" font-size="11.2" fill="#8c4a5b" text-anchor="middle">能不能上线</text>
+    <text x="806.0" y="214.0" font-size="11.2" fill="#8c4a5b" text-anchor="middle">由回归结果与护栏决定</text>
+</g>
+<rect x="90" y="246" width="720" height="66" rx="10" fill="#f5f7fa" stroke="#b6c0cf" stroke-width="1.5"/>
+    <text x="450.0" y="283.6" font-size="13" font-weight="800" fill="#344054" text-anchor="middle">Error Analysis → 回流 Dataset Evolution，构成闭环；指标还含 Safety 与 Business KPI</text>
+<text x="450" y="336" font-size="10.8" fill="#667085" text-anchor="middle">画面为纵向手绘流程图，此处按阅读顺序重排为两行，节点文字逐字保留</text>
+</svg>
+  <div class="cap">图 3｜完整 Evaluation System 架构全景重绘</div>
+</div>
+<table>
+<tr><th>节点（画面原文）</th><th>作用</th></tr>
+<tr><td>User Real Request</td><td>真实用户请求，闭环起点</td></tr>
+<tr><td>Error Analysis</td><td>对失败做归因，把 Bad Case 送回数据集</td></tr>
+<tr><td>Trace Collection: Online Logs / Bad Cases</td><td>收集线上日志与失败案例</td></tr>
+<tr><td>Dataset Evolution</td><td>数据集持续演进</td></tr>
+<tr><td>Dataset Manager: Synthetic + Human + Real</td><td>合成 / 人工 / 真实三类样本统一管理</td></tr>
+<tr><td>Agent Runtime: LLM + Memory + Tool + Workflow</td><td>被评测的 Agent 运行体</td></tr>
+<tr><td>Trajectory Store: Prompt / Tool / Reasoning / Output</td><td>保存一次执行的完整轨迹</td></tr>
+<tr><td>Evaluation Engine: Rule Judge / LLM Judge / Human Judge</td><td>三类判据组合评分</td></tr>
+<tr><td>Metrics: Quality / Cost / Latency / Safety / Business KPI</td><td>五类指标</td></tr>
+<tr><td>Dashboard</td><td>看板：管理指标趋势</td></tr>
+<tr><td>Release Decision</td><td>这次更新到底要不要发布</td></tr>
+</table>
+<div class="note">画面还有一条从 Release Decision / Error Analysis 回到 User Real Request 与 Dataset Evolution 的回流线——这正是下一章「飞轮」的核心。</div>
+</section>
+<section class="sec" id="s4">
+<h2>4. 架构分三段：数据侧 / 执行观测侧 / 决策侧</h2>
+<div class="figure">
+<svg viewBox="0 0 900 324" xmlns="http://www.w3.org/2000/svg" font-family="-apple-system,PingFang SC,Microsoft YaHei,sans-serif">
+  <g text-anchor="middle">
+    <text x="450" y="26" font-size="15" font-weight="800" fill="#1e2430">架构分三段：数据侧 / 执行观测侧 / 决策侧</text>
+    <text x="450" y="44" font-size="10.8" fill="#667085">把图 3 的节点按职责归组</text>
+  </g>
+<rect x="24" y="64" width="270" height="130" rx="10" fill="#eaf1ff" stroke="#5b8def" stroke-width="1.5"/>
+    <text x="159.0" y="90.0" font-size="13" font-weight="800" fill="#1d4ed8" text-anchor="middle">① 数据侧</text>
+    <text x="159.0" y="110.0" font-size="11.2" fill="#4a5b7a" text-anchor="middle">Trace Collection：线上日志 / Bad Case</text>
+    <text x="159.0" y="128.0" font-size="11.2" fill="#4a5b7a" text-anchor="middle">Dataset Evolution：持续演进</text>
+    <text x="159.0" y="146.0" font-size="11.2" fill="#4a5b7a" text-anchor="middle">Dataset Manager：合成 + 人工 + 真实</text>
+    <text x="159.0" y="164.0" font-size="11.2" fill="#4a5b7a" text-anchor="middle">Error Analysis：失败回流</text>
+    <text x="159.0" y="182.0" font-size="11.2" fill="#4a5b7a" text-anchor="middle">产物：可信、可增长的评测集</text>
+<rect x="315" y="64" width="270" height="130" rx="10" fill="#fff8dd" stroke="#d9a92e" stroke-width="1.5"/>
+    <text x="450.0" y="90.0" font-size="13" font-weight="800" fill="#8a5f00" text-anchor="middle">② 执行观测侧</text>
+    <text x="450.0" y="110.0" font-size="11.2" fill="#7a6330" text-anchor="middle">Agent Runtime：LLM+Memory+Tool+Workflow</text>
+    <text x="450.0" y="128.0" font-size="11.2" fill="#7a6330" text-anchor="middle">Trajectory Store：Prompt / Tool /</text>
+    <text x="450.0" y="146.0" font-size="11.2" fill="#7a6330" text-anchor="middle">Reasoning / Output</text>
+    <text x="450.0" y="164.0" font-size="11.2" fill="#7a6330" text-anchor="middle">Evaluation Engine：Rule / LLM /</text>
+    <text x="450.0" y="182.0" font-size="11.2" fill="#7a6330" text-anchor="middle">Human Judge</text>
+<rect x="606" y="64" width="270" height="130" rx="10" fill="#e9f9f0" stroke="#39a97a" stroke-width="1.5"/>
+    <text x="741.0" y="90.0" font-size="13" font-weight="800" fill="#177a52" text-anchor="middle">③ 决策侧</text>
+    <text x="741.0" y="110.0" font-size="11.2" fill="#3c6b55" text-anchor="middle">Metrics：Quality / Cost / Latency /</text>
+    <text x="741.0" y="128.0" font-size="11.2" fill="#3c6b55" text-anchor="middle">Safety / Business KPI</text>
+    <text x="741.0" y="146.0" font-size="11.2" fill="#3c6b55" text-anchor="middle">Dashboard：趋势而非单次分数</text>
+    <text x="741.0" y="164.0" font-size="11.2" fill="#3c6b55" text-anchor="middle">Release Decision：能不能上线</text>
+    <text x="741.0" y="182.0" font-size="11.2" fill="#3c6b55" text-anchor="middle">产物：能不能上线的依据</text>
+<rect x="90" y="218" width="720" height="62" rx="10" fill="#f5f7fa" stroke="#b6c0cf" stroke-width="1.5"/>
+    <text x="450.0" y="253.6" font-size="13" font-weight="800" fill="#344054" text-anchor="middle">三段必须连成环：决策产生的失败 Case 要回到数据侧</text>
+<text x="450" y="304" font-size="10.8" fill="#667085" text-anchor="middle">「Evaluation 永远不是为了跑分」——视频 ① 口播</text>
+</svg>
+  <div class="cap">图 4｜架构三段职责重绘</div>
+</div>
+<p><span class="tag t-extra">补充</span>把图 3 的节点按职责归为三段，便于分工落地：数据侧负责「拿什么测」，执行观测侧负责「跑起来并留痕」，决策侧负责「看结果并决定」。</p>
+<div class="key">关键不是把每一段都做得多复杂，而是<strong>三段必须连成环</strong>：决策产生的失败 Case 要能回到数据侧，否则系统跑一次就僵死。</div>
+<p><span class="tag t-video">视频原述</span>口播反复强调：「Evaluation 永远不是为了跑分」「不同 Agent 的 evaluation 完全不同」——架构是通用骨架，业务目标（满意率、任务完成率等）决定每一段的具体形态。</p>
+</section>
+<section class="sec" id="s5">
+<h2>5. 产品经理如何从 0 到 1 搭：五步落地法</h2>
+<div class="figure">
+<svg viewBox="0 0 900 296" xmlns="http://www.w3.org/2000/svg" font-family="-apple-system,PingFang SC,Microsoft YaHei,sans-serif">
+  <g text-anchor="middle">
+    <text x="450" y="26" font-size="15" font-weight="800" fill="#1e2430">产品经理如何从 0 到 1 搭：五步落地法</text>
+    <text x="450" y="44" font-size="10.8" fill="#667085">视频 ① 画面 f_0056 逐字重绘</text>
+  </g>
+<rect x="24" y="64" width="164" height="96" rx="10" fill="#eaf1ff" stroke="#5b8def" stroke-width="1.5"/>
+    <text x="106.0" y="90.0" font-size="13" font-weight="800" fill="#1d4ed8" text-anchor="middle">① 定业务目标</text>
+    <text x="106.0" y="119.0" font-size="11.2" fill="#4a5b7a" text-anchor="middle">第一步永远</text>
+    <text x="106.0" y="139.0" font-size="11.2" fill="#4a5b7a" text-anchor="middle">不是写 prompt</text>
+<rect x="202" y="64" width="164" height="96" rx="10" fill="#fff8dd" stroke="#d9a92e" stroke-width="1.5"/>
+    <text x="284.0" y="90.0" font-size="13" font-weight="800" fill="#8a5f00" text-anchor="middle">② 建 Dataset</text>
+    <text x="284.0" y="119.0" font-size="11.2" fill="#7a6330" text-anchor="middle">真实 Bad Case</text>
+    <text x="284.0" y="139.0" font-size="11.2" fill="#7a6330" text-anchor="middle">随产品一起增长</text>
+<rect x="380" y="64" width="164" height="96" rx="10" fill="#e9f9f0" stroke="#39a97a" stroke-width="1.5"/>
+    <text x="462.0" y="90.0" font-size="13" font-weight="800" fill="#177a52" text-anchor="middle">③ 设计 Judge</text>
+    <text x="462.0" y="119.0" font-size="11.2" fill="#3c6b55" text-anchor="middle">Rule / LLM</text>
+    <text x="462.0" y="139.0" font-size="11.2" fill="#3c6b55" text-anchor="middle">/ Human 组合</text>
+<rect x="558" y="64" width="164" height="96" rx="10" fill="#f3edff" stroke="#9575e0" stroke-width="1.5"/>
+    <text x="640.0" y="90.0" font-size="13" font-weight="800" fill="#6d42c9" text-anchor="middle">④ 定 Metrics</text>
+    <text x="640.0" y="119.0" font-size="11.2" fill="#5d4a91" text-anchor="middle">多维指标</text>
+    <text x="640.0" y="139.0" font-size="11.2" fill="#5d4a91" text-anchor="middle">不只看单个</text>
+<rect x="736" y="64" width="140" height="96" rx="10" fill="#ffeef1" stroke="#e0728d" stroke-width="1.5"/>
+    <text x="806.0" y="90.0" font-size="13" font-weight="800" fill="#b03a55" text-anchor="middle">⑤ 建 Dashboard</text>
+    <text x="806.0" y="119.0" font-size="11.2" fill="#8c4a5b" text-anchor="middle">看趋势</text>
+    <text x="806.0" y="139.0" font-size="11.2" fill="#8c4a5b" text-anchor="middle">不是一次分</text>
+<g stroke="#8a94a6" stroke-width="1.7" fill="none"><line x1="190" y1="112" x2="200" y2="112"/><line x1="192" y1="107" x2="200" y2="112"/><line x1="192" y1="117" x2="200" y2="112"/></g>
+<g stroke="#8a94a6" stroke-width="1.7" fill="none"><line x1="368" y1="112" x2="378" y2="112"/><line x1="370" y1="107" x2="378" y2="112"/><line x1="370" y1="117" x2="378" y2="112"/></g>
+<g stroke="#8a94a6" stroke-width="1.7" fill="none"><line x1="546" y1="112" x2="556" y2="112"/><line x1="548" y1="107" x2="556" y2="112"/><line x1="548" y1="117" x2="556" y2="112"/></g>
+<g stroke="#8a94a6" stroke-width="1.7" fill="none"><line x1="724" y1="112" x2="734" y2="112"/><line x1="726" y1="107" x2="734" y2="112"/><line x1="726" y1="117" x2="734" y2="112"/></g>
+<rect x="90" y="186" width="720" height="66" rx="10" fill="#f5f7fa" stroke="#b6c0cf" stroke-width="1.5"/>
+    <text x="450.0" y="223.6" font-size="13" font-weight="800" fill="#344054" text-anchor="middle">不同 Agent 的 evaluation 完全不同：满意率、任务完成率等业务目标决定后面四步</text>
+<text x="450" y="276" font-size="10.8" fill="#667085" text-anchor="middle">「Evaluation 是 AI 时代产品经理的研发仪表盘」——视频 ① 结语</text>
+</svg>
+  <div class="cap">图 5｜五步落地法重绘</div>
+</div>
+<p><span class="tag t-video">视频原述</span>画面 f_0056 逐字给出五步：</p>
+<ol>
+<li><strong>① 定业务目标</strong>：第一步永远不是写 prompt，而是回答「这个 Agent 到底要达成什么业务结果」。</li>
+<li><strong>② 建 Dataset</strong>：来源包括上线后真实的 Bad Case；数据集跟产品一起增长。</li>
+<li><strong>③ 设计 Judge</strong>：Rule / LLM / Human 组合，其中 LLM Judge 与 Rubric 最复杂。</li>
+<li><strong>④ 定 Metrics</strong>：质量、成本、时延、安全、业务 KPI 多个维度。</li>
+<li><strong>⑤ 建 Dashboard</strong>：不是输出一个静态数据，而是包含各指标<strong>变化趋势</strong>的看板；关心的是版本之间的比较，不是一次实验的分数。</li>
+</ol>
+<div class="note">结语定位：「它不是可选的测试工具，它是 AI 时代产品经理的<strong>研发仪表盘</strong>。」</div>
+</section>
+<section class="sec" id="s6">
+<h2>6. 核心逻辑：构建「评估数据飞轮」</h2>
+<div class="figure">
+<svg viewBox="0 0 900 486" xmlns="http://www.w3.org/2000/svg" font-family="-apple-system,PingFang SC,Microsoft YaHei,sans-serif">
+  <g text-anchor="middle">
+    <text x="450" y="26" font-size="15" font-weight="800" fill="#1e2430">核心逻辑：构建「评估数据飞轮」</text>
+    <text x="450" y="44" font-size="10.8" fill="#667085">视频 ① 画面 f_0088 七节点闭环逐字重绘</text>
+  </g>
+<rect x="330" y="60" width="240" height="54" rx="10" fill="#f3edff" stroke="#9575e0" stroke-width="1.5"/>
+    <text x="450.0" y="91.5" font-size="13" font-weight="800" fill="#6d42c9" text-anchor="middle">Online User</text>
+<rect x="330" y="130" width="240" height="54" rx="10" fill="#ffeef1" stroke="#e0728d" stroke-width="1.5"/>
+    <text x="450.0" y="161.6" font-size="13" font-weight="800" fill="#b03a55" text-anchor="middle">Bad Case Analysis</text>
+<rect x="330" y="200" width="240" height="54" rx="10" fill="#eaf1ff" stroke="#5b8def" stroke-width="1.5"/>
+    <text x="450.0" y="231.6" font-size="13" font-weight="800" fill="#1d4ed8" text-anchor="middle">Dataset Construction</text>
+<rect x="330" y="270" width="240" height="54" rx="10" fill="#fff8dd" stroke="#d9a92e" stroke-width="1.5"/>
+    <text x="450.0" y="301.6" font-size="13" font-weight="800" fill="#8a5f00" text-anchor="middle">Evaluation Engine</text>
+<rect x="330" y="340" width="240" height="54" rx="10" fill="#e9f9f0" stroke="#39a97a" stroke-width="1.5"/>
+    <text x="450.0" y="371.6" font-size="13" font-weight="800" fill="#177a52" text-anchor="middle">Metrics Dashboard</text>
+<g stroke="#8a94a6" stroke-width="1.7" fill="none"><line x1="450" y1="116" x2="450" y2="128"/></g>
+<g stroke="#8a94a6" stroke-width="1.7" fill="none"><line x1="450" y1="186" x2="450" y2="198"/></g>
+<g stroke="#8a94a6" stroke-width="1.7" fill="none"><line x1="450" y1="256" x2="450" y2="268"/></g>
+<g stroke="#8a94a6" stroke-width="1.7" fill="none"><line x1="450" y1="326" x2="450" y2="338"/></g>
+<rect x="24" y="200" width="240" height="54" rx="10" fill="#f5f7fa" stroke="#b6c0cf" stroke-width="1.5"/>
+    <text x="144.0" y="231.6" font-size="13" font-weight="800" fill="#344054" text-anchor="middle">Prompt / Tools / Models</text>
+<rect x="636" y="200" width="240" height="54" rx="10" fill="#f5f7fa" stroke="#b6c0cf" stroke-width="1.5"/>
+    <text x="756.0" y="231.6" font-size="13" font-weight="800" fill="#344054" text-anchor="middle">Redeploy System</text>
+<g stroke="#8a94a6" stroke-width="1.6" fill="none">
+<line x1="330" y1="367" x2="144" y2="367"/><line x1="144" y1="367" x2="144" y2="256"/>
+<line x1="264" y1="227" x2="328" y2="227"/>
+<line x1="450" y1="394" x2="756" y2="394"/><line x1="756" y1="394" x2="756" y2="256"/>
+<line x1="636" y1="227" x2="572" y2="227"/>
+</g>
+<rect x="90" y="404" width="720" height="52" rx="10" fill="#e9f9f0" stroke="#39a97a" stroke-width="1.5"/>
+    <text x="450.0" y="434.6" font-size="13" font-weight="800" fill="#177a52" text-anchor="middle">Continuous Improvement Loop：持续迭代，而不是拿一个分</text>
+<text x="450" y="470" font-size="10.8" fill="#667085" text-anchor="middle">飞轮的动力来自线上真实失败；每转一圈，回归集更厚、评测更可信</text>
+</svg>
+  <div class="cap">图 6｜评估数据飞轮重绘</div>
+</div>
+<p><span class="tag t-video">视频原述</span>画面 f_0088 的标题是「构建『评估数据飞轮』」，七个节点构成 Continuous Improvement Loop：</p>
+<table>
+<tr><th>顺序</th><th>节点（画面原文）</th><th>含义</th></tr>
+<tr><td>0</td><td>Online User</td><td>真实用户产生请求与失败</td></tr>
+<tr><td>1</td><td>Bad Case Analysis</td><td>失败归因</td></tr>
+<tr><td>2</td><td>Dataset Construction</td><td>把失败构造成评测样本</td></tr>
+<tr><td>3</td><td>Evaluation Engine</td><td>用引擎跑评测</td></tr>
+<tr><td>4</td><td>Metrics Dashboard</td><td>指标与趋势可见</td></tr>
+<tr><td>5</td><td>Prompt / Tools / Models</td><td>据结果改提示词、工具或模型</td></tr>
+<tr><td>6</td><td>Redeploy System</td><td>重新发布，回到线上</td></tr>
+</table>
+<p><span class="tag t-video">视频原述</span>口播点题：「不是为了拿一个分，而是为了构建数据飞轮」；黄金数据集会越来越多、失败率越来越低，翻车过的题都要加入<strong>回归数据集</strong>。</p>
+</section>
+<section class="sec" id="s7">
+<h2>7. 踩坑实录：四条经验</h2>
+<div class="figure">
+<svg viewBox="0 0 900 334" xmlns="http://www.w3.org/2000/svg" font-family="-apple-system,PingFang SC,Microsoft YaHei,sans-serif">
+  <g text-anchor="middle">
+    <text x="450" y="26" font-size="15" font-weight="800" fill="#1e2430">踩坑实录：四条经验</text>
+    <text x="450" y="44" font-size="10.8" fill="#667085">视频 ① 画面 f_0099 逐字重绘</text>
+  </g>
+<rect x="24" y="64" width="400" height="62" rx="10" fill="#eaf1ff" stroke="#5b8def" stroke-width="1.5"/>
+    <text x="224.0" y="99.5" font-size="13" font-weight="800" fill="#1d4ed8" text-anchor="middle">① 不要等 1000 条数据再开始</text>
+<rect x="444" y="64" width="432" height="62" rx="10" fill="#fff8dd" stroke="#d9a92e" stroke-width="1.5"/>
+    <text x="660.0" y="99.5" font-size="13" font-weight="800" fill="#8a5f00" text-anchor="middle">② 不要追求 100% 的自动化</text>
+<rect x="24" y="148" width="400" height="62" rx="10" fill="#f3edff" stroke="#9575e0" stroke-width="1.5"/>
+    <text x="224.0" y="183.6" font-size="13" font-weight="800" fill="#6d42c9" text-anchor="middle">③ 不要只看单个指标</text>
+<rect x="444" y="148" width="432" height="62" rx="10" fill="#ffeef1" stroke="#e0728d" stroke-width="1.5"/>
+    <text x="660.0" y="183.6" font-size="13" font-weight="800" fill="#b03a55" text-anchor="middle">④ 不要把 Evaluation 当 QA</text>
+<rect x="90" y="232" width="720" height="62" rx="10" fill="#f5f7fa" stroke="#b6c0cf" stroke-width="1.5"/>
+    <text x="450.0" y="267.6" font-size="13" font-weight="800" fill="#344054" text-anchor="middle">先手动跑通小闭环 → 再随系统成长逐步自动化</text>
+<text x="450" y="318" font-size="10.8" fill="#667085" text-anchor="middle">口播补充：20–50 条即可跑第一条基线；评测体系本身也要不断演进</text>
+</svg>
+  <div class="cap">图 7｜四条踩坑经验重绘</div>
+</div>
+<table>
+<tr><th>#</th><th>画面原文</th><th>口播补充</th></tr>
+<tr><td>1</td><td>不要等 1000 条数据再开始</td><td>少量高质量样本就能跑通评测小闭环</td></tr>
+<tr><td>2</td><td>不要追求 100% 的自动化</td><td>开始肯定手动，随系统成长再逐步自动化</td></tr>
+<tr><td>3</td><td>不要只看单个指标</td><td>多维度指标，避免单指标优化</td></tr>
+<tr><td>4</td><td>不要把 Evaluation 当 QA</td><td>它要不断演进，是研发仪表盘</td></tr>
+</table>
+<div class="note">这四条与本站《Agent 评测指标系统》《评测驱动 Agent 迭代》里的「20–50 条起步、主指标 + 护栏、能力集毕业成回归集」逐条呼应。</div>
+</section>
+<section class="sec" id="s8">
+<h2>8. 两层框架：任务集 × 运行评分</h2>
+<div class="figure">
+<svg viewBox="0 0 900 320" xmlns="http://www.w3.org/2000/svg" font-family="-apple-system,PingFang SC,Microsoft YaHei,sans-serif">
+  <g text-anchor="middle">
+    <text x="450" y="26" font-size="15" font-weight="800" fill="#1e2430">两层框架：任务集 × 运行评分</text>
+    <text x="450" y="44" font-size="10.8" fill="#667085">观远数据 VOL.052 / VOL.053 的分工</text>
+  </g>
+<rect x="60" y="64" width="360" height="122" rx="10" fill="#eaf1ff" stroke="#5b8def" stroke-width="1.5"/>
+    <text x="240.0" y="90.0" font-size="13" font-weight="800" fill="#1d4ed8" text-anchor="middle">第一层：评测任务集</text>
+    <text x="240.0" y="122.0" font-size="11.2" fill="#4a5b7a" text-anchor="middle">解决「测什么」</text>
+    <text x="240.0" y="142.0" font-size="11.2" fill="#4a5b7a" text-anchor="middle">真实任务 20–50 条 / 写清 Task / 正反平衡</text>
+    <text x="240.0" y="162.0" font-size="11.2" fill="#4a5b7a" text-anchor="middle">产物：可重复比较的评测基线</text>
+<rect x="480" y="64" width="360" height="122" rx="10" fill="#fff8dd" stroke="#d9a92e" stroke-width="1.5"/>
+    <text x="660.0" y="90.0" font-size="13" font-weight="800" fill="#8a5f00" text-anchor="middle">第二层：运行与评分</text>
+    <text x="660.0" y="122.0" font-size="11.2" fill="#7a6330" text-anchor="middle">解决「怎么运行、怎么判分」</text>
+    <text x="660.0" y="142.0" font-size="11.2" fill="#7a6330" text-anchor="middle">隔离环境 / Outcome+Transcript / 三类 Grader</text>
+    <text x="660.0" y="162.0" font-size="11.2" fill="#7a6330" text-anchor="middle">产物：可解释、可复查的评分</text>
+<g stroke="#8a94a6" stroke-width="1.7" fill="none"><line x1="422" y1="125" x2="478" y2="125"/><line x1="470" y1="120" x2="478" y2="125"/><line x1="470" y1="130" x2="478" y2="125"/></g>
+<rect x="90" y="210" width="720" height="66" rx="10" fill="#f5f7fa" stroke="#b6c0cf" stroke-width="1.5"/>
+    <text x="450.0" y="247.6" font-size="13" font-weight="800" fill="#344054" text-anchor="middle">两层都要对齐 Anthropic 的同一条原则：Task 有明确输入与成功标准</text>
+<text x="450" y="300" font-size="10.8" fill="#667085" text-anchor="middle">第三期预告：分数波动解释、Capability Eval 与 Regression Eval 区分（本片未展开）</text>
+</svg>
+  <div class="cap">图 8｜两层框架分工重绘</div>
+</div>
+<p><span class="tag t-video">视频原述</span>视频 ② 开场说明：上一期「从 0 到 1 搭建 Agent 评测」框架已有超过 <strong>1300 次收藏</strong>，被问最多的是「框架看懂了，每一步具体怎么做」，于是用三期拆解；第一期先搭<strong>评测体系的第一层：任务集</strong>，第二期搭<strong>运行与评分</strong>。</p>
+<p><span class="tag t-video">视频原述</span>两套方法都基于 Anthropic 官方评测文档，③ 还参考 OpenAI Evals API 与 Graders 文档。画面 f_0011 列出三份权威来源：</p>
+<table>
+<tr><th>#</th><th>机构</th><th>文档</th><th>状态</th></tr>
+<tr><td>1</td><td>Anthropic</td><td>Demystifying evals for AI agents</td><td>2026-01-09</td></tr>
+<tr><td>2</td><td>Anthropic</td><td>Define success criteria and build evaluations</td><td>持续更新</td></tr>
+<tr><td>3</td><td>OpenAI</td><td>Evals API Reference</td><td>持续更新</td></tr>
+</table>
+</section>
+<section class="sec" id="s9">
+<h2>9. 第一层三步：真实任务 → 稳定判断 → 正反平衡</h2>
+<div class="figure">
+<svg viewBox="0 0 900 310" xmlns="http://www.w3.org/2000/svg" font-family="-apple-system,PingFang SC,Microsoft YaHei,sans-serif">
+  <g text-anchor="middle">
+    <text x="450" y="26" font-size="15" font-weight="800" fill="#1e2430">第一层三步：真实任务 → 稳定判断 → 正反平衡</text>
+    <text x="450" y="44" font-size="10.8" fill="#667085">观远 VOL.052 顶部导航五段逐字重绘</text>
+  </g>
+<rect x="24" y="64" width="270" height="112" rx="10" fill="#eaf1ff" stroke="#5b8def" stroke-width="1.5"/>
+    <text x="159.0" y="90.0" font-size="13" font-weight="800" fill="#1d4ed8" text-anchor="middle">① 建立第一批真实任务</text>
+    <text x="159.0" y="117.0" font-size="11.2" fill="#4a5b7a" text-anchor="middle">20–50 条起步</text>
+    <text x="159.0" y="137.0" font-size="11.2" fill="#4a5b7a" text-anchor="middle">种子来自真实任务与真实失败</text>
+    <text x="159.0" y="157.0" font-size="11.2" fill="#4a5b7a" text-anchor="middle">按对用户结果影响排序</text>
+<rect x="315" y="64" width="270" height="112" rx="10" fill="#fff8dd" stroke="#d9a92e" stroke-width="1.5"/>
+    <text x="450.0" y="90.0" font-size="13" font-weight="800" fill="#8a5f00" text-anchor="middle">② 把 Task 写到可稳定判断</text>
+    <text x="450.0" y="117.0" font-size="11.2" fill="#7a6330" text-anchor="middle">明确输入 + 成功标准</text>
+    <text x="450.0" y="137.0" font-size="11.2" fill="#7a6330" text-anchor="middle">约束必须提前写进任务说明</text>
+    <text x="450.0" y="157.0" font-size="11.2" fill="#7a6330" text-anchor="middle">专家一致性 + 参考解法双检</text>
+<rect x="606" y="64" width="270" height="112" rx="10" fill="#e9f9f0" stroke="#39a97a" stroke-width="1.5"/>
+    <text x="741.0" y="90.0" font-size="13" font-weight="800" fill="#177a52" text-anchor="middle">③ 同时设计正反任务</text>
+    <text x="741.0" y="117.0" font-size="11.2" fill="#3c6b55" text-anchor="middle">该发生时能否完成</text>
+    <text x="741.0" y="137.0" font-size="11.2" fill="#3c6b55" text-anchor="middle">不该发生时能否克制</text>
+    <text x="741.0" y="157.0" font-size="11.2" fill="#3c6b55" text-anchor="middle">平衡问题集贴近真实分布</text>
+<g stroke="#8a94a6" stroke-width="1.7" fill="none"><line x1="296" y1="120" x2="313" y2="120"/><line x1="305" y1="115" x2="313" y2="120"/><line x1="305" y1="125" x2="313" y2="120"/></g>
+<g stroke="#8a94a6" stroke-width="1.7" fill="none"><line x1="587" y1="120" x2="604" y2="120"/><line x1="596" y1="115" x2="604" y2="120"/><line x1="596" y1="125" x2="604" y2="120"/></g>
+<rect x="90" y="200" width="720" height="66" rx="10" fill="#f5f7fa" stroke="#b6c0cf" stroke-width="1.5"/>
+    <text x="450.0" y="237.6" font-size="13" font-weight="800" fill="#344054" text-anchor="middle">三步收束：才真正拥有一批「可以评测 Agent 的任务」</text>
+<text x="450" y="290" font-size="10.8" fill="#667085" text-anchor="middle">权威来源：Anthropic《Demystifying evals for AI agents》、Anthropic《Define success criteria and build evaluations》、OpenAI《Evals API Reference》</text>
+</svg>
+  <div class="cap">图 9｜第一层三步重绘</div>
+</div>
+<p><span class="tag t-video">视频原述</span>视频 ② 的三步收束（画面导航「真实任务集 / 写清 Task / 正反平衡」）：</p>
+<ol>
+<li><strong>建立第一批真实任务</strong>：从真实任务与真实失败出发，20–50 条即可建第一条评测基线。</li>
+<li><strong>把 Task 写到可以稳定判断</strong>：每条任务有明确输入与成功标准，约束前置。</li>
+<li><strong>同时设计正向和反向任务</strong>：不只检查「该做时能不能做」，也检查「不该做时能不能克制」。</li>
+</ol>
+<div class="key">「第一批 Agent Eval，不是收集一批 Prompt 再给输出打分」——这句话是两层框架的分水岭。</div>
+</section>
+<section class="sec" id="s10">
+<h2>10. 第一步：建立第一批真实任务</h2>
+<div class="figure">
+<svg viewBox="0 0 900 320" xmlns="http://www.w3.org/2000/svg" font-family="-apple-system,PingFang SC,Microsoft YaHei,sans-serif">
+  <g text-anchor="middle">
+    <text x="450" y="26" font-size="15" font-weight="800" fill="#1e2430">第一步：20–50 条真实任务建立第一条基线</text>
+    <text x="450" y="44" font-size="10.8" fill="#667085">种子来源与变体扩充</text>
+  </g>
+<rect x="24" y="64" width="400" height="122" rx="10" fill="#eaf1ff" stroke="#5b8def" stroke-width="1.5"/>
+    <text x="224.0" y="90.0" font-size="13" font-weight="800" fill="#1d4ed8" text-anchor="middle">种子从哪来</text>
+    <text x="224.0" y="112.0" font-size="11.2" fill="#4a5b7a" text-anchor="middle">开发过程中原本需人工检查的任务</text>
+    <text x="224.0" y="132.0" font-size="11.2" fill="#4a5b7a" text-anchor="middle">已经发生过的 Bug</text>
+    <text x="224.0" y="152.0" font-size="11.2" fill="#4a5b7a" text-anchor="middle">用户反馈与支持工单里的真实失败</text>
+    <text x="224.0" y="172.0" font-size="11.2" fill="#4a5b7a" text-anchor="middle">按对用户结果影响程度排序</text>
+<rect x="444" y="64" width="432" height="122" rx="10" fill="#fff8dd" stroke="#d9a92e" stroke-width="1.5"/>
+    <text x="660.0" y="90.0" font-size="13" font-weight="800" fill="#8a5f00" text-anchor="middle">变体怎么扩</text>
+    <text x="660.0" y="112.0" font-size="11.2" fill="#7a6330" text-anchor="middle">模型更适合在真实种子上扩充表达变体</text>
+    <text x="660.0" y="132.0" font-size="11.2" fill="#7a6330" text-anchor="middle">而不是凭空生成题目</text>
+    <text x="660.0" y="152.0" font-size="11.2" fill="#7a6330" text-anchor="middle">新增任务仍需人工检查</text>
+    <text x="660.0" y="172.0" font-size="11.2" fill="#7a6330" text-anchor="middle">不能直接进入评测集</text>
+<rect x="90" y="210" width="720" height="66" rx="10" fill="#f5f7fa" stroke="#b6c0cf" stroke-width="1.5"/>
+    <text x="450.0" y="247.6" font-size="13" font-weight="800" fill="#344054" text-anchor="middle">产物：一份来自真实使用场景的初始任务清单 + 可重复比较的评测基线</text>
+<text x="450" y="300" font-size="10.8" fill="#667085" text-anchor="middle">示例 Badcase：「今天上海天气怎么样？」Agent 没调用搜索，直接凭模型记忆作答</text>
+</svg>
+  <div class="cap">图 10｜第一批真实任务重绘</div>
+</div>
+<p><span class="tag t-video">视频原述</span>口播：「不需要先准备几百条任务，早期从 <strong>20 到 50 条真实任务</strong>开始，就足够建立第一条评测基线」。</p>
+<p><span class="tag t-video">视频原述</span><strong>第一批种子任务优先来自真实任务和真实失败</strong>：团队已有材料里「开发过程中原本需要人工检查的任务」「已经发生过 Bug」「用户反馈和支持工单里的真实失败」。模型更适合在真实种子基础上扩充表达变体，而不是凭空造题；按任务对用户结果影响程度排序，选出前 20–50 条。</p>
+<p><span class="tag t-video">视频原述</span><strong>示例 Badcase</strong>：「今天上海天气怎么样？」Agent 没有调用搜索工具，而是直接根据模型已有知识生成答案 → 转化为一条「用户需要实时信息，但 Agent 没有搜索」的任务，先放进初始任务清单。</p>
+<div class="note">产物是一份来自真实使用场景的初始任务清单 + 可重复比较的评测基线；它不需要一次覆盖所有问题。新增任务仍需人工检查，不能直接进入评测集。</div>
+</section>
+<section class="sec" id="s11">
+<h2>11. 第二步：把 Task 写到可以稳定判断</h2>
+<div class="figure">
+<svg viewBox="0 0 900 316" xmlns="http://www.w3.org/2000/svg" font-family="-apple-system,PingFang SC,Microsoft YaHei,sans-serif">
+  <g text-anchor="middle">
+    <text x="450" y="26" font-size="15" font-weight="800" fill="#1e2430">第二步：一条合格 Eval Task 的三要素</text>
+    <text x="450" y="44" font-size="10.8" fill="#667085">Anthropic 定义：具有明确输入和成功标准的独立测试</text>
+  </g>
+<rect x="24" y="64" width="270" height="118" rx="10" fill="#eaf1ff" stroke="#5b8def" stroke-width="1.5"/>
+    <text x="159.0" y="90.0" font-size="13" font-weight="800" fill="#1d4ed8" text-anchor="middle">明确输入</text>
+    <text x="159.0" y="110.0" font-size="11.2" fill="#4a5b7a" text-anchor="middle">用户询问今天上海的天气</text>
+<rect x="315" y="64" width="270" height="118" rx="10" fill="#e9f9f0" stroke="#39a97a" stroke-width="1.5"/>
+    <text x="450.0" y="90.0" font-size="13" font-weight="800" fill="#177a52" text-anchor="middle">成功标准</text>
+    <text x="450.0" y="120.0" font-size="11.2" fill="#3c6b55" text-anchor="middle">调用搜索工具</text>
+    <text x="450.0" y="140.0" font-size="11.2" fill="#3c6b55" text-anchor="middle">依据工具返回的当前信息回答</text>
+    <text x="450.0" y="160.0" font-size="11.2" fill="#3c6b55" text-anchor="middle">不能用模型记忆中的天气</text>
+<rect x="606" y="64" width="270" height="118" rx="10" fill="#fff8dd" stroke="#d9a92e" stroke-width="1.5"/>
+    <text x="741.0" y="90.0" font-size="13" font-weight="800" fill="#8a5f00" text-anchor="middle">约束前置</text>
+    <text x="741.0" y="120.0" font-size="11.2" fill="#7a6330" text-anchor="middle">要求必须提前出现在任务说明里</text>
+    <text x="741.0" y="140.0" font-size="11.2" fill="#7a6330" text-anchor="middle">不能在评分时额外检查</text>
+    <text x="741.0" y="160.0" font-size="11.2" fill="#7a6330" text-anchor="middle">任务说明里从未要求过的格式</text>
+<rect x="90" y="206" width="720" height="66" rx="10" fill="#f5f7fa" stroke="#b6c0cf" stroke-width="1.5"/>
+    <text x="450.0" y="243.6" font-size="13" font-weight="800" fill="#344054" text-anchor="middle">写完后用两个方法检查：专家一致性反查 + 参考解法验证</text>
+<text x="450" y="296" font-size="10.8" fill="#667085" text-anchor="middle">若前沿模型多次仍一次都无法通过，先怀疑 Task 与 Grader，而不是模型能力</text>
+</svg>
+  <div class="cap">图 11｜Eval Task 三要素重绘</div>
+</div>
+<p><span class="tag t-video">视频原述</span>「有一条真实任务，不代表它已经是一条合格 Eval Task」。Anthropic 对 Task 的基本定义是：<strong>一项具有明确输入和成功标准的独立测试</strong>。</p>
+<p><span class="tag t-video">视频原述</span>以天气任务为例，需要写清：</p>
+<ul>
+<li><strong>输入</strong>：用户询问今天上海的天气。</li>
+<li><strong>成功标准</strong>：Agent 调用搜索工具，并依据工具返回的当前信息回答；不能用模型记忆中的天气信息。</li>
+<li><strong>约束前置</strong>：要求必须提前出现在任务说明里，不能在 Task 里只要求「回答今天天气」，却在评分时额外检查任务说明从未要求过的固定格式。</li>
+</ul>
+<div class="note">Anthropic 文档还强调：评测任务应尽量贴近真实使用分布、同时覆盖必要边界情况。</div>
+</section>
+<section class="sec" id="s12">
+<h2>12. 两个检查方法：把「写清楚了」变成可验证</h2>
+<div class="figure">
+<svg viewBox="0 0 900 320" xmlns="http://www.w3.org/2000/svg" font-family="-apple-system,PingFang SC,Microsoft YaHei,sans-serif">
+  <g text-anchor="middle">
+    <text x="450" y="26" font-size="15" font-weight="800" fill="#1e2430">两个检查方法：把「写清楚了」变成可验证</text>
+    <text x="450" y="44" font-size="10.8" fill="#667085">观远 VOL.052 第二步</text>
+  </g>
+<rect x="24" y="64" width="400" height="122" rx="10" fill="#eaf1ff" stroke="#5b8def" stroke-width="1.5"/>
+    <text x="224.0" y="90.0" font-size="13" font-weight="800" fill="#1d4ed8" text-anchor="middle">① 专家一致性反查</text>
+    <text x="224.0" y="112.0" font-size="11.2" fill="#4a5b7a" text-anchor="middle">让两名了解业务的人独立读 Task</text>
+    <text x="224.0" y="132.0" font-size="11.2" fill="#4a5b7a" text-anchor="middle">若对「什么算通过」判断不一致</text>
+    <text x="224.0" y="152.0" font-size="11.2" fill="#4a5b7a" text-anchor="middle">说明 Task 还不够明确</text>
+    <text x="224.0" y="172.0" font-size="11.2" fill="#4a5b7a" text-anchor="middle">继续改写任务说明</text>
+<rect x="444" y="64" width="432" height="122" rx="10" fill="#e9f9f0" stroke="#39a97a" stroke-width="1.5"/>
+    <text x="660.0" y="90.0" font-size="13" font-weight="800" fill="#177a52" text-anchor="middle">② 参考解法验证</text>
+    <text x="660.0" y="112.0" font-size="11.2" fill="#3c6b55" text-anchor="middle">准备一份已知能通过所有 Grader 的参考结果</text>
+    <text x="660.0" y="132.0" font-size="11.2" fill="#3c6b55" text-anchor="middle">证明两件事：任务确实可完成</text>
+    <text x="660.0" y="152.0" font-size="11.2" fill="#3c6b55" text-anchor="middle">说明与 Grader 可执行</text>
+    <text x="660.0" y="172.0" font-size="11.2" fill="#3c6b55" text-anchor="middle">不是要求 Agent 复刻唯一路径</text>
+<rect x="90" y="210" width="720" height="66" rx="10" fill="#f5f7fa" stroke="#b6c0cf" stroke-width="1.5"/>
+    <text x="450.0" y="247.6" font-size="13" font-weight="800" fill="#344054" text-anchor="middle">落地形态：为每条测试数据定义结构化字段，再让 Grader 调用这些字段</text>
+<text x="450" y="300" font-size="10.8" fill="#667085" text-anchor="middle">与本站《评测驱动 Agent 迭代》的「完整用例 + 正反例」一致</text>
+</svg>
+  <div class="cap">图 12｜两个检查方法重绘</div>
+</div>
+<table>
+<tr><th>方法</th><th>做法</th><th>判定</th></tr>
+<tr><td>专家一致性反查</td><td>让两名了解业务的人独立阅读这条 Task</td><td>若两人对「什么算通过」判断不一致，说明 Task 不够明确</td></tr>
+<tr><td>参考解法验证</td><td>为 Task 准备一份已知能通过所有 Grader 的参考结果</td><td>证明任务确实可完成、任务说明与 Grader 可执行；不是要求 Agent 复刻唯一路径</td></tr>
+</table>
+<p><span class="tag t-video">视频原述</span>口播补充一个诊断规则：<strong>如果前沿模型尝试很多次仍一次都无法通过，先怀疑 Task 和 Grader 是否有问题，而不是马上认定模型没有能力</strong>。</p>
+<div class="note">落地形态：为每条测试数据定义<strong>结构化字段</strong>，再让 Grader 调用这些字段执行测试标准（③ 会进一步用到）。</div>
+</section>
+<section class="sec" id="s13">
+<h2>13. 第三步：同时设计正向和反向任务</h2>
+<div class="figure">
+<svg viewBox="0 0 900 310" xmlns="http://www.w3.org/2000/svg" font-family="-apple-system,PingFang SC,Microsoft YaHei,sans-serif">
+  <g text-anchor="middle">
+    <text x="450" y="26" font-size="15" font-weight="800" fill="#1e2430">第三步：正反平衡，别只测行为的一侧</text>
+    <text x="450" y="44" font-size="10.8" fill="#667085">「应该发生」与「不应发生」</text>
+  </g>
+<rect x="24" y="64" width="400" height="112" rx="10" fill="#e9f9f0" stroke="#39a97a" stroke-width="1.5"/>
+    <text x="224.0" y="90.0" font-size="13" font-weight="800" fill="#177a52" text-anchor="middle">✓ 正向任务</text>
+    <text x="224.0" y="117.0" font-size="11.2" fill="#3c6b55" text-anchor="middle">今天上海天气怎么样？</text>
+    <text x="224.0" y="137.0" font-size="11.2" fill="#3c6b55" text-anchor="middle">条件成立 → 应该调用搜索工具</text>
+    <text x="224.0" y="157.0" font-size="11.2" fill="#3c6b55" text-anchor="middle">检查「行为不足」</text>
+<rect x="444" y="64" width="432" height="112" rx="10" fill="#ffeef1" stroke="#e0728d" stroke-width="1.5"/>
+    <text x="660.0" y="90.0" font-size="13" font-weight="800" fill="#b03a55" text-anchor="middle">✗ 反向任务</text>
+    <text x="660.0" y="117.0" font-size="11.2" fill="#8c4a5b" text-anchor="middle">水在标准大气压下的沸点是多少？</text>
+    <text x="660.0" y="137.0" font-size="11.2" fill="#8c4a5b" text-anchor="middle">条件不成立 → 不需要实时搜索</text>
+    <text x="660.0" y="157.0" font-size="11.2" fill="#8c4a5b" text-anchor="middle">检查「行为过度」</text>
+<rect x="90" y="200" width="720" height="66" rx="10" fill="#f5f7fa" stroke="#b6c0cf" stroke-width="1.5"/>
+    <text x="450.0" y="237.6" font-size="13" font-weight="800" fill="#344054" text-anchor="middle">若评测集全是正向任务，可能优化出「遇到任何问题都先搜」的 Agent</text>
+<text x="450" y="290" font-size="10.8" fill="#667085" text-anchor="middle">平衡不要求数量完全相等；关键是覆盖两侧且整体分布接近真实使用</text>
+</svg>
+  <div class="cap">图 13｜正反平衡重绘</div>
+</div>
+<p><span class="tag t-video">视频原述</span>正向任务只验证「Agent 该做一件事时能不能完成」；但 Agent 不仅要在条件成立时触发行为，也要在条件不成立时保持克制。若评测集里全是正向任务，「最后可能优化出一个遇到任何问题都先搜」的 Agent。</p>
+<table>
+<tr><th>类型</th><th>示例</th><th>检查什么</th></tr>
+<tr><td>正向</td><td>今天上海天气怎么样？（应调用实时搜索）</td><td>行为不足</td></tr>
+<tr><td>反向</td><td>水在标准大气压下的沸点是多少？（不需要实时搜索）</td><td>行为过度</td></tr>
+</table>
+<div class="note">这种设计叫<strong>平衡问题集</strong>：不要求正反数量完全相等，关键是「不能只评测行为的一侧」，且整体分布尽量接近真实使用；还要加入最容易混淆的边界任务。</div>
+</section>
+<section class="sec" id="s14">
+<h2>14. 三步收束：第一层的三个产物</h2>
+<div class="figure">
+<svg viewBox="0 0 900 310" xmlns="http://www.w3.org/2000/svg" font-family="-apple-system,PingFang SC,Microsoft YaHei,sans-serif">
+  <g text-anchor="middle">
+    <text x="450" y="26" font-size="15" font-weight="800" fill="#1e2430">三步收束：第一层的三个产物</text>
+    <text x="450" y="44" font-size="10.8" fill="#667085">从真实失败到可评测任务</text>
+  </g>
+<rect x="24" y="64" width="270" height="112" rx="10" fill="#eaf1ff" stroke="#5b8def" stroke-width="1.5"/>
+    <text x="159.0" y="90.0" font-size="13" font-weight="800" fill="#1d4ed8" text-anchor="middle">① 初始任务清单</text>
+    <text x="159.0" y="127.0" font-size="11.2" fill="#4a5b7a" text-anchor="middle">来自真实使用场景</text>
+    <text x="159.0" y="147.0" font-size="11.2" fill="#4a5b7a" text-anchor="middle">20–50 条</text>
+<rect x="315" y="64" width="270" height="112" rx="10" fill="#fff8dd" stroke="#d9a92e" stroke-width="1.5"/>
+    <text x="450.0" y="90.0" font-size="13" font-weight="800" fill="#8a5f00" text-anchor="middle">② 结构化 Task</text>
+    <text x="450.0" y="127.0" font-size="11.2" fill="#7a6330" text-anchor="middle">输入 / 成功标准 / 约束</text>
+    <text x="450.0" y="147.0" font-size="11.2" fill="#7a6330" text-anchor="middle">专家一致 + 参考解法</text>
+<rect x="606" y="64" width="270" height="112" rx="10" fill="#e9f9f0" stroke="#39a97a" stroke-width="1.5"/>
+    <text x="741.0" y="90.0" font-size="13" font-weight="800" fill="#177a52" text-anchor="middle">③ 平衡问题集</text>
+    <text x="741.0" y="127.0" font-size="11.2" fill="#3c6b55" text-anchor="middle">正向 + 反向 + 边界</text>
+    <text x="741.0" y="147.0" font-size="11.2" fill="#3c6b55" text-anchor="middle">贴近真实分布</text>
+<g stroke="#8a94a6" stroke-width="1.7" fill="none"><line x1="296" y1="120" x2="313" y2="120"/><line x1="305" y1="115" x2="313" y2="120"/><line x1="305" y1="125" x2="313" y2="120"/></g>
+<g stroke="#8a94a6" stroke-width="1.7" fill="none"><line x1="587" y1="120" x2="604" y2="120"/><line x1="596" y1="115" x2="604" y2="120"/><line x1="596" y1="125" x2="604" y2="120"/></g>
+<rect x="90" y="200" width="720" height="66" rx="10" fill="#f5f7fa" stroke="#b6c0cf" stroke-width="1.5"/>
+    <text x="450.0" y="237.6" font-size="13" font-weight="800" fill="#344054" text-anchor="middle">第一层完成 → 下一期搭「运行与评分」</text>
+<text x="450" y="290" font-size="10.8" fill="#667085" text-anchor="middle">「第一批 Agent Eval 不是收集一批 Prompt 再给输出打分」——口播</text>
+</svg>
+  <div class="cap">图 14｜第一层产物重绘</div>
+</div>
+<table>
+<tr><th>产物</th><th>内容</th><th>验收</th></tr>
+<tr><td>初始任务清单</td><td>真实场景、20–50 条、按影响排序</td><td>可重复比较的基线</td></tr>
+<tr><td>结构化 Task</td><td>输入 / 成功标准 / 约束前置</td><td>专家一致 + 参考解法通过</td></tr>
+<tr><td>平衡问题集</td><td>正向 + 反向 + 边界</td><td>覆盖行为两侧、贴近真实分布</td></tr>
+</table>
+<div class="key">做到这三步，才真正拥有了一批可以评测 Agent 的任务；下一期搭「运行与评分」。</div>
+</section>
+<section class="sec" id="s15">
+<h2>15. 第二层五步：让评分可解释、可复查</h2>
+<div class="figure">
+<svg viewBox="0 0 900 296" xmlns="http://www.w3.org/2000/svg" font-family="-apple-system,PingFang SC,Microsoft YaHei,sans-serif">
+  <g text-anchor="middle">
+    <text x="450" y="26" font-size="15" font-weight="800" fill="#1e2430">第二层五步：让评分可解释、可复查</text>
+    <text x="450" y="44" font-size="10.8" fill="#667085">观远 VOL.053 顶部导航六段逐字重绘</text>
+  </g>
+<rect x="24" y="62" width="164" height="100" rx="10" fill="#eaf1ff" stroke="#5b8def" stroke-width="1.5"/>
+    <text x="106.0" y="88.0" font-size="13" font-weight="800" fill="#1d4ed8" text-anchor="middle">① 隔离环境</text>
+    <text x="106.0" y="108.0" font-size="11.2" fill="#4a5b7a" text-anchor="middle">可比条件</text>
+<rect x="202" y="62" width="164" height="100" rx="10" fill="#fff8dd" stroke="#d9a92e" stroke-width="1.5"/>
+    <text x="284.0" y="88.0" font-size="13" font-weight="800" fill="#8a5f00" text-anchor="middle">② Outcome+ Transcript</text>
+    <text x="284.0" y="108.0" font-size="11.2" fill="#7a6330" text-anchor="middle">结果与轨迹</text>
+<rect x="380" y="62" width="164" height="100" rx="10" fill="#e9f9f0" stroke="#39a97a" stroke-width="1.5"/>
+    <text x="462.0" y="88.0" font-size="13" font-weight="800" fill="#177a52" text-anchor="middle">③ 三类 Grader</text>
+    <text x="462.0" y="108.0" font-size="11.2" fill="#3c6b55" text-anchor="middle">代码/模型/人工</text>
+<rect x="558" y="62" width="164" height="100" rx="10" fill="#f3edff" stroke="#9575e0" stroke-width="1.5"/>
+    <text x="640.0" y="88.0" font-size="13" font-weight="800" fill="#6d42c9" text-anchor="middle">④ 硬条件评分</text>
+    <text x="640.0" y="108.0" font-size="11.2" fill="#5d4a91" text-anchor="middle">别让总分掩盖</text>
+<rect x="736" y="62" width="140" height="100" rx="10" fill="#ffeef1" stroke="#e0728d" stroke-width="1.5"/>
+    <text x="806.0" y="88.0" font-size="13" font-weight="800" fill="#b03a55" text-anchor="middle">⑤ 测 Grader</text>
+    <text x="806.0" y="108.0" font-size="11.2" fill="#8c4a5b" text-anchor="middle">先验证判据</text>
+<g stroke="#8a94a6" stroke-width="1.7" fill="none"><line x1="190" y1="112" x2="200" y2="112"/><line x1="192" y1="107" x2="200" y2="112"/><line x1="192" y1="117" x2="200" y2="112"/></g>
+<g stroke="#8a94a6" stroke-width="1.7" fill="none"><line x1="368" y1="112" x2="378" y2="112"/><line x1="370" y1="107" x2="378" y2="112"/><line x1="370" y1="117" x2="378" y2="112"/></g>
+<g stroke="#8a94a6" stroke-width="1.7" fill="none"><line x1="546" y1="112" x2="556" y2="112"/><line x1="548" y1="107" x2="556" y2="112"/><line x1="548" y1="117" x2="556" y2="112"/></g>
+<g stroke="#8a94a6" stroke-width="1.7" fill="none"><line x1="724" y1="112" x2="734" y2="112"/><line x1="726" y1="107" x2="734" y2="112"/><line x1="726" y1="117" x2="734" y2="112"/></g>
+<rect x="90" y="186" width="720" height="66" rx="10" fill="#f5f7fa" stroke="#b6c0cf" stroke-width="1.5"/>
+    <text x="450.0" y="223.6" font-size="13" font-weight="800" fill="#344054" text-anchor="middle">一条 Task 进入可重置环境 → 保留结果与轨迹 → 硬条件先判通过 → 模型评分语义质量 → 人评校准</text>
+<text x="450" y="276" font-size="10.8" fill="#667085" text-anchor="middle">参考：Anthropic《Demystifying evals for AI agents》+ OpenAI Evals API / Graders 文档</text>
+</svg>
+  <div class="cap">图 15｜第二层五步重绘</div>
+</div>
+<p><span class="tag t-video">视频原述</span>视频 ③ 开场追问：「同一个 Agent 跑同一批评测任务，分数波动到底是 Agent 能力变了，还是运行环境和评分方法？」第二期解决「怎么运行、怎么判分」，对应 Anthropic《Demystifying evals for AI agents》与 OpenAI Evals API / Graders 文档。</p>
+<table>
+<tr><th>#</th><th>步骤</th><th>解决什么</th></tr>
+<tr><td>1</td><td>隔离运行环境</td><td>让每次 Trial 从可比条件开始</td></tr>
+<tr><td>2</td><td>Outcome 与 Transcript</td><td>同时保留终态与轨迹</td></tr>
+<tr><td>3</td><td>三类 Grader</td><td>确定性交给代码、语义交给模型、边界交给人</td></tr>
+<tr><td>4</td><td>硬条件与评分</td><td>别让一个总分掩盖关键失败</td></tr>
+<tr><td>5</td><td>先测 Grader 再测 Agent</td><td>判据本身也要验证</td></tr>
+</table>
+</section>
+<section class="sec" id="s16">
+<h2>16. 第一步：让每次 Trial 从可比环境开始</h2>
+<div class="figure">
+<svg viewBox="0 0 900 326" xmlns="http://www.w3.org/2000/svg" font-family="-apple-system,PingFang SC,Microsoft YaHei,sans-serif">
+  <g text-anchor="middle">
+    <text x="450" y="26" font-size="15" font-weight="800" fill="#1e2430">第一步：让每次 Trial 从可比环境开始</text>
+    <text x="450" y="44" font-size="10.8" fill="#667085">隔离的不是模型随机性，是与能力无关的干扰</text>
+  </g>
+<rect x="24" y="64" width="400" height="128" rx="10" fill="#eaf1ff" stroke="#5b8def" stroke-width="1.5"/>
+    <text x="224.0" y="90.0" font-size="13" font-weight="800" fill="#1d4ed8" text-anchor="middle">固定与重置</text>
+    <text x="224.0" y="125.0" font-size="11.2" fill="#4a5b7a" text-anchor="middle">天气工具用固定测试快照</text>
+    <text x="224.0" y="145.0" font-size="11.2" fill="#4a5b7a" text-anchor="middle">每次 Trial 前重置对话 / 任务状态 / 工具环境</text>
+    <text x="224.0" y="165.0" font-size="11.2" fill="#4a5b7a" text-anchor="middle">固定模型版本、Agent 配置、工具定义、任务数据版本</text>
+<rect x="444" y="64" width="432" height="128" rx="10" fill="#ffeef1" stroke="#e0728d" stroke-width="1.5"/>
+    <text x="660.0" y="90.0" font-size="13" font-weight="800" fill="#b03a55" text-anchor="middle">区分失败类型</text>
+    <text x="660.0" y="115.0" font-size="11.2" fill="#8c4a5b" text-anchor="middle">工具超时、环境启动失败</text>
+    <text x="660.0" y="135.0" font-size="11.2" fill="#8c4a5b" text-anchor="middle">属于基础设施错误，单独记录</text>
+    <text x="660.0" y="155.0" font-size="11.2" fill="#8c4a5b" text-anchor="middle">标记「无效运行」并重试</text>
+    <text x="660.0" y="175.0" font-size="11.2" fill="#8c4a5b" text-anchor="middle">不能直接算成 Agent 任务失败</text>
+<rect x="90" y="216" width="720" height="66" rx="10" fill="#f5f7fa" stroke="#b6c0cf" stroke-width="1.5"/>
+    <text x="450.0" y="253.6" font-size="13" font-weight="800" fill="#344054" text-anchor="middle">产物：可重置、记录版本、区分 Agent 失败与环境失败的运行环境</text>
+<text x="450" y="306" font-size="10.8" fill="#667085" text-anchor="middle">若每次直接调真实天气接口：晴天 / 阵雨 / 超时，三次 Trial 面对的已不是同一项条件</text>
+</svg>
+  <div class="cap">图 16｜隔离运行环境重绘</div>
+</div>
+<p><span class="tag t-video">视频原述</span>口播反例：如果每次评测都直接调用真实天气接口——第一次返回晴天、第二次阵雨、第三次接口超时——<strong>三次 Trial 面对的已经不是同一项条件</strong>，分数变化可能来自外部数据与工具故障，而不是 Agent 能力。</p>
+<ul>
+<li>为天气工具准备一份<strong>固定测试快照</strong>，让每次调用都返回同一份已知数据。</li>
+<li>每次 Trial 开始前<strong>重置对话、任务状态和工具环境</strong>，避免上一次的文件或数据影响下一次。</li>
+<li>固定本次评测使用的<strong>模型版本、Agent 配置、工具定义和任务数据版本</strong>并留下记录。</li>
+<li>工具超时、环境启动失败等<strong>基础设施错误单独记录</strong>，标记「无效运行」并重试，不能直接算成 Agent 任务失败。</li>
+</ul>
+<div class="key">隔离环境<strong>不会消除模型本身的非确定性</strong>，它的作用是排除与 Agent 能力无关的干扰，让不同 Trial 尽可能在可比条件下运行。</div>
+</section>
+<section class="sec" id="s17">
+<h2>17. 第二步：同时保留 Outcome 与 Transcript</h2>
+<div class="figure">
+<svg viewBox="0 0 900 326" xmlns="http://www.w3.org/2000/svg" font-family="-apple-system,PingFang SC,Microsoft YaHei,sans-serif">
+  <g text-anchor="middle">
+    <text x="450" y="26" font-size="15" font-weight="800" fill="#1e2430">第二步：Outcome 与 Transcript 各管一件事</text>
+    <text x="450" y="44" font-size="10.8" fill="#667085">Eval Harness 启动一次 Trial 至少留两类记录</text>
+  </g>
+<rect x="24" y="64" width="400" height="128" rx="10" fill="#e9f9f0" stroke="#39a97a" stroke-width="1.5"/>
+    <text x="224.0" y="90.0" font-size="13" font-weight="800" fill="#177a52" text-anchor="middle">Outcome：终态</text>
+    <text x="224.0" y="115.0" font-size="11.2" fill="#3c6b55" text-anchor="middle">任务结束时真正产生的结果</text>
+    <text x="224.0" y="135.0" font-size="11.2" fill="#3c6b55" text-anchor="middle">天气任务＝最后返回的天气信息</text>
+    <text x="224.0" y="155.0" font-size="11.2" fill="#3c6b55" text-anchor="middle">写文件/数据库任务还要检查外部状态</text>
+    <text x="224.0" y="175.0" font-size="11.2" fill="#3c6b55" text-anchor="middle">用来判断任务最后是否完成</text>
+<rect x="444" y="64" width="432" height="128" rx="10" fill="#fff8dd" stroke="#d9a92e" stroke-width="1.5"/>
+    <text x="660.0" y="90.0" font-size="13" font-weight="800" fill="#8a5f00" text-anchor="middle">Transcript：轨迹</text>
+    <text x="660.0" y="115.0" font-size="11.2" fill="#7a6330" text-anchor="middle">模型输出 / 工具调用 / 工具返回</text>
+    <text x="660.0" y="135.0" font-size="11.2" fill="#7a6330" text-anchor="middle">中间消息 / 状态变化 / 轮数</text>
+    <text x="660.0" y="155.0" font-size="11.2" fill="#7a6330" text-anchor="middle">解释为什么成功、失败在哪一步</text>
+    <text x="660.0" y="175.0" font-size="11.2" fill="#7a6330" text-anchor="middle">用于诊断、效率、安全与 Task 明确要求的关键行为</text>
+<rect x="90" y="216" width="720" height="66" rx="10" fill="#f5f7fa" stroke="#b6c0cf" stroke-width="1.5"/>
+    <text x="450.0" y="253.6" font-size="13" font-weight="800" fill="#344054" text-anchor="middle">「结果碰巧正确」算不算通过？取决于 Task 一开始定义的成功标准</text>
+<text x="450" y="306" font-size="10.8" fill="#667085" text-anchor="middle">只测最终结果就不该因没走预设路径扣分；测搜索决策则没搜就不能通过</text>
+</svg>
+  <div class="cap">图 17｜Outcome 与 Transcript 重绘</div>
+</div>
+<table>
+<tr><th>记录</th><th>定义</th><th>用途</th></tr>
+<tr><td>Outcome</td><td>任务结束时真正产生的结果（天气任务＝最后返回的天气信息；写文件/数据库任务还要检查外部状态）</td><td>判断任务最后是否完成</td></tr>
+<tr><td>Transcript（Trace / Trajectory）</td><td>模型输出、工具调用、工具返回、中间消息、状态变化，可附轮数</td><td>解释为什么成功、失败发生在哪一步；用于诊断、效率、安全与 Task 明确要求的关键行为</td></tr>
+</table>
+<p><span class="tag t-video">视频原述</span><strong>关键判断</strong>：如果这条 Task 评测的是「实时搜索决策」，Agent 结果只是碰巧正确也不能通过；如果 Task 只测最终结果是否正确，就不应因 Agent 没走某条预设路径而扣分——<strong>取决于 Task 一开始定义的成功标准</strong>。</p>
+<div class="note">这正是本站《Agent 评测体系》「Outcome / Trace 分层」与《评测驱动迭代》「主指标 + 护栏 + 跳过」的运行层实现。</div>
+</section>
+<section class="sec" id="s18">
+<h2>18. 第三步：三类 Grader 分工</h2>
+<div class="figure">
+<svg viewBox="0 0 900 326" xmlns="http://www.w3.org/2000/svg" font-family="-apple-system,PingFang SC,Microsoft YaHei,sans-serif">
+  <g text-anchor="middle">
+    <text x="450" y="26" font-size="15" font-weight="800" fill="#1e2430">第三步：三类 Grader 分工</text>
+    <text x="450" y="44" font-size="10.8" fill="#667085">确定性条件交给代码，语义质量交给模型，边界交给人</text>
+  </g>
+<rect x="24" y="64" width="270" height="128" rx="10" fill="#eaf1ff" stroke="#5b8def" stroke-width="1.5"/>
+    <text x="159.0" y="90.0" font-size="13" font-weight="800" fill="#1d4ed8" text-anchor="middle">① Code-based</text>
+    <text x="159.0" y="115.0" font-size="11.2" fill="#4a5b7a" text-anchor="middle">成功条件可被程序精确验证</text>
+    <text x="159.0" y="135.0" font-size="11.2" fill="#4a5b7a" text-anchor="middle">调用 / 参数 / 回答与工具返回一致</text>
+    <text x="159.0" y="155.0" font-size="11.2" fill="#4a5b7a" text-anchor="middle">稳定可重复</text>
+    <text x="159.0" y="175.0" font-size="11.2" fill="#4a5b7a" text-anchor="middle">不适合开放性表达质量</text>
+<rect x="315" y="64" width="270" height="128" rx="10" fill="#f3edff" stroke="#9575e0" stroke-width="1.5"/>
+    <text x="450.0" y="90.0" font-size="13" font-weight="800" fill="#6d42c9" text-anchor="middle">② LLM-as-Judge</text>
+    <text x="450.0" y="115.0" font-size="11.2" fill="#5d4a91" text-anchor="middle">评价表达是否清楚</text>
+    <text x="450.0" y="135.0" font-size="11.2" fill="#5d4a91" text-anchor="middle">有无工具结果无法支持的结论</text>
+    <text x="450.0" y="155.0" font-size="11.2" fill="#5d4a91" text-anchor="middle">Rubric 分维：正确性 / 证据一致性 / 表达质量</text>
+    <text x="450.0" y="175.0" font-size="11.2" fill="#5d4a91" text-anchor="middle">允许返回 Unknown 避免强猜</text>
+<rect x="606" y="64" width="270" height="128" rx="10" fill="#e9f9f0" stroke="#39a97a" stroke-width="1.5"/>
+    <text x="741.0" y="90.0" font-size="13" font-weight="800" fill="#177a52" text-anchor="middle">③ 人工评分</text>
+    <text x="741.0" y="115.0" font-size="11.2" fill="#3c6b55" text-anchor="middle">不需覆盖每次 Trial</text>
+    <text x="741.0" y="135.0" font-size="11.2" fill="#3c6b55" text-anchor="middle">准备专家已确认样本</text>
+    <text x="741.0" y="155.0" font-size="11.2" fill="#3c6b55" text-anchor="middle">定期校准 LLM Grader</text>
+    <text x="741.0" y="175.0" font-size="11.2" fill="#3c6b55" text-anchor="middle">持续分歧先修 Rubric / 证据输入 / 分类边界</text>
+<rect x="90" y="216" width="720" height="66" rx="10" fill="#f5f7fa" stroke="#b6c0cf" stroke-width="1.5"/>
+    <text x="450.0" y="253.6" font-size="13" font-weight="800" fill="#344054" text-anchor="middle">工具形态：字符串检查 / Python Grader / Multi Grader；结构化变量传入</text>
+<text x="450" y="306" font-size="10.8" fill="#667085" text-anchor="middle">不要直接扩大自动评分规模——先把判据本身校准</text>
+</svg>
+  <div class="cap">图 18｜三类 Grader 重绘</div>
+</div>
+<table>
+<tr><th>Grader</th><th>适用</th><th>要点</th></tr>
+<tr><td>Code-based</td><td>成功条件可被程序精确验证</td><td>检查是否调用天气工具、参数是否正确、回答是否与工具返回一致；稳定可重复，但不适合开放性表达质量。工具形态：字符串检查 / Python Grader / Multi Grader，结构化变量传入</td></tr>
+<tr><td>LLM-as-Judge</td><td>开放性表达质量、证据一致性</td><td>Rubric 不能只写「评价回答质量」，要把正确性、证据一致性、表达质量分开逐维给可判断标准；允许返回 Unknown 避免强猜</td></tr>
+<tr><td>人工评分</td><td>校准，不需覆盖每次 Trial</td><td>准备专家已确认样本，定期检查 LLM Grader；若模型与人工持续分歧，先修 Rubric、证据输入或分类边界，不要直接扩大自动评分规模</td></tr>
+</table>
+<div class="key"><strong>能够确定性验证的条件先交给代码，需要理解语义和质量的部分再交给模型，最后用少量人工样本持续校准模型评分。</strong></div>
+</section>
+<section class="sec" id="s19">
+<h2>19. 第四、五步：硬条件评分与 Grader 自测</h2>
+<div class="figure">
+<svg viewBox="0 0 900 326" xmlns="http://www.w3.org/2000/svg" font-family="-apple-system,PingFang SC,Microsoft YaHei,sans-serif">
+  <g text-anchor="middle">
+    <text x="450" y="26" font-size="15" font-weight="800" fill="#1e2430">第四、五步：硬条件先判，Grader 先测</text>
+    <text x="450" y="44" font-size="10.8" fill="#667085">别让一个总分掩盖关键失败</text>
+  </g>
+<rect x="24" y="64" width="400" height="128" rx="10" fill="#ffeef1" stroke="#e0728d" stroke-width="1.5"/>
+    <text x="224.0" y="90.0" font-size="13" font-weight="800" fill="#b03a55" text-anchor="middle">④ 硬条件 vs 软质量</text>
+    <text x="224.0" y="115.0" font-size="11.2" fill="#8c4a5b" text-anchor="middle">天气任务拆四维：调用 / 参数 / 一致性 / 表达</text>
+    <text x="224.0" y="135.0" font-size="11.2" fill="#8c4a5b" text-anchor="middle">前三项决定任务是否真正成功</text>
+    <text x="224.0" y="155.0" font-size="11.2" fill="#8c4a5b" text-anchor="middle">表达质量作为独立分数</text>
+    <text x="224.0" y="175.0" font-size="11.2" fill="#8c4a5b" text-anchor="middle">全部平均会让失败 Trial 拿到看似不错的总分</text>
+<rect x="444" y="64" width="432" height="128" rx="10" fill="#fff8dd" stroke="#d9a92e" stroke-width="1.5"/>
+    <text x="660.0" y="90.0" font-size="13" font-weight="800" fill="#8a5f00" text-anchor="middle">⑤ 先测 Grader</text>
+    <text x="660.0" y="115.0" font-size="11.2" fill="#7a6330" text-anchor="middle">Grader 本身也是需验证的系统</text>
+    <text x="660.0" y="135.0" font-size="11.2" fill="#7a6330" text-anchor="middle">准备应通过 / 应失败 / 边界分歧三组样本</text>
+    <text x="660.0" y="155.0" font-size="11.2" fill="#7a6330" text-anchor="middle">先看 Code Grader 能否放过正确、拦住错误</text>
+    <text x="660.0" y="175.0" font-size="11.2" fill="#7a6330" text-anchor="middle">每次改 Rubric / 评分模型 / 组合方式后重跑</text>
+<rect x="90" y="216" width="720" height="66" rx="10" fill="#f5f7fa" stroke="#b6c0cf" stroke-width="1.5"/>
+    <text x="450.0" y="253.6" font-size="13" font-weight="800" fill="#344054" text-anchor="middle">硬条件判断通过 → 再在通过的 Trial 中比较软性质量；可设部分得分但每部分对应明确条件</text>
+<text x="450" y="306" font-size="10.8" fill="#667085" text-anchor="middle">这样得到的评分才能被解释和复查</text>
+</svg>
+  <div class="cap">图 19｜硬条件评分与 Grader 自测重绘</div>
+</div>
+<h3 id="191-别让一个总分掩盖关键失败">19.1 别让一个总分掩盖关键失败</h3>
+<p><span class="tag t-video">视频原述</span>天气任务可拆成四个维度：是否调用工具、调用参数是否正确、回答与工具结果是否一致、表达是否清晰。<strong>前三项决定任务是否真正成功，表达质量只作为独立分数</strong>区分完成后的质量差异；若全部算进一个平均分，失败 Trial 仍可拿到看似不错的总分。</p>
+<p><span class="tag t-video">视频原述</span>正确组合：<strong>硬条件判断任务是否通过 → 再在通过的 Trial 中比较软性质量</strong>；任务也可设部分得分，但每一部分都要对应一个明确条件。</p>
+<h3 id="192-先测-grader再用-grader-测-agent">19.2 先测 Grader，再用 Grader 测 Agent</h3>
+<p><span class="tag t-video">视频原述</span>「Grader 本身也是一个需要验证的系统」：准备<strong>一组应该通过、一组应该失败、几条容易分歧的边界样本</strong>；先看 Code-based Grader 能否放过正确结果并拦住已知错误，再校准 LLM Grader 的准确性与分类边界。每次修改 Rubric、评分模型或分数组合方式后都要重跑。</p>
+<div class="note">第二层收束：一条 Task 进入可重置环境 → Harness 保留 Outcome 与 Transcript → 确定性 Grader 查硬条件 → 模型 Grader 评语义质量 → 少量人工样本持续校准 → 评分可解释、可复查。</div>
+</section>
+<section class="sec" id="s20">
+<h2>20. 综合闭环与本站体系对齐</h2>
+<div class="figure">
+<svg viewBox="0 0 900 384" xmlns="http://www.w3.org/2000/svg" font-family="-apple-system,PingFang SC,Microsoft YaHei,sans-serif">
+  <g text-anchor="middle">
+    <text x="450" y="26" font-size="15" font-weight="800" fill="#1e2430">【补充】从 0 到 1 的完整链路</text>
+    <text x="450" y="44" font-size="10.8" fill="#667085">把三支视频拼成一条可执行的工程链</text>
+  </g>
+<rect x="24" y="62" width="164" height="76" rx="10" fill="#eaf1ff" stroke="#5b8def" stroke-width="1.5"/>
+    <text x="106.0" y="88.0" font-size="13" font-weight="800" fill="#1d4ed8" text-anchor="middle">定业务目标</text>
+    <text x="106.0" y="108.0" font-size="11.2" fill="#4a5b7a" text-anchor="middle">成功标准</text>
+<rect x="202" y="62" width="164" height="76" rx="10" fill="#fff8dd" stroke="#d9a92e" stroke-width="1.5"/>
+    <text x="284.0" y="88.0" font-size="13" font-weight="800" fill="#8a5f00" text-anchor="middle">真实任务集</text>
+    <text x="284.0" y="108.0" font-size="11.2" fill="#7a6330" text-anchor="middle">20–50 条 / 正反平衡</text>
+<rect x="380" y="62" width="164" height="76" rx="10" fill="#e9f9f0" stroke="#39a97a" stroke-width="1.5"/>
+    <text x="462.0" y="88.0" font-size="13" font-weight="800" fill="#177a52" text-anchor="middle">隔离运行环境</text>
+    <text x="462.0" y="108.0" font-size="11.2" fill="#3c6b55" text-anchor="middle">快照 / 重置 / 版本</text>
+<rect x="558" y="62" width="164" height="76" rx="10" fill="#f3edff" stroke="#9575e0" stroke-width="1.5"/>
+    <text x="640.0" y="88.0" font-size="13" font-weight="800" fill="#6d42c9" text-anchor="middle">执行与记录</text>
+    <text x="640.0" y="108.0" font-size="11.2" fill="#5d4a91" text-anchor="middle">Outcome+Transcript</text>
+<rect x="736" y="62" width="140" height="76" rx="10" fill="#ffeef1" stroke="#e0728d" stroke-width="1.5"/>
+    <text x="806.0" y="88.0" font-size="13" font-weight="800" fill="#b03a55" text-anchor="middle">三类 Grader</text>
+    <text x="806.0" y="108.0" font-size="11.2" fill="#8c4a5b" text-anchor="middle">硬条件+软质量</text>
+<g stroke="#8a94a6" stroke-width="1.7" fill="none"><line x1="190" y1="100" x2="200" y2="100"/><line x1="192" y1="95" x2="200" y2="100"/><line x1="192" y1="105" x2="200" y2="100"/></g>
+<g stroke="#8a94a6" stroke-width="1.7" fill="none"><line x1="368" y1="100" x2="378" y2="100"/><line x1="370" y1="95" x2="378" y2="100"/><line x1="370" y1="105" x2="378" y2="100"/></g>
+<g stroke="#8a94a6" stroke-width="1.7" fill="none"><line x1="546" y1="100" x2="556" y2="100"/><line x1="548" y1="95" x2="556" y2="100"/><line x1="548" y1="105" x2="556" y2="100"/></g>
+<g stroke="#8a94a6" stroke-width="1.7" fill="none"><line x1="724" y1="100" x2="734" y2="100"/><line x1="726" y1="95" x2="734" y2="100"/><line x1="726" y1="105" x2="734" y2="100"/></g>
+<rect x="90" y="166" width="220" height="76" rx="10" fill="#f5f7fa" stroke="#b6c0cf" stroke-width="1.5"/>
+    <text x="200.0" y="192.0" font-size="13" font-weight="800" fill="#344054" text-anchor="middle">Dashboard</text>
+    <text x="200.0" y="212.0" font-size="11.2" fill="#5a6475" text-anchor="middle">趋势</text>
+<rect x="340" y="166" width="220" height="76" rx="10" fill="#f5f7fa" stroke="#b6c0cf" stroke-width="1.5"/>
+    <text x="450.0" y="192.0" font-size="13" font-weight="800" fill="#344054" text-anchor="middle">Release Decision</text>
+    <text x="450.0" y="212.0" font-size="11.2" fill="#5a6475" text-anchor="middle">能不能上线</text>
+<rect x="590" y="166" width="220" height="76" rx="10" fill="#f5f7fa" stroke="#b6c0cf" stroke-width="1.5"/>
+    <text x="700.0" y="192.0" font-size="13" font-weight="800" fill="#344054" text-anchor="middle">Error Analysis</text>
+    <text x="700.0" y="212.0" font-size="11.2" fill="#5a6475" text-anchor="middle">失败归因</text>
+<g stroke="#8a94a6" stroke-width="1.7" fill="none"><line x1="312" y1="204" x2="338" y2="204"/><line x1="330" y1="199" x2="338" y2="204"/><line x1="330" y1="209" x2="338" y2="204"/></g>
+<g stroke="#8a94a6" stroke-width="1.7" fill="none"><line x1="562" y1="204" x2="588" y2="204"/><line x1="580" y1="199" x2="588" y2="204"/><line x1="580" y1="209" x2="588" y2="204"/></g>
+<g stroke="#8a94a6" stroke-width="1.6" fill="none"><line x1="700" y1="244" x2="700" y2="272"/><line x1="700" y1="272" x2="200" y2="272"/><line x1="200" y1="272" x2="200" y2="244"/></g>
+<rect x="180" y="282" width="540" height="54" rx="10" fill="#e9f9f0" stroke="#39a97a" stroke-width="1.5"/>
+    <text x="450.0" y="313.6" font-size="13" font-weight="800" fill="#177a52" text-anchor="middle">失败 Case 回流数据集 → 飞轮再转一圈</text>
+<text x="450" y="360" font-size="10.8" fill="#667085" text-anchor="middle">评测体系本身也要演进：它不是可选的测试工具，而是产品经理的研发仪表盘</text>
+</svg>
+  <div class="cap">图 20｜【补充】0→1 完整链路全景</div>
+</div>
+<div class="key">三支视频拼成一条链：<strong>定业务目标 → 真实任务集（正反平衡）→ 隔离环境 → 执行记录（Outcome+Transcript）→ 三类 Grader 判分 → Dashboard 看趋势 → 上线决策 → Error Analysis 回流 → 数据集再演进。</strong></div>
+<table>
+<tr><th>本教程</th><th>本站既有内容</th><th>对应关系</th></tr>
+<tr><td>完整架构与数据飞轮</td><td><a href="../agent-eval-driven-tutorial/Agent评测驱动迭代完全教程.html">评测驱动 Agent 迭代（在线阅读）</a></td><td>能力评测毕业成回归集、线上 Bad Case 回填</td></tr>
+<tr><td>20–50 条真实任务 / 正反平衡</td><td><a href="../agent-metrics-tutorial/Agent评测指标系统完全教程.html">Agent 评测指标系统（在线阅读）</a></td><td>100–500 Case、40/40/20 分层、正反例</td></tr>
+<tr><td>写清 Task 与成功标准</td><td><a href="../agent-eval-method-tutorial/Agent评测方法论完全教程.html">Agent 评测方法论（在线阅读）</a></td><td>Anthropic Task 定义、完整用例、结构化结果</td></tr>
+<tr><td>三类 Grader / 硬条件</td><td><a href="../agent-judge-bias-tutorial/Agent评测偏见消除完全教程.html">消除 LLM Judge 偏见（在线阅读）</a></td><td>Rule vs LLM Judge、量化 Rubric、人评校准</td></tr>
+<tr><td>隔离环境 / 无效运行</td><td><a href="../agent-evaluation-tutorial/Agent评测体系完全教程.html">Agent 评测体系（在线阅读）</a></td><td>Trial 可复现、跳过机制</td></tr>
+<tr><td>Metrics / Dashboard / 上线决策</td><td><a href="../agent-metrics-tutorial/Agent评测指标系统完全教程.html">Agent 评测指标系统（在线阅读）</a></td><td>三张表、看板而非总分、91→96% 决策案例</td></tr>
+</table>
+<div class="note"><strong>【补充】</strong> 视频 ③ 结尾预告第三期：分数波动如何解释、Capability Eval 与 Regression Eval 如何区分——这两点在本站第三篇（pass@k / pass^k、能力→回归毕业）已有展开，本教程不代第三期补写。</div>
+</section>
+<section class="sec" id="s21">
+<h2>21. 补充篇 A：专业名词速查（51 条）</h2>
+<p><strong>【补充】</strong> 按「架构 → 任务集 → 运行环境 → 评分 → 决策」分组。</p>
+<table>
+<tr><th>术语</th><th>英文 / 别名</th><th>释义</th></tr>
+<tr><td>Evaluation System</td><td>评测系统</td><td>贯穿 Agent 生命周期的工程体系，不是发布前一次测试</td></tr>
+<tr><td>Evaluation-first</td><td>评测优先</td><td>先定义怎么评，再开发 Agent</td></tr>
+<tr><td>User Real Request</td><td>真实用户请求</td><td>架构闭环的起点</td></tr>
+<tr><td>Trace Collection</td><td>轨迹采集</td><td>收集线上 Online Logs 与 Bad Cases</td></tr>
+<tr><td>Bad Case</td><td>失败案例</td><td>线上翻车样本，飞轮的燃料</td></tr>
+<tr><td>Dataset Evolution</td><td>数据集演进</td><td>评测集随产品一起增长</td></tr>
+<tr><td>Dataset Manager</td><td>数据集管理</td><td>统一 Synthetic + Human + Real 三类样本</td></tr>
+<tr><td>Synthetic / Human / Real</td><td>合成 / 人工 / 真实</td><td>三类评测样本来源</td></tr>
+<tr><td>Agent Runtime</td><td>Agent 运行体</td><td>LLM + Memory + Tool + Workflow</td></tr>
+<tr><td>Trajectory Store</td><td>轨迹存储</td><td>保存 Prompt / Tool / Reasoning / Output</td></tr>
+<tr><td>Evaluation Engine</td><td>评测引擎</td><td>调度三类 Judge 执行评分</td></tr>
+<tr><td>Rule Judge</td><td>规则判据</td><td>确定性、可重复的程序判定</td></tr>
+<tr><td>LLM Judge</td><td>模型判据</td><td>按 Rubric 判断语义质量</td></tr>
+<tr><td>Human Judge</td><td>人工判据</td><td>专家确认样本与校准</td></tr>
+<tr><td>Metrics</td><td>指标</td><td>Quality / Cost / Latency / Safety / Business KPI</td></tr>
+<tr><td>Business KPI</td><td>业务指标</td><td>满意率、任务完成率等业务结果</td></tr>
+<tr><td>Dashboard</td><td>看板</td><td>看指标变化趋势，而非一次实验的分数</td></tr>
+<tr><td>Release Decision</td><td>上线决策</td><td>这次更新要不要发布</td></tr>
+<tr><td>Error Analysis</td><td>错误归因</td><td>把失败送回数据集</td></tr>
+<tr><td>Continuous Improvement Loop</td><td>持续改进闭环</td><td>评估数据飞轮的外圈</td></tr>
+<tr><td>Data Flywheel</td><td>评估数据飞轮</td><td>Online User → Bad Case → Dataset → Engine → Dashboard → 改动 → Redeploy</td></tr>
+<tr><td>Redeploy System</td><td>重新发布</td><td>把改进推回线上</td></tr>
+<tr><td>Regression Dataset</td><td>回归数据集</td><td>翻车过的题都要加入</td></tr>
+<tr><td>Eval Task</td><td>评测任务</td><td>Anthropic 定义：具有明确输入和成功标准的独立测试</td></tr>
+<tr><td>Task</td><td>任务卡</td><td>一条可独立评测的测试</td></tr>
+<tr><td>Success Criteria</td><td>成功标准</td><td>判定通过的可验证条件</td></tr>
+<tr><td>Input</td><td>输入</td><td>用户请求 + 初始条件</td></tr>
+<tr><td>约束前置</td><td>Constraints Upfront</td><td>要求必须提前写进任务说明，不能评分时临时追加</td></tr>
+<tr><td>专家一致性</td><td>Expert Agreement</td><td>两名业务人员独立读 Task 判断一致</td></tr>
+<tr><td>参考解法</td><td>Reference Solution</td><td>已知能通过所有 Grader 的参考结果</td></tr>
+<tr><td>Grader</td><td>评分器 / 判据</td><td>对 Trial 给分或判通过</td></tr>
+<tr><td>平衡问题集</td><td>Balanced Problem Set</td><td>正向 + 反向 + 边界</td></tr>
+<tr><td>正向任务</td><td>Positive Task</td><td>行为应该发生</td></tr>
+<tr><td>反向任务</td><td>Negative Task</td><td>行为不应发生</td></tr>
+<tr><td>边界任务</td><td>Boundary Case</td><td>最容易混淆的样本</td></tr>
+<tr><td>行为不足 / 行为过度</td><td>Under / Over-trigger</td><td>只测一侧都会把 Agent 带偏</td></tr>
+<tr><td>Trial</td><td>一次试跑</td><td>一条 Task 的一次执行</td></tr>
+<tr><td>隔离运行环境</td><td>Isolated Environment</td><td>可重置、记录版本、区分失败类型</td></tr>
+<tr><td>测试快照</td><td>Test Snapshot</td><td>工具返回固定已知数据</td></tr>
+<tr><td>无效运行</td><td>Invalid Trial</td><td>基础设施错误导致的 Trial，标记后重试</td></tr>
+<tr><td>Outcome</td><td>终态结果</td><td>任务结束时真正产生的结果</td></tr>
+<tr><td>Transcript</td><td>Trace / Trajectory</td><td>完整可观测轨迹</td></tr>
+<tr><td>Code-based Grader</td><td>代码评分器</td><td>字符串检查 / Python Grader / Multi Grader</td></tr>
+<tr><td>LLM-as-Judge</td><td>模型评分</td><td>Rubric 分维、允许 Unknown</td></tr>
+<tr><td>Unknown</td><td>无法判定</td><td>Grader 不强猜分数</td></tr>
+<tr><td>硬条件</td><td>Hard Gate</td><td>决定任务是否通过</td></tr>
+<tr><td>软质量</td><td>Soft Quality</td><td>通过之后比较的表达质量</td></tr>
+<tr><td>部分得分</td><td>Partial Credit</td><td>每部分对应明确条件</td></tr>
+<tr><td>Meta-eval</td><td>先测 Grader</td><td>判据本身也要验证</td></tr>
+<tr><td>Capability Eval</td><td>能力评测</td><td>还能不能解决难题（第三期预告）</td></tr>
+<tr><td>Regression Eval</td><td>回归评测</td><td>旧能力有没有退步（第三期预告）</td></tr>
+</table>
+</section>
+<section class="sec" id="s22">
+<h2>22. 补充篇 B：可运行代码</h2>
+<p><strong>【补充】</strong> 四段纯 Python 标准库实现，把三支视频的关键环节变成可执行逻辑。</p>
+<h3 id="221-eval-task-结构校验与专家一致性">22.1 Eval Task 结构校验与专家一致性</h3>
+<pre><code># eval_task.py —— python3 eval_task.py
+REQUIRED = ("input", "success_criteria", "constraints")
+NOT_ALLOWED_IN_CRITERIA = ("格式", "语气")   # 约束必须前置，不能评分时临时追加
+
+def validate(task):
+    errs = [k for k in REQUIRED if not task.get(k)]
+    # 约束前置检查：成功标准里出现只能属于任务说明的格式/语气要求 → 违规
+    for w in NOT_ALLOWED_IN_CRITERIA:
+        if w in task.get("success_criteria", ""):
+            errs.append(f"约束未前置: {w}")
+    return errs
+
+def expert_agreement(task, reader_a, reader_b):
+    """两名业务人员独立判断是否通过；不一致说明 Task 不够明确。"""
+    return reader_a(task) == reader_b(task)
+
+if __name__ == "__main__":
+    good = dict(input="用户询问今天上海的天气",
+                success_criteria="调用搜索工具并依据工具返回回答，不能用模型记忆",
+                constraints="必须调用实时搜索")
+    bad = dict(input="回答今天天气", success_criteria="按固定格式输出", constraints="")
+    for name, t in (("合格 Task", good), ("不合格 Task", bad)):
+        print(name, "校验:", validate(t) or "PASS")
+    print("专家一致性:", expert_agreement(good, lambda t: True, lambda t: True))</code></pre>
+<h3 id="222-平衡问题集检查器">22.2 平衡问题集检查器</h3>
+<pre><code># balanced_suite.py —— python3 balanced_suite.py
+def audit(tasks):
+    pos = [t for t in tasks if t["expected"] == "call"]
+    neg = [t for t in tasks if t["expected"] == "skip"]
+    bd = [t for t in tasks if t["expected"] == "boundary"]
+    flags = []
+    if not pos: flags.append("缺正向任务：查不出行为不足")
+    if not neg: flags.append("缺反向任务：会优化出「遇事就搜」")
+    if not bd: flags.append("缺边界任务")
+    return dict(正向=len(pos), 反向=len(neg), 边界=len(bd), 提示=flags or ["OK 平衡"])
+
+if __name__ == "__main__":
+    suite = [
+        dict(q="今天上海天气?", expected="call"),
+        dict(q="水的沸点?", expected="skip"),
+        dict(q="昨天上海天气?", expected="boundary"),
+    ]
+    print("完整集:", audit(suite))
+    print("缺反向:", audit([suite[0]]))
+    print("只正向:", audit([suite[0], suite[0]]))</code></pre>
+<h3 id="223-隔离-harness-与无效运行">22.3 隔离 Harness 与无效运行</h3>
+<pre><code># isolated_harness.py —— python3 isolated_harness.py
+SNAPSHOT = {"weather": "晴 26C"}   # 固定测试快照
+VERSIONS = dict(model="v3", prompt="p7", tools="t2", data="d1")
+state = {}
+
+def reset():
+    state.clear()
+    state.update(VERSIONS)
+    return dict(state)
+
+def trial(tool_ok=True):
+    env = reset()
+    if not tool_ok:
+        return dict(env=env, status="INVALID_RETRY", reason="tool_timeout")
+    outcome = SNAPSHOT["weather"]
+    transcript = ["model:call weather", f"tool:{outcome}", "model:answer"]
+    return dict(env=env, status="OK", outcome=outcome, transcript=transcript)
+
+if __name__ == "__main__":
+    a = trial(True)
+    b = trial(False)
+    print("正常 Trial:", a["status"], a["outcome"], a["transcript"])
+    print("异常 Trial:", b["status"], b["reason"], "（不计入 Agent 失败）")
+    print("环境一致:", a["env"] == b["env"])</code></pre>
+<h3 id="224-三类-grader--硬条件软质量--grader-自测">22.4 三类 Grader + 硬条件/软质量 + Grader 自测</h3>
+<pre><code># grader_pipeline.py —— python3 grader_pipeline.py
+def code_grader(trial):
+    hard = [("called_tool", "weather" in " ".join(trial["transcript"])),
+            ("args_ok", True), ("matches_snapshot", trial["outcome"] == "晴 26C")]
+    return all(v for _, v in hard), hard
+
+def llm_grader(trial):
+    return {"表达质量": 4, "证据一致性": 5, "Unknown": False}
+
+def score(trial):
+    passed, hard = code_grader(trial)
+    if not passed:
+        return dict(pass_=False, hard=hard, soft=None)
+    return dict(pass_=True, hard=hard, soft=llm_grader(trial))
+
+def meta_eval(samples, grader=code_grader):
+    """先测 Grader：应通过组必须放过，应失败组必须拦住。"""
+    ok = sum(1 for s, want in samples if (grader(s)[0] == want))
+    return ok, len(samples)
+
+if __name__ == "__main__":
+    good = dict(outcome="晴 26C", transcript=["model:call weather", "tool:晴 26C"])
+    bad = dict(outcome="晴 26C", transcript=["model:answer"])
+    print("通过 Trial:", score(good))
+    print("失败 Trial:", score(bad))
+    print("Grader 自测:", meta_eval([(good, True), (bad, False)]))</code></pre>
+</section>
+<section class="sec" id="s23">
+<h2>23. 补充篇 C：常见误区</h2>
+<table>
+<tr><th>#</th><th>误区</th><th>为什么错</th><th>正确做法</th></tr>
+<tr><td>1</td><td>把 evaluation 当发布前的一次测试</td><td>Anthropic 强调应贯穿整个开发生命周期</td><td>从少量高质量数据起步，接入持续迭代</td></tr>
+<tr><td>2</td><td>等攒够 1000 条数据再开始</td><td>少量样本就能跑通小闭环</td><td>20–50 条真实任务先建基线</td></tr>
+<tr><td>3</td><td>一上来就追求 100% 自动化</td><td>流程没跑顺时自动化只会放大错误</td><td>先手动、再逐步自动化</td></tr>
+<tr><td>4</td><td>只看一个总分</td><td>总分会掩盖关键失败</td><td>硬条件判通过 + 软质量独立分</td></tr>
+<tr><td>5</td><td>凭空用模型生成全部题目</td><td>脱离真实使用分布</td><td>真实任务与真实失败作种子，模型只扩变体</td></tr>
+<tr><td>6</td><td>把真实任务直接当 Eval Task</td><td>缺明确输入与成功标准，无法稳定判定</td><td>写清三要素 + 专家一致性 + 参考解法</td></tr>
+<tr><td>7</td><td>评分时临时追加格式 / 语气要求</td><td>任务说明里从未要求，判分不公平</td><td>约束前置</td></tr>
+<tr><td>8</td><td>评测集只有正向任务</td><td>会优化出「遇任何问题都先搜」</td><td>补反向任务与边界任务</td></tr>
+<tr><td>9</td><td>每次 Trial 直接调真实外部接口</td><td>返回漂移会伪装成能力变化</td><td>固定快照 + 重置状态 + 版本记录</td></tr>
+<tr><td>10</td><td>把工具超时算成 Agent 失败</td><td>基础设施错误与能力无关</td><td>标记无效运行并重试</td></tr>
+<tr><td>11</td><td>只看 Outcome 不存 Transcript</td><td>无法解释为什么成功或失败</td><td>两类记录同时保留</td></tr>
+<tr><td>12</td><td>Rubric 只写「评价回答质量」</td><td>判据含糊、分数随意</td><td>正确性 / 证据一致性 / 表达质量分维</td></tr>
+<tr><td>13</td><td>模型与人工持续分歧时扩大自动评分规模</td><td>错误判据会量产错误分数</td><td>先修 Rubric / 证据输入 / 分类边界</td></tr>
+<tr><td>14</td><td>没验证 Grader 就大规模评测</td><td>Grader 判错会污染整个数据集</td><td>先用应通过 / 应失败 / 边界样本自测</td></tr>
+<tr><td>15</td><td>评测体系建完就不管了</td><td>业务与模型都在变</td><td>飞轮持续回流 Bad Case</td></tr>
+</table>
+</section>
+<section class="sec" id="s24">
+<h2>24. 附录</h2>
+<h3 id="241-画面章节结构三支均无官方自动章节">24.1 画面章节结构（三支均无官方自动章节）</h3>
+<table>
+<tr><th>视频</th><th>画面给出的结构</th><th>依据</th></tr>
+<tr><td>①</td><td>一套完整的 Evaluation System 长什么样？／ 产品经理如何从 0 到 1 搭一套 Evaluation 系统？／ 核心逻辑——构建「评估数据飞轮」／ 踩坑实录</td><td>封面 f_0001 逐字</td></tr>
+<tr><td>②</td><td>框架与方法 / 真实任务集 / 写清 Task / 正反平衡 / 三步收束（VOL.052）</td><td>顶部固定导航条</td></tr>
+<tr><td>③</td><td>问题与方法 / 隔离运行环境 / Outcome 与轨迹 / 三类 Grader / 硬条件与评分 / 校准与收束（VOL.053）</td><td>顶部固定导航条</td></tr>
+</table>
+<h3 id="242-配图速查20-张">24.2 配图速查（20 张）</h3>
+<table>
+<tr><th>#</th><th>图名</th><th>来源</th></tr>
+<tr><td>1–2</td><td>三支视频结构地图 / evaluation-first 大厂观点</td><td>视频 ① 封面与口播</td></tr>
+<tr><td>3–7</td><td>架构全景 / 三段职责 / 五步落地 / 数据飞轮 / 踩坑四条</td><td>视频 ① 手绘图逐节点重绘</td></tr>
+<tr><td>8–14</td><td>两层框架 / 第一层三步 / 真实任务 / Task 三要素 / 双检查 / 正反平衡 / 三产物</td><td>视频 ② 导航条与插画</td></tr>
+<tr><td>15–19</td><td>第二层五步 / 隔离环境 / Outcome+Transcript / 三类 Grader / 硬条件与自测</td><td>视频 ③ 导航条与插画</td></tr>
+<tr><td>20</td><td>【补充】0→1 完整链路全景</td><td>三支综合，非视频画面</td></tr>
+</table>
+<h3 id="243-校正表ocr-与口播">24.3 校正表（OCR 与口播）</h3>
+<table>
+<tr><th>来源写成了</th><th>正确写法</th><th>依据</th></tr>
+<tr><td><code>Antihropici</code> / <code>AT agents</code></td><td><code>Anthropic</code> / <code>AI agents</code></td><td>视频 ① 画面 f_0012 放大 + 官方文档名</td></tr>
+<tr><td><code>Trace Coleetioni</code> / <code>Loys/ Bed Cases</code></td><td><code>Trace Collection</code> / <code>Logs / Bad Cases</code></td><td>视频 ① 架构图节点，多帧交叉核对</td></tr>
+<tr><td><code>Dataset Manageri</code> / <code>Agent Runt</code></td><td><code>Dataset Manager</code> / <code>Agent Runtime</code></td><td>手绘字体与放大裁切导致截字</td></tr>
+<tr><td><code>Rule Judge / LLx Sudye / wwmn sudge</code></td><td><code>Rule Judge / LLM Judge / Human Judge</code></td><td>视频 ① 架构图 + 口播「三种判据」</td></tr>
+<tr><td><code>踩坑买录</code></td><td><code>踩坑实录</code></td><td>画面 f_0099 放大逐字</td></tr>
+<tr><td>口播「价值」「架」「Matrix」</td><td><code>Judge</code> / <code>Grader</code> / <code>Metrics</code></td><td>字幕 OCR 对英文术语的音译与形近误写</td></tr>
+<tr><td><code>VOL.052</code> 导航「三步收東」「框架与万法」</td><td><code>三步收束</code> / <code>框架与方法</code></td><td>视频 ② 导航条多帧清晰帧对照</td></tr>
+<tr><td><code>VOL.053</code> 导航「隔禺运行环境」「便条件与评分」</td><td><code>隔离运行环境</code> / <code>硬条件与评分</code></td><td>视频 ③ 导航条多帧清晰帧对照</td></tr>
+<tr><td><code>Evals APL</code> / <code>13.4S</code> 等</td><td><code>Evals API</code> / 画面计时水印</td><td>文档名逐字；<code>xx.xS</code> 为画面固定计时器，非内容</td></tr>
+<tr><td><code>不要等1000条数据再开始</code></td><td>保留画面原文</td><td>为口播经验值，非错字；本教程标注为经验建议</td></tr>
+</table>
+<h3 id="244-还原方法与资料">24.4 还原方法与资料</h3>
+<ol>
+<li><strong>视频</strong>：① <a href="https://v.douyin.com/jQ3PCzp5d6Y/">从0到1搭建一套Agent评估系统？</a>（ID <code>7664976613234711523</code>，煮caicai，2026-07-21，5:34）；② <a href="https://v.douyin.com/yQCqzZPemOM/">6分钟：如何建立Agent评测第一层框架</a>（ID <code>7680547627524354219</code>，向量思维／观远数据，2026-09-01，5:47）；③ <a href="https://v.douyin.com/Vq7UwPruXt0/">7分钟干货:0-1搭建Agent评测2</a>（ID <code>7680918644558148009</code>，2026-09-02，7:12）。</li>
+<li><strong>逐帧</strong>：3 支最高档原片 35.2 MB（1080×1086 方形 1 支 + 1920×1080 横屏 2 支）；372 帧；Vision OCR 5,504 行；按三支不同版式分别设阈值（① 浮动黑底字幕按「中文短句 + 跨帧变化」判别，②③ 画面 0.07–0.82 / 字幕 0.82–0.95），得到 184 条画面幻灯片、353 条字幕时间线与顶部导航条；封面、架构图、飞轮、踩坑、权威来源、导航条逐帧放大逐字校对。</li>
+<li><strong>公开资料核对</strong>：Anthropic, <a href="https://www.anthropic.com/research/demystifying-evals-for-ai-agents">Demystifying evals for AI agents</a>（2026-01-09）、Anthropic《Define success criteria and build evaluations》（持续更新）、OpenAI《Evals API Reference》（持续更新）——三份均为视频 ②③ 画面列出的权威来源，亦为本系列第三篇的主要参考。</li>
+<li><strong>本系列互链</strong>：<a href="../rag-evaluation-tutorial/RAG评测完全教程.html">RAG 评测（在线阅读）</a> ｜ <a href="../agent-evaluation-tutorial/Agent评测体系完全教程.html">Agent 评测体系（在线阅读）</a> ｜ <a href="../agent-eval-driven-tutorial/Agent评测驱动迭代完全教程.html">评测驱动迭代（在线阅读）</a> ｜ <a href="../agent-architecture-tutorial/Agent开发架构选型完全教程.html">开发架构选型（在线阅读）</a> ｜ <a href="../agent-metrics-tutorial/Agent评测指标系统完全教程.html">评测指标系统（在线阅读）</a> ｜ <a href="../agent-eval-method-tutorial/Agent评测方法论完全教程.html">评测方法论（在线阅读）</a> ｜ <a href="../agent-judge-bias-tutorial/Agent评测偏见消除完全教程.html">消除 LLM Judge 偏见（在线阅读）</a>。</li>
+</ol>
+<div class="warn"><strong>未做的部分（如实说明）</strong>：本轮未做语音逐字转写（ASR），口播依据烧录字幕 OCR 时间线 + 画面文字归纳；三支均无官方自动章节，章节结构取自画面导航条；视频 ③ 结尾预告的第三期（分数波动解释、Capability vs Regression Eval）未展开，只在本站既有篇目中给出对应链接。</div>
+</section>
+<div class="footer">
+  <p>本教程为学习整理产物：三支视频按最高清晰度原片逐帧核对后综合重述；标注【补充】的内容来自公开官方文档与本系列既有教程，不属于视频原述。原视频与项目版权归各自作者所有。</p>
+  <p>姊妹篇：<a href="../rag-evaluation-tutorial/index.html">RAG 评测完全教程</a> ｜ <a href="../agent-evaluation-tutorial/index.html">Agent 评测体系完全教程</a> ｜ <a href="../agent-eval-driven-tutorial/index.html">评测驱动 Agent 迭代完全教程</a> ｜ <a href="../agent-architecture-tutorial/index.html">Agent 开发架构选型完全教程</a> ｜ <a href="../agent-metrics-tutorial/index.html">Agent 评测指标系统完全教程</a> ｜ <a href="../agent-eval-method-tutorial/index.html">Agent 评测方法论完全教程</a> ｜ <a href="../agent-judge-bias-tutorial/index.html">消除 LLM Judge 偏见完全教程</a> ｜ <a href="../index.html">返回知识库首页</a></p>
+</div>
+</main>
+</div>
+<script>
+(function () {
+  var bar = document.getElementById('progress');
+  var top = document.getElementById('totop');
+  var links = Array.prototype.slice.call(document.querySelectorAll('nav.toc a'));
+  var byId = {};
+  links.forEach(function (a) {
+    var id = a.getAttribute('href').slice(1);
+    if (document.getElementById(id)) byId[id] = a;
+  });
+  function update() {
+    var doc = document.documentElement;
+    var scrollTop = window.scrollY || doc.scrollTop || 0;
+    var max = doc.scrollHeight - doc.clientHeight;
+    if (bar) bar.style.width = (max > 0 ? Math.min(100, scrollTop / max * 100) : 0) + '%';
+    if (top) top.style.display = scrollTop > 600 ? 'block' : 'none';
+    var current = null;
+    Object.keys(byId).forEach(function (id) {
+      var el = document.getElementById(id);
+      if (el && el.getBoundingClientRect().top <= 150) current = id;
+    });
+    links.forEach(function (a) { a.classList.remove('active'); });
+    if (current && byId[current]) byId[current].classList.add('active');
+  }
+  window.addEventListener('scroll', update, { passive: true });
+  window.addEventListener('resize', update);
+  if (top) top.addEventListener('click', function () { window.scrollTo({ top: 0, behavior: 'smooth' }); });
+  update();
+})();
+</script>
+<script>
+(function(){
+  var bar=document.querySelector('.topbar'), root=document.documentElement;
+  function sync(){ if(bar) root.style.setProperty('--topH', Math.round(bar.getBoundingClientRect().height)+'px'); }
+  sync(); window.addEventListener('resize', sync);
+})();
+</script>
+</body>
+</html>

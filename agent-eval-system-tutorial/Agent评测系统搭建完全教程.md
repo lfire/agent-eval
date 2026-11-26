@@ -1,0 +1,752 @@
+# 从 0 到 1 搭建 Agent 评测系统 · 完全教程
+
+> **三支视频综合 · 逐帧还原 + 系统化补全**
+>
+> 原视频：① [从0到1搭建一套Agent评估系统？](https://v.douyin.com/jQ3PCzp5d6Y/)（煮caicai） ｜ ② [6分钟：如何建立Agent评测第一层框架](https://v.douyin.com/yQCqzZPemOM/) ｜ ③ [7分钟干货:0-1搭建Agent评测2](https://v.douyin.com/Vq7UwPruXt0/)（观远数据 / 向量思维）
+>
+> 配套文件：[index.html（图文阅读版，20 张 SVG）](index.html)
+>
+> 姊妹篇：[RAG 评测（在线阅读）](../rag-evaluation-tutorial/RAG评测完全教程.html) ｜ [Agent 评测体系（在线阅读）](../agent-evaluation-tutorial/Agent评测体系完全教程.html) ｜ [评测驱动迭代（在线阅读）](../agent-eval-driven-tutorial/Agent评测驱动迭代完全教程.html) ｜ [开发架构选型（在线阅读）](../agent-architecture-tutorial/Agent开发架构选型完全教程.html) ｜ [评测指标系统（在线阅读）](../agent-metrics-tutorial/Agent评测指标系统完全教程.html) ｜ [评测方法论（在线阅读）](../agent-eval-method-tutorial/Agent评测方法论完全教程.html) ｜ [消除 LLM Judge 偏见（在线阅读）](../agent-judge-bias-tutorial/Agent评测偏见消除完全教程.html)
+
+---
+
+## 目录
+
+- [0. 三支视频速览与保真约定](#0-三支视频速览与保真约定)
+- [1. 全片结构地图](#1-全片结构地图)
+- [2. 为什么 evaluation 要贯穿整个生命周期](#2-为什么-evaluation-要贯穿整个生命周期)
+- [3. 一套完整 Evaluation System 的架构全景](#3-一套完整-evaluation-system-的架构全景)
+- [4. 架构分三段：数据侧 / 执行观测侧 / 决策侧](#4-架构分三段数据侧--执行观测侧--决策侧)
+- [5. 产品经理如何从 0 到 1 搭：五步落地法](#5-产品经理如何从-0-到-1-搭五步落地法)
+- [6. 核心逻辑：构建「评估数据飞轮」](#6-核心逻辑构建评估数据飞轮)
+- [7. 踩坑实录：四条经验](#7-踩坑实录四条经验)
+- [8. 两层框架：任务集 × 运行评分](#8-两层框架任务集--运行评分)
+- [9. 第一层三步：真实任务 → 稳定判断 → 正反平衡](#9-第一层三步真实任务--稳定判断--正反平衡)
+- [10. 第一步：建立第一批真实任务](#10-第一步建立第一批真实任务)
+- [11. 第二步：把 Task 写到可以稳定判断](#11-第二步把-task-写到可以稳定判断)
+- [12. 两个检查方法：把「写清楚了」变成可验证](#12-两个检查方法把写清楚了变成可验证)
+- [13. 第三步：同时设计正向和反向任务](#13-第三步同时设计正向和反向任务)
+- [14. 三步收束：第一层的三个产物](#14-三步收束第一层的三个产物)
+- [15. 第二层五步：让评分可解释、可复查](#15-第二层五步让评分可解释可复查)
+- [16. 第一步：让每次 Trial 从可比环境开始](#16-第一步让每次-trial-从可比环境开始)
+- [17. 第二步：同时保留 Outcome 与 Transcript](#17-第二步同时保留-outcome-与-transcript)
+- [18. 第三步：三类 Grader 分工](#18-第三步三类-grader-分工)
+- [19. 第四、五步：硬条件评分与 Grader 自测](#19-第四五步硬条件评分与-grader-自测)
+- [20. 综合闭环与本站体系对齐](#20-综合闭环与本站体系对齐)
+- [21. 补充篇 A：专业名词速查（51 条）](#21-补充篇-a专业名词速查51-条)
+- [22. 补充篇 B：可运行代码](#22-补充篇-b可运行代码)
+- [23. 补充篇 C：常见误区](#23-补充篇-c常见误区)
+- [24. 附录](#24-附录)
+
+---
+
+## 一页速览：三支视频的 7 个结论
+
+| # | 结论 | 位置 |
+|---|---|---|
+| 1 | **Evaluation 贯穿整个开发生命周期** | [第 2 章](#2-为什么-evaluation-要贯穿整个生命周期) |
+| 2 | **完整系统分三段且必须连成环** | [第 3 章](#3-一套完整-evaluation-system-的架构全景) |
+| 3 | **五步落地法** | [第 5 章](#5-产品经理如何从-0-到-1-搭五步落地法) |
+| 4 | **核心是评估数据飞轮 + 四条踩坑** | [第 6 章](#6-核心逻辑构建评估数据飞轮) |
+| 5 | **第一层任务集三步** | [第 9 章](#9-第一层三步真实任务--稳定判断--正反平衡) |
+| 6 | **第二层运行评分五步** | [第 15 章](#15-第二层五步让评分可解释可复查) |
+| 7 | **链路闭环与错误归因回流** | [第 20 章](#20-综合闭环与本站体系对齐) |
+
+---
+
+## 0. 三支视频速览与保真约定
+
+**【视频原述】** 本教程综合三支视频：**煮caicai《如何从 0 到 1 搭建一套 Agent 评估系统？》（整体架构与数据飞轮）＋ 观远数据／向量思维《6 分钟：如何建立 Agent 评测第一层框架》（任务集）＋《7 分钟干货：0-1 搭建 Agent 评测 2》（运行与评分）。三支合起来，正好覆盖「整体架构 → 第一层测什么 → 第二层怎么测怎么判」。
+
+| # | 视频 / ID | 作者 / 发布 | 时长 / 画面 | 画面结构 |
+|---|---|---|---|---|
+| ① | 从0到1搭建一套Evaluation System `7664976613234711523` | 煮caicai ／ 2026-07-21 | 5:34 ／ 1080×1086 方形 | Excalidraw 英文手绘架构图；封面四问 + 五步法 + 飞轮 + 踩坑四条 |
+| ② | 6分钟：如何建立Agent评测第一层框架 `7680547627524354219` | 向量思维（观远数据）／ 2026-09-01 | 5:47 ／ 1920×1080 横屏 | VOL.052；顶部固定章节导航 + 手绘插画 + 底部黑条字幕 |
+| ③ | 7分钟干货:0-1搭建Agent评测2 `7680918644558148009` | 向量思维（观远数据）／ 2026-09-02 | 7:12 ／ 1920×1080 横屏 | VOL.053；同系列第二期，六段导航 + 五步运行评分 |
+
+合计约 **18:34**。②③ 为同一系列前两期（VOL.052 / VOL.053），结尾预告第三期「分数波动解释、Capability Eval 与 Regression Eval 区分」，本教程只按前两期内容还原，第三期未展开。
+
+> **三种标记**：**【视频原述】**画面文字或烧录字幕确实出现过的表述；**【按画面重绘】**把手绘架构图 / 列表按原结构画成矢量图；**【补充】**由本站既有七篇教程与公开官方文档补齐，不属于视频原述。
+
+> **保真边界**。① 三支视频**均无官方自动章节**（`chapter_list` 为空、无 `chapter_abstract`），②③ 的章节结构取自画面顶部固定导航条与口播，正文一律以画面与字幕为准。② ① 为英文手绘 + 浮动黑底字幕，字幕条会盖住画面节点，本教程按「跨帧稳定文字＝画面、频繁变化的中文短句＝字幕」分离，并对封面、架构图、飞轮、踩坑、权威来源、导航条逐帧放大校对。③ 字幕 OCR 噪声较多（如「价值」实为「Judge」、「Matrix」实为 Metrics、「价」「架」混用），已按画面与上下文校正；数值 20–50 条、1000 条、1300 次收藏等按画面原文保留。④ 本轮未做 ASR。
+
+**还原方法**：解析 3 个分享短链 → 抓 `aweme/detail` 取 3 个视频 ID、时长、作者与最高清晰度地址 → 下载 1080×1086 与 1920×1080 原片共 35.2 MB（带 `Referer` + 浏览器 UA，避开 403）→ 每 3 秒抽帧 **372 张** → macOS Vision `VNRecognizeTextRequest` 得到 **5,504 行**带坐标文本 → 按三支不同版式分别设阈值，分离出 184 条画面幻灯片、353 条字幕时间线与顶部章节导航 → 关键帧放大逐字校对 → 与本站既有七篇及 Anthropic / OpenAI 公开文档交叉核对。
+
+---
+
+## 1. 全片结构地图
+
+```mermaid
+flowchart LR
+ A["① 整体架构"] --> B["② 任务集"] --> C["③ 运行评分"] --> D["完整体系"]
+```
+
+**图 1｜三支视频与综合主线（按画面目录重绘）**
+
+**【视频原述】** 视频 ① 封面给出四问：「一套完整的 Evaluation System 长什么样？／ 产品经理如何从 0 到 1 搭一套 Evaluation 系统？／ 核心逻辑——构建『评估数据飞轮』／ 踩坑实录」。视频 ② 的导航条为「框架与方法 / 真实任务集 / 写清 Task / 正反平衡 / 三步收束」，③ 为「问题与方法 / 隔离运行环境 / Outcome 与轨迹 / 三类 Grader / 硬条件与评分 / 校准与收束」。
+
+| 模块 | 回答什么 | 来源 | 本教程 |
+|---|---|---|---|
+| 整体架构 | 系统长什么样、怎么落地 | 视频 ① | 第 2–7 章 |
+| 第一层：任务集 | 测什么 | 视频 ② | 第 8–14 章 |
+| 第二层：运行评分 | 怎么运行、怎么判分 | 视频 ③ | 第 15–19 章 |
+| 综合闭环 | 怎么串成一条链 | 三支综合 | 第 20 章 |
+
+> 一句话：**架构定方向，任务集定「测什么」，运行评分定「怎么测、怎么判」，三个产物都必须能解释、能复查、能回流。**
+
+---
+
+## 2. 为什么 evaluation 要贯穿整个生命周期
+
+```mermaid
+flowchart LR
+ A["Anthropic 贯穿生命周期"] --> C["evaluation-first"]
+ B["OpenAI Evals API"] --> C
+```
+
+**图 2｜大厂观点与 evaluation-first 重绘**
+
+**【视频原述】** 视频 ① 开场讨论「大厂都在疯狂卷 evaluation 是为什么」，并引用两家公开资料：
+
+- **Anthropic《Demystifying evals for AI agents》**：反复强调 evaluation 应贯穿 Agent 的整个开发生命周期，而不是发布前的一次测试；建议从**少量高质量数据集**开始，随产品演进不断扩充，并把 evaluation 接入持续迭代流程。
+- **OpenAI**：从早期做法到现在的 Evals API，都在推动 **evaluation-first** 的开发方式——有评分器、指标、版本对比，而不是零散脚本。
+
+> 共同认知：**Evaluation 要贯穿 Agent 的生命周期**。它与本站《评测驱动 Agent 迭代》「从一次测试变成持续驱动 action 的工程体系」、《Agent 评测方法论》「eval driven development」是同一条结论。
+
+---
+
+## 3. 一套完整 Evaluation System 的架构全景
+
+**【视频原述】** 视频 ① 用一张纵向手绘英文流程图给出全貌。下面按画面节点逐字重绘为两行（节点文字保留英文原名）。
+
+```mermaid
+flowchart LR
+ A["User Real Request"] --> B["Trace Collection"] --> C["Dataset Manager"] --> D["Agent Runtime"] --> E["Trajectory Store"] --> F["Evaluation Engine"] --> G["Metrics"] --> H["Dashboard"] --> I["Release Decision"] --> A
+```
+
+**图 3｜完整 Evaluation System 架构全景重绘**
+
+| 节点（画面原文） | 作用 |
+|---|---|
+| User Real Request | 真实用户请求，闭环起点 |
+| Error Analysis | 对失败做归因，把 Bad Case 送回数据集 |
+| Trace Collection: Online Logs / Bad Cases | 收集线上日志与失败案例 |
+| Dataset Evolution | 数据集持续演进 |
+| Dataset Manager: Synthetic + Human + Real | 合成 / 人工 / 真实三类样本统一管理 |
+| Agent Runtime: LLM + Memory + Tool + Workflow | 被评测的 Agent 运行体 |
+| Trajectory Store: Prompt / Tool / Reasoning / Output | 保存一次执行的完整轨迹 |
+| Evaluation Engine: Rule Judge / LLM Judge / Human Judge | 三类判据组合评分 |
+| Metrics: Quality / Cost / Latency / Safety / Business KPI | 五类指标 |
+| Dashboard | 看板：管理指标趋势 |
+| Release Decision | 这次更新到底要不要发布 |
+
+> 画面还有一条从 Release Decision / Error Analysis 回到 User Real Request 与 Dataset Evolution 的回流线——这正是下一章「飞轮」的核心。
+
+---
+
+## 4. 架构分三段：数据侧 / 执行观测侧 / 决策侧
+
+```mermaid
+flowchart LR
+ A["数据侧"] --> B["执行观测侧"] --> C["决策侧"] --> A
+```
+
+**图 4｜架构三段职责重绘**
+
+**【补充】** 把图 3 的节点按职责归为三段，便于分工落地：数据侧负责「拿什么测」，执行观测侧负责「跑起来并留痕」，决策侧负责「看结果并决定」。
+
+> 关键不是把每一段都做得多复杂，而是**三段必须连成环**：决策产生的失败 Case 要能回到数据侧，否则系统跑一次就僵死。
+
+**【视频原述】** 口播反复强调：「Evaluation 永远不是为了跑分」「不同 Agent 的 evaluation 完全不同」——架构是通用骨架，业务目标（满意率、任务完成率等）决定每一段的具体形态。
+
+---
+
+## 5. 产品经理如何从 0 到 1 搭：五步落地法
+
+```mermaid
+flowchart LR
+ A["定业务目标"] --> B["建 Dataset"] --> C["设计 Judge"] --> D["定 Metrics"] --> E["建 Dashboard"]
+```
+
+**图 5｜五步落地法重绘**
+
+**【视频原述】** 画面 f_0056 逐字给出五步：
+
+1. **① 定业务目标**：第一步永远不是写 prompt，而是回答「这个 Agent 到底要达成什么业务结果」。
+2. **② 建 Dataset**：来源包括上线后真实的 Bad Case；数据集跟产品一起增长。
+3. **③ 设计 Judge**：Rule / LLM / Human 组合，其中 LLM Judge 与 Rubric 最复杂。
+4. **④ 定 Metrics**：质量、成本、时延、安全、业务 KPI 多个维度。
+5. **⑤ 建 Dashboard**：不是输出一个静态数据，而是包含各指标**变化趋势**的看板；关心的是版本之间的比较，不是一次实验的分数。
+
+> 结语定位：「它不是可选的测试工具，它是 AI 时代产品经理的**研发仪表盘**。」
+
+---
+
+## 6. 核心逻辑：构建「评估数据飞轮」
+
+```mermaid
+flowchart TB
+ A["Online User"] --> B["Bad Case Analysis"] --> C["Dataset Construction"] --> D["Evaluation Engine"] --> E["Metrics Dashboard"] --> F["Prompt/Tools/Models"] --> G["Redeploy System"] --> A
+```
+
+**图 6｜评估数据飞轮重绘**
+
+**【视频原述】** 画面 f_0088 的标题是「构建『评估数据飞轮』」，七个节点构成 Continuous Improvement Loop：
+
+| 顺序 | 节点（画面原文） | 含义 |
+|---|---|---|
+| 0 | Online User | 真实用户产生请求与失败 |
+| 1 | Bad Case Analysis | 失败归因 |
+| 2 | Dataset Construction | 把失败构造成评测样本 |
+| 3 | Evaluation Engine | 用引擎跑评测 |
+| 4 | Metrics Dashboard | 指标与趋势可见 |
+| 5 | Prompt / Tools / Models | 据结果改提示词、工具或模型 |
+| 6 | Redeploy System | 重新发布，回到线上 |
+
+**【视频原述】** 口播点题：「不是为了拿一个分，而是为了构建数据飞轮」；黄金数据集会越来越多、失败率越来越低，翻车过的题都要加入**回归数据集**。
+
+---
+
+## 7. 踩坑实录：四条经验
+
+```mermaid
+flowchart TB
+ A["不等1000条"] --> B["不追100%自动化"] --> C["不看单指标"] --> D["不当QA"]
+```
+
+**图 7｜四条踩坑经验重绘**
+
+| # | 画面原文 | 口播补充 |
+|---|---|---|
+| 1 | 不要等 1000 条数据再开始 | 少量高质量样本就能跑通评测小闭环 |
+| 2 | 不要追求 100% 的自动化 | 开始肯定手动，随系统成长再逐步自动化 |
+| 3 | 不要只看单个指标 | 多维度指标，避免单指标优化 |
+| 4 | 不要把 Evaluation 当 QA | 它要不断演进，是研发仪表盘 |
+
+> 这四条与本站《Agent 评测指标系统》《评测驱动 Agent 迭代》里的「20–50 条起步、主指标 + 护栏、能力集毕业成回归集」逐条呼应。
+
+---
+
+## 8. 两层框架：任务集 × 运行评分
+
+```mermaid
+flowchart LR
+ A["第一层 任务集 测什么"] --> B["第二层 运行评分 怎么判"]
+```
+
+**图 8｜两层框架分工重绘**
+
+**【视频原述】** 视频 ② 开场说明：上一期「从 0 到 1 搭建 Agent 评测」框架已有超过 **1300 次收藏**，被问最多的是「框架看懂了，每一步具体怎么做」，于是用三期拆解；第一期先搭**评测体系的第一层：任务集**，第二期搭**运行与评分**。
+
+**【视频原述】** 两套方法都基于 Anthropic 官方评测文档，③ 还参考 OpenAI Evals API 与 Graders 文档。画面 f_0011 列出三份权威来源：
+
+| # | 机构 | 文档 | 状态 |
+|---|---|---|---|
+| 1 | Anthropic | Demystifying evals for AI agents | 2026-01-09 |
+| 2 | Anthropic | Define success criteria and build evaluations | 持续更新 |
+| 3 | OpenAI | Evals API Reference | 持续更新 |
+
+---
+
+## 9. 第一层三步：真实任务 → 稳定判断 → 正反平衡
+
+```mermaid
+flowchart LR
+ A["真实任务 20-50条"] --> B["写清 Task"] --> C["正反平衡"]
+```
+
+**图 9｜第一层三步重绘**
+
+**【视频原述】** 视频 ② 的三步收束（画面导航「真实任务集 / 写清 Task / 正反平衡」）：
+
+1. **建立第一批真实任务**：从真实任务与真实失败出发，20–50 条即可建第一条评测基线。
+2. **把 Task 写到可以稳定判断**：每条任务有明确输入与成功标准，约束前置。
+3. **同时设计正向和反向任务**：不只检查「该做时能不能做」，也检查「不该做时能不能克制」。
+
+> 「第一批 Agent Eval，不是收集一批 Prompt 再给输出打分」——这句话是两层框架的分水岭。
+
+---
+
+## 10. 第一步：建立第一批真实任务
+
+```mermaid
+flowchart LR
+ A["真实失败/工单/Bug"] --> B["种子任务"] --> C["模型扩充变体"] --> D["人工检查入库"]
+```
+
+**图 10｜第一批真实任务重绘**
+
+**【视频原述】** 口播：「不需要先准备几百条任务，早期从 **20 到 50 条真实任务**开始，就足够建立第一条评测基线」。
+
+**【视频原述】** **第一批种子任务优先来自真实任务和真实失败**：团队已有材料里「开发过程中原本需要人工检查的任务」「已经发生过 Bug」「用户反馈和支持工单里的真实失败」。模型更适合在真实种子基础上扩充表达变体，而不是凭空造题；按任务对用户结果影响程度排序，选出前 20–50 条。
+
+**【视频原述】** **示例 Badcase**：「今天上海天气怎么样？」Agent 没有调用搜索工具，而是直接根据模型已有知识生成答案 → 转化为一条「用户需要实时信息，但 Agent 没有搜索」的任务，先放进初始任务清单。
+
+> 产物是一份来自真实使用场景的初始任务清单 + 可重复比较的评测基线；它不需要一次覆盖所有问题。新增任务仍需人工检查，不能直接进入评测集。
+
+---
+
+## 11. 第二步：把 Task 写到可以稳定判断
+
+```mermaid
+flowchart LR
+ A["明确输入"] --> D["合格 Eval Task"]
+ B["成功标准"] --> D
+ C["约束前置"] --> D
+```
+
+**图 11｜Eval Task 三要素重绘**
+
+**【视频原述】** 「有一条真实任务，不代表它已经是一条合格 Eval Task」。Anthropic 对 Task 的基本定义是：**一项具有明确输入和成功标准的独立测试**。
+
+**【视频原述】** 以天气任务为例，需要写清：
+
+- **输入**：用户询问今天上海的天气。
+- **成功标准**：Agent 调用搜索工具，并依据工具返回的当前信息回答；不能用模型记忆中的天气信息。
+- **约束前置**：要求必须提前出现在任务说明里，不能在 Task 里只要求「回答今天天气」，却在评分时额外检查任务说明从未要求过的固定格式。
+
+> Anthropic 文档还强调：评测任务应尽量贴近真实使用分布、同时覆盖必要边界情况。
+
+---
+
+## 12. 两个检查方法：把「写清楚了」变成可验证
+
+```mermaid
+flowchart LR
+ A["专家一致性反查"] --> C["Task 可稳定判断"]
+ B["参考解法验证"] --> C
+```
+
+**图 12｜两个检查方法重绘**
+
+| 方法 | 做法 | 判定 |
+|---|---|---|
+| 专家一致性反查 | 让两名了解业务的人独立阅读这条 Task | 若两人对「什么算通过」判断不一致，说明 Task 不够明确 |
+| 参考解法验证 | 为 Task 准备一份已知能通过所有 Grader 的参考结果 | 证明任务确实可完成、任务说明与 Grader 可执行；不是要求 Agent 复刻唯一路径 |
+
+**【视频原述】** 口播补充一个诊断规则：**如果前沿模型尝试很多次仍一次都无法通过，先怀疑 Task 和 Grader 是否有问题，而不是马上认定模型没有能力**。
+
+> 落地形态：为每条测试数据定义**结构化字段**，再让 Grader 调用这些字段执行测试标准（③ 会进一步用到）。
+
+---
+
+## 13. 第三步：同时设计正向和反向任务
+
+```mermaid
+flowchart LR
+ A["正向 应该发生"] --> C["平衡问题集"]
+ B["反向 不应发生"] --> C
+```
+
+**图 13｜正反平衡重绘**
+
+**【视频原述】** 正向任务只验证「Agent 该做一件事时能不能完成」；但 Agent 不仅要在条件成立时触发行为，也要在条件不成立时保持克制。若评测集里全是正向任务，「最后可能优化出一个遇到任何问题都先搜」的 Agent。
+
+| 类型 | 示例 | 检查什么 |
+|---|---|---|
+| 正向 | 今天上海天气怎么样？（应调用实时搜索） | 行为不足 |
+| 反向 | 水在标准大气压下的沸点是多少？（不需要实时搜索） | 行为过度 |
+
+> 这种设计叫**平衡问题集**：不要求正反数量完全相等，关键是「不能只评测行为的一侧」，且整体分布尽量接近真实使用；还要加入最容易混淆的边界任务。
+
+---
+
+## 14. 三步收束：第一层的三个产物
+
+```mermaid
+flowchart LR
+ A["初始任务清单"] --> B["结构化 Task"] --> C["平衡问题集"]
+```
+
+**图 14｜第一层产物重绘**
+
+| 产物 | 内容 | 验收 |
+|---|---|---|
+| 初始任务清单 | 真实场景、20–50 条、按影响排序 | 可重复比较的基线 |
+| 结构化 Task | 输入 / 成功标准 / 约束前置 | 专家一致 + 参考解法通过 |
+| 平衡问题集 | 正向 + 反向 + 边界 | 覆盖行为两侧、贴近真实分布 |
+
+> 做到这三步，才真正拥有了一批可以评测 Agent 的任务；下一期搭「运行与评分」。
+
+---
+
+## 15. 第二层五步：让评分可解释、可复查
+
+```mermaid
+flowchart LR
+ A["隔离环境"] --> B["Outcome+Transcript"] --> C["三类 Grader"] --> D["硬条件评分"] --> E["先测 Grader"]
+```
+
+**图 15｜第二层五步重绘**
+
+**【视频原述】** 视频 ③ 开场追问：「同一个 Agent 跑同一批评测任务，分数波动到底是 Agent 能力变了，还是运行环境和评分方法？」第二期解决「怎么运行、怎么判分」，对应 Anthropic《Demystifying evals for AI agents》与 OpenAI Evals API / Graders 文档。
+
+| # | 步骤 | 解决什么 |
+|---|---|---|
+| 1 | 隔离运行环境 | 让每次 Trial 从可比条件开始 |
+| 2 | Outcome 与 Transcript | 同时保留终态与轨迹 |
+| 3 | 三类 Grader | 确定性交给代码、语义交给模型、边界交给人 |
+| 4 | 硬条件与评分 | 别让一个总分掩盖关键失败 |
+| 5 | 先测 Grader 再测 Agent | 判据本身也要验证 |
+
+---
+
+## 16. 第一步：让每次 Trial 从可比环境开始
+
+```mermaid
+flowchart LR
+ A["固定快照"] --> B["重置状态"] --> C["版本固定"] --> D["无效运行重试"]
+```
+
+**图 16｜隔离运行环境重绘**
+
+**【视频原述】** 口播反例：如果每次评测都直接调用真实天气接口——第一次返回晴天、第二次阵雨、第三次接口超时——**三次 Trial 面对的已经不是同一项条件**，分数变化可能来自外部数据与工具故障，而不是 Agent 能力。
+
+- 为天气工具准备一份**固定测试快照**，让每次调用都返回同一份已知数据。
+- 每次 Trial 开始前**重置对话、任务状态和工具环境**，避免上一次的文件或数据影响下一次。
+- 固定本次评测使用的**模型版本、Agent 配置、工具定义和任务数据版本**并留下记录。
+- 工具超时、环境启动失败等**基础设施错误单独记录**，标记「无效运行」并重试，不能直接算成 Agent 任务失败。
+
+> 隔离环境**不会消除模型本身的非确定性**，它的作用是排除与 Agent 能力无关的干扰，让不同 Trial 尽可能在可比条件下运行。
+
+---
+
+## 17. 第二步：同时保留 Outcome 与 Transcript
+
+```mermaid
+flowchart LR
+ A["Outcome 终态"] --> C["可解释评分"]
+ B["Transcript 轨迹"] --> C
+```
+
+**图 17｜Outcome 与 Transcript 重绘**
+
+| 记录 | 定义 | 用途 |
+|---|---|---|
+| Outcome | 任务结束时真正产生的结果（天气任务＝最后返回的天气信息；写文件/数据库任务还要检查外部状态） | 判断任务最后是否完成 |
+| Transcript（Trace / Trajectory） | 模型输出、工具调用、工具返回、中间消息、状态变化，可附轮数 | 解释为什么成功、失败发生在哪一步；用于诊断、效率、安全与 Task 明确要求的关键行为 |
+
+**【视频原述】** **关键判断**：如果这条 Task 评测的是「实时搜索决策」，Agent 结果只是碰巧正确也不能通过；如果 Task 只测最终结果是否正确，就不应因 Agent 没走某条预设路径而扣分——**取决于 Task 一开始定义的成功标准**。
+
+> 这正是本站《Agent 评测体系》「Outcome / Trace 分层」与《评测驱动迭代》「主指标 + 护栏 + 跳过」的运行层实现。
+
+---
+
+## 18. 第三步：三类 Grader 分工
+
+```mermaid
+flowchart LR
+ A["Code-based"] --> D["三类 Grader"]
+ B["LLM-as-Judge"] --> D
+ C["人工校准"] --> D
+```
+
+**图 18｜三类 Grader 重绘**
+
+| Grader | 适用 | 要点 |
+|---|---|---|
+| Code-based | 成功条件可被程序精确验证 | 检查是否调用天气工具、参数是否正确、回答是否与工具返回一致；稳定可重复，但不适合开放性表达质量。工具形态：字符串检查 / Python Grader / Multi Grader，结构化变量传入 |
+| LLM-as-Judge | 开放性表达质量、证据一致性 | Rubric 不能只写「评价回答质量」，要把正确性、证据一致性、表达质量分开逐维给可判断标准；允许返回 Unknown 避免强猜 |
+| 人工评分 | 校准，不需覆盖每次 Trial | 准备专家已确认样本，定期检查 LLM Grader；若模型与人工持续分歧，先修 Rubric、证据输入或分类边界，不要直接扩大自动评分规模 |
+
+> **能够确定性验证的条件先交给代码，需要理解语义和质量的部分再交给模型，最后用少量人工样本持续校准模型评分。**
+
+---
+
+## 19. 第四、五步：硬条件评分与 Grader 自测
+
+```mermaid
+flowchart LR
+ A["硬条件判通过"] --> B["软质量独立分"] --> C["别让总分掩盖失败"]
+ D["先测 Grader"] --> E["再测 Agent"]
+```
+
+**图 19｜硬条件评分与 Grader 自测重绘**
+
+### 19.1 别让一个总分掩盖关键失败
+
+**【视频原述】** 天气任务可拆成四个维度：是否调用工具、调用参数是否正确、回答与工具结果是否一致、表达是否清晰。**前三项决定任务是否真正成功，表达质量只作为独立分数**区分完成后的质量差异；若全部算进一个平均分，失败 Trial 仍可拿到看似不错的总分。
+
+**【视频原述】** 正确组合：**硬条件判断任务是否通过 → 再在通过的 Trial 中比较软性质量**；任务也可设部分得分，但每一部分都要对应一个明确条件。
+
+### 19.2 先测 Grader，再用 Grader 测 Agent
+
+**【视频原述】** 「Grader 本身也是一个需要验证的系统」：准备**一组应该通过、一组应该失败、几条容易分歧的边界样本**；先看 Code-based Grader 能否放过正确结果并拦住已知错误，再校准 LLM Grader 的准确性与分类边界。每次修改 Rubric、评分模型或分数组合方式后都要重跑。
+
+> 第二层收束：一条 Task 进入可重置环境 → Harness 保留 Outcome 与 Transcript → 确定性 Grader 查硬条件 → 模型 Grader 评语义质量 → 少量人工样本持续校准 → 评分可解释、可复查。
+
+---
+
+## 20. 综合闭环与本站体系对齐
+
+```mermaid
+flowchart LR
+ A["定目标"] --> B["任务集"] --> C["隔离环境"] --> D["执行记录"] --> E["判分"] --> F["Dashboard"] --> G["上线决策"] --> H["Error Analysis"] --> B
+```
+
+**图 20｜【补充】0→1 完整链路全景**
+
+> 三支视频拼成一条链：**定业务目标 → 真实任务集（正反平衡）→ 隔离环境 → 执行记录（Outcome+Transcript）→ 三类 Grader 判分 → Dashboard 看趋势 → 上线决策 → Error Analysis 回流 → 数据集再演进。**
+
+| 本教程 | 本站既有内容 | 对应关系 |
+|---|---|---|
+| 完整架构与数据飞轮 | [评测驱动 Agent 迭代（在线阅读）](../agent-eval-driven-tutorial/Agent评测驱动迭代完全教程.html) | 能力评测毕业成回归集、线上 Bad Case 回填 |
+| 20–50 条真实任务 / 正反平衡 | [Agent 评测指标系统（在线阅读）](../agent-metrics-tutorial/Agent评测指标系统完全教程.html) | 100–500 Case、40/40/20 分层、正反例 |
+| 写清 Task 与成功标准 | [Agent 评测方法论（在线阅读）](../agent-eval-method-tutorial/Agent评测方法论完全教程.html) | Anthropic Task 定义、完整用例、结构化结果 |
+| 三类 Grader / 硬条件 | [消除 LLM Judge 偏见（在线阅读）](../agent-judge-bias-tutorial/Agent评测偏见消除完全教程.html) | Rule vs LLM Judge、量化 Rubric、人评校准 |
+| 隔离环境 / 无效运行 | [Agent 评测体系（在线阅读）](../agent-evaluation-tutorial/Agent评测体系完全教程.html) | Trial 可复现、跳过机制 |
+| Metrics / Dashboard / 上线决策 | [Agent 评测指标系统（在线阅读）](../agent-metrics-tutorial/Agent评测指标系统完全教程.html) | 三张表、看板而非总分、91→96% 决策案例 |
+
+> **【补充】** 视频 ③ 结尾预告第三期：分数波动如何解释、Capability Eval 与 Regression Eval 如何区分——这两点在本站第三篇（pass@k / pass^k、能力→回归毕业）已有展开，本教程不代第三期补写。
+
+---
+
+## 21. 补充篇 A：专业名词速查（51 条）
+
+**【补充】** 按「架构 → 任务集 → 运行环境 → 评分 → 决策」分组。
+
+| 术语 | 英文 / 别名 | 释义 |
+|---|---|---|
+| Evaluation System | 评测系统 | 贯穿 Agent 生命周期的工程体系，不是发布前一次测试 |
+| Evaluation-first | 评测优先 | 先定义怎么评，再开发 Agent |
+| User Real Request | 真实用户请求 | 架构闭环的起点 |
+| Trace Collection | 轨迹采集 | 收集线上 Online Logs 与 Bad Cases |
+| Bad Case | 失败案例 | 线上翻车样本，飞轮的燃料 |
+| Dataset Evolution | 数据集演进 | 评测集随产品一起增长 |
+| Dataset Manager | 数据集管理 | 统一 Synthetic + Human + Real 三类样本 |
+| Synthetic / Human / Real | 合成 / 人工 / 真实 | 三类评测样本来源 |
+| Agent Runtime | Agent 运行体 | LLM + Memory + Tool + Workflow |
+| Trajectory Store | 轨迹存储 | 保存 Prompt / Tool / Reasoning / Output |
+| Evaluation Engine | 评测引擎 | 调度三类 Judge 执行评分 |
+| Rule Judge | 规则判据 | 确定性、可重复的程序判定 |
+| LLM Judge | 模型判据 | 按 Rubric 判断语义质量 |
+| Human Judge | 人工判据 | 专家确认样本与校准 |
+| Metrics | 指标 | Quality / Cost / Latency / Safety / Business KPI |
+| Business KPI | 业务指标 | 满意率、任务完成率等业务结果 |
+| Dashboard | 看板 | 看指标变化趋势，而非一次实验的分数 |
+| Release Decision | 上线决策 | 这次更新要不要发布 |
+| Error Analysis | 错误归因 | 把失败送回数据集 |
+| Continuous Improvement Loop | 持续改进闭环 | 评估数据飞轮的外圈 |
+| Data Flywheel | 评估数据飞轮 | Online User → Bad Case → Dataset → Engine → Dashboard → 改动 → Redeploy |
+| Redeploy System | 重新发布 | 把改进推回线上 |
+| Regression Dataset | 回归数据集 | 翻车过的题都要加入 |
+| Eval Task | 评测任务 | Anthropic 定义：具有明确输入和成功标准的独立测试 |
+| Task | 任务卡 | 一条可独立评测的测试 |
+| Success Criteria | 成功标准 | 判定通过的可验证条件 |
+| Input | 输入 | 用户请求 + 初始条件 |
+| 约束前置 | Constraints Upfront | 要求必须提前写进任务说明，不能评分时临时追加 |
+| 专家一致性 | Expert Agreement | 两名业务人员独立读 Task 判断一致 |
+| 参考解法 | Reference Solution | 已知能通过所有 Grader 的参考结果 |
+| Grader | 评分器 / 判据 | 对 Trial 给分或判通过 |
+| 平衡问题集 | Balanced Problem Set | 正向 + 反向 + 边界 |
+| 正向任务 | Positive Task | 行为应该发生 |
+| 反向任务 | Negative Task | 行为不应发生 |
+| 边界任务 | Boundary Case | 最容易混淆的样本 |
+| 行为不足 / 行为过度 | Under / Over-trigger | 只测一侧都会把 Agent 带偏 |
+| Trial | 一次试跑 | 一条 Task 的一次执行 |
+| 隔离运行环境 | Isolated Environment | 可重置、记录版本、区分失败类型 |
+| 测试快照 | Test Snapshot | 工具返回固定已知数据 |
+| 无效运行 | Invalid Trial | 基础设施错误导致的 Trial，标记后重试 |
+| Outcome | 终态结果 | 任务结束时真正产生的结果 |
+| Transcript | Trace / Trajectory | 完整可观测轨迹 |
+| Code-based Grader | 代码评分器 | 字符串检查 / Python Grader / Multi Grader |
+| LLM-as-Judge | 模型评分 | Rubric 分维、允许 Unknown |
+| Unknown | 无法判定 | Grader 不强猜分数 |
+| 硬条件 | Hard Gate | 决定任务是否通过 |
+| 软质量 | Soft Quality | 通过之后比较的表达质量 |
+| 部分得分 | Partial Credit | 每部分对应明确条件 |
+| Meta-eval | 先测 Grader | 判据本身也要验证 |
+| Capability Eval | 能力评测 | 还能不能解决难题（第三期预告） |
+| Regression Eval | 回归评测 | 旧能力有没有退步（第三期预告） |
+
+---
+
+## 22. 补充篇 B：可运行代码
+
+**【补充】** 四段纯 Python 标准库实现，把三支视频的关键环节变成可执行逻辑。
+
+### 22.1 Eval Task 结构校验与专家一致性
+
+```python
+# eval_task.py —— python3 eval_task.py
+REQUIRED = ("input", "success_criteria", "constraints")
+NOT_ALLOWED_IN_CRITERIA = ("格式", "语气")   # 约束必须前置，不能评分时临时追加
+
+def validate(task):
+    errs = [k for k in REQUIRED if not task.get(k)]
+    # 约束前置检查：成功标准里出现只能属于任务说明的格式/语气要求 → 违规
+    for w in NOT_ALLOWED_IN_CRITERIA:
+        if w in task.get("success_criteria", ""):
+            errs.append(f"约束未前置: {w}")
+    return errs
+
+def expert_agreement(task, reader_a, reader_b):
+    """两名业务人员独立判断是否通过；不一致说明 Task 不够明确。"""
+    return reader_a(task) == reader_b(task)
+
+if __name__ == "__main__":
+    good = dict(input="用户询问今天上海的天气",
+                success_criteria="调用搜索工具并依据工具返回回答，不能用模型记忆",
+                constraints="必须调用实时搜索")
+    bad = dict(input="回答今天天气", success_criteria="按固定格式输出", constraints="")
+    for name, t in (("合格 Task", good), ("不合格 Task", bad)):
+        print(name, "校验:", validate(t) or "PASS")
+    print("专家一致性:", expert_agreement(good, lambda t: True, lambda t: True))
+```
+
+### 22.2 平衡问题集检查器
+
+```python
+# balanced_suite.py —— python3 balanced_suite.py
+def audit(tasks):
+    pos = [t for t in tasks if t["expected"] == "call"]
+    neg = [t for t in tasks if t["expected"] == "skip"]
+    bd = [t for t in tasks if t["expected"] == "boundary"]
+    flags = []
+    if not pos: flags.append("缺正向任务：查不出行为不足")
+    if not neg: flags.append("缺反向任务：会优化出「遇事就搜」")
+    if not bd: flags.append("缺边界任务")
+    return dict(正向=len(pos), 反向=len(neg), 边界=len(bd), 提示=flags or ["OK 平衡"])
+
+if __name__ == "__main__":
+    suite = [
+        dict(q="今天上海天气?", expected="call"),
+        dict(q="水的沸点?", expected="skip"),
+        dict(q="昨天上海天气?", expected="boundary"),
+    ]
+    print("完整集:", audit(suite))
+    print("缺反向:", audit([suite[0]]))
+    print("只正向:", audit([suite[0], suite[0]]))
+```
+
+### 22.3 隔离 Harness 与无效运行
+
+```python
+# isolated_harness.py —— python3 isolated_harness.py
+SNAPSHOT = {"weather": "晴 26C"}   # 固定测试快照
+VERSIONS = dict(model="v3", prompt="p7", tools="t2", data="d1")
+state = {}
+
+def reset():
+    state.clear()
+    state.update(VERSIONS)
+    return dict(state)
+
+def trial(tool_ok=True):
+    env = reset()
+    if not tool_ok:
+        return dict(env=env, status="INVALID_RETRY", reason="tool_timeout")
+    outcome = SNAPSHOT["weather"]
+    transcript = ["model:call weather", f"tool:{outcome}", "model:answer"]
+    return dict(env=env, status="OK", outcome=outcome, transcript=transcript)
+
+if __name__ == "__main__":
+    a = trial(True)
+    b = trial(False)
+    print("正常 Trial:", a["status"], a["outcome"], a["transcript"])
+    print("异常 Trial:", b["status"], b["reason"], "（不计入 Agent 失败）")
+    print("环境一致:", a["env"] == b["env"])
+```
+
+### 22.4 三类 Grader + 硬条件/软质量 + Grader 自测
+
+```python
+# grader_pipeline.py —— python3 grader_pipeline.py
+def code_grader(trial):
+    hard = [("called_tool", "weather" in " ".join(trial["transcript"])),
+            ("args_ok", True), ("matches_snapshot", trial["outcome"] == "晴 26C")]
+    return all(v for _, v in hard), hard
+
+def llm_grader(trial):
+    return {"表达质量": 4, "证据一致性": 5, "Unknown": False}
+
+def score(trial):
+    passed, hard = code_grader(trial)
+    if not passed:
+        return dict(pass_=False, hard=hard, soft=None)
+    return dict(pass_=True, hard=hard, soft=llm_grader(trial))
+
+def meta_eval(samples, grader=code_grader):
+    """先测 Grader：应通过组必须放过，应失败组必须拦住。"""
+    ok = sum(1 for s, want in samples if (grader(s)[0] == want))
+    return ok, len(samples)
+
+if __name__ == "__main__":
+    good = dict(outcome="晴 26C", transcript=["model:call weather", "tool:晴 26C"])
+    bad = dict(outcome="晴 26C", transcript=["model:answer"])
+    print("通过 Trial:", score(good))
+    print("失败 Trial:", score(bad))
+    print("Grader 自测:", meta_eval([(good, True), (bad, False)]))
+```
+
+---
+
+## 23. 补充篇 C：常见误区
+
+| # | 误区 | 为什么错 | 正确做法 |
+|---|---|---|---|
+| 1 | 把 evaluation 当发布前的一次测试 | Anthropic 强调应贯穿整个开发生命周期 | 从少量高质量数据起步，接入持续迭代 |
+| 2 | 等攒够 1000 条数据再开始 | 少量样本就能跑通小闭环 | 20–50 条真实任务先建基线 |
+| 3 | 一上来就追求 100% 自动化 | 流程没跑顺时自动化只会放大错误 | 先手动、再逐步自动化 |
+| 4 | 只看一个总分 | 总分会掩盖关键失败 | 硬条件判通过 + 软质量独立分 |
+| 5 | 凭空用模型生成全部题目 | 脱离真实使用分布 | 真实任务与真实失败作种子，模型只扩变体 |
+| 6 | 把真实任务直接当 Eval Task | 缺明确输入与成功标准，无法稳定判定 | 写清三要素 + 专家一致性 + 参考解法 |
+| 7 | 评分时临时追加格式 / 语气要求 | 任务说明里从未要求，判分不公平 | 约束前置 |
+| 8 | 评测集只有正向任务 | 会优化出「遇任何问题都先搜」 | 补反向任务与边界任务 |
+| 9 | 每次 Trial 直接调真实外部接口 | 返回漂移会伪装成能力变化 | 固定快照 + 重置状态 + 版本记录 |
+| 10 | 把工具超时算成 Agent 失败 | 基础设施错误与能力无关 | 标记无效运行并重试 |
+| 11 | 只看 Outcome 不存 Transcript | 无法解释为什么成功或失败 | 两类记录同时保留 |
+| 12 | Rubric 只写「评价回答质量」 | 判据含糊、分数随意 | 正确性 / 证据一致性 / 表达质量分维 |
+| 13 | 模型与人工持续分歧时扩大自动评分规模 | 错误判据会量产错误分数 | 先修 Rubric / 证据输入 / 分类边界 |
+| 14 | 没验证 Grader 就大规模评测 | Grader 判错会污染整个数据集 | 先用应通过 / 应失败 / 边界样本自测 |
+| 15 | 评测体系建完就不管了 | 业务与模型都在变 | 飞轮持续回流 Bad Case |
+
+---
+
+## 24. 附录
+
+### 24.1 画面章节结构（三支均无官方自动章节）
+
+| 视频 | 画面给出的结构 | 依据 |
+|---|---|---|
+| ① | 一套完整的 Evaluation System 长什么样？／ 产品经理如何从 0 到 1 搭一套 Evaluation 系统？／ 核心逻辑——构建「评估数据飞轮」／ 踩坑实录 | 封面 f_0001 逐字 |
+| ② | 框架与方法 / 真实任务集 / 写清 Task / 正反平衡 / 三步收束（VOL.052） | 顶部固定导航条 |
+| ③ | 问题与方法 / 隔离运行环境 / Outcome 与轨迹 / 三类 Grader / 硬条件与评分 / 校准与收束（VOL.053） | 顶部固定导航条 |
+
+### 24.2 配图速查（20 张）
+
+| # | 图名 | 来源 |
+|---|---|---|
+| 1–2 | 三支视频结构地图 / evaluation-first 大厂观点 | 视频 ① 封面与口播 |
+| 3–7 | 架构全景 / 三段职责 / 五步落地 / 数据飞轮 / 踩坑四条 | 视频 ① 手绘图逐节点重绘 |
+| 8–14 | 两层框架 / 第一层三步 / 真实任务 / Task 三要素 / 双检查 / 正反平衡 / 三产物 | 视频 ② 导航条与插画 |
+| 15–19 | 第二层五步 / 隔离环境 / Outcome+Transcript / 三类 Grader / 硬条件与自测 | 视频 ③ 导航条与插画 |
+| 20 | 【补充】0→1 完整链路全景 | 三支综合，非视频画面 |
+
+### 24.3 校正表（OCR 与口播）
+
+| 来源写成了 | 正确写法 | 依据 |
+|---|---|---|
+| `Antihropici` / `AT agents` | `Anthropic` / `AI agents` | 视频 ① 画面 f_0012 放大 + 官方文档名 |
+| `Trace Coleetioni` / `Loys/ Bed Cases` | `Trace Collection` / `Logs / Bad Cases` | 视频 ① 架构图节点，多帧交叉核对 |
+| `Dataset Manageri` / `Agent Runt` | `Dataset Manager` / `Agent Runtime` | 手绘字体与放大裁切导致截字 |
+| `Rule Judge / LLx Sudye / wwmn sudge` | `Rule Judge / LLM Judge / Human Judge` | 视频 ① 架构图 + 口播「三种判据」 |
+| `踩坑买录` | `踩坑实录` | 画面 f_0099 放大逐字 |
+| 口播「价值」「架」「Matrix」 | `Judge` / `Grader` / `Metrics` | 字幕 OCR 对英文术语的音译与形近误写 |
+| `VOL.052` 导航「三步收東」「框架与万法」 | `三步收束` / `框架与方法` | 视频 ② 导航条多帧清晰帧对照 |
+| `VOL.053` 导航「隔禺运行环境」「便条件与评分」 | `隔离运行环境` / `硬条件与评分` | 视频 ③ 导航条多帧清晰帧对照 |
+| `Evals APL` / `13.4S` 等 | `Evals API` / 画面计时水印 | 文档名逐字；`xx.xS` 为画面固定计时器，非内容 |
+| `不要等1000条数据再开始` | 保留画面原文 | 为口播经验值，非错字；本教程标注为经验建议 |
+
+### 24.4 还原方法与资料
+
+1. **视频**：① [从0到1搭建一套Agent评估系统？](https://v.douyin.com/jQ3PCzp5d6Y/)（ID `7664976613234711523`，煮caicai，2026-07-21，5:34）；② [6分钟：如何建立Agent评测第一层框架](https://v.douyin.com/yQCqzZPemOM/)（ID `7680547627524354219`，向量思维／观远数据，2026-09-01，5:47）；③ [7分钟干货:0-1搭建Agent评测2](https://v.douyin.com/Vq7UwPruXt0/)（ID `7680918644558148009`，2026-09-02，7:12）。
+2. **逐帧**：3 支最高档原片 35.2 MB（1080×1086 方形 1 支 + 1920×1080 横屏 2 支）；372 帧；Vision OCR 5,504 行；按三支不同版式分别设阈值（① 浮动黑底字幕按「中文短句 + 跨帧变化」判别，②③ 画面 0.07–0.82 / 字幕 0.82–0.95），得到 184 条画面幻灯片、353 条字幕时间线与顶部导航条；封面、架构图、飞轮、踩坑、权威来源、导航条逐帧放大逐字校对。
+3. **公开资料核对**：Anthropic, [Demystifying evals for AI agents](https://www.anthropic.com/research/demystifying-evals-for-ai-agents)（2026-01-09）、Anthropic《Define success criteria and build evaluations》（持续更新）、OpenAI《Evals API Reference》（持续更新）——三份均为视频 ②③ 画面列出的权威来源，亦为本系列第三篇的主要参考。
+4. **本系列互链**：[RAG 评测（在线阅读）](../rag-evaluation-tutorial/RAG评测完全教程.html) ｜ [Agent 评测体系（在线阅读）](../agent-evaluation-tutorial/Agent评测体系完全教程.html) ｜ [评测驱动迭代（在线阅读）](../agent-eval-driven-tutorial/Agent评测驱动迭代完全教程.html) ｜ [开发架构选型（在线阅读）](../agent-architecture-tutorial/Agent开发架构选型完全教程.html) ｜ [评测指标系统（在线阅读）](../agent-metrics-tutorial/Agent评测指标系统完全教程.html) ｜ [评测方法论（在线阅读）](../agent-eval-method-tutorial/Agent评测方法论完全教程.html) ｜ [消除 LLM Judge 偏见（在线阅读）](../agent-judge-bias-tutorial/Agent评测偏见消除完全教程.html)。
+
+> **未做的部分（如实说明）**：本轮未做语音逐字转写（ASR），口播依据烧录字幕 OCR 时间线 + 画面文字归纳；三支均无官方自动章节，章节结构取自画面导航条；视频 ③ 结尾预告的第三期（分数波动解释、Capability vs Regression Eval）未展开，只在本站既有篇目中给出对应链接。
+
+---
+
+*本教程为学习整理产物；视频与文章版权归各自作者所有。*

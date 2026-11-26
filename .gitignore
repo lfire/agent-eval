@@ -4,3 +4,9 @@
 
 # Markdown 阅读页是构建产物：由 tools/build_md.py / CI 从 .md 自动生成，不入库
 *教程.html
+
+# 教程代码示例运行生成的临时样例数据，不是站点内容
+corpus.jsonl
+qrels.jsonl
+queries.jsonl
+ragas_samples.jsonl
