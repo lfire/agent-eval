@@ -117,14 +117,19 @@ flowchart LR
 
 ## 3. 一套完整 Evaluation System 的架构全景
 
-**【视频原述】** 视频 ① 用一张纵向手绘英文流程图给出全貌。下面按画面节点逐字重绘为两行（节点文字保留英文原名）。
+**【视频原述】** 视频 ① 用一张纵向手绘英文流程图给出全貌，它不是并列的模块清单，而是一条**闭合回路**。按画面自上而下：顶部是 Metrics 容器（Quality / Cost / Latency / Safety / Business KPI），其下依次 Dashboard、Release Decision、Error Analysis；左侧 User Real Request 进入 Trace Collection（Online Logs / Bad Cases），与 Dataset Evolution 一起汇入 Dataset Manager（Synthetic + Human + Real），再经 Agent Runtime（LLM + Memory + Tool + Workflow）、Trajectory Store（Prompt / Tool / Reasoning / Output）到达底部 Evaluation Engine 容器（Rule Judge / LLM Judge / Human Judge）。最关键的是画面右侧那条长回流线：Evaluation Engine 的评分结果一路向上汇总为 Metrics，再驱动发布决策与失败归因，回流数据集后重新评测。下面按画面纵向顺序逐节点重绘，节点文字保留英文原名。
 
 ```mermaid
-flowchart LR
- A["User Real Request"] --> B["Trace Collection"] --> C["Dataset Manager"] --> D["Agent Runtime"] --> E["Trajectory Store"] --> F["Evaluation Engine"] --> G["Metrics"] --> H["Dashboard"] --> I["Release Decision"] --> A
+flowchart TB
+ U["User Real Request"] --> TC["Trace Collection: Online Logs / Bad Cases"]
+ RD["Release Decision"] --> EA["Error Analysis"] --> DE["Dataset Evolution"]
+ TC --> DM["Dataset Manager: Synthetic + Human + Real"]
+ DE --> DM
+ DM --> AR["Agent Runtime: LLM + Memory + Tool + Workflow"] --> TS["Trajectory Store: Prompt / Tool / Reasoning / Output"] --> EE["Evaluation Engine: Rule / LLM / Human Judge"]
+ EE --> M["Metrics: Quality / Cost / Latency / Safety / Business KPI"] --> D["Dashboard"] --> RD
 ```
 
-**图 3｜完整 Evaluation System 架构全景重绘**
+**图 3｜完整 Evaluation System 纵向闭环架构（按画面重绘）**
 
 | 节点（画面原文） | 作用 |
 |---|---|
@@ -136,11 +141,11 @@ flowchart LR
 | Agent Runtime: LLM + Memory + Tool + Workflow | 被评测的 Agent 运行体 |
 | Trajectory Store: Prompt / Tool / Reasoning / Output | 保存一次执行的完整轨迹 |
 | Evaluation Engine: Rule Judge / LLM Judge / Human Judge | 三类判据组合评分 |
-| Metrics: Quality / Cost / Latency / Safety / Business KPI | 五类指标 |
+| Metrics: Quality / Cost / Latency / Safety / Business KPI | 评分汇总出的五类指标，驱动看板与发布决策 |
 | Dashboard | 看板：管理指标趋势 |
 | Release Decision | 这次更新到底要不要发布 |
 
-> 画面还有一条从 Release Decision / Error Analysis 回到 User Real Request 与 Dataset Evolution 的回流线——这正是下一章「飞轮」的核心。
+> 闭环含义：Metrics 不是流程终点，而是「评分结果的汇总视图」；真正让体系转起来的是两段回流——**Evaluation Engine → Metrics** 的指标回流，以及 **Release Decision → Error Analysis → Dataset Evolution → Dataset Manager** 的失败回流。这正是下一章「评估数据飞轮」的核心。版式说明：画面里 Metrics 与 Evaluation Engine 两个容器内的子项为纵向排列，此处改为横排以压缩高度，节点与子项文字逐字保留。
 
 ---
 
