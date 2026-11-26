@@ -324,54 +324,58 @@ main{padding-top:22px}
 <section class="sec" id="s4">
 <h2>4. LangChain 的基础组件与 create_agent</h2>
 <div class="figure">
-<svg viewBox="0 0 900 360" xmlns="http://www.w3.org/2000/svg" font-family="-apple-system,PingFang SC,Microsoft YaHei,sans-serif">
+<svg viewBox="0 0 900 374" xmlns="http://www.w3.org/2000/svg" font-family="-apple-system,PingFang SC,Microsoft YaHei,sans-serif">
   <g text-anchor="middle">
     <text x="450" y="26" font-size="15" font-weight="800" fill="#1e2430">LangChain 提供的基础组件</text>
-    <text x="450" y="44" font-size="10.8" fill="#667085">画面 f_0028–f_0031 逐字重绘 · 组合基础组件 → Agent 应用</text>
+    <text x="450" y="44" font-size="10.8" fill="#667085">画面 f_0028–f_0031 逐字重绘 · 七类组件整体汇入 Agent 应用</text>
   </g>
-<rect x="24" y="64" width="205" height="74" rx="10" fill="#eaf1ff" stroke="#5b8def" stroke-width="1.5"/>
-    <text x="126.5" y="105.5" font-size="13" font-weight="800" fill="#1d4ed8" text-anchor="middle">模型接入</text>
-<rect x="244" y="64" width="205" height="74" rx="10" fill="#eaf1ff" stroke="#5b8def" stroke-width="1.5"/>
-    <text x="346.5" y="105.5" font-size="13" font-weight="800" fill="#1d4ed8" text-anchor="middle">Prompt</text>
-<rect x="464" y="64" width="205" height="74" rx="10" fill="#eaf1ff" stroke="#5b8def" stroke-width="1.5"/>
-    <text x="566.5" y="105.5" font-size="13" font-weight="800" fill="#1d4ed8" text-anchor="middle">消息管理</text>
-<rect x="684" y="64" width="205" height="74" rx="10" fill="#eaf1ff" stroke="#5b8def" stroke-width="1.5"/>
-    <text x="786.5" y="105.5" font-size="13" font-weight="800" fill="#1d4ed8" text-anchor="middle">工具调用</text>
-<rect x="134" y="158" width="205" height="74" rx="10" fill="#e9f9f0" stroke="#39a97a" stroke-width="1.5"/>
-    <text x="236.5" y="199.6" font-size="13" font-weight="800" fill="#177a52" text-anchor="middle">文档加载</text>
-<rect x="354" y="158" width="205" height="74" rx="10" fill="#e9f9f0" stroke="#39a97a" stroke-width="1.5"/>
-    <text x="456.5" y="199.6" font-size="13" font-weight="800" fill="#177a52" text-anchor="middle">向量数据库</text>
-<rect x="574" y="158" width="205" height="74" rx="10" fill="#e9f9f0" stroke="#39a97a" stroke-width="1.5"/>
-    <text x="676.5" y="199.6" font-size="13" font-weight="800" fill="#177a52" text-anchor="middle">检索器</text>
-<g stroke="#8a94a6" stroke-width="1.7" fill="none"><line x1="450" y1="240" x2="450" y2="258"/><line x1="445" y1="250" x2="450" y2="258"/><line x1="455" y1="250" x2="450" y2="258"/></g>
-<rect x="90" y="260" width="720" height="62" rx="10" fill="#f5f7fa" stroke="#b6c0cf" stroke-width="1.5"/>
-    <text x="450.0" y="295.6" font-size="13" font-weight="800" fill="#344054" text-anchor="middle">组合基础组件 → 快速搭建一个 Agent 应用</text>
-<text x="450" y="346" font-size="10.8" fill="#667085" text-anchor="middle">官方补充：LangChain 1.0 的 create_agent 构建于 LangGraph 运行时之上</text>
+<rect x="24" y="56" width="852" height="188" rx="12" fill="#f4f8ff" stroke="#b9d0f5" stroke-width="1.4"/>
+<text x="40" y="76" font-size="11" font-weight="800" fill="#1d4ed8">LangChain 基础组件（可按需取用）</text>
+<rect x="40" y="86" width="190" height="56" rx="10" fill="#eaf1ff" stroke="#5b8def" stroke-width="1.5"/>
+    <text x="135.0" y="118.5" font-size="13" font-weight="800" fill="#1d4ed8" text-anchor="middle">模型接入</text>
+<rect x="246" y="86" width="190" height="56" rx="10" fill="#eaf1ff" stroke="#5b8def" stroke-width="1.5"/>
+    <text x="341.0" y="118.5" font-size="13" font-weight="800" fill="#1d4ed8" text-anchor="middle">Prompt</text>
+<rect x="452" y="86" width="190" height="56" rx="10" fill="#eaf1ff" stroke="#5b8def" stroke-width="1.5"/>
+    <text x="547.0" y="118.5" font-size="13" font-weight="800" fill="#1d4ed8" text-anchor="middle">消息管理</text>
+<rect x="658" y="86" width="190" height="56" rx="10" fill="#eaf1ff" stroke="#5b8def" stroke-width="1.5"/>
+    <text x="753.0" y="118.5" font-size="13" font-weight="800" fill="#1d4ed8" text-anchor="middle">工具调用</text>
+<rect x="143" y="162" width="190" height="56" rx="10" fill="#e9f9f0" stroke="#39a97a" stroke-width="1.5"/>
+    <text x="238.0" y="194.6" font-size="13" font-weight="800" fill="#177a52" text-anchor="middle">文档加载</text>
+<rect x="349" y="162" width="190" height="56" rx="10" fill="#e9f9f0" stroke="#39a97a" stroke-width="1.5"/>
+    <text x="444.0" y="194.6" font-size="13" font-weight="800" fill="#177a52" text-anchor="middle">向量数据库</text>
+<rect x="555" y="162" width="190" height="56" rx="10" fill="#e9f9f0" stroke="#39a97a" stroke-width="1.5"/>
+    <text x="650.0" y="194.6" font-size="13" font-weight="800" fill="#177a52" text-anchor="middle">检索器</text>
+<g stroke="#8a94a6" stroke-width="1.7" fill="none"><line x1="450" y1="244" x2="450" y2="264"/><line x1="445" y1="256" x2="450" y2="264"/><line x1="455" y1="256" x2="450" y2="264"/></g>
+<rect x="90" y="266" width="720" height="62" rx="10" fill="#f5f7fa" stroke="#b6c0cf" stroke-width="1.5"/>
+    <text x="450.0" y="301.6" font-size="13" font-weight="800" fill="#344054" text-anchor="middle">组合基础组件 → 快速搭建一个 Agent 应用</text>
+<text x="450" y="352" font-size="10.8" fill="#667085" text-anchor="middle">官方补充：LangChain 1.0 的 create_agent 构建于 LangGraph 运行时之上</text>
 </svg>
   <div class="cap">图 4｜LangChain 基础组件重绘</div>
 </div>
 <p><span class="tag t-video">视频原述</span>画面列出 LangChain 提供的基础组件：模型接入、Prompt、消息管理、工具调用、文档加载、向量数据库、检索器；口播原话是「开发者可以直接使用这些组件，快速搭建一个 Agent 应用」。</p>
 <div class="figure">
-<svg viewBox="0 0 900 442" xmlns="http://www.w3.org/2000/svg" font-family="-apple-system,PingFang SC,Microsoft YaHei,sans-serif">
+<svg viewBox="0 0 900 446" xmlns="http://www.w3.org/2000/svg" font-family="-apple-system,PingFang SC,Microsoft YaHei,sans-serif">
   <g text-anchor="middle">
     <text x="450" y="26" font-size="15" font-weight="800" fill="#1e2430">create_agent 与模型—工具循环</text>
-    <text x="450" y="44" font-size="10.8" fill="#667085">画面 f_0033–f_0041 逐字重绘 · 高层接口 + 一次执行的过程</text>
+    <text x="450" y="44" font-size="10.8" fill="#667085">画面 f_0033–f_0041 逐字重绘 · 三样输入整体交给高层接口</text>
   </g>
-<rect x="24" y="64" width="205" height="88" rx="10" fill="#eaf1ff" stroke="#5b8def" stroke-width="1.5"/>
-    <text x="126.5" y="112.5" font-size="13" font-weight="800" fill="#1d4ed8" text-anchor="middle">大模型</text>
-<rect x="244" y="64" width="205" height="88" rx="10" fill="#eaf1ff" stroke="#5b8def" stroke-width="1.5"/>
-    <text x="346.5" y="112.5" font-size="13" font-weight="800" fill="#1d4ed8" text-anchor="middle">工具</text>
-<rect x="464" y="64" width="205" height="88" rx="10" fill="#eaf1ff" stroke="#5b8def" stroke-width="1.5"/>
-    <text x="566.5" y="112.5" font-size="13" font-weight="800" fill="#1d4ed8" text-anchor="middle">系统提示词</text>
-<g stroke="#8a94a6" stroke-width="1.7" fill="none"><line x1="450" y1="154" x2="450" y2="174"/><line x1="445" y1="166" x2="450" y2="174"/><line x1="455" y1="166" x2="450" y2="174"/></g>
-<rect x="250" y="176" width="400" height="54" rx="10" fill="#e9f9f0" stroke="#39a97a" stroke-width="1.5"/>
-    <text x="450.0" y="207.6" font-size="13" font-weight="800" fill="#177a52" text-anchor="middle">create_agent</text>
-<g stroke="#8a94a6" stroke-width="1.7" fill="none"><line x1="450" y1="230" x2="450" y2="250"/><line x1="445" y1="242" x2="450" y2="250"/><line x1="455" y1="242" x2="450" y2="250"/></g>
-<rect x="250" y="252" width="400" height="54" rx="10" fill="#e9f9f0" stroke="#39a97a" stroke-width="1.5"/>
-    <text x="450.0" y="283.6" font-size="13" font-weight="800" fill="#177a52" text-anchor="middle">能够调用工具的 Agent</text>
-<rect x="24" y="330" width="852" height="74" rx="10" fill="#f5f7fa" stroke="#b6c0cf" stroke-width="1.5"/>
+<rect x="24" y="56" width="852" height="102" rx="12" fill="#f4f8ff" stroke="#b9d0f5" stroke-width="1.4"/>
+<text x="40" y="76" font-size="11" font-weight="800" fill="#1d4ed8">开发者只需准备三样东西</text>
+<rect x="40" y="86" width="250" height="56" rx="10" fill="#eaf1ff" stroke="#5b8def" stroke-width="1.5"/>
+    <text x="165.0" y="118.5" font-size="13" font-weight="800" fill="#1d4ed8" text-anchor="middle">大模型</text>
+<rect x="325" y="86" width="250" height="56" rx="10" fill="#eaf1ff" stroke="#5b8def" stroke-width="1.5"/>
+    <text x="450.0" y="118.5" font-size="13" font-weight="800" fill="#1d4ed8" text-anchor="middle">工具</text>
+<rect x="610" y="86" width="250" height="56" rx="10" fill="#eaf1ff" stroke="#5b8def" stroke-width="1.5"/>
+    <text x="735.0" y="118.5" font-size="13" font-weight="800" fill="#1d4ed8" text-anchor="middle">系统提示词</text>
+<g stroke="#8a94a6" stroke-width="1.7" fill="none"><line x1="450" y1="158" x2="450" y2="180"/><line x1="445" y1="172" x2="450" y2="180"/><line x1="455" y1="172" x2="450" y2="180"/></g>
+<rect x="250" y="182" width="400" height="54" rx="10" fill="#e9f9f0" stroke="#39a97a" stroke-width="1.5"/>
+    <text x="450.0" y="213.6" font-size="13" font-weight="800" fill="#177a52" text-anchor="middle">create_agent</text>
+<g stroke="#8a94a6" stroke-width="1.7" fill="none"><line x1="450" y1="236" x2="450" y2="258"/><line x1="445" y1="250" x2="450" y2="258"/><line x1="455" y1="250" x2="450" y2="258"/></g>
+<rect x="250" y="260" width="400" height="54" rx="10" fill="#e9f9f0" stroke="#39a97a" stroke-width="1.5"/>
+    <text x="450.0" y="291.6" font-size="13" font-weight="800" fill="#177a52" text-anchor="middle">能够调用工具的 Agent</text>
+<rect x="24" y="334" width="852" height="66" rx="10" fill="#f5f7fa" stroke="#b6c0cf" stroke-width="1.5"/>
     <text x="450.0" y="371.6" font-size="13" font-weight="800" fill="#344054" text-anchor="middle">循环：用户问题 → 大模型判断 → 选择工具 → 执行并返回 → 根据工具结果继续处理</text>
-<text x="450" y="428" font-size="10.8" fill="#667085" text-anchor="middle">开发者只需准备大模型、工具与系统提示词；判断与循环由框架接管</text>
+<text x="450" y="424" font-size="10.8" fill="#667085" text-anchor="middle">判断与循环由框架接管，开发者不必手写状态机</text>
 </svg>
   <div class="cap">图 5｜create_agent 与工具循环重绘</div>
 </div>
@@ -389,12 +393,14 @@ main{padding-top:22px}
     <text x="450" y="26" font-size="15" font-weight="800" fill="#1e2430">由模型按当前问题选择工具</text>
     <text x="450" y="44" font-size="10.8" fill="#667085">画面 f_0042–f_0052 逐字重绘 · 适用场景的共同特征</text>
   </g>
+<text x="24" y="60" font-size="10" fill="#667085">按问题选工具（由模型判断）</text>
 <rect x="24" y="64" width="400" height="100" rx="10" fill="#fff8dd" stroke="#d9a92e" stroke-width="1.5"/>
     <text x="224.0" y="90.0" font-size="13" font-weight="800" fill="#8a5f00" text-anchor="middle">业务制度问题</text>
     <text x="224.0" y="110.0" font-size="11.2" fill="#7a6330" text-anchor="middle">→ 知识库检索工具</text>
 <rect x="444" y="64" width="432" height="100" rx="10" fill="#fff8dd" stroke="#d9a92e" stroke-width="1.5"/>
     <text x="660.0" y="90.0" font-size="13" font-weight="800" fill="#8a5f00" text-anchor="middle">查询订单状态</text>
     <text x="660.0" y="110.0" font-size="11.2" fill="#7a6330" text-anchor="middle">→ 订单查询接口</text>
+<text x="24" y="180" font-size="10" fill="#667085">适用场景</text>
 <rect x="24" y="184" width="270" height="108" rx="10" fill="#e9f9f0" stroke="#39a97a" stroke-width="1.5"/>
     <text x="159.0" y="210.0" font-size="13" font-weight="800" fill="#177a52" text-anchor="middle">企业知识库问答</text>
     <text x="159.0" y="230.0" font-size="11.2" fill="#3c6b55" text-anchor="middle">RAG 应用</text>
@@ -423,7 +429,7 @@ main{padding-top:22px}
 <section class="sec" id="s6">
 <h2>6. 中间件扩展与 LangGraph 的引出</h2>
 <div class="figure">
-<svg viewBox="0 0 900 318" xmlns="http://www.w3.org/2000/svg" font-family="-apple-system,PingFang SC,Microsoft YaHei,sans-serif">
+<svg viewBox="0 0 900 326" xmlns="http://www.w3.org/2000/svg" font-family="-apple-system,PingFang SC,Microsoft YaHei,sans-serif">
   <g text-anchor="middle">
     <text x="450" y="26" font-size="15" font-weight="800" fill="#1e2430">流程复杂之后：中间件扩展与 LangGraph</text>
     <text x="450" y="44" font-size="10.8" fill="#667085">画面 f_0054–f_0057 逐字重绘 · 从「能扩展」到「必须精确控制」</text>
@@ -437,9 +443,10 @@ main{padding-top:22px}
 <g stroke="#8a94a6" stroke-width="1.7" fill="none"><line x1="426" y1="130" x2="472" y2="130"/><line x1="464" y1="125" x2="472" y2="130"/><line x1="464" y1="135" x2="472" y2="130"/></g>
 <rect x="484" y="64" width="392" height="132" rx="10" fill="#f3edff" stroke="#9575e0" stroke-width="1.5"/>
     <text x="680.0" y="90.0" font-size="13" font-weight="800" fill="#6d42c9" text-anchor="middle">当这些需求大量出现</text>
-    <text x="680.0" y="127.0" font-size="11.2" fill="#5d4a91" text-anchor="middle">流程不再适合全部交给模型判断</text>
-    <text x="680.0" y="147.0" font-size="11.2" fill="#5d4a91" text-anchor="middle">需要开发者明确控制顺序</text>
-    <text x="680.0" y="167.0" font-size="11.2" fill="#5d4a91" text-anchor="middle">→ 进入 LangGraph</text>
+    <text x="680.0" y="117.0" font-size="11.2" fill="#5d4a91" text-anchor="middle">流程不再适合全部交给模型判断</text>
+    <text x="680.0" y="137.0" font-size="11.2" fill="#5d4a91" text-anchor="middle">需要开发者明确控制顺序</text>
+    <text x="680.0" y="157.0" font-size="11.2" fill="#5d4a91" text-anchor="middle">确定性规则要显式表达</text>
+    <text x="680.0" y="177.0" font-size="11.2" fill="#5d4a91" text-anchor="middle">→ 进入 LangGraph</text>
 <rect x="90" y="218" width="720" height="62" rx="10" fill="#f5f7fa" stroke="#b6c0cf" stroke-width="1.5"/>
     <text x="450.0" y="253.6" font-size="13" font-weight="800" fill="#344054" text-anchor="middle">不是取代，而是抽象层次下移：从「让模型判断」到「让开发者定义」</text>
 <text x="450" y="304" font-size="10.8" fill="#667085" text-anchor="middle">画面原文：「LangChain 可通过中间件扩展」→ 条件分支 / 状态转换 / 异常重试 / 人工审批</text>
@@ -453,30 +460,26 @@ main{padding-top:22px}
 <section class="sec" id="s7">
 <h2>7. LangGraph 的起点：企业售后处理系统</h2>
 <div class="figure">
-<svg viewBox="0 0 900 336" xmlns="http://www.w3.org/2000/svg" font-family="-apple-system,PingFang SC,Microsoft YaHei,sans-serif">
+<svg viewBox="0 0 900 414" xmlns="http://www.w3.org/2000/svg" font-family="-apple-system,PingFang SC,Microsoft YaHei,sans-serif">
   <g text-anchor="middle">
     <text x="450" y="26" font-size="15" font-weight="800" fill="#1e2430">LangGraph 的起点：企业售后处理系统</text>
-    <text x="450" y="44" font-size="10.8" fill="#667085">画面 f_0059–f_0068 逐字重绘 · 固定环节与人工确认</text>
+    <text x="450" y="44" font-size="10.8" fill="#667085">画面 f_0059–f_0068 逐字重绘 · 固定环节由业务规则决定</text>
   </g>
-<rect x="24" y="64" width="164" height="62" rx="10" fill="#eaf1ff" stroke="#5b8def" stroke-width="1.5"/>
-    <text x="106.0" y="99.5" font-size="13" font-weight="800" fill="#1d4ed8" text-anchor="middle">问题识别</text>
-<rect x="202" y="64" width="164" height="62" rx="10" fill="#eaf1ff" stroke="#5b8def" stroke-width="1.5"/>
-    <text x="284.0" y="99.5" font-size="13" font-weight="800" fill="#1d4ed8" text-anchor="middle">查询订单</text>
-<rect x="380" y="64" width="164" height="62" rx="10" fill="#f3edff" stroke="#9575e0" stroke-width="1.5"/>
-    <text x="462.0" y="99.5" font-size="13" font-weight="800" fill="#6d42c9" text-anchor="middle">风险校验</text>
-<rect x="558" y="64" width="164" height="62" rx="10" fill="#fff8dd" stroke="#d9a92e" stroke-width="1.5"/>
-    <text x="640.0" y="99.5" font-size="13" font-weight="800" fill="#8a5f00" text-anchor="middle">退款审批</text>
-<rect x="736" y="64" width="140" height="62" rx="10" fill="#ffeef1" stroke="#e0728d" stroke-width="1.5"/>
-    <text x="806.0" y="99.5" font-size="13" font-weight="800" fill="#b03a55" text-anchor="middle">其他处理</text>
-<g stroke="#8a94a6" stroke-width="1.7" fill="none"><line x1="190" y1="95" x2="200" y2="95"/><line x1="192" y1="90" x2="200" y2="95"/><line x1="192" y1="100" x2="200" y2="95"/></g>
-<g stroke="#8a94a6" stroke-width="1.7" fill="none"><line x1="368" y1="95" x2="378" y2="95"/><line x1="370" y1="90" x2="378" y2="95"/><line x1="370" y1="100" x2="378" y2="95"/></g>
-<g stroke="#8a94a6" stroke-width="1.7" fill="none"><line x1="546" y1="95" x2="556" y2="95"/><line x1="548" y1="90" x2="556" y2="95"/><line x1="548" y1="100" x2="556" y2="95"/></g>
-<g stroke="#8a94a6" stroke-width="1.7" fill="none"><line x1="724" y1="95" x2="734" y2="95"/><line x1="726" y1="90" x2="734" y2="95"/><line x1="726" y1="100" x2="734" y2="95"/></g>
-<rect x="90" y="150" width="720" height="66" rx="10" fill="#f5f7fa" stroke="#b6c0cf" stroke-width="1.5"/>
-    <text x="450.0" y="187.6" font-size="13" font-weight="800" fill="#344054" text-anchor="middle">有些环节必须由人工确认：什么时候风险校验、什么时候等待人工审批</text>
-<rect x="90" y="232" width="720" height="66" rx="10" fill="#ffeef1" stroke="#e0728d" stroke-width="1.5"/>
-    <text x="450.0" y="269.6" font-size="13" font-weight="800" fill="#b03a55" text-anchor="middle">若全部交给一个 Agent 自己判断，流程不容易控制</text>
-<text x="450" y="322" font-size="10.8" fill="#667085" text-anchor="middle">画面原文：「有些环节必须由人工确认」「不能完全交给大模型决定」</text>
+<rect x="90" y="64" width="210" height="62" rx="10" fill="#eaf1ff" stroke="#5b8def" stroke-width="1.5"/>
+    <text x="195.0" y="99.5" font-size="13" font-weight="800" fill="#1d4ed8" text-anchor="middle">问题识别</text>
+<rect x="345" y="64" width="210" height="62" rx="10" fill="#eaf1ff" stroke="#5b8def" stroke-width="1.5"/>
+    <text x="450.0" y="99.5" font-size="13" font-weight="800" fill="#1d4ed8" text-anchor="middle">查询订单</text>
+<rect x="600" y="64" width="210" height="62" rx="10" fill="#f3edff" stroke="#9575e0" stroke-width="1.5"/>
+    <text x="705.0" y="99.5" font-size="13" font-weight="800" fill="#6d42c9" text-anchor="middle">风险校验</text>
+<g stroke="#8a94a6" stroke-width="1.7" fill="none"><line x1="302" y1="95" x2="343" y2="95"/><line x1="335" y1="90" x2="343" y2="95"/><line x1="335" y1="100" x2="343" y2="95"/></g>
+<g stroke="#8a94a6" stroke-width="1.7" fill="none"><line x1="557" y1="95" x2="598" y2="95"/><line x1="590" y1="90" x2="598" y2="95"/><line x1="590" y1="100" x2="598" y2="95"/></g>
+<rect x="90" y="150" width="720" height="62" rx="10" fill="#fff8dd" stroke="#d9a92e" stroke-width="1.5"/>
+    <text x="450.0" y="185.6" font-size="13" font-weight="800" fill="#8a5f00" text-anchor="middle">业务规则：符合 → 进入退款审批；不符合 → 转入其他处理流程</text>
+<rect x="90" y="228" width="720" height="62" rx="10" fill="#ffeef1" stroke="#e0728d" stroke-width="1.5"/>
+    <text x="450.0" y="263.6" font-size="13" font-weight="800" fill="#b03a55" text-anchor="middle">有些环节必须由人工确认：什么时候风险校验、什么时候等待人工审批</text>
+<rect x="90" y="306" width="720" height="62" rx="10" fill="#f5f7fa" stroke="#b6c0cf" stroke-width="1.5"/>
+    <text x="450.0" y="341.6" font-size="13" font-weight="800" fill="#344054" text-anchor="middle">若全部交给一个 Agent 自己判断，流程不容易控制</text>
+<text x="450" y="392" font-size="10.8" fill="#667085" text-anchor="middle">画面原文：「有些环节必须由人工确认」「不能完全交给大模型决定」</text>
 </svg>
   <div class="cap">图 8｜售后流程与业务规则重绘</div>
 </div>
@@ -552,24 +555,25 @@ main{padding-top:22px}
 <section class="sec" id="s9">
 <h2>9. 条件流转与精确控制</h2>
 <div class="figure">
-<svg viewBox="0 0 900 340" xmlns="http://www.w3.org/2000/svg" font-family="-apple-system,PingFang SC,Microsoft YaHei,sans-serif">
+<svg viewBox="0 0 900 348" xmlns="http://www.w3.org/2000/svg" font-family="-apple-system,PingFang SC,Microsoft YaHei,sans-serif">
   <g text-anchor="middle">
     <text x="450" y="26" font-size="15" font-weight="800" fill="#1e2430">条件流转：由业务规则决定下一步</text>
-    <text x="450" y="44" font-size="10.8" fill="#667085">画面 f_0082–f_0090 逐字重绘 · 精确控制执行过程</text>
+    <text x="450" y="44" font-size="10.8" fill="#667085">画面 f_0082–f_0090 逐字重绘 · 风险校验分出两条边</text>
   </g>
-<rect x="90" y="64" width="205" height="58" rx="10" fill="#eaf1ff" stroke="#5b8def" stroke-width="1.5"/>
-    <text x="192.5" y="97.5" font-size="13" font-weight="800" fill="#1d4ed8" text-anchor="middle">问题识别</text>
-<rect x="315" y="64" width="205" height="58" rx="10" fill="#eaf1ff" stroke="#5b8def" stroke-width="1.5"/>
-    <text x="417.5" y="97.5" font-size="13" font-weight="800" fill="#1d4ed8" text-anchor="middle">订单查询</text>
-<rect x="540" y="64" width="205" height="58" rx="10" fill="#f3edff" stroke="#9575e0" stroke-width="1.5"/>
-    <text x="642.5" y="97.5" font-size="13" font-weight="800" fill="#6d42c9" text-anchor="middle">风险校验</text>
-<g stroke="#8a94a6" stroke-width="1.7" fill="none"><line x1="297" y1="93" x2="313" y2="93"/><line x1="305" y1="88" x2="313" y2="93"/><line x1="305" y1="98" x2="313" y2="93"/></g>
-<g stroke="#8a94a6" stroke-width="1.7" fill="none"><line x1="522" y1="93" x2="538" y2="93"/><line x1="530" y1="88" x2="538" y2="93"/><line x1="530" y1="98" x2="538" y2="93"/></g>
-<rect x="330" y="158" width="205" height="58" rx="10" fill="#e9f9f0" stroke="#39a97a" stroke-width="1.5"/>
-    <text x="432.5" y="191.6" font-size="13" font-weight="800" fill="#177a52" text-anchor="middle">通过 → 退款审批</text>
-<rect x="555" y="158" width="205" height="58" rx="10" fill="#ffeef1" stroke="#e0728d" stroke-width="1.5"/>
-    <text x="657.5" y="191.6" font-size="13" font-weight="800" fill="#b03a55" text-anchor="middle">未通过 → 异常处理</text>
-<g stroke="#8a94a6" stroke-width="1.7" fill="none"><line x1="642" y1="122" x2="642" y2="156"/><line x1="637" y1="148" x2="642" y2="156"/><line x1="647" y1="148" x2="642" y2="156"/></g>
+<rect x="40" y="64" width="180" height="58" rx="10" fill="#eaf1ff" stroke="#5b8def" stroke-width="1.5"/>
+    <text x="130.0" y="97.5" font-size="13" font-weight="800" fill="#1d4ed8" text-anchor="middle">问题识别</text>
+<rect x="265" y="64" width="180" height="58" rx="10" fill="#eaf1ff" stroke="#5b8def" stroke-width="1.5"/>
+    <text x="355.0" y="97.5" font-size="13" font-weight="800" fill="#1d4ed8" text-anchor="middle">订单查询</text>
+<rect x="490" y="64" width="180" height="58" rx="10" fill="#f3edff" stroke="#9575e0" stroke-width="1.5"/>
+    <text x="580.0" y="97.5" font-size="13" font-weight="800" fill="#6d42c9" text-anchor="middle">风险校验</text>
+<g stroke="#8a94a6" stroke-width="1.7" fill="none"><line x1="222" y1="93" x2="263" y2="93"/><line x1="255" y1="88" x2="263" y2="93"/><line x1="255" y1="98" x2="263" y2="93"/></g>
+<g stroke="#8a94a6" stroke-width="1.7" fill="none"><line x1="447" y1="93" x2="488" y2="93"/><line x1="480" y1="88" x2="488" y2="93"/><line x1="480" y1="98" x2="488" y2="93"/></g>
+<g stroke="#8a94a6" stroke-width="1.7" fill="none"><line x1="540" y1="122" x2="400" y2="158"/><line x1="406.5" y1="151.2" x2="400" y2="158"/><line x1="409.0" y1="160.9" x2="400" y2="158"/></g>
+<g stroke="#8a94a6" stroke-width="1.7" fill="none"><line x1="620" y1="122" x2="620" y2="158"/><line x1="615" y1="150" x2="620" y2="158"/><line x1="625" y1="150" x2="620" y2="158"/></g>
+<rect x="300" y="160" width="200" height="58" rx="10" fill="#e9f9f0" stroke="#39a97a" stroke-width="1.5"/>
+    <text x="400.0" y="193.6" font-size="13" font-weight="800" fill="#177a52" text-anchor="middle">通过 → 退款审批</text>
+<rect x="520" y="160" width="200" height="58" rx="10" fill="#ffeef1" stroke="#e0728d" stroke-width="1.5"/>
+    <text x="620.0" y="193.6" font-size="13" font-weight="800" fill="#b03a55" text-anchor="middle">未通过 → 异常处理</text>
 <rect x="90" y="240" width="720" height="62" rx="10" fill="#f5f7fa" stroke="#b6c0cf" stroke-width="1.5"/>
     <text x="450.0" y="275.6" font-size="13" font-weight="800" fill="#344054" text-anchor="middle">整个流程拆成多个节点，开发者精确控制每个环节的执行顺序</text>
 <text x="450" y="326" font-size="10.8" fill="#667085" text-anchor="middle">画面原文：「开发者精确控制 Agent 执行过程」</text>
@@ -678,7 +682,7 @@ main{padding-top:22px}
 <section class="sec" id="s13">
 <h2>13. 完整执行框架：建立在前两者之上</h2>
 <div class="figure">
-<svg viewBox="0 0 900 440" xmlns="http://www.w3.org/2000/svg" font-family="-apple-system,PingFang SC,Microsoft YaHei,sans-serif">
+<svg viewBox="0 0 900 448" xmlns="http://www.w3.org/2000/svg" font-family="-apple-system,PingFang SC,Microsoft YaHei,sans-serif">
   <g text-anchor="middle">
     <text x="450" y="26" font-size="15" font-weight="800" fill="#1e2430">Deep Agents 的完整执行框架</text>
     <text x="450" y="44" font-size="10.8" fill="#667085">画面 f_0129–f_0132 逐字重绘 · 底层能力向上封装，不是向下流程</text>
@@ -707,26 +711,26 @@ main{padding-top:22px}
 <section class="sec" id="s14">
 <h2>14. 任务规划与子智能体协作</h2>
 <div class="figure">
-<svg viewBox="0 0 900 332" xmlns="http://www.w3.org/2000/svg" font-family="-apple-system,PingFang SC,Microsoft YaHei,sans-serif">
+<svg viewBox="0 0 900 428" xmlns="http://www.w3.org/2000/svg" font-family="-apple-system,PingFang SC,Microsoft YaHei,sans-serif">
   <g text-anchor="middle">
     <text x="450" y="26" font-size="15" font-weight="800" fill="#1e2430">任务规划与子智能体协作</text>
-    <text x="450" y="44" font-size="10.8" fill="#667085">画面 f_0135–f_0146 逐字重绘 · 大目标 → 可跟踪的具体步骤</text>
+    <text x="450" y="44" font-size="10.8" fill="#667085">画面 f_0135–f_0146 逐字重绘 · 主 Agent 派发、子 Agent 汇报</text>
   </g>
-<rect x="90" y="64" width="720" height="62" rx="10" fill="#e9f9f0" stroke="#39a97a" stroke-width="1.5"/>
-    <text x="450.0" y="99.5" font-size="13" font-weight="800" fill="#177a52" text-anchor="middle">大目标 → 代码分析 / 问题定位 / 代码修改 / 测试验证 / 结果整理</text>
-<rect x="90" y="146" width="300" height="62" rx="10" fill="#eaf1ff" stroke="#5b8def" stroke-width="1.5"/>
-    <text x="240.0" y="181.6" font-size="13" font-weight="800" fill="#1d4ed8" text-anchor="middle">主 Agent：整体规划</text>
-<rect x="410" y="146" width="190" height="62" rx="10" fill="#f3edff" stroke="#9575e0" stroke-width="1.5"/>
-    <text x="505.0" y="172.0" font-size="13" font-weight="800" fill="#6d42c9" text-anchor="middle">子 Agent</text>
-    <text x="505.0" y="192.0" font-size="11.2" fill="#5d4a91" text-anchor="middle">分析代码结构</text>
-<rect x="620" y="146" width="190" height="62" rx="10" fill="#f3edff" stroke="#9575e0" stroke-width="1.5"/>
-    <text x="715.0" y="172.0" font-size="13" font-weight="800" fill="#6d42c9" text-anchor="middle">子 Agent</text>
-    <text x="715.0" y="192.0" font-size="11.2" fill="#5d4a91" text-anchor="middle">检查测试结果</text>
-<g stroke="#8a94a6" stroke-width="1.7" fill="none"><line x1="392" y1="177" x2="408" y2="177"/><line x1="400" y1="172" x2="408" y2="177"/><line x1="400" y1="182" x2="408" y2="177"/></g>
-<g stroke="#8a94a6" stroke-width="1.7" fill="none"><line x1="602" y1="177" x2="618" y2="177"/><line x1="610" y1="172" x2="618" y2="177"/><line x1="610" y1="182" x2="618" y2="177"/></g>
-<rect x="90" y="232" width="720" height="62" rx="10" fill="#f5f7fa" stroke="#b6c0cf" stroke-width="1.5"/>
-    <text x="450.0" y="267.6" font-size="13" font-weight="800" fill="#344054" text-anchor="middle">子任务结果返回 → 主 Agent 汇总处理</text>
-<text x="450" y="318" font-size="10.8" fill="#667085" text-anchor="middle">画面原文：「子任务交给专门的 Agent」「子任务结果返回 → 主 Agent 汇总处理」</text>
+<rect x="90" y="64" width="720" height="58" rx="10" fill="#e9f9f0" stroke="#39a97a" stroke-width="1.5"/>
+    <text x="450.0" y="97.5" font-size="13" font-weight="800" fill="#177a52" text-anchor="middle">大目标 → 代码分析 / 问题定位 / 代码修改 / 测试验证 / 结果整理</text>
+<rect x="330" y="142" width="240" height="58" rx="10" fill="#eaf1ff" stroke="#5b8def" stroke-width="1.5"/>
+    <text x="450.0" y="175.6" font-size="13" font-weight="800" fill="#1d4ed8" text-anchor="middle">主 Agent：整体规划</text>
+<g stroke="#8a94a6" stroke-width="1.7" fill="none"><line x1="410" y1="200" x2="225" y2="234"/><line x1="232.0" y1="227.6" x2="225" y2="234"/><line x1="233.8" y1="237.5" x2="225" y2="234"/></g>
+<g stroke="#8a94a6" stroke-width="1.7" fill="none"><line x1="490" y1="200" x2="675" y2="234"/><line x1="666.2" y1="237.5" x2="675" y2="234"/><line x1="668.0" y1="227.6" x2="675" y2="234"/></g>
+<rect x="90" y="236" width="270" height="62" rx="10" fill="#f3edff" stroke="#9575e0" stroke-width="1.5"/>
+    <text x="225.0" y="262.0" font-size="13" font-weight="800" fill="#6d42c9" text-anchor="middle">子 Agent</text>
+    <text x="225.0" y="282.0" font-size="11.2" fill="#5d4a91" text-anchor="middle">分析代码结构</text>
+<rect x="540" y="236" width="270" height="62" rx="10" fill="#f3edff" stroke="#9575e0" stroke-width="1.5"/>
+    <text x="675.0" y="262.0" font-size="13" font-weight="800" fill="#6d42c9" text-anchor="middle">子 Agent</text>
+    <text x="675.0" y="282.0" font-size="11.2" fill="#5d4a91" text-anchor="middle">检查测试结果</text>
+<rect x="90" y="320" width="720" height="62" rx="10" fill="#f5f7fa" stroke="#b6c0cf" stroke-width="1.5"/>
+    <text x="450.0" y="355.6" font-size="13" font-weight="800" fill="#344054" text-anchor="middle">子任务结果返回 → 主 Agent 汇总处理</text>
+<text x="450" y="406" font-size="10.8" fill="#667085" text-anchor="middle">画面原文：「子任务交给专门的 Agent」「子任务结果返回 → 主 Agent 汇总处理」</text>
 </svg>
   <div class="cap">图 16｜任务规划与子智能体重绘</div>
 </div>
@@ -846,29 +850,33 @@ main{padding-top:22px}
 <section class="sec" id="s18">
 <h2>18. 三个选型问题与决策树</h2>
 <div class="figure">
-<svg viewBox="0 0 900 318" xmlns="http://www.w3.org/2000/svg" font-family="-apple-system,PingFang SC,Microsoft YaHei,sans-serif">
+<svg viewBox="0 0 900 326" xmlns="http://www.w3.org/2000/svg" font-family="-apple-system,PingFang SC,Microsoft YaHei,sans-serif">
   <g text-anchor="middle">
     <text x="450" y="26" font-size="15" font-weight="800" fill="#1e2430">三个选型问题：按顺序问自己</text>
-    <text x="450" y="44" font-size="10.8" fill="#667085">画面 f_0197–f_0216 逐字重绘 · 先看业务形态，再选框架</text>
+    <text x="450" y="44" font-size="10.8" fill="#667085">画面 f_0197–f_0216 逐字重绘 · 前一个答「否」才问下一个</text>
   </g>
-<rect x="24" y="64" width="270" height="132" rx="10" fill="#eaf1ff" stroke="#5b8def" stroke-width="1.5"/>
-    <text x="159.0" y="90.0" font-size="13" font-weight="800" fill="#1d4ed8" text-anchor="middle">① 以问答和工具调用为主？</text>
-    <text x="159.0" y="117.0" font-size="11.2" fill="#4a5b7a" text-anchor="middle">用户提问 → 查询知识库 / 接口</text>
-    <text x="159.0" y="137.0" font-size="11.2" fill="#4a5b7a" text-anchor="middle">→ 生成回答</text>
-    <text x="159.0" y="157.0" font-size="11.2" fill="#4a5b7a" text-anchor="middle">→ LangChain</text>
-    <text x="159.0" y="177.0" font-size="11.2" fill="#4a5b7a" text-anchor="middle">知识库助手 / 智能客服</text>
-<rect x="315" y="64" width="270" height="132" rx="10" fill="#f3edff" stroke="#9575e0" stroke-width="1.5"/>
-    <text x="450.0" y="90.0" font-size="13" font-weight="800" fill="#6d42c9" text-anchor="middle">② 流程需要严格控制？</text>
-    <text x="450.0" y="117.0" font-size="11.2" fill="#5d4a91" text-anchor="middle">固定环节 + 条件分支</text>
-    <text x="450.0" y="137.0" font-size="11.2" fill="#5d4a91" text-anchor="middle">人工审批 / 异常重试</text>
-    <text x="450.0" y="157.0" font-size="11.2" fill="#5d4a91" text-anchor="middle">状态恢复 → LangGraph</text>
-    <text x="450.0" y="177.0" font-size="11.2" fill="#5d4a91" text-anchor="middle">订单处理 / 退款审批</text>
-<rect x="606" y="64" width="270" height="132" rx="10" fill="#e9f9f0" stroke="#39a97a" stroke-width="1.5"/>
-    <text x="741.0" y="90.0" font-size="13" font-weight="800" fill="#177a52" text-anchor="middle">③ 只给目标，Agent 自己规划？</text>
-    <text x="741.0" y="117.0" font-size="11.2" fill="#3c6b55" text-anchor="middle">拆解目标 / 管理上下文</text>
-    <text x="741.0" y="137.0" font-size="11.2" fill="#3c6b55" text-anchor="middle">多工具 / 子 Agent 协作</text>
-    <text x="741.0" y="157.0" font-size="11.2" fill="#3c6b55" text-anchor="middle">→ Deep Agents</text>
-    <text x="741.0" y="177.0" font-size="11.2" fill="#3c6b55" text-anchor="middle">技术研究 / 仓库修复</text>
+<rect x="24" y="64" width="240" height="132" rx="10" fill="#eaf1ff" stroke="#5b8def" stroke-width="1.5"/>
+    <text x="144.0" y="90.0" font-size="13" font-weight="800" fill="#1d4ed8" text-anchor="middle">① 以问答和工具调用为主？</text>
+    <text x="144.0" y="117.0" font-size="11.2" fill="#4a5b7a" text-anchor="middle">用户提问 → 查询知识库 / 接口</text>
+    <text x="144.0" y="137.0" font-size="11.2" fill="#4a5b7a" text-anchor="middle">→ 生成回答</text>
+    <text x="144.0" y="157.0" font-size="11.2" fill="#4a5b7a" text-anchor="middle">→ LangChain</text>
+    <text x="144.0" y="177.0" font-size="11.2" fill="#4a5b7a" text-anchor="middle">知识库助手 / 智能客服</text>
+<rect x="304" y="64" width="240" height="132" rx="10" fill="#f3edff" stroke="#9575e0" stroke-width="1.5"/>
+    <text x="424.0" y="90.0" font-size="13" font-weight="800" fill="#6d42c9" text-anchor="middle">② 流程需要严格控制？</text>
+    <text x="424.0" y="117.0" font-size="11.2" fill="#5d4a91" text-anchor="middle">固定环节 + 条件分支</text>
+    <text x="424.0" y="137.0" font-size="11.2" fill="#5d4a91" text-anchor="middle">人工审批 / 异常重试</text>
+    <text x="424.0" y="157.0" font-size="11.2" fill="#5d4a91" text-anchor="middle">状态恢复 → LangGraph</text>
+    <text x="424.0" y="177.0" font-size="11.2" fill="#5d4a91" text-anchor="middle">订单处理 / 退款审批</text>
+<rect x="584" y="64" width="240" height="132" rx="10" fill="#e9f9f0" stroke="#39a97a" stroke-width="1.5"/>
+    <text x="704.0" y="90.0" font-size="13" font-weight="800" fill="#177a52" text-anchor="middle">③ 只给目标，Agent 自己规划？</text>
+    <text x="704.0" y="117.0" font-size="11.2" fill="#3c6b55" text-anchor="middle">拆解目标 / 管理上下文</text>
+    <text x="704.0" y="137.0" font-size="11.2" fill="#3c6b55" text-anchor="middle">多工具 / 子 Agent 协作</text>
+    <text x="704.0" y="157.0" font-size="11.2" fill="#3c6b55" text-anchor="middle">→ Deep Agents</text>
+    <text x="704.0" y="177.0" font-size="11.2" fill="#3c6b55" text-anchor="middle">技术研究 / 仓库修复</text>
+<g stroke="#8a94a6" stroke-width="1.7" fill="none"><line x1="266" y1="130" x2="302" y2="130"/><line x1="294" y1="125" x2="302" y2="130"/><line x1="294" y1="135" x2="302" y2="130"/></g>
+<g stroke="#8a94a6" stroke-width="1.7" fill="none"><line x1="546" y1="130" x2="582" y2="130"/><line x1="574" y1="125" x2="582" y2="130"/><line x1="574" y1="135" x2="582" y2="130"/></g>
+<text x="284" y="122" font-size="9.5" fill="#667085" text-anchor="middle">否</text>
+<text x="564" y="122" font-size="9.5" fill="#667085" text-anchor="middle">否</text>
 <rect x="90" y="218" width="720" height="62" rx="10" fill="#f5f7fa" stroke="#b6c0cf" stroke-width="1.5"/>
     <text x="450.0" y="253.6" font-size="13" font-weight="800" fill="#344054" text-anchor="middle">三个问题依次判断：越靠后，交给 Agent 的自主权越大</text>
 <text x="450" y="304" font-size="10.8" fill="#667085" text-anchor="middle">画面原文：「根据三个问题判断」01 / 02 / 03</text>
@@ -915,26 +923,28 @@ main{padding-top:22px}
 <section class="sec" id="s20">
 <h2>20. 三者能否一起用：可以，按项目需求组合</h2>
 <div class="figure">
-<svg viewBox="0 0 900 396" xmlns="http://www.w3.org/2000/svg" font-family="-apple-system,PingFang SC,Microsoft YaHei,sans-serif">
+<svg viewBox="0 0 900 404" xmlns="http://www.w3.org/2000/svg" font-family="-apple-system,PingFang SC,Microsoft YaHei,sans-serif">
   <g text-anchor="middle">
     <text x="450" y="26" font-size="15" font-weight="800" fill="#1e2430">三者能否一起用：可以，按项目需求组合</text>
-    <text x="450" y="44" font-size="10.8" fill="#667085">画面 f_0223–f_0237 逐字重绘 · 层层叠加的技术联系</text>
+    <text x="450" y="44" font-size="10.8" fill="#667085">画面 f_0223–f_0237 逐字重绘 · 一个项目里按需取用的能力层</text>
   </g>
-<rect x="60" y="64" width="200" height="58" rx="10" fill="#eaf1ff" stroke="#5b8def" stroke-width="1.5"/>
-    <text x="160.0" y="97.5" font-size="13" font-weight="800" fill="#1d4ed8" text-anchor="middle">LangChain</text>
-<g stroke="#8a94a6" stroke-width="1.7" fill="none"><line x1="262" y1="93" x2="308" y2="93"/><line x1="300" y1="88" x2="308" y2="93"/><line x1="300" y1="98" x2="308" y2="93"/></g>
-<rect x="320" y="64" width="520" height="58" rx="10" fill="#eaf1ff" stroke="#5b8def" stroke-width="1.5"/>
-    <text x="580.0" y="97.5" font-size="13" font-weight="800" fill="#1d4ed8" text-anchor="middle">模型、工具和 Agent 组件</text>
-<rect x="60" y="140" width="200" height="58" rx="10" fill="#f3edff" stroke="#9575e0" stroke-width="1.5"/>
-    <text x="160.0" y="173.6" font-size="13" font-weight="800" fill="#6d42c9" text-anchor="middle">LangGraph</text>
-<g stroke="#8a94a6" stroke-width="1.7" fill="none"><line x1="262" y1="169" x2="308" y2="169"/><line x1="300" y1="164" x2="308" y2="169"/><line x1="300" y1="174" x2="308" y2="169"/></g>
-<rect x="320" y="140" width="520" height="58" rx="10" fill="#f3edff" stroke="#9575e0" stroke-width="1.5"/>
-    <text x="580.0" y="173.6" font-size="13" font-weight="800" fill="#6d42c9" text-anchor="middle">状态管理与流程编排</text>
-<rect x="60" y="216" width="200" height="58" rx="10" fill="#e9f9f0" stroke="#39a97a" stroke-width="1.5"/>
-    <text x="160.0" y="249.6" font-size="13" font-weight="800" fill="#177a52" text-anchor="middle">Deep Agents</text>
-<g stroke="#8a94a6" stroke-width="1.7" fill="none"><line x1="262" y1="245" x2="308" y2="245"/><line x1="300" y1="240" x2="308" y2="245"/><line x1="300" y1="250" x2="308" y2="245"/></g>
-<rect x="320" y="216" width="520" height="58" rx="10" fill="#e9f9f0" stroke="#39a97a" stroke-width="1.5"/>
-    <text x="580.0" y="249.6" font-size="13" font-weight="800" fill="#177a52" text-anchor="middle">规划、上下文、子智能体</text>
+<rect x="34" y="54" width="832" height="226" rx="12" fill="#f7f9fc" stroke="#c8d2e2" stroke-width="1.4"/>
+<text x="50" y="74" font-size="11" font-weight="800" fill="#344054">一个项目：可以，按项目需求组合</text>
+<rect x="54" y="84" width="170" height="54" rx="10" fill="#eaf1ff" stroke="#5b8def" stroke-width="1.5"/>
+    <text x="139.0" y="115.5" font-size="13" font-weight="800" fill="#1d4ed8" text-anchor="middle">LangChain</text>
+<g stroke="#8a94a6" stroke-width="1.7" fill="none"><line x1="226" y1="111" x2="262" y2="111"/><line x1="254" y1="106" x2="262" y2="111"/><line x1="254" y1="116" x2="262" y2="111"/></g>
+<rect x="264" y="84" width="584" height="54" rx="10" fill="#eaf1ff" stroke="#5b8def" stroke-width="1.5"/>
+    <text x="556.0" y="115.5" font-size="13" font-weight="800" fill="#1d4ed8" text-anchor="middle">模型、工具和 Agent 组件</text>
+<rect x="54" y="146" width="170" height="54" rx="10" fill="#f3edff" stroke="#9575e0" stroke-width="1.5"/>
+    <text x="139.0" y="177.6" font-size="13" font-weight="800" fill="#6d42c9" text-anchor="middle">LangGraph</text>
+<g stroke="#8a94a6" stroke-width="1.7" fill="none"><line x1="226" y1="173" x2="262" y2="173"/><line x1="254" y1="168" x2="262" y2="173"/><line x1="254" y1="178" x2="262" y2="173"/></g>
+<rect x="264" y="146" width="584" height="54" rx="10" fill="#f3edff" stroke="#9575e0" stroke-width="1.5"/>
+    <text x="556.0" y="177.6" font-size="13" font-weight="800" fill="#6d42c9" text-anchor="middle">状态管理与流程编排</text>
+<rect x="54" y="208" width="170" height="54" rx="10" fill="#e9f9f0" stroke="#39a97a" stroke-width="1.5"/>
+    <text x="139.0" y="239.6" font-size="13" font-weight="800" fill="#177a52" text-anchor="middle">Deep Agents</text>
+<g stroke="#8a94a6" stroke-width="1.7" fill="none"><line x1="226" y1="235" x2="262" y2="235"/><line x1="254" y1="230" x2="262" y2="235"/><line x1="254" y1="240" x2="262" y2="235"/></g>
+<rect x="264" y="208" width="584" height="54" rx="10" fill="#e9f9f0" stroke="#39a97a" stroke-width="1.5"/>
+    <text x="556.0" y="239.6" font-size="13" font-weight="800" fill="#177a52" text-anchor="middle">规划、上下文、子智能体</text>
 <rect x="90" y="296" width="720" height="62" rx="10" fill="#f5f7fa" stroke="#b6c0cf" stroke-width="1.5"/>
     <text x="450.0" y="331.6" font-size="13" font-weight="800" fill="#344054" text-anchor="middle">例：在 LangGraph 节点中调用 LangChain 的模型与工具；LangGraph 也可以独立使用</text>
 <text x="450" y="382" font-size="10.8" fill="#667085" text-anchor="middle">画面原文：「可以，按项目需求组合」「这并不意味着一个项目必须同时使用三个框架」</text>
