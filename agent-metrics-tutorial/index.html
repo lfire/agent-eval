@@ -89,6 +89,14 @@ main{padding-top:22px}
 </style>
   <link rel="stylesheet" href="../assets/code-blocks.css">
   <script src="../assets/code-blocks.js" defer></script>
+<style>
+.ts-box{margin:14px 0;padding:10px 14px;background:#f8fafc;border:1px solid #e5e9f0;border-radius:9px}
+.ts-box>summary{cursor:pointer;font-weight:700;color:#2563eb;font-size:13px}
+.ts-lines{margin-top:10px;max-height:430px;overflow:auto;padding-right:6px}
+.ts-line{font-size:12.5px;line-height:1.95;color:#46536a;padding:1px 0}
+.ts-t{color:#98a2b3;font-variant-numeric:tabular-nums;margin-right:8px}
+@media print{.ts-lines{max-height:none}.ts-box{break-inside:avoid}}
+</style>
 </head>
 <body>
 <div class="topbar">
@@ -234,6 +242,43 @@ main{padding-top:22px}
 <tr><td>决策闭环</td><td>看板 / 上线判断 / 持续迭代</td><td>视频 ③④</td><td>第 13–14 章</td></tr>
 </table>
 <div class="note">全片可压成一句话：<strong>业务目标 → 用户任务 → 失败点 → 指标体系 → Rubric 分档 → 黄金数据集 → 看板 → 优先级 → 回归，闭环。</strong></div>
+<details class="ts-box"><summary>本章语音逐字稿（ASR · 已校正）（逐字 · 34 句）</summary>
+<div class="ts-lines">
+<div class="ts-line"><span class="ts-t">[视频③ 00:00]</span> 哈喽大家今天我们继续 Agent 评测相关的话题的讨论</div>
+<div class="ts-line"><span class="ts-t">[视频③ 00:04]</span> 前面我们已经讨论过 Judge</div>
+<div class="ts-line"><span class="ts-t">[视频③ 00:06]</span> Rubric</div>
+<div class="ts-line"><span class="ts-t">[视频③ 00:07]</span> 然后 Dataset</div>
+<div class="ts-line"><span class="ts-t">[视频③ 00:08]</span> 那今天我们来讨论 Metrics</div>
+<div class="ts-line"><span class="ts-t">[视频③ 00:11]</span> 有一句话就这么说的</div>
+<div class="ts-line"><span class="ts-t">[视频③ 00:13]</span> 你衡量什么就得到什么</div>
+<div class="ts-line"><span class="ts-t">[视频③ 00:14]</span> 那在我们的 Agent 的开发中</div>
+<div class="ts-line"><span class="ts-t">[视频③ 00:16]</span> Metrics 也就是指标就是那个隐形的指挥棒</div>
+<div class="ts-line"><span class="ts-t">[视频③ 00:19]</span> 如果你衡量的是响应速度</div>
+<div class="ts-line"><span class="ts-t">[视频③ 00:21]</span> Agent 就会学会复演</div>
+<div class="ts-line"><span class="ts-t">[视频③ 00:23]</span> 可以说短而无用的回答来强行提速</div>
+<div class="ts-line"><span class="ts-t">[视频③ 00:26]</span> 如果你衡量的是对话的轮次</div>
+<div class="ts-line"><span class="ts-t">[视频③ 00:28]</span> Agent 就会学会绕圈子</div>
+<div class="ts-line"><span class="ts-t">[视频③ 00:30]</span> 把一个简单问题复杂化</div>
+<div class="ts-line"><span class="ts-t">[视频③ 00:32]</span> 如果你衡量的是安全性</div>
+<div class="ts-line"><span class="ts-t">[视频③ 00:33]</span> Agent 可能会变成一个拒绝机器</div>
+<div class="ts-line"><span class="ts-t">[视频③ 00:35]</span> 对什么请求都说对不起我无法回答</div>
+<div class="ts-line"><span class="ts-t">[视频③ 00:38]</span> 那所以说 Metrics 的本质</div>
+<div class="ts-line"><span class="ts-t">[视频③ 00:40]</span> 是把产品经理眼中的业务目标</div>
+<div class="ts-line"><span class="ts-t">[视频③ 00:42]</span> 翻译成一个可以持续优化</div>
+<div class="ts-line"><span class="ts-t">[视频③ 00:44]</span> 持续比较的数字系统</div>
+<div class="ts-line"><span class="ts-t">[视频③ 00:46]</span> 那如果翻译错了</div>
+<div class="ts-line"><span class="ts-t">[视频③ 00:48]</span> 研发的方向就会难原背著</div>
+<div class="ts-line"><span class="ts-t">[视频③ 00:50]</span> 所以今天我们来讨论一下</div>
+<div class="ts-line"><span class="ts-t">[视频③ 00:51]</span> 我们产品经理如何去制定一个 Metrics</div>
+<div class="ts-line"><span class="ts-t">[视频③ 00:54]</span> 那什么是一个好的 Metrics</div>
+<div class="ts-line"><span class="ts-t">[视频③ 00:56]</span> 那产品经理如何利用这个 Metrics</div>
+<div class="ts-line"><span class="ts-t">[视频③ 00:57]</span> 去推动我们的产品迭代</div>
+<div class="ts-line"><span class="ts-t">[视频③ 00:59]</span> 这是我们最终的目的</div>
+<div class="ts-line"><span class="ts-t">[视频③ 01:00]</span> 我们制定 Metrics 都是为了把产品做好</div>
+<div class="ts-line"><span class="ts-t">[视频③ 01:03]</span> 谈到如何去制定 Metrics 呢</div>
+<div class="ts-line"><span class="ts-t">[视频③ 01:06]</span> 我觉得我们应该参考一下大厂的事件吧</div>
+<div class="ts-line"><span class="ts-t">[视频③ 01:09]</span> 无论是 OpenAI 还是 SRPEC</div>
+</div></details>
 </section>
 <section class="sec" id="s2">
 <h2>2. 指标体系总览：你衡量什么就得到什么</h2>
@@ -302,6 +347,52 @@ main{padding-top:22px}
 </div>
 <p><span class="tag t-video">视频原述</span>画面给出三个反例：只考核响应速度，Agent 学会敷衍、给出短而无用的回答来强行提速；只考核回答深度，Agent 学会绕圈子、把简单问题复杂化；只考核安全性，Agent 变成「我无法回答」的拒绝机器。</p>
 <div class="key"><strong>结论</strong>：真正优秀的 Metrics 不是一个数字，而是一套<strong>能够相互制衡的指标体系</strong>；这与本站《评测驱动 Agent 迭代 · 完全教程》的「主指标 + 护栏指标」是同一条原则。</div>
+<details class="ts-box"><summary>本章语音逐字稿（ASR · 已校正）（逐字 · 43 句）</summary>
+<div class="ts-lines">
+<div class="ts-line"><span class="ts-t">[视频③ 01:11]</span> 他们都强调一件事情</div>
+<div class="ts-line"><span class="ts-t">[视频③ 01:12]</span> 不要先想</div>
+<div class="ts-line"><span class="ts-t">[视频③ 01:13]</span> 我要监控哪些指标</div>
+<div class="ts-line"><span class="ts-t">[视频③ 01:15]</span> 而是先分析</div>
+<div class="ts-line"><span class="ts-t">[视频③ 01:16]</span> Agent 在线上到底失败在哪里</div>
+<div class="ts-line"><span class="ts-t">[视频③ 01:18]</span> 因此一个合理的设计流程应该是</div>
+<div class="ts-line"><span class="ts-t">[视频③ 01:21]</span> 业务目标到用户任务到</div>
+<div class="ts-line"><span class="ts-t">[视频③ 01:23]</span> 错误分析再到 Metrics</div>
+<div class="ts-line"><span class="ts-t">[视频③ 01:25]</span> 就一个好的指标设计</div>
+<div class="ts-line"><span class="ts-t">[视频③ 01:27]</span> 不能只靠拍脑袋</div>
+<div class="ts-line"><span class="ts-t">[视频③ 01:28]</span> 而是通过上下结合的路径去寻找</div>
+<div class="ts-line"><span class="ts-t">[视频③ 01:31]</span> 首先自上而下的也就是从目标倒退</div>
+<div class="ts-line"><span class="ts-t">[视频③ 01:34]</span> 就问自己</div>
+<div class="ts-line"><span class="ts-t">[视频③ 01:35]</span> 这个 Agent 的商业价值是什么</div>
+<div class="ts-line"><span class="ts-t">[视频③ 01:37]</span> 譬如</div>
+<div class="ts-line"><span class="ts-t">[视频③ 01:37]</span> 定票 Agent 的目标是降低人工客服的压力</div>
+<div class="ts-line"><span class="ts-t">[视频③ 01:40]</span> 那么它对应的指标</div>
+<div class="ts-line"><span class="ts-t">[视频③ 01:41]</span> 就不只是回答正确</div>
+<div class="ts-line"><span class="ts-t">[视频③ 01:43]</span> 而是订单的成功率和人工的接管率</div>
+<div class="ts-line"><span class="ts-t">[视频③ 01:46]</span> 因为它降低认定人工客服的压力</div>
+<div class="ts-line"><span class="ts-t">[视频③ 01:48]</span> 第二就是 Bottom-up up</div>
+<div class="ts-line"><span class="ts-t">[视频③ 01:50]</span> 从线自下而上的</div>
+<div class="ts-line"><span class="ts-t">[视频③ 01:51]</span> 从线上的 Bad guys 去归纳</div>
+<div class="ts-line"><span class="ts-t">[视频③ 01:53]</span> Agent 为什么失败呀</div>
+<div class="ts-line"><span class="ts-t">[视频③ 01:54]</span> 是意图识别错误吗</div>
+<div class="ts-line"><span class="ts-t">[视频③ 01:56]</span> 还是调用错误的工具啊</div>
+<div class="ts-line"><span class="ts-t">[视频③ 01:58]</span> 或者是参数提取错误啊</div>
+<div class="ts-line"><span class="ts-t">[视频③ 01:59]</span> 又或者是最后一步回复方式</div>
+<div class="ts-line"><span class="ts-t">[视频③ 02:01]</span> 不符合业务规范啊</div>
+<div class="ts-line"><span class="ts-t">[视频③ 02:02]</span> 不同类型的失败</div>
+<div class="ts-line"><span class="ts-t">[视频③ 02:04]</span> 对应不同的 Metrics</div>
+<div class="ts-line"><span class="ts-t">[视频③ 02:05]</span> 例如</div>
+<div class="ts-line"><span class="ts-t">[视频③ 02:06]</span> 如果40%的失败</div>
+<div class="ts-line"><span class="ts-t">[视频③ 02:08]</span> 来自工具参数错误</div>
+<div class="ts-line"><span class="ts-t">[视频③ 02:09]</span> 那么应该新增</div>
+<div class="ts-line"><span class="ts-t">[视频③ 02:10]</span> To Parameter Accuracy 这个 Metrics</div>
+<div class="ts-line"><span class="ts-t">[视频③ 02:13]</span> 如果大量的用户投诉</div>
+<div class="ts-line"><span class="ts-t">[视频③ 02:14]</span> 回复 Agent 说话太啰嗦了</div>
+<div class="ts-line"><span class="ts-t">[视频③ 02:16]</span> 那我们对应建立的指标</div>
+<div class="ts-line"><span class="ts-t">[视频③ 02:18]</span> 就是荣誉度得分</div>
+<div class="ts-line"><span class="ts-t">[视频③ 02:19]</span> 好的 Metrics</div>
+<div class="ts-line"><span class="ts-t">[视频③ 02:20]</span> 不是拍脑袋想出来的</div>
+<div class="ts-line"><span class="ts-t">[视频③ 02:21]</span> 而是从真实的错误中长出来的</div>
+</div></details>
 </section>
 <section class="sec" id="s3">
 <h2>3. 指标设计流程：从业务目标与真实失败中长出来</h2>
@@ -338,6 +429,42 @@ main{padding-top:22px}
 <h3 id="32-bottom-up-自下而上">3.2 Bottom-up 自下而上</h3>
 <p><span class="tag t-video">视频原述</span>从线上 Bad Case 归纳失败类型：是意图识别错误、工具或参数提取错误，还是不符合业务规范？不同类型的失败对应不同的 Metrics。画面举例：若 40% 的失败来自工具参数错误，就应新增 <code>Tool Parameter Accuracy</code>；用户反馈「Agent 说话太啰嗦」，就建立<strong>冗余度得分</strong>。</p>
 <div class="note"><strong>【补充】</strong> Anthropic 公开实践同样强调「从真实生产失败构建首版评测集」，并建议用 held-out 测试集防止对评测题目过拟合；这与 bottom-up 是同一套工程直觉。</div>
+<details class="ts-box"><summary>本章语音逐字稿（ASR · 已校正）（逐字 · 33 句）</summary>
+<div class="ts-lines">
+<div class="ts-line"><span class="ts-t">[视频③ 02:24]</span> 所以我们产品经理的核心工作</div>
+<div class="ts-line"><span class="ts-t">[视频③ 02:26]</span> 就是把这些散乱的 benefits</div>
+<div class="ts-line"><span class="ts-t">[视频③ 02:28]</span> 抽象成全量评估里的一个又一个 Metrics</div>
+<div class="ts-line"><span class="ts-t">[视频③ 02:31]</span> 谈到什么是一个好的 Metrics 建设啊</div>
+<div class="ts-line"><span class="ts-t">[视频③ 02:33]</span> 那很多团队最大的误区是指标很多</div>
+<div class="ts-line"><span class="ts-t">[视频③ 02:37]</span> 越来越多</div>
+<div class="ts-line"><span class="ts-t">[视频③ 02:38]</span> 然后却越来越没有指导意义</div>
+<div class="ts-line"><span class="ts-t">[视频③ 02:40]</span> 所以我认为一个好的 Metrics</div>
+<div class="ts-line"><span class="ts-t">[视频③ 02:42]</span> 应该满足以下四个原则</div>
+<div class="ts-line"><span class="ts-t">[视频③ 02:44]</span> 第一个就是能够指导我们真实的行动</div>
+<div class="ts-line"><span class="ts-t">[视频③ 02:46]</span> 就如果一个指标下降</div>
+<div class="ts-line"><span class="ts-t">[视频③ 02:47]</span> 那么团队应该立刻知道问题在哪里</div>
+<div class="ts-line"><span class="ts-t">[视频③ 02:49]</span> 例如一个 Agent 的综合评分几乎没有意义的啊</div>
+<div class="ts-line"><span class="ts-t">[视频③ 02:51]</span> 因为研发不知道到底是 Prompt 出问题</div>
+<div class="ts-line"><span class="ts-t">[视频③ 02:53]</span> Memory 出问题还是 Tour 出问题</div>
+<div class="ts-line"><span class="ts-t">[视频③ 02:55]</span> 相反我们要把它拆成 Tour Accuracy</div>
+<div class="ts-line"><span class="ts-t">[视频③ 02:57]</span> Planning Success</div>
+<div class="ts-line"><span class="ts-t">[视频③ 02:59]</span> Memory Recall Accuracy 等多个多个独立的指标</div>
+<div class="ts-line"><span class="ts-t">[视频③ 03:02]</span> 每个指标都对应一个明确的优化方向</div>
+<div class="ts-line"><span class="ts-t">[视频③ 03:04]</span> 虽然就是要与业务目标直接相关</div>
+<div class="ts-line"><span class="ts-t">[视频③ 03:07]</span> 不要为了追求模型分数而优化模型啊</div>
+<div class="ts-line"><span class="ts-t">[视频③ 03:09]</span> 真正重要的是业务有没有变好</div>
+<div class="ts-line"><span class="ts-t">[视频③ 03:10]</span> 就克服 Agent 应该关注的是首次解决率</div>
+<div class="ts-line"><span class="ts-t">[视频③ 03:13]</span> CodingAgent 应该关注的是单元测试通过率</div>
+<div class="ts-line"><span class="ts-t">[视频③ 03:16]</span> 情感陪伴 Agent</div>
+<div class="ts-line"><span class="ts-t">[视频③ 03:17]</span> 更应该关注的是用户流程</div>
+<div class="ts-line"><span class="ts-t">[视频③ 03:18]</span> 而不是回复写的是否优美</div>
+<div class="ts-line"><span class="ts-t">[视频③ 03:20]</span> 就你的 Metric 一定是和业务目标直接相关的</div>
+<div class="ts-line"><span class="ts-t">[视频③ 03:23]</span> 第三个是否能够长期持续的比较</div>
+<div class="ts-line"><span class="ts-t">[视频③ 03:26]</span> 这 Metrics 的价值不是一时的分数啊</div>
+<div class="ts-line"><span class="ts-t">[视频③ 03:28]</span> 而是长期的趋势</div>
+<div class="ts-line"><span class="ts-t">[视频③ 03:29]</span> 它必须能够回答</div>
+<div class="ts-line"><span class="ts-t">[视频③ 03:30]</span> 而升级模型之后 Agent 是变好了还是变差了</div>
+</div></details>
 </section>
 <section class="sec" id="s4">
 <h2>4. 好指标的四原则</h2>
@@ -386,6 +513,39 @@ main{padding-top:22px}
 <tr><td>形成平衡</td><td>Balanced</td><td>不孤立优化某一个指标，指标之间要互相制衡</td><td>成功率↑ 但 Token 与时延暴涨</td></tr>
 </table>
 <p><span class="tag t-video">视频原述</span>画面特别点名：应把综合评分拆成 <code>Tool Accuracy</code>、<code>Planning Success</code>、<code>Memory Recall Accuracy</code> 等多个独立指标，每个指标都对应一个明确的优化方向。</p>
+<details class="ts-box"><summary>本章语音逐字稿（ASR · 已校正）（逐字 · 30 句）</summary>
+<div class="ts-lines">
+<div class="ts-line"><span class="ts-t">[视频③ 03:33]</span> 修改 Prompt 之后 Tour 打 Accuracy 有没有提升</div>
+<div class="ts-line"><span class="ts-t">[视频③ 03:36]</span> 新增 Memory 后用户满意度有没有改善</div>
+<div class="ts-line"><span class="ts-t">[视频③ 03:39]</span> 没有版本之间的比较</div>
+<div class="ts-line"><span class="ts-t">[视频③ 03:41]</span> 那 Metrics 就失去了意义</div>
+<div class="ts-line"><span class="ts-t">[视频③ 03:43]</span> 那最后是要形成平衡而不是单元指标的优化</div>
+<div class="ts-line"><span class="ts-t">[视频③ 03:47]</span> 这是 OpenEye 在官方的 Evaluation Best Practices 里面</div>
+<div class="ts-line"><span class="ts-t">[视频③ 03:50]</span> 反复强调的观点</div>
+<div class="ts-line"><span class="ts-t">[视频③ 03:51]</span> 不要孤立优化某一个指标</div>
+<div class="ts-line"><span class="ts-t">[视频③ 03:53]</span> 就任何指标都有副作用</div>
+<div class="ts-line"><span class="ts-t">[视频③ 03:55]</span> 你譬如你提高 Success Rate</div>
+<div class="ts-line"><span class="ts-t">[视频③ 03:58]</span> 提高成功率可能就导致了 Cost 的保障</div>
+<div class="ts-line"><span class="ts-t">[视频③ 04:00]</span> Token 就保障了</div>
+<div class="ts-line"><span class="ts-t">[视频③ 04:01]</span> 那降低 Latency</div>
+<div class="ts-line"><span class="ts-t">[视频③ 04:02]</span> 可能就导致了 Accuracy 的下降</div>
+<div class="ts-line"><span class="ts-t">[视频③ 04:04]</span> 那提高回复长度</div>
+<div class="ts-line"><span class="ts-t">[视频③ 04:06]</span> 可能就导致了用户阅读成本的增加</div>
+<div class="ts-line"><span class="ts-t">[视频③ 04:08]</span> 所以真正优秀的 Metrics 不是一个数字</div>
+<div class="ts-line"><span class="ts-t">[视频③ 04:11]</span> 而是一套能够相互制衡的指标体系</div>
+<div class="ts-line"><span class="ts-t">[视频③ 04:14]</span> 所以一个好的 Metrics 一定是符合以上这四个原则</div>
+<div class="ts-line"><span class="ts-t">[视频③ 04:18]</span> 我们产品经理如何利用我们建立的 Metrics 与推动产品谍带</div>
+<div class="ts-line"><span class="ts-t">[视频③ 04:22]</span> 一句话就是 Agent 的谍带是一个多维度的取舍</div>
+<div class="ts-line"><span class="ts-t">[视频③ 04:26]</span> 它是一个 Tradoff</div>
+<div class="ts-line"><span class="ts-t">[视频③ 04:28]</span> 它前面也介绍了</div>
+<div class="ts-line"><span class="ts-t">[视频③ 04:29]</span> 一个目标的优化可能带来了另一个指标的下降</div>
+<div class="ts-line"><span class="ts-t">[视频③ 04:33]</span> 所以我们需要的是一个看板</div>
+<div class="ts-line"><span class="ts-t">[视频③ 04:35]</span> 不是一个总分也不是一个平均分</div>
+<div class="ts-line"><span class="ts-t">[视频③ 04:37]</span> 是一个看板 dashboard</div>
+<div class="ts-line"><span class="ts-t">[视频③ 04:39]</span> Agent 的产品从来不是单目标的优化</div>
+<div class="ts-line"><span class="ts-t">[视频③ 04:41]</span> 而是在多个目标之间寻找平衡</div>
+<div class="ts-line"><span class="ts-t">[视频③ 04:44]</span> 例如你升级到了新的推理模型</div>
+</div></details>
 </section>
 <section class="sec" id="s5">
 <h2>5. 实战起点：客服 Agent 的 Task 与 Workflow</h2>
@@ -421,6 +581,51 @@ main{padding-top:22px}
   <div class="cap">图 6｜客服 Agent 任务树与「任务成功」追问重绘</div>
 </div>
 <p>以「退款」为例，关键追问是 <strong>「什么叫退款成功？」</strong>——不是「调用了退款 API」，而是整个工作流闭环完成。作者把这条 Workflow 写进 prompt 交给 DeepSeek，要求输出三张 Metrics 表。</p>
+<details class="ts-box"><summary>本章语音逐字稿（ASR · 已校正）（逐字 · 42 句）</summary>
+<div class="ts-lines">
+<div class="ts-line"><span class="ts-t">[视频④ 00:00]</span> 哈喽大家之前有篇笔记分享了</div>
+<div class="ts-line"><span class="ts-t">[视频④ 00:03]</span> Agent 评估的 metrics 怎么设计</div>
+<div class="ts-line"><span class="ts-t">[视频④ 00:05]</span> 评论区就有朋友问</div>
+<div class="ts-line"><span class="ts-t">[视频④ 00:07]</span> 那有没有实际的落地案例</div>
+<div class="ts-line"><span class="ts-t">[视频④ 00:09]</span> 好今天呢</div>
+<div class="ts-line"><span class="ts-t">[视频④ 00:10]</span> 我们就用一个真实的场景</div>
+<div class="ts-line"><span class="ts-t">[视频④ 00:12]</span> 让我之前做的科夫 Agent 这个产品</div>
+<div class="ts-line"><span class="ts-t">[视频④ 00:14]</span> 现场推一遍</div>
+<div class="ts-line"><span class="ts-t">[视频④ 00:16]</span> 带着大家一起看看我是怎么去设计这个 metrics</div>
+<div class="ts-line"><span class="ts-t">[视频④ 00:19]</span> 科夫 Agent 我们首先来思考一下</div>
+<div class="ts-line"><span class="ts-t">[视频④ 00:21]</span> 它是帮助用户完成的一些任务</div>
+<div class="ts-line"><span class="ts-t">[视频④ 00:24]</span> 我们自己想象一下</div>
+<div class="ts-line"><span class="ts-t">[视频④ 00:25]</span> 淘宝的科夫 Agent 囤为例吧</div>
+<div class="ts-line"><span class="ts-t">[视频④ 00:28]</span> 我们的任务大概分为</div>
+<div class="ts-line"><span class="ts-t">[视频④ 00:31]</span> 以下几种啊</div>
+<div class="ts-line"><span class="ts-t">[视频④ 00:32]</span> 第一种就是什么查订单</div>
+<div class="ts-line"><span class="ts-t">[视频④ 00:34]</span> 第二个是开发票退款催物流或者是投诉</div>
+<div class="ts-line"><span class="ts-t">[视频④ 00:38]</span> 对吧</div>
+<div class="ts-line"><span class="ts-t">[视频④ 00:39]</span> 大概有这五种</div>
+<div class="ts-line"><span class="ts-t">[视频④ 00:40]</span> 那这些其实不是 metrics 的 metrics 没有还没有关系</div>
+<div class="ts-line"><span class="ts-t">[视频④ 00:43]</span> 这些其实是 task</div>
+<div class="ts-line"><span class="ts-t">[视频④ 00:45]</span> 就我们之前说的</div>
+<div class="ts-line"><span class="ts-t">[视频④ 00:46]</span> 所有的 metrics 都是围绕着用户成功</div>
+<div class="ts-line"><span class="ts-t">[视频④ 00:48]</span> 也就是又快又好又稳定完全用户任务</div>
+<div class="ts-line"><span class="ts-t">[视频④ 00:52]</span> 这个 task 来设计的</div>
+<div class="ts-line"><span class="ts-t">[视频④ 00:54]</span> 那我们来看</div>
+<div class="ts-line"><span class="ts-t">[视频④ 00:54]</span> 但是这个背景我们来看</div>
+<div class="ts-line"><span class="ts-t">[视频④ 00:57]</span> 假设以这个退款任务为例啊</div>
+<div class="ts-line"><span class="ts-t">[视频④ 00:59]</span> 什么叫做退款成功</div>
+<div class="ts-line"><span class="ts-t">[视频④ 01:00]</span> 我们想象一下这个工作流是怎么样子的</div>
+<div class="ts-line"><span class="ts-t">[视频④ 01:03]</span> 然后用户发起了一个退款的请求</div>
+<div class="ts-line"><span class="ts-t">[视频④ 01:04]</span> 我们要证确是为它的用户意图啊</div>
+<div class="ts-line"><span class="ts-t">[视频④ 01:06]</span> 而且它是一个退款的意图之后</div>
+<div class="ts-line"><span class="ts-t">[视频④ 01:08]</span> 我们要确认这个退款的具体的订单信息</div>
+<div class="ts-line"><span class="ts-t">[视频④ 01:10]</span> 确认完之后</div>
+<div class="ts-line"><span class="ts-t">[视频④ 01:11]</span> 我们会去调用相应的退款 API</div>
+<div class="ts-line"><span class="ts-t">[视频④ 01:13]</span> 对吧</div>
+<div class="ts-line"><span class="ts-t">[视频④ 01:14]</span> 业务后台的退款</div>
+<div class="ts-line"><span class="ts-t">[视频④ 01:15]</span> 然后退款到用户的账户</div>
+<div class="ts-line"><span class="ts-t">[视频④ 01:17]</span> 最后再回复用户啊</div>
+<div class="ts-line"><span class="ts-t">[视频④ 01:19]</span> 你这个退款的请求</div>
+<div class="ts-line"><span class="ts-t">[视频④ 01:20]</span> 已经完成至整个退款成功的一个完整的工作流</div>
+</div></details>
 </section>
 <section class="sec" id="s6">
 <h2>6. 退款 Workflow：每一步都是一个 Metric</h2>
@@ -500,6 +705,58 @@ main{padding-top:22px}
 </svg>
   <div class="cap">图 8｜指标方法论闭环重绘</div>
 </div>
+<details class="ts-box"><summary>本章语音逐字稿（ASR · 已校正）（逐字 · 49 句）</summary>
+<div class="ts-lines">
+<div class="ts-line"><span class="ts-t">[视频④ 01:25]</span> 那这个工作流里面呢</div>
+<div class="ts-line"><span class="ts-t">[视频④ 01:27]</span> 其实每一步就是一个 metric</div>
+<div class="ts-line"><span class="ts-t">[视频④ 01:30]</span> 比如用户发起退款之后</div>
+<div class="ts-line"><span class="ts-t">[视频④ 01:31]</span> 你有没有正确的识别这个用户意图</div>
+<div class="ts-line"><span class="ts-t">[视频④ 01:34]</span> 这一步如果你没有正确识别</div>
+<div class="ts-line"><span class="ts-t">[视频④ 01:35]</span> 你是不是也不可能成功啊</div>
+<div class="ts-line"><span class="ts-t">[视频④ 01:37]</span> 那订单信息你有没有确认成功</div>
+<div class="ts-line"><span class="ts-t">[视频④ 01:39]</span> 如果你没有找到正确的订单</div>
+<div class="ts-line"><span class="ts-t">[视频④ 01:41]</span> 你这你也不可能成功对吧</div>
+<div class="ts-line"><span class="ts-t">[视频④ 01:42]</span> 所以每一步都是一个 metric</div>
+<div class="ts-line"><span class="ts-t">[视频④ 01:44]</span> metric 就是围绕着</div>
+<div class="ts-line"><span class="ts-t">[视频④ 01:45]</span> 让这个退款成功的整个工作流定的</div>
+<div class="ts-line"><span class="ts-t">[视频④ 01:49]</span> 好</div>
+<div class="ts-line"><span class="ts-t">[视频④ 01:49]</span> 带着这个具体的退款成功</div>
+<div class="ts-line"><span class="ts-t">[视频④ 01:51]</span> 这个我是让 AI 去帮我实现具体的 metric</div>
+<div class="ts-line"><span class="ts-t">[视频④ 01:55]</span> 啊设计的</div>
+<div class="ts-line"><span class="ts-t">[视频④ 01:56]</span> 那我的提示词如下啊</div>
+<div class="ts-line"><span class="ts-t">[视频④ 01:57]</span> 就是我告诉他我要做什么</div>
+<div class="ts-line"><span class="ts-t">[视频④ 01:59]</span> 然后这是我的整个工作流了</div>
+<div class="ts-line"><span class="ts-t">[视频④ 02:01]</span> 就是我要退款</div>
+<div class="ts-line"><span class="ts-t">[视频④ 02:02]</span> 第一步肯定是意图识别</div>
+<div class="ts-line"><span class="ts-t">[视频④ 02:03]</span> 如果识别成功了</div>
+<div class="ts-line"><span class="ts-t">[视频④ 02:04]</span> 那就继续如果识别错了</div>
+<div class="ts-line"><span class="ts-t">[视频④ 02:06]</span> 你就转人工或者是重新识别</div>
+<div class="ts-line"><span class="ts-t">[视频④ 02:09]</span> 第二步就到了订单信息去确认</div>
+<div class="ts-line"><span class="ts-t">[视频④ 02:10]</span> 如果抽取到订单号就继续</div>
+<div class="ts-line"><span class="ts-t">[视频④ 02:12]</span> 如果没有拿到这个正确的订单</div>
+<div class="ts-line"><span class="ts-t">[视频④ 02:13]</span> 哪可能要反问用户</div>
+<div class="ts-line"><span class="ts-t">[视频④ 02:15]</span> 再去把这个订单号确认一下</div>
+<div class="ts-line"><span class="ts-t">[视频④ 02:17]</span> 然后去验证他的退款资格</div>
+<div class="ts-line"><span class="ts-t">[视频④ 02:19]</span> 这个人是不是还在有效的一线内</div>
+<div class="ts-line"><span class="ts-t">[视频④ 02:21]</span> 对吧</div>
+<div class="ts-line"><span class="ts-t">[视频④ 02:22]</span> 然后调用退款的 API</div>
+<div class="ts-line"><span class="ts-t">[视频④ 02:24]</span> 最后退款到账</div>
+<div class="ts-line"><span class="ts-t">[视频④ 02:25]</span> 然后回复用户</div>
+<div class="ts-line"><span class="ts-t">[视频④ 02:26]</span> 我让他说出三张 metrics 表</div>
+<div class="ts-line"><span class="ts-t">[视频④ 02:28]</span> 这也对应我们之前在介绍的</div>
+<div class="ts-line"><span class="ts-t">[视频④ 02:29]</span> ami 的评估的目标的分层的这个概念</div>
+<div class="ts-line"><span class="ts-t">[视频④ 02:33]</span> 就是有结果的成功</div>
+<div class="ts-line"><span class="ts-t">[视频④ 02:35]</span> 有过程一定要关注过程的执行啊</div>
+<div class="ts-line"><span class="ts-t">[视频④ 02:37]</span> 然后用户的感受</div>
+<div class="ts-line"><span class="ts-t">[视频④ 02:38]</span> 最后还有一个是业务的价值</div>
+<div class="ts-line"><span class="ts-t">[视频④ 02:40]</span> 这里就不需要了</div>
+<div class="ts-line"><span class="ts-t">[视频④ 02:40]</span> 因为这只是一个任务</div>
+<div class="ts-line"><span class="ts-t">[视频④ 02:42]</span> 我们针对的只是这个任务来做 metric 嘛</div>
+<div class="ts-line"><span class="ts-t">[视频④ 02:45]</span> 嗯</div>
+<div class="ts-line"><span class="ts-t">[视频④ 02:45]</span> 所以我让他帮我事儿</div>
+<div class="ts-line"><span class="ts-t">[视频④ 02:46]</span> 生成 metric 名称计算方式</div>
+<div class="ts-line"><span class="ts-t">[视频④ 02:48]</span> 以及我的指标</div>
+</div></details>
 </section>
 <section class="sec" id="s7">
 <h2>7. 三张 Metrics 表：逐条计算方式与 Target</h2>
@@ -637,6 +894,66 @@ main{padding-top:22px}
 </table>
 <div class="note"><strong>指标说明（画面原文）</strong>：首解率是体验的黄金指标，用户第一次来就能解决、不用再跑一趟；情绪负向翻转率特别关注那些因为「无法退款」而生气的用户，客服话术是否能安抚他们。</div>
 <div class="warn"><strong>口径提醒</strong>：<code>P95</code> 与 <code>Median</code> 是尾部／中位数口径，不是平均值；<code>资金损失率</code> 是越低越好，其余多为越高越好。<strong>Target 是示例值</strong>，上线前必须按真实业务量与风控口径重新校准。</div>
+<details class="ts-box"><summary>本章语音逐字稿（ASR · 已校正）（逐字 · 57 句）</summary>
+<div class="ts-lines">
+<div class="ts-line"><span class="ts-t">[视频④ 02:50]</span> 具体的答标值</div>
+<div class="ts-line"><span class="ts-t">[视频④ 02:52]</span> 你看他的结果</div>
+<div class="ts-line"><span class="ts-t">[视频④ 02:53]</span> 第一个就是任务的结果</div>
+<div class="ts-line"><span class="ts-t">[视频④ 02:54]</span> 他给我生成了四个任务解决</div>
+<div class="ts-line"><span class="ts-t">[视频④ 02:56]</span> 你健康值是必须得大于等于85%</div>
+<div class="ts-line"><span class="ts-t">[视频④ 03:00]</span> 就是任务解决率要达到85%以上</div>
+<div class="ts-line"><span class="ts-t">[视频④ 03:02]</span> 对吧</div>
+<div class="ts-line"><span class="ts-t">[视频④ 03:03]</span> 这是基本的上线的要求了</div>
+<div class="ts-line"><span class="ts-t">[视频④ 03:05]</span> 然后这个计算方式呢</div>
+<div class="ts-line"><span class="ts-t">[视频④ 03:06]</span> 就是成功的退款订单数</div>
+<div class="ts-line"><span class="ts-t">[视频④ 03:08]</span> 包括合理的拒绝并货用户接受的单数</div>
+<div class="ts-line"><span class="ts-t">[视频④ 03:11]</span> 处于总的退款货化数</div>
+<div class="ts-line"><span class="ts-t">[视频④ 03:12]</span> 嗯</div>
+<div class="ts-line"><span class="ts-t">[视频④ 03:14]</span> 这个计算方式也有了</div>
+<div class="ts-line"><span class="ts-t">[视频④ 03:15]</span> 过程他又给出了更多了12456个 metric</div>
+<div class="ts-line"><span class="ts-t">[视频④ 03:18]</span> 意图是被准确率</div>
+<div class="ts-line"><span class="ts-t">[视频④ 03:19]</span> 这个大家比较熟悉了</div>
+<div class="ts-line"><span class="ts-t">[视频④ 03:20]</span> 然后就是刚刚说到的那个订单的信息</div>
+<div class="ts-line"><span class="ts-t">[视频④ 03:22]</span> 是不是完整啊</div>
+<div class="ts-line"><span class="ts-t">[视频④ 03:23]</span> 完整到底是是哪个拒绝订单啊</div>
+<div class="ts-line"><span class="ts-t">[视频④ 03:26]</span> 包括 API</div>
+<div class="ts-line"><span class="ts-t">[视频④ 03:26]</span> 因为你肯定要调后台的推广 API 嘛</div>
+<div class="ts-line"><span class="ts-t">[视频④ 03:29]</span> 也有可能会失败啊等等</div>
+<div class="ts-line"><span class="ts-t">[视频④ 03:30]</span> 最后这用户感受啊</div>
+<div class="ts-line"><span class="ts-t">[视频④ 03:31]</span> 有手解率就是从你汇化</div>
+<div class="ts-line"><span class="ts-t">[视频④ 03:33]</span> 无需再次联系</div>
+<div class="ts-line"><span class="ts-t">[视频④ 03:35]</span> 就是那个叫什么 Passatone</div>
+<div class="ts-line"><span class="ts-t">[视频④ 03:37]</span> 然后对话人次辟</div>
+<div class="ts-line"><span class="ts-t">[视频④ 03:38]</span> 譬如不是反复确认啊</div>
+<div class="ts-line"><span class="ts-t">[视频④ 03:40]</span> 就是 AI 给助我的</div>
+<div class="ts-line"><span class="ts-t">[视频④ 03:41]</span> 好多个指标</div>
+<div class="ts-line"><span class="ts-t">[视频④ 03:42]</span> 接着大家看一下还是不错的</div>
+<div class="ts-line"><span class="ts-t">[视频④ 03:43]</span> 对不对</div>
+<div class="ts-line"><span class="ts-t">[视频④ 03:44]</span> 那这个提示词我稍后也会发到啊</div>
+<div class="ts-line"><span class="ts-t">[视频④ 03:47]</span> 笔记中让大家去看一下啊</div>
+<div class="ts-line"><span class="ts-t">[视频④ 03:48]</span> 作为一个参考</div>
+<div class="ts-line"><span class="ts-t">[视频④ 03:49]</span> 这是个参考</div>
+<div class="ts-line"><span class="ts-t">[视频④ 03:50]</span> 好</div>
+<div class="ts-line"><span class="ts-t">[视频④ 03:51]</span> 那拿到这些指标之后</div>
+<div class="ts-line"><span class="ts-t">[视频④ 03:52]</span> 我肯定不是直接用的</div>
+<div class="ts-line"><span class="ts-t">[视频④ 03:53]</span> 太多了</div>
+<div class="ts-line"><span class="ts-t">[视频④ 03:54]</span> 那些分层</div>
+<div class="ts-line"><span class="ts-t">[视频④ 03:54]</span> 我会将它分层啊</div>
+<div class="ts-line"><span class="ts-t">[视频④ 03:55]</span> 四层去判断吧</div>
+<div class="ts-line"><span class="ts-t">[视频④ 03:56]</span> 这个其实也是我的优先级啦</div>
+<div class="ts-line"><span class="ts-t">[视频④ 03:58]</span> 嗯轻重缓急的问题</div>
+<div class="ts-line"><span class="ts-t">[视频④ 04:00]</span> 那第一个就是红线了</div>
+<div class="ts-line"><span class="ts-t">[视频④ 04:00]</span> 绝对不能出问题</div>
+<div class="ts-line"><span class="ts-t">[视频④ 04:01]</span> 就刚刚的指标里面</div>
+<div class="ts-line"><span class="ts-t">[视频④ 04:03]</span> 这个譬如资金损失率</div>
+<div class="ts-line"><span class="ts-t">[视频④ 04:05]</span> 就这个一定要小于0.1%</div>
+<div class="ts-line"><span class="ts-t">[视频④ 04:07]</span> 就这个设计要资金安全</div>
+<div class="ts-line"><span class="ts-t">[视频④ 04:08]</span> 这是我们的红线</div>
+<div class="ts-line"><span class="ts-t">[视频④ 04:08]</span> 这这个率</div>
+<div class="ts-line"><span class="ts-t">[视频④ 04:09]</span> Metrex</div>
+<div class="ts-line"><span class="ts-t">[视频④ 04:10]</span> 我一定在 MVP 级的都要用起来了</div>
+<div class="ts-line"><span class="ts-t">[视频④ 04:12]</span> 然后直接印象结果的</div>
+</div></details>
 </section>
 <section class="sec" id="s8">
 <h2>8. 指标分层与优先级：先守红线，再谈体验</h2>
@@ -672,6 +989,54 @@ main{padding-top:22px}
 </table>
 <p><span class="tag t-video">视频原述</span>口播里的判断很务实：如果什么都交给人工做，这个 Agent 就没有真正自动化；MVP 阶段任务完成率可以适当放低，但<strong>资金安全不能让步</strong>；延迟、满意度、成本属于「上线后拿数据再慢慢优化」的事情。</p>
 <div class="note"><strong>【补充】</strong> 这个分层与本站《指标地图》的 P0/P1/P2 优先级、以及「主指标 + 护栏指标」可以直接对齐：红线 = 护栏（一票否决），业务 = 主指标，过程 = 归因层，体验 = 长期优化层。</div>
+<details class="ts-box"><summary>本章语音逐字稿（ASR · 已校正）（逐字 · 45 句）</summary>
+<div class="ts-lines">
+<div class="ts-line"><span class="ts-t">[视频④ 04:14]</span> 就是业务结果的</div>
+<div class="ts-line"><span class="ts-t">[视频④ 04:14]</span> 就是我们之前一直在</div>
+<div class="ts-line"><span class="ts-t">[视频④ 04:16]</span> 说的 Agent 最重要就是完成用户任务</div>
+<div class="ts-line"><span class="ts-t">[视频④ 04:18]</span> 那你任务完成率达到多少</div>
+<div class="ts-line"><span class="ts-t">[视频④ 04:19]</span> 这里设计的任务完成率是85</div>
+<div class="ts-line"><span class="ts-t">[视频④ 04:22]</span> 当然我们 MVP 可以稍微低一点了</div>
+<div class="ts-line"><span class="ts-t">[视频④ 04:24]</span> 譬如80</div>
+<div class="ts-line"><span class="ts-t">[视频④ 04:24]</span> 我就认为它是一个可以上线的 Agent</div>
+<div class="ts-line"><span class="ts-t">[视频④ 04:29]</span> 然后是呃人工接管率就是</div>
+<div class="ts-line"><span class="ts-t">[视频④ 04:31]</span> 这个 Agent 是不是真的自动化了</div>
+<div class="ts-line"><span class="ts-t">[视频④ 04:33]</span> 别人最后退款的事情</div>
+<div class="ts-line"><span class="ts-t">[视频④ 04:34]</span> 都交给了人工去做的话</div>
+<div class="ts-line"><span class="ts-t">[视频④ 04:35]</span> 那这个就不是一个 Agent</div>
+<div class="ts-line"><span class="ts-t">[视频④ 04:37]</span> 第三个是过程质量判断了</div>
+<div class="ts-line"><span class="ts-t">[视频④ 04:38]</span> 包括意图识别和这个 A 拍调成功率</div>
+<div class="ts-line"><span class="ts-t">[视频④ 04:40]</span> 我觉得也是比较重要的</div>
+<div class="ts-line"><span class="ts-t">[视频④ 04:42]</span> 最后是上线后可以去慢慢优化的事情</div>
+<div class="ts-line"><span class="ts-t">[视频④ 04:44]</span> 就是体验优化</div>
+<div class="ts-line"><span class="ts-t">[视频④ 04:45]</span> 它可以结合自己的产品的具体的阶段</div>
+<div class="ts-line"><span class="ts-t">[视频④ 04:48]</span> 就不断去优化</div>
+<div class="ts-line"><span class="ts-t">[视频④ 04:49]</span> 这个健康值也是变化的</div>
+<div class="ts-line"><span class="ts-t">[视频④ 04:51]</span> 在 MVP 阶段可能啊</div>
+<div class="ts-line"><span class="ts-t">[视频④ 04:53]</span> 这里可能是15轮</div>
+<div class="ts-line"><span class="ts-t">[视频④ 04:55]</span> 15人之内解决这个用户问题</div>
+<div class="ts-line"><span class="ts-t">[视频④ 04:56]</span> 我们觉得它也是有效的</div>
+<div class="ts-line"><span class="ts-t">[视频④ 04:57]</span> 因为我们要快速上线去拿拿数据</div>
+<div class="ts-line"><span class="ts-t">[视频④ 05:00]</span> 让数据飞轮转起来的</div>
+<div class="ts-line"><span class="ts-t">[视频④ 05:02]</span> 对吧这都是一个权衡啊</div>
+<div class="ts-line"><span class="ts-t">[视频④ 05:03]</span> 这个判断和权衡我觉得</div>
+<div class="ts-line"><span class="ts-t">[视频④ 05:05]</span> 是我们基本的一个能力吧</div>
+<div class="ts-line"><span class="ts-t">[视频④ 05:07]</span> 总结一下就是</div>
+<div class="ts-line"><span class="ts-t">[视频④ 05:08]</span> 我们拿到一个 Agent 这产品</div>
+<div class="ts-line"><span class="ts-t">[视频④ 05:10]</span> 先要想这个 Agent 是帮助用户完成哪些任务</div>
+<div class="ts-line"><span class="ts-t">[视频④ 05:13]</span> 然后完成这个任务的工作流是怎么样子的</div>
+<div class="ts-line"><span class="ts-t">[视频④ 05:16]</span> 就譬如退款是怎样的工作流</div>
+<div class="ts-line"><span class="ts-t">[视频④ 05:18]</span> 让这个任务成功退款成功或者投诉成功</div>
+<div class="ts-line"><span class="ts-t">[视频④ 05:22]</span> 其实就是我们整个工作流</div>
+<div class="ts-line"><span class="ts-t">[视频④ 05:23]</span> 为了让整个工作流的每一步就是我们的一个 metric</div>
+<div class="ts-line"><span class="ts-t">[视频④ 05:26]</span> 因为我们说过</div>
+<div class="ts-line"><span class="ts-t">[视频④ 05:27]</span> 我们 Agent 不仅要关注它的最后的任务完成率</div>
+<div class="ts-line"><span class="ts-t">[视频④ 05:30]</span> 我们还要关注它的过程的质量</div>
+<div class="ts-line"><span class="ts-t">[视频④ 05:33]</span> 当然了</div>
+<div class="ts-line"><span class="ts-t">[视频④ 05:34]</span> metric 不能特别多啊</div>
+<div class="ts-line"><span class="ts-t">[视频④ 05:35]</span> 要有主次之分优先级</div>
+<div class="ts-line"><span class="ts-t">[视频④ 05:37]</span> 最后构建一个币环</div>
+</div></details>
 </section>
 <section class="sec" id="s9">
 <h2>9. Rubric：把「什么叫好」翻译成机器可判断的行为</h2>
@@ -733,6 +1098,81 @@ main{padding-top:22px}
   <div class="cap">图 15｜跳水评分类比重绘</div>
 </div>
 <p><span class="tag t-video">视频原述</span>画面类比奥运会跳水评分：评委不说「跳得真漂亮」，而是看起跳高度、空中姿态、入水水花，每项都有明确的加分项与扣分项。映射到 Agent，就是「必须先回应用户情绪」「涉及退款必须说明依据」「不编造订单状态」这类可验证动作。</p>
+<details class="ts-box"><summary>本章语音逐字稿（ASR · 已校正）（逐字 · 72 句）</summary>
+<div class="ts-lines">
+<div class="ts-line"><span class="ts-t">[视频① 00:00]</span> 哈喽大家今天我们继续来聊呃 Agent 评测</div>
+<div class="ts-line"><span class="ts-t">[视频① 00:03]</span> 大家想象一个场景啊你写了一个客服 Agent</div>
+<div class="ts-line"><span class="ts-t">[视频① 00:06]</span> 为了评估效果你写了一句回复专业自然有人情味</div>
+<div class="ts-line"><span class="ts-t">[视频① 00:11]</span> 然后呢就让大模型去打分了</div>
+<div class="ts-line"><span class="ts-t">[视频① 00:13]</span> 结果是什么平均分4.8分</div>
+<div class="ts-line"><span class="ts-t">[视频① 00:15]</span> 你自己打开那个线上的日志你会发现</div>
+<div class="ts-line"><span class="ts-t">[视频① 00:17]</span> 哦我们的 Agent 的回复都是这样子的</div>
+<div class="ts-line"><span class="ts-t">[视频① 00:19]</span> 感谢您的理解建议您联系客服</div>
+<div class="ts-line"><span class="ts-t">[视频① 00:22]</span> 你看一句错都没有但一句有用的话也没有</div>
+<div class="ts-line"><span class="ts-t">[视频① 00:25]</span> 为什么不是架子不行啊</div>
+<div class="ts-line"><span class="ts-t">[视频① 00:27]</span> 而是 Rubric 本身就是一句废话</div>
+<div class="ts-line"><span class="ts-t">[视频① 00:30]</span> 你所谓的回复专业自然有人情味</div>
+<div class="ts-line"><span class="ts-t">[视频① 00:33]</span> 这就是 garbage in garbage out</div>
+<div class="ts-line"><span class="ts-t">[视频① 00:36]</span> 所以说不好的 Rubric 就像是一张没有刻度的尺子</div>
+<div class="ts-line"><span class="ts-t">[视频① 00:39]</span> 你凉了半天除了自我感觉凉好以外没有任何意义</div>
+<div class="ts-line"><span class="ts-t">[视频① 00:43]</span> 所以我们今天想聊一下到底什么是 Rubric</div>
+<div class="ts-line"><span class="ts-t">[视频① 00:46]</span> 那什么又是好的 Rubric</div>
+<div class="ts-line"><span class="ts-t">[视频① 00:48]</span> 产品经理怎么写出你第一份 Rubric</div>
+<div class="ts-line"><span class="ts-t">[视频① 00:51]</span> 第一部分 Rubric 到底是什么</div>
+<div class="ts-line"><span class="ts-t">[视频① 00:55]</span> 很多文章会说 Rubric 等于打分标准</div>
+<div class="ts-line"><span class="ts-t">[视频① 00:58]</span> 我觉得这不够准确啊</div>
+<div class="ts-line"><span class="ts-t">[视频① 01:00]</span> 从产品经理角度来看我更愿意把它定义成</div>
+<div class="ts-line"><span class="ts-t">[视频① 01:03]</span> 验收的标准</div>
+<div class="ts-line"><span class="ts-t">[视频① 01:04]</span> 它是一套把感性评价翻译成理性坐标的系统</div>
+<div class="ts-line"><span class="ts-t">[视频① 01:09]</span> 那一个完整的 Rubric 高含三个核心要素</div>
+<div class="ts-line"><span class="ts-t">[视频① 01:12]</span> 第一个是维度就你在乎什么</div>
+<div class="ts-line"><span class="ts-t">[视频① 01:13]</span> 比如是事实的准确性啊是语气的调性啊</div>
+<div class="ts-line"><span class="ts-t">[视频① 01:16]</span> 是任务的达成率啊</div>
+<div class="ts-line"><span class="ts-t">[视频① 01:18]</span> 第二个就是分级就是程度的划分</div>
+<div class="ts-line"><span class="ts-t">[视频① 01:21]</span> 比如一分到五分一分代表完成失败</div>
+<div class="ts-line"><span class="ts-t">[视频① 01:24]</span> 那五分不仅是完成任务而且超出预期</div>
+<div class="ts-line"><span class="ts-t">[视频① 01:27]</span> 那第三个就是描述</div>
+<div class="ts-line"><span class="ts-t">[视频① 01:30]</span> 就是告诉架子怎么知道这是三分还是五分</div>
+<div class="ts-line"><span class="ts-t">[视频① 01:34]</span> 这是最关键的部分</div>
+<div class="ts-line"><span class="ts-t">[视频① 01:35]</span> 因为每一个分级的背后必须有清晰的不带感情色彩的鉴定</div>
+<div class="ts-line"><span class="ts-t">[视频① 01:40]</span> 你可以把 Rubric 想象成奥运会跳水冠比赛的评分标准</div>
+<div class="ts-line"><span class="ts-t">[视频① 01:45]</span> 裁判不会只说奥跳得真漂亮</div>
+<div class="ts-line"><span class="ts-t">[视频① 01:47]</span> 他们会看起跳高度空中姿态入水水花</div>
+<div class="ts-line"><span class="ts-t">[视频① 01:51]</span> 每一个动作细节都对应着明确的扣分项和加分项</div>
+<div class="ts-line"><span class="ts-t">[视频① 01:54]</span> 总之吧</div>
+<div class="ts-line"><span class="ts-t">[视频① 01:55]</span> Rubric 的本质就是把产品的直觉翻译成机器可以判断的行为</div>
+<div class="ts-line"><span class="ts-t">[视频① 02:00]</span> 那第二部分是什么样的 Rubric 是好的 Rubric</div>
+<div class="ts-line"><span class="ts-t">[视频① 02:03]</span> 我觉得大的方面有三个点</div>
+<div class="ts-line"><span class="ts-t">[视频① 02:05]</span> 第一个就是可观察</div>
+<div class="ts-line"><span class="ts-t">[视频① 02:06]</span> 就你不能评价感觉你要评价行为</div>
+<div class="ts-line"><span class="ts-t">[视频① 02:09]</span> 这是所有 Rubric 最重要的一条</div>
+<div class="ts-line"><span class="ts-t">[视频① 02:12]</span> 那很多人喜欢写什么回复自然一点</div>
+<div class="ts-line"><span class="ts-t">[视频① 02:15]</span> 更有人味更专业</div>
+<div class="ts-line"><span class="ts-t">[视频① 02:17]</span> 这些其实都不能评啊</div>
+<div class="ts-line"><span class="ts-t">[视频① 02:18]</span> 为什么</div>
+<div class="ts-line"><span class="ts-t">[视频① 02:18]</span> 因为每个人的理解都不同</div>
+<div class="ts-line"><span class="ts-t">[视频① 02:20]</span> 架子也不知道怎么什么叫自然</div>
+<div class="ts-line"><span class="ts-t">[视频① 02:22]</span> 最真正好的 Rubric 一定描述成可以观察到的行为</div>
+<div class="ts-line"><span class="ts-t">[视频① 02:26]</span> 例如第一轮回复</div>
+<div class="ts-line"><span class="ts-t">[视频① 02:27]</span> 必须先回应用户情绪再回答问题</div>
+<div class="ts-line"><span class="ts-t">[视频① 02:30]</span> 你看这就是具体的行为了</div>
+<div class="ts-line"><span class="ts-t">[视频① 02:32]</span> 譬如你引用政策时必须说明依据</div>
+<div class="ts-line"><span class="ts-t">[视频① 02:35]</span> 你看或者你说涉及退款</div>
+<div class="ts-line"><span class="ts-t">[视频① 02:37]</span> 必须先完成身份教演</div>
+<div class="ts-line"><span class="ts-t">[视频① 02:39]</span> 你看这些都是可以观察可以验证的</div>
+<div class="ts-line"><span class="ts-t">[视频① 02:42]</span> 所以说 Rubric 不描述感觉啊</div>
+<div class="ts-line"><span class="ts-t">[视频① 02:45]</span> 只描述行为</div>
+<div class="ts-line"><span class="ts-t">[视频① 02:46]</span> 那第二个就是可缺分</div>
+<div class="ts-line"><span class="ts-t">[视频① 02:48]</span> 是什么意思呢</div>
+<div class="ts-line"><span class="ts-t">[视频① 02:49]</span> 一个好的 Rubric</div>
+<div class="ts-line"><span class="ts-t">[视频① 02:50]</span> 它必须能把好答案和坏答案拉开差距</div>
+<div class="ts-line"><span class="ts-t">[视频① 02:54]</span> 很多 Rubric 最大的问题是什么</div>
+<div class="ts-line"><span class="ts-t">[视频① 02:56]</span> 所有回答最后都是四分</div>
+<div class="ts-line"><span class="ts-t">[视频① 02:57]</span> 为什么</div>
+<div class="ts-line"><span class="ts-t">[视频① 02:58]</span> 因为维度没有区分能力</div>
+<div class="ts-line"><span class="ts-t">[视频① 03:00]</span> 举个例子</div>
+<div class="ts-line"><span class="ts-t">[视频① 03:00]</span> 如果你的 Rubric 叫整体体验</div>
+</div></details>
 </section>
 <section class="sec" id="s10">
 <h2>10. 好 Rubric 的三标准与四步写法</h2>
@@ -852,6 +1292,109 @@ main{padding-top:22px}
 </div>
 <p><span class="tag t-video">视频原述</span>画面特意强调分档：「分档最重要，因为大多数输出会落在 3 分附近。1 分和 5 分是极端情况，描述清楚就行；<strong>3 分才是真正日常使用的尺度</strong>。」</p>
 <div class="note"><strong>【补充】</strong> Anthropic 公开文章对 grader 的建议与此高度一致：把判据做成 <strong>atomic 且 binary 的 yes/no 问题</strong>，而不是一个总体分；并<strong>明确写出「什么不算满足该判据」</strong>以解决边界样本，rubric 由领域专家制定。</div>
+<details class="ts-box"><summary>本章语音逐字稿（ASR · 已校正）（逐字 · 100 句）</summary>
+<div class="ts-lines">
+<div class="ts-line"><span class="ts-t">[视频① 03:03]</span> 那几乎没有意义</div>
+<div class="ts-line"><span class="ts-t">[视频① 03:04]</span> 因为大家只能凭感觉大分</div>
+<div class="ts-line"><span class="ts-t">[视频① 03:05]</span> 真正好的 Rubric 会拆成</div>
+<div class="ts-line"><span class="ts-t">[视频① 03:08]</span> 是否正确拥挤用户意图啊</div>
+<div class="ts-line"><span class="ts-t">[视频① 03:10]</span> 是否调用正确户啊</div>
+<div class="ts-line"><span class="ts-t">[视频① 03:11]</span> 是否符合品牌语气啊</div>
+<div class="ts-line"><span class="ts-t">[视频① 03:13]</span> 这样优秀回答普通怀答促回答</div>
+<div class="ts-line"><span class="ts-t">[视频① 03:15]</span> 才能真正拿开分数</div>
+<div class="ts-line"><span class="ts-t">[视频① 03:17]</span> 一个非常实用的办法就是</div>
+<div class="ts-line"><span class="ts-t">[视频① 03:19]</span> 你拿三条真实的回复啊</div>
+<div class="ts-line"><span class="ts-t">[视频① 03:20]</span> ABC 去试</div>
+<div class="ts-line"><span class="ts-t">[视频① 03:21]</span> 如果这个 Rubric 不能平定</div>
+<div class="ts-line"><span class="ts-t">[视频① 03:24]</span> 稳定的评出 A 大于 B 大于 C</div>
+<div class="ts-line"><span class="ts-t">[视频① 03:26]</span> 就说明这个 Rubric 有问题了</div>
+<div class="ts-line"><span class="ts-t">[视频① 03:27]</span> 因为它不可区分嘛</div>
+<div class="ts-line"><span class="ts-t">[视频① 03:29]</span> 第三就是可行动</div>
+<div class="ts-line"><span class="ts-t">[视频① 03:30]</span> 就每一个维度都应该对应一次产品的优化</div>
+<div class="ts-line"><span class="ts-t">[视频① 03:34]</span> 不然你测试它干嘛呢对吧</div>
+<div class="ts-line"><span class="ts-t">[视频① 03:35]</span> 很多人写什么</div>
+<div class="ts-line"><span class="ts-t">[视频① 03:37]</span> Rubric 是写成 AI 感</div>
+<div class="ts-line"><span class="ts-t">[视频① 03:38]</span> 要有人位智商高</div>
+<div class="ts-line"><span class="ts-t">[视频① 03:40]</span> 这些维度评完以后</div>
+<div class="ts-line"><span class="ts-t">[视频① 03:41]</span> 工程师也不知道怎么办呢</div>
+<div class="ts-line"><span class="ts-t">[视频① 03:43]</span> 你 prompt 是怎么改啊</div>
+<div class="ts-line"><span class="ts-t">[视频① 03:44]</span> memory 怎么调啊</div>
+<div class="ts-line"><span class="ts-t">[视频① 03:45]</span> 模型要不要换啊</div>
+<div class="ts-line"><span class="ts-t">[视频① 03:46]</span> 完全不知道</div>
+<div class="ts-line"><span class="ts-t">[视频① 03:47]</span> 这就是无效的 Rubric</div>
+<div class="ts-line"><span class="ts-t">[视频① 03:48]</span> 真正好的 Rubric</div>
+<div class="ts-line"><span class="ts-t">[视频① 03:50]</span> 它要写成什么</div>
+<div class="ts-line"><span class="ts-t">[视频① 03:51]</span> toward accuracy</div>
+<div class="ts-line"><span class="ts-t">[视频① 03:52]</span> 那你 prompt 就可以优化了对不对</div>
+<div class="ts-line"><span class="ts-t">[视频① 03:54]</span> 或者是 personal</div>
+<div class="ts-line"><span class="ts-t">[视频① 03:55]</span> just system prompt 可以优化</div>
+<div class="ts-line"><span class="ts-t">[视频① 03:57]</span> 或者你写成 safety</div>
+<div class="ts-line"><span class="ts-t">[视频① 03:59]</span> 那你的安全货栏可以优化</div>
+<div class="ts-line"><span class="ts-t">[视频① 04:01]</span> 所以说一个维度必须对应一个优化方向</div>
+<div class="ts-line"><span class="ts-t">[视频① 04:04]</span> 因为我们 evaluation 的目的</div>
+<div class="ts-line"><span class="ts-t">[视频① 04:05]</span> 还是让这个产品变得更好</div>
+<div class="ts-line"><span class="ts-t">[视频① 04:07]</span> 产品经历如何写出你的第一份 Rubric 呢</div>
+<div class="ts-line"><span class="ts-t">[视频① 04:10]</span> Rubric 不是想出来的啊</div>
+<div class="ts-line"><span class="ts-t">[视频① 04:12]</span> 是总结出来的</div>
+<div class="ts-line"><span class="ts-t">[视频① 04:14]</span> 我建议是有三步</div>
+<div class="ts-line"><span class="ts-t">[视频① 04:15]</span> 第一步就是找五到十个真实的 case</div>
+<div class="ts-line"><span class="ts-t">[视频① 04:18]</span> 不要从我觉得的用户会问什么开始</div>
+<div class="ts-line"><span class="ts-t">[视频① 04:20]</span> 而是从现然认识</div>
+<div class="ts-line"><span class="ts-t">[视频① 04:21]</span> 或者种子用户那里找真实的请求</div>
+<div class="ts-line"><span class="ts-t">[视频① 04:24]</span> 挑 case 的时候要刻意的去覆盖</div>
+<div class="ts-line"><span class="ts-t">[视频① 04:26]</span> 一到两个典型的成功 case</div>
+<div class="ts-line"><span class="ts-t">[视频① 04:28]</span> 一到两个边界 case</div>
+<div class="ts-line"><span class="ts-t">[视频① 04:29]</span> 就是用户问的比较模糊的那种 case</div>
+<div class="ts-line"><span class="ts-t">[视频① 04:31]</span> 一到两个 Agent list 上翻过车的 case</div>
+<div class="ts-line"><span class="ts-t">[视频① 04:33]</span> 这五到十个 case 就是你的 Rubric 种子</div>
+<div class="ts-line"><span class="ts-t">[视频① 04:36]</span> 第二步</div>
+<div class="ts-line"><span class="ts-t">[视频① 04:37]</span> 就手写每个 case 的理想答案</div>
+<div class="ts-line"><span class="ts-t">[视频① 04:39]</span> 这不是整个过程里最值钱的一步啊</div>
+<div class="ts-line"><span class="ts-t">[视频① 04:41]</span> 对每个 case 你自己亲手写一遍</div>
+<div class="ts-line"><span class="ts-t">[视频① 04:43]</span> 你心目中的理想答案</div>
+<div class="ts-line"><span class="ts-t">[视频① 04:44]</span> 写的时候你会发现</div>
+<div class="ts-line"><span class="ts-t">[视频① 04:45]</span> 你以为你想要简洁</div>
+<div class="ts-line"><span class="ts-t">[视频① 04:47]</span> 但写出来发现简洁加粒子更清楚</div>
+<div class="ts-line"><span class="ts-t">[视频① 04:49]</span> 你以为你不在乎格式</div>
+<div class="ts-line"><span class="ts-t">[视频① 04:50]</span> 但写出来发现表格比段落好读</div>
+<div class="ts-line"><span class="ts-t">[视频① 04:54]</span> 你以为你不在乎语气</div>
+<div class="ts-line"><span class="ts-t">[视频① 04:55]</span> 但写出来发现</div>
+<div class="ts-line"><span class="ts-t">[视频① 04:55]</span> 我帮你做比以为你处理更友好</div>
+<div class="ts-line"><span class="ts-t">[视频① 04:58]</span> 这些你在写答案过程中发现的偏好</div>
+<div class="ts-line"><span class="ts-t">[视频① 05:01]</span> 就是你 Rubric 的维度</div>
+<div class="ts-line"><span class="ts-t">[视频① 05:03]</span> 那写完之后</div>
+<div class="ts-line"><span class="ts-t">[视频① 05:04]</span> 把这些你想答案的给团队的几个人看一看</div>
+<div class="ts-line"><span class="ts-t">[视频① 05:07]</span> 问一个问题啊</div>
+<div class="ts-line"><span class="ts-t">[视频① 05:08]</span> 你觉得这个答案是在几分呢</div>
+<div class="ts-line"><span class="ts-t">[视频① 05:09]</span> 好在哪呀</div>
+<div class="ts-line"><span class="ts-t">[视频① 05:10]</span> 不好在哪呀</div>
+<div class="ts-line"><span class="ts-t">[视频① 05:11]</span> 如果大家看法一致</div>
+<div class="ts-line"><span class="ts-t">[视频① 05:12]</span> 那你想答案已经隐含了一份 Rubric</div>
+<div class="ts-line"><span class="ts-t">[视频① 05:14]</span> 如果大家看法不一致</div>
+<div class="ts-line"><span class="ts-t">[视频① 05:16]</span> 那分析点就是你 Rubric 需要明确写出来的维度</div>
+<div class="ts-line"><span class="ts-t">[视频① 05:20]</span> 那第三步就从理想答案里去体现维度了</div>
+<div class="ts-line"><span class="ts-t">[视频① 05:23]</span> 就刚刚说的</div>
+<div class="ts-line"><span class="ts-t">[视频① 05:24]</span> 把这五到十个理想答案摆在一起</div>
+<div class="ts-line"><span class="ts-t">[视频① 05:26]</span> 回顾一下我是按什么标准来写出这些答案的呀</div>
+<div class="ts-line"><span class="ts-t">[视频① 05:28]</span> 你会发现自己的反复做这几类判断</div>
+<div class="ts-line"><span class="ts-t">[视频① 05:30]</span> 就是这个答案有没有完成用户的问题啊</div>
+<div class="ts-line"><span class="ts-t">[视频① 05:33]</span> 信息准不准确啊</div>
+<div class="ts-line"><span class="ts-t">[视频① 05:34]</span> 有没有不该说的东西啊</div>
+<div class="ts-line"><span class="ts-t">[视频① 05:35]</span> 表达是不是清晰啊</div>
+<div class="ts-line"><span class="ts-t">[视频① 05:36]</span> 你看这些反复出现的判断标准</div>
+<div class="ts-line"><span class="ts-t">[视频① 05:38]</span> 就是你的 Rubric 的维度</div>
+<div class="ts-line"><span class="ts-t">[视频① 05:40]</span> 然后你给每个维度写一个一到五的五分的评分标准</div>
+<div class="ts-line"><span class="ts-t">[视频① 05:44]</span> 最后我想说就很多人把 Rubric 当成评分标准</div>
+<div class="ts-line"><span class="ts-t">[视频① 05:47]</span> 但我更愿意把它理解成</div>
+<div class="ts-line"><span class="ts-t">[视频① 05:49]</span> 呃产品质量的设计文档啊</div>
+<div class="ts-line"><span class="ts-t">[视频① 05:51]</span> 就我们写 pid 是告诉研发</div>
+<div class="ts-line"><span class="ts-t">[视频① 05:53]</span> 呃产品应该做什么</div>
+<div class="ts-line"><span class="ts-t">[视频① 05:54]</span> 那 Rubric 就是告诉 evaluation</div>
+<div class="ts-line"><span class="ts-t">[视频① 05:56]</span> 产品做到什么程度</div>
+<div class="ts-line"><span class="ts-t">[视频① 05:57]</span> 才算真正成功</div>
+<div class="ts-line"><span class="ts-t">[视频① 05:59]</span> 所以 Rubric 不是 evaluation 的附属品</div>
+<div class="ts-line"><span class="ts-t">[视频① 06:01]</span> 而是产品质量体系的起点</div>
+</div></details>
 </section>
 <section class="sec" id="s11">
 <h2>11. 黄金数据集：种子期靠合成，成长期靠打捞</h2>
@@ -920,6 +1463,25 @@ main{padding-top:22px}
 </table>
 <p><span class="tag t-video">视频原述</span>口播里最有力的一句：「<strong>线上的 trace 才是最好的 Eval 的来源，最优秀的用例来自用户的真实报错</strong>」。只要线上用户点了踩，或在 trace 中表现出纠错行为，这个 session 就应该自动脱敏、进入回归测试集。</p>
 <div class="note"><strong>【补充】</strong> 「参考 Astropy 和 open AI 的经验」为画面原文；结合本系列已核对的 <a href="https://www.anthropic.com/research/demystifying-evals-for-ai-agents">Anthropic《Demystifying evals for AI agents》</a>，疑似指 Anthropic，见 <a href="#193-校正表ocr-与自动摘要">19.3 校正表</a>。</div>
+<details class="ts-box"><summary>本章语音逐字稿（ASR · 已校正）（逐字 · 16 句）</summary>
+<div class="ts-lines">
+<div class="ts-line"><span class="ts-t">[视频② 00:00]</span> 哈喽大家前面我们介绍了 Rubric 也介绍了 LLM-as-Judge</div>
+<div class="ts-line"><span class="ts-t">[视频② 00:05]</span> 那决定 AI 产品上线的还包括另一个决定性的因素玩就是 Dataset</div>
+<div class="ts-line"><span class="ts-t">[视频② 00:11]</span> 譬如你做一个客服 Agent 如果 Dataset 全部是退款那么上线之后物流售后投诉</div>
+<div class="ts-line"><span class="ts-t">[视频② 00:18]</span> 它可能就会经常出错了并不是 Agent 不行是因为它之前没有刷过这些题</div>
+<div class="ts-line"><span class="ts-t">[视频② 00:23]</span> 所以说 Dataset 必须要进行科学的构造</div>
+<div class="ts-line"><span class="ts-t">[视频② 00:26]</span> 那另一方面我们有很多人认为只要攒够了500条数据跑一下看评测就结束了</div>
+<div class="ts-line"><span class="ts-t">[视频② 00:33]</span> 那 openai 和 Anthropic、OpenAI 的时间告诉我们数据即 Dataset 这不是静态的而是一个动态演进的</div>
+<div class="ts-line"><span class="ts-t">[视频② 00:40]</span> 今天我们就来聊一下产品经理如何去构建我们的第一份 Dataset</div>
+<div class="ts-line"><span class="ts-t">[视频② 00:45]</span> 那 Dataset 是越多就越好吗我们产品经理如何去管理它去推进我们 AI 的产品越来越好</div>
+<div class="ts-line"><span class="ts-t">[视频② 00:53]</span> 参考 Anthropic、OpenAI 的经验这个 Dataset 它应该是随着产品节奏自然长出来的从一开始冷启动阶段</div>
+<div class="ts-line"><span class="ts-t">[视频② 01:03]</span> 大冷启动阶段我们可能是没有数据的对吧没有那么多数据那我们可能会利用一个比较智能的模型</div>
+<div class="ts-line"><span class="ts-t">[视频② 01:10]</span> 结合我们的 prd 和液业无模文档去生成去合成然后将这个合成的数据送给我们人工专家去审核</div>
+<div class="ts-line"><span class="ts-t">[视频② 01:18]</span> 作为我们的第一版你看 Dataset 其实有版本管理的作为我们的第一版 Dataset</div>
+<div class="ts-line"><span class="ts-t">[视频② 01:23]</span> 然后产品上线之后我们就有真实的用户去使用了就会收集到很多的用户轨迹了那么也有很多的 downcast 了</div>
+<div class="ts-line"><span class="ts-t">[视频② 01:29]</span> 我们把这些自动回归到我们的回归测试几种这就是我们构成的一个 Dataset 的第二版本</div>
+<div class="ts-line"><span class="ts-t">[视频② 01:36]</span> 总结起来就是在种子期就是产品的冷启动值时间呢因为没有上线没有用户嘛也没有数据对吧</div>
+</div></details>
 </section>
 <section class="sec" id="s12">
 <h2>12. 数据集五类覆盖与三项管理</h2>
@@ -1005,6 +1567,24 @@ main{padding-top:22px}
 </div>
 <p><span class="tag t-video">视频原述</span>管理上三件事：<strong>版本管理（Versioning）</strong>——否则今天 95 分，你不知道是模型进步了还是题目变简单了；<strong>标签管理（Metadata）</strong>——每条数据带能力类型、来源、是否 regression，按标签局部回归而不必每次全量重跑；<strong>持续运营（Dataset Debt）</strong>——prompt 会老、业务会变，数据集不是一次性建设。</p>
 <div class="key">「不能把 Dataset 当成一个 Excel，而是应该把它当成一个<strong>产品的资产</strong>」；产品经理除了点击率，还要关注<strong>数据集的覆盖率和准确率</strong>。当手中有 100 条经过平衡处理、且有专家范例的黄金数据集时，才真正拥有了产品的质量指南针。</div>
+<details class="ts-box"><summary>本章语音逐字稿（ASR · 已校正）（逐字 · 15 句）</summary>
+<div class="ts-lines">
+<div class="ts-line"><span class="ts-t">[视频② 01:44]</span> 那我们参考 assure paid stamp 的做法呢就是用模型去出题</div>
+<div class="ts-line"><span class="ts-t">[视频② 01:49]</span> 当然我们产品经理其实不需要等到500条就20-50条就开始了只要这20条包含了核心逻辑和极端的 case 就足够我们去跑第一轮的评测了</div>
+<div class="ts-line"><span class="ts-t">[视频② 02:00]</span> 那到成长期就这时候的爆发数据级的爆发是靠打捞的 OpenAI 的做法就是他认为线上的 trace 才是最好的 ever 的来源</div>
+<div class="ts-line"><span class="ts-t">[视频② 02:08]</span> 最优秀的用例来自用户的真实保存</div>
+<div class="ts-line"><span class="ts-t">[视频② 02:11]</span> 所以我们产品经理怎么做呢只要线上用户点了踩或者在 trace 中表现出纠错行为的</div>
+<div class="ts-line"><span class="ts-t">[视频② 02:17]</span> 那么这个赛事就应该自动脱免并存入戴审核的库有我们产品经理把它转化为黄金测试级</div>
+<div class="ts-line"><span class="ts-t">[视频② 02:23]</span> 这就是我们如何去构建我们的 Dataset 在整个产品的周期中分成两个阶段种子期和成长期</div>
+<div class="ts-line"><span class="ts-t">[视频② 02:29]</span> 第三就是 Dataset 并不是越多越好啊而是覆盖</div>
+<div class="ts-line"><span class="ts-t">[视频② 02:33]</span> 一个成熟的数据级至少应该覆盖这五个维度第一维度就是业务覆盖</div>
+<div class="ts-line"><span class="ts-t">[视频② 02:37]</span> 就是是不是所有业务都有了例如客服 Agent 他是否包含了查询订单退款修改地址发票投诉售后优惠券等等</div>
+<div class="ts-line"><span class="ts-t">[视频② 02:46]</span> 这些业务场景的 case 都有第二就是用户覆盖就不同用户啊 Agent 的行为应该是不同的</div>
+<div class="ts-line"><span class="ts-t">[视频② 02:53]</span> 譬如他是普通用户他是 vip 用户他是海外用户他是黑名单用户那这些不同的用户应该都为他构造了不同的 case</div>
+<div class="ts-line"><span class="ts-t">[视频② 03:01]</span> 第三就是难度的覆盖就不能全部都是你好帮我退款还应该包含多轮对话啊上下文切换啊拼写错误啦中英文混合输入啦情绪化的表达呀多异图的请求啊</div>
+<div class="ts-line"><span class="ts-t">[视频② 03:12]</span> 就真正拉开 Agent 的水平的往往都是这些常委的场景第四是风险覆盖就是很多团队很很容易忽略的一项就是 prompt injection 啊</div>
+<div class="ts-line"><span class="ts-t">[视频② 03:23]</span> 最后就是我们的回归覆盖我认为这是最重要的理想就是 Agent 的每翻车一次 Dataset 都应该新增一道题以后呢无论换模型改 prompt 升级 memory 都必须重新通过这道题一句话不要让同一个 bug 出现两次嘛这就是 regression 的 Dataset</div>
+</div></details>
 </section>
 <section class="sec" id="s13">
 <h2>13. 用指标推动迭代：需要的是看板，而不是总分</h2>
@@ -1045,6 +1625,39 @@ main{padding-top:22px}
 <p><span class="tag t-video">视频原述</span>画面给出上线决策案例：新推理模型让<strong>任务成功率从 91% 提升到 96%</strong>，但<strong>平均响应时间从 4 秒增加到 9 秒</strong>，<strong>单次调用成本提升 60%</strong>。这个模型该上线吗？答案不在具体分数里：如果是深度研究场景，多等几秒完全可以接受，提高准确率是正确选择；如果是实时语音助手，再高的准确率也没有意义。</p>
 <div class="key">看板真正解决的问题，是<strong>帮助产品经理做出符合业务目标的决策</strong>、找到业务场景下最合理的平衡点；产品经理的核心工作不是设计出最多的指标，而是设计出一套始终围绕业务目标、能够持续驱动迭代的 Metrics 系统。</div>
 <div class="note"><strong>【补充】</strong> 与本系列第三篇的「主指标 + 护栏 + 能力评测毕业成回归评测」拼接后，完整的上线判断是：主指标改善 ∧ 护栏未破 ∧ 回归集无退步 ∧ 场景可接受的时延／成本。</div>
+<details class="ts-box"><summary>本章语音逐字稿（ASR · 已校正）（逐字 · 30 句）</summary>
+<div class="ts-lines">
+<div class="ts-line"><span class="ts-t">[视频③ 04:46]</span> 测试结果显示</div>
+<div class="ts-line"><span class="ts-t">[视频③ 04:47]</span> 成功率从91%提升到了96%</div>
+<div class="ts-line"><span class="ts-t">[视频③ 04:50]</span> 与此同时平均响应时间从4秒增加到了9秒</div>
+<div class="ts-line"><span class="ts-t">[视频③ 04:54]</span> 单次调用成本提升了60%</div>
+<div class="ts-line"><span class="ts-t">[视频③ 04:56]</span> 这时候应该上线吗</div>
+<div class="ts-line"><span class="ts-t">[视频③ 04:58]</span> 这个新的推理模型应该上线吗</div>
+<div class="ts-line"><span class="ts-t">[视频③ 05:00]</span> 答案并不在这具体的指标分数中</div>
+<div class="ts-line"><span class="ts-t">[视频③ 05:02]</span> 而是在我们的业务场景中对不对</div>
+<div class="ts-line"><span class="ts-t">[视频③ 05:04]</span> 如果这是一个后台财务审核 Agent 的</div>
+<div class="ts-line"><span class="ts-t">[视频③ 05:06]</span> 多等待几秒钟完全可以接受</div>
+<div class="ts-line"><span class="ts-t">[视频③ 05:08]</span> 那么提高准确率就是正确选择</div>
+<div class="ts-line"><span class="ts-t">[视频③ 05:10]</span> 如果你是一个实时的语音助手</div>
+<div class="ts-line"><span class="ts-t">[视频③ 05:13]</span> 用户无法接受9秒钟的等待</div>
+<div class="ts-line"><span class="ts-t">[视频③ 05:15]</span> 那么再高的准确率也没有意义</div>
+<div class="ts-line"><span class="ts-t">[视频③ 05:17]</span> 因此这个看板 Dashboard</div>
+<div class="ts-line"><span class="ts-t">[视频③ 05:19]</span> 从来不是为了告诉你哪个指标最高</div>
+<div class="ts-line"><span class="ts-t">[视频③ 05:21]</span> 它真正解决的问题是</div>
+<div class="ts-line"><span class="ts-t">[视频③ 05:22]</span> 在多个指标发生冲突的时候</div>
+<div class="ts-line"><span class="ts-t">[视频③ 05:24]</span> 帮助我们做出符合业务目标的决策</div>
+<div class="ts-line"><span class="ts-t">[视频③ 05:28]</span> 就产品经理不应该追求某一个指标做到最好</div>
+<div class="ts-line"><span class="ts-t">[视频③ 05:30]</span> 应该是找到业务场景下</div>
+<div class="ts-line"><span class="ts-t">[视频③ 05:32]</span> 那个最合理的平衡点</div>
+<div class="ts-line"><span class="ts-t">[视频③ 05:34]</span> 所以总结一下</div>
+<div class="ts-line"><span class="ts-t">[视频③ 05:36]</span> 那优秀的产品经理</div>
+<div class="ts-line"><span class="ts-t">[视频③ 05:37]</span> 不是设计出最多的指标</div>
+<div class="ts-line"><span class="ts-t">[视频③ 05:38]</span> 而是设计出一套始终围绕业务标</div>
+<div class="ts-line"><span class="ts-t">[视频③ 05:42]</span> 能够持续驱动产品迭代的 Metrics 系统</div>
+<div class="ts-line"><span class="ts-t">[视频③ 05:46]</span> 只有当 Metrics 成为团队的共同语言</div>
+<div class="ts-line"><span class="ts-t">[视频③ 05:49]</span> 以 Evaluation 才真正从一次测试</div>
+<div class="ts-line"><span class="ts-t">[视频③ 05:51]</span> 变成一套推动 Asian 的持续进化的工程体系</div>
+</div></details>
 </section>
 <section class="sec" id="s14">
 <h2>14. 综合方法论：把四支视频拼成一条闭环</h2>
@@ -1140,6 +1753,19 @@ main{padding-top:22px}
   <div class="cap">图 24｜【补充】指标定义模板与代码映射</div>
 </div>
 <p>这条链把「指标回答衡量什么、Rubric 回答什么叫好、Dataset 回答拿什么测、看板回答能不能上线」串成一套工程体系——evaluation 才真正从一次测试，变成一套推动 action 的持续进化机制。</p>
+<details class="ts-box"><summary>本章语音逐字稿（ASR · 已校正）（逐字 · 10 句）</summary>
+<div class="ts-lines">
+<div class="ts-line"><span class="ts-t">[视频② 03:46]</span> 那前面说了 Dataset 其实它是一个动态演进的那产品经理如何管理 Dataset 呢我们不能把 Dataset 当成一个 excel 一个静态的数据</div>
+<div class="ts-line"><span class="ts-t">[视频② 03:54]</span> 而是应该把它当成一个产品的资产一个我们要做版本管理就我在前面其实也介绍了就是代码有版本对吧 prompt 有版本的对吧 side 应该也是有版本的</div>
+<div class="ts-line"><span class="ts-t">[视频② 04:03]</span> 因为我们 Dataset 它是在不断的变化的对吧你线上会有不同的 buckets 它会不断的收集它会有不断的变化所以一定要有版本做好版本管理</div>
+<div class="ts-line"><span class="ts-t">[视频② 04:11]</span> 不然的话今天你 Evaluation%了明天又90%了你根本不知道到底是模型进步了还是数据极变了就是因为它数据极是不断变化的所以我们一定要做版本管理</div>
+<div class="ts-line"><span class="ts-t">[视频② 04:20]</span> 第二是标签管理这是 openai 的一个优秀建议就是每条数据都应该拥有它的 metadata</div>
+<div class="ts-line"><span class="ts-t">[视频② 04:25]</span> 譬如你是业务类型的是能力类型的你的难度是多少你的来源是从哪里来</div>
+<div class="ts-line"><span class="ts-t">[视频② 04:33]</span> 你的模型的版本你是否是 regression 分层标签管理不用每次修改就要全量回归而是可以做到按照标签去回归对吧</div>
+<div class="ts-line"><span class="ts-t">[视频② 04:41]</span> 大家一定要记住的 Dataset 是一个持续运营的持续变化的一个状态就模型会老 prompt 会老那 Dataset 也会老的</div>
+<div class="ts-line"><span class="ts-t">[视频② 04:48]</span> 所以说我们 Dataset 不是一次性建设而是持续运营的最后说几点就是互联网时代我们产品经理经常关注的是点击率转化率</div>
+<div class="ts-line"><span class="ts-t">[视频② 04:57]</span> 那 ai 时代我们还要关注 Dataset 的覆盖率和准确率当我们手中有一百条经过平衡处理代标签且有专家范例的黄金数据及时我们才真正拥有了产品的质量质量基准</div>
+</div></details>
 </section>
 <section class="sec" id="s15">
 <h2>15. 补充篇 A：专业名词速查（67 条）</h2>
@@ -1470,6 +2096,642 @@ if __name__ == "__main__":
 <li><strong>本系列互链</strong>：<a href="../rag-evaluation-tutorial/RAG评测完全教程.html">RAG 评测完全教程（在线阅读）</a> ｜ <a href="../agent-evaluation-tutorial/Agent评测体系完全教程.html">Agent 评测体系完全教程（在线阅读）</a> ｜ <a href="../agent-eval-driven-tutorial/Agent评测驱动迭代完全教程.html">评测驱动 Agent 迭代（在线阅读）</a> ｜ <a href="../agent-architecture-tutorial/Agent开发架构选型完全教程.html">Agent 开发架构选型（在线阅读）</a>。</li>
 </ol>
 <div class="warn"><strong>未做的部分（如实说明）</strong>：本轮未做语音逐字转写（ASR），口播依据烧录字幕 OCR 时间线 + 画面文字归纳；第四支为现场白板绘制，工具栏与绘图元素在 OCR 中形成噪声，已按语义过滤，未逐字转录工具栏文字；三张表由 DeepSeek 生成，属示例产物，不构成生产指标标准。</div>
+<p><strong>附录 · 全片语音逐字稿（ASR · 576 段 · 按视频/章节分组）</strong></p>
+<p>由离线语音识别还原的完整口播，逐段保留时间码；点击标题展开。视频作者制作的烧录字幕为精简重排版，两者不完全逐字对应属正常现象。</p>
+<details class="ts-box"><summary>视频①（逐字 · 172 句）</summary>
+<div class="ts-lines">
+<div class="ts-line"><span class="ts-t">[视频① 00:00]</span> 哈喽大家今天我们继续来聊呃 Agent 评测</div>
+<div class="ts-line"><span class="ts-t">[视频① 00:03]</span> 大家想象一个场景啊你写了一个客服 Agent</div>
+<div class="ts-line"><span class="ts-t">[视频① 00:06]</span> 为了评估效果你写了一句回复专业自然有人情味</div>
+<div class="ts-line"><span class="ts-t">[视频① 00:11]</span> 然后呢就让大模型去打分了</div>
+<div class="ts-line"><span class="ts-t">[视频① 00:13]</span> 结果是什么平均分4.8分</div>
+<div class="ts-line"><span class="ts-t">[视频① 00:15]</span> 你自己打开那个线上的日志你会发现</div>
+<div class="ts-line"><span class="ts-t">[视频① 00:17]</span> 哦我们的 Agent 的回复都是这样子的</div>
+<div class="ts-line"><span class="ts-t">[视频① 00:19]</span> 感谢您的理解建议您联系客服</div>
+<div class="ts-line"><span class="ts-t">[视频① 00:22]</span> 你看一句错都没有但一句有用的话也没有</div>
+<div class="ts-line"><span class="ts-t">[视频① 00:25]</span> 为什么不是架子不行啊</div>
+<div class="ts-line"><span class="ts-t">[视频① 00:27]</span> 而是 Rubric 本身就是一句废话</div>
+<div class="ts-line"><span class="ts-t">[视频① 00:30]</span> 你所谓的回复专业自然有人情味</div>
+<div class="ts-line"><span class="ts-t">[视频① 00:33]</span> 这就是 garbage in garbage out</div>
+<div class="ts-line"><span class="ts-t">[视频① 00:36]</span> 所以说不好的 Rubric 就像是一张没有刻度的尺子</div>
+<div class="ts-line"><span class="ts-t">[视频① 00:39]</span> 你凉了半天除了自我感觉凉好以外没有任何意义</div>
+<div class="ts-line"><span class="ts-t">[视频① 00:43]</span> 所以我们今天想聊一下到底什么是 Rubric</div>
+<div class="ts-line"><span class="ts-t">[视频① 00:46]</span> 那什么又是好的 Rubric</div>
+<div class="ts-line"><span class="ts-t">[视频① 00:48]</span> 产品经理怎么写出你第一份 Rubric</div>
+<div class="ts-line"><span class="ts-t">[视频① 00:51]</span> 第一部分 Rubric 到底是什么</div>
+<div class="ts-line"><span class="ts-t">[视频① 00:55]</span> 很多文章会说 Rubric 等于打分标准</div>
+<div class="ts-line"><span class="ts-t">[视频① 00:58]</span> 我觉得这不够准确啊</div>
+<div class="ts-line"><span class="ts-t">[视频① 01:00]</span> 从产品经理角度来看我更愿意把它定义成</div>
+<div class="ts-line"><span class="ts-t">[视频① 01:03]</span> 验收的标准</div>
+<div class="ts-line"><span class="ts-t">[视频① 01:04]</span> 它是一套把感性评价翻译成理性坐标的系统</div>
+<div class="ts-line"><span class="ts-t">[视频① 01:09]</span> 那一个完整的 Rubric 高含三个核心要素</div>
+<div class="ts-line"><span class="ts-t">[视频① 01:12]</span> 第一个是维度就你在乎什么</div>
+<div class="ts-line"><span class="ts-t">[视频① 01:13]</span> 比如是事实的准确性啊是语气的调性啊</div>
+<div class="ts-line"><span class="ts-t">[视频① 01:16]</span> 是任务的达成率啊</div>
+<div class="ts-line"><span class="ts-t">[视频① 01:18]</span> 第二个就是分级就是程度的划分</div>
+<div class="ts-line"><span class="ts-t">[视频① 01:21]</span> 比如一分到五分一分代表完成失败</div>
+<div class="ts-line"><span class="ts-t">[视频① 01:24]</span> 那五分不仅是完成任务而且超出预期</div>
+<div class="ts-line"><span class="ts-t">[视频① 01:27]</span> 那第三个就是描述</div>
+<div class="ts-line"><span class="ts-t">[视频① 01:30]</span> 就是告诉架子怎么知道这是三分还是五分</div>
+<div class="ts-line"><span class="ts-t">[视频① 01:34]</span> 这是最关键的部分</div>
+<div class="ts-line"><span class="ts-t">[视频① 01:35]</span> 因为每一个分级的背后必须有清晰的不带感情色彩的鉴定</div>
+<div class="ts-line"><span class="ts-t">[视频① 01:40]</span> 你可以把 Rubric 想象成奥运会跳水冠比赛的评分标准</div>
+<div class="ts-line"><span class="ts-t">[视频① 01:45]</span> 裁判不会只说奥跳得真漂亮</div>
+<div class="ts-line"><span class="ts-t">[视频① 01:47]</span> 他们会看起跳高度空中姿态入水水花</div>
+<div class="ts-line"><span class="ts-t">[视频① 01:51]</span> 每一个动作细节都对应着明确的扣分项和加分项</div>
+<div class="ts-line"><span class="ts-t">[视频① 01:54]</span> 总之吧</div>
+<div class="ts-line"><span class="ts-t">[视频① 01:55]</span> Rubric 的本质就是把产品的直觉翻译成机器可以判断的行为</div>
+<div class="ts-line"><span class="ts-t">[视频① 02:00]</span> 那第二部分是什么样的 Rubric 是好的 Rubric</div>
+<div class="ts-line"><span class="ts-t">[视频① 02:03]</span> 我觉得大的方面有三个点</div>
+<div class="ts-line"><span class="ts-t">[视频① 02:05]</span> 第一个就是可观察</div>
+<div class="ts-line"><span class="ts-t">[视频① 02:06]</span> 就你不能评价感觉你要评价行为</div>
+<div class="ts-line"><span class="ts-t">[视频① 02:09]</span> 这是所有 Rubric 最重要的一条</div>
+<div class="ts-line"><span class="ts-t">[视频① 02:12]</span> 那很多人喜欢写什么回复自然一点</div>
+<div class="ts-line"><span class="ts-t">[视频① 02:15]</span> 更有人味更专业</div>
+<div class="ts-line"><span class="ts-t">[视频① 02:17]</span> 这些其实都不能评啊</div>
+<div class="ts-line"><span class="ts-t">[视频① 02:18]</span> 为什么</div>
+<div class="ts-line"><span class="ts-t">[视频① 02:18]</span> 因为每个人的理解都不同</div>
+<div class="ts-line"><span class="ts-t">[视频① 02:20]</span> 架子也不知道怎么什么叫自然</div>
+<div class="ts-line"><span class="ts-t">[视频① 02:22]</span> 最真正好的 Rubric 一定描述成可以观察到的行为</div>
+<div class="ts-line"><span class="ts-t">[视频① 02:26]</span> 例如第一轮回复</div>
+<div class="ts-line"><span class="ts-t">[视频① 02:27]</span> 必须先回应用户情绪再回答问题</div>
+<div class="ts-line"><span class="ts-t">[视频① 02:30]</span> 你看这就是具体的行为了</div>
+<div class="ts-line"><span class="ts-t">[视频① 02:32]</span> 譬如你引用政策时必须说明依据</div>
+<div class="ts-line"><span class="ts-t">[视频① 02:35]</span> 你看或者你说涉及退款</div>
+<div class="ts-line"><span class="ts-t">[视频① 02:37]</span> 必须先完成身份教演</div>
+<div class="ts-line"><span class="ts-t">[视频① 02:39]</span> 你看这些都是可以观察可以验证的</div>
+<div class="ts-line"><span class="ts-t">[视频① 02:42]</span> 所以说 Rubric 不描述感觉啊</div>
+<div class="ts-line"><span class="ts-t">[视频① 02:45]</span> 只描述行为</div>
+<div class="ts-line"><span class="ts-t">[视频① 02:46]</span> 那第二个就是可缺分</div>
+<div class="ts-line"><span class="ts-t">[视频① 02:48]</span> 是什么意思呢</div>
+<div class="ts-line"><span class="ts-t">[视频① 02:49]</span> 一个好的 Rubric</div>
+<div class="ts-line"><span class="ts-t">[视频① 02:50]</span> 它必须能把好答案和坏答案拉开差距</div>
+<div class="ts-line"><span class="ts-t">[视频① 02:54]</span> 很多 Rubric 最大的问题是什么</div>
+<div class="ts-line"><span class="ts-t">[视频① 02:56]</span> 所有回答最后都是四分</div>
+<div class="ts-line"><span class="ts-t">[视频① 02:57]</span> 为什么</div>
+<div class="ts-line"><span class="ts-t">[视频① 02:58]</span> 因为维度没有区分能力</div>
+<div class="ts-line"><span class="ts-t">[视频① 03:00]</span> 举个例子</div>
+<div class="ts-line"><span class="ts-t">[视频① 03:00]</span> 如果你的 Rubric 叫整体体验</div>
+<div class="ts-line"><span class="ts-t">[视频① 03:03]</span> 那几乎没有意义</div>
+<div class="ts-line"><span class="ts-t">[视频① 03:04]</span> 因为大家只能凭感觉大分</div>
+<div class="ts-line"><span class="ts-t">[视频① 03:05]</span> 真正好的 Rubric 会拆成</div>
+<div class="ts-line"><span class="ts-t">[视频① 03:08]</span> 是否正确拥挤用户意图啊</div>
+<div class="ts-line"><span class="ts-t">[视频① 03:10]</span> 是否调用正确户啊</div>
+<div class="ts-line"><span class="ts-t">[视频① 03:11]</span> 是否符合品牌语气啊</div>
+<div class="ts-line"><span class="ts-t">[视频① 03:13]</span> 这样优秀回答普通怀答促回答</div>
+<div class="ts-line"><span class="ts-t">[视频① 03:15]</span> 才能真正拿开分数</div>
+<div class="ts-line"><span class="ts-t">[视频① 03:17]</span> 一个非常实用的办法就是</div>
+<div class="ts-line"><span class="ts-t">[视频① 03:19]</span> 你拿三条真实的回复啊</div>
+<div class="ts-line"><span class="ts-t">[视频① 03:20]</span> ABC 去试</div>
+<div class="ts-line"><span class="ts-t">[视频① 03:21]</span> 如果这个 Rubric 不能平定</div>
+<div class="ts-line"><span class="ts-t">[视频① 03:24]</span> 稳定的评出 A 大于 B 大于 C</div>
+<div class="ts-line"><span class="ts-t">[视频① 03:26]</span> 就说明这个 Rubric 有问题了</div>
+<div class="ts-line"><span class="ts-t">[视频① 03:27]</span> 因为它不可区分嘛</div>
+<div class="ts-line"><span class="ts-t">[视频① 03:29]</span> 第三就是可行动</div>
+<div class="ts-line"><span class="ts-t">[视频① 03:30]</span> 就每一个维度都应该对应一次产品的优化</div>
+<div class="ts-line"><span class="ts-t">[视频① 03:34]</span> 不然你测试它干嘛呢对吧</div>
+<div class="ts-line"><span class="ts-t">[视频① 03:35]</span> 很多人写什么</div>
+<div class="ts-line"><span class="ts-t">[视频① 03:37]</span> Rubric 是写成 AI 感</div>
+<div class="ts-line"><span class="ts-t">[视频① 03:38]</span> 要有人位智商高</div>
+<div class="ts-line"><span class="ts-t">[视频① 03:40]</span> 这些维度评完以后</div>
+<div class="ts-line"><span class="ts-t">[视频① 03:41]</span> 工程师也不知道怎么办呢</div>
+<div class="ts-line"><span class="ts-t">[视频① 03:43]</span> 你 prompt 是怎么改啊</div>
+<div class="ts-line"><span class="ts-t">[视频① 03:44]</span> memory 怎么调啊</div>
+<div class="ts-line"><span class="ts-t">[视频① 03:45]</span> 模型要不要换啊</div>
+<div class="ts-line"><span class="ts-t">[视频① 03:46]</span> 完全不知道</div>
+<div class="ts-line"><span class="ts-t">[视频① 03:47]</span> 这就是无效的 Rubric</div>
+<div class="ts-line"><span class="ts-t">[视频① 03:48]</span> 真正好的 Rubric</div>
+<div class="ts-line"><span class="ts-t">[视频① 03:50]</span> 它要写成什么</div>
+<div class="ts-line"><span class="ts-t">[视频① 03:51]</span> toward accuracy</div>
+<div class="ts-line"><span class="ts-t">[视频① 03:52]</span> 那你 prompt 就可以优化了对不对</div>
+<div class="ts-line"><span class="ts-t">[视频① 03:54]</span> 或者是 personal</div>
+<div class="ts-line"><span class="ts-t">[视频① 03:55]</span> just system prompt 可以优化</div>
+<div class="ts-line"><span class="ts-t">[视频① 03:57]</span> 或者你写成 safety</div>
+<div class="ts-line"><span class="ts-t">[视频① 03:59]</span> 那你的安全货栏可以优化</div>
+<div class="ts-line"><span class="ts-t">[视频① 04:01]</span> 所以说一个维度必须对应一个优化方向</div>
+<div class="ts-line"><span class="ts-t">[视频① 04:04]</span> 因为我们 evaluation 的目的</div>
+<div class="ts-line"><span class="ts-t">[视频① 04:05]</span> 还是让这个产品变得更好</div>
+<div class="ts-line"><span class="ts-t">[视频① 04:07]</span> 产品经历如何写出你的第一份 Rubric 呢</div>
+<div class="ts-line"><span class="ts-t">[视频① 04:10]</span> Rubric 不是想出来的啊</div>
+<div class="ts-line"><span class="ts-t">[视频① 04:12]</span> 是总结出来的</div>
+<div class="ts-line"><span class="ts-t">[视频① 04:14]</span> 我建议是有三步</div>
+<div class="ts-line"><span class="ts-t">[视频① 04:15]</span> 第一步就是找五到十个真实的 case</div>
+<div class="ts-line"><span class="ts-t">[视频① 04:18]</span> 不要从我觉得的用户会问什么开始</div>
+<div class="ts-line"><span class="ts-t">[视频① 04:20]</span> 而是从现然认识</div>
+<div class="ts-line"><span class="ts-t">[视频① 04:21]</span> 或者种子用户那里找真实的请求</div>
+<div class="ts-line"><span class="ts-t">[视频① 04:24]</span> 挑 case 的时候要刻意的去覆盖</div>
+<div class="ts-line"><span class="ts-t">[视频① 04:26]</span> 一到两个典型的成功 case</div>
+<div class="ts-line"><span class="ts-t">[视频① 04:28]</span> 一到两个边界 case</div>
+<div class="ts-line"><span class="ts-t">[视频① 04:29]</span> 就是用户问的比较模糊的那种 case</div>
+<div class="ts-line"><span class="ts-t">[视频① 04:31]</span> 一到两个 Agent list 上翻过车的 case</div>
+<div class="ts-line"><span class="ts-t">[视频① 04:33]</span> 这五到十个 case 就是你的 Rubric 种子</div>
+<div class="ts-line"><span class="ts-t">[视频① 04:36]</span> 第二步</div>
+<div class="ts-line"><span class="ts-t">[视频① 04:37]</span> 就手写每个 case 的理想答案</div>
+<div class="ts-line"><span class="ts-t">[视频① 04:39]</span> 这不是整个过程里最值钱的一步啊</div>
+<div class="ts-line"><span class="ts-t">[视频① 04:41]</span> 对每个 case 你自己亲手写一遍</div>
+<div class="ts-line"><span class="ts-t">[视频① 04:43]</span> 你心目中的理想答案</div>
+<div class="ts-line"><span class="ts-t">[视频① 04:44]</span> 写的时候你会发现</div>
+<div class="ts-line"><span class="ts-t">[视频① 04:45]</span> 你以为你想要简洁</div>
+<div class="ts-line"><span class="ts-t">[视频① 04:47]</span> 但写出来发现简洁加粒子更清楚</div>
+<div class="ts-line"><span class="ts-t">[视频① 04:49]</span> 你以为你不在乎格式</div>
+<div class="ts-line"><span class="ts-t">[视频① 04:50]</span> 但写出来发现表格比段落好读</div>
+<div class="ts-line"><span class="ts-t">[视频① 04:54]</span> 你以为你不在乎语气</div>
+<div class="ts-line"><span class="ts-t">[视频① 04:55]</span> 但写出来发现</div>
+<div class="ts-line"><span class="ts-t">[视频① 04:55]</span> 我帮你做比以为你处理更友好</div>
+<div class="ts-line"><span class="ts-t">[视频① 04:58]</span> 这些你在写答案过程中发现的偏好</div>
+<div class="ts-line"><span class="ts-t">[视频① 05:01]</span> 就是你 Rubric 的维度</div>
+<div class="ts-line"><span class="ts-t">[视频① 05:03]</span> 那写完之后</div>
+<div class="ts-line"><span class="ts-t">[视频① 05:04]</span> 把这些你想答案的给团队的几个人看一看</div>
+<div class="ts-line"><span class="ts-t">[视频① 05:07]</span> 问一个问题啊</div>
+<div class="ts-line"><span class="ts-t">[视频① 05:08]</span> 你觉得这个答案是在几分呢</div>
+<div class="ts-line"><span class="ts-t">[视频① 05:09]</span> 好在哪呀</div>
+<div class="ts-line"><span class="ts-t">[视频① 05:10]</span> 不好在哪呀</div>
+<div class="ts-line"><span class="ts-t">[视频① 05:11]</span> 如果大家看法一致</div>
+<div class="ts-line"><span class="ts-t">[视频① 05:12]</span> 那你想答案已经隐含了一份 Rubric</div>
+<div class="ts-line"><span class="ts-t">[视频① 05:14]</span> 如果大家看法不一致</div>
+<div class="ts-line"><span class="ts-t">[视频① 05:16]</span> 那分析点就是你 Rubric 需要明确写出来的维度</div>
+<div class="ts-line"><span class="ts-t">[视频① 05:20]</span> 那第三步就从理想答案里去体现维度了</div>
+<div class="ts-line"><span class="ts-t">[视频① 05:23]</span> 就刚刚说的</div>
+<div class="ts-line"><span class="ts-t">[视频① 05:24]</span> 把这五到十个理想答案摆在一起</div>
+<div class="ts-line"><span class="ts-t">[视频① 05:26]</span> 回顾一下我是按什么标准来写出这些答案的呀</div>
+<div class="ts-line"><span class="ts-t">[视频① 05:28]</span> 你会发现自己的反复做这几类判断</div>
+<div class="ts-line"><span class="ts-t">[视频① 05:30]</span> 就是这个答案有没有完成用户的问题啊</div>
+<div class="ts-line"><span class="ts-t">[视频① 05:33]</span> 信息准不准确啊</div>
+<div class="ts-line"><span class="ts-t">[视频① 05:34]</span> 有没有不该说的东西啊</div>
+<div class="ts-line"><span class="ts-t">[视频① 05:35]</span> 表达是不是清晰啊</div>
+<div class="ts-line"><span class="ts-t">[视频① 05:36]</span> 你看这些反复出现的判断标准</div>
+<div class="ts-line"><span class="ts-t">[视频① 05:38]</span> 就是你的 Rubric 的维度</div>
+<div class="ts-line"><span class="ts-t">[视频① 05:40]</span> 然后你给每个维度写一个一到五的五分的评分标准</div>
+<div class="ts-line"><span class="ts-t">[视频① 05:44]</span> 最后我想说就很多人把 Rubric 当成评分标准</div>
+<div class="ts-line"><span class="ts-t">[视频① 05:47]</span> 但我更愿意把它理解成</div>
+<div class="ts-line"><span class="ts-t">[视频① 05:49]</span> 呃产品质量的设计文档啊</div>
+<div class="ts-line"><span class="ts-t">[视频① 05:51]</span> 就我们写 pid 是告诉研发</div>
+<div class="ts-line"><span class="ts-t">[视频① 05:53]</span> 呃产品应该做什么</div>
+<div class="ts-line"><span class="ts-t">[视频① 05:54]</span> 那 Rubric 就是告诉 evaluation</div>
+<div class="ts-line"><span class="ts-t">[视频① 05:56]</span> 产品做到什么程度</div>
+<div class="ts-line"><span class="ts-t">[视频① 05:57]</span> 才算真正成功</div>
+<div class="ts-line"><span class="ts-t">[视频① 05:59]</span> 所以 Rubric 不是 evaluation 的附属品</div>
+<div class="ts-line"><span class="ts-t">[视频① 06:01]</span> 而是产品质量体系的起点</div>
+</div></details>
+<details class="ts-box"><summary>视频②（逐字 · 41 句）</summary>
+<div class="ts-lines">
+<div class="ts-line"><span class="ts-t">[视频② 00:00]</span> 哈喽大家前面我们介绍了 Rubric 也介绍了 LLM-as-Judge</div>
+<div class="ts-line"><span class="ts-t">[视频② 00:05]</span> 那决定 AI 产品上线的还包括另一个决定性的因素玩就是 Dataset</div>
+<div class="ts-line"><span class="ts-t">[视频② 00:11]</span> 譬如你做一个客服 Agent 如果 Dataset 全部是退款那么上线之后物流售后投诉</div>
+<div class="ts-line"><span class="ts-t">[视频② 00:18]</span> 它可能就会经常出错了并不是 Agent 不行是因为它之前没有刷过这些题</div>
+<div class="ts-line"><span class="ts-t">[视频② 00:23]</span> 所以说 Dataset 必须要进行科学的构造</div>
+<div class="ts-line"><span class="ts-t">[视频② 00:26]</span> 那另一方面我们有很多人认为只要攒够了500条数据跑一下看评测就结束了</div>
+<div class="ts-line"><span class="ts-t">[视频② 00:33]</span> 那 openai 和 Anthropic、OpenAI 的时间告诉我们数据即 Dataset 这不是静态的而是一个动态演进的</div>
+<div class="ts-line"><span class="ts-t">[视频② 00:40]</span> 今天我们就来聊一下产品经理如何去构建我们的第一份 Dataset</div>
+<div class="ts-line"><span class="ts-t">[视频② 00:45]</span> 那 Dataset 是越多就越好吗我们产品经理如何去管理它去推进我们 AI 的产品越来越好</div>
+<div class="ts-line"><span class="ts-t">[视频② 00:53]</span> 参考 Anthropic、OpenAI 的经验这个 Dataset 它应该是随着产品节奏自然长出来的从一开始冷启动阶段</div>
+<div class="ts-line"><span class="ts-t">[视频② 01:03]</span> 大冷启动阶段我们可能是没有数据的对吧没有那么多数据那我们可能会利用一个比较智能的模型</div>
+<div class="ts-line"><span class="ts-t">[视频② 01:10]</span> 结合我们的 prd 和液业无模文档去生成去合成然后将这个合成的数据送给我们人工专家去审核</div>
+<div class="ts-line"><span class="ts-t">[视频② 01:18]</span> 作为我们的第一版你看 Dataset 其实有版本管理的作为我们的第一版 Dataset</div>
+<div class="ts-line"><span class="ts-t">[视频② 01:23]</span> 然后产品上线之后我们就有真实的用户去使用了就会收集到很多的用户轨迹了那么也有很多的 downcast 了</div>
+<div class="ts-line"><span class="ts-t">[视频② 01:29]</span> 我们把这些自动回归到我们的回归测试几种这就是我们构成的一个 Dataset 的第二版本</div>
+<div class="ts-line"><span class="ts-t">[视频② 01:36]</span> 总结起来就是在种子期就是产品的冷启动值时间呢因为没有上线没有用户嘛也没有数据对吧</div>
+<div class="ts-line"><span class="ts-t">[视频② 01:44]</span> 那我们参考 assure paid stamp 的做法呢就是用模型去出题</div>
+<div class="ts-line"><span class="ts-t">[视频② 01:49]</span> 当然我们产品经理其实不需要等到500条就20-50条就开始了只要这20条包含了核心逻辑和极端的 case 就足够我们去跑第一轮的评测了</div>
+<div class="ts-line"><span class="ts-t">[视频② 02:00]</span> 那到成长期就这时候的爆发数据级的爆发是靠打捞的 OpenAI 的做法就是他认为线上的 trace 才是最好的 ever 的来源</div>
+<div class="ts-line"><span class="ts-t">[视频② 02:08]</span> 最优秀的用例来自用户的真实保存</div>
+<div class="ts-line"><span class="ts-t">[视频② 02:11]</span> 所以我们产品经理怎么做呢只要线上用户点了踩或者在 trace 中表现出纠错行为的</div>
+<div class="ts-line"><span class="ts-t">[视频② 02:17]</span> 那么这个赛事就应该自动脱免并存入戴审核的库有我们产品经理把它转化为黄金测试级</div>
+<div class="ts-line"><span class="ts-t">[视频② 02:23]</span> 这就是我们如何去构建我们的 Dataset 在整个产品的周期中分成两个阶段种子期和成长期</div>
+<div class="ts-line"><span class="ts-t">[视频② 02:29]</span> 第三就是 Dataset 并不是越多越好啊而是覆盖</div>
+<div class="ts-line"><span class="ts-t">[视频② 02:33]</span> 一个成熟的数据级至少应该覆盖这五个维度第一维度就是业务覆盖</div>
+<div class="ts-line"><span class="ts-t">[视频② 02:37]</span> 就是是不是所有业务都有了例如客服 Agent 他是否包含了查询订单退款修改地址发票投诉售后优惠券等等</div>
+<div class="ts-line"><span class="ts-t">[视频② 02:46]</span> 这些业务场景的 case 都有第二就是用户覆盖就不同用户啊 Agent 的行为应该是不同的</div>
+<div class="ts-line"><span class="ts-t">[视频② 02:53]</span> 譬如他是普通用户他是 vip 用户他是海外用户他是黑名单用户那这些不同的用户应该都为他构造了不同的 case</div>
+<div class="ts-line"><span class="ts-t">[视频② 03:01]</span> 第三就是难度的覆盖就不能全部都是你好帮我退款还应该包含多轮对话啊上下文切换啊拼写错误啦中英文混合输入啦情绪化的表达呀多异图的请求啊</div>
+<div class="ts-line"><span class="ts-t">[视频② 03:12]</span> 就真正拉开 Agent 的水平的往往都是这些常委的场景第四是风险覆盖就是很多团队很很容易忽略的一项就是 prompt injection 啊</div>
+<div class="ts-line"><span class="ts-t">[视频② 03:23]</span> 最后就是我们的回归覆盖我认为这是最重要的理想就是 Agent 的每翻车一次 Dataset 都应该新增一道题以后呢无论换模型改 prompt 升级 memory 都必须重新通过这道题一句话不要让同一个 bug 出现两次嘛这就是 regression 的 Dataset</div>
+<div class="ts-line"><span class="ts-t">[视频② 03:46]</span> 那前面说了 Dataset 其实它是一个动态演进的那产品经理如何管理 Dataset 呢我们不能把 Dataset 当成一个 excel 一个静态的数据</div>
+<div class="ts-line"><span class="ts-t">[视频② 03:54]</span> 而是应该把它当成一个产品的资产一个我们要做版本管理就我在前面其实也介绍了就是代码有版本对吧 prompt 有版本的对吧 side 应该也是有版本的</div>
+<div class="ts-line"><span class="ts-t">[视频② 04:03]</span> 因为我们 Dataset 它是在不断的变化的对吧你线上会有不同的 buckets 它会不断的收集它会有不断的变化所以一定要有版本做好版本管理</div>
+<div class="ts-line"><span class="ts-t">[视频② 04:11]</span> 不然的话今天你 Evaluation%了明天又90%了你根本不知道到底是模型进步了还是数据极变了就是因为它数据极是不断变化的所以我们一定要做版本管理</div>
+<div class="ts-line"><span class="ts-t">[视频② 04:20]</span> 第二是标签管理这是 openai 的一个优秀建议就是每条数据都应该拥有它的 metadata</div>
+<div class="ts-line"><span class="ts-t">[视频② 04:25]</span> 譬如你是业务类型的是能力类型的你的难度是多少你的来源是从哪里来</div>
+<div class="ts-line"><span class="ts-t">[视频② 04:33]</span> 你的模型的版本你是否是 regression 分层标签管理不用每次修改就要全量回归而是可以做到按照标签去回归对吧</div>
+<div class="ts-line"><span class="ts-t">[视频② 04:41]</span> 大家一定要记住的 Dataset 是一个持续运营的持续变化的一个状态就模型会老 prompt 会老那 Dataset 也会老的</div>
+<div class="ts-line"><span class="ts-t">[视频② 04:48]</span> 所以说我们 Dataset 不是一次性建设而是持续运营的最后说几点就是互联网时代我们产品经理经常关注的是点击率转化率</div>
+<div class="ts-line"><span class="ts-t">[视频② 04:57]</span> 那 ai 时代我们还要关注 Dataset 的覆盖率和准确率当我们手中有一百条经过平衡处理代标签且有专家范例的黄金数据及时我们才真正拥有了产品的质量质量基准</div>
+</div></details>
+<details class="ts-box"><summary>视频③（逐字 · 170 句）</summary>
+<div class="ts-lines">
+<div class="ts-line"><span class="ts-t">[视频③ 00:00]</span> 哈喽大家今天我们继续 Agent 评测相关的话题的讨论</div>
+<div class="ts-line"><span class="ts-t">[视频③ 00:04]</span> 前面我们已经讨论过 Judge</div>
+<div class="ts-line"><span class="ts-t">[视频③ 00:06]</span> Rubric</div>
+<div class="ts-line"><span class="ts-t">[视频③ 00:07]</span> 然后 Dataset</div>
+<div class="ts-line"><span class="ts-t">[视频③ 00:08]</span> 那今天我们来讨论 Metrics</div>
+<div class="ts-line"><span class="ts-t">[视频③ 00:11]</span> 有一句话就这么说的</div>
+<div class="ts-line"><span class="ts-t">[视频③ 00:13]</span> 你衡量什么就得到什么</div>
+<div class="ts-line"><span class="ts-t">[视频③ 00:14]</span> 那在我们的 Agent 的开发中</div>
+<div class="ts-line"><span class="ts-t">[视频③ 00:16]</span> Metrics 也就是指标就是那个隐形的指挥棒</div>
+<div class="ts-line"><span class="ts-t">[视频③ 00:19]</span> 如果你衡量的是响应速度</div>
+<div class="ts-line"><span class="ts-t">[视频③ 00:21]</span> Agent 就会学会复演</div>
+<div class="ts-line"><span class="ts-t">[视频③ 00:23]</span> 可以说短而无用的回答来强行提速</div>
+<div class="ts-line"><span class="ts-t">[视频③ 00:26]</span> 如果你衡量的是对话的轮次</div>
+<div class="ts-line"><span class="ts-t">[视频③ 00:28]</span> Agent 就会学会绕圈子</div>
+<div class="ts-line"><span class="ts-t">[视频③ 00:30]</span> 把一个简单问题复杂化</div>
+<div class="ts-line"><span class="ts-t">[视频③ 00:32]</span> 如果你衡量的是安全性</div>
+<div class="ts-line"><span class="ts-t">[视频③ 00:33]</span> Agent 可能会变成一个拒绝机器</div>
+<div class="ts-line"><span class="ts-t">[视频③ 00:35]</span> 对什么请求都说对不起我无法回答</div>
+<div class="ts-line"><span class="ts-t">[视频③ 00:38]</span> 那所以说 Metrics 的本质</div>
+<div class="ts-line"><span class="ts-t">[视频③ 00:40]</span> 是把产品经理眼中的业务目标</div>
+<div class="ts-line"><span class="ts-t">[视频③ 00:42]</span> 翻译成一个可以持续优化</div>
+<div class="ts-line"><span class="ts-t">[视频③ 00:44]</span> 持续比较的数字系统</div>
+<div class="ts-line"><span class="ts-t">[视频③ 00:46]</span> 那如果翻译错了</div>
+<div class="ts-line"><span class="ts-t">[视频③ 00:48]</span> 研发的方向就会难原背著</div>
+<div class="ts-line"><span class="ts-t">[视频③ 00:50]</span> 所以今天我们来讨论一下</div>
+<div class="ts-line"><span class="ts-t">[视频③ 00:51]</span> 我们产品经理如何去制定一个 Metrics</div>
+<div class="ts-line"><span class="ts-t">[视频③ 00:54]</span> 那什么是一个好的 Metrics</div>
+<div class="ts-line"><span class="ts-t">[视频③ 00:56]</span> 那产品经理如何利用这个 Metrics</div>
+<div class="ts-line"><span class="ts-t">[视频③ 00:57]</span> 去推动我们的产品迭代</div>
+<div class="ts-line"><span class="ts-t">[视频③ 00:59]</span> 这是我们最终的目的</div>
+<div class="ts-line"><span class="ts-t">[视频③ 01:00]</span> 我们制定 Metrics 都是为了把产品做好</div>
+<div class="ts-line"><span class="ts-t">[视频③ 01:03]</span> 谈到如何去制定 Metrics 呢</div>
+<div class="ts-line"><span class="ts-t">[视频③ 01:06]</span> 我觉得我们应该参考一下大厂的事件吧</div>
+<div class="ts-line"><span class="ts-t">[视频③ 01:09]</span> 无论是 OpenAI 还是 SRPEC</div>
+<div class="ts-line"><span class="ts-t">[视频③ 01:11]</span> 他们都强调一件事情</div>
+<div class="ts-line"><span class="ts-t">[视频③ 01:12]</span> 不要先想</div>
+<div class="ts-line"><span class="ts-t">[视频③ 01:13]</span> 我要监控哪些指标</div>
+<div class="ts-line"><span class="ts-t">[视频③ 01:15]</span> 而是先分析</div>
+<div class="ts-line"><span class="ts-t">[视频③ 01:16]</span> Agent 在线上到底失败在哪里</div>
+<div class="ts-line"><span class="ts-t">[视频③ 01:18]</span> 因此一个合理的设计流程应该是</div>
+<div class="ts-line"><span class="ts-t">[视频③ 01:21]</span> 业务目标到用户任务到</div>
+<div class="ts-line"><span class="ts-t">[视频③ 01:23]</span> 错误分析再到 Metrics</div>
+<div class="ts-line"><span class="ts-t">[视频③ 01:25]</span> 就一个好的指标设计</div>
+<div class="ts-line"><span class="ts-t">[视频③ 01:27]</span> 不能只靠拍脑袋</div>
+<div class="ts-line"><span class="ts-t">[视频③ 01:28]</span> 而是通过上下结合的路径去寻找</div>
+<div class="ts-line"><span class="ts-t">[视频③ 01:31]</span> 首先自上而下的也就是从目标倒退</div>
+<div class="ts-line"><span class="ts-t">[视频③ 01:34]</span> 就问自己</div>
+<div class="ts-line"><span class="ts-t">[视频③ 01:35]</span> 这个 Agent 的商业价值是什么</div>
+<div class="ts-line"><span class="ts-t">[视频③ 01:37]</span> 譬如</div>
+<div class="ts-line"><span class="ts-t">[视频③ 01:37]</span> 定票 Agent 的目标是降低人工客服的压力</div>
+<div class="ts-line"><span class="ts-t">[视频③ 01:40]</span> 那么它对应的指标</div>
+<div class="ts-line"><span class="ts-t">[视频③ 01:41]</span> 就不只是回答正确</div>
+<div class="ts-line"><span class="ts-t">[视频③ 01:43]</span> 而是订单的成功率和人工的接管率</div>
+<div class="ts-line"><span class="ts-t">[视频③ 01:46]</span> 因为它降低认定人工客服的压力</div>
+<div class="ts-line"><span class="ts-t">[视频③ 01:48]</span> 第二就是 Bottom-up up</div>
+<div class="ts-line"><span class="ts-t">[视频③ 01:50]</span> 从线自下而上的</div>
+<div class="ts-line"><span class="ts-t">[视频③ 01:51]</span> 从线上的 Bad guys 去归纳</div>
+<div class="ts-line"><span class="ts-t">[视频③ 01:53]</span> Agent 为什么失败呀</div>
+<div class="ts-line"><span class="ts-t">[视频③ 01:54]</span> 是意图识别错误吗</div>
+<div class="ts-line"><span class="ts-t">[视频③ 01:56]</span> 还是调用错误的工具啊</div>
+<div class="ts-line"><span class="ts-t">[视频③ 01:58]</span> 或者是参数提取错误啊</div>
+<div class="ts-line"><span class="ts-t">[视频③ 01:59]</span> 又或者是最后一步回复方式</div>
+<div class="ts-line"><span class="ts-t">[视频③ 02:01]</span> 不符合业务规范啊</div>
+<div class="ts-line"><span class="ts-t">[视频③ 02:02]</span> 不同类型的失败</div>
+<div class="ts-line"><span class="ts-t">[视频③ 02:04]</span> 对应不同的 Metrics</div>
+<div class="ts-line"><span class="ts-t">[视频③ 02:05]</span> 例如</div>
+<div class="ts-line"><span class="ts-t">[视频③ 02:06]</span> 如果40%的失败</div>
+<div class="ts-line"><span class="ts-t">[视频③ 02:08]</span> 来自工具参数错误</div>
+<div class="ts-line"><span class="ts-t">[视频③ 02:09]</span> 那么应该新增</div>
+<div class="ts-line"><span class="ts-t">[视频③ 02:10]</span> To Parameter Accuracy 这个 Metrics</div>
+<div class="ts-line"><span class="ts-t">[视频③ 02:13]</span> 如果大量的用户投诉</div>
+<div class="ts-line"><span class="ts-t">[视频③ 02:14]</span> 回复 Agent 说话太啰嗦了</div>
+<div class="ts-line"><span class="ts-t">[视频③ 02:16]</span> 那我们对应建立的指标</div>
+<div class="ts-line"><span class="ts-t">[视频③ 02:18]</span> 就是荣誉度得分</div>
+<div class="ts-line"><span class="ts-t">[视频③ 02:19]</span> 好的 Metrics</div>
+<div class="ts-line"><span class="ts-t">[视频③ 02:20]</span> 不是拍脑袋想出来的</div>
+<div class="ts-line"><span class="ts-t">[视频③ 02:21]</span> 而是从真实的错误中长出来的</div>
+<div class="ts-line"><span class="ts-t">[视频③ 02:24]</span> 所以我们产品经理的核心工作</div>
+<div class="ts-line"><span class="ts-t">[视频③ 02:26]</span> 就是把这些散乱的 benefits</div>
+<div class="ts-line"><span class="ts-t">[视频③ 02:28]</span> 抽象成全量评估里的一个又一个 Metrics</div>
+<div class="ts-line"><span class="ts-t">[视频③ 02:31]</span> 谈到什么是一个好的 Metrics 建设啊</div>
+<div class="ts-line"><span class="ts-t">[视频③ 02:33]</span> 那很多团队最大的误区是指标很多</div>
+<div class="ts-line"><span class="ts-t">[视频③ 02:37]</span> 越来越多</div>
+<div class="ts-line"><span class="ts-t">[视频③ 02:38]</span> 然后却越来越没有指导意义</div>
+<div class="ts-line"><span class="ts-t">[视频③ 02:40]</span> 所以我认为一个好的 Metrics</div>
+<div class="ts-line"><span class="ts-t">[视频③ 02:42]</span> 应该满足以下四个原则</div>
+<div class="ts-line"><span class="ts-t">[视频③ 02:44]</span> 第一个就是能够指导我们真实的行动</div>
+<div class="ts-line"><span class="ts-t">[视频③ 02:46]</span> 就如果一个指标下降</div>
+<div class="ts-line"><span class="ts-t">[视频③ 02:47]</span> 那么团队应该立刻知道问题在哪里</div>
+<div class="ts-line"><span class="ts-t">[视频③ 02:49]</span> 例如一个 Agent 的综合评分几乎没有意义的啊</div>
+<div class="ts-line"><span class="ts-t">[视频③ 02:51]</span> 因为研发不知道到底是 Prompt 出问题</div>
+<div class="ts-line"><span class="ts-t">[视频③ 02:53]</span> Memory 出问题还是 Tour 出问题</div>
+<div class="ts-line"><span class="ts-t">[视频③ 02:55]</span> 相反我们要把它拆成 Tour Accuracy</div>
+<div class="ts-line"><span class="ts-t">[视频③ 02:57]</span> Planning Success</div>
+<div class="ts-line"><span class="ts-t">[视频③ 02:59]</span> Memory Recall Accuracy 等多个多个独立的指标</div>
+<div class="ts-line"><span class="ts-t">[视频③ 03:02]</span> 每个指标都对应一个明确的优化方向</div>
+<div class="ts-line"><span class="ts-t">[视频③ 03:04]</span> 虽然就是要与业务目标直接相关</div>
+<div class="ts-line"><span class="ts-t">[视频③ 03:07]</span> 不要为了追求模型分数而优化模型啊</div>
+<div class="ts-line"><span class="ts-t">[视频③ 03:09]</span> 真正重要的是业务有没有变好</div>
+<div class="ts-line"><span class="ts-t">[视频③ 03:10]</span> 就克服 Agent 应该关注的是首次解决率</div>
+<div class="ts-line"><span class="ts-t">[视频③ 03:13]</span> CodingAgent 应该关注的是单元测试通过率</div>
+<div class="ts-line"><span class="ts-t">[视频③ 03:16]</span> 情感陪伴 Agent</div>
+<div class="ts-line"><span class="ts-t">[视频③ 03:17]</span> 更应该关注的是用户流程</div>
+<div class="ts-line"><span class="ts-t">[视频③ 03:18]</span> 而不是回复写的是否优美</div>
+<div class="ts-line"><span class="ts-t">[视频③ 03:20]</span> 就你的 Metric 一定是和业务目标直接相关的</div>
+<div class="ts-line"><span class="ts-t">[视频③ 03:23]</span> 第三个是否能够长期持续的比较</div>
+<div class="ts-line"><span class="ts-t">[视频③ 03:26]</span> 这 Metrics 的价值不是一时的分数啊</div>
+<div class="ts-line"><span class="ts-t">[视频③ 03:28]</span> 而是长期的趋势</div>
+<div class="ts-line"><span class="ts-t">[视频③ 03:29]</span> 它必须能够回答</div>
+<div class="ts-line"><span class="ts-t">[视频③ 03:30]</span> 而升级模型之后 Agent 是变好了还是变差了</div>
+<div class="ts-line"><span class="ts-t">[视频③ 03:33]</span> 修改 Prompt 之后 Tour 打 Accuracy 有没有提升</div>
+<div class="ts-line"><span class="ts-t">[视频③ 03:36]</span> 新增 Memory 后用户满意度有没有改善</div>
+<div class="ts-line"><span class="ts-t">[视频③ 03:39]</span> 没有版本之间的比较</div>
+<div class="ts-line"><span class="ts-t">[视频③ 03:41]</span> 那 Metrics 就失去了意义</div>
+<div class="ts-line"><span class="ts-t">[视频③ 03:43]</span> 那最后是要形成平衡而不是单元指标的优化</div>
+<div class="ts-line"><span class="ts-t">[视频③ 03:47]</span> 这是 OpenEye 在官方的 Evaluation Best Practices 里面</div>
+<div class="ts-line"><span class="ts-t">[视频③ 03:50]</span> 反复强调的观点</div>
+<div class="ts-line"><span class="ts-t">[视频③ 03:51]</span> 不要孤立优化某一个指标</div>
+<div class="ts-line"><span class="ts-t">[视频③ 03:53]</span> 就任何指标都有副作用</div>
+<div class="ts-line"><span class="ts-t">[视频③ 03:55]</span> 你譬如你提高 Success Rate</div>
+<div class="ts-line"><span class="ts-t">[视频③ 03:58]</span> 提高成功率可能就导致了 Cost 的保障</div>
+<div class="ts-line"><span class="ts-t">[视频③ 04:00]</span> Token 就保障了</div>
+<div class="ts-line"><span class="ts-t">[视频③ 04:01]</span> 那降低 Latency</div>
+<div class="ts-line"><span class="ts-t">[视频③ 04:02]</span> 可能就导致了 Accuracy 的下降</div>
+<div class="ts-line"><span class="ts-t">[视频③ 04:04]</span> 那提高回复长度</div>
+<div class="ts-line"><span class="ts-t">[视频③ 04:06]</span> 可能就导致了用户阅读成本的增加</div>
+<div class="ts-line"><span class="ts-t">[视频③ 04:08]</span> 所以真正优秀的 Metrics 不是一个数字</div>
+<div class="ts-line"><span class="ts-t">[视频③ 04:11]</span> 而是一套能够相互制衡的指标体系</div>
+<div class="ts-line"><span class="ts-t">[视频③ 04:14]</span> 所以一个好的 Metrics 一定是符合以上这四个原则</div>
+<div class="ts-line"><span class="ts-t">[视频③ 04:18]</span> 我们产品经理如何利用我们建立的 Metrics 与推动产品谍带</div>
+<div class="ts-line"><span class="ts-t">[视频③ 04:22]</span> 一句话就是 Agent 的谍带是一个多维度的取舍</div>
+<div class="ts-line"><span class="ts-t">[视频③ 04:26]</span> 它是一个 Tradoff</div>
+<div class="ts-line"><span class="ts-t">[视频③ 04:28]</span> 它前面也介绍了</div>
+<div class="ts-line"><span class="ts-t">[视频③ 04:29]</span> 一个目标的优化可能带来了另一个指标的下降</div>
+<div class="ts-line"><span class="ts-t">[视频③ 04:33]</span> 所以我们需要的是一个看板</div>
+<div class="ts-line"><span class="ts-t">[视频③ 04:35]</span> 不是一个总分也不是一个平均分</div>
+<div class="ts-line"><span class="ts-t">[视频③ 04:37]</span> 是一个看板 dashboard</div>
+<div class="ts-line"><span class="ts-t">[视频③ 04:39]</span> Agent 的产品从来不是单目标的优化</div>
+<div class="ts-line"><span class="ts-t">[视频③ 04:41]</span> 而是在多个目标之间寻找平衡</div>
+<div class="ts-line"><span class="ts-t">[视频③ 04:44]</span> 例如你升级到了新的推理模型</div>
+<div class="ts-line"><span class="ts-t">[视频③ 04:46]</span> 测试结果显示</div>
+<div class="ts-line"><span class="ts-t">[视频③ 04:47]</span> 成功率从91%提升到了96%</div>
+<div class="ts-line"><span class="ts-t">[视频③ 04:50]</span> 与此同时平均响应时间从4秒增加到了9秒</div>
+<div class="ts-line"><span class="ts-t">[视频③ 04:54]</span> 单次调用成本提升了60%</div>
+<div class="ts-line"><span class="ts-t">[视频③ 04:56]</span> 这时候应该上线吗</div>
+<div class="ts-line"><span class="ts-t">[视频③ 04:58]</span> 这个新的推理模型应该上线吗</div>
+<div class="ts-line"><span class="ts-t">[视频③ 05:00]</span> 答案并不在这具体的指标分数中</div>
+<div class="ts-line"><span class="ts-t">[视频③ 05:02]</span> 而是在我们的业务场景中对不对</div>
+<div class="ts-line"><span class="ts-t">[视频③ 05:04]</span> 如果这是一个后台财务审核 Agent 的</div>
+<div class="ts-line"><span class="ts-t">[视频③ 05:06]</span> 多等待几秒钟完全可以接受</div>
+<div class="ts-line"><span class="ts-t">[视频③ 05:08]</span> 那么提高准确率就是正确选择</div>
+<div class="ts-line"><span class="ts-t">[视频③ 05:10]</span> 如果你是一个实时的语音助手</div>
+<div class="ts-line"><span class="ts-t">[视频③ 05:13]</span> 用户无法接受9秒钟的等待</div>
+<div class="ts-line"><span class="ts-t">[视频③ 05:15]</span> 那么再高的准确率也没有意义</div>
+<div class="ts-line"><span class="ts-t">[视频③ 05:17]</span> 因此这个看板 Dashboard</div>
+<div class="ts-line"><span class="ts-t">[视频③ 05:19]</span> 从来不是为了告诉你哪个指标最高</div>
+<div class="ts-line"><span class="ts-t">[视频③ 05:21]</span> 它真正解决的问题是</div>
+<div class="ts-line"><span class="ts-t">[视频③ 05:22]</span> 在多个指标发生冲突的时候</div>
+<div class="ts-line"><span class="ts-t">[视频③ 05:24]</span> 帮助我们做出符合业务目标的决策</div>
+<div class="ts-line"><span class="ts-t">[视频③ 05:28]</span> 就产品经理不应该追求某一个指标做到最好</div>
+<div class="ts-line"><span class="ts-t">[视频③ 05:30]</span> 应该是找到业务场景下</div>
+<div class="ts-line"><span class="ts-t">[视频③ 05:32]</span> 那个最合理的平衡点</div>
+<div class="ts-line"><span class="ts-t">[视频③ 05:34]</span> 所以总结一下</div>
+<div class="ts-line"><span class="ts-t">[视频③ 05:36]</span> 那优秀的产品经理</div>
+<div class="ts-line"><span class="ts-t">[视频③ 05:37]</span> 不是设计出最多的指标</div>
+<div class="ts-line"><span class="ts-t">[视频③ 05:38]</span> 而是设计出一套始终围绕业务标</div>
+<div class="ts-line"><span class="ts-t">[视频③ 05:42]</span> 能够持续驱动产品迭代的 Metrics 系统</div>
+<div class="ts-line"><span class="ts-t">[视频③ 05:46]</span> 只有当 Metrics 成为团队的共同语言</div>
+<div class="ts-line"><span class="ts-t">[视频③ 05:49]</span> 以 Evaluation 才真正从一次测试</div>
+<div class="ts-line"><span class="ts-t">[视频③ 05:51]</span> 变成一套推动 Asian 的持续进化的工程体系</div>
+</div></details>
+<details class="ts-box"><summary>视频④（逐字 · 193 句）</summary>
+<div class="ts-lines">
+<div class="ts-line"><span class="ts-t">[视频④ 00:00]</span> 哈喽大家之前有篇笔记分享了</div>
+<div class="ts-line"><span class="ts-t">[视频④ 00:03]</span> Agent 评估的 metrics 怎么设计</div>
+<div class="ts-line"><span class="ts-t">[视频④ 00:05]</span> 评论区就有朋友问</div>
+<div class="ts-line"><span class="ts-t">[视频④ 00:07]</span> 那有没有实际的落地案例</div>
+<div class="ts-line"><span class="ts-t">[视频④ 00:09]</span> 好今天呢</div>
+<div class="ts-line"><span class="ts-t">[视频④ 00:10]</span> 我们就用一个真实的场景</div>
+<div class="ts-line"><span class="ts-t">[视频④ 00:12]</span> 让我之前做的科夫 Agent 这个产品</div>
+<div class="ts-line"><span class="ts-t">[视频④ 00:14]</span> 现场推一遍</div>
+<div class="ts-line"><span class="ts-t">[视频④ 00:16]</span> 带着大家一起看看我是怎么去设计这个 metrics</div>
+<div class="ts-line"><span class="ts-t">[视频④ 00:19]</span> 科夫 Agent 我们首先来思考一下</div>
+<div class="ts-line"><span class="ts-t">[视频④ 00:21]</span> 它是帮助用户完成的一些任务</div>
+<div class="ts-line"><span class="ts-t">[视频④ 00:24]</span> 我们自己想象一下</div>
+<div class="ts-line"><span class="ts-t">[视频④ 00:25]</span> 淘宝的科夫 Agent 囤为例吧</div>
+<div class="ts-line"><span class="ts-t">[视频④ 00:28]</span> 我们的任务大概分为</div>
+<div class="ts-line"><span class="ts-t">[视频④ 00:31]</span> 以下几种啊</div>
+<div class="ts-line"><span class="ts-t">[视频④ 00:32]</span> 第一种就是什么查订单</div>
+<div class="ts-line"><span class="ts-t">[视频④ 00:34]</span> 第二个是开发票退款催物流或者是投诉</div>
+<div class="ts-line"><span class="ts-t">[视频④ 00:38]</span> 对吧</div>
+<div class="ts-line"><span class="ts-t">[视频④ 00:39]</span> 大概有这五种</div>
+<div class="ts-line"><span class="ts-t">[视频④ 00:40]</span> 那这些其实不是 metrics 的 metrics 没有还没有关系</div>
+<div class="ts-line"><span class="ts-t">[视频④ 00:43]</span> 这些其实是 task</div>
+<div class="ts-line"><span class="ts-t">[视频④ 00:45]</span> 就我们之前说的</div>
+<div class="ts-line"><span class="ts-t">[视频④ 00:46]</span> 所有的 metrics 都是围绕着用户成功</div>
+<div class="ts-line"><span class="ts-t">[视频④ 00:48]</span> 也就是又快又好又稳定完全用户任务</div>
+<div class="ts-line"><span class="ts-t">[视频④ 00:52]</span> 这个 task 来设计的</div>
+<div class="ts-line"><span class="ts-t">[视频④ 00:54]</span> 那我们来看</div>
+<div class="ts-line"><span class="ts-t">[视频④ 00:54]</span> 但是这个背景我们来看</div>
+<div class="ts-line"><span class="ts-t">[视频④ 00:57]</span> 假设以这个退款任务为例啊</div>
+<div class="ts-line"><span class="ts-t">[视频④ 00:59]</span> 什么叫做退款成功</div>
+<div class="ts-line"><span class="ts-t">[视频④ 01:00]</span> 我们想象一下这个工作流是怎么样子的</div>
+<div class="ts-line"><span class="ts-t">[视频④ 01:03]</span> 然后用户发起了一个退款的请求</div>
+<div class="ts-line"><span class="ts-t">[视频④ 01:04]</span> 我们要证确是为它的用户意图啊</div>
+<div class="ts-line"><span class="ts-t">[视频④ 01:06]</span> 而且它是一个退款的意图之后</div>
+<div class="ts-line"><span class="ts-t">[视频④ 01:08]</span> 我们要确认这个退款的具体的订单信息</div>
+<div class="ts-line"><span class="ts-t">[视频④ 01:10]</span> 确认完之后</div>
+<div class="ts-line"><span class="ts-t">[视频④ 01:11]</span> 我们会去调用相应的退款 API</div>
+<div class="ts-line"><span class="ts-t">[视频④ 01:13]</span> 对吧</div>
+<div class="ts-line"><span class="ts-t">[视频④ 01:14]</span> 业务后台的退款</div>
+<div class="ts-line"><span class="ts-t">[视频④ 01:15]</span> 然后退款到用户的账户</div>
+<div class="ts-line"><span class="ts-t">[视频④ 01:17]</span> 最后再回复用户啊</div>
+<div class="ts-line"><span class="ts-t">[视频④ 01:19]</span> 你这个退款的请求</div>
+<div class="ts-line"><span class="ts-t">[视频④ 01:20]</span> 已经完成至整个退款成功的一个完整的工作流</div>
+<div class="ts-line"><span class="ts-t">[视频④ 01:25]</span> 那这个工作流里面呢</div>
+<div class="ts-line"><span class="ts-t">[视频④ 01:27]</span> 其实每一步就是一个 metric</div>
+<div class="ts-line"><span class="ts-t">[视频④ 01:30]</span> 比如用户发起退款之后</div>
+<div class="ts-line"><span class="ts-t">[视频④ 01:31]</span> 你有没有正确的识别这个用户意图</div>
+<div class="ts-line"><span class="ts-t">[视频④ 01:34]</span> 这一步如果你没有正确识别</div>
+<div class="ts-line"><span class="ts-t">[视频④ 01:35]</span> 你是不是也不可能成功啊</div>
+<div class="ts-line"><span class="ts-t">[视频④ 01:37]</span> 那订单信息你有没有确认成功</div>
+<div class="ts-line"><span class="ts-t">[视频④ 01:39]</span> 如果你没有找到正确的订单</div>
+<div class="ts-line"><span class="ts-t">[视频④ 01:41]</span> 你这你也不可能成功对吧</div>
+<div class="ts-line"><span class="ts-t">[视频④ 01:42]</span> 所以每一步都是一个 metric</div>
+<div class="ts-line"><span class="ts-t">[视频④ 01:44]</span> metric 就是围绕着</div>
+<div class="ts-line"><span class="ts-t">[视频④ 01:45]</span> 让这个退款成功的整个工作流定的</div>
+<div class="ts-line"><span class="ts-t">[视频④ 01:49]</span> 好</div>
+<div class="ts-line"><span class="ts-t">[视频④ 01:49]</span> 带着这个具体的退款成功</div>
+<div class="ts-line"><span class="ts-t">[视频④ 01:51]</span> 这个我是让 AI 去帮我实现具体的 metric</div>
+<div class="ts-line"><span class="ts-t">[视频④ 01:55]</span> 啊设计的</div>
+<div class="ts-line"><span class="ts-t">[视频④ 01:56]</span> 那我的提示词如下啊</div>
+<div class="ts-line"><span class="ts-t">[视频④ 01:57]</span> 就是我告诉他我要做什么</div>
+<div class="ts-line"><span class="ts-t">[视频④ 01:59]</span> 然后这是我的整个工作流了</div>
+<div class="ts-line"><span class="ts-t">[视频④ 02:01]</span> 就是我要退款</div>
+<div class="ts-line"><span class="ts-t">[视频④ 02:02]</span> 第一步肯定是意图识别</div>
+<div class="ts-line"><span class="ts-t">[视频④ 02:03]</span> 如果识别成功了</div>
+<div class="ts-line"><span class="ts-t">[视频④ 02:04]</span> 那就继续如果识别错了</div>
+<div class="ts-line"><span class="ts-t">[视频④ 02:06]</span> 你就转人工或者是重新识别</div>
+<div class="ts-line"><span class="ts-t">[视频④ 02:09]</span> 第二步就到了订单信息去确认</div>
+<div class="ts-line"><span class="ts-t">[视频④ 02:10]</span> 如果抽取到订单号就继续</div>
+<div class="ts-line"><span class="ts-t">[视频④ 02:12]</span> 如果没有拿到这个正确的订单</div>
+<div class="ts-line"><span class="ts-t">[视频④ 02:13]</span> 哪可能要反问用户</div>
+<div class="ts-line"><span class="ts-t">[视频④ 02:15]</span> 再去把这个订单号确认一下</div>
+<div class="ts-line"><span class="ts-t">[视频④ 02:17]</span> 然后去验证他的退款资格</div>
+<div class="ts-line"><span class="ts-t">[视频④ 02:19]</span> 这个人是不是还在有效的一线内</div>
+<div class="ts-line"><span class="ts-t">[视频④ 02:21]</span> 对吧</div>
+<div class="ts-line"><span class="ts-t">[视频④ 02:22]</span> 然后调用退款的 API</div>
+<div class="ts-line"><span class="ts-t">[视频④ 02:24]</span> 最后退款到账</div>
+<div class="ts-line"><span class="ts-t">[视频④ 02:25]</span> 然后回复用户</div>
+<div class="ts-line"><span class="ts-t">[视频④ 02:26]</span> 我让他说出三张 metrics 表</div>
+<div class="ts-line"><span class="ts-t">[视频④ 02:28]</span> 这也对应我们之前在介绍的</div>
+<div class="ts-line"><span class="ts-t">[视频④ 02:29]</span> ami 的评估的目标的分层的这个概念</div>
+<div class="ts-line"><span class="ts-t">[视频④ 02:33]</span> 就是有结果的成功</div>
+<div class="ts-line"><span class="ts-t">[视频④ 02:35]</span> 有过程一定要关注过程的执行啊</div>
+<div class="ts-line"><span class="ts-t">[视频④ 02:37]</span> 然后用户的感受</div>
+<div class="ts-line"><span class="ts-t">[视频④ 02:38]</span> 最后还有一个是业务的价值</div>
+<div class="ts-line"><span class="ts-t">[视频④ 02:40]</span> 这里就不需要了</div>
+<div class="ts-line"><span class="ts-t">[视频④ 02:40]</span> 因为这只是一个任务</div>
+<div class="ts-line"><span class="ts-t">[视频④ 02:42]</span> 我们针对的只是这个任务来做 metric 嘛</div>
+<div class="ts-line"><span class="ts-t">[视频④ 02:45]</span> 嗯</div>
+<div class="ts-line"><span class="ts-t">[视频④ 02:45]</span> 所以我让他帮我事儿</div>
+<div class="ts-line"><span class="ts-t">[视频④ 02:46]</span> 生成 metric 名称计算方式</div>
+<div class="ts-line"><span class="ts-t">[视频④ 02:48]</span> 以及我的指标</div>
+<div class="ts-line"><span class="ts-t">[视频④ 02:50]</span> 具体的答标值</div>
+<div class="ts-line"><span class="ts-t">[视频④ 02:52]</span> 你看他的结果</div>
+<div class="ts-line"><span class="ts-t">[视频④ 02:53]</span> 第一个就是任务的结果</div>
+<div class="ts-line"><span class="ts-t">[视频④ 02:54]</span> 他给我生成了四个任务解决</div>
+<div class="ts-line"><span class="ts-t">[视频④ 02:56]</span> 你健康值是必须得大于等于85%</div>
+<div class="ts-line"><span class="ts-t">[视频④ 03:00]</span> 就是任务解决率要达到85%以上</div>
+<div class="ts-line"><span class="ts-t">[视频④ 03:02]</span> 对吧</div>
+<div class="ts-line"><span class="ts-t">[视频④ 03:03]</span> 这是基本的上线的要求了</div>
+<div class="ts-line"><span class="ts-t">[视频④ 03:05]</span> 然后这个计算方式呢</div>
+<div class="ts-line"><span class="ts-t">[视频④ 03:06]</span> 就是成功的退款订单数</div>
+<div class="ts-line"><span class="ts-t">[视频④ 03:08]</span> 包括合理的拒绝并货用户接受的单数</div>
+<div class="ts-line"><span class="ts-t">[视频④ 03:11]</span> 处于总的退款货化数</div>
+<div class="ts-line"><span class="ts-t">[视频④ 03:12]</span> 嗯</div>
+<div class="ts-line"><span class="ts-t">[视频④ 03:14]</span> 这个计算方式也有了</div>
+<div class="ts-line"><span class="ts-t">[视频④ 03:15]</span> 过程他又给出了更多了12456个 metric</div>
+<div class="ts-line"><span class="ts-t">[视频④ 03:18]</span> 意图是被准确率</div>
+<div class="ts-line"><span class="ts-t">[视频④ 03:19]</span> 这个大家比较熟悉了</div>
+<div class="ts-line"><span class="ts-t">[视频④ 03:20]</span> 然后就是刚刚说到的那个订单的信息</div>
+<div class="ts-line"><span class="ts-t">[视频④ 03:22]</span> 是不是完整啊</div>
+<div class="ts-line"><span class="ts-t">[视频④ 03:23]</span> 完整到底是是哪个拒绝订单啊</div>
+<div class="ts-line"><span class="ts-t">[视频④ 03:26]</span> 包括 API</div>
+<div class="ts-line"><span class="ts-t">[视频④ 03:26]</span> 因为你肯定要调后台的推广 API 嘛</div>
+<div class="ts-line"><span class="ts-t">[视频④ 03:29]</span> 也有可能会失败啊等等</div>
+<div class="ts-line"><span class="ts-t">[视频④ 03:30]</span> 最后这用户感受啊</div>
+<div class="ts-line"><span class="ts-t">[视频④ 03:31]</span> 有手解率就是从你汇化</div>
+<div class="ts-line"><span class="ts-t">[视频④ 03:33]</span> 无需再次联系</div>
+<div class="ts-line"><span class="ts-t">[视频④ 03:35]</span> 就是那个叫什么 Passatone</div>
+<div class="ts-line"><span class="ts-t">[视频④ 03:37]</span> 然后对话人次辟</div>
+<div class="ts-line"><span class="ts-t">[视频④ 03:38]</span> 譬如不是反复确认啊</div>
+<div class="ts-line"><span class="ts-t">[视频④ 03:40]</span> 就是 AI 给助我的</div>
+<div class="ts-line"><span class="ts-t">[视频④ 03:41]</span> 好多个指标</div>
+<div class="ts-line"><span class="ts-t">[视频④ 03:42]</span> 接着大家看一下还是不错的</div>
+<div class="ts-line"><span class="ts-t">[视频④ 03:43]</span> 对不对</div>
+<div class="ts-line"><span class="ts-t">[视频④ 03:44]</span> 那这个提示词我稍后也会发到啊</div>
+<div class="ts-line"><span class="ts-t">[视频④ 03:47]</span> 笔记中让大家去看一下啊</div>
+<div class="ts-line"><span class="ts-t">[视频④ 03:48]</span> 作为一个参考</div>
+<div class="ts-line"><span class="ts-t">[视频④ 03:49]</span> 这是个参考</div>
+<div class="ts-line"><span class="ts-t">[视频④ 03:50]</span> 好</div>
+<div class="ts-line"><span class="ts-t">[视频④ 03:51]</span> 那拿到这些指标之后</div>
+<div class="ts-line"><span class="ts-t">[视频④ 03:52]</span> 我肯定不是直接用的</div>
+<div class="ts-line"><span class="ts-t">[视频④ 03:53]</span> 太多了</div>
+<div class="ts-line"><span class="ts-t">[视频④ 03:54]</span> 那些分层</div>
+<div class="ts-line"><span class="ts-t">[视频④ 03:54]</span> 我会将它分层啊</div>
+<div class="ts-line"><span class="ts-t">[视频④ 03:55]</span> 四层去判断吧</div>
+<div class="ts-line"><span class="ts-t">[视频④ 03:56]</span> 这个其实也是我的优先级啦</div>
+<div class="ts-line"><span class="ts-t">[视频④ 03:58]</span> 嗯轻重缓急的问题</div>
+<div class="ts-line"><span class="ts-t">[视频④ 04:00]</span> 那第一个就是红线了</div>
+<div class="ts-line"><span class="ts-t">[视频④ 04:00]</span> 绝对不能出问题</div>
+<div class="ts-line"><span class="ts-t">[视频④ 04:01]</span> 就刚刚的指标里面</div>
+<div class="ts-line"><span class="ts-t">[视频④ 04:03]</span> 这个譬如资金损失率</div>
+<div class="ts-line"><span class="ts-t">[视频④ 04:05]</span> 就这个一定要小于0.1%</div>
+<div class="ts-line"><span class="ts-t">[视频④ 04:07]</span> 就这个设计要资金安全</div>
+<div class="ts-line"><span class="ts-t">[视频④ 04:08]</span> 这是我们的红线</div>
+<div class="ts-line"><span class="ts-t">[视频④ 04:08]</span> 这这个率</div>
+<div class="ts-line"><span class="ts-t">[视频④ 04:09]</span> Metrex</div>
+<div class="ts-line"><span class="ts-t">[视频④ 04:10]</span> 我一定在 MVP 级的都要用起来了</div>
+<div class="ts-line"><span class="ts-t">[视频④ 04:12]</span> 然后直接印象结果的</div>
+<div class="ts-line"><span class="ts-t">[视频④ 04:14]</span> 就是业务结果的</div>
+<div class="ts-line"><span class="ts-t">[视频④ 04:14]</span> 就是我们之前一直在</div>
+<div class="ts-line"><span class="ts-t">[视频④ 04:16]</span> 说的 Agent 最重要就是完成用户任务</div>
+<div class="ts-line"><span class="ts-t">[视频④ 04:18]</span> 那你任务完成率达到多少</div>
+<div class="ts-line"><span class="ts-t">[视频④ 04:19]</span> 这里设计的任务完成率是85</div>
+<div class="ts-line"><span class="ts-t">[视频④ 04:22]</span> 当然我们 MVP 可以稍微低一点了</div>
+<div class="ts-line"><span class="ts-t">[视频④ 04:24]</span> 譬如80</div>
+<div class="ts-line"><span class="ts-t">[视频④ 04:24]</span> 我就认为它是一个可以上线的 Agent</div>
+<div class="ts-line"><span class="ts-t">[视频④ 04:29]</span> 然后是呃人工接管率就是</div>
+<div class="ts-line"><span class="ts-t">[视频④ 04:31]</span> 这个 Agent 是不是真的自动化了</div>
+<div class="ts-line"><span class="ts-t">[视频④ 04:33]</span> 别人最后退款的事情</div>
+<div class="ts-line"><span class="ts-t">[视频④ 04:34]</span> 都交给了人工去做的话</div>
+<div class="ts-line"><span class="ts-t">[视频④ 04:35]</span> 那这个就不是一个 Agent</div>
+<div class="ts-line"><span class="ts-t">[视频④ 04:37]</span> 第三个是过程质量判断了</div>
+<div class="ts-line"><span class="ts-t">[视频④ 04:38]</span> 包括意图识别和这个 A 拍调成功率</div>
+<div class="ts-line"><span class="ts-t">[视频④ 04:40]</span> 我觉得也是比较重要的</div>
+<div class="ts-line"><span class="ts-t">[视频④ 04:42]</span> 最后是上线后可以去慢慢优化的事情</div>
+<div class="ts-line"><span class="ts-t">[视频④ 04:44]</span> 就是体验优化</div>
+<div class="ts-line"><span class="ts-t">[视频④ 04:45]</span> 它可以结合自己的产品的具体的阶段</div>
+<div class="ts-line"><span class="ts-t">[视频④ 04:48]</span> 就不断去优化</div>
+<div class="ts-line"><span class="ts-t">[视频④ 04:49]</span> 这个健康值也是变化的</div>
+<div class="ts-line"><span class="ts-t">[视频④ 04:51]</span> 在 MVP 阶段可能啊</div>
+<div class="ts-line"><span class="ts-t">[视频④ 04:53]</span> 这里可能是15轮</div>
+<div class="ts-line"><span class="ts-t">[视频④ 04:55]</span> 15人之内解决这个用户问题</div>
+<div class="ts-line"><span class="ts-t">[视频④ 04:56]</span> 我们觉得它也是有效的</div>
+<div class="ts-line"><span class="ts-t">[视频④ 04:57]</span> 因为我们要快速上线去拿拿数据</div>
+<div class="ts-line"><span class="ts-t">[视频④ 05:00]</span> 让数据飞轮转起来的</div>
+<div class="ts-line"><span class="ts-t">[视频④ 05:02]</span> 对吧这都是一个权衡啊</div>
+<div class="ts-line"><span class="ts-t">[视频④ 05:03]</span> 这个判断和权衡我觉得</div>
+<div class="ts-line"><span class="ts-t">[视频④ 05:05]</span> 是我们基本的一个能力吧</div>
+<div class="ts-line"><span class="ts-t">[视频④ 05:07]</span> 总结一下就是</div>
+<div class="ts-line"><span class="ts-t">[视频④ 05:08]</span> 我们拿到一个 Agent 这产品</div>
+<div class="ts-line"><span class="ts-t">[视频④ 05:10]</span> 先要想这个 Agent 是帮助用户完成哪些任务</div>
+<div class="ts-line"><span class="ts-t">[视频④ 05:13]</span> 然后完成这个任务的工作流是怎么样子的</div>
+<div class="ts-line"><span class="ts-t">[视频④ 05:16]</span> 就譬如退款是怎样的工作流</div>
+<div class="ts-line"><span class="ts-t">[视频④ 05:18]</span> 让这个任务成功退款成功或者投诉成功</div>
+<div class="ts-line"><span class="ts-t">[视频④ 05:22]</span> 其实就是我们整个工作流</div>
+<div class="ts-line"><span class="ts-t">[视频④ 05:23]</span> 为了让整个工作流的每一步就是我们的一个 metric</div>
+<div class="ts-line"><span class="ts-t">[视频④ 05:26]</span> 因为我们说过</div>
+<div class="ts-line"><span class="ts-t">[视频④ 05:27]</span> 我们 Agent 不仅要关注它的最后的任务完成率</div>
+<div class="ts-line"><span class="ts-t">[视频④ 05:30]</span> 我们还要关注它的过程的质量</div>
+<div class="ts-line"><span class="ts-t">[视频④ 05:33]</span> 当然了</div>
+<div class="ts-line"><span class="ts-t">[视频④ 05:34]</span> metric 不能特别多啊</div>
+<div class="ts-line"><span class="ts-t">[视频④ 05:35]</span> 要有主次之分优先级</div>
+<div class="ts-line"><span class="ts-t">[视频④ 05:37]</span> 最后构建一个币环</div>
+</div></details>
+<p><strong>附录 · 语音识别与三重校验方法</strong></p>
+<table>
+<tr><th>项目</th><th>说明</th></tr>
+<tr><td>音轨</td><td>`ffmpeg` 从原片提取 16 kHz 单声道 WAV</td></tr>
+<tr><td>识别模型</td><td>`faster-whisper 1.2.1` + `small`，CPU int8，`beam_size=5`，离线运行</td></tr>
+<tr><td>原始输出</td><td>576 段带起止时间码的转写</td></tr>
+<tr><td>繁简归一</td><td>`OpenCC t2s`</td></tr>
+<tr><td>第一重：ASR</td><td>完整口播，覆盖字幕省略的过渡句</td></tr>
+<tr><td>第二重：烧录字幕</td><td>逐帧 OCR 还原作者精简字幕，作为文字校对基准</td></tr>
+<tr><td>第三重：官方术语</td><td>本教程术语表与官方文档，强制校正专有名词拼写</td></tr>
+<tr><td>校正量</td><td>146 处 / 28 类，逐条见下方清单</td></tr>
+<tr><td>**边界**</td><td>**未做人工逐句听校**：ASR 与 OCR 都不能保证 100% 零偏差；专名与明显误识别已全部校正并附依据，可结合字幕对照复核。</td></tr>
+</table>
+<p><strong>附录 · ASR 校正清单（28 类 / 146 处）</strong></p>
+<p>按「校正为 + 依据」聚合，全部校正项附依据，可结合下方字幕对照复核。</p>
+<table>
+<tr><th>校正为</th><th>依据</th><th>出现次数</th></tr>
+<tr><td>Agent</td><td>通用技术词规范</td><td>38</td></tr>
+<tr><td>Rubric</td><td>通用技术词规范</td><td>34</td></tr>
+<tr><td>Dataset</td><td>黄金数据集 Dataset</td><td>22</td></tr>
+<tr><td>Metrics</td><td>指标 Metrics</td><td>17</td></tr>
+<tr><td>API</td><td>通用技术词规范</td><td>4</td></tr>
+<tr><td>冷启动</td><td>产品冷启动阶段</td><td>3</td></tr>
+<tr><td>prompt</td><td>提示词 prompt</td><td>2</td></tr>
+<tr><td>Rubric</td><td>官方术语 Rubric</td><td>2</td></tr>
+<tr><td>AI</td><td>AI 产品</td><td>2</td></tr>
+<tr><td>Anthropic、OpenAI</td><td>官方资料来源</td><td>2</td></tr>
+<tr><td>动态演进</td><td>数据集持续演进</td><td>2</td></tr>
+<tr><td>trace</td><td>执行轨迹 trace</td><td>2</td></tr>
+<tr><td>LLM-as-Judge</td><td>判据名</td><td>1</td></tr>
+<tr><td>攒够了</td><td>口播语义</td><td>1</td></tr>
+<tr><td>OpenAI</td><td>OpenAI</td><td>1</td></tr>
+<tr><td>成长期</td><td>数据集成长期</td><td>1</td></tr>
+<tr><td>用例</td><td>评测用例</td><td>1</td></tr>
+<tr><td>点了踩</td><td>用户负反馈</td><td>1</td></tr>
+<tr><td>Evaluation</td><td>官方术语表：evaluation95 → Evaluation</td><td>1</td></tr>
+<tr><td>难度</td><td>样本难度</td><td>1</td></tr>
+<tr><td>分层标签管理</td><td>标签管理</td><td>1</td></tr>
+<tr><td>质量基准</td><td>口播语义</td><td>1</td></tr>
+<tr><td>评测</td><td>Agent 评测</td><td>1</td></tr>
+<tr><td>Judge</td><td>LLM Judge</td><td>1</td></tr>
+<tr><td>Dataset</td><td>数据集 Dataset</td><td>1</td></tr>
+<tr><td>Bottom-up</td><td>官方术语表：Bottom → Bottom-up</td><td>1</td></tr>
+<tr><td>Parameter</td><td>官方术语表：Permeter → Parameter</td><td>1</td></tr>
+<tr><td>Evaluation</td><td>官方术语表：Valuation → Evaluation</td><td>1</td></tr>
+</table>
 </section>
 <div class="footer">
   <p>本教程为学习整理产物：四支视频按最高清晰度原片逐帧核对后综合重述；标注【补充】的内容来自公开官方文档与本系列既有教程，不属于视频原述。原视频与各项目版权归各自作者所有。</p>
