@@ -89,6 +89,14 @@ main{padding-top:22px}
 </style>
   <link rel="stylesheet" href="../assets/code-blocks.css">
   <script src="../assets/code-blocks.js" defer></script>
+<style>
+.ts-box{margin:14px 0;padding:10px 14px;background:#f8fafc;border:1px solid #e5e9f0;border-radius:9px}
+.ts-box>summary{cursor:pointer;font-weight:700;color:#2563eb;font-size:13px}
+.ts-lines{margin-top:10px;max-height:430px;overflow:auto;padding-right:6px}
+.ts-line{font-size:12.5px;line-height:1.95;color:#46536a;padding:1px 0}
+.ts-t{color:#98a2b3;font-variant-numeric:tabular-nums;margin-right:8px}
+@media print{.ts-lines{max-height:none}.ts-box{break-inside:avoid}}
+</style>
 </head>
 <body>
 <div class="topbar">
@@ -226,6 +234,26 @@ main{padding-top:22px}
 <tr><td>综合闭环</td><td>怎么串成一条链</td><td>三支综合</td><td>第 20 章</td></tr>
 </table>
 <div class="note">一句话：<strong>架构定方向，任务集定「测什么」，运行评分定「怎么测、怎么判」，三个产物都必须能解释、能复查、能回流。</strong></div>
+<details class="ts-box"><summary>本章语音逐字稿（ASR · 已校正）（逐字 · 17 句）</summary>
+<div class="ts-lines">
+<div class="ts-line"><span class="ts-t">[视频① 00:00]</span> Hello 大家，今天我们继续 Agent 评估相关的内容</div>
+<div class="ts-line"><span class="ts-t">[视频① 00:04]</span> 今天这篇是这个系列的最后一篇了</div>
+<div class="ts-line"><span class="ts-t">[视频① 00:07]</span> 我们讨论一下如何从 0 到 1搭建一套 evaluation system</div>
+<div class="ts-line"><span class="ts-t">[视频① 00:11]</span> 当然在搭建之前，我们要分析一下为什么它这么重要</div>
+<div class="ts-line"><span class="ts-t">[视频① 00:14]</span> 我们知道大厂都在疯狂地卷 evaluation 是为什么</div>
+<div class="ts-line"><span class="ts-t">[视频① 00:17]</span> 一个完整的 evaluation system 到底长什么样子</div>
+<div class="ts-line"><span class="ts-t">[视频① 00:21]</span> 以及我们去实践到底怎么去落地</div>
+<div class="ts-line"><span class="ts-t">[视频① 00:23]</span> 但是我们构建 evaluation 的核心裸价</div>
+<div class="ts-line"><span class="ts-t">[视频① 00:26]</span> 还是要去做一个评估的数据飞轮</div>
+<div class="ts-line"><span class="ts-t">[视频① 00:29]</span> 以及分享几点采康的实录吧</div>
+<div class="ts-line"><span class="ts-t">[视频① 00:31]</span> 大厂为什么在卷</div>
+<div class="ts-line"><span class="ts-t">[视频① 00:32]</span> 我们可以看安特尔培在他这篇文章里面反复地强调</div>
+<div class="ts-line"><span class="ts-t">[视频① 00:36]</span> evaluation 应该是贯穿 Agent 的整个开发周期的</div>
+<div class="ts-line"><span class="ts-t">[视频① 00:40]</span> 它不是发布前的一次测试</div>
+<div class="ts-line"><span class="ts-t">[视频① 00:42]</span> 而且它建议从少量的高质量的数据开始</div>
+<div class="ts-line"><span class="ts-t">[视频① 00:45]</span> 随着产品眼镜不但扩充</div>
+<div class="ts-line"><span class="ts-t">[视频① 00:47]</span> 并将 evaluation 进入持续的迭代过程</div>
+</div></details>
 </section>
 <section class="sec" id="s2">
 <h2>2. 为什么 evaluation 要贯穿整个生命周期</h2>
@@ -259,6 +287,29 @@ main{padding-top:22px}
 <li><strong>OpenAI</strong>：从早期做法到现在的 Evals API，都在推动 <strong>evaluation-first</strong> 的开发方式——有评分器、指标、版本对比，而不是零散脚本。</li>
 </ul>
 <div class="key">共同认知：<strong>Evaluation 要贯穿 Agent 的生命周期</strong>。它与本站《评测驱动 Agent 迭代》「从一次测试变成持续驱动 action 的工程体系」、《Agent 评测方法论》「eval driven development」是同一条结论。</div>
+<details class="ts-box"><summary>本章语音逐字稿（ASR · 已校正）（逐字 · 20 句）</summary>
+<div class="ts-lines">
+<div class="ts-line"><span class="ts-t">[视频① 00:50]</span> 这是 AstroPick 的时间</div>
+<div class="ts-line"><span class="ts-t">[视频① 00:51]</span> 那 OpenAI 怎么说呢</div>
+<div class="ts-line"><span class="ts-t">[视频① 00:52]</span> 无论是从早期的 OpenAI 的 Evers 到现在的 evaluation API</div>
+<div class="ts-line"><span class="ts-t">[视频① 00:57]</span> 都在推动 evaluation first 的开发方式</div>
+<div class="ts-line"><span class="ts-t">[视频① 00:59]</span> 它把数据级评分器指标和版本对比</div>
+<div class="ts-line"><span class="ts-t">[视频① 01:02]</span> 纳入了统一的流程</div>
+<div class="ts-line"><span class="ts-t">[视频① 01:04]</span> 而不是一个零散的脚本</div>
+<div class="ts-line"><span class="ts-t">[视频① 01:05]</span> 他们其实都在强调一个相同的认知</div>
+<div class="ts-line"><span class="ts-t">[视频① 01:07]</span> 那就是 evaluation 要贯穿 Agent 的生命周期</div>
+<div class="ts-line"><span class="ts-t">[视频① 01:11]</span> 那一整套的 evaluation system 长什么样子呢</div>
+<div class="ts-line"><span class="ts-t">[视频① 01:14]</span> 从拳举来看</div>
+<div class="ts-line"><span class="ts-t">[视频① 01:15]</span> 从用户的真实请求</div>
+<div class="ts-line"><span class="ts-t">[视频① 01:18]</span> 到我们去用 trace 收集所有线上的日质</div>
+<div class="ts-line"><span class="ts-t">[视频① 01:22]</span> 以及 bandage</div>
+<div class="ts-line"><span class="ts-t">[视频① 01:23]</span> 然后进入的是一个数据级的管理</div>
+<div class="ts-line"><span class="ts-t">[视频① 01:25]</span> 这个数据级之前也介绍过</div>
+<div class="ts-line"><span class="ts-t">[视频① 01:26]</span> 黄金数据级从有合成的有人工的</div>
+<div class="ts-line"><span class="ts-t">[视频① 01:29]</span> 有我们真实的线上的 case</div>
+<div class="ts-line"><span class="ts-t">[视频① 01:32]</span> 然后进入 Agent 运行时</div>
+<div class="ts-line"><span class="ts-t">[视频① 01:35]</span> 包括 memory，2，workflow 等等</div>
+</div></details>
 </section>
 <section class="sec" id="s3">
 <h2>3. 一套完整 Evaluation System 的架构全景</h2>
@@ -336,6 +387,31 @@ main{padding-top:22px}
 <tr><td>Release Decision</td><td>这次更新到底要不要发布</td></tr>
 </table>
 <div class="note">闭环含义：Metrics 不是流程终点，而是<strong>评分结果的汇总视图</strong>——Evaluation Engine 的判分先汇总为五类指标，再驱动 Dashboard 与 Release Decision；发布后的失败经 Error Analysis → Dataset Evolution 回流到 Dataset Manager 重新评测，这才形成闭环。这正是本教程第 6 章「评估数据飞轮」的核心。版式说明：画面里 Metrics 与 Evaluation Engine 两个容器内的子项为纵向排列，此处改为横排以压缩高度，节点与子项文字逐字保留。</div>
+<details class="ts-box"><summary>本章语音逐字稿（ASR · 已校正）（逐字 · 22 句）</summary>
+<div class="ts-lines">
+<div class="ts-line"><span class="ts-t">[视频① 01:37]</span> 我们将 Agent 运行时的所有的记</div>
+<div class="ts-line"><span class="ts-t">[视频① 01:40]</span> Prompt to reasoning output</div>
+<div class="ts-line"><span class="ts-t">[视频① 01:42]</span> 消息，json，消息全部都保存</div>
+<div class="ts-line"><span class="ts-t">[视频① 01:44]</span> 进入我们的评估引擎</div>
+<div class="ts-line"><span class="ts-t">[视频① 01:46]</span> 评估你选择了什么价值</div>
+<div class="ts-line"><span class="ts-t">[视频① 01:48]</span> 价值有三种方式</div>
+<div class="ts-line"><span class="ts-t">[视频① 01:49]</span> 有弱的价值就是我们说的程序的价值</div>
+<div class="ts-line"><span class="ts-t">[视频① 01:52]</span> 有大模型的价值也有人工闪和</div>
+<div class="ts-line"><span class="ts-t">[视频① 01:56]</span> 那我们带着我们的指标</div>
+<div class="ts-line"><span class="ts-t">[视频① 01:57]</span> 那我们上一篇也介绍了我们的 matrix</div>
+<div class="ts-line"><span class="ts-t">[视频① 02:00]</span> matrix 可能分成质量层的</div>
+<div class="ts-line"><span class="ts-t">[视频① 02:02]</span> Cost latency 的 safety 的</div>
+<div class="ts-line"><span class="ts-t">[视频① 02:03]</span> 以及我们最重要的业务的 qpi 对吧</div>
+<div class="ts-line"><span class="ts-t">[视频① 02:06]</span> 而且这些指标我们会用 dashboard 的去管理</div>
+<div class="ts-line"><span class="ts-t">[视频① 02:08]</span> 因为这样会便利我们产品经理去做业务的权衡</div>
+<div class="ts-line"><span class="ts-t">[视频① 02:12]</span> 然后进入决策</div>
+<div class="ts-line"><span class="ts-t">[视频① 02:14]</span> 就是这个更新</div>
+<div class="ts-line"><span class="ts-t">[视频① 02:15]</span> 这一次的更新到底要不要去发布</div>
+<div class="ts-line"><span class="ts-t">[视频① 02:17]</span> 然后发布完之后</div>
+<div class="ts-line"><span class="ts-t">[视频① 02:18]</span> 我们会做一些错误的分析</div>
+<div class="ts-line"><span class="ts-t">[视频① 02:20]</span> 错误的分析又将这些 Badcase</div>
+<div class="ts-line"><span class="ts-t">[视频① 02:23]</span> 作为我们回归的案例</div>
+</div></details>
 </section>
 <section class="sec" id="s4">
 <h2>4. 架构分三段：数据侧 / 执行观测侧 / 决策侧</h2>
@@ -375,6 +451,32 @@ main{padding-top:22px}
 <p><span class="tag t-extra">补充</span>把图 3 的节点按职责归为三段，便于分工落地：数据侧负责「拿什么测」，执行观测侧负责「跑起来并留痕」，决策侧负责「看结果并决定」。</p>
 <div class="key">关键不是把每一段都做得多复杂，而是<strong>三段必须连成环</strong>：决策产生的失败 Case 要能回到数据侧，否则系统跑一次就僵死。</div>
 <p><span class="tag t-video">视频原述</span>口播反复强调：「Evaluation 永远不是为了跑分」「不同 Agent 的 evaluation 完全不同」——架构是通用骨架，业务目标（满意率、任务完成率等）决定每一段的具体形态。</p>
+<details class="ts-box"><summary>本章语音逐字稿（ASR · 已校正）（逐字 · 23 句）</summary>
+<div class="ts-lines">
+<div class="ts-line"><span class="ts-t">[视频① 02:25]</span> 又放进了我们的 data set 里面</div>
+<div class="ts-line"><span class="ts-t">[视频① 02:27]</span> 将 data set 进行演进</div>
+<div class="ts-line"><span class="ts-t">[视频① 02:28]</span> 这就是整个的我们的 evaluation 的一个系统</div>
+<div class="ts-line"><span class="ts-t">[视频① 02:31]</span> 包含的组件其实我们前面</div>
+<div class="ts-line"><span class="ts-t">[视频① 02:33]</span> 也都各自都已经介绍过了</div>
+<div class="ts-line"><span class="ts-t">[视频① 02:35]</span> 包括 data set 对吧</div>
+<div class="ts-line"><span class="ts-t">[视频① 02:37]</span> 包括你的价值 lm 价值</div>
+<div class="ts-line"><span class="ts-t">[视频① 02:39]</span> 包括我们的 matrix</div>
+<div class="ts-line"><span class="ts-t">[视频① 02:41]</span> 这就是一个完整的 evaluation system</div>
+<div class="ts-line"><span class="ts-t">[视频① 02:43]</span> 那我们产品经理如何从零到一去搭建这一套系统呢</div>
+<div class="ts-line"><span class="ts-t">[视频① 02:47]</span> 我们分成五大块</div>
+<div class="ts-line"><span class="ts-t">[视频① 02:49]</span> 现在要定业务目标</div>
+<div class="ts-line"><span class="ts-t">[视频① 02:50]</span> 我们也说过无论是 matrix 还是 data set</div>
+<div class="ts-line"><span class="ts-t">[视频① 02:53]</span> 还是 robox</div>
+<div class="ts-line"><span class="ts-t">[视频① 02:54]</span> 其实你都是紧密的和业务目标相关的</div>
+<div class="ts-line"><span class="ts-t">[视频① 02:57]</span> 就 evaluation 永远不是为了跑分</div>
+<div class="ts-line"><span class="ts-t">[视频① 02:59]</span> 而是为了业务</div>
+<div class="ts-line"><span class="ts-t">[视频① 03:00]</span> 不同 Agent evaluation 完全不同</div>
+<div class="ts-line"><span class="ts-t">[视频① 03:02]</span> 客服 Agent 最重要的是解决率满意率</div>
+<div class="ts-line"><span class="ts-t">[视频① 03:05]</span> coding Agent 最重要的是单元测试通过率等等</div>
+<div class="ts-line"><span class="ts-t">[视频① 03:08]</span> 所以第一步永远不是写 proud</div>
+<div class="ts-line"><span class="ts-t">[视频① 03:10]</span> 而是回答一句话</div>
+<div class="ts-line"><span class="ts-t">[视频① 03:11]</span> 这个 Agent 最重要的一件事情是什么</div>
+</div></details>
 </section>
 <section class="sec" id="s5">
 <h2>5. 产品经理如何从 0 到 1 搭：五步落地法</h2>
@@ -423,6 +525,31 @@ main{padding-top:22px}
 <li><strong>⑤ 建 Dashboard</strong>：不是输出一个静态数据，而是包含各指标<strong>变化趋势</strong>的看板；关心的是版本之间的比较，不是一次实验的分数。</li>
 </ol>
 <div class="note">结语定位：「它不是可选的测试工具，它是 AI 时代产品经理的<strong>研发仪表盘</strong>。」</div>
+<details class="ts-box"><summary>本章语音逐字稿（ASR · 已校正）（逐字 · 22 句）</summary>
+<div class="ts-lines">
+<div class="ts-line"><span class="ts-t">[视频① 03:13]</span> 第二步我们就是要建立 data set 了</div>
+<div class="ts-line"><span class="ts-t">[视频① 03:16]</span> 这个其实我们也已经介绍过</div>
+<div class="ts-line"><span class="ts-t">[视频① 03:18]</span> data set 的来源</div>
+<div class="ts-line"><span class="ts-t">[视频① 03:19]</span> 从冷气冻阶段的合成</div>
+<div class="ts-line"><span class="ts-t">[视频① 03:21]</span> 对吧上线之后真实的 Case</div>
+<div class="ts-line"><span class="ts-t">[视频① 03:22]</span> 然后持续演化</div>
+<div class="ts-line"><span class="ts-t">[视频① 03:23]</span> 把先生的 trace 收集进来</div>
+<div class="ts-line"><span class="ts-t">[视频① 03:25]</span> 它跟产品是一起增长的</div>
+<div class="ts-line"><span class="ts-t">[视频① 03:27]</span> 第三步就是我们要选择一个价值</div>
+<div class="ts-line"><span class="ts-t">[视频① 03:29]</span> 能入价值的就因为弱</div>
+<div class="ts-line"><span class="ts-t">[视频① 03:31]</span> 如果入不了的话我们就用 lm</div>
+<div class="ts-line"><span class="ts-t">[视频① 03:33]</span> 就 lm 是算是比较复杂的一个价值</div>
+<div class="ts-line"><span class="ts-t">[视频① 03:36]</span> 因为它牵涉到 Rubric 的指定对吧 Rubric</div>
+<div class="ts-line"><span class="ts-t">[视频① 03:38]</span> 我们也知道这个是非常复杂的一件事情</div>
+<div class="ts-line"><span class="ts-t">[视频① 03:40]</span> 最后肯定要人工去做出来就准了</div>
+<div class="ts-line"><span class="ts-t">[视频① 03:43]</span> 然后就是我们要设计 matrix</div>
+<div class="ts-line"><span class="ts-t">[视频① 03:45]</span> 这个前面也介绍过了</div>
+<div class="ts-line"><span class="ts-t">[视频① 03:46]</span> 就是围绕着业务目标</div>
+<div class="ts-line"><span class="ts-t">[视频① 03:47]</span> 去拆解它的 outcome behavior safety efficiency</div>
+<div class="ts-line"><span class="ts-t">[视频① 03:51]</span> 最后我们一定</div>
+<div class="ts-line"><span class="ts-t">[视频① 03:52]</span> 这个 evaluation 系统一定要有个 dashboard 的</div>
+<div class="ts-line"><span class="ts-t">[视频① 03:56]</span> 我觉得这个是非常值得再详细的介绍一遍的</div>
+</div></details>
 </section>
 <section class="sec" id="s6">
 <h2>6. 核心逻辑：构建「评估数据飞轮」</h2>
@@ -439,6 +566,38 @@ main{padding-top:22px}
 </table>
 <p><span class="tag t-extra">补充</span>这七个节点描述的是<strong>同一条闭环</strong>，只是镜头对准「据指标改动 → 重新发布 → 再回到线上」这一段：Online User 与 Bad Case Analysis 对应图 3 的 User Real Request / Trace Collection / Error Analysis，Dataset Construction 对应 Dataset Evolution → Dataset Manager，Evaluation Engine 与 Metrics Dashboard 对应图 3 的 Evaluation Engine → Metrics → Dashboard，Prompt / Tools / Models 与 Redeploy System 是发布后回到线上的改动动作。因此本章不再单独配图，读者可沿图 3 的完整闭环（含 Agent Runtime、Trajectory Store）对照。</p>
 <p><span class="tag t-video">视频原述</span>口播点题：「不是为了拿一个分，而是为了构建数据飞轮」；黄金数据集会越来越多、失败率越来越低，翻车过的题都要加入<strong>回归数据集</strong>。</p>
+<details class="ts-box"><summary>本章语音逐字稿（ASR · 已校正）（逐字 · 29 句）</summary>
+<div class="ts-lines">
+<div class="ts-line"><span class="ts-t">[视频① 03:59]</span> 因为很多团队坐在这里可能就停了</div>
+<div class="ts-line"><span class="ts-t">[视频① 04:01]</span> evaluation</div>
+<div class="ts-line"><span class="ts-t">[视频① 04:02]</span> 但是 evaluation 不应该输出一个静态的数据</div>
+<div class="ts-line"><span class="ts-t">[视频① 04:04]</span> 一个 excel</div>
+<div class="ts-line"><span class="ts-t">[视频① 04:06]</span> 应该是一个趋势图</div>
+<div class="ts-line"><span class="ts-t">[视频① 04:07]</span> 所以一定是一个白板</div>
+<div class="ts-line"><span class="ts-t">[视频① 04:08]</span> 白板里包含了各种指标的一个变化趋势</div>
+<div class="ts-line"><span class="ts-t">[视频① 04:11]</span> 对吧</div>
+<div class="ts-line"><span class="ts-t">[视频① 04:12]</span> 因为我们真正关心的肯定是</div>
+<div class="ts-line"><span class="ts-t">[视频① 04:14]</span> 版本之间到底变好了还是变坏了</div>
+<div class="ts-line"><span class="ts-t">[视频① 04:16]</span> 而不是一次实验</div>
+<div class="ts-line"><span class="ts-t">[视频① 04:17]</span> 它是一个连续的体验</div>
+<div class="ts-line"><span class="ts-t">[视频① 04:18]</span> 所以这个也是很重要的</div>
+<div class="ts-line"><span class="ts-t">[视频① 04:19]</span> 我们做这个评估系统</div>
+<div class="ts-line"><span class="ts-t">[视频① 04:21]</span> 不是为了拿一个分</div>
+<div class="ts-line"><span class="ts-t">[视频① 04:22]</span> 而是为了构建数据飞轮</div>
+<div class="ts-line"><span class="ts-t">[视频① 04:25]</span> 所以非常重要的一点</div>
+<div class="ts-line"><span class="ts-t">[视频① 04:26]</span> 就是我们要收集线上用户的 bad case</div>
+<div class="ts-line"><span class="ts-t">[视频① 04:29]</span> 进行详细的分析</div>
+<div class="ts-line"><span class="ts-t">[视频① 04:31]</span> 将这个 bad case</div>
+<div class="ts-line"><span class="ts-t">[视频① 04:32]</span> 首先要夹到我们的环境数据集中</div>
+<div class="ts-line"><span class="ts-t">[视频① 04:34]</span> 然后用 Agent 去进行评估</div>
+<div class="ts-line"><span class="ts-t">[视频① 04:36]</span> 然后去优化</div>
+<div class="ts-line"><span class="ts-t">[视频① 04:37]</span> 然后重新发布</div>
+<div class="ts-line"><span class="ts-t">[视频① 04:38]</span> 我们要确保这个环境数据</div>
+<div class="ts-line"><span class="ts-t">[视频① 04:39]</span> 肯定是随着伴随着线上 Agent 的成长</div>
+<div class="ts-line"><span class="ts-t">[视频① 04:42]</span> 这个 data 赛的应该是越来越多的</div>
+<div class="ts-line"><span class="ts-t">[视频① 04:44]</span> 而且 Agent 的翻车的概率可能是越来越低的</div>
+<div class="ts-line"><span class="ts-t">[视频① 04:46]</span> 因为我们每一个 bad case</div>
+</div></details>
 </section>
 <section class="sec" id="s7">
 <h2>7. 踩坑实录：四条经验</h2>
@@ -470,6 +629,33 @@ main{padding-top:22px}
 <tr><td>4</td><td>不要把 Evaluation 当 QA</td><td>它要不断演进，是研发仪表盘</td></tr>
 </table>
 <div class="note">这四条与本站《Agent 评测指标系统》《评测驱动 Agent 迭代》里的「20–50 条起步、主指标 + 护栏、能力集毕业成回归集」逐条呼应。</div>
+<details class="ts-box"><summary>本章语音逐字稿（ASR · 已校正）（逐字 · 24 句）</summary>
+<div class="ts-lines">
+<div class="ts-line"><span class="ts-t">[视频① 04:48]</span> 都要加入我们的回归数据集中</div>
+<div class="ts-line"><span class="ts-t">[视频① 04:49]</span> 也就是我们的黄金测试集中</div>
+<div class="ts-line"><span class="ts-t">[视频① 04:51]</span> 这就构建起了一个评估的数据飞轮</div>
+<div class="ts-line"><span class="ts-t">[视频① 04:53]</span> 那再介绍一些采访的记录</div>
+<div class="ts-line"><span class="ts-t">[视频① 04:55]</span> 就是我觉得第一点就是</div>
+<div class="ts-line"><span class="ts-t">[视频① 04:59]</span> 第一要等一千条</div>
+<div class="ts-line"><span class="ts-t">[视频① 05:00]</span> 我们之前也介绍过</div>
+<div class="ts-line"><span class="ts-t">[视频① 05:01]</span> 就二十到五十条数据</div>
+<div class="ts-line"><span class="ts-t">[视频① 05:03]</span> 就可以完全去跑一个评测的小臂环了</div>
+<div class="ts-line"><span class="ts-t">[视频① 05:05]</span> 不要追求100%的自动化</div>
+<div class="ts-line"><span class="ts-t">[视频① 05:06]</span> 一开始上来肯定是手动的</div>
+<div class="ts-line"><span class="ts-t">[视频① 05:08]</span> 然后最后随着 Agent 的成长</div>
+<div class="ts-line"><span class="ts-t">[视频① 05:11]</span> 慢慢的成长</div>
+<div class="ts-line"><span class="ts-t">[视频① 05:11]</span> 我们才会把它加到 CRCD</div>
+<div class="ts-line"><span class="ts-t">[视频① 05:13]</span> 持续继承的系统自动化</div>
+<div class="ts-line"><span class="ts-t">[视频① 05:15]</span> 再去追求自动化</div>
+<div class="ts-line"><span class="ts-t">[视频① 05:16]</span> 然后一定不要只看单个指标</div>
+<div class="ts-line"><span class="ts-t">[视频① 05:18]</span> 这个前面其实在 MeshX 里面也介绍了</div>
+<div class="ts-line"><span class="ts-t">[视频① 05:20]</span> 一个 Agent 的好坏肯定是多个唯独的指标的</div>
+<div class="ts-line"><span class="ts-t">[视频① 05:23]</span> 然后不要把 Evaluation 当成 QA</div>
+<div class="ts-line"><span class="ts-t">[视频① 05:26]</span> Evaluation 自己本身它也是要不断眼镜的</div>
+<div class="ts-line"><span class="ts-t">[视频① 05:28]</span> 总之吧</div>
+<div class="ts-line"><span class="ts-t">[视频① 05:29]</span> Agent 的 Ever 系系统不是一个可选的测试工具</div>
+<div class="ts-line"><span class="ts-t">[视频① 05:32]</span> 它是 AI 时代产品经理的研发意表盘</div>
+</div></details>
 </section>
 <section class="sec" id="s8">
 <h2>8. 两层框架：任务集 × 运行评分</h2>
@@ -504,6 +690,32 @@ main{padding-top:22px}
 <tr><td>2</td><td>Anthropic</td><td>Define success criteria and build evaluations</td><td>持续更新</td></tr>
 <tr><td>3</td><td>OpenAI</td><td>Evals API Reference</td><td>持续更新</td></tr>
 </table>
+<details class="ts-box"><summary>本章语音逐字稿（ASR · 已校正）（逐字 · 23 句）</summary>
+<div class="ts-lines">
+<div class="ts-line"><span class="ts-t">[视频② 00:00]</span> 如何建立第一批 AI Agent 的评测任务</div>
+<div class="ts-line"><span class="ts-t">[视频② 00:02]</span> 上一期我们讲了</div>
+<div class="ts-line"><span class="ts-t">[视频② 00:03]</span> 如何从0-1搭建 AI Agent 的评测</div>
+<div class="ts-line"><span class="ts-t">[视频② 00:06]</span> 那套框架已经有超过1300次的收藏</div>
+<div class="ts-line"><span class="ts-t">[视频② 00:09]</span> 私信里被问的最多的问题就是</div>
+<div class="ts-line"><span class="ts-t">[视频② 00:11]</span> 框架看懂了</div>
+<div class="ts-line"><span class="ts-t">[视频② 00:12]</span> 但是真正落到项目里面</div>
+<div class="ts-line"><span class="ts-t">[视频② 00:13]</span> 每一部具体应该怎么做呢</div>
+<div class="ts-line"><span class="ts-t">[视频② 00:15]</span> 所以接下来我打算用三期的内容</div>
+<div class="ts-line"><span class="ts-t">[视频② 00:17]</span> 把整套搭建过程逐步拆开</div>
+<div class="ts-line"><span class="ts-t">[视频② 00:19]</span> 第一期我们先搭测评体系的第一层任务籍</div>
+<div class="ts-line"><span class="ts-t">[视频② 00:23]</span> 从真实问题中提取任务</div>
+<div class="ts-line"><span class="ts-t">[视频② 00:25]</span> 把任务写到可以稳定判断</div>
+<div class="ts-line"><span class="ts-t">[视频② 00:27]</span> 在补齐应该发生和不应该发生的对照测试</div>
+<div class="ts-line"><span class="ts-t">[视频② 00:30]</span> 这套方法</div>
+<div class="ts-line"><span class="ts-t">[视频② 00:31]</span> 基于 Anthropic 在2026年1月发布的 AI Agent 的评测方法</div>
+<div class="ts-line"><span class="ts-t">[视频② 00:35]</span> 同时对照了截止2026年8月</div>
+<div class="ts-line"><span class="ts-t">[视频② 00:37]</span> Anthropic 和 OpenAI 仍在更新的官方评测文的</div>
+<div class="ts-line"><span class="ts-t">[视频② 00:41]</span> 第一步先建立一批真实的任务</div>
+<div class="ts-line"><span class="ts-t">[视频② 00:44]</span> 刚开始做 eva</div>
+<div class="ts-line"><span class="ts-t">[视频② 00:45]</span> 不需要先准备几百条的任务</div>
+<div class="ts-line"><span class="ts-t">[视频② 00:47]</span> Anthropic 给出的建议是</div>
+<div class="ts-line"><span class="ts-t">[视频② 00:49]</span> 早期从20-50条真实任务开始</div>
+</div></details>
 </section>
 <section class="sec" id="s9">
 <h2>9. 第一层三步：真实任务 → 稳定判断 → 正反平衡</h2>
@@ -549,6 +761,29 @@ main{padding-top:22px}
 <li><strong>同时设计正向和反向任务</strong>：不只检查「该做时能不能做」，也检查「不该做时能不能克制」。</li>
 </ol>
 <div class="key">「第一批 Agent Eval，不是收集一批 Prompt 再给输出打分」——这句话是两层框架的分水岭。</div>
+<details class="ts-box"><summary>本章语音逐字稿（ASR · 已校正）（逐字 · 20 句）</summary>
+<div class="ts-lines">
+<div class="ts-line"><span class="ts-t">[视频② 00:52]</span> 就足够建立第一条评测极限</div>
+<div class="ts-line"><span class="ts-t">[视频② 00:54]</span> 第一批种子任务</div>
+<div class="ts-line"><span class="ts-t">[视频② 00:55]</span> 应该优先来自真实任务和真实失败</div>
+<div class="ts-line"><span class="ts-t">[视频② 00:58]</span> 模型更适合在真实种子的基础上扩充便体</div>
+<div class="ts-line"><span class="ts-t">[视频② 01:02]</span> 而不是代替真实任务来源</div>
+<div class="ts-line"><span class="ts-t">[视频② 01:04]</span> 更可靠的做法是先从团队已经拥有的材料中提取</div>
+<div class="ts-line"><span class="ts-t">[视频② 01:08]</span> 开发过程中原本需要人工检查的任务</div>
+<div class="ts-line"><span class="ts-t">[视频② 01:11]</span> 用户最长执行的典型任务</div>
+<div class="ts-line"><span class="ts-t">[视频② 01:13]</span> 已经发生过的 bug</div>
+<div class="ts-line"><span class="ts-t">[视频② 01:14]</span> 以及用户反馈和知识供单里的真实失败</div>
+<div class="ts-line"><span class="ts-t">[视频② 01:17]</span> 比如用户问 Agent</div>
+<div class="ts-line"><span class="ts-t">[视频② 01:19]</span> 今天上海天气怎么样</div>
+<div class="ts-line"><span class="ts-t">[视频② 01:21]</span> Agent 没有调用搜索工具</div>
+<div class="ts-line"><span class="ts-t">[视频② 01:22]</span> 而是直接根据模型已有的知识生成了一个答案</div>
+<div class="ts-line"><span class="ts-t">[视频② 01:26]</span> 如果这来自一条真实用户反馈</div>
+<div class="ts-line"><span class="ts-t">[视频② 01:28]</span> 它就可以被转化成一个 bad case</div>
+<div class="ts-line"><span class="ts-t">[视频② 01:30]</span> 用户需要实实信息</div>
+<div class="ts-line"><span class="ts-t">[视频② 01:32]</span> 但是 Agent 的没有搜索</div>
+<div class="ts-line"><span class="ts-t">[视频② 01:33]</span> 我们可以把它先放到初始任务清单</div>
+<div class="ts-line"><span class="ts-t">[视频② 01:36]</span> Azure 被当前的评测文档也强调</div>
+</div></details>
 </section>
 <section class="sec" id="s10">
 <h2>10. 第一步：建立第一批真实任务</h2>
@@ -580,6 +815,31 @@ main{padding-top:22px}
 <p><span class="tag t-video">视频原述</span><strong>第一批种子任务优先来自真实任务和真实失败</strong>：团队已有材料里「开发过程中原本需要人工检查的任务」「已经发生过 Bug」「用户反馈和支持工单里的真实失败」。模型更适合在真实种子基础上扩充表达变体，而不是凭空造题；按任务对用户结果影响程度排序，选出前 20–50 条。</p>
 <p><span class="tag t-video">视频原述</span><strong>示例 Badcase</strong>：「今天上海天气怎么样？」Agent 没有调用搜索工具，而是直接根据模型已有知识生成答案 → 转化为一条「用户需要实时信息，但 Agent 没有搜索」的任务，先放进初始任务清单。</p>
 <div class="note">产物是一份来自真实使用场景的初始任务清单 + 可重复比较的评测基线；它不需要一次覆盖所有问题。新增任务仍需人工检查，不能直接进入评测集。</div>
+<details class="ts-box"><summary>本章语音逐字稿（ASR · 已校正）（逐字 · 22 句）</summary>
+<div class="ts-lines">
+<div class="ts-line"><span class="ts-t">[视频② 01:39]</span> 评测任务应该尽量的贴近真实使用分布</div>
+<div class="ts-line"><span class="ts-t">[视频② 01:42]</span> 同时覆盖必要的边界情况</div>
+<div class="ts-line"><span class="ts-t">[视频② 01:44]</span> 收集以后</div>
+<div class="ts-line"><span class="ts-t">[视频② 01:45]</span> 按照任务对用户结果的影响程度进行排序</div>
+<div class="ts-line"><span class="ts-t">[视频② 01:49]</span> 从中选出第一批20-50条</div>
+<div class="ts-line"><span class="ts-t">[视频② 01:51]</span> 这一步的产物是一份来自</div>
+<div class="ts-line"><span class="ts-t">[视频② 01:53]</span> 真实使用场景的初始任务清单</div>
+<div class="ts-line"><span class="ts-t">[视频② 01:56]</span> 它不需要一次覆盖所有的问题</div>
+<div class="ts-line"><span class="ts-t">[视频② 01:58]</span> 阶段的目标是先建立一条可以运行</div>
+<div class="ts-line"><span class="ts-t">[视频② 02:01]</span> 可以重复比较的评测极限</div>
+<div class="ts-line"><span class="ts-t">[视频② 02:03]</span> 等真实种子任务确定以后</div>
+<div class="ts-line"><span class="ts-t">[视频② 02:05]</span> 可以再用模型扩充表达辩体和边界案例</div>
+<div class="ts-line"><span class="ts-t">[视频② 02:09]</span> 但是新增任务仍然需要人工检查</div>
+<div class="ts-line"><span class="ts-t">[视频② 02:11]</span> 不能直接进入到评测级</div>
+<div class="ts-line"><span class="ts-t">[视频② 02:13]</span> 第二步</div>
+<div class="ts-line"><span class="ts-t">[视频② 02:14]</span> 把 task 写到可以稳定判断</div>
+<div class="ts-line"><span class="ts-t">[视频② 02:16]</span> 收集到真实案例</div>
+<div class="ts-line"><span class="ts-t">[视频② 02:17]</span> 不代表它已经是一条合格的 evil task</div>
+<div class="ts-line"><span class="ts-t">[视频② 02:20]</span> 比如说刚刚这条天气任务</div>
+<div class="ts-line"><span class="ts-t">[视频② 02:22]</span> 如果我们只写回答用户今天的天气</div>
+<div class="ts-line"><span class="ts-t">[视频② 02:25]</span> 仍然无法稳定的评测</div>
+<div class="ts-line"><span class="ts-t">[视频② 02:27]</span> Azrobate 对 task 的基本定义是</div>
+</div></details>
 </section>
 <section class="sec" id="s11">
 <h2>11. 第二步：把 Task 写到可以稳定判断</h2>
@@ -616,6 +876,33 @@ main{padding-top:22px}
 <li><strong>约束前置</strong>：要求必须提前出现在任务说明里，不能在 Task 里只要求「回答今天天气」，却在评分时额外检查任务说明从未要求过的固定格式。</li>
 </ul>
 <div class="note">Anthropic 文档还强调：评测任务应尽量贴近真实使用分布、同时覆盖必要边界情况。</div>
+<details class="ts-box"><summary>本章语音逐字稿（ASR · 已校正）（逐字 · 24 句）</summary>
+<div class="ts-lines">
+<div class="ts-line"><span class="ts-t">[视频② 02:29]</span> 一项具有明确输入和成功标准的独立测试</div>
+<div class="ts-line"><span class="ts-t">[视频② 02:33]</span> 因此我们需要继续写清楚</div>
+<div class="ts-line"><span class="ts-t">[视频② 02:35]</span> 输入是用户询问今天上海的天气</div>
+<div class="ts-line"><span class="ts-t">[视频② 02:37]</span> AZEN 可以调用天气查询工具</div>
+<div class="ts-line"><span class="ts-t">[视频② 02:40]</span> 成功的标准是 AZEN 调用工具</div>
+<div class="ts-line"><span class="ts-t">[视频② 02:42]</span> 并依据工具返回的当前信息回答</div>
+<div class="ts-line"><span class="ts-t">[视频② 02:45]</span> 不能把模型记忆中的天气信息</div>
+<div class="ts-line"><span class="ts-t">[视频② 02:47]</span> 当成实实结果</div>
+<div class="ts-line"><span class="ts-t">[视频② 02:48]</span> 到这里这条 task</div>
+<div class="ts-line"><span class="ts-t">[视频② 02:50]</span> 才同时拥有了明确输入和成功标准</div>
+<div class="ts-line"><span class="ts-t">[视频② 02:53]</span> 更重要的是</div>
+<div class="ts-line"><span class="ts-t">[视频② 02:53]</span> reader_a 准备检查的内容</div>
+<div class="ts-line"><span class="ts-t">[视频② 02:55]</span> 必须提前出现在任务说明里</div>
+<div class="ts-line"><span class="ts-t">[视频② 02:57]</span> 不能在 task 里只要求回答今天的天气</div>
+<div class="ts-line"><span class="ts-t">[视频② 03:00]</span> 却在评分的时候</div>
+<div class="ts-line"><span class="ts-t">[视频② 03:02]</span> 额外的去检查任务说明里</div>
+<div class="ts-line"><span class="ts-t">[视频② 03:03]</span> 从未要求的固定格式</div>
+<div class="ts-line"><span class="ts-t">[视频② 03:05]</span> 信息自断或执行条件</div>
+<div class="ts-line"><span class="ts-t">[视频② 03:07]</span> 写完以后用两个方法来检查</div>
+<div class="ts-line"><span class="ts-t">[视频② 03:09]</span> 第一个用专家一致性反查 task</div>
+<div class="ts-line"><span class="ts-t">[视频② 03:12]</span> 让两名了解业务的人</div>
+<div class="ts-line"><span class="ts-t">[视频② 03:13]</span> 独立去阅读这条 task</div>
+<div class="ts-line"><span class="ts-t">[视频② 03:15]</span> 如果两个人对什么算通过</div>
+<div class="ts-line"><span class="ts-t">[视频② 03:17]</span> 什么算失败仍然意见不同</div>
+</div></details>
 </section>
 <section class="sec" id="s12">
 <h2>12. 两个检查方法：把「写清楚了」变成可验证</h2>
@@ -650,6 +937,33 @@ main{padding-top:22px}
 </table>
 <p><span class="tag t-video">视频原述</span>口播补充一个诊断规则：<strong>如果前沿模型尝试很多次仍一次都无法通过，先怀疑 Task 和 Grader 是否有问题，而不是马上认定模型没有能力</strong>。</p>
 <div class="note">落地形态：为每条测试数据定义<strong>结构化字段</strong>，再让 Grader 调用这些字段执行测试标准（③ 会进一步用到）。</div>
+<details class="ts-box"><summary>本章语音逐字稿（ASR · 已校正）（逐字 · 24 句）</summary>
+<div class="ts-lines">
+<div class="ts-line"><span class="ts-t">[视频② 03:19]</span> 说明 task 还不够明确</div>
+<div class="ts-line"><span class="ts-t">[视频② 03:21]</span> 第二个用参考解法验证 task 和 Grader</div>
+<div class="ts-line"><span class="ts-t">[视频② 03:24]</span> 为 task 准备一份</div>
+<div class="ts-line"><span class="ts-t">[视频② 03:26]</span> 与之能够通过所有 Grader 的参考结果</div>
+<div class="ts-line"><span class="ts-t">[视频② 03:28]</span> 参考解法不是为了要求</div>
+<div class="ts-line"><span class="ts-t">[视频② 03:30]</span> Agent 复刻唯一的执行路径</div>
+<div class="ts-line"><span class="ts-t">[视频② 03:32]</span> 它只证明两件事</div>
+<div class="ts-line"><span class="ts-t">[视频② 03:34]</span> 第一这项任务确实是可以完成</div>
+<div class="ts-line"><span class="ts-t">[视频② 03:36]</span> 二当前的任务说明和 Grader</div>
+<div class="ts-line"><span class="ts-t">[视频② 03:38]</span> 能够正常工作</div>
+<div class="ts-line"><span class="ts-t">[视频② 03:40]</span> 苏要被凯给出一个很实用的</div>
+<div class="ts-line"><span class="ts-t">[视频② 03:42]</span> 反查信号</div>
+<div class="ts-line"><span class="ts-t">[视频② 03:42]</span> 如果前沿模型尝试</div>
+<div class="ts-line"><span class="ts-t">[视频② 03:44]</span> 很多次仍然一次都无法通过</div>
+<div class="ts-line"><span class="ts-t">[视频② 03:47]</span> 那么我们应该先检查 task 和 Grader</div>
+<div class="ts-line"><span class="ts-t">[视频② 03:49]</span> 是否有问题</div>
+<div class="ts-line"><span class="ts-t">[视频② 03:50]</span> 而不是马上认定模型没有能力</div>
+<div class="ts-line"><span class="ts-t">[视频② 03:52]</span> 在 OpenAI Evers API 里面</div>
+<div class="ts-line"><span class="ts-t">[视频② 03:54]</span> 这一步会进一步落实为</div>
+<div class="ts-line"><span class="ts-t">[视频② 03:56]</span> 为每条测试数据定义结构化自断</div>
+<div class="ts-line"><span class="ts-t">[视频② 03:59]</span> 再让 Grader 调用这些自断执行测试标准</div>
+<div class="ts-line"><span class="ts-t">[视频② 04:02]</span> 三步同时设计正向和反向任务</div>
+<div class="ts-line"><span class="ts-t">[视频② 04:05]</span> 很多测评级指验证 Agent</div>
+<div class="ts-line"><span class="ts-t">[视频② 04:06]</span> 该做一件事时能不能完成</div>
+</div></details>
 </section>
 <section class="sec" id="s13">
 <h2>13. 第三步：同时设计正向和反向任务</h2>
@@ -682,6 +996,29 @@ main{padding-top:22px}
 <tr><td>反向</td><td>水在标准大气压下的沸点是多少？（不需要实时搜索）</td><td>行为过度</td></tr>
 </table>
 <div class="note">这种设计叫<strong>平衡问题集</strong>：不要求正反数量完全相等，关键是「不能只评测行为的一侧」，且整体分布尽量接近真实使用；还要加入最容易混淆的边界任务。</div>
+<details class="ts-box"><summary>本章语音逐字稿（ASR · 已校正）（逐字 · 20 句）</summary>
+<div class="ts-lines">
+<div class="ts-line"><span class="ts-t">[视频② 04:09]</span> 但是 Agent 不仅要在条件成立时出发行为</div>
+<div class="ts-line"><span class="ts-t">[视频② 04:12]</span> 也要在条件不成立的时候保持克制</div>
+<div class="ts-line"><span class="ts-t">[视频② 04:15]</span> 刚才的天气任务指验证了 Agent</div>
+<div class="ts-line"><span class="ts-t">[视频② 04:17]</span> 在该搜索的时候能不能搜索</div>
+<div class="ts-line"><span class="ts-t">[视频② 04:19]</span> 如果评测级里面全是这种任务</div>
+<div class="ts-line"><span class="ts-t">[视频② 04:21]</span> 最后可能优化出一个遇到任何问题</div>
+<div class="ts-line"><span class="ts-t">[视频② 04:23]</span> 都要先搜索的 Agent</div>
+<div class="ts-line"><span class="ts-t">[视频② 04:25]</span> 所以还要补一条反向任务</div>
+<div class="ts-line"><span class="ts-t">[视频② 04:27]</span> 水在标准大气压下的费点是多少</div>
+<div class="ts-line"><span class="ts-t">[视频② 04:29]</span> 这是一条稳定事实</div>
+<div class="ts-line"><span class="ts-t">[视频② 04:31]</span> Agent 的不需要调用实时搜索工具</div>
+<div class="ts-line"><span class="ts-t">[视频② 04:33]</span> 所有被在位 CloudAI 的搜索能力建立评测时</div>
+<div class="ts-line"><span class="ts-t">[视频② 04:37]</span> 也采用了这种同时覆盖两个方向的方法</div>
+<div class="ts-line"><span class="ts-t">[视频② 04:40]</span> 这样检查的才不只是 Agent 的</div>
+<div class="ts-line"><span class="ts-t">[视频② 04:42]</span> 会不会调用搜索工具</div>
+<div class="ts-line"><span class="ts-t">[视频② 04:43]</span> 还包括它能不能判断什么时候不需要调用</div>
+<div class="ts-line"><span class="ts-t">[视频② 04:46]</span> 这种设计通常被称为平衡问题级</div>
+<div class="ts-line"><span class="ts-t">[视频② 04:49]</span> 这里的平衡不一定要求正反任务数量完全相等</div>
+<div class="ts-line"><span class="ts-t">[视频② 04:53]</span> 见识不能只评测行为的一册</div>
+<div class="ts-line"><span class="ts-t">[视频② 04:55]</span> 并且整体分布要尽量接近真实使用情况</div>
+</div></details>
 </section>
 <section class="sec" id="s14">
 <h2>14. 三步收束：第一层的三个产物</h2>
@@ -718,6 +1055,34 @@ main{padding-top:22px}
 <tr><td>平衡问题集</td><td>正向 + 反向 + 边界</td><td>覆盖行为两侧、贴近真实分布</td></tr>
 </table>
 <div class="key">做到这三步，才真正拥有了一批可以评测 Agent 的任务；下一期搭「运行与评分」。</div>
+<details class="ts-box"><summary>本章语音逐字稿（ASR · 已校正）（逐字 · 25 句）</summary>
+<div class="ts-lines">
+<div class="ts-line"><span class="ts-t">[视频② 04:58]</span> 设计的时候可以先确定</div>
+<div class="ts-line"><span class="ts-t">[视频② 05:00]</span> 这组任务要检查的目标行为</div>
+<div class="ts-line"><span class="ts-t">[视频② 05:02]</span> 然后同时加入行为应该发生的任务</div>
+<div class="ts-line"><span class="ts-t">[视频② 05:05]</span> 行为不应该发生的任务</div>
+<div class="ts-line"><span class="ts-t">[视频② 05:06]</span> 以及最容易混淆的边界任务</div>
+<div class="ts-line"><span class="ts-t">[视频② 05:08]</span> 这里还要补充一个边界</div>
+<div class="ts-line"><span class="ts-t">[视频② 05:10]</span> 这组一瓦检查的目标</div>
+<div class="ts-line"><span class="ts-t">[视频② 05:11]</span> 本来就是 Agent 的搜索决策</div>
+<div class="ts-line"><span class="ts-t">[视频② 05:14]</span> 所以是否调用搜索工具</div>
+<div class="ts-line"><span class="ts-t">[视频② 05:15]</span> 可以成为成功的标准</div>
+<div class="ts-line"><span class="ts-t">[视频② 05:17]</span> 如果说评测目标</div>
+<div class="ts-line"><span class="ts-t">[视频② 05:18]</span> 只是最终答案是否正确</div>
+<div class="ts-line"><span class="ts-t">[视频② 05:20]</span> 就不应该强行规定 Agent</div>
+<div class="ts-line"><span class="ts-t">[视频② 05:22]</span> 必须采用同一条执行路径</div>
+<div class="ts-line"><span class="ts-t">[视频② 05:24]</span> 所以第一批 Agent 的依保</div>
+<div class="ts-line"><span class="ts-t">[视频② 05:25]</span> 不是搜集一批 Prompt</div>
+<div class="ts-line"><span class="ts-t">[视频② 05:27]</span> 再给输出打分</div>
+<div class="ts-line"><span class="ts-t">[视频② 05:28]</span> 真正要完成的是三件事</div>
+<div class="ts-line"><span class="ts-t">[视频② 05:30]</span> 从真实失败和真实任务中建立测试集</div>
+<div class="ts-line"><span class="ts-t">[视频② 05:33]</span> 把每条 Task 写到输入和成功标准足够明确</div>
+<div class="ts-line"><span class="ts-t">[视频② 05:36]</span> 再用平衡问题级</div>
+<div class="ts-line"><span class="ts-t">[视频② 05:38]</span> 同时检查行为不足和行为过渡</div>
+<div class="ts-line"><span class="ts-t">[视频② 05:40]</span> 做到这三步以后</div>
+<div class="ts-line"><span class="ts-t">[视频② 05:41]</span> 你才真正拥有了一批可以评测 Agent 的任务</div>
+<div class="ts-line"><span class="ts-t">[视频② 05:44]</span> 下一期我们继续搭建运行和评分部分</div>
+</div></details>
 </section>
 <section class="sec" id="s15">
 <h2>15. 第二层五步：让评分可解释、可复查</h2>
@@ -769,6 +1134,45 @@ main{padding-top:22px}
 <tr><td>4</td><td>硬条件与评分</td><td>别让一个总分掩盖关键失败</td></tr>
 <tr><td>5</td><td>先测 Grader 再测 Agent</td><td>判据本身也要验证</td></tr>
 </table>
+<details class="ts-box"><summary>本章语音逐字稿（ASR · 已校正）（逐字 · 36 句）</summary>
+<div class="ts-lines">
+<div class="ts-line"><span class="ts-t">[视频③ 00:00]</span> 如何搭建 Agent 评测的运行与评分系统</div>
+<div class="ts-line"><span class="ts-t">[视频③ 00:03]</span> 同一个 Agent 跑同一批评测任务</div>
+<div class="ts-line"><span class="ts-t">[视频③ 00:05]</span> 分数为什么会忽高忽低</div>
+<div class="ts-line"><span class="ts-t">[视频③ 00:07]</span> 到底是 Agent 能力发生了变化</div>
+<div class="ts-line"><span class="ts-t">[视频③ 00:09]</span> 还是运行环境和评分方法</div>
+<div class="ts-line"><span class="ts-t">[视频③ 00:11]</span> 正在制造额外的噪声</div>
+<div class="ts-line"><span class="ts-t">[视频③ 00:13]</span> 这是从0到1搭建 Agent 评测系列的第二期</div>
+<div class="ts-line"><span class="ts-t">[视频③ 00:17]</span> 上一期我们建立了第一批评测任务</div>
+<div class="ts-line"><span class="ts-t">[视频③ 00:19]</span> 解决了测什么</div>
+<div class="ts-line"><span class="ts-t">[视频③ 00:20]</span> 那这一期我们要继续搭建运行和评分系统</div>
+<div class="ts-line"><span class="ts-t">[视频③ 00:23]</span> 解决怎么运行怎么判分</div>
+<div class="ts-line"><span class="ts-t">[视频③ 00:25]</span> 才能让结果更可信</div>
+<div class="ts-line"><span class="ts-t">[视频③ 00:28]</span> 我们会从隔离环境</div>
+<div class="ts-line"><span class="ts-t">[视频③ 00:29]</span> outcon 和 transcript</div>
+<div class="ts-line"><span class="ts-t">[视频③ 00:30]</span> 以及三类 Grader 入手</div>
+<div class="ts-line"><span class="ts-t">[视频③ 00:32]</span> 搭出一套可以重复运行</div>
+<div class="ts-line"><span class="ts-t">[视频③ 00:34]</span> 可以解释也可以复查的评分系统</div>
+<div class="ts-line"><span class="ts-t">[视频③ 00:36]</span> 这套方法对应</div>
+<div class="ts-line"><span class="ts-t">[视频③ 00:37]</span> Swabic Demystifying Evoles for AI Agent</div>
+<div class="ts-line"><span class="ts-t">[视频③ 00:40]</span> 从0到1路线里的第四步和第五步</div>
+<div class="ts-line"><span class="ts-t">[视频③ 00:43]</span> 同时参考了 OpenAI 当前的</div>
+<div class="ts-line"><span class="ts-t">[视频③ 00:45]</span> EvaAPS 和 Gradients 文档</div>
+<div class="ts-line"><span class="ts-t">[视频③ 00:47]</span> 第一步</div>
+<div class="ts-line"><span class="ts-t">[视频③ 00:48]</span> 让每一次的戳二从可比的环境开始</div>
+<div class="ts-line"><span class="ts-t">[视频③ 00:51]</span> 上一期我们把今天上海天气怎么样</div>
+<div class="ts-line"><span class="ts-t">[视频③ 00:53]</span> 写成了一条评测的任务</div>
+<div class="ts-line"><span class="ts-t">[视频③ 00:54]</span> 现在准备让 Agent 运行它</div>
+<div class="ts-line"><span class="ts-t">[视频③ 00:57]</span> 如果每次的评测</div>
+<div class="ts-line"><span class="ts-t">[视频③ 00:58]</span> 都直接调用真实的天气接口</div>
+<div class="ts-line"><span class="ts-t">[视频③ 01:00]</span> 第一次返回晴天</div>
+<div class="ts-line"><span class="ts-t">[视频③ 01:01]</span> 第二次返回正语</div>
+<div class="ts-line"><span class="ts-t">[视频③ 01:02]</span> 第三次又遇到接口超时</div>
+<div class="ts-line"><span class="ts-t">[视频③ 01:04]</span> 那么三次 trial 面对的</div>
+<div class="ts-line"><span class="ts-t">[视频③ 01:06]</span> 已经不是同一项条件</div>
+<div class="ts-line"><span class="ts-t">[视频③ 01:07]</span> 分数的变化可能来自 Agent</div>
+<div class="ts-line"><span class="ts-t">[视频③ 01:09]</span> 也可能来自外部数据和工具故障</div>
+</div></details>
 </section>
 <section class="sec" id="s16">
 <h2>16. 第一步：让每次 Trial 从可比环境开始</h2>
@@ -803,6 +1207,49 @@ main{padding-top:22px}
 <li>工具超时、环境启动失败等<strong>基础设施错误单独记录</strong>，标记「无效运行」并重试，不能直接算成 Agent 任务失败。</li>
 </ul>
 <div class="key">隔离环境<strong>不会消除模型本身的非确定性</strong>，它的作用是排除与 Agent 能力无关的干扰，让不同 Trial 尽可能在可比条件下运行。</div>
+<details class="ts-box"><summary>本章语音逐字稿（ASR · 已校正）（逐字 · 40 句）</summary>
+<div class="ts-lines">
+<div class="ts-line"><span class="ts-t">[视频③ 01:12]</span> 这两类的原因混在一起</div>
+<div class="ts-line"><span class="ts-t">[视频③ 01:13]</span> 测评的结果就无法解释</div>
+<div class="ts-line"><span class="ts-t">[视频③ 01:15]</span> 所以在 Eva 里可以为天气工具</div>
+<div class="ts-line"><span class="ts-t">[视频③ 01:17]</span> 准备一份固定的测试快照</div>
+<div class="ts-line"><span class="ts-t">[视频③ 01:19]</span> 每次输入相同的程式和日期</div>
+<div class="ts-line"><span class="ts-t">[视频③ 01:22]</span> 工具都返回同一份已知数据</div>
+<div class="ts-line"><span class="ts-t">[视频③ 01:24]</span> 每次锤号开始前</div>
+<div class="ts-line"><span class="ts-t">[视频③ 01:25]</span> 还要重置对话</div>
+<div class="ts-line"><span class="ts-t">[视频③ 01:27]</span> 任务状态和工具环境</div>
+<div class="ts-line"><span class="ts-t">[视频③ 01:29]</span> 避免上一次运行留下的消息</div>
+<div class="ts-line"><span class="ts-t">[视频③ 01:31]</span> 文件或者是数据</div>
+<div class="ts-line"><span class="ts-t">[视频③ 01:32]</span> 影响到下一次的结果</div>
+<div class="ts-line"><span class="ts-t">[视频③ 01:33]</span> 同时固定这次评测使用的模型版本</div>
+<div class="ts-line"><span class="ts-t">[视频③ 01:36]</span> Agent 的配置</div>
+<div class="ts-line"><span class="ts-t">[视频③ 01:37]</span> 工具定义和任务数据版本</div>
+<div class="ts-line"><span class="ts-t">[视频③ 01:39]</span> 工具超时时</div>
+<div class="ts-line"><span class="ts-t">[视频③ 01:40]</span> 环境启动失败等基础设施</div>
+<div class="ts-line"><span class="ts-t">[视频③ 01:42]</span> 错误也要单独记录</div>
+<div class="ts-line"><span class="ts-t">[视频③ 01:44]</span> 这类的 trial 应该标记为</div>
+<div class="ts-line"><span class="ts-t">[视频③ 01:46]</span> 无效运行并重视</div>
+<div class="ts-line"><span class="ts-t">[视频③ 01:47]</span> 不能直接算成 Agent 的任务失败</div>
+<div class="ts-line"><span class="ts-t">[视频③ 01:49]</span> 如果这些条件没有留下记录</div>
+<div class="ts-line"><span class="ts-t">[视频③ 01:51]</span> 分数变了以后</div>
+<div class="ts-line"><span class="ts-t">[视频③ 01:52]</span> 你无法知道系统到底改过什么</div>
+<div class="ts-line"><span class="ts-t">[视频③ 01:55]</span> 隔离环境不会消除模型本身的非确定性</div>
+<div class="ts-line"><span class="ts-t">[视频③ 01:58]</span> 它的作用是排除与 Agent 的能力</div>
+<div class="ts-line"><span class="ts-t">[视频③ 02:00]</span> 无关的干扰</div>
+<div class="ts-line"><span class="ts-t">[视频③ 02:01]</span> 让不同的 trial</div>
+<div class="ts-line"><span class="ts-t">[视频③ 02:01]</span> 尽可能的在可比的条件下运行</div>
+<div class="ts-line"><span class="ts-t">[视频③ 02:04]</span> 这一步的产物是一个可以重置</div>
+<div class="ts-line"><span class="ts-t">[视频③ 02:07]</span> 记录版本并且区分 Agent 的失败</div>
+<div class="ts-line"><span class="ts-t">[视频③ 02:09]</span> 和环境失败的运行条件</div>
+<div class="ts-line"><span class="ts-t">[视频③ 02:11]</span> 第二步</div>
+<div class="ts-line"><span class="ts-t">[视频③ 02:11]</span> 同时保留 Outcome 和 Transcript</div>
+<div class="ts-line"><span class="ts-t">[视频③ 02:14]</span> 环境准备好以后</div>
+<div class="ts-line"><span class="ts-t">[视频③ 02:15]</span> everharness 才能启动一次 trial</div>
+<div class="ts-line"><span class="ts-t">[视频③ 02:17]</span> 这次运行至少要留下两类记录</div>
+<div class="ts-line"><span class="ts-t">[视频③ 02:19]</span> 第一类 shoutcon</div>
+<div class="ts-line"><span class="ts-t">[视频③ 02:20]</span> 它记录任务结束时真正产生的结果</div>
+<div class="ts-line"><span class="ts-t">[视频③ 02:23]</span> 天气查询是一项指读任务</div>
+</div></details>
 </section>
 <section class="sec" id="s17">
 <h2>17. 第二步：同时保留 Outcome 与 Transcript</h2>
@@ -837,6 +1284,40 @@ main{padding-top:22px}
 </table>
 <p><span class="tag t-video">视频原述</span><strong>关键判断</strong>：如果这条 Task 评测的是「实时搜索决策」，Agent 结果只是碰巧正确也不能通过；如果 Task 只测最终结果是否正确，就不应因 Agent 没走某条预设路径而扣分——<strong>取决于 Task 一开始定义的成功标准</strong>。</p>
 <div class="note">这正是本站《Agent 评测体系》「Outcome / Trace 分层」与《评测驱动迭代》「主指标 + 护栏 + 跳过」的运行层实现。</div>
+<details class="ts-box"><summary>本章语音逐字稿（ASR · 已校正）（逐字 · 31 句）</summary>
+<div class="ts-lines">
+<div class="ts-line"><span class="ts-t">[视频③ 02:25]</span> 它的 Outcome 是 Agent 最后返回的天气信息</div>
+<div class="ts-line"><span class="ts-t">[视频③ 02:28]</span> 这份结果是否与工具数据一致</div>
+<div class="ts-line"><span class="ts-t">[视频③ 02:30]</span> 后面再交给规的判断</div>
+<div class="ts-line"><span class="ts-t">[视频③ 02:32]</span> 如果 Agent 会写入文件数据库或者其他系统</div>
+<div class="ts-line"><span class="ts-t">[视频③ 02:35]</span> Outcome 还要检查任务结束后的外部状态</div>
+<div class="ts-line"><span class="ts-t">[视频③ 02:38]</span> 第二类是 transcript</div>
+<div class="ts-line"><span class="ts-t">[视频③ 02:40]</span> 也叫 trace 或者是 Trajectory</div>
+<div class="ts-line"><span class="ts-t">[视频③ 02:42]</span> 它保留 Agent 在这次 trial 中的完整可观测的轨迹</div>
+<div class="ts-line"><span class="ts-t">[视频③ 02:46]</span> 包括模型输出</div>
+<div class="ts-line"><span class="ts-t">[视频③ 02:47]</span> 工具调用</div>
+<div class="ts-line"><span class="ts-t">[视频③ 02:48]</span> 工具返回</div>
+<div class="ts-line"><span class="ts-t">[视频③ 02:49]</span> 中间消息和状态变化</div>
+<div class="ts-line"><span class="ts-t">[视频③ 02:50]</span> 如果系统可以记录还可以附带轮数</div>
+<div class="ts-line"><span class="ts-t">[视频③ 02:53]</span> token 延迟和错误类型</div>
+<div class="ts-line"><span class="ts-t">[视频③ 02:55]</span> Outcome 用来判断任务最后是否完成</div>
+<div class="ts-line"><span class="ts-t">[视频③ 02:58]</span> transcript 用来解释它为什么成功</div>
+<div class="ts-line"><span class="ts-t">[视频③ 03:00]</span> 或者是失败发生在哪一步</div>
+<div class="ts-line"><span class="ts-t">[视频③ 03:02]</span> 比如 Agent 最后给出了正确天气</div>
+<div class="ts-line"><span class="ts-t">[视频③ 03:04]</span> 但是 transcript 显示它没有调用工具</div>
+<div class="ts-line"><span class="ts-t">[视频③ 03:07]</span> 如果这条 task 评测的</div>
+<div class="ts-line"><span class="ts-t">[视频③ 03:08]</span> 是实时的搜索决策</div>
+<div class="ts-line"><span class="ts-t">[视频③ 03:10]</span> 那么这次的 trial 就不能通过</div>
+<div class="ts-line"><span class="ts-t">[视频③ 03:12]</span> 因为它的结果只是碰巧正确</div>
+<div class="ts-line"><span class="ts-t">[视频③ 03:14]</span> 没有使用 task 要求的实施信息</div>
+<div class="ts-line"><span class="ts-t">[视频③ 03:16]</span> 但如果 task 指评测最终结果是否正确</div>
+<div class="ts-line"><span class="ts-t">[视频③ 03:19]</span> 就不应该因为 Agent 没有走某条预设的路径而扣分</div>
+<div class="ts-line"><span class="ts-t">[视频③ 03:23]</span> 所以是否检查 transcript 取决于 task 一开始定义的成功标准</div>
+<div class="ts-line"><span class="ts-t">[视频③ 03:27]</span> Outcome 优先验证完成结果</div>
+<div class="ts-line"><span class="ts-t">[视频③ 03:29]</span> transcript 主要负责诊断效率安全</div>
+<div class="ts-line"><span class="ts-t">[视频③ 03:32]</span> 以及 task 已经明确要求的关键行为</div>
+<div class="ts-line"><span class="ts-t">[视频③ 03:35]</span> 第三步让三类 Grader 分工</div>
+</div></details>
 </section>
 <section class="sec" id="s18">
 <h2>18. 第三步：三类 Grader 分工</h2>
@@ -877,6 +1358,41 @@ main{padding-top:22px}
 <tr><td>人工评分</td><td>校准，不需覆盖每次 Trial</td><td>准备专家已确认样本，定期检查 LLM Grader；若模型与人工持续分歧，先修 Rubric、证据输入或分类边界，不要直接扩大自动评分规模</td></tr>
 </table>
 <div class="key"><strong>能够确定性验证的条件先交给代码，需要理解语义和质量的部分再交给模型，最后用少量人工样本持续校准模型评分。</strong></div>
+<details class="ts-box"><summary>本章语音逐字稿（ASR · 已校正）（逐字 · 32 句）</summary>
+<div class="ts-lines">
+<div class="ts-line"><span class="ts-t">[视频③ 03:37]</span> 有了 Outcome 和 transcript 下一步才是判分</div>
+<div class="ts-line"><span class="ts-t">[视频③ 03:40]</span> 第一类是 code_grader</div>
+<div class="ts-line"><span class="ts-t">[视频③ 03:41]</span> 只要成功条件可以被程序精确的验证</div>
+<div class="ts-line"><span class="ts-t">[视频③ 03:44]</span> 就应该优先使用它</div>
+<div class="ts-line"><span class="ts-t">[视频③ 03:45]</span> 天气任务可以检查三件事</div>
+<div class="ts-line"><span class="ts-t">[视频③ 03:47]</span> Agent 是否调用了天气工具</div>
+<div class="ts-line"><span class="ts-t">[视频③ 03:49]</span> 程式和日期参数是否正确</div>
+<div class="ts-line"><span class="ts-t">[视频③ 03:52]</span> 最终回答里的温度和天气状态</div>
+<div class="ts-line"><span class="ts-t">[视频③ 03:54]</span> 是否与工具返回的一致</div>
+<div class="ts-line"><span class="ts-t">[视频③ 03:55]</span> 这一类的检查比较快便宜</div>
+<div class="ts-line"><span class="ts-t">[视频③ 03:57]</span> 而且可以重复</div>
+<div class="ts-line"><span class="ts-t">[视频③ 03:58]</span> 但是不适合评价开放性的表达质量</div>
+<div class="ts-line"><span class="ts-t">[视频③ 04:01]</span> 第二类是 model-based Grader</div>
+<div class="ts-line"><span class="ts-t">[视频③ 04:03]</span> 也就是我们常说的 LLMS judge</div>
+<div class="ts-line"><span class="ts-t">[视频③ 04:06]</span> 它可以评价回答是否清楚</div>
+<div class="ts-line"><span class="ts-t">[视频③ 04:08]</span> 是否正确使用了工具证据</div>
+<div class="ts-line"><span class="ts-t">[视频③ 04:10]</span> 以及有没有添加工具结果无法支持的结论</div>
+<div class="ts-line"><span class="ts-t">[视频③ 04:13]</span> 它的 Rubric 不能只写评价回答质量</div>
+<div class="ts-line"><span class="ts-t">[视频③ 04:16]</span> 应该把正确性证据一致性和表达质量分开</div>
+<div class="ts-line"><span class="ts-t">[视频③ 04:21]</span> 每一个维度分别给出可判断的标准</div>
+<div class="ts-line"><span class="ts-t">[视频③ 04:23]</span> 当证据不足的时候</div>
+<div class="ts-line"><span class="ts-t">[视频③ 04:24]</span> 还应该允许 Gui 的返回 unknown</div>
+<div class="ts-line"><span class="ts-t">[视频③ 04:26]</span> 避免它强猜一个分数</div>
+<div class="ts-line"><span class="ts-t">[视频③ 04:28]</span> 第三类是 HumanGui 的</div>
+<div class="ts-line"><span class="ts-t">[视频③ 04:30]</span> 人工评分其实不需要覆盖每一次的 trial</div>
+<div class="ts-line"><span class="ts-t">[视频③ 04:32]</span> 它最重要的作用是准备一批专家已经确认的样本</div>
+<div class="ts-line"><span class="ts-t">[视频③ 04:36]</span> 定期的去检查 LLMSGui 的判断</div>
+<div class="ts-line"><span class="ts-t">[视频③ 04:38]</span> 是否仍然和专家一致</div>
+<div class="ts-line"><span class="ts-t">[视频③ 04:40]</span> 如果模型判断和人工判断持续分歧</div>
+<div class="ts-line"><span class="ts-t">[视频③ 04:43]</span> 应该先修正 Rubric</div>
+<div class="ts-line"><span class="ts-t">[视频③ 04:45]</span> 证据输入或者是分类的边界</div>
+<div class="ts-line"><span class="ts-t">[视频③ 04:47]</span> 不要直接去扩大自动评分的规模</div>
+</div></details>
 </section>
 <section class="sec" id="s19">
 <h2>19. 第四、五步：硬条件评分与 Grader 自测</h2>
@@ -910,6 +1426,47 @@ main{padding-top:22px}
 <h3 id="192-先测-grader再用-grader-测-agent">19.2 先测 Grader，再用 Grader 测 Agent</h3>
 <p><span class="tag t-video">视频原述</span>「Grader 本身也是一个需要验证的系统」：准备<strong>一组应该通过、一组应该失败、几条容易分歧的边界样本</strong>；先看 Code-based Grader 能否放过正确结果并拦住已知错误，再校准 LLM Grader 的准确性与分类边界。每次修改 Rubric、评分模型或分数组合方式后都要重跑。</p>
 <div class="note">第二层收束：一条 Task 进入可重置环境 → Harness 保留 Outcome 与 Transcript → 确定性 Grader 查硬条件 → 模型 Grader 评语义质量 → 少量人工样本持续校准 → 评分可解释、可复查。</div>
+<details class="ts-box"><summary>本章语音逐字稿（ASR · 已校正）（逐字 · 38 句）</summary>
+<div class="ts-lines">
+<div class="ts-line"><span class="ts-t">[视频③ 04:49]</span> 所以三类 Gui 的顺序其实很明确</div>
+<div class="ts-line"><span class="ts-t">[视频③ 04:52]</span> 能够确定性验证的条件先交给代码</div>
+<div class="ts-line"><span class="ts-t">[视频③ 04:55]</span> 需要理解语异和质量的部分再交给模型</div>
+<div class="ts-line"><span class="ts-t">[视频③ 04:58]</span> 最后用少量的人工样本</div>
+<div class="ts-line"><span class="ts-t">[视频③ 04:59]</span> 持续的校准模型的评分</div>
+<div class="ts-line"><span class="ts-t">[视频③ 05:01]</span> OpenAI 当前的 GuiDins API</div>
+<div class="ts-line"><span class="ts-t">[视频③ 05:03]</span> 提供了自抚串的检查</div>
+<div class="ts-line"><span class="ts-t">[视频③ 05:04]</span> 文本相思度</div>
+<div class="ts-line"><span class="ts-t">[视频③ 05:05]</span> 模型评分</div>
+<div class="ts-line"><span class="ts-t">[视频③ 05:06]</span> PythonGrader 和 MultiGrader 等方式</div>
+<div class="ts-line"><span class="ts-t">[视频③ 05:09]</span> 评测数据和模型输出</div>
+<div class="ts-line"><span class="ts-t">[视频③ 05:11]</span> 可以通过结构化变量传入不同的 Grader</div>
+<div class="ts-line"><span class="ts-t">[视频③ 05:14]</span> 第四步</div>
+<div class="ts-line"><span class="ts-t">[视频③ 05:14]</span> 别让一个总分掩盖关键失败</div>
+<div class="ts-line"><span class="ts-t">[视频③ 05:17]</span> 三类 Grader 完成各自的判断以后</div>
+<div class="ts-line"><span class="ts-t">[视频③ 05:19]</span> 还需要决定这些分数如何组合</div>
+<div class="ts-line"><span class="ts-t">[视频③ 05:21]</span> 天气任务可以拆成四个维度</div>
+<div class="ts-line"><span class="ts-t">[视频③ 05:23]</span> 工具检测是否正确</div>
+<div class="ts-line"><span class="ts-t">[视频③ 05:24]</span> 调用参数是否正确</div>
+<div class="ts-line"><span class="ts-t">[视频③ 05:26]</span> 回答是否忠于工具数据</div>
+<div class="ts-line"><span class="ts-t">[视频③ 05:28]</span> 表达是否清晰</div>
+<div class="ts-line"><span class="ts-t">[视频③ 05:29]</span> 前三项决定任务是否真正成功</div>
+<div class="ts-line"><span class="ts-t">[视频③ 05:31]</span> 他们应该是必须通过的硬条件</div>
+<div class="ts-line"><span class="ts-t">[视频③ 05:33]</span> 表达质量可以作为独立的分数</div>
+<div class="ts-line"><span class="ts-t">[视频③ 05:35]</span> 用来区分</div>
+<div class="ts-line"><span class="ts-t">[视频③ 05:36]</span> 完成任务以后的质量差异</div>
+<div class="ts-line"><span class="ts-t">[视频③ 05:38]</span> 但是如果把他们全部算进一个平均分</div>
+<div class="ts-line"><span class="ts-t">[视频③ 05:40]</span> 一次没有搜索</div>
+<div class="ts-line"><span class="ts-t">[视频③ 05:41]</span> 但是表达很好的回答</div>
+<div class="ts-line"><span class="ts-t">[视频③ 05:43]</span> 仍然可以拿到看似不错的总分</div>
+<div class="ts-line"><span class="ts-t">[视频③ 05:45]</span> 这个分数无法反应任务是成功的</div>
+<div class="ts-line"><span class="ts-t">[视频③ 05:47]</span> 更稳妥的做法</div>
+<div class="ts-line"><span class="ts-t">[视频③ 05:48]</span> 是先用硬条件判断任务是否通过</div>
+<div class="ts-line"><span class="ts-t">[视频③ 05:51]</span> 再在通过的释放中比较软性质量</div>
+<div class="ts-line"><span class="ts-t">[视频③ 05:53]</span> 开放性的质量</div>
+<div class="ts-line"><span class="ts-t">[视频③ 05:55]</span> 任务也可以设置部分的得分</div>
+<div class="ts-line"><span class="ts-t">[视频③ 05:57]</span> 但是每一部分都要对应一个</div>
+<div class="ts-line"><span class="ts-t">[视频③ 05:58]</span> 独立的可以解释的成功维度</div>
+</div></details>
 </section>
 <section class="sec" id="s20">
 <h2>20. 综合闭环与本站体系对齐</h2>
@@ -967,6 +1524,45 @@ main{padding-top:22px}
 <tr><td>Metrics / Dashboard / 上线决策</td><td><a href="../agent-metrics-tutorial/Agent评测指标系统完全教程.html">Agent 评测指标系统（在线阅读）</a></td><td>三张表、看板而非总分、91→96% 决策案例</td></tr>
 </table>
 <div class="note"><strong>【补充】</strong> 视频 ③ 结尾预告第三期：分数波动如何解释、Capability Eval 与 Regression Eval 如何区分——这两点在本站第三篇（pass@k / pass^k、能力→回归毕业）已有展开，本教程不代第三期补写。</div>
+<details class="ts-box"><summary>本章语音逐字稿（ASR · 已校正）（逐字 · 36 句）</summary>
+<div class="ts-lines">
+<div class="ts-line"><span class="ts-t">[视频③ 06:00]</span> 第五步</div>
+<div class="ts-line"><span class="ts-t">[视频③ 06:01]</span> 先测 Grader 再用 Grader 测 Agent</div>
+<div class="ts-line"><span class="ts-t">[视频③ 06:03]</span> Grader 本身也是一个需要验证的系统</div>
+<div class="ts-line"><span class="ts-t">[视频③ 06:05]</span> 如果 Grader 会把正确的回答判错</div>
+<div class="ts-line"><span class="ts-t">[视频③ 06:08]</span> 后面越跑越多</div>
+<div class="ts-line"><span class="ts-t">[视频③ 06:09]</span> 积累的只会是更多的错误分数</div>
+<div class="ts-line"><span class="ts-t">[视频③ 06:11]</span> 第一期已经为 Task 准备了参考解法</div>
+<div class="ts-line"><span class="ts-t">[视频③ 06:13]</span> 现在可以再准备几组已知的样本</div>
+<div class="ts-line"><span class="ts-t">[视频③ 06:16]</span> 一组应该通过</div>
+<div class="ts-line"><span class="ts-t">[视频③ 06:17]</span> 一组应该失败</div>
+<div class="ts-line"><span class="ts-t">[视频③ 06:18]</span> 再加上几条比较容易出现分歧的边界样本</div>
+<div class="ts-line"><span class="ts-t">[视频③ 06:21]</span> 先看 Code-basedGrader 能不能放过正确结果</div>
+<div class="ts-line"><span class="ts-t">[视频③ 06:24]</span> 并且拦住已知的错误</div>
+<div class="ts-line"><span class="ts-t">[视频③ 06:25]</span> 再用人工标注结果</div>
+<div class="ts-line"><span class="ts-t">[视频③ 06:27]</span> 校准 llm_grader 的准确性和分类边界</div>
+<div class="ts-line"><span class="ts-t">[视频③ 06:31]</span> 每次修改 Rubric 平分模型</div>
+<div class="ts-line"><span class="ts-t">[视频③ 06:33]</span> 或者是分数组合方式以后</div>
+<div class="ts-line"><span class="ts-t">[视频③ 06:35]</span> 这批的样本都应该重新跑一遍</div>
+<div class="ts-line"><span class="ts-t">[视频③ 06:37]</span> 这一步一完成以后</div>
+<div class="ts-line"><span class="ts-t">[视频③ 06:38]</span> 你才能知道分数变化</div>
+<div class="ts-line"><span class="ts-t">[视频③ 06:39]</span> 确实是来自 Agent 的表现</div>
+<div class="ts-line"><span class="ts-t">[视频③ 06:41]</span> 而不是 Grader 自己改变了判断</div>
+<div class="ts-line"><span class="ts-t">[视频③ 06:43]</span> 到这里第二层就搭完了</div>
+<div class="ts-line"><span class="ts-t">[视频③ 06:45]</span> 一条 Task 进入可重置的测试环境</div>
+<div class="ts-line"><span class="ts-t">[视频③ 06:48]</span> Agent 完成一次 Trial</div>
+<div class="ts-line"><span class="ts-t">[视频③ 06:49]</span> Harness 保留 Output 和 Transcript</div>
+<div class="ts-line"><span class="ts-t">[视频③ 06:51]</span> 确定性 Grader 先检查硬条件</div>
+<div class="ts-line"><span class="ts-t">[视频③ 06:53]</span> 模型 Grader 在评价语异质量</div>
+<div class="ts-line"><span class="ts-t">[视频③ 06:55]</span> 最后用少量的人工样本持续去校准</div>
+<div class="ts-line"><span class="ts-t">[视频③ 06:58]</span> 这样得到的评分才能被解释和复查</div>
+<div class="ts-line"><span class="ts-t">[视频③ 07:00]</span> 也有资格进入下一步</div>
+<div class="ts-line"><span class="ts-t">[视频③ 07:02]</span> 第三期我们继续解决三个问题</div>
+<div class="ts-line"><span class="ts-t">[视频③ 07:04]</span> 同一项任务必须跑多少次</div>
+<div class="ts-line"><span class="ts-t">[视频③ 07:06]</span> 分数波动应该如何解释</div>
+<div class="ts-line"><span class="ts-t">[视频③ 07:07]</span> 以及 Capability Eval 和 Regression Eval</div>
+<div class="ts-line"><span class="ts-t">[视频③ 07:10]</span> 应该如何区分</div>
+</div></details>
 </section>
 <section class="sec" id="s21">
 <h2>21. 补充篇 A：专业名词速查（51 条）</h2>
@@ -1189,6 +1785,588 @@ if __name__ == "__main__":
 <li><strong>本系列互链</strong>：<a href="../rag-evaluation-tutorial/RAG评测完全教程.html">RAG 评测（在线阅读）</a> ｜ <a href="../agent-evaluation-tutorial/Agent评测体系完全教程.html">Agent 评测体系（在线阅读）</a> ｜ <a href="../agent-eval-driven-tutorial/Agent评测驱动迭代完全教程.html">评测驱动迭代（在线阅读）</a> ｜ <a href="../agent-architecture-tutorial/Agent开发架构选型完全教程.html">开发架构选型（在线阅读）</a> ｜ <a href="../agent-metrics-tutorial/Agent评测指标系统完全教程.html">评测指标系统（在线阅读）</a> ｜ <a href="../agent-eval-method-tutorial/Agent评测方法论完全教程.html">评测方法论（在线阅读）</a> ｜ <a href="../agent-judge-bias-tutorial/Agent评测偏见消除完全教程.html">消除 LLM Judge 偏见（在线阅读）</a>。</li>
 </ol>
 <div class="warn"><strong>未做的部分（如实说明）</strong>：本轮未做语音逐字转写（ASR），口播依据烧录字幕 OCR 时间线 + 画面文字归纳；三支均无官方自动章节，章节结构取自画面导航条；视频 ③ 结尾预告的第三期（分数波动解释、Capability vs Regression Eval）未展开，只在本站既有篇目中给出对应链接。</div>
+<p><strong>附录 · 全片语音逐字稿（ASR · 528 段 · 按视频/章节分组）</strong></p>
+<p>由离线语音识别还原的完整口播，逐段保留时间码；点击标题展开。视频作者制作的烧录字幕为精简重排版，两者不完全逐字对应属正常现象。</p>
+<details class="ts-box"><summary>视频①（逐字 · 157 句）</summary>
+<div class="ts-lines">
+<div class="ts-line"><span class="ts-t">[视频① 00:00]</span> Hello 大家，今天我们继续 Agent 评估相关的内容</div>
+<div class="ts-line"><span class="ts-t">[视频① 00:04]</span> 今天这篇是这个系列的最后一篇了</div>
+<div class="ts-line"><span class="ts-t">[视频① 00:07]</span> 我们讨论一下如何从 0 到 1搭建一套 evaluation system</div>
+<div class="ts-line"><span class="ts-t">[视频① 00:11]</span> 当然在搭建之前，我们要分析一下为什么它这么重要</div>
+<div class="ts-line"><span class="ts-t">[视频① 00:14]</span> 我们知道大厂都在疯狂地卷 evaluation 是为什么</div>
+<div class="ts-line"><span class="ts-t">[视频① 00:17]</span> 一个完整的 evaluation system 到底长什么样子</div>
+<div class="ts-line"><span class="ts-t">[视频① 00:21]</span> 以及我们去实践到底怎么去落地</div>
+<div class="ts-line"><span class="ts-t">[视频① 00:23]</span> 但是我们构建 evaluation 的核心裸价</div>
+<div class="ts-line"><span class="ts-t">[视频① 00:26]</span> 还是要去做一个评估的数据飞轮</div>
+<div class="ts-line"><span class="ts-t">[视频① 00:29]</span> 以及分享几点采康的实录吧</div>
+<div class="ts-line"><span class="ts-t">[视频① 00:31]</span> 大厂为什么在卷</div>
+<div class="ts-line"><span class="ts-t">[视频① 00:32]</span> 我们可以看安特尔培在他这篇文章里面反复地强调</div>
+<div class="ts-line"><span class="ts-t">[视频① 00:36]</span> evaluation 应该是贯穿 Agent 的整个开发周期的</div>
+<div class="ts-line"><span class="ts-t">[视频① 00:40]</span> 它不是发布前的一次测试</div>
+<div class="ts-line"><span class="ts-t">[视频① 00:42]</span> 而且它建议从少量的高质量的数据开始</div>
+<div class="ts-line"><span class="ts-t">[视频① 00:45]</span> 随着产品眼镜不但扩充</div>
+<div class="ts-line"><span class="ts-t">[视频① 00:47]</span> 并将 evaluation 进入持续的迭代过程</div>
+<div class="ts-line"><span class="ts-t">[视频① 00:50]</span> 这是 AstroPick 的时间</div>
+<div class="ts-line"><span class="ts-t">[视频① 00:51]</span> 那 OpenAI 怎么说呢</div>
+<div class="ts-line"><span class="ts-t">[视频① 00:52]</span> 无论是从早期的 OpenAI 的 Evers 到现在的 evaluation API</div>
+<div class="ts-line"><span class="ts-t">[视频① 00:57]</span> 都在推动 evaluation first 的开发方式</div>
+<div class="ts-line"><span class="ts-t">[视频① 00:59]</span> 它把数据级评分器指标和版本对比</div>
+<div class="ts-line"><span class="ts-t">[视频① 01:02]</span> 纳入了统一的流程</div>
+<div class="ts-line"><span class="ts-t">[视频① 01:04]</span> 而不是一个零散的脚本</div>
+<div class="ts-line"><span class="ts-t">[视频① 01:05]</span> 他们其实都在强调一个相同的认知</div>
+<div class="ts-line"><span class="ts-t">[视频① 01:07]</span> 那就是 evaluation 要贯穿 Agent 的生命周期</div>
+<div class="ts-line"><span class="ts-t">[视频① 01:11]</span> 那一整套的 evaluation system 长什么样子呢</div>
+<div class="ts-line"><span class="ts-t">[视频① 01:14]</span> 从拳举来看</div>
+<div class="ts-line"><span class="ts-t">[视频① 01:15]</span> 从用户的真实请求</div>
+<div class="ts-line"><span class="ts-t">[视频① 01:18]</span> 到我们去用 trace 收集所有线上的日质</div>
+<div class="ts-line"><span class="ts-t">[视频① 01:22]</span> 以及 bandage</div>
+<div class="ts-line"><span class="ts-t">[视频① 01:23]</span> 然后进入的是一个数据级的管理</div>
+<div class="ts-line"><span class="ts-t">[视频① 01:25]</span> 这个数据级之前也介绍过</div>
+<div class="ts-line"><span class="ts-t">[视频① 01:26]</span> 黄金数据级从有合成的有人工的</div>
+<div class="ts-line"><span class="ts-t">[视频① 01:29]</span> 有我们真实的线上的 case</div>
+<div class="ts-line"><span class="ts-t">[视频① 01:32]</span> 然后进入 Agent 运行时</div>
+<div class="ts-line"><span class="ts-t">[视频① 01:35]</span> 包括 memory，2，workflow 等等</div>
+<div class="ts-line"><span class="ts-t">[视频① 01:37]</span> 我们将 Agent 运行时的所有的记</div>
+<div class="ts-line"><span class="ts-t">[视频① 01:40]</span> Prompt to reasoning output</div>
+<div class="ts-line"><span class="ts-t">[视频① 01:42]</span> 消息，json，消息全部都保存</div>
+<div class="ts-line"><span class="ts-t">[视频① 01:44]</span> 进入我们的评估引擎</div>
+<div class="ts-line"><span class="ts-t">[视频① 01:46]</span> 评估你选择了什么价值</div>
+<div class="ts-line"><span class="ts-t">[视频① 01:48]</span> 价值有三种方式</div>
+<div class="ts-line"><span class="ts-t">[视频① 01:49]</span> 有弱的价值就是我们说的程序的价值</div>
+<div class="ts-line"><span class="ts-t">[视频① 01:52]</span> 有大模型的价值也有人工闪和</div>
+<div class="ts-line"><span class="ts-t">[视频① 01:56]</span> 那我们带着我们的指标</div>
+<div class="ts-line"><span class="ts-t">[视频① 01:57]</span> 那我们上一篇也介绍了我们的 matrix</div>
+<div class="ts-line"><span class="ts-t">[视频① 02:00]</span> matrix 可能分成质量层的</div>
+<div class="ts-line"><span class="ts-t">[视频① 02:02]</span> Cost latency 的 safety 的</div>
+<div class="ts-line"><span class="ts-t">[视频① 02:03]</span> 以及我们最重要的业务的 qpi 对吧</div>
+<div class="ts-line"><span class="ts-t">[视频① 02:06]</span> 而且这些指标我们会用 dashboard 的去管理</div>
+<div class="ts-line"><span class="ts-t">[视频① 02:08]</span> 因为这样会便利我们产品经理去做业务的权衡</div>
+<div class="ts-line"><span class="ts-t">[视频① 02:12]</span> 然后进入决策</div>
+<div class="ts-line"><span class="ts-t">[视频① 02:14]</span> 就是这个更新</div>
+<div class="ts-line"><span class="ts-t">[视频① 02:15]</span> 这一次的更新到底要不要去发布</div>
+<div class="ts-line"><span class="ts-t">[视频① 02:17]</span> 然后发布完之后</div>
+<div class="ts-line"><span class="ts-t">[视频① 02:18]</span> 我们会做一些错误的分析</div>
+<div class="ts-line"><span class="ts-t">[视频① 02:20]</span> 错误的分析又将这些 Badcase</div>
+<div class="ts-line"><span class="ts-t">[视频① 02:23]</span> 作为我们回归的案例</div>
+<div class="ts-line"><span class="ts-t">[视频① 02:25]</span> 又放进了我们的 data set 里面</div>
+<div class="ts-line"><span class="ts-t">[视频① 02:27]</span> 将 data set 进行演进</div>
+<div class="ts-line"><span class="ts-t">[视频① 02:28]</span> 这就是整个的我们的 evaluation 的一个系统</div>
+<div class="ts-line"><span class="ts-t">[视频① 02:31]</span> 包含的组件其实我们前面</div>
+<div class="ts-line"><span class="ts-t">[视频① 02:33]</span> 也都各自都已经介绍过了</div>
+<div class="ts-line"><span class="ts-t">[视频① 02:35]</span> 包括 data set 对吧</div>
+<div class="ts-line"><span class="ts-t">[视频① 02:37]</span> 包括你的价值 lm 价值</div>
+<div class="ts-line"><span class="ts-t">[视频① 02:39]</span> 包括我们的 matrix</div>
+<div class="ts-line"><span class="ts-t">[视频① 02:41]</span> 这就是一个完整的 evaluation system</div>
+<div class="ts-line"><span class="ts-t">[视频① 02:43]</span> 那我们产品经理如何从零到一去搭建这一套系统呢</div>
+<div class="ts-line"><span class="ts-t">[视频① 02:47]</span> 我们分成五大块</div>
+<div class="ts-line"><span class="ts-t">[视频① 02:49]</span> 现在要定业务目标</div>
+<div class="ts-line"><span class="ts-t">[视频① 02:50]</span> 我们也说过无论是 matrix 还是 data set</div>
+<div class="ts-line"><span class="ts-t">[视频① 02:53]</span> 还是 robox</div>
+<div class="ts-line"><span class="ts-t">[视频① 02:54]</span> 其实你都是紧密的和业务目标相关的</div>
+<div class="ts-line"><span class="ts-t">[视频① 02:57]</span> 就 evaluation 永远不是为了跑分</div>
+<div class="ts-line"><span class="ts-t">[视频① 02:59]</span> 而是为了业务</div>
+<div class="ts-line"><span class="ts-t">[视频① 03:00]</span> 不同 Agent evaluation 完全不同</div>
+<div class="ts-line"><span class="ts-t">[视频① 03:02]</span> 客服 Agent 最重要的是解决率满意率</div>
+<div class="ts-line"><span class="ts-t">[视频① 03:05]</span> coding Agent 最重要的是单元测试通过率等等</div>
+<div class="ts-line"><span class="ts-t">[视频① 03:08]</span> 所以第一步永远不是写 proud</div>
+<div class="ts-line"><span class="ts-t">[视频① 03:10]</span> 而是回答一句话</div>
+<div class="ts-line"><span class="ts-t">[视频① 03:11]</span> 这个 Agent 最重要的一件事情是什么</div>
+<div class="ts-line"><span class="ts-t">[视频① 03:13]</span> 第二步我们就是要建立 data set 了</div>
+<div class="ts-line"><span class="ts-t">[视频① 03:16]</span> 这个其实我们也已经介绍过</div>
+<div class="ts-line"><span class="ts-t">[视频① 03:18]</span> data set 的来源</div>
+<div class="ts-line"><span class="ts-t">[视频① 03:19]</span> 从冷气冻阶段的合成</div>
+<div class="ts-line"><span class="ts-t">[视频① 03:21]</span> 对吧上线之后真实的 Case</div>
+<div class="ts-line"><span class="ts-t">[视频① 03:22]</span> 然后持续演化</div>
+<div class="ts-line"><span class="ts-t">[视频① 03:23]</span> 把先生的 trace 收集进来</div>
+<div class="ts-line"><span class="ts-t">[视频① 03:25]</span> 它跟产品是一起增长的</div>
+<div class="ts-line"><span class="ts-t">[视频① 03:27]</span> 第三步就是我们要选择一个价值</div>
+<div class="ts-line"><span class="ts-t">[视频① 03:29]</span> 能入价值的就因为弱</div>
+<div class="ts-line"><span class="ts-t">[视频① 03:31]</span> 如果入不了的话我们就用 lm</div>
+<div class="ts-line"><span class="ts-t">[视频① 03:33]</span> 就 lm 是算是比较复杂的一个价值</div>
+<div class="ts-line"><span class="ts-t">[视频① 03:36]</span> 因为它牵涉到 Rubric 的指定对吧 Rubric</div>
+<div class="ts-line"><span class="ts-t">[视频① 03:38]</span> 我们也知道这个是非常复杂的一件事情</div>
+<div class="ts-line"><span class="ts-t">[视频① 03:40]</span> 最后肯定要人工去做出来就准了</div>
+<div class="ts-line"><span class="ts-t">[视频① 03:43]</span> 然后就是我们要设计 matrix</div>
+<div class="ts-line"><span class="ts-t">[视频① 03:45]</span> 这个前面也介绍过了</div>
+<div class="ts-line"><span class="ts-t">[视频① 03:46]</span> 就是围绕着业务目标</div>
+<div class="ts-line"><span class="ts-t">[视频① 03:47]</span> 去拆解它的 outcome behavior safety efficiency</div>
+<div class="ts-line"><span class="ts-t">[视频① 03:51]</span> 最后我们一定</div>
+<div class="ts-line"><span class="ts-t">[视频① 03:52]</span> 这个 evaluation 系统一定要有个 dashboard 的</div>
+<div class="ts-line"><span class="ts-t">[视频① 03:56]</span> 我觉得这个是非常值得再详细的介绍一遍的</div>
+<div class="ts-line"><span class="ts-t">[视频① 03:59]</span> 因为很多团队坐在这里可能就停了</div>
+<div class="ts-line"><span class="ts-t">[视频① 04:01]</span> evaluation</div>
+<div class="ts-line"><span class="ts-t">[视频① 04:02]</span> 但是 evaluation 不应该输出一个静态的数据</div>
+<div class="ts-line"><span class="ts-t">[视频① 04:04]</span> 一个 excel</div>
+<div class="ts-line"><span class="ts-t">[视频① 04:06]</span> 应该是一个趋势图</div>
+<div class="ts-line"><span class="ts-t">[视频① 04:07]</span> 所以一定是一个白板</div>
+<div class="ts-line"><span class="ts-t">[视频① 04:08]</span> 白板里包含了各种指标的一个变化趋势</div>
+<div class="ts-line"><span class="ts-t">[视频① 04:11]</span> 对吧</div>
+<div class="ts-line"><span class="ts-t">[视频① 04:12]</span> 因为我们真正关心的肯定是</div>
+<div class="ts-line"><span class="ts-t">[视频① 04:14]</span> 版本之间到底变好了还是变坏了</div>
+<div class="ts-line"><span class="ts-t">[视频① 04:16]</span> 而不是一次实验</div>
+<div class="ts-line"><span class="ts-t">[视频① 04:17]</span> 它是一个连续的体验</div>
+<div class="ts-line"><span class="ts-t">[视频① 04:18]</span> 所以这个也是很重要的</div>
+<div class="ts-line"><span class="ts-t">[视频① 04:19]</span> 我们做这个评估系统</div>
+<div class="ts-line"><span class="ts-t">[视频① 04:21]</span> 不是为了拿一个分</div>
+<div class="ts-line"><span class="ts-t">[视频① 04:22]</span> 而是为了构建数据飞轮</div>
+<div class="ts-line"><span class="ts-t">[视频① 04:25]</span> 所以非常重要的一点</div>
+<div class="ts-line"><span class="ts-t">[视频① 04:26]</span> 就是我们要收集线上用户的 bad case</div>
+<div class="ts-line"><span class="ts-t">[视频① 04:29]</span> 进行详细的分析</div>
+<div class="ts-line"><span class="ts-t">[视频① 04:31]</span> 将这个 bad case</div>
+<div class="ts-line"><span class="ts-t">[视频① 04:32]</span> 首先要夹到我们的环境数据集中</div>
+<div class="ts-line"><span class="ts-t">[视频① 04:34]</span> 然后用 Agent 去进行评估</div>
+<div class="ts-line"><span class="ts-t">[视频① 04:36]</span> 然后去优化</div>
+<div class="ts-line"><span class="ts-t">[视频① 04:37]</span> 然后重新发布</div>
+<div class="ts-line"><span class="ts-t">[视频① 04:38]</span> 我们要确保这个环境数据</div>
+<div class="ts-line"><span class="ts-t">[视频① 04:39]</span> 肯定是随着伴随着线上 Agent 的成长</div>
+<div class="ts-line"><span class="ts-t">[视频① 04:42]</span> 这个 data 赛的应该是越来越多的</div>
+<div class="ts-line"><span class="ts-t">[视频① 04:44]</span> 而且 Agent 的翻车的概率可能是越来越低的</div>
+<div class="ts-line"><span class="ts-t">[视频① 04:46]</span> 因为我们每一个 bad case</div>
+<div class="ts-line"><span class="ts-t">[视频① 04:48]</span> 都要加入我们的回归数据集中</div>
+<div class="ts-line"><span class="ts-t">[视频① 04:49]</span> 也就是我们的黄金测试集中</div>
+<div class="ts-line"><span class="ts-t">[视频① 04:51]</span> 这就构建起了一个评估的数据飞轮</div>
+<div class="ts-line"><span class="ts-t">[视频① 04:53]</span> 那再介绍一些采访的记录</div>
+<div class="ts-line"><span class="ts-t">[视频① 04:55]</span> 就是我觉得第一点就是</div>
+<div class="ts-line"><span class="ts-t">[视频① 04:59]</span> 第一要等一千条</div>
+<div class="ts-line"><span class="ts-t">[视频① 05:00]</span> 我们之前也介绍过</div>
+<div class="ts-line"><span class="ts-t">[视频① 05:01]</span> 就二十到五十条数据</div>
+<div class="ts-line"><span class="ts-t">[视频① 05:03]</span> 就可以完全去跑一个评测的小臂环了</div>
+<div class="ts-line"><span class="ts-t">[视频① 05:05]</span> 不要追求100%的自动化</div>
+<div class="ts-line"><span class="ts-t">[视频① 05:06]</span> 一开始上来肯定是手动的</div>
+<div class="ts-line"><span class="ts-t">[视频① 05:08]</span> 然后最后随着 Agent 的成长</div>
+<div class="ts-line"><span class="ts-t">[视频① 05:11]</span> 慢慢的成长</div>
+<div class="ts-line"><span class="ts-t">[视频① 05:11]</span> 我们才会把它加到 CRCD</div>
+<div class="ts-line"><span class="ts-t">[视频① 05:13]</span> 持续继承的系统自动化</div>
+<div class="ts-line"><span class="ts-t">[视频① 05:15]</span> 再去追求自动化</div>
+<div class="ts-line"><span class="ts-t">[视频① 05:16]</span> 然后一定不要只看单个指标</div>
+<div class="ts-line"><span class="ts-t">[视频① 05:18]</span> 这个前面其实在 MeshX 里面也介绍了</div>
+<div class="ts-line"><span class="ts-t">[视频① 05:20]</span> 一个 Agent 的好坏肯定是多个唯独的指标的</div>
+<div class="ts-line"><span class="ts-t">[视频① 05:23]</span> 然后不要把 Evaluation 当成 QA</div>
+<div class="ts-line"><span class="ts-t">[视频① 05:26]</span> Evaluation 自己本身它也是要不断眼镜的</div>
+<div class="ts-line"><span class="ts-t">[视频① 05:28]</span> 总之吧</div>
+<div class="ts-line"><span class="ts-t">[视频① 05:29]</span> Agent 的 Ever 系系统不是一个可选的测试工具</div>
+<div class="ts-line"><span class="ts-t">[视频① 05:32]</span> 它是 AI 时代产品经理的研发意表盘</div>
+</div></details>
+<details class="ts-box"><summary>视频②（逐字 · 158 句）</summary>
+<div class="ts-lines">
+<div class="ts-line"><span class="ts-t">[视频② 00:00]</span> 如何建立第一批 AI Agent 的评测任务</div>
+<div class="ts-line"><span class="ts-t">[视频② 00:02]</span> 上一期我们讲了</div>
+<div class="ts-line"><span class="ts-t">[视频② 00:03]</span> 如何从0-1搭建 AI Agent 的评测</div>
+<div class="ts-line"><span class="ts-t">[视频② 00:06]</span> 那套框架已经有超过1300次的收藏</div>
+<div class="ts-line"><span class="ts-t">[视频② 00:09]</span> 私信里被问的最多的问题就是</div>
+<div class="ts-line"><span class="ts-t">[视频② 00:11]</span> 框架看懂了</div>
+<div class="ts-line"><span class="ts-t">[视频② 00:12]</span> 但是真正落到项目里面</div>
+<div class="ts-line"><span class="ts-t">[视频② 00:13]</span> 每一部具体应该怎么做呢</div>
+<div class="ts-line"><span class="ts-t">[视频② 00:15]</span> 所以接下来我打算用三期的内容</div>
+<div class="ts-line"><span class="ts-t">[视频② 00:17]</span> 把整套搭建过程逐步拆开</div>
+<div class="ts-line"><span class="ts-t">[视频② 00:19]</span> 第一期我们先搭测评体系的第一层任务籍</div>
+<div class="ts-line"><span class="ts-t">[视频② 00:23]</span> 从真实问题中提取任务</div>
+<div class="ts-line"><span class="ts-t">[视频② 00:25]</span> 把任务写到可以稳定判断</div>
+<div class="ts-line"><span class="ts-t">[视频② 00:27]</span> 在补齐应该发生和不应该发生的对照测试</div>
+<div class="ts-line"><span class="ts-t">[视频② 00:30]</span> 这套方法</div>
+<div class="ts-line"><span class="ts-t">[视频② 00:31]</span> 基于 Anthropic 在2026年1月发布的 AI Agent 的评测方法</div>
+<div class="ts-line"><span class="ts-t">[视频② 00:35]</span> 同时对照了截止2026年8月</div>
+<div class="ts-line"><span class="ts-t">[视频② 00:37]</span> Anthropic 和 OpenAI 仍在更新的官方评测文的</div>
+<div class="ts-line"><span class="ts-t">[视频② 00:41]</span> 第一步先建立一批真实的任务</div>
+<div class="ts-line"><span class="ts-t">[视频② 00:44]</span> 刚开始做 eva</div>
+<div class="ts-line"><span class="ts-t">[视频② 00:45]</span> 不需要先准备几百条的任务</div>
+<div class="ts-line"><span class="ts-t">[视频② 00:47]</span> Anthropic 给出的建议是</div>
+<div class="ts-line"><span class="ts-t">[视频② 00:49]</span> 早期从20-50条真实任务开始</div>
+<div class="ts-line"><span class="ts-t">[视频② 00:52]</span> 就足够建立第一条评测极限</div>
+<div class="ts-line"><span class="ts-t">[视频② 00:54]</span> 第一批种子任务</div>
+<div class="ts-line"><span class="ts-t">[视频② 00:55]</span> 应该优先来自真实任务和真实失败</div>
+<div class="ts-line"><span class="ts-t">[视频② 00:58]</span> 模型更适合在真实种子的基础上扩充便体</div>
+<div class="ts-line"><span class="ts-t">[视频② 01:02]</span> 而不是代替真实任务来源</div>
+<div class="ts-line"><span class="ts-t">[视频② 01:04]</span> 更可靠的做法是先从团队已经拥有的材料中提取</div>
+<div class="ts-line"><span class="ts-t">[视频② 01:08]</span> 开发过程中原本需要人工检查的任务</div>
+<div class="ts-line"><span class="ts-t">[视频② 01:11]</span> 用户最长执行的典型任务</div>
+<div class="ts-line"><span class="ts-t">[视频② 01:13]</span> 已经发生过的 bug</div>
+<div class="ts-line"><span class="ts-t">[视频② 01:14]</span> 以及用户反馈和知识供单里的真实失败</div>
+<div class="ts-line"><span class="ts-t">[视频② 01:17]</span> 比如用户问 Agent</div>
+<div class="ts-line"><span class="ts-t">[视频② 01:19]</span> 今天上海天气怎么样</div>
+<div class="ts-line"><span class="ts-t">[视频② 01:21]</span> Agent 没有调用搜索工具</div>
+<div class="ts-line"><span class="ts-t">[视频② 01:22]</span> 而是直接根据模型已有的知识生成了一个答案</div>
+<div class="ts-line"><span class="ts-t">[视频② 01:26]</span> 如果这来自一条真实用户反馈</div>
+<div class="ts-line"><span class="ts-t">[视频② 01:28]</span> 它就可以被转化成一个 bad case</div>
+<div class="ts-line"><span class="ts-t">[视频② 01:30]</span> 用户需要实实信息</div>
+<div class="ts-line"><span class="ts-t">[视频② 01:32]</span> 但是 Agent 的没有搜索</div>
+<div class="ts-line"><span class="ts-t">[视频② 01:33]</span> 我们可以把它先放到初始任务清单</div>
+<div class="ts-line"><span class="ts-t">[视频② 01:36]</span> Azure 被当前的评测文档也强调</div>
+<div class="ts-line"><span class="ts-t">[视频② 01:39]</span> 评测任务应该尽量的贴近真实使用分布</div>
+<div class="ts-line"><span class="ts-t">[视频② 01:42]</span> 同时覆盖必要的边界情况</div>
+<div class="ts-line"><span class="ts-t">[视频② 01:44]</span> 收集以后</div>
+<div class="ts-line"><span class="ts-t">[视频② 01:45]</span> 按照任务对用户结果的影响程度进行排序</div>
+<div class="ts-line"><span class="ts-t">[视频② 01:49]</span> 从中选出第一批20-50条</div>
+<div class="ts-line"><span class="ts-t">[视频② 01:51]</span> 这一步的产物是一份来自</div>
+<div class="ts-line"><span class="ts-t">[视频② 01:53]</span> 真实使用场景的初始任务清单</div>
+<div class="ts-line"><span class="ts-t">[视频② 01:56]</span> 它不需要一次覆盖所有的问题</div>
+<div class="ts-line"><span class="ts-t">[视频② 01:58]</span> 阶段的目标是先建立一条可以运行</div>
+<div class="ts-line"><span class="ts-t">[视频② 02:01]</span> 可以重复比较的评测极限</div>
+<div class="ts-line"><span class="ts-t">[视频② 02:03]</span> 等真实种子任务确定以后</div>
+<div class="ts-line"><span class="ts-t">[视频② 02:05]</span> 可以再用模型扩充表达辩体和边界案例</div>
+<div class="ts-line"><span class="ts-t">[视频② 02:09]</span> 但是新增任务仍然需要人工检查</div>
+<div class="ts-line"><span class="ts-t">[视频② 02:11]</span> 不能直接进入到评测级</div>
+<div class="ts-line"><span class="ts-t">[视频② 02:13]</span> 第二步</div>
+<div class="ts-line"><span class="ts-t">[视频② 02:14]</span> 把 task 写到可以稳定判断</div>
+<div class="ts-line"><span class="ts-t">[视频② 02:16]</span> 收集到真实案例</div>
+<div class="ts-line"><span class="ts-t">[视频② 02:17]</span> 不代表它已经是一条合格的 evil task</div>
+<div class="ts-line"><span class="ts-t">[视频② 02:20]</span> 比如说刚刚这条天气任务</div>
+<div class="ts-line"><span class="ts-t">[视频② 02:22]</span> 如果我们只写回答用户今天的天气</div>
+<div class="ts-line"><span class="ts-t">[视频② 02:25]</span> 仍然无法稳定的评测</div>
+<div class="ts-line"><span class="ts-t">[视频② 02:27]</span> Azrobate 对 task 的基本定义是</div>
+<div class="ts-line"><span class="ts-t">[视频② 02:29]</span> 一项具有明确输入和成功标准的独立测试</div>
+<div class="ts-line"><span class="ts-t">[视频② 02:33]</span> 因此我们需要继续写清楚</div>
+<div class="ts-line"><span class="ts-t">[视频② 02:35]</span> 输入是用户询问今天上海的天气</div>
+<div class="ts-line"><span class="ts-t">[视频② 02:37]</span> AZEN 可以调用天气查询工具</div>
+<div class="ts-line"><span class="ts-t">[视频② 02:40]</span> 成功的标准是 AZEN 调用工具</div>
+<div class="ts-line"><span class="ts-t">[视频② 02:42]</span> 并依据工具返回的当前信息回答</div>
+<div class="ts-line"><span class="ts-t">[视频② 02:45]</span> 不能把模型记忆中的天气信息</div>
+<div class="ts-line"><span class="ts-t">[视频② 02:47]</span> 当成实实结果</div>
+<div class="ts-line"><span class="ts-t">[视频② 02:48]</span> 到这里这条 task</div>
+<div class="ts-line"><span class="ts-t">[视频② 02:50]</span> 才同时拥有了明确输入和成功标准</div>
+<div class="ts-line"><span class="ts-t">[视频② 02:53]</span> 更重要的是</div>
+<div class="ts-line"><span class="ts-t">[视频② 02:53]</span> reader_a 准备检查的内容</div>
+<div class="ts-line"><span class="ts-t">[视频② 02:55]</span> 必须提前出现在任务说明里</div>
+<div class="ts-line"><span class="ts-t">[视频② 02:57]</span> 不能在 task 里只要求回答今天的天气</div>
+<div class="ts-line"><span class="ts-t">[视频② 03:00]</span> 却在评分的时候</div>
+<div class="ts-line"><span class="ts-t">[视频② 03:02]</span> 额外的去检查任务说明里</div>
+<div class="ts-line"><span class="ts-t">[视频② 03:03]</span> 从未要求的固定格式</div>
+<div class="ts-line"><span class="ts-t">[视频② 03:05]</span> 信息自断或执行条件</div>
+<div class="ts-line"><span class="ts-t">[视频② 03:07]</span> 写完以后用两个方法来检查</div>
+<div class="ts-line"><span class="ts-t">[视频② 03:09]</span> 第一个用专家一致性反查 task</div>
+<div class="ts-line"><span class="ts-t">[视频② 03:12]</span> 让两名了解业务的人</div>
+<div class="ts-line"><span class="ts-t">[视频② 03:13]</span> 独立去阅读这条 task</div>
+<div class="ts-line"><span class="ts-t">[视频② 03:15]</span> 如果两个人对什么算通过</div>
+<div class="ts-line"><span class="ts-t">[视频② 03:17]</span> 什么算失败仍然意见不同</div>
+<div class="ts-line"><span class="ts-t">[视频② 03:19]</span> 说明 task 还不够明确</div>
+<div class="ts-line"><span class="ts-t">[视频② 03:21]</span> 第二个用参考解法验证 task 和 Grader</div>
+<div class="ts-line"><span class="ts-t">[视频② 03:24]</span> 为 task 准备一份</div>
+<div class="ts-line"><span class="ts-t">[视频② 03:26]</span> 与之能够通过所有 Grader 的参考结果</div>
+<div class="ts-line"><span class="ts-t">[视频② 03:28]</span> 参考解法不是为了要求</div>
+<div class="ts-line"><span class="ts-t">[视频② 03:30]</span> Agent 复刻唯一的执行路径</div>
+<div class="ts-line"><span class="ts-t">[视频② 03:32]</span> 它只证明两件事</div>
+<div class="ts-line"><span class="ts-t">[视频② 03:34]</span> 第一这项任务确实是可以完成</div>
+<div class="ts-line"><span class="ts-t">[视频② 03:36]</span> 二当前的任务说明和 Grader</div>
+<div class="ts-line"><span class="ts-t">[视频② 03:38]</span> 能够正常工作</div>
+<div class="ts-line"><span class="ts-t">[视频② 03:40]</span> 苏要被凯给出一个很实用的</div>
+<div class="ts-line"><span class="ts-t">[视频② 03:42]</span> 反查信号</div>
+<div class="ts-line"><span class="ts-t">[视频② 03:42]</span> 如果前沿模型尝试</div>
+<div class="ts-line"><span class="ts-t">[视频② 03:44]</span> 很多次仍然一次都无法通过</div>
+<div class="ts-line"><span class="ts-t">[视频② 03:47]</span> 那么我们应该先检查 task 和 Grader</div>
+<div class="ts-line"><span class="ts-t">[视频② 03:49]</span> 是否有问题</div>
+<div class="ts-line"><span class="ts-t">[视频② 03:50]</span> 而不是马上认定模型没有能力</div>
+<div class="ts-line"><span class="ts-t">[视频② 03:52]</span> 在 OpenAI Evers API 里面</div>
+<div class="ts-line"><span class="ts-t">[视频② 03:54]</span> 这一步会进一步落实为</div>
+<div class="ts-line"><span class="ts-t">[视频② 03:56]</span> 为每条测试数据定义结构化自断</div>
+<div class="ts-line"><span class="ts-t">[视频② 03:59]</span> 再让 Grader 调用这些自断执行测试标准</div>
+<div class="ts-line"><span class="ts-t">[视频② 04:02]</span> 三步同时设计正向和反向任务</div>
+<div class="ts-line"><span class="ts-t">[视频② 04:05]</span> 很多测评级指验证 Agent</div>
+<div class="ts-line"><span class="ts-t">[视频② 04:06]</span> 该做一件事时能不能完成</div>
+<div class="ts-line"><span class="ts-t">[视频② 04:09]</span> 但是 Agent 不仅要在条件成立时出发行为</div>
+<div class="ts-line"><span class="ts-t">[视频② 04:12]</span> 也要在条件不成立的时候保持克制</div>
+<div class="ts-line"><span class="ts-t">[视频② 04:15]</span> 刚才的天气任务指验证了 Agent</div>
+<div class="ts-line"><span class="ts-t">[视频② 04:17]</span> 在该搜索的时候能不能搜索</div>
+<div class="ts-line"><span class="ts-t">[视频② 04:19]</span> 如果评测级里面全是这种任务</div>
+<div class="ts-line"><span class="ts-t">[视频② 04:21]</span> 最后可能优化出一个遇到任何问题</div>
+<div class="ts-line"><span class="ts-t">[视频② 04:23]</span> 都要先搜索的 Agent</div>
+<div class="ts-line"><span class="ts-t">[视频② 04:25]</span> 所以还要补一条反向任务</div>
+<div class="ts-line"><span class="ts-t">[视频② 04:27]</span> 水在标准大气压下的费点是多少</div>
+<div class="ts-line"><span class="ts-t">[视频② 04:29]</span> 这是一条稳定事实</div>
+<div class="ts-line"><span class="ts-t">[视频② 04:31]</span> Agent 的不需要调用实时搜索工具</div>
+<div class="ts-line"><span class="ts-t">[视频② 04:33]</span> 所有被在位 CloudAI 的搜索能力建立评测时</div>
+<div class="ts-line"><span class="ts-t">[视频② 04:37]</span> 也采用了这种同时覆盖两个方向的方法</div>
+<div class="ts-line"><span class="ts-t">[视频② 04:40]</span> 这样检查的才不只是 Agent 的</div>
+<div class="ts-line"><span class="ts-t">[视频② 04:42]</span> 会不会调用搜索工具</div>
+<div class="ts-line"><span class="ts-t">[视频② 04:43]</span> 还包括它能不能判断什么时候不需要调用</div>
+<div class="ts-line"><span class="ts-t">[视频② 04:46]</span> 这种设计通常被称为平衡问题级</div>
+<div class="ts-line"><span class="ts-t">[视频② 04:49]</span> 这里的平衡不一定要求正反任务数量完全相等</div>
+<div class="ts-line"><span class="ts-t">[视频② 04:53]</span> 见识不能只评测行为的一册</div>
+<div class="ts-line"><span class="ts-t">[视频② 04:55]</span> 并且整体分布要尽量接近真实使用情况</div>
+<div class="ts-line"><span class="ts-t">[视频② 04:58]</span> 设计的时候可以先确定</div>
+<div class="ts-line"><span class="ts-t">[视频② 05:00]</span> 这组任务要检查的目标行为</div>
+<div class="ts-line"><span class="ts-t">[视频② 05:02]</span> 然后同时加入行为应该发生的任务</div>
+<div class="ts-line"><span class="ts-t">[视频② 05:05]</span> 行为不应该发生的任务</div>
+<div class="ts-line"><span class="ts-t">[视频② 05:06]</span> 以及最容易混淆的边界任务</div>
+<div class="ts-line"><span class="ts-t">[视频② 05:08]</span> 这里还要补充一个边界</div>
+<div class="ts-line"><span class="ts-t">[视频② 05:10]</span> 这组一瓦检查的目标</div>
+<div class="ts-line"><span class="ts-t">[视频② 05:11]</span> 本来就是 Agent 的搜索决策</div>
+<div class="ts-line"><span class="ts-t">[视频② 05:14]</span> 所以是否调用搜索工具</div>
+<div class="ts-line"><span class="ts-t">[视频② 05:15]</span> 可以成为成功的标准</div>
+<div class="ts-line"><span class="ts-t">[视频② 05:17]</span> 如果说评测目标</div>
+<div class="ts-line"><span class="ts-t">[视频② 05:18]</span> 只是最终答案是否正确</div>
+<div class="ts-line"><span class="ts-t">[视频② 05:20]</span> 就不应该强行规定 Agent</div>
+<div class="ts-line"><span class="ts-t">[视频② 05:22]</span> 必须采用同一条执行路径</div>
+<div class="ts-line"><span class="ts-t">[视频② 05:24]</span> 所以第一批 Agent 的依保</div>
+<div class="ts-line"><span class="ts-t">[视频② 05:25]</span> 不是搜集一批 Prompt</div>
+<div class="ts-line"><span class="ts-t">[视频② 05:27]</span> 再给输出打分</div>
+<div class="ts-line"><span class="ts-t">[视频② 05:28]</span> 真正要完成的是三件事</div>
+<div class="ts-line"><span class="ts-t">[视频② 05:30]</span> 从真实失败和真实任务中建立测试集</div>
+<div class="ts-line"><span class="ts-t">[视频② 05:33]</span> 把每条 Task 写到输入和成功标准足够明确</div>
+<div class="ts-line"><span class="ts-t">[视频② 05:36]</span> 再用平衡问题级</div>
+<div class="ts-line"><span class="ts-t">[视频② 05:38]</span> 同时检查行为不足和行为过渡</div>
+<div class="ts-line"><span class="ts-t">[视频② 05:40]</span> 做到这三步以后</div>
+<div class="ts-line"><span class="ts-t">[视频② 05:41]</span> 你才真正拥有了一批可以评测 Agent 的任务</div>
+<div class="ts-line"><span class="ts-t">[视频② 05:44]</span> 下一期我们继续搭建运行和评分部分</div>
+</div></details>
+<details class="ts-box"><summary>视频③（逐字 · 213 句）</summary>
+<div class="ts-lines">
+<div class="ts-line"><span class="ts-t">[视频③ 00:00]</span> 如何搭建 Agent 评测的运行与评分系统</div>
+<div class="ts-line"><span class="ts-t">[视频③ 00:03]</span> 同一个 Agent 跑同一批评测任务</div>
+<div class="ts-line"><span class="ts-t">[视频③ 00:05]</span> 分数为什么会忽高忽低</div>
+<div class="ts-line"><span class="ts-t">[视频③ 00:07]</span> 到底是 Agent 能力发生了变化</div>
+<div class="ts-line"><span class="ts-t">[视频③ 00:09]</span> 还是运行环境和评分方法</div>
+<div class="ts-line"><span class="ts-t">[视频③ 00:11]</span> 正在制造额外的噪声</div>
+<div class="ts-line"><span class="ts-t">[视频③ 00:13]</span> 这是从0到1搭建 Agent 评测系列的第二期</div>
+<div class="ts-line"><span class="ts-t">[视频③ 00:17]</span> 上一期我们建立了第一批评测任务</div>
+<div class="ts-line"><span class="ts-t">[视频③ 00:19]</span> 解决了测什么</div>
+<div class="ts-line"><span class="ts-t">[视频③ 00:20]</span> 那这一期我们要继续搭建运行和评分系统</div>
+<div class="ts-line"><span class="ts-t">[视频③ 00:23]</span> 解决怎么运行怎么判分</div>
+<div class="ts-line"><span class="ts-t">[视频③ 00:25]</span> 才能让结果更可信</div>
+<div class="ts-line"><span class="ts-t">[视频③ 00:28]</span> 我们会从隔离环境</div>
+<div class="ts-line"><span class="ts-t">[视频③ 00:29]</span> outcon 和 transcript</div>
+<div class="ts-line"><span class="ts-t">[视频③ 00:30]</span> 以及三类 Grader 入手</div>
+<div class="ts-line"><span class="ts-t">[视频③ 00:32]</span> 搭出一套可以重复运行</div>
+<div class="ts-line"><span class="ts-t">[视频③ 00:34]</span> 可以解释也可以复查的评分系统</div>
+<div class="ts-line"><span class="ts-t">[视频③ 00:36]</span> 这套方法对应</div>
+<div class="ts-line"><span class="ts-t">[视频③ 00:37]</span> Swabic Demystifying Evoles for AI Agent</div>
+<div class="ts-line"><span class="ts-t">[视频③ 00:40]</span> 从0到1路线里的第四步和第五步</div>
+<div class="ts-line"><span class="ts-t">[视频③ 00:43]</span> 同时参考了 OpenAI 当前的</div>
+<div class="ts-line"><span class="ts-t">[视频③ 00:45]</span> EvaAPS 和 Gradients 文档</div>
+<div class="ts-line"><span class="ts-t">[视频③ 00:47]</span> 第一步</div>
+<div class="ts-line"><span class="ts-t">[视频③ 00:48]</span> 让每一次的戳二从可比的环境开始</div>
+<div class="ts-line"><span class="ts-t">[视频③ 00:51]</span> 上一期我们把今天上海天气怎么样</div>
+<div class="ts-line"><span class="ts-t">[视频③ 00:53]</span> 写成了一条评测的任务</div>
+<div class="ts-line"><span class="ts-t">[视频③ 00:54]</span> 现在准备让 Agent 运行它</div>
+<div class="ts-line"><span class="ts-t">[视频③ 00:57]</span> 如果每次的评测</div>
+<div class="ts-line"><span class="ts-t">[视频③ 00:58]</span> 都直接调用真实的天气接口</div>
+<div class="ts-line"><span class="ts-t">[视频③ 01:00]</span> 第一次返回晴天</div>
+<div class="ts-line"><span class="ts-t">[视频③ 01:01]</span> 第二次返回正语</div>
+<div class="ts-line"><span class="ts-t">[视频③ 01:02]</span> 第三次又遇到接口超时</div>
+<div class="ts-line"><span class="ts-t">[视频③ 01:04]</span> 那么三次 trial 面对的</div>
+<div class="ts-line"><span class="ts-t">[视频③ 01:06]</span> 已经不是同一项条件</div>
+<div class="ts-line"><span class="ts-t">[视频③ 01:07]</span> 分数的变化可能来自 Agent</div>
+<div class="ts-line"><span class="ts-t">[视频③ 01:09]</span> 也可能来自外部数据和工具故障</div>
+<div class="ts-line"><span class="ts-t">[视频③ 01:12]</span> 这两类的原因混在一起</div>
+<div class="ts-line"><span class="ts-t">[视频③ 01:13]</span> 测评的结果就无法解释</div>
+<div class="ts-line"><span class="ts-t">[视频③ 01:15]</span> 所以在 Eva 里可以为天气工具</div>
+<div class="ts-line"><span class="ts-t">[视频③ 01:17]</span> 准备一份固定的测试快照</div>
+<div class="ts-line"><span class="ts-t">[视频③ 01:19]</span> 每次输入相同的程式和日期</div>
+<div class="ts-line"><span class="ts-t">[视频③ 01:22]</span> 工具都返回同一份已知数据</div>
+<div class="ts-line"><span class="ts-t">[视频③ 01:24]</span> 每次锤号开始前</div>
+<div class="ts-line"><span class="ts-t">[视频③ 01:25]</span> 还要重置对话</div>
+<div class="ts-line"><span class="ts-t">[视频③ 01:27]</span> 任务状态和工具环境</div>
+<div class="ts-line"><span class="ts-t">[视频③ 01:29]</span> 避免上一次运行留下的消息</div>
+<div class="ts-line"><span class="ts-t">[视频③ 01:31]</span> 文件或者是数据</div>
+<div class="ts-line"><span class="ts-t">[视频③ 01:32]</span> 影响到下一次的结果</div>
+<div class="ts-line"><span class="ts-t">[视频③ 01:33]</span> 同时固定这次评测使用的模型版本</div>
+<div class="ts-line"><span class="ts-t">[视频③ 01:36]</span> Agent 的配置</div>
+<div class="ts-line"><span class="ts-t">[视频③ 01:37]</span> 工具定义和任务数据版本</div>
+<div class="ts-line"><span class="ts-t">[视频③ 01:39]</span> 工具超时时</div>
+<div class="ts-line"><span class="ts-t">[视频③ 01:40]</span> 环境启动失败等基础设施</div>
+<div class="ts-line"><span class="ts-t">[视频③ 01:42]</span> 错误也要单独记录</div>
+<div class="ts-line"><span class="ts-t">[视频③ 01:44]</span> 这类的 trial 应该标记为</div>
+<div class="ts-line"><span class="ts-t">[视频③ 01:46]</span> 无效运行并重视</div>
+<div class="ts-line"><span class="ts-t">[视频③ 01:47]</span> 不能直接算成 Agent 的任务失败</div>
+<div class="ts-line"><span class="ts-t">[视频③ 01:49]</span> 如果这些条件没有留下记录</div>
+<div class="ts-line"><span class="ts-t">[视频③ 01:51]</span> 分数变了以后</div>
+<div class="ts-line"><span class="ts-t">[视频③ 01:52]</span> 你无法知道系统到底改过什么</div>
+<div class="ts-line"><span class="ts-t">[视频③ 01:55]</span> 隔离环境不会消除模型本身的非确定性</div>
+<div class="ts-line"><span class="ts-t">[视频③ 01:58]</span> 它的作用是排除与 Agent 的能力</div>
+<div class="ts-line"><span class="ts-t">[视频③ 02:00]</span> 无关的干扰</div>
+<div class="ts-line"><span class="ts-t">[视频③ 02:01]</span> 让不同的 trial</div>
+<div class="ts-line"><span class="ts-t">[视频③ 02:01]</span> 尽可能的在可比的条件下运行</div>
+<div class="ts-line"><span class="ts-t">[视频③ 02:04]</span> 这一步的产物是一个可以重置</div>
+<div class="ts-line"><span class="ts-t">[视频③ 02:07]</span> 记录版本并且区分 Agent 的失败</div>
+<div class="ts-line"><span class="ts-t">[视频③ 02:09]</span> 和环境失败的运行条件</div>
+<div class="ts-line"><span class="ts-t">[视频③ 02:11]</span> 第二步</div>
+<div class="ts-line"><span class="ts-t">[视频③ 02:11]</span> 同时保留 Outcome 和 Transcript</div>
+<div class="ts-line"><span class="ts-t">[视频③ 02:14]</span> 环境准备好以后</div>
+<div class="ts-line"><span class="ts-t">[视频③ 02:15]</span> everharness 才能启动一次 trial</div>
+<div class="ts-line"><span class="ts-t">[视频③ 02:17]</span> 这次运行至少要留下两类记录</div>
+<div class="ts-line"><span class="ts-t">[视频③ 02:19]</span> 第一类 shoutcon</div>
+<div class="ts-line"><span class="ts-t">[视频③ 02:20]</span> 它记录任务结束时真正产生的结果</div>
+<div class="ts-line"><span class="ts-t">[视频③ 02:23]</span> 天气查询是一项指读任务</div>
+<div class="ts-line"><span class="ts-t">[视频③ 02:25]</span> 它的 Outcome 是 Agent 最后返回的天气信息</div>
+<div class="ts-line"><span class="ts-t">[视频③ 02:28]</span> 这份结果是否与工具数据一致</div>
+<div class="ts-line"><span class="ts-t">[视频③ 02:30]</span> 后面再交给规的判断</div>
+<div class="ts-line"><span class="ts-t">[视频③ 02:32]</span> 如果 Agent 会写入文件数据库或者其他系统</div>
+<div class="ts-line"><span class="ts-t">[视频③ 02:35]</span> Outcome 还要检查任务结束后的外部状态</div>
+<div class="ts-line"><span class="ts-t">[视频③ 02:38]</span> 第二类是 transcript</div>
+<div class="ts-line"><span class="ts-t">[视频③ 02:40]</span> 也叫 trace 或者是 Trajectory</div>
+<div class="ts-line"><span class="ts-t">[视频③ 02:42]</span> 它保留 Agent 在这次 trial 中的完整可观测的轨迹</div>
+<div class="ts-line"><span class="ts-t">[视频③ 02:46]</span> 包括模型输出</div>
+<div class="ts-line"><span class="ts-t">[视频③ 02:47]</span> 工具调用</div>
+<div class="ts-line"><span class="ts-t">[视频③ 02:48]</span> 工具返回</div>
+<div class="ts-line"><span class="ts-t">[视频③ 02:49]</span> 中间消息和状态变化</div>
+<div class="ts-line"><span class="ts-t">[视频③ 02:50]</span> 如果系统可以记录还可以附带轮数</div>
+<div class="ts-line"><span class="ts-t">[视频③ 02:53]</span> token 延迟和错误类型</div>
+<div class="ts-line"><span class="ts-t">[视频③ 02:55]</span> Outcome 用来判断任务最后是否完成</div>
+<div class="ts-line"><span class="ts-t">[视频③ 02:58]</span> transcript 用来解释它为什么成功</div>
+<div class="ts-line"><span class="ts-t">[视频③ 03:00]</span> 或者是失败发生在哪一步</div>
+<div class="ts-line"><span class="ts-t">[视频③ 03:02]</span> 比如 Agent 最后给出了正确天气</div>
+<div class="ts-line"><span class="ts-t">[视频③ 03:04]</span> 但是 transcript 显示它没有调用工具</div>
+<div class="ts-line"><span class="ts-t">[视频③ 03:07]</span> 如果这条 task 评测的</div>
+<div class="ts-line"><span class="ts-t">[视频③ 03:08]</span> 是实时的搜索决策</div>
+<div class="ts-line"><span class="ts-t">[视频③ 03:10]</span> 那么这次的 trial 就不能通过</div>
+<div class="ts-line"><span class="ts-t">[视频③ 03:12]</span> 因为它的结果只是碰巧正确</div>
+<div class="ts-line"><span class="ts-t">[视频③ 03:14]</span> 没有使用 task 要求的实施信息</div>
+<div class="ts-line"><span class="ts-t">[视频③ 03:16]</span> 但如果 task 指评测最终结果是否正确</div>
+<div class="ts-line"><span class="ts-t">[视频③ 03:19]</span> 就不应该因为 Agent 没有走某条预设的路径而扣分</div>
+<div class="ts-line"><span class="ts-t">[视频③ 03:23]</span> 所以是否检查 transcript 取决于 task 一开始定义的成功标准</div>
+<div class="ts-line"><span class="ts-t">[视频③ 03:27]</span> Outcome 优先验证完成结果</div>
+<div class="ts-line"><span class="ts-t">[视频③ 03:29]</span> transcript 主要负责诊断效率安全</div>
+<div class="ts-line"><span class="ts-t">[视频③ 03:32]</span> 以及 task 已经明确要求的关键行为</div>
+<div class="ts-line"><span class="ts-t">[视频③ 03:35]</span> 第三步让三类 Grader 分工</div>
+<div class="ts-line"><span class="ts-t">[视频③ 03:37]</span> 有了 Outcome 和 transcript 下一步才是判分</div>
+<div class="ts-line"><span class="ts-t">[视频③ 03:40]</span> 第一类是 code_grader</div>
+<div class="ts-line"><span class="ts-t">[视频③ 03:41]</span> 只要成功条件可以被程序精确的验证</div>
+<div class="ts-line"><span class="ts-t">[视频③ 03:44]</span> 就应该优先使用它</div>
+<div class="ts-line"><span class="ts-t">[视频③ 03:45]</span> 天气任务可以检查三件事</div>
+<div class="ts-line"><span class="ts-t">[视频③ 03:47]</span> Agent 是否调用了天气工具</div>
+<div class="ts-line"><span class="ts-t">[视频③ 03:49]</span> 程式和日期参数是否正确</div>
+<div class="ts-line"><span class="ts-t">[视频③ 03:52]</span> 最终回答里的温度和天气状态</div>
+<div class="ts-line"><span class="ts-t">[视频③ 03:54]</span> 是否与工具返回的一致</div>
+<div class="ts-line"><span class="ts-t">[视频③ 03:55]</span> 这一类的检查比较快便宜</div>
+<div class="ts-line"><span class="ts-t">[视频③ 03:57]</span> 而且可以重复</div>
+<div class="ts-line"><span class="ts-t">[视频③ 03:58]</span> 但是不适合评价开放性的表达质量</div>
+<div class="ts-line"><span class="ts-t">[视频③ 04:01]</span> 第二类是 model-based Grader</div>
+<div class="ts-line"><span class="ts-t">[视频③ 04:03]</span> 也就是我们常说的 LLMS judge</div>
+<div class="ts-line"><span class="ts-t">[视频③ 04:06]</span> 它可以评价回答是否清楚</div>
+<div class="ts-line"><span class="ts-t">[视频③ 04:08]</span> 是否正确使用了工具证据</div>
+<div class="ts-line"><span class="ts-t">[视频③ 04:10]</span> 以及有没有添加工具结果无法支持的结论</div>
+<div class="ts-line"><span class="ts-t">[视频③ 04:13]</span> 它的 Rubric 不能只写评价回答质量</div>
+<div class="ts-line"><span class="ts-t">[视频③ 04:16]</span> 应该把正确性证据一致性和表达质量分开</div>
+<div class="ts-line"><span class="ts-t">[视频③ 04:21]</span> 每一个维度分别给出可判断的标准</div>
+<div class="ts-line"><span class="ts-t">[视频③ 04:23]</span> 当证据不足的时候</div>
+<div class="ts-line"><span class="ts-t">[视频③ 04:24]</span> 还应该允许 Gui 的返回 unknown</div>
+<div class="ts-line"><span class="ts-t">[视频③ 04:26]</span> 避免它强猜一个分数</div>
+<div class="ts-line"><span class="ts-t">[视频③ 04:28]</span> 第三类是 HumanGui 的</div>
+<div class="ts-line"><span class="ts-t">[视频③ 04:30]</span> 人工评分其实不需要覆盖每一次的 trial</div>
+<div class="ts-line"><span class="ts-t">[视频③ 04:32]</span> 它最重要的作用是准备一批专家已经确认的样本</div>
+<div class="ts-line"><span class="ts-t">[视频③ 04:36]</span> 定期的去检查 LLMSGui 的判断</div>
+<div class="ts-line"><span class="ts-t">[视频③ 04:38]</span> 是否仍然和专家一致</div>
+<div class="ts-line"><span class="ts-t">[视频③ 04:40]</span> 如果模型判断和人工判断持续分歧</div>
+<div class="ts-line"><span class="ts-t">[视频③ 04:43]</span> 应该先修正 Rubric</div>
+<div class="ts-line"><span class="ts-t">[视频③ 04:45]</span> 证据输入或者是分类的边界</div>
+<div class="ts-line"><span class="ts-t">[视频③ 04:47]</span> 不要直接去扩大自动评分的规模</div>
+<div class="ts-line"><span class="ts-t">[视频③ 04:49]</span> 所以三类 Gui 的顺序其实很明确</div>
+<div class="ts-line"><span class="ts-t">[视频③ 04:52]</span> 能够确定性验证的条件先交给代码</div>
+<div class="ts-line"><span class="ts-t">[视频③ 04:55]</span> 需要理解语异和质量的部分再交给模型</div>
+<div class="ts-line"><span class="ts-t">[视频③ 04:58]</span> 最后用少量的人工样本</div>
+<div class="ts-line"><span class="ts-t">[视频③ 04:59]</span> 持续的校准模型的评分</div>
+<div class="ts-line"><span class="ts-t">[视频③ 05:01]</span> OpenAI 当前的 GuiDins API</div>
+<div class="ts-line"><span class="ts-t">[视频③ 05:03]</span> 提供了自抚串的检查</div>
+<div class="ts-line"><span class="ts-t">[视频③ 05:04]</span> 文本相思度</div>
+<div class="ts-line"><span class="ts-t">[视频③ 05:05]</span> 模型评分</div>
+<div class="ts-line"><span class="ts-t">[视频③ 05:06]</span> PythonGrader 和 MultiGrader 等方式</div>
+<div class="ts-line"><span class="ts-t">[视频③ 05:09]</span> 评测数据和模型输出</div>
+<div class="ts-line"><span class="ts-t">[视频③ 05:11]</span> 可以通过结构化变量传入不同的 Grader</div>
+<div class="ts-line"><span class="ts-t">[视频③ 05:14]</span> 第四步</div>
+<div class="ts-line"><span class="ts-t">[视频③ 05:14]</span> 别让一个总分掩盖关键失败</div>
+<div class="ts-line"><span class="ts-t">[视频③ 05:17]</span> 三类 Grader 完成各自的判断以后</div>
+<div class="ts-line"><span class="ts-t">[视频③ 05:19]</span> 还需要决定这些分数如何组合</div>
+<div class="ts-line"><span class="ts-t">[视频③ 05:21]</span> 天气任务可以拆成四个维度</div>
+<div class="ts-line"><span class="ts-t">[视频③ 05:23]</span> 工具检测是否正确</div>
+<div class="ts-line"><span class="ts-t">[视频③ 05:24]</span> 调用参数是否正确</div>
+<div class="ts-line"><span class="ts-t">[视频③ 05:26]</span> 回答是否忠于工具数据</div>
+<div class="ts-line"><span class="ts-t">[视频③ 05:28]</span> 表达是否清晰</div>
+<div class="ts-line"><span class="ts-t">[视频③ 05:29]</span> 前三项决定任务是否真正成功</div>
+<div class="ts-line"><span class="ts-t">[视频③ 05:31]</span> 他们应该是必须通过的硬条件</div>
+<div class="ts-line"><span class="ts-t">[视频③ 05:33]</span> 表达质量可以作为独立的分数</div>
+<div class="ts-line"><span class="ts-t">[视频③ 05:35]</span> 用来区分</div>
+<div class="ts-line"><span class="ts-t">[视频③ 05:36]</span> 完成任务以后的质量差异</div>
+<div class="ts-line"><span class="ts-t">[视频③ 05:38]</span> 但是如果把他们全部算进一个平均分</div>
+<div class="ts-line"><span class="ts-t">[视频③ 05:40]</span> 一次没有搜索</div>
+<div class="ts-line"><span class="ts-t">[视频③ 05:41]</span> 但是表达很好的回答</div>
+<div class="ts-line"><span class="ts-t">[视频③ 05:43]</span> 仍然可以拿到看似不错的总分</div>
+<div class="ts-line"><span class="ts-t">[视频③ 05:45]</span> 这个分数无法反应任务是成功的</div>
+<div class="ts-line"><span class="ts-t">[视频③ 05:47]</span> 更稳妥的做法</div>
+<div class="ts-line"><span class="ts-t">[视频③ 05:48]</span> 是先用硬条件判断任务是否通过</div>
+<div class="ts-line"><span class="ts-t">[视频③ 05:51]</span> 再在通过的释放中比较软性质量</div>
+<div class="ts-line"><span class="ts-t">[视频③ 05:53]</span> 开放性的质量</div>
+<div class="ts-line"><span class="ts-t">[视频③ 05:55]</span> 任务也可以设置部分的得分</div>
+<div class="ts-line"><span class="ts-t">[视频③ 05:57]</span> 但是每一部分都要对应一个</div>
+<div class="ts-line"><span class="ts-t">[视频③ 05:58]</span> 独立的可以解释的成功维度</div>
+<div class="ts-line"><span class="ts-t">[视频③ 06:00]</span> 第五步</div>
+<div class="ts-line"><span class="ts-t">[视频③ 06:01]</span> 先测 Grader 再用 Grader 测 Agent</div>
+<div class="ts-line"><span class="ts-t">[视频③ 06:03]</span> Grader 本身也是一个需要验证的系统</div>
+<div class="ts-line"><span class="ts-t">[视频③ 06:05]</span> 如果 Grader 会把正确的回答判错</div>
+<div class="ts-line"><span class="ts-t">[视频③ 06:08]</span> 后面越跑越多</div>
+<div class="ts-line"><span class="ts-t">[视频③ 06:09]</span> 积累的只会是更多的错误分数</div>
+<div class="ts-line"><span class="ts-t">[视频③ 06:11]</span> 第一期已经为 Task 准备了参考解法</div>
+<div class="ts-line"><span class="ts-t">[视频③ 06:13]</span> 现在可以再准备几组已知的样本</div>
+<div class="ts-line"><span class="ts-t">[视频③ 06:16]</span> 一组应该通过</div>
+<div class="ts-line"><span class="ts-t">[视频③ 06:17]</span> 一组应该失败</div>
+<div class="ts-line"><span class="ts-t">[视频③ 06:18]</span> 再加上几条比较容易出现分歧的边界样本</div>
+<div class="ts-line"><span class="ts-t">[视频③ 06:21]</span> 先看 Code-basedGrader 能不能放过正确结果</div>
+<div class="ts-line"><span class="ts-t">[视频③ 06:24]</span> 并且拦住已知的错误</div>
+<div class="ts-line"><span class="ts-t">[视频③ 06:25]</span> 再用人工标注结果</div>
+<div class="ts-line"><span class="ts-t">[视频③ 06:27]</span> 校准 llm_grader 的准确性和分类边界</div>
+<div class="ts-line"><span class="ts-t">[视频③ 06:31]</span> 每次修改 Rubric 平分模型</div>
+<div class="ts-line"><span class="ts-t">[视频③ 06:33]</span> 或者是分数组合方式以后</div>
+<div class="ts-line"><span class="ts-t">[视频③ 06:35]</span> 这批的样本都应该重新跑一遍</div>
+<div class="ts-line"><span class="ts-t">[视频③ 06:37]</span> 这一步一完成以后</div>
+<div class="ts-line"><span class="ts-t">[视频③ 06:38]</span> 你才能知道分数变化</div>
+<div class="ts-line"><span class="ts-t">[视频③ 06:39]</span> 确实是来自 Agent 的表现</div>
+<div class="ts-line"><span class="ts-t">[视频③ 06:41]</span> 而不是 Grader 自己改变了判断</div>
+<div class="ts-line"><span class="ts-t">[视频③ 06:43]</span> 到这里第二层就搭完了</div>
+<div class="ts-line"><span class="ts-t">[视频③ 06:45]</span> 一条 Task 进入可重置的测试环境</div>
+<div class="ts-line"><span class="ts-t">[视频③ 06:48]</span> Agent 完成一次 Trial</div>
+<div class="ts-line"><span class="ts-t">[视频③ 06:49]</span> Harness 保留 Output 和 Transcript</div>
+<div class="ts-line"><span class="ts-t">[视频③ 06:51]</span> 确定性 Grader 先检查硬条件</div>
+<div class="ts-line"><span class="ts-t">[视频③ 06:53]</span> 模型 Grader 在评价语异质量</div>
+<div class="ts-line"><span class="ts-t">[视频③ 06:55]</span> 最后用少量的人工样本持续去校准</div>
+<div class="ts-line"><span class="ts-t">[视频③ 06:58]</span> 这样得到的评分才能被解释和复查</div>
+<div class="ts-line"><span class="ts-t">[视频③ 07:00]</span> 也有资格进入下一步</div>
+<div class="ts-line"><span class="ts-t">[视频③ 07:02]</span> 第三期我们继续解决三个问题</div>
+<div class="ts-line"><span class="ts-t">[视频③ 07:04]</span> 同一项任务必须跑多少次</div>
+<div class="ts-line"><span class="ts-t">[视频③ 07:06]</span> 分数波动应该如何解释</div>
+<div class="ts-line"><span class="ts-t">[视频③ 07:07]</span> 以及 Capability Eval 和 Regression Eval</div>
+<div class="ts-line"><span class="ts-t">[视频③ 07:10]</span> 应该如何区分</div>
+</div></details>
+<p><strong>附录 · 语音识别与三重校验方法</strong></p>
+<table>
+<tr><th>项目</th><th>说明</th></tr>
+<tr><td>音轨</td><td>`ffmpeg` 从原片提取 16 kHz 单声道 WAV</td></tr>
+<tr><td>识别模型</td><td>`faster-whisper 1.2.1` + `small`，CPU int8，`beam_size=5`，离线运行</td></tr>
+<tr><td>原始输出</td><td>528 段带起止时间码的转写</td></tr>
+<tr><td>繁简归一</td><td>`OpenCC t2s`</td></tr>
+<tr><td>第一重：ASR</td><td>完整口播，覆盖字幕省略的过渡句</td></tr>
+<tr><td>第二重：烧录字幕</td><td>逐帧 OCR 还原作者精简字幕，作为文字校对基准</td></tr>
+<tr><td>第三重：官方术语</td><td>本教程术语表与官方文档，强制校正专有名词拼写</td></tr>
+<tr><td>校正量</td><td>110 处 / 25 类，逐条见下方清单</td></tr>
+<tr><td>**边界**</td><td>**未做人工逐句听校**：ASR 与 OCR 都不能保证 100% 零偏差；专名与明显误识别已全部校正并附依据，可结合字幕对照复核。</td></tr>
+</table>
+<p><strong>附录 · ASR 校正清单（25 类 / 110 处）</strong></p>
+<p>按「校正为 + 依据」聚合，全部校正项附依据，可结合下方字幕对照复核。</p>
+<table>
+<tr><th>校正为</th><th>依据</th><th>出现次数</th></tr>
+<tr><td>Agent</td><td>通用技术词规范</td><td>39</td></tr>
+<tr><td>Grader</td><td>三类 Grader</td><td>13</td></tr>
+<tr><td>Agent</td><td>Agent</td><td>10</td></tr>
+<tr><td>Grader</td><td>通用技术词规范</td><td>8</td></tr>
+<tr><td>Rubric</td><td>通用技术词规范</td><td>7</td></tr>
+<tr><td>Outcome</td><td>Outcome 终态</td><td>6</td></tr>
+<tr><td>API</td><td>通用技术词规范</td><td>3</td></tr>
+<tr><td>bad case</td><td>失败案例</td><td>3</td></tr>
+<tr><td>Anthropic</td><td>Anthropic 官方文档</td><td>3</td></tr>
+<tr><td>AI Agent</td><td>AI Agent 评测</td><td>2</td></tr>
+<tr><td>Eval</td><td>通用技术词规范</td><td>2</td></tr>
+<tr><td>从 0 到 1</td><td>搭建路径</td><td>1</td></tr>
+<tr><td>Prompt</td><td>官方术语表：promp → Prompt</td><td>1</td></tr>
+<tr><td>Cost</td><td>官方术语表：coast → Cost</td><td>1</td></tr>
+<tr><td>Badcase</td><td>官方术语表：bandcase → Badcase</td><td>1</td></tr>
+<tr><td>Case</td><td>官方术语表：bycase → Case</td><td>1</td></tr>
+<tr><td>reader_a</td><td>官方术语表：reader → reader_a</td><td>1</td></tr>
+<tr><td>忽高忽低</td><td>分数波动</td><td>1</td></tr>
+<tr><td>Agent</td><td>官方术语表：AIAgent → Agent</td><td>1</td></tr>
+<tr><td>Transcript</td><td>Transcript 轨迹</td><td>1</td></tr>
+<tr><td>Trajectory</td><td>官方术语表：projectory → Trajectory</td><td>1</td></tr>
+<tr><td>code_grader</td><td>官方术语表：codebasegrader → code_grader</td><td>1</td></tr>
+<tr><td>结构化变量</td><td>变量传入</td><td>1</td></tr>
+<tr><td>llm_grader</td><td>官方术语表：LMMGrader → llm_grader</td><td>1</td></tr>
+<tr><td>Harness</td><td>官方术语表：EvoHarness → Harness</td><td>1</td></tr>
+</table>
 </section>
 <div class="footer">
   <p>本教程为学习整理产物：三支视频按最高清晰度原片逐帧核对后综合重述；标注【补充】的内容来自公开官方文档与本系列既有教程，不属于视频原述。原视频与项目版权归各自作者所有。</p>
