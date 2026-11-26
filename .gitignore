@@ -1,3 +1,6 @@
 .workbuddy/*
 .DS_Store
 *.log
+
+# Markdown 阅读页是构建产物：由 tools/build_md.py / CI 从 .md 自动生成，不入库
+*教程.html

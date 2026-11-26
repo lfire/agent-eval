@@ -1,5 +1,7 @@
 name: Deploy to GitHub Pages
 
+# 单一内容源：仓库根目录只保留一份正文（.md 与 index.html）。
+# 构建时由 tools/build_md.py 把 .md 渲染成 HTML 阅读页，再统一发布。
 on:
   push:
     branches: [main]
@@ -24,29 +26,18 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Diagnose current Pages config
-        env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          REPO: ${{ github.repository }}
-        run: |
-          CODE=$(curl -sS -o /tmp/pages.json -w "%{http_code}" \
-            -H "Authorization: Bearer ${GH_TOKEN}" \
-            -H "Accept: application/vnd.github+json" \
-            "https://api.github.com/repos/${REPO}/pages")
-          echo "GET /pages -> ${CODE}"
-          echo "::notice::Pages API GET ${CODE}: $(head -c 220 /tmp/pages.json | tr '\n' ' ')"
+      - name: Render Markdown to HTML
+        run: python3 tools/build_md.py
 
       - name: Build static site
         run: |
           rm -rf _site
           mkdir -p _site
           cp index.html _site/
-          touch _site/.nojekyll
           cp -R rag-evaluation-tutorial agent-evaluation-tutorial agent-eval-driven-tutorial _site/
-          echo "Site files:"
-          find _site -type f | wc -l
+          echo "Published files: $(find _site -type f | wc -l)"
 
-      - name: Configure Pages (enable if needed)
+      - name: Configure Pages
         uses: actions/configure-pages@v5
         with:
           enablement: true
