@@ -150,6 +150,9 @@ main{padding-top:22px}
     <li><a class="lv2" href="#232-配图速查20-张">23.2 配图速查</a></li>
     <li><a class="lv2" href="#233-校正表ocr-与自动摘要">23.3 校正表</a></li>
     <li><a class="lv2" href="#234-还原方法与资料">23.4 还原方法与资料</a></li>
+    <li><a class="lv2" href="#asr-full">23.5 全片语音逐字稿</a></li>
+    <li><a class="lv2" href="#asr-method">23.6 ASR 校验方法</a></li>
+    <li><a class="lv2" href="#asr-corrections">23.7 ASR 校正清单</a></li>
   </ul>
 </nav>
 <main>
@@ -1528,7 +1531,7 @@ if __name__ == "__main__":
 <li><strong>本系列互链</strong>：<a href="../rag-evaluation-tutorial/RAG评测完全教程.html">RAG 评测完全教程（在线阅读）</a> ｜ <a href="../agent-evaluation-tutorial/Agent评测体系完全教程.html">Agent 评测体系完全教程（在线阅读）</a> ｜ <a href="../agent-eval-driven-tutorial/Agent评测驱动迭代完全教程.html">评测驱动 Agent 迭代（在线阅读）</a> ｜ <a href="../agent-architecture-tutorial/Agent开发架构选型完全教程.html">Agent 开发架构选型（在线阅读）</a> ｜ <a href="../agent-metrics-tutorial/Agent评测指标系统完全教程.html">Agent 评测指标系统（在线阅读）</a>。</li>
 </ol>
 <div class="warn"><strong>未做的部分（如实说明）</strong>：本轮未做语音逐字转写（ASR）；第一支字幕 OCR 噪声较大，该支内容以 Notion 画面文档文字为主要依据，口播仅作语义佐证；第二支分享文案无正式标题，教程标题为按内容拟题；画面中搜索结果截图里的英文摘要因分辨率有限只做结构还原，未逐字转录。</div>
-<p><strong>附录 · 全片语音逐字稿（ASR · 274 段 · 按视频/章节分组）</strong></p>
+<h3 id="asr-full">23.5 全片语音逐字稿（ASR · 274 段 · 按视频/章节分组）</h3>
 <p>由离线语音识别还原的完整口播，逐段保留时间码；点击标题展开。视频作者制作的烧录字幕为精简重排版，两者不完全逐字对应属正常现象。</p>
 <details class="ts-box"><summary>视频①（逐字 · 200 句）</summary>
 <div class="ts-lines">
@@ -1810,7 +1813,7 @@ if __name__ == "__main__":
 <div class="ts-line"><span class="ts-t">[视频② 03:49]</span> 因为你都不能定义什么叫好</div>
 <div class="ts-line"><span class="ts-t">[视频② 03:51]</span> 你怎么能让这个产品变得越来越好</div>
 </div></details>
-<p><strong>附录 · 语音识别与三重校验方法</strong></p>
+<h3 id="asr-method">23.6 语音识别与三重校验方法</h3>
 <table>
 <tr><th>项目</th><th>说明</th></tr>
 <tr><td>音轨</td><td>`ffmpeg` 从原片提取 16 kHz 单声道 WAV</td></tr>
@@ -1823,7 +1826,7 @@ if __name__ == "__main__":
 <tr><td>校正量</td><td>36 处 / 6 类，逐条见下方清单</td></tr>
 <tr><td>**边界**</td><td>**未做人工逐句听校**：ASR 与 OCR 都不能保证 100% 零偏差；专名与明显误识别已全部校正并附依据，可结合字幕对照复核。</td></tr>
 </table>
-<p><strong>附录 · ASR 校正清单（6 类 / 36 处）</strong></p>
+<h3 id="asr-corrections">23.7 ASR 校正清单（6 类 / 36 处）</h3>
 <p>按「校正为 + 依据」聚合，全部校正项附依据，可结合下方字幕对照复核。</p>
 <table>
 <tr><th>校正为</th><th>依据</th><th>出现次数</th></tr>

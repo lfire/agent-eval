@@ -132,6 +132,9 @@ main{padding-top:22px}
     <li><a class="lv2" href="#s52">5.2 配图速查</a></li>
     <li><a class="lv2" href="#s53">5.3 摘要措辞校正</a></li>
     <li><a class="lv2" href="#s54">5.4 还原方法与资料来源</a></li>
+    <li><a class="lv2" href="#asr-full">5.5 全片语音逐字稿</a></li>
+    <li><a class="lv2" href="#asr-method">5.6 ASR 校验方法</a></li>
+    <li><a class="lv2" href="#asr-corrections">5.7 ASR 校正清单</a></li>
   </ul>
 </nav>
 
@@ -1085,7 +1088,7 @@ def release_gate(current, previous, tolerance=0.02):
 <li>τ²-bench / τ³-bench、AgentBench、LangSmith / TruLens / Arize Phoenix 等公开文档与 2026 年 Agent 评测横评资料。</li>
 </ul>
 <div class="warn"><strong>口径提示</strong>：视频把 Task Completion 归「端到端」、pass^k 与成本延迟归「表现」，是生产视角的分层；DeepEval 官方按「轨迹级 / 组件级」分类。教程在 4.2 节同时给出两种口径，避免混用导致误解。</div>
-<p><strong>附录 · 全片语音逐字稿（ASR · 211 段 · 按视频/章节分组）</strong></p>
+<h3 id="asr-full">5.5 全片语音逐字稿（ASR · 211 段 · 按视频/章节分组）</h3>
 <p>由离线语音识别还原的完整口播，逐段保留时间码；点击标题展开。视频作者制作的烧录字幕为精简重排版，两者不完全逐字对应属正常现象。</p>
 <details class="ts-box"><summary>引言（逐字 · 12 句）</summary>
 <div class="ts-lines">
@@ -1319,7 +1322,7 @@ def release_gate(current, previous, tolerance=0.02):
 <div class="ts-line"><span class="ts-t">[05:38]</span> 那大家有什么问题可以在评测期跟我交流</div>
 <div class="ts-line"><span class="ts-t">[05:40]</span> 拜拜</div>
 </div></details>
-<p><strong>附录 · 语音识别与三重校验方法</strong></p>
+<h3 id="asr-method">5.6 语音识别与三重校验方法</h3>
 <table>
 <tr><th>项目</th><th>说明</th></tr>
 <tr><td>音轨</td><td>`ffmpeg` 从原片提取 16 kHz 单声道 WAV</td></tr>
@@ -1332,7 +1335,7 @@ def release_gate(current, previous, tolerance=0.02):
 <tr><td>校正量</td><td>28 处 / 15 类，逐条见下方清单</td></tr>
 <tr><td>**边界**</td><td>**未做人工逐句听校**：ASR 与 OCR 都不能保证 100% 零偏差；专名与明显误识别已全部校正并附依据，可结合字幕对照复核。</td></tr>
 </table>
-<p><strong>附录 · ASR 校正清单（15 类 / 28 处）</strong></p>
+<h3 id="asr-corrections">5.7 ASR 校正清单（15 类 / 28 处）</h3>
 <p>按「校正为 + 依据」聚合，全部校正项附依据，可结合下方字幕对照复核。</p>
 <table>
 <tr><th>校正为</th><th>依据</th><th>出现次数</th></tr>

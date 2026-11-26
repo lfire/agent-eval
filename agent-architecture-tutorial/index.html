@@ -162,6 +162,9 @@ main{padding-top:22px}
     <li><a class="lv2" href="#s162">16.2 配图速查</a></li>
     <li><a class="lv2" href="#s163">16.3 校正表</a></li>
     <li><a class="lv2" href="#s164">16.4 还原方法与资料</a></li>
+    <li><a class="lv2" href="#asr-full">16.5 全片语音逐字稿</a></li>
+    <li><a class="lv2" href="#asr-method">16.6 ASR 校验方法</a></li>
+    <li><a class="lv2" href="#asr-corrections">16.7 ASR 校正清单</a></li>
   </ul>
 </nav>
 
@@ -2222,7 +2225,7 @@ if __name__ == "__main__":
 <li><strong>本系列互链</strong>：<a href="../rag-evaluation-tutorial/index.html">RAG 评测完全教程</a>、<a href="../agent-evaluation-tutorial/index.html">Agent 评测体系完全教程</a>、<a href="../agent-eval-driven-tutorial/index.html">评测驱动 Agent 迭代 · 完全教程</a>；第 13.3 节的验证层与第三篇指标体系对应。</li>
 </ol>
 <div class="warn"><strong>未做的部分（如实说明）</strong>：本轮未做语音逐字转写（ASR），口播内容依据烧录字幕 OCR 时间线 + 画面文字 + 官方章节名归纳；所有标注【视频原述】的句子均能在画面或字幕中找到对应，未凭空补写台词。视频中官网/仓库截图里的细小正文（如 DeepSeek 参考文档的中文段落）因分辨率有限只做结构还原，未逐字转录。</div>
-<p><strong>附录 · 全片语音逐字稿（ASR · 622 段 · 按视频/章节分组）</strong></p>
+<h3 id="asr-full">16.5 全片语音逐字稿（ASR · 622 段 · 按视频/章节分组）</h3>
 <p>由离线语音识别还原的完整口播，逐段保留时间码；点击标题展开。视频作者制作的烧录字幕为精简重排版，两者不完全逐字对应属正常现象。</p>
 <details class="ts-box"><summary>开篇与三层抽象（逐字 · 150 句）</summary>
 <div class="ts-lines">
@@ -2858,7 +2861,7 @@ if __name__ == "__main__":
 <div class="ts-line"><span class="ts-t">[20:37]</span> 而是它默认的执行机制是否符合你的业务</div>
 <div class="ts-line"><span class="ts-t">[20:40]</span> 以及你究竟想要多大的控制权</div>
 </div></details>
-<p><strong>附录 · 语音识别与三重校验方法</strong></p>
+<h3 id="asr-method">16.6 语音识别与三重校验方法</h3>
 <table>
 <tr><th>项目</th><th>说明</th></tr>
 <tr><td>音轨</td><td>`ffmpeg` 从原片提取 16 kHz 单声道 WAV</td></tr>
@@ -2871,7 +2874,7 @@ if __name__ == "__main__":
 <tr><td>校正量</td><td>231 处 / 28 类，逐条见下方清单</td></tr>
 <tr><td>**边界**</td><td>**未做人工逐句听校**：ASR 与 OCR 都不能保证 100% 零偏差；专名与明显误识别已全部校正并附依据，可结合字幕对照复核。</td></tr>
 </table>
-<p><strong>附录 · ASR 校正清单（28 类 / 231 处）</strong></p>
+<h3 id="asr-corrections">16.7 ASR 校正清单（28 类 / 231 处）</h3>
 <p>按「校正为 + 依据」聚合，全部校正项附依据，可结合下方字幕对照复核。</p>
 <table>
 <tr><th>校正为</th><th>依据</th><th>出现次数</th></tr>

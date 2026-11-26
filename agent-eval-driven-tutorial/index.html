@@ -193,6 +193,9 @@ main{padding-top:22px}
     <li><a class="lv2" href="#s184">18.4 还原方法与资料来源</a></li>
     <li><a class="lv1" href="#s19">19. 附：评测系统交互原型</a></li>
     <li><a class="lv2" href="#s191">19.1 内嵌预览</a></li>
+    <li><a class="lv2" href="#asr-full">19.2 全片语音逐字稿</a></li>
+    <li><a class="lv2" href="#asr-method">19.3 ASR 校验方法</a></li>
+    <li><a class="lv2" href="#asr-corrections">19.4 ASR 校正清单</a></li>
   </ul>
 </nav>
 
@@ -2371,7 +2374,7 @@ def run_suite(suite, agent, env_factory, trials=3, workers=3):
 <p class="proto-hint">下方为原型的实时内嵌视图，可直接在框内切换导航、筛选用例、展开详情；若需要更大的操作空间，请点上方「在新窗口打开原型」。</p>
 <iframe class="proto-frame" src="评测系统原型.html" title="Agent 应用智能评测平台 · 交互原型" loading="lazy"></iframe>
 <p class="proto-hint">原型文件：<a href="评测系统原型.html">评测系统原型.html</a> ｜ 配套还原图：<a href="指标地图.html">指标地图.html</a></p>
-<p><strong>附录 · 全片语音逐字稿（ASR · 483 段 · 按视频/章节分组）</strong></p>
+<h3 id="asr-full">19.2 全片语音逐字稿（ASR · 483 段 · 按视频/章节分组）</h3>
 <p>由离线语音识别还原的完整口播，逐段保留时间码；点击标题展开。视频作者制作的烧录字幕为精简重排版，两者不完全逐字对应属正常现象。</p>
 <details class="ts-box"><summary>引言（逐字 · 35 句）</summary>
 <div class="ts-lines">
@@ -2889,7 +2892,7 @@ def run_suite(suite, agent, env_factory, trials=3, workers=3):
 <div class="ts-line"><span class="ts-t">[13:02]</span> 哪里变好了哪里退步了</div>
 <div class="ts-line"><span class="ts-t">[13:04]</span> 这个版本为什么值得反</div>
 </div></details>
-<p><strong>附录 · 语音识别与三重校验方法</strong></p>
+<h3 id="asr-method">19.3 语音识别与三重校验方法</h3>
 <table>
 <tr><th>项目</th><th>说明</th></tr>
 <tr><td>音轨</td><td>`ffmpeg` 从原片提取 16 kHz 单声道 WAV</td></tr>
@@ -2902,7 +2905,7 @@ def run_suite(suite, agent, env_factory, trials=3, workers=3):
 <tr><td>校正量</td><td>51 处 / 7 类，逐条见下方清单</td></tr>
 <tr><td>**边界**</td><td>**未做人工逐句听校**：ASR 与 OCR 都不能保证 100% 零偏差；专名与明显误识别已全部校正并附依据，可结合字幕对照复核。</td></tr>
 </table>
-<p><strong>附录 · ASR 校正清单（7 类 / 51 处）</strong></p>
+<h3 id="asr-corrections">19.4 ASR 校正清单（7 类 / 51 处）</h3>
 <p>按「校正为 + 依据」聚合，全部校正项附依据，可结合下方字幕对照复核。</p>
 <table>
 <tr><th>校正为</th><th>依据</th><th>出现次数</th></tr>

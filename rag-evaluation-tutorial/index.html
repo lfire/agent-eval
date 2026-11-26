@@ -149,6 +149,9 @@ main{padding-top:22px}
     <li><a class="lv2" href="#s52">5.2 架构图速查</a></li>
     <li><a class="lv2" href="#s53">5.3 自动摘要错字校正</a></li>
     <li><a class="lv2" href="#s54">5.4 还原方法与资料来源</a></li>
+    <li><a class="lv2" href="#asr-full">5.5 全片语音逐字稿</a></li>
+    <li><a class="lv2" href="#asr-method">5.6 ASR 校验方法</a></li>
+    <li><a class="lv2" href="#asr-corrections">5.7 ASR 校正清单</a></li>
   </ul>
 </nav>
 
@@ -1670,7 +1673,7 @@ def check(current, baseline=None, tolerance=0.02):
 <li>主流框架对比参考：DeepEval / TruLens / LangSmith / Arize Phoenix 的公开文档与 2026 年评测框架横评资料。</li>
 </ul>
 <div class="warn"><strong>口径提示：</strong>视频中的 RAGAS 公式（尤其 <code>AnswerCorrectness = 0.75×事实F1 + 0.25×语义相似度</code>）对应 RAGAS 0.2.x 时代的典型实现；新版已拆分指标。教程保留视频原式以保真，并在 2.5.4 标注版本差异。</div>
-<p><strong>附录 · 全片语音逐字稿（ASR · 446 段 · 按视频/章节分组）</strong></p>
+<h3 id="asr-full">5.5 全片语音逐字稿（ASR · 446 段 · 按视频/章节分组）</h3>
 <p>由离线语音识别还原的完整口播，逐段保留时间码；点击标题展开。视频作者制作的烧录字幕为精简重排版，两者不完全逐字对应属正常现象。</p>
 <details class="ts-box"><summary>引言（逐字 · 16 句）</summary>
 <div class="ts-lines">
@@ -2142,7 +2145,7 @@ def check(current, baseline=None, tolerance=0.02):
 <div class="ts-line"><span class="ts-t">[13:00]</span> 可以在推荐器跟我交流</div>
 <div class="ts-line"><span class="ts-t">[13:02]</span> 嗯拜拜</div>
 </div></details>
-<p><strong>附录 · 语音识别与三重校验方法</strong></p>
+<h3 id="asr-method">5.6 语音识别与三重校验方法</h3>
 <table>
 <tr><th>项目</th><th>说明</th></tr>
 <tr><td>音轨</td><td>`ffmpeg` 从原片提取 16 kHz 单声道 WAV</td></tr>
@@ -2155,7 +2158,7 @@ def check(current, baseline=None, tolerance=0.02):
 <tr><td>校正量</td><td>72 处 / 26 类，逐条见下方清单</td></tr>
 <tr><td>**边界**</td><td>**未做人工逐句听校**：ASR 与 OCR 都不能保证 100% 零偏差；专名与明显误识别已全部校正并附依据，可结合字幕对照复核。</td></tr>
 </table>
-<p><strong>附录 · ASR 校正清单（26 类 / 72 处）</strong></p>
+<h3 id="asr-corrections">5.7 ASR 校正清单（26 类 / 72 处）</h3>
 <p>按「校正为 + 依据」聚合，全部校正项附依据，可结合下方字幕对照复核。</p>
 <table>
 <tr><th>校正为</th><th>依据</th><th>出现次数</th></tr>

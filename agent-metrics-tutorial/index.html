@@ -146,6 +146,9 @@ main{padding-top:22px}
     <li><a class="lv2" href="#192-配图速查24-张">19.2 配图速查</a></li>
     <li><a class="lv2" href="#193-校正表ocr-与自动摘要">19.3 校正表</a></li>
     <li><a class="lv2" href="#194-还原方法与资料">19.4 还原方法与资料</a></li>
+    <li><a class="lv2" href="#asr-full">19.5 全片语音逐字稿</a></li>
+    <li><a class="lv2" href="#asr-method">19.6 ASR 校验方法</a></li>
+    <li><a class="lv2" href="#asr-corrections">19.7 ASR 校正清单</a></li>
   </ul>
 </nav>
 <main>
@@ -2096,7 +2099,7 @@ if __name__ == "__main__":
 <li><strong>本系列互链</strong>：<a href="../rag-evaluation-tutorial/RAG评测完全教程.html">RAG 评测完全教程（在线阅读）</a> ｜ <a href="../agent-evaluation-tutorial/Agent评测体系完全教程.html">Agent 评测体系完全教程（在线阅读）</a> ｜ <a href="../agent-eval-driven-tutorial/Agent评测驱动迭代完全教程.html">评测驱动 Agent 迭代（在线阅读）</a> ｜ <a href="../agent-architecture-tutorial/Agent开发架构选型完全教程.html">Agent 开发架构选型（在线阅读）</a>。</li>
 </ol>
 <div class="warn"><strong>未做的部分（如实说明）</strong>：本轮未做语音逐字转写（ASR），口播依据烧录字幕 OCR 时间线 + 画面文字归纳；第四支为现场白板绘制，工具栏与绘图元素在 OCR 中形成噪声，已按语义过滤，未逐字转录工具栏文字；三张表由 DeepSeek 生成，属示例产物，不构成生产指标标准。</div>
-<p><strong>附录 · 全片语音逐字稿（ASR · 576 段 · 按视频/章节分组）</strong></p>
+<h3 id="asr-full">19.5 全片语音逐字稿（ASR · 576 段 · 按视频/章节分组）</h3>
 <p>由离线语音识别还原的完整口播，逐段保留时间码；点击标题展开。视频作者制作的烧录字幕为精简重排版，两者不完全逐字对应属正常现象。</p>
 <details class="ts-box"><summary>视频①（逐字 · 172 句）</summary>
 <div class="ts-lines">
@@ -2686,7 +2689,7 @@ if __name__ == "__main__":
 <div class="ts-line"><span class="ts-t">[视频④ 05:35]</span> 要有主次之分优先级</div>
 <div class="ts-line"><span class="ts-t">[视频④ 05:37]</span> 最后构建一个币环</div>
 </div></details>
-<p><strong>附录 · 语音识别与三重校验方法</strong></p>
+<h3 id="asr-method">19.6 语音识别与三重校验方法</h3>
 <table>
 <tr><th>项目</th><th>说明</th></tr>
 <tr><td>音轨</td><td>`ffmpeg` 从原片提取 16 kHz 单声道 WAV</td></tr>
@@ -2699,7 +2702,7 @@ if __name__ == "__main__":
 <tr><td>校正量</td><td>146 处 / 28 类，逐条见下方清单</td></tr>
 <tr><td>**边界**</td><td>**未做人工逐句听校**：ASR 与 OCR 都不能保证 100% 零偏差；专名与明显误识别已全部校正并附依据，可结合字幕对照复核。</td></tr>
 </table>
-<p><strong>附录 · ASR 校正清单（28 类 / 146 处）</strong></p>
+<h3 id="asr-corrections">19.7 ASR 校正清单（28 类 / 146 处）</h3>
 <p>按「校正为 + 依据」聚合，全部校正项附依据，可结合下方字幕对照复核。</p>
 <table>
 <tr><th>校正为</th><th>依据</th><th>出现次数</th></tr>
