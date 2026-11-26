@@ -35,7 +35,7 @@ jobs:
           mkdir -p _site
           cp index.html _site/
           cp -R assets _site/
-          cp -R rag-evaluation-tutorial agent-evaluation-tutorial agent-eval-driven-tutorial agent-architecture-tutorial agent-metrics-tutorial _site/
+          cp -R rag-evaluation-tutorial agent-evaluation-tutorial agent-eval-driven-tutorial agent-architecture-tutorial agent-metrics-tutorial agent-eval-method-tutorial _site/
           echo "Published files: $(find _site -type f | wc -l)"
 
       - name: Configure Pages

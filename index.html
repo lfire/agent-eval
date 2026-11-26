@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Agent 开发与评测知识库 · 教程与交互原型</title>
-<meta name="description" content="RAG 评测、Agent 评测体系、评测驱动 Agent 迭代、Agent 开发架构选型、Agent 评测指标系统五篇完全教程，附指标地图与评测系统交互原型。">
+<meta name="description" content="RAG 评测、Agent 评测体系、评测驱动 Agent 迭代、Agent 开发架构选型、Agent 评测指标系统、Agent 评测方法论六篇完全教程，附指标地图与评测系统交互原型。">
 <style>
 :root{
   --bg:#f5f7fb; --card:#fff; --ink:#1b2434; --muted:#667085; --line:#e5e9f0;
@@ -72,9 +72,9 @@ footer .row{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px}
   <div class="wrap">
     <span class="kicker">AGENT ENGINEERING &amp; EVALUATION KNOWLEDGE BASE</span>
     <h1>Agent 开发与评测知识库</h1>
-    <p class="lead">五篇按视频逐帧还原并系统补全的完全教程：三篇聚焦 RAG / Agent 评测与迭代，一篇聚焦 Agent 开发架构选型，一篇综合四支视频讲透 Agent 评测指标系统；配套一张 41 项指标地图，以及一份可交互的评测系统使用原型。全部为纯静态页面，无后端、无外部依赖。</p>
+    <p class="lead">六篇按视频逐帧还原并系统补全的完全教程：三篇聚焦 RAG / Agent 评测与迭代，一篇聚焦 Agent 开发架构选型，一篇综合四支视频讲透评测指标系统，一篇综合两支视频整理从 Test 到 Evaluation 的评测方法论；配套一张 41 项指标地图，以及一份可交互的评测系统使用原型。全部为纯静态页面，无后端、无外部依赖。</p>
     <div class="meta">
-      <span>5 篇完全教程</span><span>8 + 8 + 18 + 20 + 24 张结构图</span><span>190+ 专业名词</span>
+      <span>6 篇完全教程</span><span>8 + 8 + 18 + 20 + 24 + 20 张结构图</span><span>240+ 专业名词</span>
       <span>41 项评测指标</span><span>6 视图交互原型</span><span>静态站点 · GitHub Pages</span>
     </div>
   </div>
@@ -82,7 +82,7 @@ footer .row{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px}
 
 <main class="wrap">
   <h2 class="sec">教程与资料</h2>
-  <p class="sub">评测线按「RAG 评测 → Agent 评测体系 → 评测驱动迭代 → 指标系统」顺序阅读；开发架构选型篇可单独阅读。</p>
+  <p class="sub">评测线按「RAG 评测 → Agent 评测体系 → 评测驱动迭代 → 指标系统 → 评测方法论」顺序阅读；开发架构选型篇可单独阅读。</p>
 
   <div class="grid">
     <article class="card">
@@ -146,7 +146,19 @@ footer .row{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px}
     </article>
 
     <article class="card">
-      <span class="no">06 / 独立 HTML</span>
+      <span class="no">06 / 评测方法论 · 新增</span>
+      <h3><a href="agent-eval-method-tutorial/index.html">Agent 评测方法论 · 从 Test 到 Evaluation</a></h3>
+      <p class="d">综合 @煮caicai 两支视频：为什么 AI 产品要衡量质量而非正确性、Test vs Evaluation 四组概念对照、Rubric 定义「什么叫好」、MVE 最小可行评估；三层价值框架（Technical / UX / Business）、Golden Dataset 三步、三种判据组合、LLM Judge 两坑、三层评测粒度与线上 Trajectory 回流。含 24 章、20 张重绘图、56 条术语与 4 段可运行代码。</p>
+      <div class="tags"><span>2 支视频 · 9:21</span><span>20 张重绘图</span><span class="o">24 章</span><span class="g">三层价值</span></div>
+      <div class="actions">
+        <a class="btn" href="agent-eval-method-tutorial/index.html">↗ 图文版（含 SVG 图）</a>
+        <a class="btn sec" href="agent-eval-method-tutorial/Agent评测方法论完全教程.html">MD 在线阅读</a>
+        <a class="btn sec" href="agent-eval-method-tutorial/Agent评测方法论完全教程.md" download>下载 .md</a>
+      </div>
+    </article>
+
+    <article class="card">
+      <span class="no">07 / 独立 HTML</span>
       <h3><a href="agent-eval-driven-tutorial/指标地图.html">Agent Eval 指标地图</a></h3>
       <p class="d">按视频截图逐字重绘的指标全景：Outcome 三维度（Quality / Cost / Performance）+ Trace 四模块（感知 / 规划 / 记忆 / 工具），共 41 项指标、P0/P1/P2 优先级与 4 条使用建议。</p>
       <div class="tags"><span>41 项指标</span><span class="g">P0 / P1 / P2</span><span>逐字还原</span></div>
@@ -156,7 +168,7 @@ footer .row{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px}
     </article>
 
     <article class="card wide">
-      <span class="no">07 / 交互式原型</span>
+      <span class="no">08 / 交互式原型</span>
       <h3><a href="agent-eval-driven-tutorial/评测系统原型.html">Agent 应用智能评测平台 · 系统使用原型</a></h3>
       <p class="d">依据阿里技术文章中的 12 张真实界面截图还原的纯静态原型：评测看板 / 评测任务 / 评测结果 / 评测配置 / 数据集与指标 / 执行引擎 6 个视图。静态内嵌 8 条评测记录、15 个评测范围、29 条用例、20 项指标；可切换评测记录与提交范围、模拟任务提交、筛选与展开用例、导出 JSON。主教程第 19 章也已内嵌预览。</p>
       <div class="tags"><span>6 个视图</span><span class="g">可交互</span><span class="o">静态演示数据</span><span class="p">0 后端依赖</span></div>
@@ -175,9 +187,10 @@ footer .row{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px}
       <li>Anthropic, <a href="https://www.anthropic.com/research/demystifying-evals-for-ai-agents" target="_blank" rel="noopener">Demystifying evals for AI agents</a>（Engineering，2026-01-09）</li>
       <li>阿里技术 / AliExpress 技术, <a href="https://mp.weixin.qq.com/s/5Tvv8g20CybjbT0a7iUfHw" target="_blank" rel="noopener">AI Agent 应用精细化评测：评测体系设计与工程实践</a>（2026-09-02）</li>
       <li>原视频（指标系统线）：<a href="https://v.douyin.com/dMUFZl8f8d4/" target="_blank" rel="noopener">怎么写好 Rubric</a> ｜ <a href="https://v.douyin.com/2q-HrmCUJGM/" target="_blank" rel="noopener">黄金数据集</a> ｜ <a href="https://v.douyin.com/0yUtsSTLV-k/" target="_blank" rel="noopener">指标设计</a> ｜ <a href="https://v.douyin.com/dywhU4BsezE/" target="_blank" rel="noopener">客服 Metrics 实战</a>（均为 @煮caicai，2026-07）</li>
+      <li>原视频（方法论线）：<a href="https://v.douyin.com/traQcUR8ESs/" target="_blank" rel="noopener">AI产品经理：Agent要怎么评测？</a> ｜ <a href="https://v.douyin.com/TNwXekWUnuE/" target="_blank" rel="noopener">从 Test 到 Evaluation</a>（均为 @煮caicai，2026-06/07）</li>
       <li>还原口径：1080P 原片逐帧抽帧 + 中文 OCR + 关键帧放大目视校对；标注【补充】的内容来自两篇参考文章，不属于视频原述。</li>
     </ul>
-    <div class="note"><strong>关于 Markdown 阅读页</strong>：五份 <code>.md</code> 是唯一正文源，站点上的「MD 在线阅读」由 <code>tools/build_md.py</code> 在部署时自动渲染生成（含目录、表格、代码块与从图文版复用的 SVG 架构图，零外部依赖）；需要源文件可点「下载 .md」。<br><strong>关于原型数据</strong>：评测系统原型中的 Task ID、通过率、用例与失败原因均为按文章截图与正文构造的静态演示数据，并非文章真实后台数据；所有交互均在浏览器本地模拟，不会发起网络请求。</div>
+    <div class="note"><strong>关于 Markdown 阅读页</strong>：六份 <code>.md</code> 是唯一正文源，站点上的「MD 在线阅读」由 <code>tools/build_md.py</code> 在部署时自动渲染生成（含目录、表格、代码块与从图文版复用的 SVG 架构图，零外部依赖）；需要源文件可点「下载 .md」。<br><strong>关于原型数据</strong>：评测系统原型中的 Task ID、通过率、用例与失败原因均为按文章截图与正文构造的静态演示数据，并非文章真实后台数据；所有交互均在浏览器本地模拟，不会发起网络请求。</div>
   </section>
 </main>
 
