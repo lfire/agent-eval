@@ -87,7 +87,14 @@ main{padding-top:22px}
 @media(max-width:980px){.topbar{padding:8px 14px}}
 @media print{.topbar{display:none}nav.toc{top:0;height:auto}main{padding-top:28px}}
 </style>
-  <link rel="stylesheet" href="../assets/code-blocks.css">
+<style>
+.ts-box{margin:14px 0;padding:10px 14px;background:#f8fafc;border:1px solid #e5e9f0;border-radius:9px}
+.ts-box>summary{cursor:pointer;font-weight:700;color:#2563eb;font-size:13px}
+.ts-lines{margin-top:10px;max-height:430px;overflow:auto;padding-right:6px}
+.ts-line{font-size:12.5px;line-height:1.95;color:#46536a;padding:1px 0}
+.ts-t{color:#98a2b3;font-variant-numeric:tabular-nums;margin-right:8px}
+@media print{.ts-lines{max-height:none}.ts-box{break-inside:avoid}}
+</style>  <link rel="stylesheet" href="../assets/code-blocks.css">
   <script src="../assets/code-blocks.js" defer></script>
 </head>
 <body>
@@ -146,6 +153,10 @@ main{padding-top:22px}
     <li><a class="lv2" href="#262-配图速查23-张">26.2 配图速查</a></li>
     <li><a class="lv2" href="#263-校正表ocr-与口播">26.3 校正表</a></li>
     <li><a class="lv2" href="#264-还原方法与资料">26.4 还原方法与资料</a></li>
+    <li><a class="lv2" href="#265-全片语音逐字稿asr--354-段--按-8-段官方章节">26.5 ASR 全片逐字稿</a></li>
+    <li><a class="lv2" href="#266-语音识别与三重校验方法">26.6 ASR 与三重校验</a></li>
+    <li><a class="lv2" href="#267-asr-校正清单39-类--126-处">26.7 ASR 校正清单</a></li>
+    <li><a class="lv2" href="#268-烧录字幕-ocr-对照216-句">26.8 字幕 OCR 对照</a></li>
   </ul>
 </nav>
 <main>
@@ -251,6 +262,18 @@ main{padding-top:22px}
 <tr><td>Deep Agents</td><td>自主规划目标 / 执行与迭代 / 任务规划 / 子智能体协作 / 文件与中间产物 / 控制上下文规模 / 可扩展能力 / 适用场景 / 权限与执行环境</td><td>第 12–16 章</td></tr>
 <tr><td>收束</td><td>核心区别 / 三种能力 / 三个选型问题 / 固定流程也有简单方案 / 三者可以组合使用 / 根据需求选择 / 让框架服务业务</td><td>第 17–21 章</td></tr>
 </table>
+<details class="ts-box"><summary>本章语音逐字稿（ASR · 已校正）（逐字 · 9 句）</summary>
+<div class="ts-lines">
+<div class="ts-line"><span class="ts-t">[00:00]</span> 开发 AI Agent 到底应该选择 LangChain，LangGraph 还是 Deep Agents</div>
+<div class="ts-line"><span class="ts-t">[00:05]</span> 这三个框架经常被放在一起讨论</div>
+<div class="ts-line"><span class="ts-t">[00:07]</span> 它们都能用来开发 Agent 但具体有什么区别</div>
+<div class="ts-line"><span class="ts-t">[00:10]</span> 它们之间是什么关系</div>
+<div class="ts-line"><span class="ts-t">[00:12]</span> 如果现在要开发一个实际项目又应该怎么选</div>
+<div class="ts-line"><span class="ts-t">[00:15]</span> 今天就用一篇视频把这三个框架的定位</div>
+<div class="ts-line"><span class="ts-t">[00:17]</span> 核心能力和适用场景讲清楚</div>
+<div class="ts-line"><span class="ts-t">[00:20]</span> 先说结论</div>
+<div class="ts-line"><span class="ts-t">[00:20]</span> LangChain 主要解决 Agent 的基础组件和工具集成问题</div>
+</div></details>
 </section>
 <section class="sec" id="s2">
 <h2>2. 先说结论：三个抽象层次，不是三个竞品</h2>
@@ -284,6 +307,16 @@ main{padding-top:22px}
 <p><span class="tag t-video">视频原述</span>口播：「LangChain 主要解决 Agent 基础组件和工具集成问题；LangGraph 主要解决 Agent 流程编排和状态管理问题；Deep Agents 则是在这些基础能力之上，进一步封装了任务规划、上下文管理、子智能体等能力，让 Agent 能够处理更加复杂、更加长期的任务」。</p>
 <div class="key"><strong>可以把它们理解为三个不同抽象层次的开发框架，而不是三个完全平行、彼此竞争的产品。</strong></div>
 <p><span class="tag t-extra">补充</span>这与本站《Agent 开发架构选型 · 完全教程》里 Framework → Runtime → Harness 的三层抽象完全对应：LangChain 是框架层，LangGraph 是运行时层，Deep Agents 是 Harness 层。第四篇讲七个代表项目的横向对比，本篇只讲 LangChain 自家这三层怎么选、怎么联用。</p>
+<details class="ts-box"><summary>本章语音逐字稿（ASR · 已校正）（逐字 · 7 句）</summary>
+<div class="ts-lines">
+<div class="ts-line"><span class="ts-t">[00:25]</span> LangGraph 主要解决 Agent 的流程编排和状态管理问题</div>
+<div class="ts-line"><span class="ts-t">[00:29]</span> Deep Agents 则是在这些基础能力之上</div>
+<div class="ts-line"><span class="ts-t">[00:32]</span> 进一步封装了任务规划，上下文管理，子智能体等能力</div>
+<div class="ts-line"><span class="ts-t">[00:37]</span> 让 Agent 能够处理更加复杂更加长期的任务</div>
+<div class="ts-line"><span class="ts-t">[00:41]</span> 所以把它们理解为三个不同抽象层次的开发框架</div>
+<div class="ts-line"><span class="ts-t">[00:45]</span> 而不是三个完全平行彼此竞争的产品</div>
+<div class="ts-line"><span class="ts-t">[00:49]</span> 我们先从 LangChain 说起</div>
+</div></details>
 </section>
 <section class="sec" id="s3">
 <h2>3. LangChain 的起点：一个企业智能客服</h2>
@@ -320,6 +353,15 @@ main{padding-top:22px}
 <li><strong>工具调用</strong>：解析模型输出、发起调用、处理返回。</li>
 <li><strong>消息传递</strong>：维护模型与工具之间的多轮消息序列。</li>
 </ol>
+<details class="ts-box"><summary>本章语音逐字稿（ASR · 已校正）（逐字 · 6 句）</summary>
+<div class="ts-lines">
+<div class="ts-line"><span class="ts-t">[00:50]</span> 假设现在要开发一个企业智能客服</div>
+<div class="ts-line"><span class="ts-t">[00:53]</span> 用户提出问题之后系统需要查询企业知识库</div>
+<div class="ts-line"><span class="ts-t">[00:57]</span> 或者调用订单接口</div>
+<div class="ts-line"><span class="ts-t">[00:59]</span> 最后把查询结果整理成自然语言返回给用户</div>
+<div class="ts-line"><span class="ts-t">[01:02]</span> 这种场景其实就是一个比较典型的 Agent 应用</div>
+<div class="ts-line"><span class="ts-t">[01:05]</span> 开发这样的应用需要解决几个问题</div>
+</div></details>
 </section>
 <section class="sec" id="s4">
 <h2>4. LangChain 的基础组件与 create_agent</h2>
@@ -384,6 +426,23 @@ main{padding-top:22px}
 <h3 id="42-模型工具循环">4.2 模型—工具循环</h3>
 <p><span class="tag t-video">视频原述</span>执行过程：大模型分析当前任务 → 判断是否需要调用工具 → 需要就选择合适工具执行并返回 → 大模型再根据工具结果继续处理。这个循环的调度由框架接管，开发者不必手写状态机。</p>
 <div class="note">官方文档补充：LangChain 1.0 的 <code>create_agent</code> 构建在 LangGraph 运行时之上，但「你不需要了解 LangGraph 就能用 LangChain」。这是「层层叠加」而非「必须同时使用」的直接证据。</div>
+<details class="ts-box"><summary>本章语音逐字稿（ASR · 已校正）（逐字 · 14 句）</summary>
+<div class="ts-lines">
+<div class="ts-line"><span class="ts-t">[01:07]</span> 怎么接入大模型，怎么定义工具，怎么让模型调用工具</div>
+<div class="ts-line"><span class="ts-t">[01:11]</span> 模型和工具之间又应该如何传递消息</div>
+<div class="ts-line"><span class="ts-t">[01:13]</span> 如果这些功能都自己从头实现，开发工作会比较繁琐</div>
+<div class="ts-line"><span class="ts-t">[01:17]</span> LangChain 就是为了解决这类问题而出现的</div>
+<div class="ts-line"><span class="ts-t">[01:19]</span> 它提供了模型接入 Prompt，消息管理，工具调用，文档加载</div>
+<div class="ts-line"><span class="ts-t">[01:24]</span> 向量数据库和检索器等基础组件</div>
+<div class="ts-line"><span class="ts-t">[01:27]</span> 开发者可以直接使用这些组件，把它们组合起来</div>
+<div class="ts-line"><span class="ts-t">[01:30]</span> 快速搭建一个 Agent 应用</div>
+<div class="ts-line"><span class="ts-t">[01:32]</span> 比如在 Agent 开发中</div>
+<div class="ts-line"><span class="ts-t">[01:34]</span> LangChain 提供了 create_agent 这样的高层接口</div>
+<div class="ts-line"><span class="ts-t">[01:38]</span> 开发者只需要准备好大模型工具和系统提示词</div>
+<div class="ts-line"><span class="ts-t">[01:42]</span> 就可以创建一个能够调用工具的 Agent</div>
+<div class="ts-line"><span class="ts-t">[01:44]</span> 它的执行过程也比较容易理解</div>
+<div class="ts-line"><span class="ts-t">[01:47]</span> 用户先提出一个问题，大模型分析当前任务</div>
+</div></details>
 </section>
 <section class="sec" id="s5">
 <h2>5. 由模型按当前问题选择工具，以及适用场景</h2>
@@ -425,6 +484,28 @@ main{padding-top:22px}
 <tr><td>智能客服</td><td>按问题选知识库或订单接口</td><td>由模型判断下一步</td></tr>
 <tr><td>简单数据查询助手</td><td>调用数据库 / 第三方 API</td><td>无需复杂流程编排</td></tr>
 </table>
+<details class="ts-box"><summary>本章语音逐字稿（ASR · 已校正）（逐字 · 19 句）</summary>
+<div class="ts-lines">
+<div class="ts-line"><span class="ts-t">[01:50]</span> 判断是否需要调用工具</div>
+<div class="ts-line"><span class="ts-t">[01:53]</span> 如果需要就选择合适的工具执行</div>
+<div class="ts-line"><span class="ts-t">[01:56]</span> 并获取工具返回的结果</div>
+<div class="ts-line"><span class="ts-t">[01:58]</span> 然后大模型再根据工具结果继续处理</div>
+<div class="ts-line"><span class="ts-t">[02:01]</span> 直到生成最终回答</div>
+<div class="ts-line"><span class="ts-t">[02:03]</span> 举个例子</div>
+<div class="ts-line"><span class="ts-t">[02:04]</span> 用户询问企业某项业务制度</div>
+<div class="ts-line"><span class="ts-t">[02:07]</span> Agent 就可以调用知识库检索工具</div>
+<div class="ts-line"><span class="ts-t">[02:10]</span> 如果用户想查询订单状态</div>
+<div class="ts-line"><span class="ts-t">[02:11]</span> Agent 就可以调用订单查询接口</div>
+<div class="ts-line"><span class="ts-t">[02:14]</span> 具体调用哪个工具由模型根据当前问题进行判断</div>
+<div class="ts-line"><span class="ts-t">[02:17]</span> 所以 LangChain 比较适合什么场景</div>
+<div class="ts-line"><span class="ts-t">[02:19]</span> 比如企业知识库问答</div>
+<div class="ts-line"><span class="ts-t">[02:21]</span> RAG 应用智能客服</div>
+<div class="ts-line"><span class="ts-t">[02:24]</span> 以及需要调用数据库或者第三方 API 的智能助手</div>
+<div class="ts-line"><span class="ts-t">[02:28]</span> 这些应用通常不需要特别复杂的流程控制</div>
+<div class="ts-line"><span class="ts-t">[02:31]</span> 主要依靠大模型判断下一步应该做什么</div>
+<div class="ts-line"><span class="ts-t">[02:34]</span> 当然 LangChain 并不只能开发简单应用</div>
+<div class="ts-line"><span class="ts-t">[02:37]</span> 它也支持通过中间件等方式扩展 Agent 的执行过程</div>
+</div></details>
 </section>
 <section class="sec" id="s6">
 <h2>6. 中间件扩展与 LangGraph 的引出</h2>
@@ -456,6 +537,15 @@ main{padding-top:22px}
 <p><span class="tag t-video">视频原述</span>口播特意补了一句：「LangChain 并不只能开发简单应用，它也支持通过中间件等方式扩展 Agent 执行过程」。画面列出四类扩展：条件分支、状态转换、异常重试、人工审批。</p>
 <div class="key">但当「出现大量条件分支、状态转换、异常重试和人工审批」时，流程就不再适合全部交给模型判断——这正是 LangGraph 的主场。</div>
 <p><span class="tag t-extra">补充</span>注意这是<strong>抽象层次下移</strong>，不是产品淘汰：从「让模型判断下一步」变成「让开发者定义下一步」。</p>
+<details class="ts-box"><summary>本章语音逐字稿（ASR · 已校正）（逐字 · 6 句）</summary>
+<div class="ts-lines">
+<div class="ts-line"><span class="ts-t">[02:40]</span> 不过当业务流程越来越复杂</div>
+<div class="ts-line"><span class="ts-t">[02:42]</span> 出现大量条件分支状态转换</div>
+<div class="ts-line"><span class="ts-t">[02:45]</span> 异常重试和人工审批时</div>
+<div class="ts-line"><span class="ts-t">[02:47]</span> 就可以考虑另一个框架了</div>
+<div class="ts-line"><span class="ts-t">[02:49]</span> 也就是 LangGraph</div>
+<div class="ts-line"><span class="ts-t">[02:50]</span> 那 LangGraph 到底解决什么问题</div>
+</div></details>
 </section>
 <section class="sec" id="s7">
 <h2>7. LangGraph 的起点：企业售后处理系统</h2>
@@ -486,6 +576,17 @@ main{padding-top:22px}
 <p><span class="tag t-video">视频原述</span>第二个例子是企业售后处理系统：先识别问题类型，然后查询订单，接着进行风险校验；符合就进入退款审批，不符合就转入其他处理流程。</p>
 <p><span class="tag t-video">视频原述</span>口播强调：「不能完全交给大模型决定」「什么时候必须进行风险校验，什么时候需要等待人工审批」——这些是明确的业务规则，不是模型的自由裁量。</p>
 <div class="note">画面小节导航依次为「LangGraph•售后处理流程」「LangGraph•明确业务规则」「LangGraph•图的三个要素」「LangGraph • State 共享状态」「LangGraph・Node 执行任务」「LangGraph • Edge 条件流转」「LangGraph•精确控制执行」。</div>
+<details class="ts-box"><summary>本章语音逐字稿（ASR · 已校正）（逐字 · 8 句）</summary>
+<div class="ts-lines">
+<div class="ts-line"><span class="ts-t">[02:52]</span> 我们还是举一个例子</div>
+<div class="ts-line"><span class="ts-t">[02:53]</span> 假设现在要开发一个企业售后处理系统</div>
+<div class="ts-line"><span class="ts-t">[02:56]</span> 用户提交退款申请之后</div>
+<div class="ts-line"><span class="ts-t">[02:58]</span> 系统需要先识别问题类型</div>
+<div class="ts-line"><span class="ts-t">[03:00]</span> 然后查询订单接着进行风险校验</div>
+<div class="ts-line"><span class="ts-t">[03:03]</span> 如果符合退款条件就进入退款审批</div>
+<div class="ts-line"><span class="ts-t">[03:05]</span> 如果不符合就需要转入其他处理流程</div>
+<div class="ts-line"><span class="ts-t">[03:07]</span> 而且有些环节必须由人工确认</div>
+</div></details>
 </section>
 <section class="sec" id="s8">
 <h2>8. 图三要素：State / Node / Edge</h2>
@@ -551,6 +652,28 @@ main{padding-top:22px}
 <tr><td>Edge</td><td>流转关系</td><td>风险校验通过 → 退款审批；未通过 → 异常处理</td></tr>
 </table>
 <p><span class="tag t-video">视频原述</span>「一个节点执行一个具体任务」「根据条件决定下一步执行哪个节点」，于是整个售后流程被拆成多个节点，开发者能明确控制每个环节的执行顺序。</p>
+<details class="ts-box"><summary>本章语音逐字稿（ASR · 已校正）（逐字 · 19 句）</summary>
+<div class="ts-lines">
+<div class="ts-line"><span class="ts-t">[03:10]</span> 不能完全交给大模型决定</div>
+<div class="ts-line"><span class="ts-t">[03:12]</span> 如果把这些逻辑全部交给一个 Agent 自己判断</div>
+<div class="ts-line"><span class="ts-t">[03:15]</span> 流程可能就不太容易控制</div>
+<div class="ts-line"><span class="ts-t">[03:17]</span> 比如什么时候应该查询订单</div>
+<div class="ts-line"><span class="ts-t">[03:19]</span> 什么时候必须进行风险校验</div>
+<div class="ts-line"><span class="ts-t">[03:21]</span> 什么时候需要等待人工审批</div>
+<div class="ts-line"><span class="ts-t">[03:23]</span> 这些都是明确的业务规则</div>
+<div class="ts-line"><span class="ts-t">[03:25]</span> 这时候 LangGraph 就比较适合了</div>
+<div class="ts-line"><span class="ts-t">[03:26]</span> LangGraph 使用图结构来组织整个执行流程</div>
+<div class="ts-line"><span class="ts-t">[03:29]</span> 这里有三个非常重要的概念</div>
+<div class="ts-line"><span class="ts-t">[03:31]</span> 分别是 State、Node 和 Edge</div>
+<div class="ts-line"><span class="ts-t">[03:34]</span> State 也就是状态</div>
+<div class="ts-line"><span class="ts-t">[03:36]</span> 用来保存工作流执行过程中需要共享的数据</div>
+<div class="ts-line"><span class="ts-t">[03:39]</span> 比如用户提交的退款申请</div>
+<div class="ts-line"><span class="ts-t">[03:41]</span> 订单信息风险校验结果</div>
+<div class="ts-line"><span class="ts-t">[03:44]</span> 以及当前任务执行到了哪个环节</div>
+<div class="ts-line"><span class="ts-t">[03:46]</span> 都可以保存在状态中</div>
+<div class="ts-line"><span class="ts-t">[03:48]</span> Node 也就是节点</div>
+<div class="ts-line"><span class="ts-t">[03:49]</span> 用来执行具体任务</div>
+</div></details>
 </section>
 <section class="sec" id="s9">
 <h2>9. 条件流转与精确控制</h2>
@@ -582,6 +705,30 @@ main{padding-top:22px}
 </div>
 <p><span class="tag t-video">视频原述</span>画面用「风险校验 → 通过 / 未通过 → 退款审批 / 异常处理」演示条件边。核心价值口播原话：「它让开发者能够更加精确地控制 Agent 的执行过程」。</p>
 <div class="key">LangGraph 的价值不在于「让 Agent 更聪明」，而在于「让流程更可控」——把确定性环节固定下来，把需要判断的环节留给模型。</div>
+<details class="ts-box"><summary>本章语音逐字稿（ASR · 已校正）（逐字 · 21 句）</summary>
+<div class="ts-lines">
+<div class="ts-line"><span class="ts-t">[03:51]</span> 例如调用大模型识别问题类型</div>
+<div class="ts-line"><span class="ts-t">[03:53]</span> 查询订单信息执行风险校验</div>
+<div class="ts-line"><span class="ts-t">[03:56]</span> 这些都可以分别定义成不同的节点</div>
+<div class="ts-line"><span class="ts-t">[03:58]</span> Edge 也就是边</div>
+<div class="ts-line"><span class="ts-t">[03:59]</span> 用来定义节点之间的流转关系</div>
+<div class="ts-line"><span class="ts-t">[04:02]</span> 比如风险校验通过之后</div>
+<div class="ts-line"><span class="ts-t">[04:04]</span> 进入退款审批</div>
+<div class="ts-line"><span class="ts-t">[04:05]</span> 如果没有通过就转入异常处理</div>
+<div class="ts-line"><span class="ts-t">[04:08]</span> 这种根据条件决定下一步</div>
+<div class="ts-line"><span class="ts-t">[04:10]</span> 执行哪个节点的方式</div>
+<div class="ts-line"><span class="ts-t">[04:11]</span> 就是条件边</div>
+<div class="ts-line"><span class="ts-t">[04:12]</span> 这样一来整个售后处理</div>
+<div class="ts-line"><span class="ts-t">[04:14]</span> 流程就可以拆分成多个节点</div>
+<div class="ts-line"><span class="ts-t">[04:16]</span> 再通过边把它们连接起来</div>
+<div class="ts-line"><span class="ts-t">[04:19]</span> 开发者能够明确控制</div>
+<div class="ts-line"><span class="ts-t">[04:20]</span> 每个环节的执行顺序</div>
+<div class="ts-line"><span class="ts-t">[04:22]</span> 以及不同条件下</div>
+<div class="ts-line"><span class="ts-t">[04:24]</span> 应该走哪一条路径</div>
+<div class="ts-line"><span class="ts-t">[04:25]</span> 这就是 LangGraph 最核心的价值</div>
+<div class="ts-line"><span class="ts-t">[04:27]</span> 它让开发者能够更加精确</div>
+<div class="ts-line"><span class="ts-t">[04:29]</span> 控制 Agent 的执行过程</div>
+</div></details>
 </section>
 <section class="sec" id="s10">
 <h2>10. 暂停、恢复与生产级能力</h2>
@@ -619,6 +766,23 @@ main{padding-top:22px}
 <tr><td>执行中断</td><td>暂停等待</td><td>在关键节点停下来</td></tr>
 <tr><td>人工介入</td><td>人工确认 → 继续执行</td><td>审批与人工把关</td></tr>
 </table>
+<details class="ts-box"><summary>本章语音逐字稿（ASR · 已校正）（逐字 · 14 句）</summary>
+<div class="ts-lines">
+<div class="ts-line"><span class="ts-t">[04:31]</span> 除此之外 LangGraph 还提供了</div>
+<div class="ts-line"><span class="ts-t">[04:33]</span> 持久化检查点</div>
+<div class="ts-line"><span class="ts-t">[04:35]</span> 流式输出执行中断</div>
+<div class="ts-line"><span class="ts-t">[04:37]</span> 和人工介入等能力</div>
+<div class="ts-line"><span class="ts-t">[04:38]</span> 举个例子</div>
+<div class="ts-line"><span class="ts-t">[04:39]</span> 如果退款流程执行到人工审批环节</div>
+<div class="ts-line"><span class="ts-t">[04:42]</span> 系统可以先暂停运行</div>
+<div class="ts-line"><span class="ts-t">[04:44]</span> 等待工作人员确认</div>
+<div class="ts-line"><span class="ts-t">[04:45]</span> 等人工审批完成之后</div>
+<div class="ts-line"><span class="ts-t">[04:47]</span> 再从之前暂停的位置继续执行</div>
+<div class="ts-line"><span class="ts-t">[04:50]</span> 如果任务执行过程中出现异常</div>
+<div class="ts-line"><span class="ts-t">[04:53]</span> 也可以结合持久化检查点</div>
+<div class="ts-line"><span class="ts-t">[04:55]</span> 保存的状态恢复执行</div>
+<div class="ts-line"><span class="ts-t">[04:56]</span> 因此 LangGraph 特别适合多步骤业务流程</div>
+</div></details>
 </section>
 <section class="sec" id="s11">
 <h2>11. 适用场景与「代码 + 模型」分工</h2>
@@ -649,6 +813,24 @@ main{padding-top:22px}
 <p><span class="tag t-video">视频原述</span>适用场景：多步骤业务流程、复杂条件分支、循环重试、人工审批，以及需要保存状态并支持中断恢复的 Agent 系统；典型如订单处理、退款审批、企业工单系统。</p>
 <p><span class="tag t-video">视频原述</span>视频特意强调：「LangGraph 并不意味着所有步骤都必须交给大模型处理。相反，它非常适合把确定性的业务逻辑交给普通代码，把需要理解和判断的任务交给大模型」。</p>
 <div class="key">判断标准：这一步的结果是否<strong>只能由语义理解得出</strong>？不是，就写普通代码；是，才交给模型。</div>
+<details class="ts-box"><summary>本章语音逐字稿（ASR · 已校正）（逐字 · 15 句）</summary>
+<div class="ts-lines">
+<div class="ts-line"><span class="ts-t">[04:59]</span> 复杂条件分支</div>
+<div class="ts-line"><span class="ts-t">[05:01]</span> 循环重试人工审批</div>
+<div class="ts-line"><span class="ts-t">[05:03]</span> 以及需要保存状态</div>
+<div class="ts-line"><span class="ts-t">[05:04]</span> 并支持中断恢复的 Agent 系统</div>
+<div class="ts-line"><span class="ts-t">[05:07]</span> 这里还需要强调一点</div>
+<div class="ts-line"><span class="ts-t">[05:08]</span> LangGraph 并不意味着所有步骤</div>
+<div class="ts-line"><span class="ts-t">[05:11]</span> 都必须交给大模型处理</div>
+<div class="ts-line"><span class="ts-t">[05:12]</span> 相反它非常适合把确定性的业务逻辑</div>
+<div class="ts-line"><span class="ts-t">[05:16]</span> 交给普通代码</div>
+<div class="ts-line"><span class="ts-t">[05:17]</span> 把需要理解和判断的任务</div>
+<div class="ts-line"><span class="ts-t">[05:19]</span> 交给大模型</div>
+<div class="ts-line"><span class="ts-t">[05:20]</span> 这样既能发挥大模型的智能能力</div>
+<div class="ts-line"><span class="ts-t">[05:23]</span> 也能保证整个业务流程</div>
+<div class="ts-line"><span class="ts-t">[05:25]</span> 具有较好的可控性</div>
+<div class="ts-line"><span class="ts-t">[05:26]</span> 接下来我们再看第三个框架</div>
+</div></details>
 </section>
 <section class="sec" id="s12">
 <h2>12. Deep Agents：只给目标，由 Agent 自己规划</h2>
@@ -678,6 +860,41 @@ main{padding-top:22px}
 <p><span class="tag t-video">视频原述</span>第三个例子：给 AI 一个任务「分析当前项目的代码仓库，找出登录模块存在的问题，修复相关代码，然后运行测试」——「注意，这个任务并没有规定具体应该执行哪些步骤」。</p>
 <p><span class="tag t-video">视频原述</span>Agent 需要自己理解目标、分析代码仓库、找到相关文件、制定修复计划、修改代码、运行测试；「测试失败 → 分析错误 → 调整代码」，直到达到预期结果。整个过程涉及大量文件和工具调用，还需要保存中间发现的信息。</p>
 <p><span class="tag t-video">视频原述</span>「如果这些功能全部由开发者自己实现，工作量较大」，而 Deep Agents 就是为这类复杂任务提供更完整的执行框架。</p>
+<details class="ts-box"><summary>本章语音逐字稿（ASR · 已校正）（逐字 · 32 句）</summary>
+<div class="ts-lines">
+<div class="ts-line"><span class="ts-t">[05:28]</span> Deep Agents</div>
+<div class="ts-line"><span class="ts-t">[05:29]</span> 如果说 LangChain 主要解决</div>
+<div class="ts-line"><span class="ts-t">[05:32]</span> 基础组件和工具调用问题</div>
+<div class="ts-line"><span class="ts-t">[05:34]</span> LangGraph 主要解决</div>
+<div class="ts-line"><span class="ts-t">[05:36]</span> 复杂流程的编排问题</div>
+<div class="ts-line"><span class="ts-t">[05:38]</span> 那么 Deep Agents 更关注的是</div>
+<div class="ts-line"><span class="ts-t">[05:40]</span> 如何让 Agent 自己规划任务</div>
+<div class="ts-line"><span class="ts-t">[05:42]</span> 并且持续完成一个比较复杂的目标</div>
+<div class="ts-line"><span class="ts-t">[05:44]</span> 我们来看一个实际场景</div>
+<div class="ts-line"><span class="ts-t">[05:46]</span> 假设现在给 AI 一个任务</div>
+<div class="ts-line"><span class="ts-t">[05:48]</span> 分析当前项目的代码仓库</div>
+<div class="ts-line"><span class="ts-t">[05:51]</span> 找出登录模块存在的问题</div>
+<div class="ts-line"><span class="ts-t">[05:54]</span> 修复相关代码</div>
+<div class="ts-line"><span class="ts-t">[05:55]</span> 然后运行测试</div>
+<div class="ts-line"><span class="ts-t">[05:56]</span> 最后输出一份修复报告</div>
+<div class="ts-line"><span class="ts-t">[05:58]</span> 注意这个任务并没有规定</div>
+<div class="ts-line"><span class="ts-t">[06:00]</span> 具体应该执行哪些步骤</div>
+<div class="ts-line"><span class="ts-t">[06:02]</span> Agent 需要先理解目标</div>
+<div class="ts-line"><span class="ts-t">[06:04]</span> 再分析代码仓库</div>
+<div class="ts-line"><span class="ts-t">[06:05]</span> 找到相关文件</div>
+<div class="ts-line"><span class="ts-t">[06:07]</span> 制定修复计划</div>
+<div class="ts-line"><span class="ts-t">[06:08]</span> 然后修改代码</div>
+<div class="ts-line"><span class="ts-t">[06:09]</span> 运行测试</div>
+<div class="ts-line"><span class="ts-t">[06:10]</span> 如果测试失败</div>
+<div class="ts-line"><span class="ts-t">[06:11]</span> 还需要继续分析错误</div>
+<div class="ts-line"><span class="ts-t">[06:13]</span> 调整代码</div>
+<div class="ts-line"><span class="ts-t">[06:14]</span> 直到达到预期结果</div>
+<div class="ts-line"><span class="ts-t">[06:16]</span> 整个过程可能涉及大量文件</div>
+<div class="ts-line"><span class="ts-t">[06:18]</span> 和工具调用</div>
+<div class="ts-line"><span class="ts-t">[06:19]</span> 还需要保存中间发现的信息</div>
+<div class="ts-line"><span class="ts-t">[06:21]</span> 如果这些功能全部由开发者</div>
+<div class="ts-line"><span class="ts-t">[06:23]</span> 自己实现</div>
+</div></details>
 </section>
 <section class="sec" id="s13">
 <h2>13. 完整执行框架：建立在前两者之上</h2>
@@ -707,6 +924,17 @@ main{padding-top:22px}
 <tr><td>上层</td><td>规划、上下文、文件系统、子智能体</td><td>Deep Agents 封装</td></tr>
 <tr><td>可选</td><td>Skills、长期记忆、人工介入、沙箱与执行工具</td><td>按配置启用</td></tr>
 </table>
+<details class="ts-box"><summary>本章语音逐字稿（ASR · 已校正）（逐字 · 8 句）</summary>
+<div class="ts-lines">
+<div class="ts-line"><span class="ts-t">[06:24]</span> 工作量就会比较大</div>
+<div class="ts-line"><span class="ts-t">[06:25]</span> 而 Deep Agents 就是为这类复杂</div>
+<div class="ts-line"><span class="ts-t">[06:28]</span> 任务提供更加完整的执行框架</div>
+<div class="ts-line"><span class="ts-t">[06:30]</span> 它建立在 LangChain 和 LangGraph 的相关能力之上</div>
+<div class="ts-line"><span class="ts-t">[06:33]</span> 进一步整合了任务规划</div>
+<div class="ts-line"><span class="ts-t">[06:35]</span> 上下文管理</div>
+<div class="ts-line"><span class="ts-t">[06:36]</span> 文件系统和子智能体等能力</div>
+<div class="ts-line"><span class="ts-t">[06:38]</span> 我们重点看几个功能</div>
+</div></details>
 </section>
 <section class="sec" id="s14">
 <h2>14. 任务规划与子智能体协作</h2>
@@ -739,6 +967,32 @@ main{padding-top:22px}
 <h3 id="142-子智能体把独立子任务交给专门-agent">14.2 子智能体：把独立子任务交给专门 Agent</h3>
 <p><span class="tag t-video">视频原述</span>主 Agent 负责整体任务规划；一个子 Agent 分析代码结构，另一个子 Agent 检查测试结果；完成后「子任务结果返回 → 主 Agent 汇总处理」。</p>
 <div class="note">官方文档补充：规划工具 <code>write_todos</code> 在新版为可选中间件（<code>TodoListMiddleware</code>）；子智能体通过内置 <code>task</code> 工具创建，默认隔离上下文并只返回一份最终结果。</div>
+<details class="ts-box"><summary>本章语音逐字稿（ASR · 已校正）（逐字 · 23 句）</summary>
+<div class="ts-lines">
+<div class="ts-line"><span class="ts-t">[06:39]</span> 第一个是任务规划</div>
+<div class="ts-line"><span class="ts-t">[06:41]</span> 当用户提出一个比较大的目标时</div>
+<div class="ts-line"><span class="ts-t">[06:43]</span> Agent 可以把任务拆分成多个具体步骤</div>
+<div class="ts-line"><span class="ts-t">[06:45]</span> 并跟踪每个步骤的执行情况</div>
+<div class="ts-line"><span class="ts-t">[06:48]</span> 例如刚才的代码修复任务</div>
+<div class="ts-line"><span class="ts-t">[06:50]</span> 就可以拆分成代码分析</div>
+<div class="ts-line"><span class="ts-t">[06:52]</span> 问题定位</div>
+<div class="ts-line"><span class="ts-t">[06:53]</span> 代码修改</div>
+<div class="ts-line"><span class="ts-t">[06:53]</span> 测试验证和结果整理等环节</div>
+<div class="ts-line"><span class="ts-t">[06:56]</span> 第二个是子智能体</div>
+<div class="ts-line"><span class="ts-t">[06:57]</span> 如果一个任务可以拆分成多个</div>
+<div class="ts-line"><span class="ts-t">[06:59]</span> 相对独立的子任务</div>
+<div class="ts-line"><span class="ts-t">[07:01]</span> 就可以把其中一部分</div>
+<div class="ts-line"><span class="ts-t">[07:02]</span> 交给专门的子 Agent 处理</div>
+<div class="ts-line"><span class="ts-t">[07:04]</span> 比如主 Agent 负责整体任务规划</div>
+<div class="ts-line"><span class="ts-t">[07:07]</span> 一个子 Agent 负责分析代码结构</div>
+<div class="ts-line"><span class="ts-t">[07:09]</span> 另一个子 Agent 负责检查测试结果</div>
+<div class="ts-line"><span class="ts-t">[07:12]</span> 等子 Agent 完成各自的任务之后</div>
+<div class="ts-line"><span class="ts-t">[07:15]</span> 再把结果返回给主 Agent</div>
+<div class="ts-line"><span class="ts-t">[07:17]</span> 由主 Agent 进行汇总和后续处理</div>
+<div class="ts-line"><span class="ts-t">[07:20]</span> 第三个是文件系统</div>
+<div class="ts-line"><span class="ts-t">[07:21]</span> 在复杂任务中</div>
+<div class="ts-line"><span class="ts-t">[07:22]</span> Agent 可能需要读取大量文件</div>
+</div></details>
 </section>
 <section class="sec" id="s15">
 <h2>15. 文件系统与上下文管理</h2>
@@ -776,6 +1030,27 @@ main{padding-top:22px}
 <tr><td>Skills</td><td>可复用知识与流程</td><td>按需加载领域知识</td></tr>
 <tr><td>长期记忆</td><td>按配置使用</td><td>跨会话保留偏好</td></tr>
 </table>
+<details class="ts-box"><summary>本章语音逐字稿（ASR · 已校正）（逐字 · 18 句）</summary>
+<div class="ts-lines">
+<div class="ts-line"><span class="ts-t">[07:25]</span> 也可能需要把中间结果保存下来</div>
+<div class="ts-line"><span class="ts-t">[07:27]</span> Deep Agents 提供了文件系统相关能力</div>
+<div class="ts-line"><span class="ts-t">[07:30]</span> 可以通过文件读写工具</div>
+<div class="ts-line"><span class="ts-t">[07:31]</span> 保存研究资料</div>
+<div class="ts-line"><span class="ts-t">[07:32]</span> 任务计划和中间产物</div>
+<div class="ts-line"><span class="ts-t">[07:34]</span> 减少所有信息都堆积在对话上下文中的情况</div>
+<div class="ts-line"><span class="ts-t">[07:38]</span> 第四个是上下文管理</div>
+<div class="ts-line"><span class="ts-t">[07:39]</span> 大家都知道 Agent 执行时间越长</div>
+<div class="ts-line"><span class="ts-t">[07:42]</span> 调用工具越多</div>
+<div class="ts-line"><span class="ts-t">[07:43]</span> 对话历史和工具返回结果</div>
+<div class="ts-line"><span class="ts-t">[07:45]</span> 就可能越来越多</div>
+<div class="ts-line"><span class="ts-t">[07:47]</span> 如果所有内容都一直保留在上下文中</div>
+<div class="ts-line"><span class="ts-t">[07:50]</span> 很容易造成上下文规模过大</div>
+<div class="ts-line"><span class="ts-t">[07:52]</span> Deep Agents 提供了上下文管理相关机制</div>
+<div class="ts-line"><span class="ts-t">[07:56]</span> 可以通过摘要文件卸载等方式</div>
+<div class="ts-line"><span class="ts-t">[07:58]</span> 控制上下文规模</div>
+<div class="ts-line"><span class="ts-t">[08:00]</span> 让 Agent 能够更好处理长期任务</div>
+<div class="ts-line"><span class="ts-t">[08:02]</span> 除此之外</div>
+</div></details>
 </section>
 <section class="sec" id="s16">
 <h2>16. 可扩展能力、适用场景与权限边界</h2>
@@ -812,6 +1087,32 @@ main{padding-top:22px}
 <p><span class="tag t-video">视频原述</span>可扩展能力：Skills（可复用知识与流程）、长期记忆（按配置使用）、人工介入、沙箱与执行工具（按配置运行）。适用场景：深度研究、自动化代码分析与修复、复杂资料整理、多个子智能体协作。</p>
 <div class="warn">口播提醒：「越自主，越需要注意权限和执行环境」，尤其是文件修改、命令执行和数据库写入时，「一定要做好沙箱隔离、权限控制和人工审批，不能默认让 Agent 无限制地执行操作」。</div>
 <p><span class="tag t-extra">补充</span>官方补充：<code>interrupt_on</code> 可在敏感工具调用前暂停等待人工批准；虚拟文件系统后端支持声明式读写权限，执行环境可配置沙箱。</p>
+<details class="ts-box"><summary>本章语音逐字稿（ASR · 已校正）（逐字 · 23 句）</summary>
+<div class="ts-lines">
+<div class="ts-line"><span class="ts-t">[08:03]</span> 它还支持 Skills</div>
+<div class="ts-line"><span class="ts-t">[08:04]</span> 也就是可以加载可复用的任务知识和操作流程</div>
+<div class="ts-line"><span class="ts-t">[08:08]</span> 可以根据配置使用长期记忆</div>
+<div class="ts-line"><span class="ts-t">[08:10]</span> 也支持人工介入</div>
+<div class="ts-line"><span class="ts-t">[08:12]</span> 以及在配置相应沙箱和执行工具之后运行代码</div>
+<div class="ts-line"><span class="ts-t">[08:16]</span> 执行命令和处理文件</div>
+<div class="ts-line"><span class="ts-t">[08:17]</span> 所以 Deep Agents 比较适合什么场景</div>
+<div class="ts-line"><span class="ts-t">[08:20]</span> 比如深度研究</div>
+<div class="ts-line"><span class="ts-t">[08:21]</span> 自动化代码分析与修复</div>
+<div class="ts-line"><span class="ts-t">[08:23]</span> 复杂资料整理</div>
+<div class="ts-line"><span class="ts-t">[08:24]</span> 以及需要多个子智能体协作完成的任务</div>
+<div class="ts-line"><span class="ts-t">[08:27]</span> 不过这里要提醒一下</div>
+<div class="ts-line"><span class="ts-t">[08:29]</span> Deep Agents 能力越完整</div>
+<div class="ts-line"><span class="ts-t">[08:31]</span> 越需要注意权限和执行环境</div>
+<div class="ts-line"><span class="ts-t">[08:33]</span> 尤其是涉及文件修改</div>
+<div class="ts-line"><span class="ts-t">[08:35]</span> 命令执行和数据库写入时</div>
+<div class="ts-line"><span class="ts-t">[08:37]</span> 一定要做好沙箱隔离</div>
+<div class="ts-line"><span class="ts-t">[08:39]</span> 权限控制和人工审批</div>
+<div class="ts-line"><span class="ts-t">[08:41]</span> 不能默认让 Agent 无限制的执行操作</div>
+<div class="ts-line"><span class="ts-t">[08:44]</span> 好了</div>
+<div class="ts-line"><span class="ts-t">[08:44]</span> 三个框架的基本定位已经介绍完了</div>
+<div class="ts-line"><span class="ts-t">[08:46]</span> 接下来我们把它们放在一起</div>
+<div class="ts-line"><span class="ts-t">[08:48]</span> 看看核心区别到底在哪里</div>
+</div></details>
 </section>
 <section class="sec" id="s17">
 <h2>17. 核心区别与三种能力比喻</h2>
@@ -846,6 +1147,30 @@ main{padding-top:22px}
 <tr><td>Deep Agents</td><td>自主执行复杂任务</td><td>给 Agent 配备一个任务管理系统</td></tr>
 </table>
 <p><span class="tag t-video">视频原述</span>口播把第三层展开为「让它能够自己拆解目标、安排任务、调用工具，必要时还可以安排其他 Agent 协助完成工作」；画面收束为「拆解目标・安排任务・调用工具・协作」。</p>
+<details class="ts-box"><summary>本章语音逐字稿（ASR · 已校正）（逐字 · 21 句）</summary>
+<div class="ts-lines">
+<div class="ts-line"><span class="ts-t">[08:50]</span> LangChain 重点是</div>
+<div class="ts-line"><span class="ts-t">[08:51]</span> 模型工具和 Agent 的基础组件集成</div>
+<div class="ts-line"><span class="ts-t">[08:55]</span> 帮助开发者快速搭建一个</div>
+<div class="ts-line"><span class="ts-t">[08:57]</span> 能够调用工具的智能体</div>
+<div class="ts-line"><span class="ts-t">[08:59]</span> LangGraph 重点是状态管理和工作流编排</div>
+<div class="ts-line"><span class="ts-t">[09:02]</span> 让开发者能够明确控制任务的执行顺序</div>
+<div class="ts-line"><span class="ts-t">[09:06]</span> 条件分支和异常恢复</div>
+<div class="ts-line"><span class="ts-t">[09:07]</span> Deep Agents 重点是复杂任务的自主执行</div>
+<div class="ts-line"><span class="ts-t">[09:11]</span> 通过任务规划</div>
+<div class="ts-line"><span class="ts-t">[09:12]</span> 上下文管理和子智能体等能力</div>
+<div class="ts-line"><span class="ts-t">[09:14]</span> 让 Agent 能够持续完成更加复杂的工作</div>
+<div class="ts-line"><span class="ts-t">[09:17]</span> 如果用一个简单的例子来理解</div>
+<div class="ts-line"><span class="ts-t">[09:19]</span> LangChain 就像给 Agent 准备好各种工具</div>
+<div class="ts-line"><span class="ts-t">[09:22]</span> 让它能够完成基本的工作</div>
+<div class="ts-line"><span class="ts-t">[09:24]</span> LangGraph 就像给 Agent 设计好工作流程</div>
+<div class="ts-line"><span class="ts-t">[09:27]</span> 明确每个环节应该做什么</div>
+<div class="ts-line"><span class="ts-t">[09:30]</span> 以及什么情况下进入下一步</div>
+<div class="ts-line"><span class="ts-t">[09:32]</span> Deep Agents 则像给 Agent 配备一个任务管理系统</div>
+<div class="ts-line"><span class="ts-t">[09:36]</span> 让它能够自己拆解目标</div>
+<div class="ts-line"><span class="ts-t">[09:37]</span> 安排任务调用工具</div>
+<div class="ts-line"><span class="ts-t">[09:39]</span> 必要时还可以安排其他 Agent 协助完成工作</div>
+</div></details>
 </section>
 <section class="sec" id="s18">
 <h2>18. 三个选型问题与决策树</h2>
@@ -891,6 +1216,44 @@ main{padding-top:22px}
 <tr><td>03</td><td>用户是不是只给一个目标，由 Agent 自己规划？</td><td>拆解目标 → 管理上下文 → 调用工具 → 子 Agent</td><td>Deep Agents：技术研究与报告、仓库分析修复与测试</td></tr>
 </table>
 <div class="key">三个问题<strong>按顺序</strong>问：越靠后，交给 Agent 的自主权越大，需要的基础设施也越多。</div>
+<details class="ts-box"><summary>本章语音逐字稿（ASR · 已校正）（逐字 · 35 句）</summary>
+<div class="ts-lines">
+<div class="ts-line"><span class="ts-t">[09:43]</span> 那么实际开发的时候到底应该怎么选</div>
+<div class="ts-line"><span class="ts-t">[09:45]</span> 这里可以根据三个问题来判断</div>
+<div class="ts-line"><span class="ts-t">[09:48]</span> 第一个问题</div>
+<div class="ts-line"><span class="ts-t">[09:49]</span> 你的业务是不是以问答和工具调用为主</div>
+<div class="ts-line"><span class="ts-t">[09:52]</span> 如果用户提出问题之后</div>
+<div class="ts-line"><span class="ts-t">[09:53]</span> Agent 只需要查询知识库调用几个接口</div>
+<div class="ts-line"><span class="ts-t">[09:56]</span> 然后生成回答</div>
+<div class="ts-line"><span class="ts-t">[09:57]</span> 那么直接使用 LangChain 通常就够了</div>
+<div class="ts-line"><span class="ts-t">[10:00]</span> 比如企业知识库助手</div>
+<div class="ts-line"><span class="ts-t">[10:02]</span> 智能客服以及简单的数据查询助手</div>
+<div class="ts-line"><span class="ts-t">[10:04]</span> 都可以从 LangChain 开始</div>
+<div class="ts-line"><span class="ts-t">[10:06]</span> 第二个问题</div>
+<div class="ts-line"><span class="ts-t">[10:07]</span> 你的业务流程是不是需要严格控制</div>
+<div class="ts-line"><span class="ts-t">[10:10]</span> 如果任务需要经过多个固定环节</div>
+<div class="ts-line"><span class="ts-t">[10:13]</span> 而且存在条件分支</div>
+<div class="ts-line"><span class="ts-t">[10:15]</span> 人工审批</div>
+<div class="ts-line"><span class="ts-t">[10:16]</span> 异常重试和状态恢复</div>
+<div class="ts-line"><span class="ts-t">[10:18]</span> 那么可以优先考虑 LangGraph</div>
+<div class="ts-line"><span class="ts-t">[10:20]</span> 比如订单处理</div>
+<div class="ts-line"><span class="ts-t">[10:21]</span> 退款审批企业工单系统等</div>
+<div class="ts-line"><span class="ts-t">[10:23]</span> 这类业务往往有明确的执行规则</div>
+<div class="ts-line"><span class="ts-t">[10:25]</span> 不适合完全交给大模型自主决定</div>
+<div class="ts-line"><span class="ts-t">[10:28]</span> 第三个问题</div>
+<div class="ts-line"><span class="ts-t">[10:29]</span> 用户是不是只给一个目标</div>
+<div class="ts-line"><span class="ts-t">[10:31]</span> 具体执行过程需要 Agent 自己规划</div>
+<div class="ts-line"><span class="ts-t">[10:33]</span> 如果用户给出的任务比较开放</div>
+<div class="ts-line"><span class="ts-t">[10:36]</span> Agent 需要自己拆解目标</div>
+<div class="ts-line"><span class="ts-t">[10:37]</span> 调用多个工具</div>
+<div class="ts-line"><span class="ts-t">[10:38]</span> 管理大量文件和上下文</div>
+<div class="ts-line"><span class="ts-t">[10:40]</span> 甚至安排其他 Agent 协作</div>
+<div class="ts-line"><span class="ts-t">[10:42]</span> 那么就可以考虑 Deep Agents</div>
+<div class="ts-line"><span class="ts-t">[10:44]</span> 比如自动研究一个技术主题</div>
+<div class="ts-line"><span class="ts-t">[10:46]</span> 并生成报告</div>
+<div class="ts-line"><span class="ts-t">[10:47]</span> 或者分析整个代码仓库</div>
+<div class="ts-line"><span class="ts-t">[10:48]</span> 定位问题修改代码并运行测试</div>
+</div></details>
 </section>
 <section class="sec" id="s19">
 <h2>19. 特别说明：不是所有业务都需要 Agent</h2>
@@ -919,6 +1282,16 @@ main{padding-top:22px}
 </div>
 <p><span class="tag t-video">视频原述</span>「还有一种情况需要特别说明：业务流程完全固定、无需模型自主判断，那么直接使用普通 Python 代码或者传统工作流系统，可能反而更加简单」。画面结语：「并非所有业务都需要 Agent」。</p>
 <div class="note">这条常被忽略，但它是整支视频最实用的边界条件：先把「需不需要 Agent」问清楚，再问「用哪个框架」。</div>
+<details class="ts-box"><summary>本章语音逐字稿（ASR · 已校正）（逐字 · 7 句）</summary>
+<div class="ts-lines">
+<div class="ts-line"><span class="ts-t">[10:51]</span> 当然还有一种情况需要特别说明</div>
+<div class="ts-line"><span class="ts-t">[10:53]</span> 如果业务流程完全固定</div>
+<div class="ts-line"><span class="ts-t">[10:55]</span> 不需要大模型进行自主判断</div>
+<div class="ts-line"><span class="ts-t">[10:57]</span> 那么直接使用普通 Python 代码</div>
+<div class="ts-line"><span class="ts-t">[10:59]</span> 或者传统工作流系统</div>
+<div class="ts-line"><span class="ts-t">[11:01]</span> 可能反而更加简单</div>
+<div class="ts-line"><span class="ts-t">[11:02]</span> 并不是所有业务都需要开发成 Agent</div>
+</div></details>
 </section>
 <section class="sec" id="s20">
 <h2>20. 三者能否一起用：可以，按项目需求组合</h2>
@@ -954,6 +1327,31 @@ main{padding-top:22px}
 <p><span class="tag t-video">视频原述</span>「答案是可以，而且它们之间本身就存在比较紧密的技术联系」：LangChain 提供模型、工具和 Agent 等基础组件；LangGraph 提供底层状态管理和流程编排；Deep Agents 在前两者之上封装任务规划、上下文管理和子智能体。</p>
 <p><span class="tag t-video">视频原述</span>具体组合方式：「我们可以在 LangGraph 的节点中调用 LangChain 提供的模型和工具，也可以使用 Deep Agents 提供的任务规划和子智能体能力，再根据实际业务需求进行定制」。画面还标注「LangGraph 可以独立使用」。</p>
 <div class="key">「这并不意味着开发一个项目就必须同时使用三个框架，应该根据项目需求决定」。</div>
+<details class="ts-box"><summary>本章语音逐字稿（ASR · 已校正）（逐字 · 22 句）</summary>
+<div class="ts-lines">
+<div class="ts-line"><span class="ts-t">[11:05]</span> 最后再说一下</div>
+<div class="ts-line"><span class="ts-t">[11:05]</span> 这三个框架能不能一起使用</div>
+<div class="ts-line"><span class="ts-t">[11:07]</span> 答案是可以的</div>
+<div class="ts-line"><span class="ts-t">[11:08]</span> 而且它们之间本身就存在</div>
+<div class="ts-line"><span class="ts-t">[11:10]</span> 比较紧密的技术联系</div>
+<div class="ts-line"><span class="ts-t">[11:11]</span> LangChain 提供模型工具和 Agent 等基础组件</div>
+<div class="ts-line"><span class="ts-t">[11:16]</span> LangGraph 提供底层的状态管理</div>
+<div class="ts-line"><span class="ts-t">[11:18]</span> 和流程编排能力</div>
+<div class="ts-line"><span class="ts-t">[11:20]</span> Deep Agents 则在相关基础能力之上</div>
+<div class="ts-line"><span class="ts-t">[11:23]</span> 进一步封装了任务规划</div>
+<div class="ts-line"><span class="ts-t">[11:25]</span> 上下文管理和子智能体等功能</div>
+<div class="ts-line"><span class="ts-t">[11:28]</span> 比如我们可以在 LangGraph 的节点中</div>
+<div class="ts-line"><span class="ts-t">[11:30]</span> 调用 LangChain 提供的模型和工具</div>
+<div class="ts-line"><span class="ts-t">[11:33]</span> 也可以使用 Deep Agents 提供的</div>
+<div class="ts-line"><span class="ts-t">[11:36]</span> 任务规划和子智能体能力</div>
+<div class="ts-line"><span class="ts-t">[11:38]</span> 再根据实际业务需求进行定制</div>
+<div class="ts-line"><span class="ts-t">[11:41]</span> 不过这里有一点需要注意</div>
+<div class="ts-line"><span class="ts-t">[11:42]</span> 这并不意味着开发一个项目</div>
+<div class="ts-line"><span class="ts-t">[11:44]</span> 就必须同时使用三个框架</div>
+<div class="ts-line"><span class="ts-t">[11:46]</span> LangGraph 可以独立使用</div>
+<div class="ts-line"><span class="ts-t">[11:48]</span> 具体选择哪一层</div>
+<div class="ts-line"><span class="ts-t">[11:49]</span> 应该根据项目需求决定</div>
+</div></details>
 </section>
 <section class="sec" id="s21">
 <h2>21. 总结：让框架服务于业务</h2>
@@ -987,6 +1385,36 @@ main{padding-top:22px}
 <p><span class="tag t-video">视频原述</span>口播收束：简单知识库助手或能调用几个工具的智能客服 → LangChain；有明确业务流程、复杂条件分支和人工审批 → LangGraph；希望 Agent 自主规划、管理上下文、调用多个工具甚至安排子智能体协作完成长期任务 → Deep Agents。</p>
 <div class="key">「实际开发中，建议从满足当前需求最简单方案开始，不要一上来就引入过多框架和复杂架构。真正合适的技术选型，是让框架服务于业务。」</div>
 <p><span class="tag t-extra">补充</span>与本站第四篇互读：第四篇用 Framework / Runtime / Harness 三层抽象横向对比七个代表项目，本篇沿同一条轴线纵向拆开 LangChain 自家三层，并给出可操作的三个判断问题。</p>
+<details class="ts-box"><summary>本章语音逐字稿（ASR · 已校正）（逐字 · 27 句）</summary>
+<div class="ts-lines">
+<div class="ts-line"><span class="ts-t">[11:51]</span> 总结一下</div>
+<div class="ts-line"><span class="ts-t">[11:52]</span> 如果你要开发的是一个简单的</div>
+<div class="ts-line"><span class="ts-t">[11:54]</span> 知识库助手</div>
+<div class="ts-line"><span class="ts-t">[11:54]</span> 或者能够调用几个工具的</div>
+<div class="ts-line"><span class="ts-t">[11:56]</span> 智能客服</div>
+<div class="ts-line"><span class="ts-t">[11:57]</span> 可以优先考虑 LangChain</div>
+<div class="ts-line"><span class="ts-t">[11:58]</span> 如果你要开发的是一个</div>
+<div class="ts-line"><span class="ts-t">[12:00]</span> 有明确业务流程</div>
+<div class="ts-line"><span class="ts-t">[12:01]</span> 复杂条件分支</div>
+<div class="ts-line"><span class="ts-t">[12:02]</span> 和人工审批机制的系统</div>
+<div class="ts-line"><span class="ts-t">[12:04]</span> 可以考虑 LangGraph</div>
+<div class="ts-line"><span class="ts-t">[12:05]</span> 如果你希望 Agent</div>
+<div class="ts-line"><span class="ts-t">[12:06]</span> 能够自主规划任务</div>
+<div class="ts-line"><span class="ts-t">[12:07]</span> 管理上下文</div>
+<div class="ts-line"><span class="ts-t">[12:08]</span> 调用多个工具</div>
+<div class="ts-line"><span class="ts-t">[12:10]</span> 甚至安排子智能体</div>
+<div class="ts-line"><span class="ts-t">[12:11]</span> 协作完成长期任务</div>
+<div class="ts-line"><span class="ts-t">[12:13]</span> 那么可以考虑 Deep Agents</div>
+<div class="ts-line"><span class="ts-t">[12:15]</span> 实际开发中</div>
+<div class="ts-line"><span class="ts-t">[12:16]</span> 建议从满足当前需求的</div>
+<div class="ts-line"><span class="ts-t">[12:18]</span> 最简单方案开始</div>
+<div class="ts-line"><span class="ts-t">[12:19]</span> 不要一上来就引入</div>
+<div class="ts-line"><span class="ts-t">[12:20]</span> 过多框架和复杂架构</div>
+<div class="ts-line"><span class="ts-t">[12:22]</span> 真正合适的技术选型</div>
+<div class="ts-line"><span class="ts-t">[12:23]</span> 是让框架服务于业务</div>
+<div class="ts-line"><span class="ts-t">[12:25]</span> 而不是为了使用框架</div>
+<div class="ts-line"><span class="ts-t">[12:27]</span> 而增加系统复杂度</div>
+</div></details>
 </section>
 <section class="sec" id="s22">
 <h2>22. 补充篇 A：专业名词速查（56 条）</h2>
@@ -1247,6 +1675,686 @@ for f in files:
 <li><strong>校对</strong>：三个抽象层次、基础组件、图三要素、售后流程、执行框架、三个选型问题、联用与总结等 10 张关键帧放大逐字复核。</li>
 <li><strong>补充资料</strong>：LangChain 官方 <a href="https://docs.langchain.com/oss/concepts/products">Runtimes, frameworks, and harnesses</a>、<a href="https://docs.langchain.com/oss/python/deepagents/overview">Deep Agents overview</a>、<a href="https://www.langchain.com/oss-overview">LangChain OSS overview</a>；本站 <a href="../agent-architecture-tutorial/index.html">Agent 开发架构选型 · 完全教程</a>。</li>
 </ol>
+<h3 id="265-全片语音逐字稿asr--354-段--按-8-段官方章节">26.5 全片语音逐字稿（ASR · 354 段 · 按 8 段官方章节）</h3>
+<p><span class="tag t-extra">补充</span>本节是<strong>语音识别得到的完整口播</strong>，不是画面字幕。视频作者制作的烧录字幕为精简重排版（216 句），ASR 还原出 354 段、包含字幕省略的过渡句与追问句。每段保留起始时间码，点击标题展开。</p>
+<details class="ts-box"><summary>① 引言（逐字 · 15 句）</summary>
+<div class="ts-lines">
+<div class="ts-line"><span class="ts-t">[00:05]</span> 这三个框架经常被放在一起讨论</div>
+<div class="ts-line"><span class="ts-t">[00:07]</span> 它们都能用来开发 Agent 但具体有什么区别</div>
+<div class="ts-line"><span class="ts-t">[00:10]</span> 它们之间是什么关系</div>
+<div class="ts-line"><span class="ts-t">[00:12]</span> 如果现在要开发一个实际项目又应该怎么选</div>
+<div class="ts-line"><span class="ts-t">[00:15]</span> 今天就用一篇视频把这三个框架的定位</div>
+<div class="ts-line"><span class="ts-t">[00:17]</span> 核心能力和适用场景讲清楚</div>
+<div class="ts-line"><span class="ts-t">[00:20]</span> 先说结论</div>
+<div class="ts-line"><span class="ts-t">[00:20]</span> LangChain 主要解决 Agent 的基础组件和工具集成问题</div>
+<div class="ts-line"><span class="ts-t">[00:25]</span> LangGraph 主要解决 Agent 的流程编排和状态管理问题</div>
+<div class="ts-line"><span class="ts-t">[00:29]</span> Deep Agents 则是在这些基础能力之上</div>
+<div class="ts-line"><span class="ts-t">[00:32]</span> 进一步封装了任务规划，上下文管理，子智能体等能力</div>
+<div class="ts-line"><span class="ts-t">[00:37]</span> 让 Agent 能够处理更加复杂更加长期的任务</div>
+<div class="ts-line"><span class="ts-t">[00:41]</span> 所以把它们理解为三个不同抽象层次的开发框架</div>
+<div class="ts-line"><span class="ts-t">[00:45]</span> 而不是三个完全平行彼此竞争的产品</div>
+<div class="ts-line"><span class="ts-t">[00:49]</span> 我们先从 LangChain 说起</div>
+</div></details>
+<details class="ts-box"><summary>② LangChain（逐字 · 40 句）</summary>
+<div class="ts-lines">
+<div class="ts-line"><span class="ts-t">[00:50]</span> 假设现在要开发一个企业智能客服</div>
+<div class="ts-line"><span class="ts-t">[00:53]</span> 用户提出问题之后系统需要查询企业知识库</div>
+<div class="ts-line"><span class="ts-t">[00:57]</span> 或者调用订单接口</div>
+<div class="ts-line"><span class="ts-t">[00:59]</span> 最后把查询结果整理成自然语言返回给用户</div>
+<div class="ts-line"><span class="ts-t">[01:02]</span> 这种场景其实就是一个比较典型的 Agent 应用</div>
+<div class="ts-line"><span class="ts-t">[01:05]</span> 开发这样的应用需要解决几个问题</div>
+<div class="ts-line"><span class="ts-t">[01:07]</span> 怎么接入大模型，怎么定义工具，怎么让模型调用工具</div>
+<div class="ts-line"><span class="ts-t">[01:11]</span> 模型和工具之间又应该如何传递消息</div>
+<div class="ts-line"><span class="ts-t">[01:13]</span> 如果这些功能都自己从头实现，开发工作会比较繁琐</div>
+<div class="ts-line"><span class="ts-t">[01:17]</span> LangChain 就是为了解决这类问题而出现的</div>
+<div class="ts-line"><span class="ts-t">[01:19]</span> 它提供了模型接入 Prompt，消息管理，工具调用，文档加载</div>
+<div class="ts-line"><span class="ts-t">[01:24]</span> 向量数据库和检索器等基础组件</div>
+<div class="ts-line"><span class="ts-t">[01:27]</span> 开发者可以直接使用这些组件，把它们组合起来</div>
+<div class="ts-line"><span class="ts-t">[01:30]</span> 快速搭建一个 Agent 应用</div>
+<div class="ts-line"><span class="ts-t">[01:32]</span> 比如在 Agent 开发中</div>
+<div class="ts-line"><span class="ts-t">[01:34]</span> LangChain 提供了 create_agent 这样的高层接口</div>
+<div class="ts-line"><span class="ts-t">[01:38]</span> 开发者只需要准备好大模型工具和系统提示词</div>
+<div class="ts-line"><span class="ts-t">[01:42]</span> 就可以创建一个能够调用工具的 Agent</div>
+<div class="ts-line"><span class="ts-t">[01:44]</span> 它的执行过程也比较容易理解</div>
+<div class="ts-line"><span class="ts-t">[01:47]</span> 用户先提出一个问题，大模型分析当前任务</div>
+<div class="ts-line"><span class="ts-t">[01:50]</span> 判断是否需要调用工具</div>
+<div class="ts-line"><span class="ts-t">[01:53]</span> 如果需要就选择合适的工具执行</div>
+<div class="ts-line"><span class="ts-t">[01:56]</span> 并获取工具返回的结果</div>
+<div class="ts-line"><span class="ts-t">[01:58]</span> 然后大模型再根据工具结果继续处理</div>
+<div class="ts-line"><span class="ts-t">[02:01]</span> 直到生成最终回答</div>
+<div class="ts-line"><span class="ts-t">[02:03]</span> 举个例子</div>
+<div class="ts-line"><span class="ts-t">[02:04]</span> 用户询问企业某项业务制度</div>
+<div class="ts-line"><span class="ts-t">[02:07]</span> Agent 就可以调用知识库检索工具</div>
+<div class="ts-line"><span class="ts-t">[02:10]</span> 如果用户想查询订单状态</div>
+<div class="ts-line"><span class="ts-t">[02:11]</span> Agent 就可以调用订单查询接口</div>
+<div class="ts-line"><span class="ts-t">[02:14]</span> 具体调用哪个工具由模型根据当前问题进行判断</div>
+<div class="ts-line"><span class="ts-t">[02:17]</span> 所以 LangChain 比较适合什么场景</div>
+<div class="ts-line"><span class="ts-t">[02:19]</span> 比如企业知识库问答</div>
+<div class="ts-line"><span class="ts-t">[02:21]</span> RAG 应用智能客服</div>
+<div class="ts-line"><span class="ts-t">[02:24]</span> 以及需要调用数据库或者第三方 API 的智能助手</div>
+<div class="ts-line"><span class="ts-t">[02:28]</span> 这些应用通常不需要特别复杂的流程控制</div>
+<div class="ts-line"><span class="ts-t">[02:31]</span> 主要依靠大模型判断下一步应该做什么</div>
+<div class="ts-line"><span class="ts-t">[02:34]</span> 当然 LangChain 并不只能开发简单应用</div>
+<div class="ts-line"><span class="ts-t">[02:37]</span> 它也支持通过中间件等方式扩展 Agent 的执行过程</div>
+<div class="ts-line"><span class="ts-t">[02:40]</span> 不过当业务流程越来越复杂</div>
+</div></details>
+<details class="ts-box"><summary>③ LangGraph（逐字 · 82 句）</summary>
+<div class="ts-lines">
+<div class="ts-line"><span class="ts-t">[02:42]</span> 出现大量条件分支状态转换</div>
+<div class="ts-line"><span class="ts-t">[02:45]</span> 异常重试和人工审批时</div>
+<div class="ts-line"><span class="ts-t">[02:47]</span> 就可以考虑另一个框架了</div>
+<div class="ts-line"><span class="ts-t">[02:49]</span> 也就是 LangGraph</div>
+<div class="ts-line"><span class="ts-t">[02:50]</span> 那 LangGraph 到底解决什么问题</div>
+<div class="ts-line"><span class="ts-t">[02:52]</span> 我们还是举一个例子</div>
+<div class="ts-line"><span class="ts-t">[02:53]</span> 假设现在要开发一个企业售后处理系统</div>
+<div class="ts-line"><span class="ts-t">[02:56]</span> 用户提交退款申请之后</div>
+<div class="ts-line"><span class="ts-t">[02:58]</span> 系统需要先识别问题类型</div>
+<div class="ts-line"><span class="ts-t">[03:00]</span> 然后查询订单接着进行风险校验</div>
+<div class="ts-line"><span class="ts-t">[03:03]</span> 如果符合退款条件就进入退款审批</div>
+<div class="ts-line"><span class="ts-t">[03:05]</span> 如果不符合就需要转入其他处理流程</div>
+<div class="ts-line"><span class="ts-t">[03:07]</span> 而且有些环节必须由人工确认</div>
+<div class="ts-line"><span class="ts-t">[03:10]</span> 不能完全交给大模型决定</div>
+<div class="ts-line"><span class="ts-t">[03:12]</span> 如果把这些逻辑全部交给一个 Agent 自己判断</div>
+<div class="ts-line"><span class="ts-t">[03:15]</span> 流程可能就不太容易控制</div>
+<div class="ts-line"><span class="ts-t">[03:17]</span> 比如什么时候应该查询订单</div>
+<div class="ts-line"><span class="ts-t">[03:19]</span> 什么时候必须进行风险校验</div>
+<div class="ts-line"><span class="ts-t">[03:21]</span> 什么时候需要等待人工审批</div>
+<div class="ts-line"><span class="ts-t">[03:23]</span> 这些都是明确的业务规则</div>
+<div class="ts-line"><span class="ts-t">[03:25]</span> 这时候 LangGraph 就比较适合了</div>
+<div class="ts-line"><span class="ts-t">[03:26]</span> LangGraph 使用图结构来组织整个执行流程</div>
+<div class="ts-line"><span class="ts-t">[03:29]</span> 这里有三个非常重要的概念</div>
+<div class="ts-line"><span class="ts-t">[03:31]</span> 分别是 State、Node 和 Edge</div>
+<div class="ts-line"><span class="ts-t">[03:34]</span> State 也就是状态</div>
+<div class="ts-line"><span class="ts-t">[03:36]</span> 用来保存工作流执行过程中需要共享的数据</div>
+<div class="ts-line"><span class="ts-t">[03:39]</span> 比如用户提交的退款申请</div>
+<div class="ts-line"><span class="ts-t">[03:41]</span> 订单信息风险校验结果</div>
+<div class="ts-line"><span class="ts-t">[03:44]</span> 以及当前任务执行到了哪个环节</div>
+<div class="ts-line"><span class="ts-t">[03:46]</span> 都可以保存在状态中</div>
+<div class="ts-line"><span class="ts-t">[03:48]</span> Node 也就是节点</div>
+<div class="ts-line"><span class="ts-t">[03:49]</span> 用来执行具体任务</div>
+<div class="ts-line"><span class="ts-t">[03:51]</span> 例如调用大模型识别问题类型</div>
+<div class="ts-line"><span class="ts-t">[03:53]</span> 查询订单信息执行风险校验</div>
+<div class="ts-line"><span class="ts-t">[03:56]</span> 这些都可以分别定义成不同的节点</div>
+<div class="ts-line"><span class="ts-t">[03:58]</span> Edge 也就是边</div>
+<div class="ts-line"><span class="ts-t">[03:59]</span> 用来定义节点之间的流转关系</div>
+<div class="ts-line"><span class="ts-t">[04:02]</span> 比如风险校验通过之后</div>
+<div class="ts-line"><span class="ts-t">[04:04]</span> 进入退款审批</div>
+<div class="ts-line"><span class="ts-t">[04:05]</span> 如果没有通过就转入异常处理</div>
+<div class="ts-line"><span class="ts-t">[04:08]</span> 这种根据条件决定下一步</div>
+<div class="ts-line"><span class="ts-t">[04:10]</span> 执行哪个节点的方式</div>
+<div class="ts-line"><span class="ts-t">[04:11]</span> 就是条件边</div>
+<div class="ts-line"><span class="ts-t">[04:12]</span> 这样一来整个售后处理</div>
+<div class="ts-line"><span class="ts-t">[04:14]</span> 流程就可以拆分成多个节点</div>
+<div class="ts-line"><span class="ts-t">[04:16]</span> 再通过边把它们连接起来</div>
+<div class="ts-line"><span class="ts-t">[04:19]</span> 开发者能够明确控制</div>
+<div class="ts-line"><span class="ts-t">[04:20]</span> 每个环节的执行顺序</div>
+<div class="ts-line"><span class="ts-t">[04:22]</span> 以及不同条件下</div>
+<div class="ts-line"><span class="ts-t">[04:24]</span> 应该走哪一条路径</div>
+<div class="ts-line"><span class="ts-t">[04:25]</span> 这就是 LangGraph 最核心的价值</div>
+<div class="ts-line"><span class="ts-t">[04:27]</span> 它让开发者能够更加精确</div>
+<div class="ts-line"><span class="ts-t">[04:29]</span> 控制 Agent 的执行过程</div>
+<div class="ts-line"><span class="ts-t">[04:31]</span> 除此之外 LangGraph 还提供了</div>
+<div class="ts-line"><span class="ts-t">[04:33]</span> 持久化检查点</div>
+<div class="ts-line"><span class="ts-t">[04:35]</span> 流式输出执行中断</div>
+<div class="ts-line"><span class="ts-t">[04:37]</span> 和人工介入等能力</div>
+<div class="ts-line"><span class="ts-t">[04:38]</span> 举个例子</div>
+<div class="ts-line"><span class="ts-t">[04:39]</span> 如果退款流程执行到人工审批环节</div>
+<div class="ts-line"><span class="ts-t">[04:42]</span> 系统可以先暂停运行</div>
+<div class="ts-line"><span class="ts-t">[04:44]</span> 等待工作人员确认</div>
+<div class="ts-line"><span class="ts-t">[04:45]</span> 等人工审批完成之后</div>
+<div class="ts-line"><span class="ts-t">[04:47]</span> 再从之前暂停的位置继续执行</div>
+<div class="ts-line"><span class="ts-t">[04:50]</span> 如果任务执行过程中出现异常</div>
+<div class="ts-line"><span class="ts-t">[04:53]</span> 也可以结合持久化检查点</div>
+<div class="ts-line"><span class="ts-t">[04:55]</span> 保存的状态恢复执行</div>
+<div class="ts-line"><span class="ts-t">[04:56]</span> 因此 LangGraph 特别适合多步骤业务流程</div>
+<div class="ts-line"><span class="ts-t">[04:59]</span> 复杂条件分支</div>
+<div class="ts-line"><span class="ts-t">[05:01]</span> 循环重试人工审批</div>
+<div class="ts-line"><span class="ts-t">[05:03]</span> 以及需要保存状态</div>
+<div class="ts-line"><span class="ts-t">[05:04]</span> 并支持中断恢复的 Agent 系统</div>
+<div class="ts-line"><span class="ts-t">[05:07]</span> 这里还需要强调一点</div>
+<div class="ts-line"><span class="ts-t">[05:08]</span> LangGraph 并不意味着所有步骤</div>
+<div class="ts-line"><span class="ts-t">[05:11]</span> 都必须交给大模型处理</div>
+<div class="ts-line"><span class="ts-t">[05:12]</span> 相反它非常适合把确定性的业务逻辑</div>
+<div class="ts-line"><span class="ts-t">[05:16]</span> 交给普通代码</div>
+<div class="ts-line"><span class="ts-t">[05:17]</span> 把需要理解和判断的任务</div>
+<div class="ts-line"><span class="ts-t">[05:19]</span> 交给大模型</div>
+<div class="ts-line"><span class="ts-t">[05:20]</span> 这样既能发挥大模型的智能能力</div>
+<div class="ts-line"><span class="ts-t">[05:23]</span> 也能保证整个业务流程</div>
+<div class="ts-line"><span class="ts-t">[05:25]</span> 具有较好的可控性</div>
+<div class="ts-line"><span class="ts-t">[05:26]</span> 接下来我们再看第三个框架</div>
+</div></details>
+<details class="ts-box"><summary>④ DeepAgent（逐字 · 104 句）</summary>
+<div class="ts-lines">
+<div class="ts-line"><span class="ts-t">[05:28]</span> Deep Agents</div>
+<div class="ts-line"><span class="ts-t">[05:29]</span> 如果说 LangChain 主要解决</div>
+<div class="ts-line"><span class="ts-t">[05:32]</span> 基础组件和工具调用问题</div>
+<div class="ts-line"><span class="ts-t">[05:34]</span> LangGraph 主要解决</div>
+<div class="ts-line"><span class="ts-t">[05:36]</span> 复杂流程的编排问题</div>
+<div class="ts-line"><span class="ts-t">[05:38]</span> 那么 Deep Agents 更关注的是</div>
+<div class="ts-line"><span class="ts-t">[05:40]</span> 如何让 Agent 自己规划任务</div>
+<div class="ts-line"><span class="ts-t">[05:42]</span> 并且持续完成一个比较复杂的目标</div>
+<div class="ts-line"><span class="ts-t">[05:44]</span> 我们来看一个实际场景</div>
+<div class="ts-line"><span class="ts-t">[05:46]</span> 假设现在给 AI 一个任务</div>
+<div class="ts-line"><span class="ts-t">[05:48]</span> 分析当前项目的代码仓库</div>
+<div class="ts-line"><span class="ts-t">[05:51]</span> 找出登录模块存在的问题</div>
+<div class="ts-line"><span class="ts-t">[05:54]</span> 修复相关代码</div>
+<div class="ts-line"><span class="ts-t">[05:55]</span> 然后运行测试</div>
+<div class="ts-line"><span class="ts-t">[05:56]</span> 最后输出一份修复报告</div>
+<div class="ts-line"><span class="ts-t">[05:58]</span> 注意这个任务并没有规定</div>
+<div class="ts-line"><span class="ts-t">[06:00]</span> 具体应该执行哪些步骤</div>
+<div class="ts-line"><span class="ts-t">[06:02]</span> Agent 需要先理解目标</div>
+<div class="ts-line"><span class="ts-t">[06:04]</span> 再分析代码仓库</div>
+<div class="ts-line"><span class="ts-t">[06:05]</span> 找到相关文件</div>
+<div class="ts-line"><span class="ts-t">[06:07]</span> 制定修复计划</div>
+<div class="ts-line"><span class="ts-t">[06:08]</span> 然后修改代码</div>
+<div class="ts-line"><span class="ts-t">[06:09]</span> 运行测试</div>
+<div class="ts-line"><span class="ts-t">[06:10]</span> 如果测试失败</div>
+<div class="ts-line"><span class="ts-t">[06:11]</span> 还需要继续分析错误</div>
+<div class="ts-line"><span class="ts-t">[06:13]</span> 调整代码</div>
+<div class="ts-line"><span class="ts-t">[06:14]</span> 直到达到预期结果</div>
+<div class="ts-line"><span class="ts-t">[06:16]</span> 整个过程可能涉及大量文件</div>
+<div class="ts-line"><span class="ts-t">[06:18]</span> 和工具调用</div>
+<div class="ts-line"><span class="ts-t">[06:19]</span> 还需要保存中间发现的信息</div>
+<div class="ts-line"><span class="ts-t">[06:21]</span> 如果这些功能全部由开发者</div>
+<div class="ts-line"><span class="ts-t">[06:23]</span> 自己实现</div>
+<div class="ts-line"><span class="ts-t">[06:24]</span> 工作量就会比较大</div>
+<div class="ts-line"><span class="ts-t">[06:25]</span> 而 Deep Agents 就是为这类复杂</div>
+<div class="ts-line"><span class="ts-t">[06:28]</span> 任务提供更加完整的执行框架</div>
+<div class="ts-line"><span class="ts-t">[06:30]</span> 它建立在 LangChain 和 LangGraph 的相关能力之上</div>
+<div class="ts-line"><span class="ts-t">[06:33]</span> 进一步整合了任务规划</div>
+<div class="ts-line"><span class="ts-t">[06:35]</span> 上下文管理</div>
+<div class="ts-line"><span class="ts-t">[06:36]</span> 文件系统和子智能体等能力</div>
+<div class="ts-line"><span class="ts-t">[06:38]</span> 我们重点看几个功能</div>
+<div class="ts-line"><span class="ts-t">[06:39]</span> 第一个是任务规划</div>
+<div class="ts-line"><span class="ts-t">[06:41]</span> 当用户提出一个比较大的目标时</div>
+<div class="ts-line"><span class="ts-t">[06:43]</span> Agent 可以把任务拆分成多个具体步骤</div>
+<div class="ts-line"><span class="ts-t">[06:45]</span> 并跟踪每个步骤的执行情况</div>
+<div class="ts-line"><span class="ts-t">[06:48]</span> 例如刚才的代码修复任务</div>
+<div class="ts-line"><span class="ts-t">[06:50]</span> 就可以拆分成代码分析</div>
+<div class="ts-line"><span class="ts-t">[06:52]</span> 问题定位</div>
+<div class="ts-line"><span class="ts-t">[06:53]</span> 代码修改</div>
+<div class="ts-line"><span class="ts-t">[06:53]</span> 测试验证和结果整理等环节</div>
+<div class="ts-line"><span class="ts-t">[06:56]</span> 第二个是子智能体</div>
+<div class="ts-line"><span class="ts-t">[06:57]</span> 如果一个任务可以拆分成多个</div>
+<div class="ts-line"><span class="ts-t">[06:59]</span> 相对独立的子任务</div>
+<div class="ts-line"><span class="ts-t">[07:01]</span> 就可以把其中一部分</div>
+<div class="ts-line"><span class="ts-t">[07:02]</span> 交给专门的子 Agent 处理</div>
+<div class="ts-line"><span class="ts-t">[07:04]</span> 比如主 Agent 负责整体任务规划</div>
+<div class="ts-line"><span class="ts-t">[07:07]</span> 一个子 Agent 负责分析代码结构</div>
+<div class="ts-line"><span class="ts-t">[07:09]</span> 另一个子 Agent 负责检查测试结果</div>
+<div class="ts-line"><span class="ts-t">[07:12]</span> 等子 Agent 完成各自的任务之后</div>
+<div class="ts-line"><span class="ts-t">[07:15]</span> 再把结果返回给主 Agent</div>
+<div class="ts-line"><span class="ts-t">[07:17]</span> 由主 Agent 进行汇总和后续处理</div>
+<div class="ts-line"><span class="ts-t">[07:20]</span> 第三个是文件系统</div>
+<div class="ts-line"><span class="ts-t">[07:21]</span> 在复杂任务中</div>
+<div class="ts-line"><span class="ts-t">[07:22]</span> Agent 可能需要读取大量文件</div>
+<div class="ts-line"><span class="ts-t">[07:25]</span> 也可能需要把中间结果保存下来</div>
+<div class="ts-line"><span class="ts-t">[07:27]</span> Deep Agents 提供了文件系统相关能力</div>
+<div class="ts-line"><span class="ts-t">[07:30]</span> 可以通过文件读写工具</div>
+<div class="ts-line"><span class="ts-t">[07:31]</span> 保存研究资料</div>
+<div class="ts-line"><span class="ts-t">[07:32]</span> 任务计划和中间产物</div>
+<div class="ts-line"><span class="ts-t">[07:34]</span> 减少所有信息都堆积在对话上下文中的情况</div>
+<div class="ts-line"><span class="ts-t">[07:38]</span> 第四个是上下文管理</div>
+<div class="ts-line"><span class="ts-t">[07:39]</span> 大家都知道 Agent 执行时间越长</div>
+<div class="ts-line"><span class="ts-t">[07:42]</span> 调用工具越多</div>
+<div class="ts-line"><span class="ts-t">[07:43]</span> 对话历史和工具返回结果</div>
+<div class="ts-line"><span class="ts-t">[07:45]</span> 就可能越来越多</div>
+<div class="ts-line"><span class="ts-t">[07:47]</span> 如果所有内容都一直保留在上下文中</div>
+<div class="ts-line"><span class="ts-t">[07:50]</span> 很容易造成上下文规模过大</div>
+<div class="ts-line"><span class="ts-t">[07:52]</span> Deep Agents 提供了上下文管理相关机制</div>
+<div class="ts-line"><span class="ts-t">[07:56]</span> 可以通过摘要文件卸载等方式</div>
+<div class="ts-line"><span class="ts-t">[07:58]</span> 控制上下文规模</div>
+<div class="ts-line"><span class="ts-t">[08:00]</span> 让 Agent 能够更好处理长期任务</div>
+<div class="ts-line"><span class="ts-t">[08:02]</span> 除此之外</div>
+<div class="ts-line"><span class="ts-t">[08:03]</span> 它还支持 Skills</div>
+<div class="ts-line"><span class="ts-t">[08:04]</span> 也就是可以加载可复用的任务知识和操作流程</div>
+<div class="ts-line"><span class="ts-t">[08:08]</span> 可以根据配置使用长期记忆</div>
+<div class="ts-line"><span class="ts-t">[08:10]</span> 也支持人工介入</div>
+<div class="ts-line"><span class="ts-t">[08:12]</span> 以及在配置相应沙箱和执行工具之后运行代码</div>
+<div class="ts-line"><span class="ts-t">[08:16]</span> 执行命令和处理文件</div>
+<div class="ts-line"><span class="ts-t">[08:17]</span> 所以 Deep Agents 比较适合什么场景</div>
+<div class="ts-line"><span class="ts-t">[08:20]</span> 比如深度研究</div>
+<div class="ts-line"><span class="ts-t">[08:21]</span> 自动化代码分析与修复</div>
+<div class="ts-line"><span class="ts-t">[08:23]</span> 复杂资料整理</div>
+<div class="ts-line"><span class="ts-t">[08:24]</span> 以及需要多个子智能体协作完成的任务</div>
+<div class="ts-line"><span class="ts-t">[08:27]</span> 不过这里要提醒一下</div>
+<div class="ts-line"><span class="ts-t">[08:29]</span> Deep Agents 能力越完整</div>
+<div class="ts-line"><span class="ts-t">[08:31]</span> 越需要注意权限和执行环境</div>
+<div class="ts-line"><span class="ts-t">[08:33]</span> 尤其是涉及文件修改</div>
+<div class="ts-line"><span class="ts-t">[08:35]</span> 命令执行和数据库写入时</div>
+<div class="ts-line"><span class="ts-t">[08:37]</span> 一定要做好沙箱隔离</div>
+<div class="ts-line"><span class="ts-t">[08:39]</span> 权限控制和人工审批</div>
+<div class="ts-line"><span class="ts-t">[08:41]</span> 不能默认让 Agent 无限制的执行操作</div>
+<div class="ts-line"><span class="ts-t">[08:44]</span> 好了</div>
+<div class="ts-line"><span class="ts-t">[08:44]</span> 三个框架的基本定位已经介绍完了</div>
+<div class="ts-line"><span class="ts-t">[08:46]</span> 接下来我们把它们放在一起</div>
+<div class="ts-line"><span class="ts-t">[08:48]</span> 看看核心区别到底在哪里</div>
+</div></details>
+<details class="ts-box"><summary>⑤ 核心区别（逐字 · 22 句）</summary>
+<div class="ts-lines">
+<div class="ts-line"><span class="ts-t">[08:50]</span> LangChain 重点是</div>
+<div class="ts-line"><span class="ts-t">[08:51]</span> 模型工具和 Agent 的基础组件集成</div>
+<div class="ts-line"><span class="ts-t">[08:55]</span> 帮助开发者快速搭建一个</div>
+<div class="ts-line"><span class="ts-t">[08:57]</span> 能够调用工具的智能体</div>
+<div class="ts-line"><span class="ts-t">[08:59]</span> LangGraph 重点是状态管理和工作流编排</div>
+<div class="ts-line"><span class="ts-t">[09:02]</span> 让开发者能够明确控制任务的执行顺序</div>
+<div class="ts-line"><span class="ts-t">[09:06]</span> 条件分支和异常恢复</div>
+<div class="ts-line"><span class="ts-t">[09:07]</span> Deep Agents 重点是复杂任务的自主执行</div>
+<div class="ts-line"><span class="ts-t">[09:11]</span> 通过任务规划</div>
+<div class="ts-line"><span class="ts-t">[09:12]</span> 上下文管理和子智能体等能力</div>
+<div class="ts-line"><span class="ts-t">[09:14]</span> 让 Agent 能够持续完成更加复杂的工作</div>
+<div class="ts-line"><span class="ts-t">[09:17]</span> 如果用一个简单的例子来理解</div>
+<div class="ts-line"><span class="ts-t">[09:19]</span> LangChain 就像给 Agent 准备好各种工具</div>
+<div class="ts-line"><span class="ts-t">[09:22]</span> 让它能够完成基本的工作</div>
+<div class="ts-line"><span class="ts-t">[09:24]</span> LangGraph 就像给 Agent 设计好工作流程</div>
+<div class="ts-line"><span class="ts-t">[09:27]</span> 明确每个环节应该做什么</div>
+<div class="ts-line"><span class="ts-t">[09:30]</span> 以及什么情况下进入下一步</div>
+<div class="ts-line"><span class="ts-t">[09:32]</span> Deep Agents 则像给 Agent 配备一个任务管理系统</div>
+<div class="ts-line"><span class="ts-t">[09:36]</span> 让它能够自己拆解目标</div>
+<div class="ts-line"><span class="ts-t">[09:37]</span> 安排任务调用工具</div>
+<div class="ts-line"><span class="ts-t">[09:39]</span> 必要时还可以安排其他 Agent 协助完成工作</div>
+<div class="ts-line"><span class="ts-t">[09:43]</span> 那么实际开发的时候到底应该怎么选</div>
+</div></details>
+<details class="ts-box"><summary>⑥ 框架选择（逐字 · 41 句）</summary>
+<div class="ts-lines">
+<div class="ts-line"><span class="ts-t">[09:45]</span> 这里可以根据三个问题来判断</div>
+<div class="ts-line"><span class="ts-t">[09:48]</span> 第一个问题</div>
+<div class="ts-line"><span class="ts-t">[09:49]</span> 你的业务是不是以问答和工具调用为主</div>
+<div class="ts-line"><span class="ts-t">[09:52]</span> 如果用户提出问题之后</div>
+<div class="ts-line"><span class="ts-t">[09:53]</span> Agent 只需要查询知识库调用几个接口</div>
+<div class="ts-line"><span class="ts-t">[09:56]</span> 然后生成回答</div>
+<div class="ts-line"><span class="ts-t">[09:57]</span> 那么直接使用 LangChain 通常就够了</div>
+<div class="ts-line"><span class="ts-t">[10:00]</span> 比如企业知识库助手</div>
+<div class="ts-line"><span class="ts-t">[10:02]</span> 智能客服以及简单的数据查询助手</div>
+<div class="ts-line"><span class="ts-t">[10:04]</span> 都可以从 LangChain 开始</div>
+<div class="ts-line"><span class="ts-t">[10:06]</span> 第二个问题</div>
+<div class="ts-line"><span class="ts-t">[10:07]</span> 你的业务流程是不是需要严格控制</div>
+<div class="ts-line"><span class="ts-t">[10:10]</span> 如果任务需要经过多个固定环节</div>
+<div class="ts-line"><span class="ts-t">[10:13]</span> 而且存在条件分支</div>
+<div class="ts-line"><span class="ts-t">[10:15]</span> 人工审批</div>
+<div class="ts-line"><span class="ts-t">[10:16]</span> 异常重试和状态恢复</div>
+<div class="ts-line"><span class="ts-t">[10:18]</span> 那么可以优先考虑 LangGraph</div>
+<div class="ts-line"><span class="ts-t">[10:20]</span> 比如订单处理</div>
+<div class="ts-line"><span class="ts-t">[10:21]</span> 退款审批企业工单系统等</div>
+<div class="ts-line"><span class="ts-t">[10:23]</span> 这类业务往往有明确的执行规则</div>
+<div class="ts-line"><span class="ts-t">[10:25]</span> 不适合完全交给大模型自主决定</div>
+<div class="ts-line"><span class="ts-t">[10:28]</span> 第三个问题</div>
+<div class="ts-line"><span class="ts-t">[10:29]</span> 用户是不是只给一个目标</div>
+<div class="ts-line"><span class="ts-t">[10:31]</span> 具体执行过程需要 Agent 自己规划</div>
+<div class="ts-line"><span class="ts-t">[10:33]</span> 如果用户给出的任务比较开放</div>
+<div class="ts-line"><span class="ts-t">[10:36]</span> Agent 需要自己拆解目标</div>
+<div class="ts-line"><span class="ts-t">[10:37]</span> 调用多个工具</div>
+<div class="ts-line"><span class="ts-t">[10:38]</span> 管理大量文件和上下文</div>
+<div class="ts-line"><span class="ts-t">[10:40]</span> 甚至安排其他 Agent 协作</div>
+<div class="ts-line"><span class="ts-t">[10:42]</span> 那么就可以考虑 Deep Agents</div>
+<div class="ts-line"><span class="ts-t">[10:44]</span> 比如自动研究一个技术主题</div>
+<div class="ts-line"><span class="ts-t">[10:46]</span> 并生成报告</div>
+<div class="ts-line"><span class="ts-t">[10:47]</span> 或者分析整个代码仓库</div>
+<div class="ts-line"><span class="ts-t">[10:48]</span> 定位问题修改代码并运行测试</div>
+<div class="ts-line"><span class="ts-t">[10:51]</span> 当然还有一种情况需要特别说明</div>
+<div class="ts-line"><span class="ts-t">[10:53]</span> 如果业务流程完全固定</div>
+<div class="ts-line"><span class="ts-t">[10:55]</span> 不需要大模型进行自主判断</div>
+<div class="ts-line"><span class="ts-t">[10:57]</span> 那么直接使用普通 Python 代码</div>
+<div class="ts-line"><span class="ts-t">[10:59]</span> 或者传统工作流系统</div>
+<div class="ts-line"><span class="ts-t">[11:01]</span> 可能反而更加简单</div>
+<div class="ts-line"><span class="ts-t">[11:02]</span> 并不是所有业务都需要开发成 Agent</div>
+</div></details>
+<details class="ts-box"><summary>⑦ 框架联用（逐字 · 22 句）</summary>
+<div class="ts-lines">
+<div class="ts-line"><span class="ts-t">[11:05]</span> 最后再说一下</div>
+<div class="ts-line"><span class="ts-t">[11:05]</span> 这三个框架能不能一起使用</div>
+<div class="ts-line"><span class="ts-t">[11:07]</span> 答案是可以的</div>
+<div class="ts-line"><span class="ts-t">[11:08]</span> 而且它们之间本身就存在</div>
+<div class="ts-line"><span class="ts-t">[11:10]</span> 比较紧密的技术联系</div>
+<div class="ts-line"><span class="ts-t">[11:11]</span> LangChain 提供模型工具和 Agent 等基础组件</div>
+<div class="ts-line"><span class="ts-t">[11:16]</span> LangGraph 提供底层的状态管理</div>
+<div class="ts-line"><span class="ts-t">[11:18]</span> 和流程编排能力</div>
+<div class="ts-line"><span class="ts-t">[11:20]</span> Deep Agents 则在相关基础能力之上</div>
+<div class="ts-line"><span class="ts-t">[11:23]</span> 进一步封装了任务规划</div>
+<div class="ts-line"><span class="ts-t">[11:25]</span> 上下文管理和子智能体等功能</div>
+<div class="ts-line"><span class="ts-t">[11:28]</span> 比如我们可以在 LangGraph 的节点中</div>
+<div class="ts-line"><span class="ts-t">[11:30]</span> 调用 LangChain 提供的模型和工具</div>
+<div class="ts-line"><span class="ts-t">[11:33]</span> 也可以使用 Deep Agents 提供的</div>
+<div class="ts-line"><span class="ts-t">[11:36]</span> 任务规划和子智能体能力</div>
+<div class="ts-line"><span class="ts-t">[11:38]</span> 再根据实际业务需求进行定制</div>
+<div class="ts-line"><span class="ts-t">[11:41]</span> 不过这里有一点需要注意</div>
+<div class="ts-line"><span class="ts-t">[11:42]</span> 这并不意味着开发一个项目</div>
+<div class="ts-line"><span class="ts-t">[11:44]</span> 就必须同时使用三个框架</div>
+<div class="ts-line"><span class="ts-t">[11:46]</span> LangGraph 可以独立使用</div>
+<div class="ts-line"><span class="ts-t">[11:48]</span> 具体选择哪一层</div>
+<div class="ts-line"><span class="ts-t">[11:49]</span> 应该根据项目需求决定</div>
+</div></details>
+<details class="ts-box"><summary>⑧ 总结（逐字 · 28 句）</summary>
+<div class="ts-lines">
+<div class="ts-line"><span class="ts-t">[00:00]</span> 开发 AI Agent 到底应该选择 LangChain，LangGraph 还是 Deep Agents</div>
+<div class="ts-line"><span class="ts-t">[11:51]</span> 总结一下</div>
+<div class="ts-line"><span class="ts-t">[11:52]</span> 如果你要开发的是一个简单的</div>
+<div class="ts-line"><span class="ts-t">[11:54]</span> 知识库助手</div>
+<div class="ts-line"><span class="ts-t">[11:54]</span> 或者能够调用几个工具的</div>
+<div class="ts-line"><span class="ts-t">[11:56]</span> 智能客服</div>
+<div class="ts-line"><span class="ts-t">[11:57]</span> 可以优先考虑 LangChain</div>
+<div class="ts-line"><span class="ts-t">[11:58]</span> 如果你要开发的是一个</div>
+<div class="ts-line"><span class="ts-t">[12:00]</span> 有明确业务流程</div>
+<div class="ts-line"><span class="ts-t">[12:01]</span> 复杂条件分支</div>
+<div class="ts-line"><span class="ts-t">[12:02]</span> 和人工审批机制的系统</div>
+<div class="ts-line"><span class="ts-t">[12:04]</span> 可以考虑 LangGraph</div>
+<div class="ts-line"><span class="ts-t">[12:05]</span> 如果你希望 Agent</div>
+<div class="ts-line"><span class="ts-t">[12:06]</span> 能够自主规划任务</div>
+<div class="ts-line"><span class="ts-t">[12:07]</span> 管理上下文</div>
+<div class="ts-line"><span class="ts-t">[12:08]</span> 调用多个工具</div>
+<div class="ts-line"><span class="ts-t">[12:10]</span> 甚至安排子智能体</div>
+<div class="ts-line"><span class="ts-t">[12:11]</span> 协作完成长期任务</div>
+<div class="ts-line"><span class="ts-t">[12:13]</span> 那么可以考虑 Deep Agents</div>
+<div class="ts-line"><span class="ts-t">[12:15]</span> 实际开发中</div>
+<div class="ts-line"><span class="ts-t">[12:16]</span> 建议从满足当前需求的</div>
+<div class="ts-line"><span class="ts-t">[12:18]</span> 最简单方案开始</div>
+<div class="ts-line"><span class="ts-t">[12:19]</span> 不要一上来就引入</div>
+<div class="ts-line"><span class="ts-t">[12:20]</span> 过多框架和复杂架构</div>
+<div class="ts-line"><span class="ts-t">[12:22]</span> 真正合适的技术选型</div>
+<div class="ts-line"><span class="ts-t">[12:23]</span> 是让框架服务于业务</div>
+<div class="ts-line"><span class="ts-t">[12:25]</span> 而不是为了使用框架</div>
+<div class="ts-line"><span class="ts-t">[12:27]</span> 而增加系统复杂度</div>
+</div></details>
+<h3 id="266-语音识别与三重校验方法">26.6 语音识别与三重校验方法</h3>
+<table>
+<tr><th>项目</th><th>说明</th></tr>
+<tr><td>音轨</td><td><code>ffmpeg</code> 从 1920×1080 原片提取 16 kHz 单声道 WAV（748.5 秒）</td></tr>
+<tr><td>识别模型</td><td><code>faster-whisper 1.2.1</code> + <code>small</code> 模型，CPU int8，<code>beam_size=5</code>，离线运行</td></tr>
+<tr><td>原始输出</td><td>354 段带起止时间码的转写</td></tr>
+<tr><td>繁简归一</td><td><code>OpenCC t2s</code>，把模型输出的繁体字转为简体</td></tr>
+<tr><td>第一重：ASR</td><td>提供完整口播，覆盖字幕省略的过渡句</td></tr>
+<tr><td>第二重：烧录字幕</td><td>248 帧 OCR → 去重 216 句，作为作者原始文字的校对基准</td></tr>
+<tr><td>第三重：官方术语</td><td>LangChain 官方文档与画面文字，用于强制校正专有名词</td></tr>
+<tr><td>校正量</td><td>126 处 / 39 类；含 <code>Langrath→LangGraph</code>、<code>lancraft→LangGraph</code>、<code>紫智能体→子智能体</code>、<code>杀箱→沙箱</code>、<code>风险教验→风险校验</code> 等</td></tr>
+<tr><td>排版规范</td><td>中文与英文之间补空格；<code>Deep Agents</code> / <code>create_agent</code> / <code>Skills</code> 等专名做保护</td></tr>
+<tr><td><strong>边界</strong></td><td><strong>未做人工逐句听校</strong>：ASR 与 OCR 都不能保证 100% 零偏差，口语语气词与个别轻声字仍可能略有出入。所有校正项已在 26.7 逐条列出依据，26.8 提供完整字幕对照，可自行复核。</td></tr>
+</table>
+<h3 id="267-asr-校正清单39-类--126-处">26.7 ASR 校正清单（39 类 · 126 处）</h3>
+<p><span class="tag t-extra">补充</span>按「校正为 + 依据」聚合，覆盖全部 126 处校正；每处校正前的原始片段与依据见下表，可结合 26.8 的字幕对照自行复核。</p>
+<table>
+<tr><th>校正为</th><th>依据</th><th>出现次数</th></tr>
+<tr><td>LangGraph</td><td>官方拼写 LangGraph</td><td>19</td></tr>
+<tr><td>LangChain</td><td>官方拼写 LangChain</td><td>14</td></tr>
+<tr><td>Agent</td><td>统一大小写</td><td>13</td></tr>
+<tr><td>Deep Agents</td><td>官方名 Deep Agents</td><td>12</td></tr>
+<tr><td>Agent</td><td>泛指 Agent（单复数按口语归一）</td><td>12</td></tr>
+<tr><td>子智能体</td><td>字幕 00:33 / 画面 f_0143</td><td>8</td></tr>
+<tr><td>风险校验</td><td>字幕 03:00 / 画面 f_0063</td><td>5</td></tr>
+<tr><td>把它们（组合 / 理解 / 放 / 连接）</td><td>指代框架/组件</td><td>4</td></tr>
+<tr><td>子 Agent</td><td>字幕 06:57</td><td>4</td></tr>
+<tr><td>主 Agent</td><td>画面 f_0143</td><td>3</td></tr>
+<tr><td>它们之间</td><td>指代三个框架</td><td>2</td></tr>
+<tr><td>异常重试</td><td>画面 f_0056</td><td>2</td></tr>
+<tr><td>沙箱</td><td>字幕 08:39 / 画面 f_0174</td><td>2</td></tr>
+<tr><td>它们都能用来开发</td><td>指代三个框架</td><td>1</td></tr>
+<tr><td>适用场景</td><td>画面 f_0047</td><td>1</td></tr>
+<tr><td>Prompt</td><td>画面 f_0028</td><td>1</td></tr>
+<tr><td>向量数据库</td><td>画面 f_0029</td><td>1</td></tr>
+<tr><td>create_agent</td><td>LangChain 接口名</td><td>1</td></tr>
+<tr><td>再根据工具结果</td><td>字幕 01:57</td><td>1</td></tr>
+<tr><td>中间件</td><td>字幕 02:36</td><td>1</td></tr>
+<tr><td>用户</td><td>字幕 02:57</td><td>1</td></tr>
+<tr><td>State、Node 和 Edge</td><td>画面 f_0072</td><td>1</td></tr>
+<tr><td>也就是边</td><td>字幕 04:00</td><td>1</td></tr>
+<tr><td>条件边</td><td>字幕 04:00</td><td>1</td></tr>
+<tr><td>再通过边</td><td>字幕 04:00</td><td>1</td></tr>
+<tr><td>流式输出</td><td>画面 f_0093</td><td>1</td></tr>
+<tr><td>循环重试</td><td>字幕 04:57</td><td>1</td></tr>
+<tr><td>相反它非常适合</td><td>指代 LangGraph</td><td>1</td></tr>
+<tr><td>LangChain</td><td>字幕 05:30：前一句讲 LangChain 基础组件</td><td>1</td></tr>
+<tr><td>LangGraph</td><td>字幕 05:33：后一句讲 LangGraph 编排</td><td>1</td></tr>
+<tr><td>建立在 LangChain 和 LangGraph 的相关能力之上</td><td>字幕 06:30</td><td>1</td></tr>
+<tr><td>子任务</td><td>字幕 06:57</td><td>1</td></tr>
+<tr><td>Skills</td><td>官方能力名</td><td>1</td></tr>
+<tr><td>可复用</td><td>画面 f_0162</td><td>1</td></tr>
+<tr><td>基础组件集成</td><td>字幕 00:21</td><td>1</td></tr>
+<tr><td>则像给</td><td>字幕 09:33</td><td>1</td></tr>
+<tr><td>生成回答</td><td>字幕 09:57</td><td>1</td></tr>
+<tr><td>工单系统</td><td>字幕 10:21</td><td>1</td></tr>
+<tr><td>Python</td><td>官方语言名</td><td>1</td></tr>
+</table>
+<h3 id="268-烧录字幕-ocr-对照216-句">26.8 烧录字幕 OCR 对照（216 句）</h3>
+<p><span class="tag t-extra">补充</span>视频作者制作的精简字幕，逐帧 OCR 还原，用于与 26.5 的 ASR 逐字稿对照。两者不完全逐字对应属正常现象：字幕是重新排版过的精简版。</p>
+<details class="ts-box"><summary>① 引言 · 字幕（逐字 · 13 句）</summary>
+<div class="ts-lines">
+<div class="ts-line"><span class="ts-t">[00:03]</span> 还是 Deep Agents？</div>
+<div class="ts-line"><span class="ts-t">[00:06]</span> 它们都能用来开发 Agent，</div>
+<div class="ts-line"><span class="ts-t">[00:09]</span> 它们之间是什么关系？</div>
+<div class="ts-line"><span class="ts-t">[00:12]</span> 如果现在要开发一个实际项目，</div>
+<div class="ts-line"><span class="ts-t">[00:15]</span> 把这三个框架定位、核心能力和适用场景讲清楚。</div>
+<div class="ts-line"><span class="ts-t">[00:21]</span> 先说结论。LangChain 主要解决 Agent基础组件和工具集成问题：</div>
+<div class="ts-line"><span class="ts-t">[00:24]</span> LangGraph 主要解决 Agent 流程编排和状态管理问题；</div>
+<div class="ts-line"><span class="ts-t">[00:30]</span> Deep Agents则是在这些基础能力之上，</div>
+<div class="ts-line"><span class="ts-t">[00:33]</span> 进一步封装了任务规划、上下文管理、子智能体等能力，</div>
+<div class="ts-line"><span class="ts-t">[00:36]</span> 让 Agent能够处理更加复杂、更加长期任务。</div>
+<div class="ts-line"><span class="ts-t">[00:42]</span> 可以把它们理解为三个不同抽象层次开发框架，</div>
+<div class="ts-line"><span class="ts-t">[00:45]</span> 而不是三个完全平行、彼此竞争的产品。</div>
+<div class="ts-line"><span class="ts-t">[00:48]</span> 我们先从 LangChain 说起。</div>
+</div></details>
+<details class="ts-box"><summary>② LangChain · 字幕（逐字 · 34 句）</summary>
+<div class="ts-lines">
+<div class="ts-line"><span class="ts-t">[00:51]</span> 假设现在要开发一个企业智能客服。</div>
+<div class="ts-line"><span class="ts-t">[00:54]</span> 系统需要查询企业知识库，</div>
+<div class="ts-line"><span class="ts-t">[00:57]</span> 或者调用订单接口，</div>
+<div class="ts-line"><span class="ts-t">[01:00]</span> 最后把查询结果整理成自然语言返回给用户。</div>
+<div class="ts-line"><span class="ts-t">[01:03]</span> 这种场景其实就是一个比较典型 Agent 应用。</div>
+<div class="ts-line"><span class="ts-t">[01:06]</span> 怎么接入大模型？</div>
+<div class="ts-line"><span class="ts-t">[01:09]</span> 怎么定义工具？怎么让模型调用工具？</div>
+<div class="ts-line"><span class="ts-t">[01:12]</span> 模型和工具之间又应该如何传递消息？</div>
+<div class="ts-line"><span class="ts-t">[01:15]</span> 开发工作会比较繁琐。</div>
+<div class="ts-line"><span class="ts-t">[01:18]</span> LangChain 就是为了解决这类问题而出现的。</div>
+<div class="ts-line"><span class="ts-t">[01:21]</span> 它提供了模型接入、Prompt、消息管理、工具调用、文档加载、向量数据库</div>
+<div class="ts-line"><span class="ts-t">[01:24]</span> 和检索器等基础组件。</div>
+<div class="ts-line"><span class="ts-t">[01:27]</span> 开发者可以直接使用这些组件，</div>
+<div class="ts-line"><span class="ts-t">[01:30]</span> 快速搭建一个 Agent 应用。</div>
+<div class="ts-line"><span class="ts-t">[01:33]</span> LangChain 提供了 create_agent 这样的高层接口。</div>
+<div class="ts-line"><span class="ts-t">[01:39]</span> 开发者只需要准备好大模型、工具和系统提示词，</div>
+<div class="ts-line"><span class="ts-t">[01:42]</span> 就可以创建一个能够调用工具的 Agent。</div>
+<div class="ts-line"><span class="ts-t">[01:45]</span> 它的执行过程也比较容易理解。</div>
+<div class="ts-line"><span class="ts-t">[01:48]</span> 大模型分析当前任务，</div>
+<div class="ts-line"><span class="ts-t">[01:51]</span> 判断是否需要调用工具。</div>
+<div class="ts-line"><span class="ts-t">[01:54]</span> 如果需要，就选择合适工具执行，</div>
+<div class="ts-line"><span class="ts-t">[01:57]</span> 然后，大模型再根据工具结果继续处理，</div>
+<div class="ts-line"><span class="ts-t">[02:03]</span> 用户询问企业某项业务制度，</div>
+<div class="ts-line"><span class="ts-t">[02:06]</span> Agent 就可以调用知识库检索工具；</div>
+<div class="ts-line"><span class="ts-t">[02:09]</span> 如果用户想查询订单状态，</div>
+<div class="ts-line"><span class="ts-t">[02:12]</span> Agent 就可以调用订单查询接口。</div>
+<div class="ts-line"><span class="ts-t">[02:15]</span> 由模型根据当前问题进行判断。</div>
+<div class="ts-line"><span class="ts-t">[02:18]</span> 所以，LangChain 比较适合什么场景？</div>
+<div class="ts-line"><span class="ts-t">[02:21]</span> 比如企业知识库问答、RAG 应用、智能客服，</div>
+<div class="ts-line"><span class="ts-t">[02:24]</span> 以及需要调用数据库或者第三方 API智能助手。</div>
+<div class="ts-line"><span class="ts-t">[02:27]</span> 这些应用通常不需要特别复杂的流程控制，</div>
+<div class="ts-line"><span class="ts-t">[02:30]</span> 主要依靠大模型判断下一步应该做什么。</div>
+<div class="ts-line"><span class="ts-t">[02:33]</span> 当然， LangChain 并不只能开发简单应用，</div>
+<div class="ts-line"><span class="ts-t">[02:36]</span> 它也支持通过中间件等方式扩展 Agent执行过程。</div>
+</div></details>
+<details class="ts-box"><summary>③ LangGraph · 字幕（逐字 · 47 句）</summary>
+<div class="ts-lines">
+<div class="ts-line"><span class="ts-t">[02:42]</span> 出现大量条件分支、状态转换、异常重试和人工审批时，</div>
+<div class="ts-line"><span class="ts-t">[02:48]</span> 也就是 LangGraph。</div>
+<div class="ts-line"><span class="ts-t">[02:51]</span> 我们还是举一个例子。</div>
+<div class="ts-line"><span class="ts-t">[02:54]</span> 假设现在要开发一个企业售后处理系统。</div>
+<div class="ts-line"><span class="ts-t">[02:57]</span> 系统需要先识别问题类型，</div>
+<div class="ts-line"><span class="ts-t">[03:00]</span> 然后查询订单，接着进行风险校验。</div>
+<div class="ts-line"><span class="ts-t">[03:03]</span> 就进入退款审批；</div>
+<div class="ts-line"><span class="ts-t">[03:06]</span> 如果不符合，就需要转入其他处理流程。</div>
+<div class="ts-line"><span class="ts-t">[03:09]</span> 不能完全交给大模型决定。</div>
+<div class="ts-line"><span class="ts-t">[03:12]</span> 如果把这些逻辑全部交给一个 Agent自己判断，</div>
+<div class="ts-line"><span class="ts-t">[03:15]</span> 流程可能就不太容易控制。</div>
+<div class="ts-line"><span class="ts-t">[03:18]</span> 什么时候必须进行风险校验，</div>
+<div class="ts-line"><span class="ts-t">[03:21]</span> 什么时候需要等待人工审批，</div>
+<div class="ts-line"><span class="ts-t">[03:24]</span> 这时候，LangGraph 就比较适合了。</div>
+<div class="ts-line"><span class="ts-t">[03:27]</span> LangGraph 使用图结构来组织整个执行流程。</div>
+<div class="ts-line"><span class="ts-t">[03:30]</span> 这里有三个非常重要概念，</div>
+<div class="ts-line"><span class="ts-t">[03:33]</span> State，也就是状态，</div>
+<div class="ts-line"><span class="ts-t">[03:36]</span> 用来保存工作流执行过程中需要共享数据。</div>
+<div class="ts-line"><span class="ts-t">[03:39]</span> 比如用户提交退款申请、订单信息、风险校验结果，</div>
+<div class="ts-line"><span class="ts-t">[03:45]</span> 都可以保存在状态中。</div>
+<div class="ts-line"><span class="ts-t">[03:48]</span> Node，也就是节点，</div>
+<div class="ts-line"><span class="ts-t">[03:51]</span> 例如调用大模型识别问题类型、查询订单信息、执行风险校验，</div>
+<div class="ts-line"><span class="ts-t">[03:57]</span> 这些都可以分别定义成不同节点。</div>
+<div class="ts-line"><span class="ts-t">[04:00]</span> 用来定义节点之间的流转关系。</div>
+<div class="ts-line"><span class="ts-t">[04:03]</span> 进入退款审批：如果没有通过，</div>
+<div class="ts-line"><span class="ts-t">[04:06]</span> 就转入异常处理。</div>
+<div class="ts-line"><span class="ts-t">[04:09]</span> 这种根据条件决定下一步执行哪个节点方式，</div>
+<div class="ts-line"><span class="ts-t">[04:12]</span> 这样一来，整个售后处理流程就可以拆分成多个节点，</div>
+<div class="ts-line"><span class="ts-t">[04:18]</span> 开发者能够明确控制每个环节的执行顺序，</div>
+<div class="ts-line"><span class="ts-t">[04:24]</span> 这就是 LangGraph 最核心价值：</div>
+<div class="ts-line"><span class="ts-t">[04:27]</span> 它让开发者能够更加精确地控制 Agent的执行过程。</div>
+<div class="ts-line"><span class="ts-t">[04:30]</span> 除此之外，</div>
+<div class="ts-line"><span class="ts-t">[04:33]</span> LangGraph 还提供了持久化检查点、流式输出、执行中断和人工介入等能力。</div>
+<div class="ts-line"><span class="ts-t">[04:39]</span> 举个例子。如果退款流程执行到人工审批环节，</div>
+<div class="ts-line"><span class="ts-t">[04:42]</span> 系统可以先暂停运行，</div>
+<div class="ts-line"><span class="ts-t">[04:45]</span> 等人工审批完成之后，</div>
+<div class="ts-line"><span class="ts-t">[04:48]</span> 再从之前暂停的位置继续执行。</div>
+<div class="ts-line"><span class="ts-t">[04:51]</span> 如果任务执行过程中出现异常，</div>
+<div class="ts-line"><span class="ts-t">[04:54]</span> 也可以结合持久化检查点保存的状态恢复执行。</div>
+<div class="ts-line"><span class="ts-t">[04:57]</span> LangGraph 特别适合多步骤业务流程、复杂条件分支、循环重试、人工审批，</div>
+<div class="ts-line"><span class="ts-t">[05:03]</span> 以及需要保存状态并支持中断恢复 Agent 系统。</div>
+<div class="ts-line"><span class="ts-t">[05:06]</span> 这里还需要强调一点。</div>
+<div class="ts-line"><span class="ts-t">[05:09]</span> LangGraph 并不意味着所有步骤都必须交给大模型处理。</div>
+<div class="ts-line"><span class="ts-t">[05:12]</span> 相反，它非常适合把确定性的业务逻辑交给普通代码，</div>
+<div class="ts-line"><span class="ts-t">[05:18]</span> 把需要理解和判断任务交给大模型。</div>
+<div class="ts-line"><span class="ts-t">[05:21]</span> 这样既能发挥大模型智能能力，</div>
+<div class="ts-line"><span class="ts-t">[05:24]</span> 也能保证整个业务流程具有较好可控性。</div>
+</div></details>
+<details class="ts-box"><summary>④ DeepAgent · 字幕（逐字 · 58 句）</summary>
+<div class="ts-lines">
+<div class="ts-line"><span class="ts-t">[05:27]</span> Deep Agents.</div>
+<div class="ts-line"><span class="ts-t">[05:30]</span> 如果说 LangChain 主要解决基础组件和工具调用问题，</div>
+<div class="ts-line"><span class="ts-t">[05:33]</span> LangGraph 主要解决复杂流程的编排问题，</div>
+<div class="ts-line"><span class="ts-t">[05:39]</span> 如何让 Agent 自己规划任务，</div>
+<div class="ts-line"><span class="ts-t">[05:42]</span> 并且持续完成一个比较复杂目标？</div>
+<div class="ts-line"><span class="ts-t">[05:45]</span> 假设现在给 AI一个任务：</div>
+<div class="ts-line"><span class="ts-t">[05:48]</span> 分析当前项目的代码仓库，</div>
+<div class="ts-line"><span class="ts-t">[05:51]</span> 找出登录模块存在问题，</div>
+<div class="ts-line"><span class="ts-t">[05:54]</span> 修复相关代码，然后运行测试，</div>
+<div class="ts-line"><span class="ts-t">[05:57]</span> 注意，这个任务并没有规定具体应该执行哪些步骤。</div>
+<div class="ts-line"><span class="ts-t">[06:03]</span> 再分析代码仓库，</div>
+<div class="ts-line"><span class="ts-t">[06:06]</span> 找到相关文件，制定修复计划，</div>
+<div class="ts-line"><span class="ts-t">[06:09]</span> 然后修改代码、运行测试。</div>
+<div class="ts-line"><span class="ts-t">[06:12]</span> 调整代码，直到达到预期结果。</div>
+<div class="ts-line"><span class="ts-t">[06:15]</span> 整个过程可能涉及大量文件和工具调用，</div>
+<div class="ts-line"><span class="ts-t">[06:18]</span> 还需要保存中间发现的信息。</div>
+<div class="ts-line"><span class="ts-t">[06:21]</span> 如果这些功能全部由开发者自己实现，</div>
+<div class="ts-line"><span class="ts-t">[06:24]</span> 而 Deep Agents 就是为这类复杂任务提供更加完整执行框架。</div>
+<div class="ts-line"><span class="ts-t">[06:30]</span> 它建立在 LangChain 和 LangGraph 的相关能力之上，</div>
+<div class="ts-line"><span class="ts-t">[06:33]</span> 进一步整合了任务规划、上下文管理、文件系统和子智能体等能力。</div>
+<div class="ts-line"><span class="ts-t">[06:39]</span> 第一个是任务规划。</div>
+<div class="ts-line"><span class="ts-t">[06:42]</span> Agent 可以把任务拆分成多个具体步骤，</div>
+<div class="ts-line"><span class="ts-t">[06:45]</span> 并跟踪每个步骤执行情况。</div>
+<div class="ts-line"><span class="ts-t">[06:48]</span> 例如，刚才的代码修复任务，</div>
+<div class="ts-line"><span class="ts-t">[06:51]</span> 就可以拆分成代码分析、问题定位、代码修改、测试验证和结果整理等环节。</div>
+<div class="ts-line"><span class="ts-t">[06:57]</span> 如果一个任务可以拆分成多个相对独立子任务，</div>
+<div class="ts-line"><span class="ts-t">[07:00]</span> 就可以把其中一部分交给专门子 Agent 处理。</div>
+<div class="ts-line"><span class="ts-t">[07:03]</span> 比如，主 Agent 负责整体任务规划，</div>
+<div class="ts-line"><span class="ts-t">[07:06]</span> 一个子 Agent 负责分析代码结构，</div>
+<div class="ts-line"><span class="ts-t">[07:09]</span> 另一个子 Agent 负责检查测试结果。</div>
+<div class="ts-line"><span class="ts-t">[07:12]</span> 等子 Agent 完成各自的任务之后，</div>
+<div class="ts-line"><span class="ts-t">[07:15]</span> 再把结果返回给主 Agent，</div>
+<div class="ts-line"><span class="ts-t">[07:18]</span> 由主 Agent进行汇总和后续处理。</div>
+<div class="ts-line"><span class="ts-t">[07:21]</span> 在复杂任务中，Agent 可能需要读取大量文件，</div>
+<div class="ts-line"><span class="ts-t">[07:24]</span> 也可能需要把中间结果保存下来。</div>
+<div class="ts-line"><span class="ts-t">[07:27]</span> Deep Agents 提供了文件系统相关能力，</div>
+<div class="ts-line"><span class="ts-t">[07:30]</span> 可以通过文件读写工具保存研究资料、任务计划和中间产物，</div>
+<div class="ts-line"><span class="ts-t">[07:33]</span> 减少所有信息都堆积在对话上下文中的情况。</div>
+<div class="ts-line"><span class="ts-t">[07:39]</span> 大家都知道，Agent 执行时间越长，</div>
+<div class="ts-line"><span class="ts-t">[07:42]</span> 调用工具越多，对话历史和工具返回结果就可能越来越多。</div>
+<div class="ts-line"><span class="ts-t">[07:48]</span> 如果所有内容都一直保留在上下文中，</div>
+<div class="ts-line"><span class="ts-t">[07:51]</span> 很容易造成上下文规模过大。</div>
+<div class="ts-line"><span class="ts-t">[07:54]</span> Deep Agents 提供了上下文管理相关机制，</div>
+<div class="ts-line"><span class="ts-t">[07:57]</span> 可以通过摘要、文件卸载等方式控制上下文规模，</div>
+<div class="ts-line"><span class="ts-t">[08:00]</span> 让 Agent 能够更好地处理长期任务。</div>
+<div class="ts-line"><span class="ts-t">[08:03]</span> 也就是可以加载可复用的任务知识和操作流程；</div>
+<div class="ts-line"><span class="ts-t">[08:09]</span> 可以根据配置使用长期记忆；</div>
+<div class="ts-line"><span class="ts-t">[08:12]</span> 以及在配置相应沙箱和执行工具之后运行代码、执行命令和处理文件。</div>
+<div class="ts-line"><span class="ts-t">[08:18]</span> 所以， Deep Agents比较适合什么场景？</div>
+<div class="ts-line"><span class="ts-t">[08:21]</span> 比如深度研究、自动化代码分析与修复、复杂资料整理，</div>
+<div class="ts-line"><span class="ts-t">[08:24]</span> 以及需要多个子智能体协作完成任务。</div>
+<div class="ts-line"><span class="ts-t">[08:27]</span> 不过，这里也要提醒一下。</div>
+<div class="ts-line"><span class="ts-t">[08:30]</span> 越需要注意权限和执行环境。</div>
+<div class="ts-line"><span class="ts-t">[08:33]</span> 尤其是涉及文件修改、命令执行和数据库写入时，</div>
+<div class="ts-line"><span class="ts-t">[08:39]</span> 一定要做好沙箱隔离、权限控制和人工审批，</div>
+<div class="ts-line"><span class="ts-t">[08:42]</span> 不能默认让 Agent 无限制地执行操作。</div>
+<div class="ts-line"><span class="ts-t">[08:45]</span> 接下来，我们把它们放在一起，</div>
+<div class="ts-line"><span class="ts-t">[08:48]</span> 看看核心区别到底在哪里。</div>
+</div></details>
+<details class="ts-box"><summary>⑤ 核心区别 · 字幕（逐字 · 16 句）</summary>
+<div class="ts-lines">
+<div class="ts-line"><span class="ts-t">[08:51]</span> 重点是模型、工具和 Agent 的基础组件集成，</div>
+<div class="ts-line"><span class="ts-t">[08:54]</span> 帮助开发者快速搭建一个能够调用工具智能体。</div>
+<div class="ts-line"><span class="ts-t">[09:00]</span> 重点是状态管理和工作流编排，</div>
+<div class="ts-line"><span class="ts-t">[09:03]</span> 让开发者能够明确控制任务执行顺序、条件分支和异常恢复。</div>
+<div class="ts-line"><span class="ts-t">[09:09]</span> 重点是复杂任务自主执行，</div>
+<div class="ts-line"><span class="ts-t">[09:12]</span> 通过任务规划、上下文管理和子智能体等能力，</div>
+<div class="ts-line"><span class="ts-t">[09:15]</span> 让 Agent 能够持续完成更加复杂工作。</div>
+<div class="ts-line"><span class="ts-t">[09:18]</span> 如果用一个简单的例子来理解：</div>
+<div class="ts-line"><span class="ts-t">[09:21]</span> 让它能够完成基本工作。</div>
+<div class="ts-line"><span class="ts-t">[09:24]</span> LangGraph 就像给 Agent 设计好工作流程，</div>
+<div class="ts-line"><span class="ts-t">[09:27]</span> 明确每个环节应该做什么，</div>
+<div class="ts-line"><span class="ts-t">[09:30]</span> 以及什么情况下进入下一步。</div>
+<div class="ts-line"><span class="ts-t">[09:33]</span> Deep Agents则像给 Agent 配备一个任务管理系统，</div>
+<div class="ts-line"><span class="ts-t">[09:36]</span> 让它能够自己拆解目标、安排任务、调用工具，</div>
+<div class="ts-line"><span class="ts-t">[09:39]</span> 必要时还可以安排其他 Agent协助完成工作。</div>
+<div class="ts-line"><span class="ts-t">[09:42]</span> 那么，实际开发时候，</div>
+</div></details>
+<details class="ts-box"><summary>⑥ 框架选择 · 字幕（逐字 · 26 句）</summary>
+<div class="ts-lines">
+<div class="ts-line"><span class="ts-t">[09:45]</span> 这里可以根据三个问题来判断。</div>
+<div class="ts-line"><span class="ts-t">[09:48]</span> 第一个问题：你的业务是不是以问答和工具调用为主？</div>
+<div class="ts-line"><span class="ts-t">[09:51]</span> 如果用户提出问题之后，</div>
+<div class="ts-line"><span class="ts-t">[09:54]</span> Agent只需要查询知识库、调用几个接口，</div>
+<div class="ts-line"><span class="ts-t">[09:57]</span> 然后生成回答，那么直接使用 LangChain 通常就够了。</div>
+<div class="ts-line"><span class="ts-t">[10:00]</span> 比如企业知识库助手、智能客服，</div>
+<div class="ts-line"><span class="ts-t">[10:03]</span> 以及简单的数据查询助手，</div>
+<div class="ts-line"><span class="ts-t">[10:06]</span> 第二个问题：你的业务流程是不是需要严格控制？</div>
+<div class="ts-line"><span class="ts-t">[10:09]</span> 如果任务需要经过多个固定环节，</div>
+<div class="ts-line"><span class="ts-t">[10:12]</span> 而且存在条件分支、人工审批、异常重试和状态恢复，</div>
+<div class="ts-line"><span class="ts-t">[10:18]</span> 那么可以优先考虑 LangGraph.</div>
+<div class="ts-line"><span class="ts-t">[10:21]</span> 比如订单处理、退款审批、企业工单系统等。</div>
+<div class="ts-line"><span class="ts-t">[10:24]</span> 这类业务往往有明确的执行规则，</div>
+<div class="ts-line"><span class="ts-t">[10:27]</span> 第三个问题：用户是不是只给一个目标，</div>
+<div class="ts-line"><span class="ts-t">[10:30]</span> 具体执行过程需要 Agent 自己规划？</div>
+<div class="ts-line"><span class="ts-t">[10:33]</span> 如果用户给出的任务比较开放，</div>
+<div class="ts-line"><span class="ts-t">[10:36]</span> Agent 需要自己拆解目标、调用多个工具、管理大量文件和上下文，</div>
+<div class="ts-line"><span class="ts-t">[10:39]</span> 甚至安排其他 Agent 协作，</div>
+<div class="ts-line"><span class="ts-t">[10:42]</span> 那么就可以考虑 Deep Agents.</div>
+<div class="ts-line"><span class="ts-t">[10:45]</span> 比如自动研究一个技术主题并生成报告，</div>
+<div class="ts-line"><span class="ts-t">[10:48]</span> 或者分析整个代码仓库、定位问题、修改代码并运行测试。</div>
+<div class="ts-line"><span class="ts-t">[10:51]</span> 当然，还有一种情况需要特别说明。</div>
+<div class="ts-line"><span class="ts-t">[10:54]</span> 不需要大模型进行自主判断，</div>
+<div class="ts-line"><span class="ts-t">[10:57]</span> 那么直接使用普通 Python 代码或者传统工作流系统，</div>
+<div class="ts-line"><span class="ts-t">[11:00]</span> 可能反而更加简单。</div>
+<div class="ts-line"><span class="ts-t">[11:03]</span> 并不是所有业务都需要开发成 Agent。</div>
+</div></details>
+<details class="ts-box"><summary>⑦ 框架联用 · 字幕（逐字 · 10 句）</summary>
+<div class="ts-lines">
+<div class="ts-line"><span class="ts-t">[11:09]</span> 答案是可以，而且它们之间本身就存在比较紧密技术联系。</div>
+<div class="ts-line"><span class="ts-t">[11:12]</span> LangChain 提供模型、工具和 Agent 等基础组件；</div>
+<div class="ts-line"><span class="ts-t">[11:15]</span> LangGraph 提供底层状态管理和流程编排能力；</div>
+<div class="ts-line"><span class="ts-t">[11:21]</span> Deep Agents 则在相关基础能力之上，</div>
+<div class="ts-line"><span class="ts-t">[11:24]</span> 进一步封装了任务规划、上下文管理和子智能体等功能。</div>
+<div class="ts-line"><span class="ts-t">[11:27]</span> 比如，我们可以在 LangGraph 的节点中调用 LangChain 提供的模型和工具，</div>
+<div class="ts-line"><span class="ts-t">[11:33]</span> 也可以使用 Deep Agents 提供任务规划和子智能体能力，</div>
+<div class="ts-line"><span class="ts-t">[11:39]</span> 再根据实际业务需求进行定制。</div>
+<div class="ts-line"><span class="ts-t">[11:42]</span> 这并不意味着开发一个项目就必须同时使用三个框架。</div>
+<div class="ts-line"><span class="ts-t">[11:48]</span> 应该根据项目需求决定。</div>
+</div></details>
+<details class="ts-box"><summary>⑧ 总结 · 字幕（逐字 · 12 句）</summary>
+<div class="ts-lines">
+<div class="ts-line"><span class="ts-t">[00:00]</span> 到底应该选择 LangChain、 LangGraph，</div>
+<div class="ts-line"><span class="ts-t">[11:51]</span> 总结一下。如果你要开发是一个简单知识库助手，</div>
+<div class="ts-line"><span class="ts-t">[11:54]</span> 或者能够调用几个工具够智能客服，</div>
+<div class="ts-line"><span class="ts-t">[11:57]</span> 如果你要开发的是一个有明确业务流程、复杂条件分支和人工审批机制的系统，</div>
+<div class="ts-line"><span class="ts-t">[12:03]</span> 可以考虑 LangGraph.</div>
+<div class="ts-line"><span class="ts-t">[12:06]</span> 如果你希望 Agent 能够自主规划任务、管理上下文、调用多个工具，</div>
+<div class="ts-line"><span class="ts-t">[12:09]</span> 甚至安排子智能体协作完成长期任务，</div>
+<div class="ts-line"><span class="ts-t">[12:12]</span> 那么可以考虑 Deep Agents.</div>
+<div class="ts-line"><span class="ts-t">[12:15]</span> 实际开发中，建议从满足当前需求最简单方案开始，</div>
+<div class="ts-line"><span class="ts-t">[12:18]</span> 不要一上来就引入过多框架和复杂架构。</div>
+<div class="ts-line"><span class="ts-t">[12:21]</span> 真正合适技术选型，</div>
+<div class="ts-line"><span class="ts-t">[12:24]</span> 是让框架服务于业务，</div>
+</div></details>
 </section>
 <div class="footer">
   <p>本教程为学习整理产物：单支视频按最高清晰度原片逐帧核对后综合重述；标注【补充】的内容来自 LangChain 官方文档与本系列既有教程，不属于视频原述。原视频与项目版权归各自作者所有。</p>
