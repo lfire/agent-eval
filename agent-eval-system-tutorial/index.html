@@ -136,7 +136,7 @@ main{padding-top:22px}
     <li><a class="lv1" href="#s23">23. 补充篇 C：常见误区</a></li>
     <li><a class="lv1" href="#s24">24. 附录</a></li>
     <li><a class="lv2" href="#241-画面章节结构三支均无官方自动章节">24.1 章节结构</a></li>
-    <li><a class="lv2" href="#242-配图速查20-张">24.2 配图速查</a></li>
+    <li><a class="lv2" href="#242-配图速查19-张">24.2 配图速查</a></li>
     <li><a class="lv2" href="#243-校正表ocr-与口播">24.3 校正表</a></li>
     <li><a class="lv2" href="#244-还原方法与资料">24.4 还原方法与资料</a></li>
   </ul>
@@ -147,7 +147,7 @@ main{padding-top:22px}
   <p class="lead">综合三支视频：煮caicai 的完整 Evaluation System 架构与评估数据飞轮、观远数据 VOL.052 的第一层任务集、VOL.053 的第二层运行与评分系统，拼成一套可落地的 0→1 工程链路。</p>
   <div class="meta">
     <span>3 支视频 · 18:34</span><span>2 位作者</span><span>372 帧逐帧核对</span>
-    <span>20 张结构图重绘</span><span>51 条术语</span><span>4 段可运行代码</span>
+    <span>19 张结构图重绘</span><span>51 条术语</span><span>4 段可运行代码</span>
   </div>
   <p class="srclink">原视频：<a href="https://v.douyin.com/jQ3PCzp5d6Y/" target="_blank" rel="noopener">① 0→1 搭建评估系统</a> ｜ <a href="https://v.douyin.com/yQCqzZPemOM/" target="_blank" rel="noopener">② 第一层框架</a> ｜ <a href="https://v.douyin.com/Vq7UwPruXt0/" target="_blank" rel="noopener">③ 运行与评分</a></p>
 </div>
@@ -164,7 +164,7 @@ main{padding-top:22px}
 <tr><td>7</td><td><strong>链路闭环</strong>：评分可解释可复查 → 上线决策 → 错误归因回流</td><td><a href="#s20">第 20 章</a></td></tr>
 </table>
 <div class="route">
-<div><b>只想复现视频</b>读第 1–20 章；【视频原述】段落与 20 张重绘图覆盖全部画面要点</div>
+<div><b>只想复现视频</b>读第 1–20 章；【视频原述】段落与 19 张重绘图覆盖全部画面要点</div>
 <div><b>想落地搭建</b>读 <a href="#s5">5. 五步法</a> + <a href="#s9">9–19. 两层框架</a> + <a href="#s22">22. 可运行代码</a></div>
 <div><b>想查概念</b>读 <a href="#s21">21. 专业名词速查</a> 与 <a href="#s23">23. 常见误区</a></div>
 </div>
@@ -264,60 +264,60 @@ main{padding-top:22px}
 <h2>3. 一套完整 Evaluation System 的架构全景</h2>
 <p><span class="tag t-video">视频原述</span>视频 ① 用一张纵向手绘英文流程图给出全貌，它不是并列的模块清单，而是一条<strong>闭合回路</strong>。按画面自上而下：顶部是 Metrics 容器（Quality / Cost / Latency / Safety / Business KPI），其下依次 Dashboard、Release Decision、Error Analysis；左侧 User Real Request 进入 Trace Collection（Online Logs / Bad Cases），与 Dataset Evolution 一起汇入 Dataset Manager（Synthetic + Human + Real），再经 Agent Runtime（LLM + Memory + Tool + Workflow）、Trajectory Store（Prompt / Tool / Reasoning / Output）到达底部 Evaluation Engine 容器（Rule Judge / LLM Judge / Human Judge）。最关键的是画面右侧那条长回流线：Evaluation Engine 的评分结果一路向上汇总为 Metrics，再驱动发布决策与失败归因，回流数据集后重新评测。下面按画面纵向顺序逐节点重绘，节点文字保留英文原名。</p>
 <div class="figure">
-<svg viewBox="0 0 900 770" xmlns="http://www.w3.org/2000/svg" font-family="-apple-system,PingFang SC,Microsoft YaHei,sans-serif">
+<svg viewBox="0 0 900 830" xmlns="http://www.w3.org/2000/svg" font-family="-apple-system,PingFang SC,Microsoft YaHei,sans-serif">
   <g text-anchor="middle">
     <text x="450" y="26" font-size="15" font-weight="800" fill="#1e2430">一套完整 Evaluation System 的架构全景</text>
     <text x="450" y="44" font-size="10.8" fill="#667085">视频 ① 手绘纵向闭环：评分 → 指标 → 发布决策 → 失败回流 → 数据集 → 再评测</text>
   </g>
-<rect x="90" y="58" width="720" height="74" rx="12" fill="#fff8dd" stroke="#d9a92e" stroke-width="1.6"/>
-<text x="106" y="76" font-size="12" font-weight="800" fill="#8a5f00">Metrics</text>
-<rect x="106" y="84" width="128" height="38" rx="7" fill="#fffdf3" stroke="#e3c66a" stroke-width="1.2"/><text x="170" y="107" font-size="11.2" fill="#7a6330" text-anchor="middle">Quality</text>
-<rect x="247" y="84" width="128" height="38" rx="7" fill="#fffdf3" stroke="#e3c66a" stroke-width="1.2"/><text x="311" y="107" font-size="11.2" fill="#7a6330" text-anchor="middle">Cost</text>
-<rect x="388" y="84" width="128" height="38" rx="7" fill="#fffdf3" stroke="#e3c66a" stroke-width="1.2"/><text x="452" y="107" font-size="11.2" fill="#7a6330" text-anchor="middle">Latency</text>
-<rect x="529" y="84" width="128" height="38" rx="7" fill="#fffdf3" stroke="#e3c66a" stroke-width="1.2"/><text x="593" y="107" font-size="11.2" fill="#7a6330" text-anchor="middle">Safety</text>
-<rect x="670" y="84" width="128" height="38" rx="7" fill="#fffdf3" stroke="#e3c66a" stroke-width="1.2"/><text x="734" y="107" font-size="11.2" fill="#7a6330" text-anchor="middle">Business KPI</text>
-<g stroke="#8a94a6" stroke-width="1.7" fill="none"><line x1="450" y1="132" x2="450" y2="154"/><line x1="445" y1="146" x2="450" y2="154"/><line x1="455" y1="146" x2="450" y2="154"/></g>
-<rect x="340" y="156" width="220" height="42" rx="9" fill="#f5f7fa" stroke="#b6c0cf" stroke-width="1.5"/>
-    <text x="450.0" y="181.4" font-size="12.5" font-weight="800" fill="#344054" text-anchor="middle">Dashboard</text>
-<g stroke="#8a94a6" stroke-width="1.7" fill="none"><line x1="450" y1="198" x2="450" y2="214"/><line x1="445" y1="206" x2="450" y2="214"/><line x1="455" y1="206" x2="450" y2="214"/></g>
-<rect x="340" y="216" width="220" height="42" rx="9" fill="#f5f7fa" stroke="#b6c0cf" stroke-width="1.5"/>
-    <text x="450.0" y="241.4" font-size="12.5" font-weight="800" fill="#344054" text-anchor="middle">Release Decision</text>
-<g stroke="#8a94a6" stroke-width="1.6" fill="none"><line x1="450" y1="258" x2="450" y2="268"/><line x1="450" y1="268" x2="540" y2="268"/></g>
-<g stroke="#8a94a6" stroke-width="1.7" fill="none"><line x1="540" y1="268" x2="540" y2="276"/><line x1="535" y1="268" x2="540" y2="276"/><line x1="545" y1="268" x2="540" y2="276"/></g>
-<text x="92" y="272" font-size="9.5" fill="#b03a55">闭环起点</text>
-<rect x="90" y="278" width="240" height="46" rx="9" fill="#ffeef1" stroke="#e0728d" stroke-width="1.5"/>
-    <text x="210.0" y="305.4" font-size="12.5" font-weight="800" fill="#b03a55" text-anchor="middle">User Real Request</text>
-<rect x="420" y="278" width="240" height="46" rx="9" fill="#f5f7fa" stroke="#b6c0cf" stroke-width="1.5"/>
-    <text x="540.0" y="305.4" font-size="12.5" font-weight="800" fill="#344054" text-anchor="middle">Error Analysis</text>
-<g stroke="#8a94a6" stroke-width="1.7" fill="none"><line x1="210" y1="324" x2="210" y2="342"/><line x1="205" y1="334" x2="210" y2="342"/><line x1="215" y1="334" x2="210" y2="342"/></g>
-<g stroke="#8a94a6" stroke-width="1.7" fill="none"><line x1="540" y1="324" x2="540" y2="342"/><line x1="535" y1="334" x2="540" y2="342"/><line x1="545" y1="334" x2="540" y2="342"/></g>
-<rect x="90" y="344" width="240" height="60" rx="9" fill="#f5f7fa" stroke="#b6c0cf" stroke-width="1.5"/>
-    <text x="210.0" y="368.4" font-size="12.5" font-weight="800" fill="#344054" text-anchor="middle">Trace Collection</text>
-    <text x="210.0" y="386.4" font-size="11.2" fill="#5a6475" text-anchor="middle">Online Logs / Bad Cases</text>
-<rect x="420" y="344" width="240" height="60" rx="9" fill="#ffeef1" stroke="#e0728d" stroke-width="1.5"/>
-    <text x="540.0" y="378.4" font-size="12.5" font-weight="800" fill="#b03a55" text-anchor="middle">Dataset Evolution</text>
-<g stroke="#8a94a6" stroke-width="1.6" fill="none"><line x1="210" y1="404" x2="210" y2="418"/><line x1="540" y1="404" x2="540" y2="418"/><line x1="210" y1="418" x2="540" y2="418"/></g>
-<g stroke="#8a94a6" stroke-width="1.7" fill="none"><line x1="450" y1="418" x2="450" y2="426"/><line x1="445" y1="418" x2="450" y2="426"/><line x1="455" y1="418" x2="450" y2="426"/></g>
-<rect x="250" y="428" width="400" height="54" rx="9" fill="#f5f7fa" stroke="#b6c0cf" stroke-width="1.5"/>
-    <text x="450.0" y="449.4" font-size="12.5" font-weight="800" fill="#344054" text-anchor="middle">Dataset Manager</text>
-    <text x="450.0" y="467.4" font-size="11.2" fill="#5a6475" text-anchor="middle">Synthetic + Human + Real</text>
-<g stroke="#8a94a6" stroke-width="1.7" fill="none"><line x1="450" y1="482" x2="450" y2="498"/><line x1="445" y1="490" x2="450" y2="498"/><line x1="455" y1="490" x2="450" y2="498"/></g>
-<rect x="250" y="500" width="400" height="54" rx="9" fill="#f3edff" stroke="#9575e0" stroke-width="1.5"/>
-    <text x="450.0" y="521.4" font-size="12.5" font-weight="800" fill="#6d42c9" text-anchor="middle">Agent Runtime</text>
-    <text x="450.0" y="539.4" font-size="11.2" fill="#5d4a91" text-anchor="middle">LLM + Memory + Tool + Workflow</text>
-<g stroke="#8a94a6" stroke-width="1.7" fill="none"><line x1="450" y1="554" x2="450" y2="570"/><line x1="445" y1="562" x2="450" y2="570"/><line x1="455" y1="562" x2="450" y2="570"/></g>
-<rect x="250" y="572" width="400" height="54" rx="9" fill="#f5f7fa" stroke="#b6c0cf" stroke-width="1.5"/>
-    <text x="450.0" y="593.4" font-size="12.5" font-weight="800" fill="#344054" text-anchor="middle">Trajectory Store</text>
-    <text x="450.0" y="611.4" font-size="11.2" fill="#5a6475" text-anchor="middle">Prompt / Tool / Reasoning / Output</text>
-<g stroke="#8a94a6" stroke-width="1.7" fill="none"><line x1="450" y1="626" x2="450" y2="642"/><line x1="445" y1="634" x2="450" y2="642"/><line x1="455" y1="634" x2="450" y2="642"/></g>
-<rect x="250" y="644" width="400" height="84" rx="12" fill="#e9f9f0" stroke="#39a97a" stroke-width="1.6"/>
-<text x="266" y="662" font-size="12" font-weight="800" fill="#177a52">Evaluation Engine</text>
-<rect x="262" y="672" width="120" height="44" rx="7" fill="#f6fdf9" stroke="#8fd4b4" stroke-width="1.2"/><text x="322" y="698" font-size="11.2" fill="#3c6b55" text-anchor="middle">Rule Judge</text>
-<rect x="390" y="672" width="120" height="44" rx="7" fill="#f6fdf9" stroke="#8fd4b4" stroke-width="1.2"/><text x="450" y="698" font-size="11.2" fill="#3c6b55" text-anchor="middle">LLM Judge</text>
-<rect x="518" y="672" width="120" height="44" rx="7" fill="#f6fdf9" stroke="#8fd4b4" stroke-width="1.2"/><text x="578" y="698" font-size="11.2" fill="#3c6b55" text-anchor="middle">Human Judge</text>
-<g stroke="#8a94a6" stroke-width="1.7" fill="none"><line x1="650" y1="686" x2="840" y2="686"/><line x1="840" y1="686" x2="840" y2="95"/><line x1="840" y1="95" x2="810" y2="95"/><line x1="818" y1="90" x2="810" y2="95"/><line x1="818" y1="100" x2="810" y2="95"/></g>
-<text x="830" y="392" font-size="10.5" fill="#667085" text-anchor="end">评分结果回流，汇总为指标</text>
-<text x="450" y="752" font-size="10.8" fill="#667085" text-anchor="middle">闭环：评分 → Metrics → Dashboard → Release Decision → Error Analysis → Dataset Evolution → 数据集 → 再评测</text>
+<rect x="110" y="56" width="680" height="76" rx="12" fill="#fff8dd" stroke="#d9a92e" stroke-width="1.6"/>
+<text x="126" y="74" font-size="12" font-weight="800" fill="#8a5f00">Metrics</text>
+<rect x="124" y="82" width="122" height="40" rx="7" fill="#fffdf3" stroke="#e3c66a" stroke-width="1.2"/><text x="185" y="106" font-size="11.2" fill="#7a6330" text-anchor="middle">Quality</text>
+<rect x="256" y="82" width="122" height="40" rx="7" fill="#fffdf3" stroke="#e3c66a" stroke-width="1.2"/><text x="317" y="106" font-size="11.2" fill="#7a6330" text-anchor="middle">Cost</text>
+<rect x="388" y="82" width="122" height="40" rx="7" fill="#fffdf3" stroke="#e3c66a" stroke-width="1.2"/><text x="449" y="106" font-size="11.2" fill="#7a6330" text-anchor="middle">Latency</text>
+<rect x="520" y="82" width="122" height="40" rx="7" fill="#fffdf3" stroke="#e3c66a" stroke-width="1.2"/><text x="581" y="106" font-size="11.2" fill="#7a6330" text-anchor="middle">Safety</text>
+<rect x="652" y="82" width="122" height="40" rx="7" fill="#fffdf3" stroke="#e3c66a" stroke-width="1.2"/><text x="713" y="106" font-size="11.2" fill="#7a6330" text-anchor="middle">Business KPI</text>
+<g stroke="#8a94a6" stroke-width="1.7" fill="none"><line x1="450" y1="132" x2="450" y2="158"/><line x1="445" y1="150" x2="450" y2="158"/><line x1="455" y1="150" x2="450" y2="158"/></g>
+<rect x="250" y="160" width="400" height="44" rx="9" fill="#f5f7fa" stroke="#b6c0cf" stroke-width="1.5"/>
+    <text x="450.0" y="186.4" font-size="12.5" font-weight="800" fill="#344054" text-anchor="middle">Dashboard</text>
+<g stroke="#8a94a6" stroke-width="1.7" fill="none"><line x1="450" y1="204" x2="450" y2="230"/><line x1="445" y1="222" x2="450" y2="230"/><line x1="455" y1="222" x2="450" y2="230"/></g>
+<rect x="250" y="232" width="400" height="44" rx="9" fill="#f5f7fa" stroke="#b6c0cf" stroke-width="1.5"/>
+    <text x="450.0" y="258.4" font-size="12.5" font-weight="800" fill="#344054" text-anchor="middle">Release Decision</text>
+<g stroke="#8a94a6" stroke-width="1.7" fill="none"><line x1="450" y1="276" x2="450" y2="302"/><line x1="445" y1="294" x2="450" y2="302"/><line x1="455" y1="294" x2="450" y2="302"/></g>
+<rect x="250" y="304" width="400" height="44" rx="9" fill="#f5f7fa" stroke="#b6c0cf" stroke-width="1.5"/>
+    <text x="450.0" y="330.4" font-size="12.5" font-weight="800" fill="#344054" text-anchor="middle">Error Analysis</text>
+<g stroke="#8a94a6" stroke-width="1.7" fill="none"><line x1="450" y1="348" x2="450" y2="374"/><line x1="445" y1="366" x2="450" y2="374"/><line x1="455" y1="366" x2="450" y2="374"/></g>
+<rect x="250" y="376" width="400" height="44" rx="9" fill="#ffeef1" stroke="#e0728d" stroke-width="1.5"/>
+    <text x="450.0" y="402.4" font-size="12.5" font-weight="800" fill="#b03a55" text-anchor="middle">Dataset Evolution</text>
+<g stroke="#8a94a6" stroke-width="1.7" fill="none"><line x1="450" y1="420" x2="450" y2="446"/><line x1="445" y1="438" x2="450" y2="446"/><line x1="455" y1="438" x2="450" y2="446"/></g>
+<rect x="250" y="448" width="400" height="54" rx="9" fill="#f5f7fa" stroke="#b6c0cf" stroke-width="1.5"/>
+    <text x="450.0" y="469.4" font-size="12.5" font-weight="800" fill="#344054" text-anchor="middle">Dataset Manager</text>
+    <text x="450.0" y="487.4" font-size="11.2" fill="#5a6475" text-anchor="middle">Synthetic + Human + Real</text>
+<g stroke="#8a94a6" stroke-width="1.7" fill="none"><line x1="450" y1="502" x2="450" y2="528"/><line x1="445" y1="520" x2="450" y2="528"/><line x1="455" y1="520" x2="450" y2="528"/></g>
+<rect x="250" y="530" width="400" height="54" rx="9" fill="#f3edff" stroke="#9575e0" stroke-width="1.5"/>
+    <text x="450.0" y="551.4" font-size="12.5" font-weight="800" fill="#6d42c9" text-anchor="middle">Agent Runtime</text>
+    <text x="450.0" y="569.4" font-size="11.2" fill="#5d4a91" text-anchor="middle">LLM + Memory + Tool + Workflow</text>
+<g stroke="#8a94a6" stroke-width="1.7" fill="none"><line x1="450" y1="584" x2="450" y2="610"/><line x1="445" y1="602" x2="450" y2="610"/><line x1="455" y1="602" x2="450" y2="610"/></g>
+<rect x="250" y="612" width="400" height="54" rx="9" fill="#f5f7fa" stroke="#b6c0cf" stroke-width="1.5"/>
+    <text x="450.0" y="633.4" font-size="12.5" font-weight="800" fill="#344054" text-anchor="middle">Trajectory Store</text>
+    <text x="450.0" y="651.4" font-size="11.2" fill="#5a6475" text-anchor="middle">Prompt / Tool / Reasoning / Output</text>
+<g stroke="#8a94a6" stroke-width="1.7" fill="none"><line x1="450" y1="666" x2="450" y2="692"/><line x1="445" y1="684" x2="450" y2="692"/><line x1="455" y1="684" x2="450" y2="692"/></g>
+<rect x="250" y="694" width="400" height="88" rx="12" fill="#e9f9f0" stroke="#39a97a" stroke-width="1.6"/>
+<text x="266" y="712" font-size="12" font-weight="800" fill="#177a52">Evaluation Engine</text>
+<rect x="262" y="722" width="120" height="44" rx="7" fill="#f6fdf9" stroke="#8fd4b4" stroke-width="1.2"/><text x="322" y="748" font-size="11.2" fill="#3c6b55" text-anchor="middle">Rule Judge</text>
+<rect x="390" y="722" width="120" height="44" rx="7" fill="#f6fdf9" stroke="#8fd4b4" stroke-width="1.2"/><text x="450" y="748" font-size="11.2" fill="#3c6b55" text-anchor="middle">LLM Judge</text>
+<rect x="518" y="722" width="120" height="44" rx="7" fill="#f6fdf9" stroke="#8fd4b4" stroke-width="1.2"/><text x="578" y="748" font-size="11.2" fill="#3c6b55" text-anchor="middle">Human Judge</text>
+<text x="32" y="370" font-size="9.5" fill="#b03a55">闭环起点</text>
+<rect x="30" y="376" width="190" height="44" rx="9" fill="#ffeef1" stroke="#e0728d" stroke-width="1.5"/>
+    <text x="125.0" y="402.4" font-size="12.5" font-weight="800" fill="#b03a55" text-anchor="middle">User Real Request</text>
+<g stroke="#8a94a6" stroke-width="1.7" fill="none"><line x1="125" y1="420" x2="125" y2="446"/><line x1="120" y1="438" x2="125" y2="446"/><line x1="130" y1="438" x2="125" y2="446"/></g>
+<rect x="30" y="448" width="190" height="54" rx="9" fill="#f5f7fa" stroke="#b6c0cf" stroke-width="1.5"/>
+    <text x="125.0" y="469.4" font-size="12.5" font-weight="800" fill="#344054" text-anchor="middle">Trace Collection</text>
+    <text x="125.0" y="487.4" font-size="11.2" fill="#5a6475" text-anchor="middle">Online Logs / Bad Cases</text>
+<g stroke="#8a94a6" stroke-width="1.7" fill="none"><line x1="220" y1="475" x2="248" y2="475"/><line x1="240" y1="470" x2="248" y2="475"/><line x1="240" y1="480" x2="248" y2="475"/></g>
+<path d="M 650 738 C 840 738, 840 94, 790 94" stroke="#8a94a6" stroke-width="1.7" fill="none"/>
+<g stroke="#8a94a6" stroke-width="1.7" fill="none"><line x1="798" y1="89" x2="790" y2="94"/><line x1="798" y1="99" x2="790" y2="94"/></g>
+<text x="790" y="436" font-size="10.5" fill="#667085" text-anchor="end">评分结果回流 → 汇总为指标</text>
+<text x="450" y="812" font-size="10.8" fill="#667085" text-anchor="middle">闭环：评分结果回流为指标 → 发布决策 → 失败归因 → 数据集演进 → 再评测；左侧为真实请求与线上日志输入</text>
 </svg>
   <div class="cap">图 3｜完整 Evaluation System 纵向闭环架构（按画面重绘）</div>
 </div>
@@ -335,7 +335,7 @@ main{padding-top:22px}
 <tr><td>Dashboard</td><td>看板：管理指标趋势</td></tr>
 <tr><td>Release Decision</td><td>这次更新到底要不要发布</td></tr>
 </table>
-<div class="note">闭环含义：Metrics 不是流程终点，而是「评分结果的汇总视图」；真正让体系转起来的是两段回流——<strong>Evaluation Engine → Metrics</strong> 的指标回流，以及 <strong>Release Decision → Error Analysis → Dataset Evolution → Dataset Manager</strong> 的失败回流。这正是下一章「评估数据飞轮」的核心。版式说明：画面里 Metrics 与 Evaluation Engine 两个容器内的子项为纵向排列，此处改为横排以压缩高度，节点与子项文字逐字保留。</div>
+<div class="note">闭环含义：Metrics 不是流程终点，而是「评分结果的汇总视图」；真正让体系转起来的是两段回流——<strong>Evaluation Engine → Metrics</strong> 的指标回流，以及 <strong>Release Decision → Error Analysis → Dataset Evolution → Dataset Manager</strong> 的失败回流。这正是本教程第 6 章「评估数据飞轮」的核心。版式说明：画面里 Metrics 与 Evaluation Engine 两个容器内的子项为纵向排列，此处改为横排以压缩高度，节点与子项文字逐字保留。</div>
 </section>
 <section class="sec" id="s4">
 <h2>4. 架构分三段：数据侧 / 执行观测侧 / 决策侧</h2>
@@ -426,40 +426,7 @@ main{padding-top:22px}
 </section>
 <section class="sec" id="s6">
 <h2>6. 核心逻辑：构建「评估数据飞轮」</h2>
-<div class="figure">
-<svg viewBox="0 0 900 598" xmlns="http://www.w3.org/2000/svg" font-family="-apple-system,PingFang SC,Microsoft YaHei,sans-serif">
-  <g text-anchor="middle">
-    <text x="450" y="26" font-size="15" font-weight="800" fill="#1e2430">核心逻辑：构建「评估数据飞轮」</text>
-    <text x="450" y="44" font-size="10.8" fill="#667085">视频 ① 画面 f_0088：七节点竖列 + 外围 Continuous Improvement Loop 闭环</text>
-  </g>
-<path d="M 180 112 L 180 560 L 720 560 L 720 112" stroke="#b6c0cf" stroke-width="1.5" fill="none"/>
-<text x="190" y="106" font-size="11.5" font-weight="700" fill="#667085">Continuous Improvement Loop</text>
-<rect x="250" y="56" width="400" height="44" rx="9" fill="#f3edff" stroke="#9575e0" stroke-width="1.5"/>
-    <text x="450.0" y="82.4" font-size="12.5" font-weight="800" fill="#6d42c9" text-anchor="middle">Online User</text>
-<g stroke="#8a94a6" stroke-width="1.7" fill="none"><line x1="450" y1="100" x2="450" y2="128"/><line x1="445" y1="120" x2="450" y2="128"/><line x1="455" y1="120" x2="450" y2="128"/></g>
-<rect x="250" y="130" width="400" height="44" rx="9" fill="#ffeef1" stroke="#e0728d" stroke-width="1.5"/>
-    <text x="450.0" y="156.4" font-size="12.5" font-weight="800" fill="#b03a55" text-anchor="middle">Bad Case Analysis</text>
-<g stroke="#8a94a6" stroke-width="1.7" fill="none"><line x1="450" y1="174" x2="450" y2="198"/><line x1="445" y1="190" x2="450" y2="198"/><line x1="455" y1="190" x2="450" y2="198"/></g>
-<rect x="250" y="200" width="400" height="44" rx="9" fill="#f5f7fa" stroke="#b6c0cf" stroke-width="1.5"/>
-    <text x="450.0" y="226.4" font-size="12.5" font-weight="800" fill="#344054" text-anchor="middle">Dataset Construction</text>
-<g stroke="#8a94a6" stroke-width="1.7" fill="none"><line x1="450" y1="244" x2="450" y2="268"/><line x1="445" y1="260" x2="450" y2="268"/><line x1="455" y1="260" x2="450" y2="268"/></g>
-<rect x="250" y="270" width="400" height="44" rx="9" fill="#f5f7fa" stroke="#b6c0cf" stroke-width="1.5"/>
-    <text x="450.0" y="296.4" font-size="12.5" font-weight="800" fill="#344054" text-anchor="middle">Evaluation Engine</text>
-<g stroke="#8a94a6" stroke-width="1.7" fill="none"><line x1="450" y1="314" x2="450" y2="338"/><line x1="445" y1="330" x2="450" y2="338"/><line x1="455" y1="330" x2="450" y2="338"/></g>
-<rect x="250" y="340" width="400" height="44" rx="9" fill="#fff8dd" stroke="#d9a92e" stroke-width="1.5"/>
-    <text x="450.0" y="366.4" font-size="12.5" font-weight="800" fill="#8a5f00" text-anchor="middle">Metrics Dashboard</text>
-<g stroke="#8a94a6" stroke-width="1.7" fill="none"><line x1="450" y1="384" x2="450" y2="408"/><line x1="445" y1="400" x2="450" y2="408"/><line x1="455" y1="400" x2="450" y2="408"/></g>
-<rect x="250" y="410" width="400" height="44" rx="9" fill="#f3edff" stroke="#9575e0" stroke-width="1.5"/>
-    <text x="450.0" y="436.4" font-size="12.5" font-weight="800" fill="#6d42c9" text-anchor="middle">Prompt / Tools / Models</text>
-<g stroke="#8a94a6" stroke-width="1.7" fill="none"><line x1="450" y1="454" x2="450" y2="478"/><line x1="445" y1="470" x2="450" y2="478"/><line x1="455" y1="470" x2="450" y2="478"/></g>
-<rect x="250" y="480" width="400" height="44" rx="9" fill="#e9f9f0" stroke="#39a97a" stroke-width="1.5"/>
-    <text x="450.0" y="506.4" font-size="12.5" font-weight="800" fill="#177a52" text-anchor="middle">Redeploy System</text>
-<g stroke="#8a94a6" stroke-width="1.7" fill="none"><line x1="650" y1="502" x2="690" y2="502"/><line x1="690" y1="502" x2="690" y2="152"/><line x1="690" y1="152" x2="652" y2="152"/><line x1="660" y1="147" x2="652" y2="152"/><line x1="660" y1="157" x2="652" y2="152"/></g>
-<text x="450" y="584" font-size="10.8" fill="#667085" text-anchor="middle">不是为了拿一个分：线上失败 → 归因 → 数据集 → 评测 → 指标 → 改 Prompt/Tools/Models → 重新发布 → 再回到线上</text>
-</svg>
-  <div class="cap">图 6｜评估数据飞轮：七节点竖列闭环重绘</div>
-</div>
-<p><span class="tag t-video">视频原述</span>画面 f_0088 的标题是「构建『评估数据飞轮』」。原画是一条<strong>自上而下的七节点竖列</strong>，外侧套一个顶部开口的 Continuous Improvement Loop 大框，右侧还有一条从 Redeploy System 回到 Bad Case Analysis 的长回流线——这才是「飞轮」的完整含义。七个节点按画面顺序为：</p>
+<p><span class="tag t-video">视频原述</span>画面 f_0088 的标题是「构建『评估数据飞轮』」。它<strong>不是另一套架构</strong>，而是图 3 那条闭环的另一种说法：评分结果回流为指标、发布决策后的失败归因回流数据集、重新评测——飞轮每转一圈，回归集更厚。因此本章不再单独配图，七个节点按画面顺序列在下表，可直接对照图 3 的 Metrics → Dashboard → Release Decision → Error Analysis → Dataset Evolution → Dataset Manager → Evaluation Engine 一段。</p>
 <table>
 <tr><th>顺序</th><th>节点（画面原文）</th><th>含义</th></tr>
 <tr><td>0</td><td>Online User</td><td>真实用户产生请求与失败</td></tr>
@@ -492,7 +459,7 @@ main{padding-top:22px}
     <text x="450.0" y="267.6" font-size="13" font-weight="800" fill="#344054" text-anchor="middle">先手动跑通小闭环 → 再随系统成长逐步自动化</text>
 <text x="450" y="318" font-size="10.8" fill="#667085" text-anchor="middle">口播补充：20–50 条即可跑第一条基线；评测体系本身也要不断演进</text>
 </svg>
-  <div class="cap">图 7｜四条踩坑经验重绘</div>
+  <div class="cap">图 6｜四条踩坑经验重绘</div>
 </div>
 <table>
 <tr><th>#</th><th>画面原文</th><th>口播补充</th></tr>
@@ -526,7 +493,7 @@ main{padding-top:22px}
     <text x="450.0" y="247.6" font-size="13" font-weight="800" fill="#344054" text-anchor="middle">两层都要对齐 Anthropic 的同一条原则：Task 有明确输入与成功标准</text>
 <text x="450" y="300" font-size="10.8" fill="#667085" text-anchor="middle">第三期预告：分数波动解释、Capability Eval 与 Regression Eval 区分（本片未展开）</text>
 </svg>
-  <div class="cap">图 8｜两层框架分工重绘</div>
+  <div class="cap">图 7｜两层框架分工重绘</div>
 </div>
 <p><span class="tag t-video">视频原述</span>视频 ② 开场说明：上一期「从 0 到 1 搭建 Agent 评测」框架已有超过 <strong>1300 次收藏</strong>，被问最多的是「框架看懂了，每一步具体怎么做」，于是用三期拆解；第一期先搭<strong>评测体系的第一层：任务集</strong>，第二期搭<strong>运行与评分</strong>。</p>
 <p><span class="tag t-video">视频原述</span>两套方法都基于 Anthropic 官方评测文档，③ 还参考 OpenAI Evals API 与 Graders 文档。画面 f_0011 列出三份权威来源：</p>
@@ -572,7 +539,7 @@ main{padding-top:22px}
     <text x="450.0" y="295.6" font-size="13" font-weight="800" fill="#344054" text-anchor="middle">三步收束：才真正拥有一批「可以评测 Agent 的任务」</text>
 <text x="450" y="348" font-size="10.8" fill="#667085" text-anchor="middle">权威来源：Anthropic《Demystifying evals for AI agents》、Anthropic《Define success criteria and build evaluations》、OpenAI《Evals API Reference》</text>
 </svg>
-  <div class="cap">图 9｜第一层导航五段与三步重绘</div>
+  <div class="cap">图 8｜第一层导航五段与三步重绘</div>
 </div>
 <p><span class="tag t-video">视频原述</span>视频 ② 顶部导航条共五段，逐字为「<strong>框架与方法 / 真实任务集 / 写清 Task / 正反平衡 / 三步收束</strong>」；其中中间三段是本片主体，收束为：</p>
 <ol>
@@ -606,7 +573,7 @@ main{padding-top:22px}
     <text x="450.0" y="247.6" font-size="13" font-weight="800" fill="#344054" text-anchor="middle">产物：一份来自真实使用场景的初始任务清单 + 可重复比较的评测基线</text>
 <text x="450" y="300" font-size="10.8" fill="#667085" text-anchor="middle">示例 Badcase：「今天上海天气怎么样？」Agent 没调用搜索，直接凭模型记忆作答</text>
 </svg>
-  <div class="cap">图 10｜第一批真实任务重绘</div>
+  <div class="cap">图 9｜第一批真实任务重绘</div>
 </div>
 <p><span class="tag t-video">视频原述</span>口播：「不需要先准备几百条任务，早期从 <strong>20 到 50 条真实任务</strong>开始，就足够建立第一条评测基线」。</p>
 <p><span class="tag t-video">视频原述</span><strong>第一批种子任务优先来自真实任务和真实失败</strong>：团队已有材料里「开发过程中原本需要人工检查的任务」「已经发生过 Bug」「用户反馈和支持工单里的真实失败」。模型更适合在真实种子基础上扩充表达变体，而不是凭空造题；按任务对用户结果影响程度排序，选出前 20–50 条。</p>
@@ -638,7 +605,7 @@ main{padding-top:22px}
     <text x="450.0" y="243.6" font-size="13" font-weight="800" fill="#344054" text-anchor="middle">写完后用两个方法检查：专家一致性反查 + 参考解法验证</text>
 <text x="450" y="296" font-size="10.8" fill="#667085" text-anchor="middle">若前沿模型多次仍一次都无法通过，先怀疑 Task 与 Grader，而不是模型能力</text>
 </svg>
-  <div class="cap">图 11｜Eval Task 三要素重绘</div>
+  <div class="cap">图 10｜Eval Task 三要素重绘</div>
 </div>
 <p><span class="tag t-video">视频原述</span>「有一条真实任务，不代表它已经是一条合格 Eval Task」。Anthropic 对 Task 的基本定义是：<strong>一项具有明确输入和成功标准的独立测试</strong>。</p>
 <p><span class="tag t-video">视频原述</span>以天气任务为例，需要写清：</p>
@@ -673,7 +640,7 @@ main{padding-top:22px}
     <text x="450.0" y="247.6" font-size="13" font-weight="800" fill="#344054" text-anchor="middle">落地形态：为每条测试数据定义结构化字段，再让 Grader 调用这些字段</text>
 <text x="450" y="300" font-size="10.8" fill="#667085" text-anchor="middle">与本站《评测驱动 Agent 迭代》的「完整用例 + 正反例」一致</text>
 </svg>
-  <div class="cap">图 12｜两个检查方法重绘</div>
+  <div class="cap">图 11｜两个检查方法重绘</div>
 </div>
 <table>
 <tr><th>方法</th><th>做法</th><th>判定</th></tr>
@@ -705,7 +672,7 @@ main{padding-top:22px}
     <text x="450.0" y="237.6" font-size="13" font-weight="800" fill="#344054" text-anchor="middle">若评测集全是正向任务，可能优化出「遇到任何问题都先搜」的 Agent</text>
 <text x="450" y="290" font-size="10.8" fill="#667085" text-anchor="middle">平衡不要求数量完全相等；关键是覆盖两侧且整体分布接近真实使用</text>
 </svg>
-  <div class="cap">图 13｜正反平衡重绘</div>
+  <div class="cap">图 12｜正反平衡重绘</div>
 </div>
 <p><span class="tag t-video">视频原述</span>正向任务只验证「Agent 该做一件事时能不能完成」；但 Agent 不仅要在条件成立时触发行为，也要在条件不成立时保持克制。若评测集里全是正向任务，「最后可能优化出一个遇到任何问题都先搜」的 Agent。</p>
 <table>
@@ -741,7 +708,7 @@ main{padding-top:22px}
     <text x="450.0" y="237.6" font-size="13" font-weight="800" fill="#344054" text-anchor="middle">第一层完成 → 下一期搭「运行与评分」</text>
 <text x="450" y="290" font-size="10.8" fill="#667085" text-anchor="middle">「第一批 Agent Eval 不是收集一批 Prompt 再给输出打分」——口播</text>
 </svg>
-  <div class="cap">图 14｜第一层产物重绘</div>
+  <div class="cap">图 13｜第一层产物重绘</div>
 </div>
 <table>
 <tr><th>产物</th><th>内容</th><th>验收</th></tr>
@@ -789,7 +756,7 @@ main{padding-top:22px}
     <text x="450.0" y="283.6" font-size="13" font-weight="800" fill="#344054" text-anchor="middle">一条 Task 进入可重置环境 → 保留结果与轨迹 → 硬条件先判通过 → 模型评分语义质量 → 人评校准</text>
 <text x="450" y="336" font-size="10.8" fill="#667085" text-anchor="middle">参考：Anthropic《Demystifying evals for AI agents》+ OpenAI Evals API / Graders 文档</text>
 </svg>
-  <div class="cap">图 15｜第二层导航六段与五步重绘</div>
+  <div class="cap">图 14｜第二层导航六段与五步重绘</div>
 </div>
 <p><span class="tag t-video">视频原述</span>视频 ③ 开场追问：「同一个 Agent 跑同一批评测任务，分数波动到底是 Agent 能力变了，还是运行环境和评分方法？」第二期解决「怎么运行、怎么判分」，对应 Anthropic《Demystifying evals for AI agents》与 OpenAI Evals API / Graders 文档。</p>
 <p><span class="tag t-video">视频原述</span>视频 ③ 顶部导航条共六段，逐字为「<strong>隔离运行环境 / 问题与方法 / Outcome 与轨迹 / 三类 Grader / 硬条件与评分 / 校准与收束</strong>」；本片主体归纳为下面五步，步骤名较导航略有简化，含义一一对应。</p>
@@ -825,7 +792,7 @@ main{padding-top:22px}
     <text x="450.0" y="253.6" font-size="13" font-weight="800" fill="#344054" text-anchor="middle">产物：可重置、记录版本、区分 Agent 失败与环境失败的运行环境</text>
 <text x="450" y="306" font-size="10.8" fill="#667085" text-anchor="middle">若每次直接调真实天气接口：晴天 / 阵雨 / 超时，三次 Trial 面对的已不是同一项条件</text>
 </svg>
-  <div class="cap">图 16｜隔离运行环境重绘</div>
+  <div class="cap">图 15｜隔离运行环境重绘</div>
 </div>
 <p><span class="tag t-video">视频原述</span>口播反例：如果每次评测都直接调用真实天气接口——第一次返回晴天、第二次阵雨、第三次接口超时——<strong>三次 Trial 面对的已经不是同一项条件</strong>，分数变化可能来自外部数据与工具故障，而不是 Agent 能力。</p>
 <ul>
@@ -860,7 +827,7 @@ main{padding-top:22px}
     <text x="450.0" y="253.6" font-size="13" font-weight="800" fill="#344054" text-anchor="middle">「结果碰巧正确」算不算通过？取决于 Task 一开始定义的成功标准</text>
 <text x="450" y="306" font-size="10.8" fill="#667085" text-anchor="middle">只测最终结果就不该因没走预设路径扣分；测搜索决策则没搜就不能通过</text>
 </svg>
-  <div class="cap">图 17｜Outcome 与 Transcript 重绘</div>
+  <div class="cap">图 16｜Outcome 与 Transcript 重绘</div>
 </div>
 <table>
 <tr><th>记录</th><th>定义</th><th>用途</th></tr>
@@ -900,7 +867,7 @@ main{padding-top:22px}
     <text x="450.0" y="253.6" font-size="13" font-weight="800" fill="#344054" text-anchor="middle">工具形态：字符串检查 / Python Grader / Multi Grader；结构化变量传入</text>
 <text x="450" y="306" font-size="10.8" fill="#667085" text-anchor="middle">不要直接扩大自动评分规模——先把判据本身校准</text>
 </svg>
-  <div class="cap">图 18｜三类 Grader 重绘</div>
+  <div class="cap">图 17｜三类 Grader 重绘</div>
 </div>
 <table>
 <tr><th>Grader</th><th>适用</th><th>要点</th></tr>
@@ -934,7 +901,7 @@ main{padding-top:22px}
     <text x="450.0" y="253.6" font-size="13" font-weight="800" fill="#344054" text-anchor="middle">硬条件判断通过 → 再在通过的 Trial 中比较软性质量；可设部分得分但每部分对应明确条件</text>
 <text x="450" y="306" font-size="10.8" fill="#667085" text-anchor="middle">这样得到的评分才能被解释和复查</text>
 </svg>
-  <div class="cap">图 19｜硬条件评分与 Grader 自测重绘</div>
+  <div class="cap">图 18｜硬条件评分与 Grader 自测重绘</div>
 </div>
 <h3 id="191-别让一个总分掩盖关键失败">19.1 别让一个总分掩盖关键失败</h3>
 <p><span class="tag t-video">视频原述</span>天气任务可拆成四个维度：是否调用工具、调用参数是否正确、回答与工具结果是否一致、表达是否清晰。<strong>前三项决定任务是否真正成功，表达质量只作为独立分数</strong>区分完成后的质量差异；若全部算进一个平均分，失败 Trial 仍可拿到看似不错的总分。</p>
@@ -986,7 +953,7 @@ main{padding-top:22px}
     <text x="450.0" y="313.6" font-size="13" font-weight="800" fill="#177a52" text-anchor="middle">失败 Case 回流数据集 → 飞轮再转一圈</text>
 <text x="450" y="360" font-size="10.8" fill="#667085" text-anchor="middle">评测体系本身也要演进：它不是可选的测试工具，而是产品经理的研发仪表盘</text>
 </svg>
-  <div class="cap">图 20｜【补充】0→1 完整链路全景</div>
+  <div class="cap">图 19｜【补充】0→1 完整链路全景</div>
 </div>
 <div class="key">三支视频拼成一条链：<strong>定业务目标 → 真实任务集（正反平衡）→ 隔离环境 → 执行记录（Outcome+Transcript）→ 三类 Grader 判分 → Dashboard 看趋势 → 上线决策 → Error Analysis 回流 → 数据集再演进。</strong></div>
 <table>
@@ -1190,14 +1157,14 @@ if __name__ == "__main__":
 <tr><td>②</td><td>框架与方法 / 真实任务集 / 写清 Task / 正反平衡 / 三步收束（VOL.052）</td><td>顶部固定导航条</td></tr>
 <tr><td>③</td><td>问题与方法 / 隔离运行环境 / Outcome 与轨迹 / 三类 Grader / 硬条件与评分 / 校准与收束（VOL.053）</td><td>顶部固定导航条</td></tr>
 </table>
-<h3 id="242-配图速查20-张">24.2 配图速查（20 张）</h3>
+<h3 id="242-配图速查19-张">24.2 配图速查（19 张）</h3>
 <table>
 <tr><th>#</th><th>图名</th><th>来源</th></tr>
 <tr><td>1–2</td><td>三支视频结构地图 / evaluation-first 大厂观点</td><td>视频 ① 封面与口播</td></tr>
-<tr><td>3–7</td><td>架构全景 / 三段职责 / 五步落地 / 数据飞轮 / 踩坑四条</td><td>视频 ① 手绘图逐节点重绘</td></tr>
-<tr><td>8–14</td><td>两层框架 / 第一层三步 / 真实任务 / Task 三要素 / 双检查 / 正反平衡 / 三产物</td><td>视频 ② 导航条与插画</td></tr>
-<tr><td>15–19</td><td>第二层五步 / 隔离环境 / Outcome+Transcript / 三类 Grader / 硬条件与自测</td><td>视频 ③ 导航条与插画</td></tr>
-<tr><td>20</td><td>【补充】0→1 完整链路全景</td><td>三支综合，非视频画面</td></tr>
+<tr><td>3–6</td><td>架构全景 / 三段职责 / 五步落地 / 踩坑四条</td><td>视频 ① 手绘图逐节点重绘</td></tr>
+<tr><td>7–13</td><td>两层框架 / 第一层三步 / 真实任务 / Task 三要素 / 双检查 / 正反平衡 / 三产物</td><td>视频 ② 导航条与插画</td></tr>
+<tr><td>14–18</td><td>第二层五步 / 隔离环境 / Outcome+Transcript / 三类 Grader / 硬条件与自测</td><td>视频 ③ 导航条与插画</td></tr>
+<tr><td>19</td><td>【补充】0→1 完整链路全景</td><td>三支综合，非视频画面</td></tr>
 </table>
 <h3 id="243-校正表ocr-与口播">24.3 校正表（OCR 与口播）</h3>
 <table>
