@@ -89,6 +89,14 @@ main{padding-top:22px}
 </style>
   <link rel="stylesheet" href="../assets/code-blocks.css">
   <script src="../assets/code-blocks.js" defer></script>
+<style>
+.ts-box{margin:14px 0;padding:10px 14px;background:#f8fafc;border:1px solid #e5e9f0;border-radius:9px}
+.ts-box>summary{cursor:pointer;font-weight:700;color:#2563eb;font-size:13px}
+.ts-lines{margin-top:10px;max-height:430px;overflow:auto;padding-right:6px}
+.ts-line{font-size:12.5px;line-height:1.95;color:#46536a;padding:1px 0}
+.ts-t{color:#98a2b3;font-variant-numeric:tabular-nums;margin-right:8px}
+@media print{.ts-lines{max-height:none}.ts-box{break-inside:avoid}}
+</style>
 </head>
 <body>
 <div class="topbar">
@@ -254,6 +262,69 @@ main{padding-top:22px}
 </table>
 <p>画面目录里第二章下列出七个项目与各自时间码：<code>06:27 Claude Agent SDK</code>、<code>08:17 Deep Agents</code>、<code>10:10 Pi</code>、<code>11:46 OpenCode</code>、<code>13:01 OpenClaw</code>、<code>14:18 Hermes Agent</code>、<code>15:23 DeepSeek Harness</code>。</p>
 <div class="note">全片可压成一句话：<strong>三层抽象（Framework / Runtime / Harness）→ 按场景分三类看七个项目 → 用「默认机制 × 控制权」两根轴横向对比 → 按三个层次决定怎么用 → 按任务需求与设计特点对号入座</strong>。</div>
+<details class="ts-box"><summary>本章语音逐字稿（ASR · 已校正）（逐字 · 60 句）</summary>
+<div class="ts-lines">
+<div class="ts-line"><span class="ts-t">[00:00]</span> 如果今天让你开发一个 Agent 第一步应该做什么</div>
+<div class="ts-line"><span class="ts-t">[00:03]</span> 直接写代码错要先选一个适合你的开源基础框架</div>
+<div class="ts-line"><span class="ts-t">[00:07]</span> 现在市面上的 Agent 的开发框架越来越多</div>
+<div class="ts-line"><span class="ts-t">[00:10]</span> 从 LangGraph 到 Claude Agent SDK</div>
+<div class="ts-line"><span class="ts-t">[00:13]</span> Deep Agents 还有 Pi、DeepSeek Harness</div>
+<div class="ts-line"><span class="ts-t">[00:15]</span> 这些项目到底有什么区别应该怎么选</div>
+<div class="ts-line"><span class="ts-t">[00:18]</span> 这期视频我们就系统的梳理了 Agent 的开发框架的演进过程</div>
+<div class="ts-line"><span class="ts-t">[00:22]</span> 重点对比七个比较有代表性的项目</div>
+<div class="ts-line"><span class="ts-t">[00:25]</span> 分析它们各自的基础特点优势和限制</div>
+<div class="ts-line"><span class="ts-t">[00:28]</span> 最后再讲一个非常实际的问题</div>
+<div class="ts-line"><span class="ts-t">[00:30]</span> 如果我们今天真的要开发一个 Agent</div>
+<div class="ts-line"><span class="ts-t">[00:32]</span> 到底应该怎么使用这些框架</div>
+<div class="ts-line"><span class="ts-t">[00:34]</span> 那内容比较长</div>
+<div class="ts-line"><span class="ts-t">[00:35]</span> 大家可以根据章节直接调到感兴趣的部分</div>
+<div class="ts-line"><span class="ts-t">[00:37]</span> 在开始具体选行之前</div>
+<div class="ts-line"><span class="ts-t">[00:38]</span> 我们先来看一下 Agent 开发架构的眼睛</div>
+<div class="ts-line"><span class="ts-t">[00:41]</span> 大体上可以分成三个阶段</div>
+<div class="ts-line"><span class="ts-t">[00:43]</span> 从早期的 Agent framework</div>
+<div class="ts-line"><span class="ts-t">[00:45]</span> 到后来的 Agent runtime</div>
+<div class="ts-line"><span class="ts-t">[00:47]</span> 再到现在越来越成熟的 Agent harness</div>
+<div class="ts-line"><span class="ts-t">[00:49]</span> 第一阶段是 Agent framework</div>
+<div class="ts-line"><span class="ts-t">[00:51]</span> 大概在2022年 2023年</div>
+<div class="ts-line"><span class="ts-t">[00:53]</span> 随着大语言模型流行起来</div>
+<div class="ts-line"><span class="ts-t">[00:55]</span> 大家就开始尝试基于大模型</div>
+<div class="ts-line"><span class="ts-t">[00:57]</span> 开发各种应用</div>
+<div class="ts-line"><span class="ts-t">[00:58]</span> 但那个时候开发 Agent 的很多基础工作</div>
+<div class="ts-line"><span class="ts-t">[01:00]</span> 都要自己完成</div>
+<div class="ts-line"><span class="ts-t">[01:01]</span> 比如说怎么调不同的大模型</div>
+<div class="ts-line"><span class="ts-t">[01:03]</span> 怎么让模型使用外部的工具</div>
+<div class="ts-line"><span class="ts-t">[01:05]</span> 怎么接入知识库</div>
+<div class="ts-line"><span class="ts-t">[01:06]</span> 怎么把工具执行的结果返回给模型</div>
+<div class="ts-line"><span class="ts-t">[01:08]</span> 让它决定下一步做什么</div>
+<div class="ts-line"><span class="ts-t">[01:09]</span> 那如果每开发一个 Agent</div>
+<div class="ts-line"><span class="ts-t">[01:11]</span> 都要把这些功能重写一遍</div>
+<div class="ts-line"><span class="ts-t">[01:12]</span> 开发成本就太高了</div>
+<div class="ts-line"><span class="ts-t">[01:14]</span> 所以就出现了 LangChain、LlamaIndex 这样的开发框架</div>
+<div class="ts-line"><span class="ts-t">[01:17]</span> 那他们把模型的调用工具的介入</div>
+<div class="ts-line"><span class="ts-t">[01:19]</span> 数据的处理</div>
+<div class="ts-line"><span class="ts-t">[01:20]</span> 以及构建 Agent 的一些基础能力封装起来</div>
+<div class="ts-line"><span class="ts-t">[01:23]</span> 那开发者不需要每次都从零开始</div>
+<div class="ts-line"><span class="ts-t">[01:25]</span> 比如说我们要开发一个电单查询的 Agent</div>
+<div class="ts-line"><span class="ts-t">[01:27]</span> 可以先在 LangChain 里面去定义一个 Agent</div>
+<div class="ts-line"><span class="ts-t">[01:30]</span> 给它接入电单查询的接口</div>
+<div class="ts-line"><span class="ts-t">[01:31]</span> 再配置好提示词和调用的规则</div>
+<div class="ts-line"><span class="ts-t">[01:33]</span> 很快就能达出一个基础版本</div>
+<div class="ts-line"><span class="ts-t">[01:35]</span> LangChain、LlamaIndexCrewAII</div>
+<div class="ts-line"><span class="ts-t">[01:37]</span> 都属于这一类的 free-mark</div>
+<div class="ts-line"><span class="ts-t">[01:39]</span> 他们主要解决的是减少重复开发</div>
+<div class="ts-line"><span class="ts-t">[01:41]</span> 让 Agent 更容易构建</div>
+<div class="ts-line"><span class="ts-t">[01:43]</span> 那第二阶段是 Agent 的 around time</div>
+<div class="ts-line"><span class="ts-t">[01:45]</span> 随着 Agent 的执行任务越来越复杂</div>
+<div class="ts-line"><span class="ts-t">[01:47]</span> 大家发现</div>
+<div class="ts-line"><span class="ts-t">[01:48]</span> 仅仅把模型和工具连接起来还不够</div>
+<div class="ts-line"><span class="ts-t">[01:51]</span> 比如我们要开发一个电商选品的 Agent</div>
+<div class="ts-line"><span class="ts-t">[01:53]</span> 要先读取商品的信息</div>
+<div class="ts-line"><span class="ts-t">[01:54]</span> 然后查询库存、价格、拥机</div>
+<div class="ts-line"><span class="ts-t">[01:57]</span> 接着给商品打分</div>
+<div class="ts-line"><span class="ts-t">[01:58]</span> 最后再生成选品的结果</div>
+<div class="ts-line"><span class="ts-t">[02:00]</span> 这里面的步骤很多</div>
+<div class="ts-line"><span class="ts-t">[02:02]</span> 有些必须要按照固定的顺序执行</div>
+</div></details>
 </section>
 
 <section class="sec" id="s2">
@@ -399,6 +470,73 @@ agent = create_agent(
 </div>
 <p><span class="tag t-video">视频原述</span>「当然了，Framework、Runtime、Harness 并不是简单的新技术取代旧技术：Harness 复用了 Framework 和 Runtime 的能力。<strong>LangChain 团队</strong>就是一个非常典型的例子——LangChain 主要提供开发基础组件，2024 年推出 LangGraph 做状态管理与持久化执行，2025 年又推出 Deep Agents，在前两者基础上提供一套更完整的 Harness。所以它们是随着模型能力和应用需求变化出现的<strong>不同层次的技术抽象</strong>，不是互相淘汰。」</p>
 <div class="key"><span class="tag t-extra">补充</span>这套三层划分与公开工程资料一致：<strong>Framework</strong> 给开发者定义行为、工具、路由、状态的抽象（LangChain / CrewAI / OpenAI Agents SDK）；<strong>Runtime</strong> 提供持久化执行、会话与进程生命周期、检查点与恢复（LangGraph / Temporal / Inngest）；<strong>Harness</strong> 是「一辆装配好的车」，打包了默认 system prompt、工具注册表、上下文工程、Hook 生命周期、沙箱与权限模型（Claude Code / Codex CLI / Cline）。三者回答的是不同问题，生产系统常同时使用：Framework 编排大流程，每个 Agent 在 Harness 内执行，Runtime 提供环境与状态。详见 <a href="#s11">11. 专业名词速查</a> 与 <a href="#s13">13. 架构全景</a>。</div>
+<details class="ts-box"><summary>本章语音逐字稿（ASR · 已校正）（逐字 · 64 句）</summary>
+<div class="ts-lines">
+<div class="ts-line"><span class="ts-t">[02:04]</span> 有些则需要根据上一步的结果</div>
+<div class="ts-line"><span class="ts-t">[02:06]</span> 决定接下来该怎么做</div>
+<div class="ts-line"><span class="ts-t">[02:07]</span> 如果任务执行到一半失败了</div>
+<div class="ts-line"><span class="ts-t">[02:09]</span> 能不能接着之前的进度继续</div>
+<div class="ts-line"><span class="ts-t">[02:12]</span> 如果某个环节需要人工确认</div>
+<div class="ts-line"><span class="ts-t">[02:13]</span> 能不能先暂停</div>
+<div class="ts-line"><span class="ts-t">[02:14]</span> 等用户确认之后再往下走</div>
+<div class="ts-line"><span class="ts-t">[02:16]</span> 这些已经不只是模型调用和工具接入的事情了</div>
+<div class="ts-line"><span class="ts-t">[02:20]</span> 我们还需要办理整个任务的执行流程</div>
+<div class="ts-line"><span class="ts-t">[02:22]</span> 保存执行的状态处理中断和恢复</div>
+<div class="ts-line"><span class="ts-t">[02:25]</span> 于是在2024年 LangGraph 推出了 LanguRaf</div>
+<div class="ts-line"><span class="ts-t">[02:28]</span> 它的核心就是让开发者能够更聪明地</div>
+<div class="ts-line"><span class="ts-t">[02:31]</span> 控制 Agent 的执行过程</div>
+<div class="ts-line"><span class="ts-t">[02:32]</span> 比如任务有哪些步骤</div>
+<div class="ts-line"><span class="ts-t">[02:34]</span> 步骤之间怎么流转</div>
+<div class="ts-line"><span class="ts-t">[02:35]</span> 什么时候暂停</div>
+<div class="ts-line"><span class="ts-t">[02:36]</span> 以及出现了一场怎么恢复</div>
+<div class="ts-line"><span class="ts-t">[02:38]</span> Runtime 解决的是</div>
+<div class="ts-line"><span class="ts-t">[02:39]</span> 怎么让 Agent 的执行过程可管理、可恢复</div>
+<div class="ts-line"><span class="ts-t">[02:42]</span> 第三个阶段是 Agent harness</div>
+<div class="ts-line"><span class="ts-t">[02:44]</span> 随着模型的推理能力</div>
+<div class="ts-line"><span class="ts-t">[02:46]</span> 工具调用能力不断提高</div>
+<div class="ts-line"><span class="ts-t">[02:47]</span> Agent 的开发方式又发生了变化</div>
+<div class="ts-line"><span class="ts-t">[02:49]</span> 以前开发一个复杂的 Agent</div>
+<div class="ts-line"><span class="ts-t">[02:51]</span> 开发者往往需要提前把很多执行流程安排好</div>
+<div class="ts-line"><span class="ts-t">[02:54]</span> 但现实中有些任务的流程</div>
+<div class="ts-line"><span class="ts-t">[02:56]</span> 根本没有办法提前规划</div>
+<div class="ts-line"><span class="ts-t">[02:57]</span> 也不可能没去所有的情况</div>
+<div class="ts-line"><span class="ts-t">[02:59]</span> 所以我们开始希望只给模型一个目标</div>
+<div class="ts-line"><span class="ts-t">[03:01]</span> 让它自己去规划步骤</div>
+<div class="ts-line"><span class="ts-t">[03:02]</span> 调用工具、分析结果</div>
+<div class="ts-line"><span class="ts-t">[03:04]</span> 再不断地调整下一步的行动</div>
+<div class="ts-line"><span class="ts-t">[03:06]</span> 比如让 Agent 帮我们研究一家公司的产品</div>
+<div class="ts-line"><span class="ts-t">[03:08]</span> 那模型可以自己决定先搜什么样的资料</div>
+<div class="ts-line"><span class="ts-t">[03:11]</span> 哪些信息需要进一步验证</div>
+<div class="ts-line"><span class="ts-t">[03:12]</span> 要不要写一段代码分析数据</div>
+<div class="ts-line"><span class="ts-t">[03:14]</span> 最后怎么整理成报告</div>
+<div class="ts-line"><span class="ts-t">[03:16]</span> 这些步骤</div>
+<div class="ts-line"><span class="ts-t">[03:17]</span> 不一定需要开发者提前全部规定好</div>
+<div class="ts-line"><span class="ts-t">[03:19]</span> 但是模型的自主性提高之后</div>
+<div class="ts-line"><span class="ts-t">[03:21]</span> 又带来了新的工程问题</div>
+<div class="ts-line"><span class="ts-t">[03:22]</span> 比如说 Agent 的连续执行几十步</div>
+<div class="ts-line"><span class="ts-t">[03:24]</span> 积累了大量的上下文</div>
+<div class="ts-line"><span class="ts-t">[03:26]</span> 怎么避免它越来越长</div>
+<div class="ts-line"><span class="ts-t">[03:27]</span> 任务执行的过程中文献和中间协会放在哪里</div>
+<div class="ts-line"><span class="ts-t">[03:30]</span> 什么时候应该调用自 Agent</div>
+<div class="ts-line"><span class="ts-t">[03:32]</span> 什么时候应该停止</div>
+<div class="ts-line"><span class="ts-t">[03:33]</span> 怎么管理工具的权限</div>
+<div class="ts-line"><span class="ts-t">[03:35]</span> 这些问题逐渐变成了 Agent 开发的重点</div>
+<div class="ts-line"><span class="ts-t">[03:38]</span> Agent Harness 因此受到越来越多的关注</div>
+<div class="ts-line"><span class="ts-t">[03:41]</span> 那 harness 可以理解成</div>
+<div class="ts-line"><span class="ts-t">[03:42]</span> 围绕着模型的一整套执行的系统</div>
+<div class="ts-line"><span class="ts-t">[03:44]</span> 它包含基础的 Agent loop</div>
+<div class="ts-line"><span class="ts-t">[03:46]</span> 也就是模型的思考、调用工具拿到结果</div>
+<div class="ts-line"><span class="ts-t">[03:49]</span> 继续执行这个循环</div>
+<div class="ts-line"><span class="ts-t">[03:50]</span> 在此之上还提供了上下文的管理</div>
+<div class="ts-line"><span class="ts-t">[03:52]</span> 任务规划、文件系统、工具权限的能力</div>
+<div class="ts-line"><span class="ts-t">[03:55]</span> 过去这些能力都得自己手搓</div>
+<div class="ts-line"><span class="ts-t">[03:57]</span> 现在成熟的 harness 已经帮我们做好了</div>
+<div class="ts-line"><span class="ts-t">[03:59]</span> 我们可以直接使用这套现成的执行系统</div>
+<div class="ts-line"><span class="ts-t">[04:02]</span> 再根据业务需求去扩展</div>
+<div class="ts-line"><span class="ts-t">[04:03]</span> 当然 Framework runtime harness</div>
+<div class="ts-line"><span class="ts-t">[04:05]</span> 并不是简单的新技术取代就技术</div>
+<div class="ts-line"><span class="ts-t">[04:08]</span> 实际上 harness 本身就附用了 Framework 和 Runtime 的能力</div>
+</div></details>
 </section>
 
 <section class="sec" id="s3">
@@ -485,6 +623,65 @@ agent = create_agent(
 </table>
 <p><span class="tag t-video">视频原述</span>「需要说明的是，上面的分类并不是严格的功能边界：各 Harness 的能力已经越来越接近了 —— Coding Agent 也能读取文件、处理数据、生成报告，通用 Agent 也能读写代码、执行命令。它们的主要区别在于<strong>默认提供了哪些能力、针对什么任务做了优化</strong>。另外，个人助手类项目不只是 Harness，而是<strong>完整的 Agent 系统 = Harness + 消息接入 + 任务调度 + …</strong>」</p>
 <div class="note"><span class="tag t-extra">补充</span>视频在 06:21–06:27 之间有一句容易被忽略的限定：Hermes / OpenClaw 这类「完整 Agent 系统」> 单纯 Harness。做选型时要把「执行系统」与「产品外壳」分开看：消息网关、定时任务、用户体系、渠道适配属于 Runtime / 产品层，不是 Harness 本身的职责。这个区分在第 8 章两根轴对比里很关键——三个场景化项目没有落在坐标轴上，正是因为它们的差异主要来自场景外壳。</div>
+<details class="ts-box"><summary>本章语音逐字稿（ASR · 已校正）（逐字 · 56 句）</summary>
+<div class="ts-lines">
+<div class="ts-line"><span class="ts-t">[04:12]</span> launching 团队就是一个非常典型的例子</div>
+<div class="ts-line"><span class="ts-t">[04:14]</span> 2022年推出了 launching 主要提供 Agent 的开发的技术组建</div>
+<div class="ts-line"><span class="ts-t">[04:18]</span> 2024年推出了 LangGraph</div>
+<div class="ts-line"><span class="ts-t">[04:19]</span> 补充了状态管理和持久化的执行能力</div>
+<div class="ts-line"><span class="ts-t">[04:22]</span> 2025年又推出了 Deep Agents</div>
+<div class="ts-line"><span class="ts-t">[04:23]</span> 在前两者的基础上提供一套更加完整的 Agent harness</div>
+<div class="ts-line"><span class="ts-t">[04:27]</span> 今天的 Deep Agents 仍然是建立在 launching 和 LangGraph 之上的</div>
+<div class="ts-line"><span class="ts-t">[04:31]</span> 所以这三个阶段并不是互相淘汰的关系</div>
+<div class="ts-line"><span class="ts-t">[04:34]</span> 而是随着模型能力和应用需求的开发</div>
+<div class="ts-line"><span class="ts-t">[04:37]</span> 出现的不同层次的技术抽象</div>
+<div class="ts-line"><span class="ts-t">[04:39]</span> 这条技术演进路线影响的是什么呢</div>
+<div class="ts-line"><span class="ts-t">[04:41]</span> 影响的就是 Agent 的开发的起点</div>
+<div class="ts-line"><span class="ts-t">[04:44]</span> 过去我们可能要从模型工具这些技术组建开始</div>
+<div class="ts-line"><span class="ts-t">[04:47]</span> 一点一点去组装一个 Agent</div>
+<div class="ts-line"><span class="ts-t">[04:48]</span> 现在如果现成的 harness 的执行机只能满足需求</div>
+<div class="ts-line"><span class="ts-t">[04:52]</span> 就可以直接服用</div>
+<div class="ts-line"><span class="ts-t">[04:53]</span> 不用再从零搭建</div>
+<div class="ts-line"><span class="ts-t">[04:54]</span> 那起点变得更高了</div>
+<div class="ts-line"><span class="ts-t">[04:55]</span> 不过你的业务如果足够简单</div>
+<div class="ts-line"><span class="ts-t">[04:57]</span> 或者需要严格的执行流程状态管理</div>
+<div class="ts-line"><span class="ts-t">[04:59]</span> 那 freemorg 和 Runtime 依然有价值</div>
+<div class="ts-line"><span class="ts-t">[05:02]</span> 依然可以用</div>
+<div class="ts-line"><span class="ts-t">[05:03]</span> 并不是所有的 Agent 的开发都需要用到 harness</div>
+<div class="ts-line"><span class="ts-t">[05:06]</span> 讲完技术的演进</div>
+<div class="ts-line"><span class="ts-t">[05:07]</span> 我们再来看看目前有哪些值得关注的 harness</div>
+<div class="ts-line"><span class="ts-t">[05:10]</span> 按照主要服务的场景</div>
+<div class="ts-line"><span class="ts-t">[05:11]</span> 我把它们分成了三类</div>
+<div class="ts-line"><span class="ts-t">[05:13]</span> 第一类是综合任务类的</div>
+<div class="ts-line"><span class="ts-t">[05:14]</span> 代表的项目就是 Claude Agent SDK 和 Deep Agents</div>
+<div class="ts-line"><span class="ts-t">[05:17]</span> 这类 harness 不局限于某一种业务</div>
+<div class="ts-line"><span class="ts-t">[05:20]</span> 可以用于研究数据分析文档处理</div>
+<div class="ts-line"><span class="ts-t">[05:22]</span> 代码执行等复杂的任务</div>
+<div class="ts-line"><span class="ts-t">[05:24]</span> 第二类是编码类的</div>
+<div class="ts-line"><span class="ts-t">[05:25]</span> 代表的项目是 Py 和 OpenCode</div>
+<div class="ts-line"><span class="ts-t">[05:27]</span> 另外还有 Codex CLI</div>
+<div class="ts-line"><span class="ts-t">[05:29]</span> 这类 harness 最初是围绕着软件开发设计的</div>
+<div class="ts-line"><span class="ts-t">[05:32]</span> 重点支持代码的理解文件的修改</div>
+<div class="ts-line"><span class="ts-t">[05:35]</span> 执行命令以及测试验证</div>
+<div class="ts-line"><span class="ts-t">[05:36]</span> 第三类是个人助手类的</div>
+<div class="ts-line"><span class="ts-t">[05:38]</span> 代表的项目是 OpenCode Hormace Agent</div>
+<div class="ts-line"><span class="ts-t">[05:41]</span> 这类 Agent 系统更关注长期的记忆</div>
+<div class="ts-line"><span class="ts-t">[05:43]</span> 多渠道的交互定时任务</div>
+<div class="ts-line"><span class="ts-t">[05:45]</span> 以及持续的为用户去提供服务</div>
+<div class="ts-line"><span class="ts-t">[05:47]</span> 除此之外还有一个非常特别的存在</div>
+<div class="ts-line"><span class="ts-t">[05:49]</span> 是 DeepSeek Harness</div>
+<div class="ts-line"><span class="ts-t">[05:51]</span> 它的特点不是针对于哪种具体的场景</div>
+<div class="ts-line"><span class="ts-t">[05:54]</span> 而是在于整个 harness</div>
+<div class="ts-line"><span class="ts-t">[05:55]</span> 采用了高度插件化的设计</div>
+<div class="ts-line"><span class="ts-t">[05:57]</span> 你可以通过组合不同的模块</div>
+<div class="ts-line"><span class="ts-t">[05:59]</span> 把它搭成不同类型的 Agent</div>
+<div class="ts-line"><span class="ts-t">[06:01]</span> 需要说明的是</div>
+<div class="ts-line"><span class="ts-t">[06:02]</span> 上面的分类并不是严格的功能边界</div>
+<div class="ts-line"><span class="ts-t">[06:05]</span> 实际上综合任务类和编码类的 harness 的能力</div>
+<div class="ts-line"><span class="ts-t">[06:07]</span> 已经越来越接近了</div>
+<div class="ts-line"><span class="ts-t">[06:08]</span> 一个 coding Agent 同样也可以去搜索资料</div>
+<div class="ts-line"><span class="ts-t">[06:11]</span> 读取文件处理数据设成报告</div>
+</div></details>
 </section>
 
 <section class="sec" id="s4">
@@ -594,6 +791,66 @@ agent = create_agent(
 </div>
 <p><span class="tag t-video">视频原述</span>「所以如果你做的是企业的 Agent、需要服务多个客户，对数据的存储和执行环境又有特殊的需求，Deep Agents 的优点是<strong>默认完整，也能定制</strong>；它的限制是灵活性更高，意味着更多技术决策 —— 怎么配合执行环境、怎么组合不同的处理策略、本地运行还是远程沙箱，都要自己定。更适合既想复用成熟 Harness、又想灵活调整执行环境与运行策略的团队。」</p>
 <div class="note"><span class="tag t-extra">补充</span>官方把 Deep Agents 定义为 <em>"the batteries-included agent harness"</em>，默认提供 <code>write_todos</code> 规划、<code>ls/read_file/write_file/edit_file/glob/grep</code> 文件系统、<code>execute</code>（沙箱后端）、<code>task</code> 子 Agent、自动摘要压缩、声明式文件系统权限与人工审批中断。可插拔后端包括 StateBackend（内存状态）、FilesystemBackend（本地磁盘）、StoreBackend（LangGraph Store 跨线程持久化）、SandboxBackend（Modal / Daytona / Deno）与 CompositeBackend。大工具结果（默认超过约 20k tokens）会自动 offload 到文件系统，上下文里只留路径与预览 —— 这是与 Claude SDK「预置压缩机制」最本质的差别。</div>
+<details class="ts-box"><summary>本章语音逐字稿（ASR · 已校正）（逐字 · 57 句）</summary>
+<div class="ts-lines">
+<div class="ts-line"><span class="ts-t">[06:13]</span> 而一个通用 Agent 也可以去读写代码执行命令</div>
+<div class="ts-line"><span class="ts-t">[06:15]</span> 它们的主要区别在于</div>
+<div class="ts-line"><span class="ts-t">[06:17]</span> 默认提供了哪些工具</div>
+<div class="ts-line"><span class="ts-t">[06:18]</span> 针对什么任务做了优化</div>
+<div class="ts-line"><span class="ts-t">[06:20]</span> 另外 OpenCode Harness 也不只是 harness</div>
+<div class="ts-line"><span class="ts-t">[06:22]</span> 而是一套完整的 Agent 系统</div>
+<div class="ts-line"><span class="ts-t">[06:24]</span> 包含了 harness 消息介入任务调度等能力</div>
+<div class="ts-line"><span class="ts-t">[06:27]</span> 下面我们就按这几个类别</div>
+<div class="ts-line"><span class="ts-t">[06:29]</span> 看看每个项目最有特点的设计是什么</div>
+<div class="ts-line"><span class="ts-t">[06:31]</span> 以及它们分别适合什么样的开发需求</div>
+<div class="ts-line"><span class="ts-t">[06:34]</span> 首先是综合任务类的</div>
+<div class="ts-line"><span class="ts-t">[06:35]</span> 典型的代表是 Claude Agent SDK 和 Deep Agents</div>
+<div class="ts-line"><span class="ts-t">[06:38]</span> 这两个项目都已经提供了比较完整的 harness 能力</div>
+<div class="ts-line"><span class="ts-t">[06:42]</span> 但设计思路明显不同</div>
+<div class="ts-line"><span class="ts-t">[06:44]</span> 先看 Claude Agent SDK</div>
+<div class="ts-line"><span class="ts-t">[06:46]</span> Claude Agent SDK 的本质是把 Claude Code 的 harness</div>
+<div class="ts-line"><span class="ts-t">[06:49]</span> 封装成了一套可以直接使用的执行系统</div>
+<div class="ts-line"><span class="ts-t">[06:52]</span> 它已经替开发者做好了 Agent loop</div>
+<div class="ts-line"><span class="ts-t">[06:54]</span> 工具的发现与调用</div>
+<div class="ts-line"><span class="ts-t">[06:56]</span> 塞胜和上下文管理</div>
+<div class="ts-line"><span class="ts-t">[06:57]</span> 以及紫 Agent 的执行机制</div>
+<div class="ts-line"><span class="ts-t">[06:59]</span> 你只需要通过 page hook</div>
+<div class="ts-line"><span class="ts-t">[07:01]</span> 自定义的工具 scale 和紫 Agent 的定义来改变它的行为</div>
+<div class="ts-line"><span class="ts-t">[07:05]</span> 但是不能把底层的核心实现直接替换成另一套机制</div>
+<div class="ts-line"><span class="ts-t">[07:09]</span> 比如说通过 hook</div>
+<div class="ts-line"><span class="ts-t">[07:10]</span> 你可以在工具调用前去检查参数</div>
+<div class="ts-line"><span class="ts-t">[07:12]</span> 阻止执行也可以在执行后去检查结果</div>
+<div class="ts-line"><span class="ts-t">[07:15]</span> 还可以自定义系统的提示词</div>
+<div class="ts-line"><span class="ts-t">[07:17]</span> 决定往上下文里补充哪些信息</div>
+<div class="ts-line"><span class="ts-t">[07:19]</span> 工具方面</div>
+<div class="ts-line"><span class="ts-t">[07:20]</span> 它已经内置了 page 文件操作等基础工具</div>
+<div class="ts-line"><span class="ts-t">[07:22]</span> 也支持开发者增加自己的业务工具</div>
+<div class="ts-line"><span class="ts-t">[07:24]</span> 但它的核心机制是预制的</div>
+<div class="ts-line"><span class="ts-t">[07:26]</span> 你可以干预 Agent loop</div>
+<div class="ts-line"><span class="ts-t">[07:28]</span> 却不能任意替换整个执行循环</div>
+<div class="ts-line"><span class="ts-t">[07:31]</span> 你可以控制部分上下文的内容</div>
+<div class="ts-line"><span class="ts-t">[07:33]</span> 但是不能完全接管上下文组装和压缩的机制</div>
+<div class="ts-line"><span class="ts-t">[07:35]</span> 你可以去扩展工具</div>
+<div class="ts-line"><span class="ts-t">[07:37]</span> 但是不能直接改型内置工具的底层实现</div>
+<div class="ts-line"><span class="ts-t">[07:40]</span> 这个设计的取舍非常明确</div>
+<div class="ts-line"><span class="ts-t">[07:42]</span> 优点是你不需要自己去设计整套执行系统</div>
+<div class="ts-line"><span class="ts-t">[07:44]</span> 可以直接附用 Claude code 的成熟的机制</div>
+<div class="ts-line"><span class="ts-t">[07:47]</span> 减少大量的基础排发工作</div>
+<div class="ts-line"><span class="ts-t">[07:49]</span> 限制也在这</div>
+<div class="ts-line"><span class="ts-t">[07:50]</span> 你对核心机制的控制权有限</div>
+<div class="ts-line"><span class="ts-t">[07:52]</span> 如果你需要一套与 Claude code 的完全不同的执行架构</div>
+<div class="ts-line"><span class="ts-t">[07:55]</span> 就可能会受到 sdk 扩展接口的约束</div>
+<div class="ts-line"><span class="ts-t">[07:57]</span> 所以 Claude Agent SDK 更适合这样的团队</div>
+<div class="ts-line"><span class="ts-t">[08:00]</span> 你要认可 Claude code 默认的执行方式</div>
+<div class="ts-line"><span class="ts-t">[08:03]</span> 希望在此基础上快速开发自己的业务的 Agent</div>
+<div class="ts-line"><span class="ts-t">[08:06]</span> 对于小白来说</div>
+<div class="ts-line"><span class="ts-t">[08:07]</span> 如果基础基础相对薄弱</div>
+<div class="ts-line"><span class="ts-t">[08:08]</span> 但有一定的开发能力</div>
+<div class="ts-line"><span class="ts-t">[08:10]</span> 或者是可以借助 web coding 完成开发</div>
+<div class="ts-line"><span class="ts-t">[08:12]</span> 那它是最值得优先考虑的方案</div>
+<div class="ts-line"><span class="ts-t">[08:14]</span> 因为它封装的程度比较高</div>
+<div class="ts-line"><span class="ts-t">[08:16]</span> 不需要自己从零搭建 Harness</div>
+</div></details>
 </section>
 
 <section class="sec" id="s5">
@@ -680,6 +937,72 @@ agent = create_agent(
 <p><span class="tag t-video">视频原述</span>「不同 Agent 不同任务，使用不同的工具和权限 —— 而且不是写死的，可以增加自己的 Agent。画面示例：<code>&gt; 给订单列表加分页</code> 用 Build（<code>edit src/orders.ts</code>、<code>bash npm test</code>）；<code>Tab</code> 切到 Plan：<code>&gt; 先分析列表为什么慢</code>（只读分析，不改普通项目文件）；<code>@explore 找出所有调用 fetchOrders 的地方</code> → <code>grep fetchOrders → 6 处</code>。」</p>
 <p><span class="tag t-video">视频原述</span>「它的优点是已经把读写文件、终端命令、测试这些常用工具和工作机制整合好，开箱即用；如果你想开发自己的 Coding Agent，不需要重新设计整套系统。但它的很多默认机制都围绕软件开发 —— 如果你想做一个完全不同的业务 Agent（比如客服 / 财务），预置逻辑要大量调整。所以 OpenCode 更适合基于成熟开源 Coding Agent 开发自己的编程工具或软件开发 Agent；<strong>反过来，如果目标不是 Coding Agent，就优先考虑 Pi</strong>。」</p>
 <div class="note"><span class="tag t-extra">补充</span>OpenCode（Anomaly / 原 SST 团队，MIT，TypeScript + Bun）采用 <strong>client-server 架构</strong>：TUI / Desktop / Web / IDE 扩展作为客户端，本地 HTTP 服务器负责 Agent 运行时、工具执行、会话管理与 LSP 进程；SQLite 持久化会话。模型无关，通过 Models.dev 注册表可接 75+ provider（含本地 Ollama）。差异化能力是 <strong>LSP 集成</strong>：<code>/init</code> 自动检测语言并启动对应 LSP server，让 Agent 拿到诊断、跳转定义等 IDE 级信号。公开资料也提示过 client-server 架构带来的额外攻击面（曾出现未认证 RCE 漏洞，已修复）——这是「开箱即用」之外的运维代价。</div>
+<details class="ts-box"><summary>本章语音逐字稿（ASR · 已校正）（逐字 · 63 句）</summary>
+<div class="ts-lines">
+<div class="ts-line"><span class="ts-t">[08:18]</span> 接下来是 launching 的 Deep Agents</div>
+<div class="ts-line"><span class="ts-t">[08:20]</span> 它和 Claude Agent SDK 一样</div>
+<div class="ts-line"><span class="ts-t">[08:22]</span> 也提供了比较完整的 Harness</div>
+<div class="ts-line"><span class="ts-t">[08:24]</span> 那两者最大的区别是</div>
+<div class="ts-line"><span class="ts-t">[08:25]</span> Claude Agent SDK 更强调</div>
+<div class="ts-line"><span class="ts-t">[08:27]</span> 附用一套成熟的执行机制</div>
+<div class="ts-line"><span class="ts-t">[08:29]</span> 而 Deep Agents 更强调开放和可定制</div>
+<div class="ts-line"><span class="ts-t">[08:32]</span> 那我们前面提到</div>
+<div class="ts-line"><span class="ts-t">[08:33]</span> Deep Agents 是建立在 launching 和 LangGraph 之上的</div>
+<div class="ts-line"><span class="ts-t">[08:36]</span> 那它的 Agent loop 是由 launching 提供</div>
+<div class="ts-line"><span class="ts-t">[08:38]</span> 那状态管理和任务恢复</div>
+<div class="ts-line"><span class="ts-t">[08:40]</span> 负责由 LangGraph 负责</div>
+<div class="ts-line"><span class="ts-t">[08:42]</span> 它在这个基础上封装了任务规划</div>
+<div class="ts-line"><span class="ts-t">[08:44]</span> 杀项文管理文件系统和子 Agent 的能力</div>
+<div class="ts-line"><span class="ts-t">[08:47]</span> 它比较有特点的设计有两个</div>
+<div class="ts-line"><span class="ts-t">[08:49]</span> 第一个是 Middleware</div>
+<div class="ts-line"><span class="ts-t">[08:50]</span> 也就是中间键</div>
+<div class="ts-line"><span class="ts-t">[08:51]</span> 那可以理解成</div>
+<div class="ts-line"><span class="ts-t">[08:51]</span> 把 Harness 的不同执行策略拆成独立的模块</div>
+<div class="ts-line"><span class="ts-t">[08:54]</span> 让开发者安须调整</div>
+<div class="ts-line"><span class="ts-t">[08:56]</span> 比如说你对默认的杀项文压缩方式不满意</div>
+<div class="ts-line"><span class="ts-t">[08:58]</span> 你就可以直接替换相应的处理策略</div>
+<div class="ts-line"><span class="ts-t">[09:00]</span> 也可以在模型调用前去修改上下文</div>
+<div class="ts-line"><span class="ts-t">[09:03]</span> 调整可用的工具</div>
+<div class="ts-line"><span class="ts-t">[09:04]</span> 那相比较 Claude Agent SDK</div>
+<div class="ts-line"><span class="ts-t">[09:06]</span> 你对这些内部机制的控制空间更大</div>
+<div class="ts-line"><span class="ts-t">[09:08]</span> 那第二个是 Deep Agents</div>
+<div class="ts-line"><span class="ts-t">[09:10]</span> 可以灵活的去选择文件存储和代码的执行环境</div>
+<div class="ts-line"><span class="ts-t">[09:12]</span> 比如说 Agent 需要分析数据</div>
+<div class="ts-line"><span class="ts-t">[09:14]</span> 生成文件</div>
+<div class="ts-line"><span class="ts-t">[09:15]</span> 你可以让它使用本地的文件</div>
+<div class="ts-line"><span class="ts-t">[09:16]</span> 也可以让它进入远程的杀项来执行代码</div>
+<div class="ts-line"><span class="ts-t">[09:19]</span> 还可以把需要长期保存的信息</div>
+<div class="ts-line"><span class="ts-t">[09:21]</span> 放在持久化的存储中</div>
+<div class="ts-line"><span class="ts-t">[09:23]</span> 那这样的好处是</div>
+<div class="ts-line"><span class="ts-t">[09:26]</span> 都绑定在一种固定的环境里</div>
+<div class="ts-line"><span class="ts-t">[09:28]</span> 可以根据不同业务的需求选择合适的实现方式</div>
+<div class="ts-line"><span class="ts-t">[09:31]</span> 所以如果你做的是企业的 Agent</div>
+<div class="ts-line"><span class="ts-t">[09:33]</span> 需要服务多个客户</div>
+<div class="ts-line"><span class="ts-t">[09:34]</span> 对数据的存储和执行环境又有特殊的需求</div>
+<div class="ts-line"><span class="ts-t">[09:37]</span> 那这一点会更有价值</div>
+<div class="ts-line"><span class="ts-t">[09:39]</span> 那 Deep Agents 的优点是</div>
+<div class="ts-line"><span class="ts-t">[09:40]</span> 既提供了一套默认的 Harness</div>
+<div class="ts-line"><span class="ts-t">[09:42]</span> 又给开发者保留了更大的定时空间</div>
+<div class="ts-line"><span class="ts-t">[09:45]</span> 那它的限制是灵活性更高</div>
+<div class="ts-line"><span class="ts-t">[09:47]</span> 那开发者就需要自己做的技术决策就更多</div>
+<div class="ts-line"><span class="ts-t">[09:49]</span> 你比如说怎么配合执行环境</div>
+<div class="ts-line"><span class="ts-t">[09:51]</span> 怎么组合不同的处理策略</div>
+<div class="ts-line"><span class="ts-t">[09:52]</span> 都会增加一定的开发和维护成本</div>
+<div class="ts-line"><span class="ts-t">[09:55]</span> 所以 Deep Agents 更适合这样的团队</div>
+<div class="ts-line"><span class="ts-t">[09:57]</span> 你即向服用成熟的 Harness</div>
+<div class="ts-line"><span class="ts-t">[09:58]</span> 又需要灵活调整上下门</div>
+<div class="ts-line"><span class="ts-t">[10:00]</span> 执行环境和运行策略</div>
+<div class="ts-line"><span class="ts-t">[10:02]</span> Claude Agent SDK</div>
+<div class="ts-line"><span class="ts-t">[10:03]</span> 主要开放的是执行过程中的控制点</div>
+<div class="ts-line"><span class="ts-t">[10:05]</span> 而 Deep Agents 则把更多的执行策略做成了</div>
+<div class="ts-line"><span class="ts-t">[10:08]</span> 可以配置拓展和组合的模块</div>
+<div class="ts-line"><span class="ts-t">[10:10]</span> 那说完综合任务类的</div>
+<div class="ts-line"><span class="ts-t">[10:12]</span> 接下来我们再来看看编码类的</div>
+<div class="ts-line"><span class="ts-t">[10:14]</span> 也就是 coding Agent Harness</div>
+<div class="ts-line"><span class="ts-t">[10:15]</span> 那它代表的项目有派</div>
+<div class="ts-line"><span class="ts-t">[10:17]</span> OpenAI code 和 codex CLI</div>
+<div class="ts-line"><span class="ts-t">[10:19]</span> coding Agent 和综合任务类的 Agent</div>
+</div></details>
 </section>
 
 <section class="sec" id="s6">
@@ -782,6 +1105,70 @@ agent = create_agent(
 <p><span class="tag t-video">视频原述</span>「这里面有两个核心设计：<strong>Memory 用来保存用户的偏好和长期信息</strong>（画面例子：偏好『结论先行、要数据』，项目背景『电商后台』）；<strong>Skill 则用来保存完成某类任务的方法</strong>。比如说你经常让 Agent 帮你写周报，最开始你需要告诉他周报的结构，写几次之后 Agent 可能会逐渐把这套方法总结出来，存成 Skill（画面：<code>weekly-report/SKILL.md</code>），以后再写周报直接复用这套方法就行。」</p>
 <p><span class="tag t-video">视频原述</span>「所以它的特点是把任务执行、记忆和技能积累串起来，让 Agent 在长期使用过程中越用越顺手（画面：第 1 次 10 步 → 第 2 次 6 步 → 第 3 次 3 步）。好处是同一类任务越用越顺手；但<strong>错误的经验也会被沉淀，后面可能就会一直重复这个错误</strong>，所以它也对记忆和技能的修改做人工审批。总结：想要完整个人助手、接入 IM（飞书/微信/企微），可以优先考虑 OpenClaw。」</p>
 <div class="note"><span class="tag t-extra">补充</span>Hermes Agent 是 Nous Research 开源的 self-improving agent（Python，MIT），核心是 <strong>E-A-A-S 闭环：Execute → Evaluate → Abstract → Store</strong>：任务完成后反思表现，用 <code>skill_manage</code> 把可复用模式写成 Markdown 技能文件，并更新 <code>MEMORY.md</code> / <code>USER.md</code>；下次遇到相似任务先查技能库与 FTS5 会话索引。内置 40+ 工具，涵盖文件、Shell、浏览器、Web、消息渠道与自然语言 Cron。公开源码分析还指出它是「prompt-cache-first 的同步 ReAct 内核」：系统提示词在会话期间冻结，压缩是唯一允许的改写，新能力默认走 skill / plugin / MCP 而非往核心加工具。视频里「错误经验也会沉淀」正是这类自学习系统的典型风险。</div>
+<details class="ts-box"><summary>本章语音逐字稿（ASR · 已校正）（逐字 · 61 句）</summary>
+<div class="ts-lines">
+<div class="ts-line"><span class="ts-t">[10:21]</span> 核心执行机制其实比较相似</div>
+<div class="ts-line"><span class="ts-t">[10:23]</span> 区别在于 coding Agent</div>
+<div class="ts-line"><span class="ts-t">[10:25]</span> 是围绕着软件开发场景设计的</div>
+<div class="ts-line"><span class="ts-t">[10:27]</span> 所以会更重视代码的搜索文件的修改</div>
+<div class="ts-line"><span class="ts-t">[10:30]</span> 命令的执行和测试验证</div>
+<div class="ts-line"><span class="ts-t">[10:32]</span> 首先是派</div>
+<div class="ts-line"><span class="ts-t">[10:33]</span> 派最大的特点是基减</div>
+<div class="ts-line"><span class="ts-t">[10:35]</span> 尽可能的减少框架预置的功能</div>
+<div class="ts-line"><span class="ts-t">[10:36]</span> 把更多的设计留给了开发者</div>
+<div class="ts-line"><span class="ts-t">[10:38]</span> 它内置了基础的 Agent 的 loop</div>
+<div class="ts-line"><span class="ts-t">[10:40]</span> 但是默认只有四个工具</div>
+<div class="ts-line"><span class="ts-t">[10:41]</span> 读取文件、写入文件、编辑文件和执行命令</div>
+<div class="ts-line"><span class="ts-t">[10:45]</span> 那像任务的规划多 Agent 的协作这样的能力</div>
+<div class="ts-line"><span class="ts-t">[10:48]</span> 派并没有强制去内置一套固定的方案</div>
+<div class="ts-line"><span class="ts-t">[10:50]</span> 而是允许开发者通过 extension 自己扩展</div>
+<div class="ts-line"><span class="ts-t">[10:53]</span> 而且派的扩展机制也很开放</div>
+<div class="ts-line"><span class="ts-t">[10:55]</span> 不只能增加工具</div>
+<div class="ts-line"><span class="ts-t">[10:57]</span> 还能深入干预执行过程</div>
+<div class="ts-line"><span class="ts-t">[10:58]</span> 比如说拦截工具的调用</div>
+<div class="ts-line"><span class="ts-t">[11:00]</span> 修改上线文、提缓压缩策略</div>
+<div class="ts-line"><span class="ts-t">[11:02]</span> 甚至覆盖内置工具的实现</div>
+<div class="ts-line"><span class="ts-t">[11:04]</span> 那相比 Claude Agent SDK</div>
+<div class="ts-line"><span class="ts-t">[11:06]</span> 它在执行策略和工具实现上的定制空间更大</div>
+<div class="ts-line"><span class="ts-t">[11:09]</span> 派还提供 SDK</div>
+<div class="ts-line"><span class="ts-t">[11:10]</span> 可以直接把 Agent 的能力嵌入自己的产品</div>
+<div class="ts-line"><span class="ts-t">[11:12]</span> 那 OpenClaw 早期就是通过</div>
+<div class="ts-line"><span class="ts-t">[11:14]</span> 附用派的能力来构建个人助手的</div>
+<div class="ts-line"><span class="ts-t">[11:16]</span> 那另外派的核心代码是开源的</div>
+<div class="ts-line"><span class="ts-t">[11:18]</span> 如果你想彻底重新 Agent 的 loop</div>
+<div class="ts-line"><span class="ts-t">[11:20]</span> 可以直接改原码</div>
+<div class="ts-line"><span class="ts-t">[11:21]</span> 所以很多有能力的技术团队</div>
+<div class="ts-line"><span class="ts-t">[11:23]</span> 想要打造自己的 harness 的时候都会选择派</div>
+<div class="ts-line"><span class="ts-t">[11:26]</span> 那它的优点是核心简单、灵活</div>
+<div class="ts-line"><span class="ts-t">[11:29]</span> 开发者可以根据自己的需求构建 harness</div>
+<div class="ts-line"><span class="ts-t">[11:31]</span> 不必接受过多预置的执行策略</div>
+<div class="ts-line"><span class="ts-t">[11:33]</span> 那它的限制</div>
+<div class="ts-line"><span class="ts-t">[11:34]</span> 就是很多的高级能力需要自己组合和维护</div>
+<div class="ts-line"><span class="ts-t">[11:37]</span> 那对于开发者的技术能力是有一定要求的</div>
+<div class="ts-line"><span class="ts-t">[11:39]</span> 所以派更适合这样的团队</div>
+<div class="ts-line"><span class="ts-t">[11:41]</span> 你希望自己掌握 Agent 的执行逻辑</div>
+<div class="ts-line"><span class="ts-t">[11:43]</span> 从一个轻量的核心出发</div>
+<div class="ts-line"><span class="ts-t">[11:45]</span> 开发自己 Agent 的产品</div>
+<div class="ts-line"><span class="ts-t">[11:47]</span> 那接下来是 OpenCode</div>
+<div class="ts-line"><span class="ts-t">[11:48]</span> 如果说派追求的是极简</div>
+<div class="ts-line"><span class="ts-t">[11:50]</span> 让开发者自己决定做什么扩展</div>
+<div class="ts-line"><span class="ts-t">[11:52]</span> 那 OpenCode 的思路就是提供一套比较完整的</div>
+<div class="ts-line"><span class="ts-t">[11:55]</span> 软件开发工作机制</div>
+<div class="ts-line"><span class="ts-t">[11:56]</span> 它不仅内置了 Agent 的 loop</div>
+<div class="ts-line"><span class="ts-t">[11:58]</span> 还预置了不同的 Agent 的角色和执行方式</div>
+<div class="ts-line"><span class="ts-t">[12:00]</span> 比如说标的 Agent 负责世界开发</div>
+<div class="ts-line"><span class="ts-t">[12:02]</span> 可以修改代码执行命令</div>
+<div class="ts-line"><span class="ts-t">[12:04]</span> planagent 主要负责分析问题指定方案</div>
+<div class="ts-line"><span class="ts-t">[12:06]</span> 默认不直接修改普通项目文件</div>
+<div class="ts-line"><span class="ts-t">[12:09]</span> 还有 explore 等自 Agent 用于搜索和理解代码库</div>
+<div class="ts-line"><span class="ts-t">[12:12]</span> 也就是说 OpenCode 已经帮开发者设计好了</div>
+<div class="ts-line"><span class="ts-t">[12:15]</span> 一整套软件开发的工作方式</div>
+<div class="ts-line"><span class="ts-t">[12:17]</span> 不同 Agent 负责不同的任务</div>
+<div class="ts-line"><span class="ts-t">[12:19]</span> 使用不同的工具和权限</div>
+<div class="ts-line"><span class="ts-t">[12:20]</span> 不过这些角色也不是写死的</div>
+<div class="ts-line"><span class="ts-t">[12:22]</span> 你可以修改他们的提示词、模型和权限</div>
+<div class="ts-line"><span class="ts-t">[12:24]</span> 也可以增加自己 Agent</div>
+</div></details>
 </section>
 
 <section class="sec" id="s7">
@@ -871,6 +1258,79 @@ ctx.provide("agent-loop", new PlanThenAct());   // 不改框架核心代码</cod
 </table>
 <p><span class="tag t-video">视频原述</span>「优点是<strong>自由程度非常高</strong>：可以研究不同 Agent Loop，或者想搭建自己的 Agent Harness 平台时，灵活组合底层能力。代价是<strong>开发者需要理解更多的内部机制，模块之间的组合和维护也比较复杂</strong>。更适合想要研究和定制 Harness 底层架构的开发团队，普通业务未必需要这么高的自由度。」</p>
 <div class="note"><span class="tag t-extra">补充</span>官方表述是 <em>Model + Harness = Agent</em>：Harness 负责「模型之外的一切」，并通过服务（service）/ 实现包（provider）/ 组合点（composition seam）把能力解耦；<code>ctx.provide("agent-loop", …)</code> 属于服务注册式的替换，而非补丁式 Hook。这与 Claude Agent SDK 的 <code>PreToolUse / PostToolUse</code>（只能拦截）、Deep Agents 的 Middleware（能替换策略但不能换 Loop）构成一条清晰的<strong>控制粒度阶梯</strong>：<em>拦截 → 替换策略 → 替换核心</em>。</div>
+<details class="ts-box"><summary>本章语音逐字稿（ASR · 已校正）（逐字 · 70 句）</summary>
+<div class="ts-lines">
+<div class="ts-line"><span class="ts-t">[12:26]</span> 通过插件去扩展功能</div>
+<div class="ts-line"><span class="ts-t">[12:27]</span> 它的优点是已经把软件开发</div>
+<div class="ts-line"><span class="ts-t">[12:29]</span> 常用的工具和工作机制整合好了</div>
+<div class="ts-line"><span class="ts-t">[12:31]</span> 如果你想开发自己的 coding Agent</div>
+<div class="ts-line"><span class="ts-t">[12:33]</span> 可以直接附用</div>
+<div class="ts-line"><span class="ts-t">[12:34]</span> 不需要重新设计整套系统</div>
+<div class="ts-line"><span class="ts-t">[12:35]</span> 但限制也在这</div>
+<div class="ts-line"><span class="ts-t">[12:36]</span> 它的很多默认机制</div>
+<div class="ts-line"><span class="ts-t">[12:38]</span> 都是围绕着软件开发设计的</div>
+<div class="ts-line"><span class="ts-t">[12:40]</span> 如果你想做一个完全不同的业务 Agent</div>
+<div class="ts-line"><span class="ts-t">[12:42]</span> 可能需要调整大量的预置逻辑</div>
+<div class="ts-line"><span class="ts-t">[12:44]</span> 所以 OpenCode 更适合站的团队</div>
+<div class="ts-line"><span class="ts-t">[12:46]</span> 你想要基于一个成熟的开源 coding Agent</div>
+<div class="ts-line"><span class="ts-t">[12:49]</span> 直接开发自己的编程工具</div>
+<div class="ts-line"><span class="ts-t">[12:51]</span> 或者是软件开发 Agent</div>
+<div class="ts-line"><span class="ts-t">[12:53]</span> 反过来</div>
+<div class="ts-line"><span class="ts-t">[12:54]</span> 如果你的目标不是 coding Agent</div>
+<div class="ts-line"><span class="ts-t">[12:56]</span> 更希望从一个简单的核心出发</div>
+<div class="ts-line"><span class="ts-t">[12:58]</span> 自由设计执行方式</div>
+<div class="ts-line"><span class="ts-t">[12:59]</span> 那 py 可能更合适</div>
+<div class="ts-line"><span class="ts-t">[13:01]</span> 前面介绍了 Claude Agent SDK Deep Agents</div>
+<div class="ts-line"><span class="ts-t">[13:04]</span> 以及 py 和 OpenCode</div>
+<div class="ts-line"><span class="ts-t">[13:06]</span> 更多是围绕着 Agent</div>
+<div class="ts-line"><span class="ts-t">[13:07]</span> 怎么完成任务来设计的</div>
+<div class="ts-line"><span class="ts-t">[13:08]</span> 接下来我们看一下个人助手类的</div>
+<div class="ts-line"><span class="ts-t">[13:11]</span> 代表的项目就是 OpenClaw 和 Harness</div>
+<div class="ts-line"><span class="ts-t">[13:13]</span> 这一类有一个明显的不同</div>
+<div class="ts-line"><span class="ts-t">[13:15]</span> 他们不只是完成一次任务</div>
+<div class="ts-line"><span class="ts-t">[13:17]</span> 而是希望 Agent 能够长期运行</div>
+<div class="ts-line"><span class="ts-t">[13:19]</span> 记住用户的信息</div>
+<div class="ts-line"><span class="ts-t">[13:20]</span> 甚至主动发起任务</div>
+<div class="ts-line"><span class="ts-t">[13:22]</span> 那先来看 OpenClaw</div>
+<div class="ts-line"><span class="ts-t">[13:23]</span> 它的核心设计之一是 getaway</div>
+<div class="ts-line"><span class="ts-t">[13:25]</span> 可以理解成是个人助手的管理中心</div>
+<div class="ts-line"><span class="ts-t">[13:27]</span> 比如说你可以通过飞书</div>
+<div class="ts-line"><span class="ts-t">[13:29]</span> 微信给 Agent 的发送任务</div>
+<div class="ts-line"><span class="ts-t">[13:31]</span> getaway 会负责接收消息</div>
+<div class="ts-line"><span class="ts-t">[13:33]</span> 识别用户和 session</div>
+<div class="ts-line"><span class="ts-t">[13:34]</span> 再交给对应的 Agent 的执行</div>
+<div class="ts-line"><span class="ts-t">[13:36]</span> 那最后再把结果返回给用户</div>
+<div class="ts-line"><span class="ts-t">[13:37]</span> 它还内置了定时任务事件出发的机制</div>
+<div class="ts-line"><span class="ts-t">[13:40]</span> 可以每天自动整理信息</div>
+<div class="ts-line"><span class="ts-t">[13:42]</span> 定期生成报告</div>
+<div class="ts-line"><span class="ts-t">[13:43]</span> 不用用户每次手动发起</div>
+<div class="ts-line"><span class="ts-t">[13:45]</span> 那前面提到 OpenClaw 早期是基于</div>
+<div class="ts-line"><span class="ts-t">[13:46]</span> 派的 Agent SDK 构建的</div>
+<div class="ts-line"><span class="ts-t">[13:48]</span> 那现在它已经发展出了自己的 Agent runtime</div>
+<div class="ts-line"><span class="ts-t">[13:51]</span> 能够独立的管理 Agent loop</div>
+<div class="ts-line"><span class="ts-t">[13:52]</span> 上下文工具执行</div>
+<div class="ts-line"><span class="ts-t">[13:54]</span> 也可以通过插件去扩展能力</div>
+<div class="ts-line"><span class="ts-t">[13:55]</span> 所以 OpenClaw 的核心价值</div>
+<div class="ts-line"><span class="ts-t">[13:57]</span> 是把 Agent 的执行能力</div>
+<div class="ts-line"><span class="ts-t">[13:58]</span> 消息渠道和长期任务管理整合到了一起</div>
+<div class="ts-line"><span class="ts-t">[14:01]</span> 那有了它</div>
+<div class="ts-line"><span class="ts-t">[14:02]</span> 如果你想搭建一个长期运行的个人助手</div>
+<div class="ts-line"><span class="ts-t">[14:05]</span> 就不需要从零开发消息</div>
+<div class="ts-line"><span class="ts-t">[14:06]</span> 介入任务调度和绘画管理</div>
+<div class="ts-line"><span class="ts-t">[14:08]</span> 这些基础的设施</div>
+<div class="ts-line"><span class="ts-t">[14:09]</span> 那它的现实也很明显</div>
+<div class="ts-line"><span class="ts-t">[14:10]</span> 作为一套相对完整的系统</div>
+<div class="ts-line"><span class="ts-t">[14:12]</span> 它的部署和维护的成本更高</div>
+<div class="ts-line"><span class="ts-t">[14:14]</span> 如果只是想开发一个普通的任务性 Agent</div>
+<div class="ts-line"><span class="ts-t">[14:16]</span> 很多能力可能根本用不上</div>
+<div class="ts-line"><span class="ts-t">[14:18]</span> 那另一个就是 Hermes</div>
+<div class="ts-line"><span class="ts-t">[14:19]</span> 它和 OpenClaw 有很多相似的能力</div>
+<div class="ts-line"><span class="ts-t">[14:22]</span> 比如说多渠道的交互能力</div>
+<div class="ts-line"><span class="ts-t">[14:23]</span> 定时任务和长期记忆</div>
+<div class="ts-line"><span class="ts-t">[14:24]</span> 它最有特点的是持续学习机制</div>
+<div class="ts-line"><span class="ts-t">[14:27]</span> 它不只是让 Agent 的记住过去的对话</div>
+<div class="ts-line"><span class="ts-t">[14:29]</span> 还希望 Agent 能把完成任务的经验沉淀下来</div>
+</div></details>
 </section>
 
 <section class="sec" id="s8">
@@ -962,6 +1422,78 @@ ctx.provide("agent-loop", new PlanThenAct());   // 不改框架核心代码</cod
 </div>
 <p><span class="tag t-video">视频原述</span>画面用一条滑块给出限制：左端「开箱即用」，右端「完全掌控」，中间一行红字 <strong>「能改的越多，要承担的也越多」</strong>，下面并列三个词：<strong>设计 / 调试 / 维护</strong>。「所以<strong>选型时不只看自由度，还要看默认机制是否符合自己的业务需求</strong>。」</p>
 <div class="key"><span class="tag t-extra">补充</span>把这句话落成可操作的判断：控制权带来的不是「能力」，而是<strong>责任转移</strong>。每多拿到一个可替换点，就要自己回答四件事——默认实现应该是什么、边界条件怎么定、出错如何定位、上游升级后如何回归。若团队没有对应的工程与评测能力，高自由度会直接转化为不稳定。相关验证方法见本系列第三篇 <a href="../agent-eval-driven-tutorial/index.html">《评测驱动 Agent 迭代》</a>：改过 Harness 之后，需要靠回归评测证明没有退步。</div>
+<details class="ts-box"><summary>本章语音逐字稿（ASR · 已校正）（逐字 · 69 句）</summary>
+<div class="ts-lines">
+<div class="ts-line"><span class="ts-t">[14:32]</span> 留到后面复用</div>
+<div class="ts-line"><span class="ts-t">[14:33]</span> 这里面有两个核心设计</div>
+<div class="ts-line"><span class="ts-t">[14:35]</span> memory 还有 skill</div>
+<div class="ts-line"><span class="ts-t">[14:36]</span> memory 是用来保存用户的偏好</div>
+<div class="ts-line"><span class="ts-t">[14:38]</span> 项目背景的长期信息</div>
+<div class="ts-line"><span class="ts-t">[14:39]</span> skill 的用来保存完成某类任务的方法</div>
+<div class="ts-line"><span class="ts-t">[14:42]</span> 比如说你经常让 Agent 的帮你写诸报</div>
+<div class="ts-line"><span class="ts-t">[14:44]</span> 最开始你需要告诉它</div>
+<div class="ts-line"><span class="ts-t">[14:46]</span> 诸报的结构重点和写作方式</div>
+<div class="ts-line"><span class="ts-t">[14:48]</span> 那写了几次之后</div>
+<div class="ts-line"><span class="ts-t">[14:49]</span> Agent 可能会逐渐总结出一套有效的方法</div>
+<div class="ts-line"><span class="ts-t">[14:51]</span> 把它存成 skill</div>
+<div class="ts-line"><span class="ts-t">[14:53]</span> 以后再写诸报</div>
+<div class="ts-line"><span class="ts-t">[14:54]</span> 直接附用这套方法就行</div>
+<div class="ts-line"><span class="ts-t">[14:55]</span> 不用每次都重新摸索</div>
+<div class="ts-line"><span class="ts-t">[14:56]</span> 所以它的特点是</div>
+<div class="ts-line"><span class="ts-t">[14:58]</span> 把任务执行记忆和技能积累连接起来</div>
+<div class="ts-line"><span class="ts-t">[15:01]</span> 让 Agent 在长期使用过程中</div>
+<div class="ts-line"><span class="ts-t">[15:02]</span> 不断附用过去的经验</div>
+<div class="ts-line"><span class="ts-t">[15:04]</span> 这种设计的好处是同一类任务</div>
+<div class="ts-line"><span class="ts-t">[15:06]</span> Agent 会越用越顺手</div>
+<div class="ts-line"><span class="ts-t">[15:07]</span> 但问题也在这</div>
+<div class="ts-line"><span class="ts-t">[15:08]</span> 如果存下了错误的经验</div>
+<div class="ts-line"><span class="ts-t">[15:10]</span> 后面可能就会一直重复这个错误</div>
+<div class="ts-line"><span class="ts-t">[15:12]</span> 所以它也对记忆和技能的修改</div>
+<div class="ts-line"><span class="ts-t">[15:14]</span> 提供了人工的审批机制</div>
+<div class="ts-line"><span class="ts-t">[15:16]</span> 总结一下</div>
+<div class="ts-line"><span class="ts-t">[15:16]</span> 如果你想要搭建一个完整的个人助手</div>
+<div class="ts-line"><span class="ts-t">[15:18]</span> 或者想要 Agent 接入微信</div>
+<div class="ts-line"><span class="ts-t">[15:20]</span> 起位飞书等渠道</div>
+<div class="ts-line"><span class="ts-t">[15:21]</span> 那可以优先考虑 OpenClaw</div>
+<div class="ts-line"><span class="ts-t">[15:23]</span> 最后一个是 deep seek harness</div>
+<div class="ts-line"><span class="ts-t">[15:25]</span> 我把它单独拿出来</div>
+<div class="ts-line"><span class="ts-t">[15:26]</span> 是因为它的技术设计和前面的几个项目</div>
+<div class="ts-line"><span class="ts-t">[15:28]</span> 都不太一样</div>
+<div class="ts-line"><span class="ts-t">[15:29]</span> deep seek harness 的特点是</div>
+<div class="ts-line"><span class="ts-t">[15:31]</span> everything is a plugin</div>
+<div class="ts-line"><span class="ts-t">[15:32]</span> 一切皆插件</div>
+<div class="ts-line"><span class="ts-t">[15:34]</span> 那很多的 harness 都支持插件</div>
+<div class="ts-line"><span class="ts-t">[15:36]</span> 但通常只是增加工具 scale</div>
+<div class="ts-line"><span class="ts-t">[15:38]</span> 或者在固定的执行机制上去扩展功能</div>
+<div class="ts-line"><span class="ts-t">[15:41]</span> 无论是 Claude Agent SDK Deep Agents</div>
+<div class="ts-line"><span class="ts-t">[15:43]</span> pan 还是 OpenClaw</div>
+<div class="ts-line"><span class="ts-t">[15:44]</span> 它们都有内置的 Agent loop</div>
+<div class="ts-line"><span class="ts-t">[15:46]</span> 区别只在于允许多大程度的干预和改造</div>
+<div class="ts-line"><span class="ts-t">[15:49]</span> deep seek harness 更进一步</div>
+<div class="ts-line"><span class="ts-t">[15:51]</span> 它把模型工具 session</div>
+<div class="ts-line"><span class="ts-t">[15:53]</span> 甚至最核心的 Agent loop</div>
+<div class="ts-line"><span class="ts-t">[15:55]</span> 都设计成了可以提款的插件</div>
+<div class="ts-line"><span class="ts-t">[15:57]</span> 也就是说</div>
+<div class="ts-line"><span class="ts-t">[15:58]</span> 如果你对默认的 Agent loop 不满意</div>
+<div class="ts-line"><span class="ts-t">[16:00]</span> 你可以通过开发</div>
+<div class="ts-line"><span class="ts-t">[16:01]</span> 组合插件把它替换掉</div>
+<div class="ts-line"><span class="ts-t">[16:02]</span> 而不用直接去改框架的核心代码</div>
+<div class="ts-line"><span class="ts-t">[16:05]</span> 它的底层采用 Code 插件架构</div>
+<div class="ts-line"><span class="ts-t">[16:07]</span> 把不同的功能组成了相互写作的模块</div>
+<div class="ts-line"><span class="ts-t">[16:09]</span> 让你可以组合出不同的执行方式</div>
+<div class="ts-line"><span class="ts-t">[16:12]</span> 它和派虽然都强调灵活</div>
+<div class="ts-line"><span class="ts-t">[16:13]</span> 但是思路不一样</div>
+<div class="ts-line"><span class="ts-t">[16:14]</span> 派是尽量让核心保持简单的开发者</div>
+<div class="ts-line"><span class="ts-t">[16:17]</span> 可以在这上面去扩展</div>
+<div class="ts-line"><span class="ts-t">[16:18]</span> 而 deep seek harness 是把核心本身</div>
+<div class="ts-line"><span class="ts-t">[16:21]</span> 也做成了可以提款的模块</div>
+<div class="ts-line"><span class="ts-t">[16:22]</span> 这种设计的优点是</div>
+<div class="ts-line"><span class="ts-t">[16:24]</span> 自由程度非常高</div>
+<div class="ts-line"><span class="ts-t">[16:25]</span> 如果你想研究不同的 Agent loop 的效果</div>
+<div class="ts-line"><span class="ts-t">[16:27]</span> 或者想搭建自己的 Agent harness 平台</div>
+<div class="ts-line"><span class="ts-t">[16:30]</span> 那就可以灵活的去组合底层的能力</div>
+<div class="ts-line"><span class="ts-t">[16:32]</span> 但是代价就是开发者需要理解更多的内部机制</div>
+</div></details>
 </section>
 
 <section class="sec" id="s9">
@@ -1031,6 +1563,70 @@ ctx.provide("agent-loop", new PlanThenAct());   // 不改框架核心代码</cod
 <tr><td>③ 改造底层 Harness</td><td>重设计决策 · 执行 · 循环</td><td>fork 源码 / 服务级替换</td><td>是你的 Harness</td><td>高：长期维护分叉、自行回归</td></tr>
 </table>
 <div class="note"><span class="tag t-extra">补充</span>这三个层次不是「等级高低」，而是<strong>问题边界</strong>。一个常见误判是：为了给产品加一个自定义审批界面就去 fork 整个 Harness；实际上这是层次 ①/② 的问题，用 Hook 或 SDK 就能解决。反过来，若确实要改变 Agent Loop 的决策顺序，靠堆插件通常会导致逻辑散落在多个 Hook 里、难以调试 —— 这时才该进入层次 ③。判断依据是「需求是否落在扩展接口的能力边界内」，而不是「团队想不想掌控源码」。</div>
+<details class="ts-box"><summary>本章语音逐字稿（ASR · 已校正）（逐字 · 61 句）</summary>
+<div class="ts-lines">
+<div class="ts-line"><span class="ts-t">[16:35]</span> 模块之间的组合和维护也比较复杂</div>
+<div class="ts-line"><span class="ts-t">[16:38]</span> 所以 deep seek harness 更适合想要研究和定制</div>
+<div class="ts-line"><span class="ts-t">[16:41]</span> harness 底层架构的开发团队</div>
+<div class="ts-line"><span class="ts-t">[16:43]</span> 如果只是一个普通的业务 Agent</div>
+<div class="ts-line"><span class="ts-t">[16:46]</span> 未必需要这么高的自由度</div>
+<div class="ts-line"><span class="ts-t">[16:47]</span> 气色项目都介绍完了</div>
+<div class="ts-line"><span class="ts-t">[16:49]</span> 我们用一张表来对比一下</div>
+<div class="ts-line"><span class="ts-t">[16:50]</span> 从这张表可以看出来</div>
+<div class="ts-line"><span class="ts-t">[16:52]</span> 不同 harness 最大的差异</div>
+<div class="ts-line"><span class="ts-t">[16:53]</span> 不在于有没有工具的调用</div>
+<div class="ts-line"><span class="ts-t">[16:55]</span> 沙瞎文管理或者多 Agent</div>
+<div class="ts-line"><span class="ts-t">[16:57]</span> 这些已经是比较通用的能力了</div>
+<div class="ts-line"><span class="ts-t">[16:59]</span> 真正的区别是</div>
+<div class="ts-line"><span class="ts-t">[17:00]</span> 他们默认帮开发者实现了什么机制</div>
+<div class="ts-line"><span class="ts-t">[17:03]</span> 又开放了多少控制权</div>
+<div class="ts-line"><span class="ts-t">[17:05]</span> Claude Agent SDK 预置了成熟的执行机制</div>
+<div class="ts-line"><span class="ts-t">[17:07]</span> Deep Agents 把更多的执行策略做成了可组合的模块</div>
+<div class="ts-line"><span class="ts-t">[17:11]</span> 派进可能的保持核心简单</div>
+<div class="ts-line"><span class="ts-t">[17:13]</span> deep seek harness 都是连核心机制也可以替换</div>
+<div class="ts-line"><span class="ts-t">[17:16]</span> 而 OpenAI codOpenAIen Claude 和 harness</div>
+<div class="ts-line"><span class="ts-t">[17:18]</span> 更多体现的是针对特定场景的设计</div>
+<div class="ts-line"><span class="ts-t">[17:20]</span> 但是控制权越大</div>
+<div class="ts-line"><span class="ts-t">[17:21]</span> 不代表一定就越好</div>
+<div class="ts-line"><span class="ts-t">[17:23]</span> 因为可以改的东西多</div>
+<div class="ts-line"><span class="ts-t">[17:24]</span> 意味着你要承担的设计</div>
+<div class="ts-line"><span class="ts-t">[17:26]</span> 调试和维护工作也越多</div>
+<div class="ts-line"><span class="ts-t">[17:27]</span> 所以选型的时候不仅要看自由度</div>
+<div class="ts-line"><span class="ts-t">[17:29]</span> 还要看这些默认机制是否符合自己的业务需求</div>
+<div class="ts-line"><span class="ts-t">[17:33]</span> ok 经过一番分析</div>
+<div class="ts-line"><span class="ts-t">[17:35]</span> 你已经确定了要用哪个 harness 开发</div>
+<div class="ts-line"><span class="ts-t">[17:37]</span> 然后呢</div>
+<div class="ts-line"><span class="ts-t">[17:37]</span> 它应该怎么用</div>
+<div class="ts-line"><span class="ts-t">[17:38]</span> 是直接下载别人的代码来改</div>
+<div class="ts-line"><span class="ts-t">[17:40]</span> 还是通过 sdk 开发</div>
+<div class="ts-line"><span class="ts-t">[17:41]</span> 什么才是使用 harness 的正确姿势</div>
+<div class="ts-line"><span class="ts-t">[17:44]</span> 我认为可以把开发者需求分上三个层次</div>
+<div class="ts-line"><span class="ts-t">[17:47]</span> 第一个层次是扩展现有的 Agent</div>
+<div class="ts-line"><span class="ts-t">[17:49]</span> 你已经有了一个能用的 Agent 的产品</div>
+<div class="ts-line"><span class="ts-t">[17:51]</span> 只是想给它加一些功能</div>
+<div class="ts-line"><span class="ts-t">[17:53]</span> 让它更贴合自己的需求</div>
+<div class="ts-line"><span class="ts-t">[17:54]</span> 第二个层次是开发自己的 Agent 的产品</div>
+<div class="ts-line"><span class="ts-t">[17:56]</span> 你需要自己的产品界面</div>
+<div class="ts-line"><span class="ts-t">[17:58]</span> 业务功能和用户体系</div>
+<div class="ts-line"><span class="ts-t">[17:59]</span> 但是不想从零开发 Agent 的 loop</div>
+<div class="ts-line"><span class="ts-t">[18:01]</span> 第三个层次是彻底改造底层的 harness</div>
+<div class="ts-line"><span class="ts-t">[18:04]</span> 你对现成的核心机制都不满意</div>
+<div class="ts-line"><span class="ts-t">[18:06]</span> 你希望自己去修改甚至重新设计底层的实现</div>
+<div class="ts-line"><span class="ts-t">[18:09]</span> 这三个层次的开发目标不一样</div>
+<div class="ts-line"><span class="ts-t">[18:11]</span> 需要的技术能力也不一样</div>
+<div class="ts-line"><span class="ts-t">[18:13]</span> 我们就用派举的例子</div>
+<div class="ts-line"><span class="ts-t">[18:14]</span> 第一种是扩展现有的产品</div>
+<div class="ts-line"><span class="ts-t">[18:16]</span> 假设你是一名程序员</div>
+<div class="ts-line"><span class="ts-t">[18:17]</span> 公司内部已经在用派的 cli 去做编程工具</div>
+<div class="ts-line"><span class="ts-t">[18:20]</span> 但是你希望它更符合公司的开发流程</div>
+<div class="ts-line"><span class="ts-t">[18:22]</span> 比如说修改完代码之后自动检查代码的规范</div>
+<div class="ts-line"><span class="ts-t">[18:25]</span> 或者按照团队的要求生成片描述</div>
+<div class="ts-line"><span class="ts-t">[18:27]</span> 这个时候你只需要在安装好的派 cli 的基础上</div>
+<div class="ts-line"><span class="ts-t">[18:30]</span> 通过 extension 或者是 scale 增加功能的产品还是派</div>
+<div class="ts-line"><span class="ts-t">[18:34]</span> 只是变得更符合你们自己的要求</div>
+<div class="ts-line"><span class="ts-t">[18:36]</span> 这是第一个层次</div>
+<div class="ts-line"><span class="ts-t">[18:37]</span> 第二个层次是开发自己的 Agent 的产品</div>
+</div></details>
 </section>
 
 <section class="sec" id="s10">
@@ -1110,6 +1706,70 @@ ctx.provide("agent-loop", new PlanThenAct());   // 不改框架核心代码</cod
 <div class="note"><span class="tag t-extra">补充</span>结尾的选型矩阵画面没有单列 Hermes；按第 6 章的定位，它应补在「做长期的个人助手」一栏，与 OpenClaw 并列，差异在于<strong>是否把「经验沉淀成 Skill / 持续学习」作为核心诉求</strong>。此外，矩阵里的「Framework / Runtime」两行不是被 Harness 淘汰的旧选项，而是与第 3 章的边界条件首尾呼应：简单流程与强流程控制仍然是它们的主场。</div>
 <div class="key"><span class="tag t-video">视频原述</span>全片最后一句：「所以，<strong>Agent 选型的核心，不是哪个框架功能最多，而是它默认的执行机制是否符合你的业务</strong>。」</div>
 <p>把整期视频压成一条可执行的判断链：<strong>任务能不能预先枚举流程？</strong>（能 → Framework / Runtime；不能 → Harness）→ <strong>要不要某个场景外壳？</strong>（要 → 先选场景化项目）→ <strong>默认机制是否合用？</strong>（合用 → 直接用；不合用 → 看扩展接口够不够）→ <strong>还不够？</strong>（才考虑 SDK 自建产品或 fork 改造）→ <strong>每改一处，用回归评测证明没有退步</strong>。</p>
+<details class="ts-box"><summary>本章语音逐字稿（ASR · 已校正）（逐字 · 61 句）</summary>
+<div class="ts-lines">
+<div class="ts-line"><span class="ts-t">[18:39]</span> 现在你打算出去创业了</div>
+<div class="ts-line"><span class="ts-t">[18:41]</span> 做一个面向研发团队的 AI 编程产品</div>
+<div class="ts-line"><span class="ts-t">[18:44]</span> 还有自己的产品界面用户管理任务系统</div>
+<div class="ts-line"><span class="ts-t">[18:47]</span> 还可以让 Agent 的自动修改代码运行测试</div>
+<div class="ts-line"><span class="ts-t">[18:49]</span> 但是你不想从零开发</div>
+<div class="ts-line"><span class="ts-t">[18:51]</span> 这个时候就可以用到派的 sdk</div>
+<div class="ts-line"><span class="ts-t">[18:53]</span> 把派的执行能力集成到自己的应用里</div>
+<div class="ts-line"><span class="ts-t">[18:56]</span> 产品是你自己的</div>
+<div class="ts-line"><span class="ts-t">[18:57]</span> 只是底层附用了派的 Harness</div>
+<div class="ts-line"><span class="ts-t">[18:59]</span> 这个是第二个层次</div>
+<div class="ts-line"><span class="ts-t">[19:00]</span> 第三个层次是改造底层的 Harness</div>
+<div class="ts-line"><span class="ts-t">[19:02]</span> 假设你认为派默认的 Agent 的 loop 根本不符合自己的需求</div>
+<div class="ts-line"><span class="ts-t">[19:06]</span> 想要重新设计模型如何决策工具如何执行</div>
+<div class="ts-line"><span class="ts-t">[19:09]</span> 以及整个任务如何循环</div>
+<div class="ts-line"><span class="ts-t">[19:10]</span> 由于派是开源的</div>
+<div class="ts-line"><span class="ts-t">[19:12]</span> 你可以直接 fork 代码</div>
+<div class="ts-line"><span class="ts-t">[19:13]</span> 改它的核心圆码</div>
+<div class="ts-line"><span class="ts-t">[19:14]</span> 搭出自己的 Harness</div>
+<div class="ts-line"><span class="ts-t">[19:16]</span> 这就是第三个层次</div>
+<div class="ts-line"><span class="ts-t">[19:17]</span> 所以插件 sdk 圆码的改造</div>
+<div class="ts-line"><span class="ts-t">[19:20]</span> 其实解决的是三个不同的问题</div>
+<div class="ts-line"><span class="ts-t">[19:22]</span> 插件和 scale 主要解决的是如何扩展现有的能力</div>
+<div class="ts-line"><span class="ts-t">[19:25]</span> sdk 解决的是附用现成的执行能力开发自己的应用</div>
+<div class="ts-line"><span class="ts-t">[19:29]</span> 修改圆码只是当现有的扩展接口无法满足需求的时候</div>
+<div class="ts-line"><span class="ts-t">[19:32]</span> 直接改变底层的实现</div>
+<div class="ts-line"><span class="ts-t">[19:34]</span> 因此在做基础选行的时候</div>
+<div class="ts-line"><span class="ts-t">[19:36]</span> 我们要先想清楚自己的开发目标</div>
+<div class="ts-line"><span class="ts-t">[19:38]</span> 如果只是让现有的 Harness 更好用</div>
+<div class="ts-line"><span class="ts-t">[19:40]</span> 那优先考虑插件和 scale</div>
+<div class="ts-line"><span class="ts-t">[19:41]</span> 如果开发独立的 Harness 的产品</div>
+<div class="ts-line"><span class="ts-t">[19:43]</span> 重点看 sdk 和程序化接入的能力</div>
+<div class="ts-line"><span class="ts-t">[19:46]</span> 如果要深入改造 Harness</div>
+<div class="ts-line"><span class="ts-t">[19:48]</span> 才需要关注圆码的开放程度</div>
+<div class="ts-line"><span class="ts-t">[19:50]</span> 以及底层机制是否允许替换</div>
+<div class="ts-line"><span class="ts-t">[19:52]</span> 那开发自己的 Agent 的产品</div>
+<div class="ts-line"><span class="ts-t">[19:53]</span> 不代表必须开发自己的 Harness</div>
+<div class="ts-line"><span class="ts-t">[19:56]</span> 最后再回到开头的问题</div>
+<div class="ts-line"><span class="ts-t">[19:57]</span> 如果今天要开发一个 Agent</div>
+<div class="ts-line"><span class="ts-t">[19:59]</span> 到底应该怎么选</div>
+<div class="ts-line"><span class="ts-t">[20:00]</span> 首先看任务需求</div>
+<div class="ts-line"><span class="ts-t">[20:02]</span> 简单流程明确的任务可以选择轻量的 free more</div>
+<div class="ts-line"><span class="ts-t">[20:04]</span> 需要严格的流程控制和状态管理</div>
+<div class="ts-line"><span class="ts-t">[20:06]</span> 可以考虑 LangGraph</div>
+<div class="ts-line"><span class="ts-t">[20:08]</span> 如果是需要自主探索持续执行的复杂任务</div>
+<div class="ts-line"><span class="ts-t">[20:11]</span> 优先考虑 Harness</div>
+<div class="ts-line"><span class="ts-t">[20:12]</span> 其次看 Harness 的设计特点</div>
+<div class="ts-line"><span class="ts-t">[20:14]</span> 想要开箱即用</div>
+<div class="ts-line"><span class="ts-t">[20:15]</span> 可以选择 Claude-Agent-sdk</div>
+<div class="ts-line"><span class="ts-t">[20:17]</span> 希望开源灵活性和定制</div>
+<div class="ts-line"><span class="ts-t">[20:20]</span> 想要从极简的核心出发</div>
+<div class="ts-line"><span class="ts-t">[20:22]</span> 自己设计执行机制</div>
+<div class="ts-line"><span class="ts-t">[20:23]</span> 可以选择派</div>
+<div class="ts-line"><span class="ts-t">[20:24]</span> 开发 coding-Agent 可以考虑 OpenCode</div>
+<div class="ts-line"><span class="ts-t">[20:26]</span> 做长期的个人助手</div>
+<div class="ts-line"><span class="ts-t">[20:27]</span> 可以考虑 OpenClaw</div>
+<div class="ts-line"><span class="ts-t">[20:29]</span> 如果连 Agent 的 loop 都想替换</div>
+<div class="ts-line"><span class="ts-t">[20:31]</span> 可以研究 deep-seq-Harness</div>
+<div class="ts-line"><span class="ts-t">[20:33]</span> 所以 Agent 的技术选型的核心</div>
+<div class="ts-line"><span class="ts-t">[20:35]</span> 不是哪个框架功能最多</div>
+<div class="ts-line"><span class="ts-t">[20:37]</span> 而是它默认的执行机制是否符合你的业务</div>
+<div class="ts-line"><span class="ts-t">[20:40]</span> 以及你究竟想要多大的控制权</div>
+</div></details>
 </section>
 <section class="sec" id="s11">
 <h2>11. 补充篇 A：专业名词速查（68 条）</h2>
@@ -1562,6 +2222,688 @@ if __name__ == "__main__":
 <li><strong>本系列互链</strong>：<a href="../rag-evaluation-tutorial/index.html">RAG 评测完全教程</a>、<a href="../agent-evaluation-tutorial/index.html">Agent 评测体系完全教程</a>、<a href="../agent-eval-driven-tutorial/index.html">评测驱动 Agent 迭代 · 完全教程</a>；第 13.3 节的验证层与第三篇指标体系对应。</li>
 </ol>
 <div class="warn"><strong>未做的部分（如实说明）</strong>：本轮未做语音逐字转写（ASR），口播内容依据烧录字幕 OCR 时间线 + 画面文字 + 官方章节名归纳；所有标注【视频原述】的句子均能在画面或字幕中找到对应，未凭空补写台词。视频中官网/仓库截图里的细小正文（如 DeepSeek 参考文档的中文段落）因分辨率有限只做结构还原，未逐字转录。</div>
+<p><strong>附录 · 全片语音逐字稿（ASR · 622 段 · 按视频/章节分组）</strong></p>
+<p>由离线语音识别还原的完整口播，逐段保留时间码；点击标题展开。视频作者制作的烧录字幕为精简重排版，两者不完全逐字对应属正常现象。</p>
+<details class="ts-box"><summary>开篇与三层抽象（逐字 · 150 句）</summary>
+<div class="ts-lines">
+<div class="ts-line"><span class="ts-t">[00:00]</span> 如果今天让你开发一个 Agent 第一步应该做什么</div>
+<div class="ts-line"><span class="ts-t">[00:03]</span> 直接写代码错要先选一个适合你的开源基础框架</div>
+<div class="ts-line"><span class="ts-t">[00:07]</span> 现在市面上的 Agent 的开发框架越来越多</div>
+<div class="ts-line"><span class="ts-t">[00:10]</span> 从 LangGraph 到 Claude Agent SDK</div>
+<div class="ts-line"><span class="ts-t">[00:13]</span> Deep Agents 还有 Pi、DeepSeek Harness</div>
+<div class="ts-line"><span class="ts-t">[00:15]</span> 这些项目到底有什么区别应该怎么选</div>
+<div class="ts-line"><span class="ts-t">[00:18]</span> 这期视频我们就系统的梳理了 Agent 的开发框架的演进过程</div>
+<div class="ts-line"><span class="ts-t">[00:22]</span> 重点对比七个比较有代表性的项目</div>
+<div class="ts-line"><span class="ts-t">[00:25]</span> 分析它们各自的基础特点优势和限制</div>
+<div class="ts-line"><span class="ts-t">[00:28]</span> 最后再讲一个非常实际的问题</div>
+<div class="ts-line"><span class="ts-t">[00:30]</span> 如果我们今天真的要开发一个 Agent</div>
+<div class="ts-line"><span class="ts-t">[00:32]</span> 到底应该怎么使用这些框架</div>
+<div class="ts-line"><span class="ts-t">[00:34]</span> 那内容比较长</div>
+<div class="ts-line"><span class="ts-t">[00:35]</span> 大家可以根据章节直接调到感兴趣的部分</div>
+<div class="ts-line"><span class="ts-t">[00:37]</span> 在开始具体选行之前</div>
+<div class="ts-line"><span class="ts-t">[00:38]</span> 我们先来看一下 Agent 开发架构的眼睛</div>
+<div class="ts-line"><span class="ts-t">[00:41]</span> 大体上可以分成三个阶段</div>
+<div class="ts-line"><span class="ts-t">[00:43]</span> 从早期的 Agent framework</div>
+<div class="ts-line"><span class="ts-t">[00:45]</span> 到后来的 Agent runtime</div>
+<div class="ts-line"><span class="ts-t">[00:47]</span> 再到现在越来越成熟的 Agent harness</div>
+<div class="ts-line"><span class="ts-t">[00:49]</span> 第一阶段是 Agent framework</div>
+<div class="ts-line"><span class="ts-t">[00:51]</span> 大概在2022年 2023年</div>
+<div class="ts-line"><span class="ts-t">[00:53]</span> 随着大语言模型流行起来</div>
+<div class="ts-line"><span class="ts-t">[00:55]</span> 大家就开始尝试基于大模型</div>
+<div class="ts-line"><span class="ts-t">[00:57]</span> 开发各种应用</div>
+<div class="ts-line"><span class="ts-t">[00:58]</span> 但那个时候开发 Agent 的很多基础工作</div>
+<div class="ts-line"><span class="ts-t">[01:00]</span> 都要自己完成</div>
+<div class="ts-line"><span class="ts-t">[01:01]</span> 比如说怎么调不同的大模型</div>
+<div class="ts-line"><span class="ts-t">[01:03]</span> 怎么让模型使用外部的工具</div>
+<div class="ts-line"><span class="ts-t">[01:05]</span> 怎么接入知识库</div>
+<div class="ts-line"><span class="ts-t">[01:06]</span> 怎么把工具执行的结果返回给模型</div>
+<div class="ts-line"><span class="ts-t">[01:08]</span> 让它决定下一步做什么</div>
+<div class="ts-line"><span class="ts-t">[01:09]</span> 那如果每开发一个 Agent</div>
+<div class="ts-line"><span class="ts-t">[01:11]</span> 都要把这些功能重写一遍</div>
+<div class="ts-line"><span class="ts-t">[01:12]</span> 开发成本就太高了</div>
+<div class="ts-line"><span class="ts-t">[01:14]</span> 所以就出现了 LangChain、LlamaIndex 这样的开发框架</div>
+<div class="ts-line"><span class="ts-t">[01:17]</span> 那他们把模型的调用工具的介入</div>
+<div class="ts-line"><span class="ts-t">[01:19]</span> 数据的处理</div>
+<div class="ts-line"><span class="ts-t">[01:20]</span> 以及构建 Agent 的一些基础能力封装起来</div>
+<div class="ts-line"><span class="ts-t">[01:23]</span> 那开发者不需要每次都从零开始</div>
+<div class="ts-line"><span class="ts-t">[01:25]</span> 比如说我们要开发一个电单查询的 Agent</div>
+<div class="ts-line"><span class="ts-t">[01:27]</span> 可以先在 LangChain 里面去定义一个 Agent</div>
+<div class="ts-line"><span class="ts-t">[01:30]</span> 给它接入电单查询的接口</div>
+<div class="ts-line"><span class="ts-t">[01:31]</span> 再配置好提示词和调用的规则</div>
+<div class="ts-line"><span class="ts-t">[01:33]</span> 很快就能达出一个基础版本</div>
+<div class="ts-line"><span class="ts-t">[01:35]</span> LangChain、LlamaIndexCrewAII</div>
+<div class="ts-line"><span class="ts-t">[01:37]</span> 都属于这一类的 free-mark</div>
+<div class="ts-line"><span class="ts-t">[01:39]</span> 他们主要解决的是减少重复开发</div>
+<div class="ts-line"><span class="ts-t">[01:41]</span> 让 Agent 更容易构建</div>
+<div class="ts-line"><span class="ts-t">[01:43]</span> 那第二阶段是 Agent 的 around time</div>
+<div class="ts-line"><span class="ts-t">[01:45]</span> 随着 Agent 的执行任务越来越复杂</div>
+<div class="ts-line"><span class="ts-t">[01:47]</span> 大家发现</div>
+<div class="ts-line"><span class="ts-t">[01:48]</span> 仅仅把模型和工具连接起来还不够</div>
+<div class="ts-line"><span class="ts-t">[01:51]</span> 比如我们要开发一个电商选品的 Agent</div>
+<div class="ts-line"><span class="ts-t">[01:53]</span> 要先读取商品的信息</div>
+<div class="ts-line"><span class="ts-t">[01:54]</span> 然后查询库存、价格、拥机</div>
+<div class="ts-line"><span class="ts-t">[01:57]</span> 接着给商品打分</div>
+<div class="ts-line"><span class="ts-t">[01:58]</span> 最后再生成选品的结果</div>
+<div class="ts-line"><span class="ts-t">[02:00]</span> 这里面的步骤很多</div>
+<div class="ts-line"><span class="ts-t">[02:02]</span> 有些必须要按照固定的顺序执行</div>
+<div class="ts-line"><span class="ts-t">[02:04]</span> 有些则需要根据上一步的结果</div>
+<div class="ts-line"><span class="ts-t">[02:06]</span> 决定接下来该怎么做</div>
+<div class="ts-line"><span class="ts-t">[02:07]</span> 如果任务执行到一半失败了</div>
+<div class="ts-line"><span class="ts-t">[02:09]</span> 能不能接着之前的进度继续</div>
+<div class="ts-line"><span class="ts-t">[02:12]</span> 如果某个环节需要人工确认</div>
+<div class="ts-line"><span class="ts-t">[02:13]</span> 能不能先暂停</div>
+<div class="ts-line"><span class="ts-t">[02:14]</span> 等用户确认之后再往下走</div>
+<div class="ts-line"><span class="ts-t">[02:16]</span> 这些已经不只是模型调用和工具接入的事情了</div>
+<div class="ts-line"><span class="ts-t">[02:20]</span> 我们还需要办理整个任务的执行流程</div>
+<div class="ts-line"><span class="ts-t">[02:22]</span> 保存执行的状态处理中断和恢复</div>
+<div class="ts-line"><span class="ts-t">[02:25]</span> 于是在2024年 LangGraph 推出了 LanguRaf</div>
+<div class="ts-line"><span class="ts-t">[02:28]</span> 它的核心就是让开发者能够更聪明地</div>
+<div class="ts-line"><span class="ts-t">[02:31]</span> 控制 Agent 的执行过程</div>
+<div class="ts-line"><span class="ts-t">[02:32]</span> 比如任务有哪些步骤</div>
+<div class="ts-line"><span class="ts-t">[02:34]</span> 步骤之间怎么流转</div>
+<div class="ts-line"><span class="ts-t">[02:35]</span> 什么时候暂停</div>
+<div class="ts-line"><span class="ts-t">[02:36]</span> 以及出现了一场怎么恢复</div>
+<div class="ts-line"><span class="ts-t">[02:38]</span> Runtime 解决的是</div>
+<div class="ts-line"><span class="ts-t">[02:39]</span> 怎么让 Agent 的执行过程可管理、可恢复</div>
+<div class="ts-line"><span class="ts-t">[02:42]</span> 第三个阶段是 Agent harness</div>
+<div class="ts-line"><span class="ts-t">[02:44]</span> 随着模型的推理能力</div>
+<div class="ts-line"><span class="ts-t">[02:46]</span> 工具调用能力不断提高</div>
+<div class="ts-line"><span class="ts-t">[02:47]</span> Agent 的开发方式又发生了变化</div>
+<div class="ts-line"><span class="ts-t">[02:49]</span> 以前开发一个复杂的 Agent</div>
+<div class="ts-line"><span class="ts-t">[02:51]</span> 开发者往往需要提前把很多执行流程安排好</div>
+<div class="ts-line"><span class="ts-t">[02:54]</span> 但现实中有些任务的流程</div>
+<div class="ts-line"><span class="ts-t">[02:56]</span> 根本没有办法提前规划</div>
+<div class="ts-line"><span class="ts-t">[02:57]</span> 也不可能没去所有的情况</div>
+<div class="ts-line"><span class="ts-t">[02:59]</span> 所以我们开始希望只给模型一个目标</div>
+<div class="ts-line"><span class="ts-t">[03:01]</span> 让它自己去规划步骤</div>
+<div class="ts-line"><span class="ts-t">[03:02]</span> 调用工具、分析结果</div>
+<div class="ts-line"><span class="ts-t">[03:04]</span> 再不断地调整下一步的行动</div>
+<div class="ts-line"><span class="ts-t">[03:06]</span> 比如让 Agent 帮我们研究一家公司的产品</div>
+<div class="ts-line"><span class="ts-t">[03:08]</span> 那模型可以自己决定先搜什么样的资料</div>
+<div class="ts-line"><span class="ts-t">[03:11]</span> 哪些信息需要进一步验证</div>
+<div class="ts-line"><span class="ts-t">[03:12]</span> 要不要写一段代码分析数据</div>
+<div class="ts-line"><span class="ts-t">[03:14]</span> 最后怎么整理成报告</div>
+<div class="ts-line"><span class="ts-t">[03:16]</span> 这些步骤</div>
+<div class="ts-line"><span class="ts-t">[03:17]</span> 不一定需要开发者提前全部规定好</div>
+<div class="ts-line"><span class="ts-t">[03:19]</span> 但是模型的自主性提高之后</div>
+<div class="ts-line"><span class="ts-t">[03:21]</span> 又带来了新的工程问题</div>
+<div class="ts-line"><span class="ts-t">[03:22]</span> 比如说 Agent 的连续执行几十步</div>
+<div class="ts-line"><span class="ts-t">[03:24]</span> 积累了大量的上下文</div>
+<div class="ts-line"><span class="ts-t">[03:26]</span> 怎么避免它越来越长</div>
+<div class="ts-line"><span class="ts-t">[03:27]</span> 任务执行的过程中文献和中间协会放在哪里</div>
+<div class="ts-line"><span class="ts-t">[03:30]</span> 什么时候应该调用自 Agent</div>
+<div class="ts-line"><span class="ts-t">[03:32]</span> 什么时候应该停止</div>
+<div class="ts-line"><span class="ts-t">[03:33]</span> 怎么管理工具的权限</div>
+<div class="ts-line"><span class="ts-t">[03:35]</span> 这些问题逐渐变成了 Agent 开发的重点</div>
+<div class="ts-line"><span class="ts-t">[03:38]</span> Agent Harness 因此受到越来越多的关注</div>
+<div class="ts-line"><span class="ts-t">[03:41]</span> 那 harness 可以理解成</div>
+<div class="ts-line"><span class="ts-t">[03:42]</span> 围绕着模型的一整套执行的系统</div>
+<div class="ts-line"><span class="ts-t">[03:44]</span> 它包含基础的 Agent loop</div>
+<div class="ts-line"><span class="ts-t">[03:46]</span> 也就是模型的思考、调用工具拿到结果</div>
+<div class="ts-line"><span class="ts-t">[03:49]</span> 继续执行这个循环</div>
+<div class="ts-line"><span class="ts-t">[03:50]</span> 在此之上还提供了上下文的管理</div>
+<div class="ts-line"><span class="ts-t">[03:52]</span> 任务规划、文件系统、工具权限的能力</div>
+<div class="ts-line"><span class="ts-t">[03:55]</span> 过去这些能力都得自己手搓</div>
+<div class="ts-line"><span class="ts-t">[03:57]</span> 现在成熟的 harness 已经帮我们做好了</div>
+<div class="ts-line"><span class="ts-t">[03:59]</span> 我们可以直接使用这套现成的执行系统</div>
+<div class="ts-line"><span class="ts-t">[04:02]</span> 再根据业务需求去扩展</div>
+<div class="ts-line"><span class="ts-t">[04:03]</span> 当然 Framework runtime harness</div>
+<div class="ts-line"><span class="ts-t">[04:05]</span> 并不是简单的新技术取代就技术</div>
+<div class="ts-line"><span class="ts-t">[04:08]</span> 实际上 harness 本身就附用了 Framework 和 Runtime 的能力</div>
+<div class="ts-line"><span class="ts-t">[04:12]</span> launching 团队就是一个非常典型的例子</div>
+<div class="ts-line"><span class="ts-t">[04:14]</span> 2022年推出了 launching 主要提供 Agent 的开发的技术组建</div>
+<div class="ts-line"><span class="ts-t">[04:18]</span> 2024年推出了 LangGraph</div>
+<div class="ts-line"><span class="ts-t">[04:19]</span> 补充了状态管理和持久化的执行能力</div>
+<div class="ts-line"><span class="ts-t">[04:22]</span> 2025年又推出了 Deep Agents</div>
+<div class="ts-line"><span class="ts-t">[04:23]</span> 在前两者的基础上提供一套更加完整的 Agent harness</div>
+<div class="ts-line"><span class="ts-t">[04:27]</span> 今天的 Deep Agents 仍然是建立在 launching 和 LangGraph 之上的</div>
+<div class="ts-line"><span class="ts-t">[04:31]</span> 所以这三个阶段并不是互相淘汰的关系</div>
+<div class="ts-line"><span class="ts-t">[04:34]</span> 而是随着模型能力和应用需求的开发</div>
+<div class="ts-line"><span class="ts-t">[04:37]</span> 出现的不同层次的技术抽象</div>
+<div class="ts-line"><span class="ts-t">[04:39]</span> 这条技术演进路线影响的是什么呢</div>
+<div class="ts-line"><span class="ts-t">[04:41]</span> 影响的就是 Agent 的开发的起点</div>
+<div class="ts-line"><span class="ts-t">[04:44]</span> 过去我们可能要从模型工具这些技术组建开始</div>
+<div class="ts-line"><span class="ts-t">[04:47]</span> 一点一点去组装一个 Agent</div>
+<div class="ts-line"><span class="ts-t">[04:48]</span> 现在如果现成的 harness 的执行机只能满足需求</div>
+<div class="ts-line"><span class="ts-t">[04:52]</span> 就可以直接服用</div>
+<div class="ts-line"><span class="ts-t">[04:53]</span> 不用再从零搭建</div>
+<div class="ts-line"><span class="ts-t">[04:54]</span> 那起点变得更高了</div>
+<div class="ts-line"><span class="ts-t">[04:55]</span> 不过你的业务如果足够简单</div>
+<div class="ts-line"><span class="ts-t">[04:57]</span> 或者需要严格的执行流程状态管理</div>
+<div class="ts-line"><span class="ts-t">[04:59]</span> 那 freemorg 和 Runtime 依然有价值</div>
+<div class="ts-line"><span class="ts-t">[05:02]</span> 依然可以用</div>
+<div class="ts-line"><span class="ts-t">[05:03]</span> 并不是所有的 Agent 的开发都需要用到 harness</div>
+<div class="ts-line"><span class="ts-t">[05:06]</span> 讲完技术的演进</div>
+<div class="ts-line"><span class="ts-t">[05:07]</span> 我们再来看看目前有哪些值得关注的 harness</div>
+<div class="ts-line"><span class="ts-t">[05:10]</span> 按照主要服务的场景</div>
+</div></details>
+<details class="ts-box"><summary>代表项目（上）（逐字 · 151 句）</summary>
+<div class="ts-lines">
+<div class="ts-line"><span class="ts-t">[05:11]</span> 我把它们分成了三类</div>
+<div class="ts-line"><span class="ts-t">[05:13]</span> 第一类是综合任务类的</div>
+<div class="ts-line"><span class="ts-t">[05:14]</span> 代表的项目就是 Claude Agent SDK 和 Deep Agents</div>
+<div class="ts-line"><span class="ts-t">[05:17]</span> 这类 harness 不局限于某一种业务</div>
+<div class="ts-line"><span class="ts-t">[05:20]</span> 可以用于研究数据分析文档处理</div>
+<div class="ts-line"><span class="ts-t">[05:22]</span> 代码执行等复杂的任务</div>
+<div class="ts-line"><span class="ts-t">[05:24]</span> 第二类是编码类的</div>
+<div class="ts-line"><span class="ts-t">[05:25]</span> 代表的项目是 Py 和 OpenCode</div>
+<div class="ts-line"><span class="ts-t">[05:27]</span> 另外还有 Codex CLI</div>
+<div class="ts-line"><span class="ts-t">[05:29]</span> 这类 harness 最初是围绕着软件开发设计的</div>
+<div class="ts-line"><span class="ts-t">[05:32]</span> 重点支持代码的理解文件的修改</div>
+<div class="ts-line"><span class="ts-t">[05:35]</span> 执行命令以及测试验证</div>
+<div class="ts-line"><span class="ts-t">[05:36]</span> 第三类是个人助手类的</div>
+<div class="ts-line"><span class="ts-t">[05:38]</span> 代表的项目是 OpenCode Hormace Agent</div>
+<div class="ts-line"><span class="ts-t">[05:41]</span> 这类 Agent 系统更关注长期的记忆</div>
+<div class="ts-line"><span class="ts-t">[05:43]</span> 多渠道的交互定时任务</div>
+<div class="ts-line"><span class="ts-t">[05:45]</span> 以及持续的为用户去提供服务</div>
+<div class="ts-line"><span class="ts-t">[05:47]</span> 除此之外还有一个非常特别的存在</div>
+<div class="ts-line"><span class="ts-t">[05:49]</span> 是 DeepSeek Harness</div>
+<div class="ts-line"><span class="ts-t">[05:51]</span> 它的特点不是针对于哪种具体的场景</div>
+<div class="ts-line"><span class="ts-t">[05:54]</span> 而是在于整个 harness</div>
+<div class="ts-line"><span class="ts-t">[05:55]</span> 采用了高度插件化的设计</div>
+<div class="ts-line"><span class="ts-t">[05:57]</span> 你可以通过组合不同的模块</div>
+<div class="ts-line"><span class="ts-t">[05:59]</span> 把它搭成不同类型的 Agent</div>
+<div class="ts-line"><span class="ts-t">[06:01]</span> 需要说明的是</div>
+<div class="ts-line"><span class="ts-t">[06:02]</span> 上面的分类并不是严格的功能边界</div>
+<div class="ts-line"><span class="ts-t">[06:05]</span> 实际上综合任务类和编码类的 harness 的能力</div>
+<div class="ts-line"><span class="ts-t">[06:07]</span> 已经越来越接近了</div>
+<div class="ts-line"><span class="ts-t">[06:08]</span> 一个 coding Agent 同样也可以去搜索资料</div>
+<div class="ts-line"><span class="ts-t">[06:11]</span> 读取文件处理数据设成报告</div>
+<div class="ts-line"><span class="ts-t">[06:13]</span> 而一个通用 Agent 也可以去读写代码执行命令</div>
+<div class="ts-line"><span class="ts-t">[06:15]</span> 它们的主要区别在于</div>
+<div class="ts-line"><span class="ts-t">[06:17]</span> 默认提供了哪些工具</div>
+<div class="ts-line"><span class="ts-t">[06:18]</span> 针对什么任务做了优化</div>
+<div class="ts-line"><span class="ts-t">[06:20]</span> 另外 OpenCode Harness 也不只是 harness</div>
+<div class="ts-line"><span class="ts-t">[06:22]</span> 而是一套完整的 Agent 系统</div>
+<div class="ts-line"><span class="ts-t">[06:24]</span> 包含了 harness 消息介入任务调度等能力</div>
+<div class="ts-line"><span class="ts-t">[06:27]</span> 下面我们就按这几个类别</div>
+<div class="ts-line"><span class="ts-t">[06:29]</span> 看看每个项目最有特点的设计是什么</div>
+<div class="ts-line"><span class="ts-t">[06:31]</span> 以及它们分别适合什么样的开发需求</div>
+<div class="ts-line"><span class="ts-t">[06:34]</span> 首先是综合任务类的</div>
+<div class="ts-line"><span class="ts-t">[06:35]</span> 典型的代表是 Claude Agent SDK 和 Deep Agents</div>
+<div class="ts-line"><span class="ts-t">[06:38]</span> 这两个项目都已经提供了比较完整的 harness 能力</div>
+<div class="ts-line"><span class="ts-t">[06:42]</span> 但设计思路明显不同</div>
+<div class="ts-line"><span class="ts-t">[06:44]</span> 先看 Claude Agent SDK</div>
+<div class="ts-line"><span class="ts-t">[06:46]</span> Claude Agent SDK 的本质是把 Claude Code 的 harness</div>
+<div class="ts-line"><span class="ts-t">[06:49]</span> 封装成了一套可以直接使用的执行系统</div>
+<div class="ts-line"><span class="ts-t">[06:52]</span> 它已经替开发者做好了 Agent loop</div>
+<div class="ts-line"><span class="ts-t">[06:54]</span> 工具的发现与调用</div>
+<div class="ts-line"><span class="ts-t">[06:56]</span> 塞胜和上下文管理</div>
+<div class="ts-line"><span class="ts-t">[06:57]</span> 以及紫 Agent 的执行机制</div>
+<div class="ts-line"><span class="ts-t">[06:59]</span> 你只需要通过 page hook</div>
+<div class="ts-line"><span class="ts-t">[07:01]</span> 自定义的工具 scale 和紫 Agent 的定义来改变它的行为</div>
+<div class="ts-line"><span class="ts-t">[07:05]</span> 但是不能把底层的核心实现直接替换成另一套机制</div>
+<div class="ts-line"><span class="ts-t">[07:09]</span> 比如说通过 hook</div>
+<div class="ts-line"><span class="ts-t">[07:10]</span> 你可以在工具调用前去检查参数</div>
+<div class="ts-line"><span class="ts-t">[07:12]</span> 阻止执行也可以在执行后去检查结果</div>
+<div class="ts-line"><span class="ts-t">[07:15]</span> 还可以自定义系统的提示词</div>
+<div class="ts-line"><span class="ts-t">[07:17]</span> 决定往上下文里补充哪些信息</div>
+<div class="ts-line"><span class="ts-t">[07:19]</span> 工具方面</div>
+<div class="ts-line"><span class="ts-t">[07:20]</span> 它已经内置了 page 文件操作等基础工具</div>
+<div class="ts-line"><span class="ts-t">[07:22]</span> 也支持开发者增加自己的业务工具</div>
+<div class="ts-line"><span class="ts-t">[07:24]</span> 但它的核心机制是预制的</div>
+<div class="ts-line"><span class="ts-t">[07:26]</span> 你可以干预 Agent loop</div>
+<div class="ts-line"><span class="ts-t">[07:28]</span> 却不能任意替换整个执行循环</div>
+<div class="ts-line"><span class="ts-t">[07:31]</span> 你可以控制部分上下文的内容</div>
+<div class="ts-line"><span class="ts-t">[07:33]</span> 但是不能完全接管上下文组装和压缩的机制</div>
+<div class="ts-line"><span class="ts-t">[07:35]</span> 你可以去扩展工具</div>
+<div class="ts-line"><span class="ts-t">[07:37]</span> 但是不能直接改型内置工具的底层实现</div>
+<div class="ts-line"><span class="ts-t">[07:40]</span> 这个设计的取舍非常明确</div>
+<div class="ts-line"><span class="ts-t">[07:42]</span> 优点是你不需要自己去设计整套执行系统</div>
+<div class="ts-line"><span class="ts-t">[07:44]</span> 可以直接附用 Claude code 的成熟的机制</div>
+<div class="ts-line"><span class="ts-t">[07:47]</span> 减少大量的基础排发工作</div>
+<div class="ts-line"><span class="ts-t">[07:49]</span> 限制也在这</div>
+<div class="ts-line"><span class="ts-t">[07:50]</span> 你对核心机制的控制权有限</div>
+<div class="ts-line"><span class="ts-t">[07:52]</span> 如果你需要一套与 Claude code 的完全不同的执行架构</div>
+<div class="ts-line"><span class="ts-t">[07:55]</span> 就可能会受到 sdk 扩展接口的约束</div>
+<div class="ts-line"><span class="ts-t">[07:57]</span> 所以 Claude Agent SDK 更适合这样的团队</div>
+<div class="ts-line"><span class="ts-t">[08:00]</span> 你要认可 Claude code 默认的执行方式</div>
+<div class="ts-line"><span class="ts-t">[08:03]</span> 希望在此基础上快速开发自己的业务的 Agent</div>
+<div class="ts-line"><span class="ts-t">[08:06]</span> 对于小白来说</div>
+<div class="ts-line"><span class="ts-t">[08:07]</span> 如果基础基础相对薄弱</div>
+<div class="ts-line"><span class="ts-t">[08:08]</span> 但有一定的开发能力</div>
+<div class="ts-line"><span class="ts-t">[08:10]</span> 或者是可以借助 web coding 完成开发</div>
+<div class="ts-line"><span class="ts-t">[08:12]</span> 那它是最值得优先考虑的方案</div>
+<div class="ts-line"><span class="ts-t">[08:14]</span> 因为它封装的程度比较高</div>
+<div class="ts-line"><span class="ts-t">[08:16]</span> 不需要自己从零搭建 Harness</div>
+<div class="ts-line"><span class="ts-t">[08:18]</span> 接下来是 launching 的 Deep Agents</div>
+<div class="ts-line"><span class="ts-t">[08:20]</span> 它和 Claude Agent SDK 一样</div>
+<div class="ts-line"><span class="ts-t">[08:22]</span> 也提供了比较完整的 Harness</div>
+<div class="ts-line"><span class="ts-t">[08:24]</span> 那两者最大的区别是</div>
+<div class="ts-line"><span class="ts-t">[08:25]</span> Claude Agent SDK 更强调</div>
+<div class="ts-line"><span class="ts-t">[08:27]</span> 附用一套成熟的执行机制</div>
+<div class="ts-line"><span class="ts-t">[08:29]</span> 而 Deep Agents 更强调开放和可定制</div>
+<div class="ts-line"><span class="ts-t">[08:32]</span> 那我们前面提到</div>
+<div class="ts-line"><span class="ts-t">[08:33]</span> Deep Agents 是建立在 launching 和 LangGraph 之上的</div>
+<div class="ts-line"><span class="ts-t">[08:36]</span> 那它的 Agent loop 是由 launching 提供</div>
+<div class="ts-line"><span class="ts-t">[08:38]</span> 那状态管理和任务恢复</div>
+<div class="ts-line"><span class="ts-t">[08:40]</span> 负责由 LangGraph 负责</div>
+<div class="ts-line"><span class="ts-t">[08:42]</span> 它在这个基础上封装了任务规划</div>
+<div class="ts-line"><span class="ts-t">[08:44]</span> 杀项文管理文件系统和子 Agent 的能力</div>
+<div class="ts-line"><span class="ts-t">[08:47]</span> 它比较有特点的设计有两个</div>
+<div class="ts-line"><span class="ts-t">[08:49]</span> 第一个是 Middleware</div>
+<div class="ts-line"><span class="ts-t">[08:50]</span> 也就是中间键</div>
+<div class="ts-line"><span class="ts-t">[08:51]</span> 那可以理解成</div>
+<div class="ts-line"><span class="ts-t">[08:51]</span> 把 Harness 的不同执行策略拆成独立的模块</div>
+<div class="ts-line"><span class="ts-t">[08:54]</span> 让开发者安须调整</div>
+<div class="ts-line"><span class="ts-t">[08:56]</span> 比如说你对默认的杀项文压缩方式不满意</div>
+<div class="ts-line"><span class="ts-t">[08:58]</span> 你就可以直接替换相应的处理策略</div>
+<div class="ts-line"><span class="ts-t">[09:00]</span> 也可以在模型调用前去修改上下文</div>
+<div class="ts-line"><span class="ts-t">[09:03]</span> 调整可用的工具</div>
+<div class="ts-line"><span class="ts-t">[09:04]</span> 那相比较 Claude Agent SDK</div>
+<div class="ts-line"><span class="ts-t">[09:06]</span> 你对这些内部机制的控制空间更大</div>
+<div class="ts-line"><span class="ts-t">[09:08]</span> 那第二个是 Deep Agents</div>
+<div class="ts-line"><span class="ts-t">[09:10]</span> 可以灵活的去选择文件存储和代码的执行环境</div>
+<div class="ts-line"><span class="ts-t">[09:12]</span> 比如说 Agent 需要分析数据</div>
+<div class="ts-line"><span class="ts-t">[09:14]</span> 生成文件</div>
+<div class="ts-line"><span class="ts-t">[09:15]</span> 你可以让它使用本地的文件</div>
+<div class="ts-line"><span class="ts-t">[09:16]</span> 也可以让它进入远程的杀项来执行代码</div>
+<div class="ts-line"><span class="ts-t">[09:19]</span> 还可以把需要长期保存的信息</div>
+<div class="ts-line"><span class="ts-t">[09:21]</span> 放在持久化的存储中</div>
+<div class="ts-line"><span class="ts-t">[09:23]</span> 那这样的好处是</div>
+<div class="ts-line"><span class="ts-t">[09:26]</span> 都绑定在一种固定的环境里</div>
+<div class="ts-line"><span class="ts-t">[09:28]</span> 可以根据不同业务的需求选择合适的实现方式</div>
+<div class="ts-line"><span class="ts-t">[09:31]</span> 所以如果你做的是企业的 Agent</div>
+<div class="ts-line"><span class="ts-t">[09:33]</span> 需要服务多个客户</div>
+<div class="ts-line"><span class="ts-t">[09:34]</span> 对数据的存储和执行环境又有特殊的需求</div>
+<div class="ts-line"><span class="ts-t">[09:37]</span> 那这一点会更有价值</div>
+<div class="ts-line"><span class="ts-t">[09:39]</span> 那 Deep Agents 的优点是</div>
+<div class="ts-line"><span class="ts-t">[09:40]</span> 既提供了一套默认的 Harness</div>
+<div class="ts-line"><span class="ts-t">[09:42]</span> 又给开发者保留了更大的定时空间</div>
+<div class="ts-line"><span class="ts-t">[09:45]</span> 那它的限制是灵活性更高</div>
+<div class="ts-line"><span class="ts-t">[09:47]</span> 那开发者就需要自己做的技术决策就更多</div>
+<div class="ts-line"><span class="ts-t">[09:49]</span> 你比如说怎么配合执行环境</div>
+<div class="ts-line"><span class="ts-t">[09:51]</span> 怎么组合不同的处理策略</div>
+<div class="ts-line"><span class="ts-t">[09:52]</span> 都会增加一定的开发和维护成本</div>
+<div class="ts-line"><span class="ts-t">[09:55]</span> 所以 Deep Agents 更适合这样的团队</div>
+<div class="ts-line"><span class="ts-t">[09:57]</span> 你即向服用成熟的 Harness</div>
+<div class="ts-line"><span class="ts-t">[09:58]</span> 又需要灵活调整上下门</div>
+<div class="ts-line"><span class="ts-t">[10:00]</span> 执行环境和运行策略</div>
+<div class="ts-line"><span class="ts-t">[10:02]</span> Claude Agent SDK</div>
+<div class="ts-line"><span class="ts-t">[10:03]</span> 主要开放的是执行过程中的控制点</div>
+<div class="ts-line"><span class="ts-t">[10:05]</span> 而 Deep Agents 则把更多的执行策略做成了</div>
+<div class="ts-line"><span class="ts-t">[10:08]</span> 可以配置拓展和组合的模块</div>
+<div class="ts-line"><span class="ts-t">[10:10]</span> 那说完综合任务类的</div>
+<div class="ts-line"><span class="ts-t">[10:12]</span> 接下来我们再来看看编码类的</div>
+<div class="ts-line"><span class="ts-t">[10:14]</span> 也就是 coding Agent Harness</div>
+<div class="ts-line"><span class="ts-t">[10:15]</span> 那它代表的项目有派</div>
+<div class="ts-line"><span class="ts-t">[10:17]</span> OpenAI code 和 codex CLI</div>
+<div class="ts-line"><span class="ts-t">[10:19]</span> coding Agent 和综合任务类的 Agent</div>
+<div class="ts-line"><span class="ts-t">[10:21]</span> 核心执行机制其实比较相似</div>
+</div></details>
+<details class="ts-box"><summary>代表项目（下）（逐字 · 168 句）</summary>
+<div class="ts-lines">
+<div class="ts-line"><span class="ts-t">[10:23]</span> 区别在于 coding Agent</div>
+<div class="ts-line"><span class="ts-t">[10:25]</span> 是围绕着软件开发场景设计的</div>
+<div class="ts-line"><span class="ts-t">[10:27]</span> 所以会更重视代码的搜索文件的修改</div>
+<div class="ts-line"><span class="ts-t">[10:30]</span> 命令的执行和测试验证</div>
+<div class="ts-line"><span class="ts-t">[10:32]</span> 首先是派</div>
+<div class="ts-line"><span class="ts-t">[10:33]</span> 派最大的特点是基减</div>
+<div class="ts-line"><span class="ts-t">[10:35]</span> 尽可能的减少框架预置的功能</div>
+<div class="ts-line"><span class="ts-t">[10:36]</span> 把更多的设计留给了开发者</div>
+<div class="ts-line"><span class="ts-t">[10:38]</span> 它内置了基础的 Agent 的 loop</div>
+<div class="ts-line"><span class="ts-t">[10:40]</span> 但是默认只有四个工具</div>
+<div class="ts-line"><span class="ts-t">[10:41]</span> 读取文件、写入文件、编辑文件和执行命令</div>
+<div class="ts-line"><span class="ts-t">[10:45]</span> 那像任务的规划多 Agent 的协作这样的能力</div>
+<div class="ts-line"><span class="ts-t">[10:48]</span> 派并没有强制去内置一套固定的方案</div>
+<div class="ts-line"><span class="ts-t">[10:50]</span> 而是允许开发者通过 extension 自己扩展</div>
+<div class="ts-line"><span class="ts-t">[10:53]</span> 而且派的扩展机制也很开放</div>
+<div class="ts-line"><span class="ts-t">[10:55]</span> 不只能增加工具</div>
+<div class="ts-line"><span class="ts-t">[10:57]</span> 还能深入干预执行过程</div>
+<div class="ts-line"><span class="ts-t">[10:58]</span> 比如说拦截工具的调用</div>
+<div class="ts-line"><span class="ts-t">[11:00]</span> 修改上线文、提缓压缩策略</div>
+<div class="ts-line"><span class="ts-t">[11:02]</span> 甚至覆盖内置工具的实现</div>
+<div class="ts-line"><span class="ts-t">[11:04]</span> 那相比 Claude Agent SDK</div>
+<div class="ts-line"><span class="ts-t">[11:06]</span> 它在执行策略和工具实现上的定制空间更大</div>
+<div class="ts-line"><span class="ts-t">[11:09]</span> 派还提供 SDK</div>
+<div class="ts-line"><span class="ts-t">[11:10]</span> 可以直接把 Agent 的能力嵌入自己的产品</div>
+<div class="ts-line"><span class="ts-t">[11:12]</span> 那 OpenClaw 早期就是通过</div>
+<div class="ts-line"><span class="ts-t">[11:14]</span> 附用派的能力来构建个人助手的</div>
+<div class="ts-line"><span class="ts-t">[11:16]</span> 那另外派的核心代码是开源的</div>
+<div class="ts-line"><span class="ts-t">[11:18]</span> 如果你想彻底重新 Agent 的 loop</div>
+<div class="ts-line"><span class="ts-t">[11:20]</span> 可以直接改原码</div>
+<div class="ts-line"><span class="ts-t">[11:21]</span> 所以很多有能力的技术团队</div>
+<div class="ts-line"><span class="ts-t">[11:23]</span> 想要打造自己的 harness 的时候都会选择派</div>
+<div class="ts-line"><span class="ts-t">[11:26]</span> 那它的优点是核心简单、灵活</div>
+<div class="ts-line"><span class="ts-t">[11:29]</span> 开发者可以根据自己的需求构建 harness</div>
+<div class="ts-line"><span class="ts-t">[11:31]</span> 不必接受过多预置的执行策略</div>
+<div class="ts-line"><span class="ts-t">[11:33]</span> 那它的限制</div>
+<div class="ts-line"><span class="ts-t">[11:34]</span> 就是很多的高级能力需要自己组合和维护</div>
+<div class="ts-line"><span class="ts-t">[11:37]</span> 那对于开发者的技术能力是有一定要求的</div>
+<div class="ts-line"><span class="ts-t">[11:39]</span> 所以派更适合这样的团队</div>
+<div class="ts-line"><span class="ts-t">[11:41]</span> 你希望自己掌握 Agent 的执行逻辑</div>
+<div class="ts-line"><span class="ts-t">[11:43]</span> 从一个轻量的核心出发</div>
+<div class="ts-line"><span class="ts-t">[11:45]</span> 开发自己 Agent 的产品</div>
+<div class="ts-line"><span class="ts-t">[11:47]</span> 那接下来是 OpenCode</div>
+<div class="ts-line"><span class="ts-t">[11:48]</span> 如果说派追求的是极简</div>
+<div class="ts-line"><span class="ts-t">[11:50]</span> 让开发者自己决定做什么扩展</div>
+<div class="ts-line"><span class="ts-t">[11:52]</span> 那 OpenCode 的思路就是提供一套比较完整的</div>
+<div class="ts-line"><span class="ts-t">[11:55]</span> 软件开发工作机制</div>
+<div class="ts-line"><span class="ts-t">[11:56]</span> 它不仅内置了 Agent 的 loop</div>
+<div class="ts-line"><span class="ts-t">[11:58]</span> 还预置了不同的 Agent 的角色和执行方式</div>
+<div class="ts-line"><span class="ts-t">[12:00]</span> 比如说标的 Agent 负责世界开发</div>
+<div class="ts-line"><span class="ts-t">[12:02]</span> 可以修改代码执行命令</div>
+<div class="ts-line"><span class="ts-t">[12:04]</span> planagent 主要负责分析问题指定方案</div>
+<div class="ts-line"><span class="ts-t">[12:06]</span> 默认不直接修改普通项目文件</div>
+<div class="ts-line"><span class="ts-t">[12:09]</span> 还有 explore 等自 Agent 用于搜索和理解代码库</div>
+<div class="ts-line"><span class="ts-t">[12:12]</span> 也就是说 OpenCode 已经帮开发者设计好了</div>
+<div class="ts-line"><span class="ts-t">[12:15]</span> 一整套软件开发的工作方式</div>
+<div class="ts-line"><span class="ts-t">[12:17]</span> 不同 Agent 负责不同的任务</div>
+<div class="ts-line"><span class="ts-t">[12:19]</span> 使用不同的工具和权限</div>
+<div class="ts-line"><span class="ts-t">[12:20]</span> 不过这些角色也不是写死的</div>
+<div class="ts-line"><span class="ts-t">[12:22]</span> 你可以修改他们的提示词、模型和权限</div>
+<div class="ts-line"><span class="ts-t">[12:24]</span> 也可以增加自己 Agent</div>
+<div class="ts-line"><span class="ts-t">[12:26]</span> 通过插件去扩展功能</div>
+<div class="ts-line"><span class="ts-t">[12:27]</span> 它的优点是已经把软件开发</div>
+<div class="ts-line"><span class="ts-t">[12:29]</span> 常用的工具和工作机制整合好了</div>
+<div class="ts-line"><span class="ts-t">[12:31]</span> 如果你想开发自己的 coding Agent</div>
+<div class="ts-line"><span class="ts-t">[12:33]</span> 可以直接附用</div>
+<div class="ts-line"><span class="ts-t">[12:34]</span> 不需要重新设计整套系统</div>
+<div class="ts-line"><span class="ts-t">[12:35]</span> 但限制也在这</div>
+<div class="ts-line"><span class="ts-t">[12:36]</span> 它的很多默认机制</div>
+<div class="ts-line"><span class="ts-t">[12:38]</span> 都是围绕着软件开发设计的</div>
+<div class="ts-line"><span class="ts-t">[12:40]</span> 如果你想做一个完全不同的业务 Agent</div>
+<div class="ts-line"><span class="ts-t">[12:42]</span> 可能需要调整大量的预置逻辑</div>
+<div class="ts-line"><span class="ts-t">[12:44]</span> 所以 OpenCode 更适合站的团队</div>
+<div class="ts-line"><span class="ts-t">[12:46]</span> 你想要基于一个成熟的开源 coding Agent</div>
+<div class="ts-line"><span class="ts-t">[12:49]</span> 直接开发自己的编程工具</div>
+<div class="ts-line"><span class="ts-t">[12:51]</span> 或者是软件开发 Agent</div>
+<div class="ts-line"><span class="ts-t">[12:53]</span> 反过来</div>
+<div class="ts-line"><span class="ts-t">[12:54]</span> 如果你的目标不是 coding Agent</div>
+<div class="ts-line"><span class="ts-t">[12:56]</span> 更希望从一个简单的核心出发</div>
+<div class="ts-line"><span class="ts-t">[12:58]</span> 自由设计执行方式</div>
+<div class="ts-line"><span class="ts-t">[12:59]</span> 那 py 可能更合适</div>
+<div class="ts-line"><span class="ts-t">[13:01]</span> 前面介绍了 Claude Agent SDK Deep Agents</div>
+<div class="ts-line"><span class="ts-t">[13:04]</span> 以及 py 和 OpenCode</div>
+<div class="ts-line"><span class="ts-t">[13:06]</span> 更多是围绕着 Agent</div>
+<div class="ts-line"><span class="ts-t">[13:07]</span> 怎么完成任务来设计的</div>
+<div class="ts-line"><span class="ts-t">[13:08]</span> 接下来我们看一下个人助手类的</div>
+<div class="ts-line"><span class="ts-t">[13:11]</span> 代表的项目就是 OpenClaw 和 Harness</div>
+<div class="ts-line"><span class="ts-t">[13:13]</span> 这一类有一个明显的不同</div>
+<div class="ts-line"><span class="ts-t">[13:15]</span> 他们不只是完成一次任务</div>
+<div class="ts-line"><span class="ts-t">[13:17]</span> 而是希望 Agent 能够长期运行</div>
+<div class="ts-line"><span class="ts-t">[13:19]</span> 记住用户的信息</div>
+<div class="ts-line"><span class="ts-t">[13:20]</span> 甚至主动发起任务</div>
+<div class="ts-line"><span class="ts-t">[13:22]</span> 那先来看 OpenClaw</div>
+<div class="ts-line"><span class="ts-t">[13:23]</span> 它的核心设计之一是 getaway</div>
+<div class="ts-line"><span class="ts-t">[13:25]</span> 可以理解成是个人助手的管理中心</div>
+<div class="ts-line"><span class="ts-t">[13:27]</span> 比如说你可以通过飞书</div>
+<div class="ts-line"><span class="ts-t">[13:29]</span> 微信给 Agent 的发送任务</div>
+<div class="ts-line"><span class="ts-t">[13:31]</span> getaway 会负责接收消息</div>
+<div class="ts-line"><span class="ts-t">[13:33]</span> 识别用户和 session</div>
+<div class="ts-line"><span class="ts-t">[13:34]</span> 再交给对应的 Agent 的执行</div>
+<div class="ts-line"><span class="ts-t">[13:36]</span> 那最后再把结果返回给用户</div>
+<div class="ts-line"><span class="ts-t">[13:37]</span> 它还内置了定时任务事件出发的机制</div>
+<div class="ts-line"><span class="ts-t">[13:40]</span> 可以每天自动整理信息</div>
+<div class="ts-line"><span class="ts-t">[13:42]</span> 定期生成报告</div>
+<div class="ts-line"><span class="ts-t">[13:43]</span> 不用用户每次手动发起</div>
+<div class="ts-line"><span class="ts-t">[13:45]</span> 那前面提到 OpenClaw 早期是基于</div>
+<div class="ts-line"><span class="ts-t">[13:46]</span> 派的 Agent SDK 构建的</div>
+<div class="ts-line"><span class="ts-t">[13:48]</span> 那现在它已经发展出了自己的 Agent runtime</div>
+<div class="ts-line"><span class="ts-t">[13:51]</span> 能够独立的管理 Agent loop</div>
+<div class="ts-line"><span class="ts-t">[13:52]</span> 上下文工具执行</div>
+<div class="ts-line"><span class="ts-t">[13:54]</span> 也可以通过插件去扩展能力</div>
+<div class="ts-line"><span class="ts-t">[13:55]</span> 所以 OpenClaw 的核心价值</div>
+<div class="ts-line"><span class="ts-t">[13:57]</span> 是把 Agent 的执行能力</div>
+<div class="ts-line"><span class="ts-t">[13:58]</span> 消息渠道和长期任务管理整合到了一起</div>
+<div class="ts-line"><span class="ts-t">[14:01]</span> 那有了它</div>
+<div class="ts-line"><span class="ts-t">[14:02]</span> 如果你想搭建一个长期运行的个人助手</div>
+<div class="ts-line"><span class="ts-t">[14:05]</span> 就不需要从零开发消息</div>
+<div class="ts-line"><span class="ts-t">[14:06]</span> 介入任务调度和绘画管理</div>
+<div class="ts-line"><span class="ts-t">[14:08]</span> 这些基础的设施</div>
+<div class="ts-line"><span class="ts-t">[14:09]</span> 那它的现实也很明显</div>
+<div class="ts-line"><span class="ts-t">[14:10]</span> 作为一套相对完整的系统</div>
+<div class="ts-line"><span class="ts-t">[14:12]</span> 它的部署和维护的成本更高</div>
+<div class="ts-line"><span class="ts-t">[14:14]</span> 如果只是想开发一个普通的任务性 Agent</div>
+<div class="ts-line"><span class="ts-t">[14:16]</span> 很多能力可能根本用不上</div>
+<div class="ts-line"><span class="ts-t">[14:18]</span> 那另一个就是 Hermes</div>
+<div class="ts-line"><span class="ts-t">[14:19]</span> 它和 OpenClaw 有很多相似的能力</div>
+<div class="ts-line"><span class="ts-t">[14:22]</span> 比如说多渠道的交互能力</div>
+<div class="ts-line"><span class="ts-t">[14:23]</span> 定时任务和长期记忆</div>
+<div class="ts-line"><span class="ts-t">[14:24]</span> 它最有特点的是持续学习机制</div>
+<div class="ts-line"><span class="ts-t">[14:27]</span> 它不只是让 Agent 的记住过去的对话</div>
+<div class="ts-line"><span class="ts-t">[14:29]</span> 还希望 Agent 能把完成任务的经验沉淀下来</div>
+<div class="ts-line"><span class="ts-t">[14:32]</span> 留到后面复用</div>
+<div class="ts-line"><span class="ts-t">[14:33]</span> 这里面有两个核心设计</div>
+<div class="ts-line"><span class="ts-t">[14:35]</span> memory 还有 skill</div>
+<div class="ts-line"><span class="ts-t">[14:36]</span> memory 是用来保存用户的偏好</div>
+<div class="ts-line"><span class="ts-t">[14:38]</span> 项目背景的长期信息</div>
+<div class="ts-line"><span class="ts-t">[14:39]</span> skill 的用来保存完成某类任务的方法</div>
+<div class="ts-line"><span class="ts-t">[14:42]</span> 比如说你经常让 Agent 的帮你写诸报</div>
+<div class="ts-line"><span class="ts-t">[14:44]</span> 最开始你需要告诉它</div>
+<div class="ts-line"><span class="ts-t">[14:46]</span> 诸报的结构重点和写作方式</div>
+<div class="ts-line"><span class="ts-t">[14:48]</span> 那写了几次之后</div>
+<div class="ts-line"><span class="ts-t">[14:49]</span> Agent 可能会逐渐总结出一套有效的方法</div>
+<div class="ts-line"><span class="ts-t">[14:51]</span> 把它存成 skill</div>
+<div class="ts-line"><span class="ts-t">[14:53]</span> 以后再写诸报</div>
+<div class="ts-line"><span class="ts-t">[14:54]</span> 直接附用这套方法就行</div>
+<div class="ts-line"><span class="ts-t">[14:55]</span> 不用每次都重新摸索</div>
+<div class="ts-line"><span class="ts-t">[14:56]</span> 所以它的特点是</div>
+<div class="ts-line"><span class="ts-t">[14:58]</span> 把任务执行记忆和技能积累连接起来</div>
+<div class="ts-line"><span class="ts-t">[15:01]</span> 让 Agent 在长期使用过程中</div>
+<div class="ts-line"><span class="ts-t">[15:02]</span> 不断附用过去的经验</div>
+<div class="ts-line"><span class="ts-t">[15:04]</span> 这种设计的好处是同一类任务</div>
+<div class="ts-line"><span class="ts-t">[15:06]</span> Agent 会越用越顺手</div>
+<div class="ts-line"><span class="ts-t">[15:07]</span> 但问题也在这</div>
+<div class="ts-line"><span class="ts-t">[15:08]</span> 如果存下了错误的经验</div>
+<div class="ts-line"><span class="ts-t">[15:10]</span> 后面可能就会一直重复这个错误</div>
+<div class="ts-line"><span class="ts-t">[15:12]</span> 所以它也对记忆和技能的修改</div>
+<div class="ts-line"><span class="ts-t">[15:14]</span> 提供了人工的审批机制</div>
+<div class="ts-line"><span class="ts-t">[15:16]</span> 总结一下</div>
+<div class="ts-line"><span class="ts-t">[15:16]</span> 如果你想要搭建一个完整的个人助手</div>
+<div class="ts-line"><span class="ts-t">[15:18]</span> 或者想要 Agent 接入微信</div>
+<div class="ts-line"><span class="ts-t">[15:20]</span> 起位飞书等渠道</div>
+<div class="ts-line"><span class="ts-t">[15:21]</span> 那可以优先考虑 OpenClaw</div>
+<div class="ts-line"><span class="ts-t">[15:23]</span> 最后一个是 deep seek harness</div>
+<div class="ts-line"><span class="ts-t">[15:25]</span> 我把它单独拿出来</div>
+<div class="ts-line"><span class="ts-t">[15:26]</span> 是因为它的技术设计和前面的几个项目</div>
+<div class="ts-line"><span class="ts-t">[15:28]</span> 都不太一样</div>
+<div class="ts-line"><span class="ts-t">[15:29]</span> deep seek harness 的特点是</div>
+<div class="ts-line"><span class="ts-t">[15:31]</span> everything is a plugin</div>
+<div class="ts-line"><span class="ts-t">[15:32]</span> 一切皆插件</div>
+</div></details>
+<details class="ts-box"><summary>怎么用与怎么选（逐字 · 153 句）</summary>
+<div class="ts-lines">
+<div class="ts-line"><span class="ts-t">[15:34]</span> 那很多的 harness 都支持插件</div>
+<div class="ts-line"><span class="ts-t">[15:36]</span> 但通常只是增加工具 scale</div>
+<div class="ts-line"><span class="ts-t">[15:38]</span> 或者在固定的执行机制上去扩展功能</div>
+<div class="ts-line"><span class="ts-t">[15:41]</span> 无论是 Claude Agent SDK Deep Agents</div>
+<div class="ts-line"><span class="ts-t">[15:43]</span> pan 还是 OpenClaw</div>
+<div class="ts-line"><span class="ts-t">[15:44]</span> 它们都有内置的 Agent loop</div>
+<div class="ts-line"><span class="ts-t">[15:46]</span> 区别只在于允许多大程度的干预和改造</div>
+<div class="ts-line"><span class="ts-t">[15:49]</span> deep seek harness 更进一步</div>
+<div class="ts-line"><span class="ts-t">[15:51]</span> 它把模型工具 session</div>
+<div class="ts-line"><span class="ts-t">[15:53]</span> 甚至最核心的 Agent loop</div>
+<div class="ts-line"><span class="ts-t">[15:55]</span> 都设计成了可以提款的插件</div>
+<div class="ts-line"><span class="ts-t">[15:57]</span> 也就是说</div>
+<div class="ts-line"><span class="ts-t">[15:58]</span> 如果你对默认的 Agent loop 不满意</div>
+<div class="ts-line"><span class="ts-t">[16:00]</span> 你可以通过开发</div>
+<div class="ts-line"><span class="ts-t">[16:01]</span> 组合插件把它替换掉</div>
+<div class="ts-line"><span class="ts-t">[16:02]</span> 而不用直接去改框架的核心代码</div>
+<div class="ts-line"><span class="ts-t">[16:05]</span> 它的底层采用 Code 插件架构</div>
+<div class="ts-line"><span class="ts-t">[16:07]</span> 把不同的功能组成了相互写作的模块</div>
+<div class="ts-line"><span class="ts-t">[16:09]</span> 让你可以组合出不同的执行方式</div>
+<div class="ts-line"><span class="ts-t">[16:12]</span> 它和派虽然都强调灵活</div>
+<div class="ts-line"><span class="ts-t">[16:13]</span> 但是思路不一样</div>
+<div class="ts-line"><span class="ts-t">[16:14]</span> 派是尽量让核心保持简单的开发者</div>
+<div class="ts-line"><span class="ts-t">[16:17]</span> 可以在这上面去扩展</div>
+<div class="ts-line"><span class="ts-t">[16:18]</span> 而 deep seek harness 是把核心本身</div>
+<div class="ts-line"><span class="ts-t">[16:21]</span> 也做成了可以提款的模块</div>
+<div class="ts-line"><span class="ts-t">[16:22]</span> 这种设计的优点是</div>
+<div class="ts-line"><span class="ts-t">[16:24]</span> 自由程度非常高</div>
+<div class="ts-line"><span class="ts-t">[16:25]</span> 如果你想研究不同的 Agent loop 的效果</div>
+<div class="ts-line"><span class="ts-t">[16:27]</span> 或者想搭建自己的 Agent harness 平台</div>
+<div class="ts-line"><span class="ts-t">[16:30]</span> 那就可以灵活的去组合底层的能力</div>
+<div class="ts-line"><span class="ts-t">[16:32]</span> 但是代价就是开发者需要理解更多的内部机制</div>
+<div class="ts-line"><span class="ts-t">[16:35]</span> 模块之间的组合和维护也比较复杂</div>
+<div class="ts-line"><span class="ts-t">[16:38]</span> 所以 deep seek harness 更适合想要研究和定制</div>
+<div class="ts-line"><span class="ts-t">[16:41]</span> harness 底层架构的开发团队</div>
+<div class="ts-line"><span class="ts-t">[16:43]</span> 如果只是一个普通的业务 Agent</div>
+<div class="ts-line"><span class="ts-t">[16:46]</span> 未必需要这么高的自由度</div>
+<div class="ts-line"><span class="ts-t">[16:47]</span> 气色项目都介绍完了</div>
+<div class="ts-line"><span class="ts-t">[16:49]</span> 我们用一张表来对比一下</div>
+<div class="ts-line"><span class="ts-t">[16:50]</span> 从这张表可以看出来</div>
+<div class="ts-line"><span class="ts-t">[16:52]</span> 不同 harness 最大的差异</div>
+<div class="ts-line"><span class="ts-t">[16:53]</span> 不在于有没有工具的调用</div>
+<div class="ts-line"><span class="ts-t">[16:55]</span> 沙瞎文管理或者多 Agent</div>
+<div class="ts-line"><span class="ts-t">[16:57]</span> 这些已经是比较通用的能力了</div>
+<div class="ts-line"><span class="ts-t">[16:59]</span> 真正的区别是</div>
+<div class="ts-line"><span class="ts-t">[17:00]</span> 他们默认帮开发者实现了什么机制</div>
+<div class="ts-line"><span class="ts-t">[17:03]</span> 又开放了多少控制权</div>
+<div class="ts-line"><span class="ts-t">[17:05]</span> Claude Agent SDK 预置了成熟的执行机制</div>
+<div class="ts-line"><span class="ts-t">[17:07]</span> Deep Agents 把更多的执行策略做成了可组合的模块</div>
+<div class="ts-line"><span class="ts-t">[17:11]</span> 派进可能的保持核心简单</div>
+<div class="ts-line"><span class="ts-t">[17:13]</span> deep seek harness 都是连核心机制也可以替换</div>
+<div class="ts-line"><span class="ts-t">[17:16]</span> 而 OpenAI codOpenAIen Claude 和 harness</div>
+<div class="ts-line"><span class="ts-t">[17:18]</span> 更多体现的是针对特定场景的设计</div>
+<div class="ts-line"><span class="ts-t">[17:20]</span> 但是控制权越大</div>
+<div class="ts-line"><span class="ts-t">[17:21]</span> 不代表一定就越好</div>
+<div class="ts-line"><span class="ts-t">[17:23]</span> 因为可以改的东西多</div>
+<div class="ts-line"><span class="ts-t">[17:24]</span> 意味着你要承担的设计</div>
+<div class="ts-line"><span class="ts-t">[17:26]</span> 调试和维护工作也越多</div>
+<div class="ts-line"><span class="ts-t">[17:27]</span> 所以选型的时候不仅要看自由度</div>
+<div class="ts-line"><span class="ts-t">[17:29]</span> 还要看这些默认机制是否符合自己的业务需求</div>
+<div class="ts-line"><span class="ts-t">[17:33]</span> ok 经过一番分析</div>
+<div class="ts-line"><span class="ts-t">[17:35]</span> 你已经确定了要用哪个 harness 开发</div>
+<div class="ts-line"><span class="ts-t">[17:37]</span> 然后呢</div>
+<div class="ts-line"><span class="ts-t">[17:37]</span> 它应该怎么用</div>
+<div class="ts-line"><span class="ts-t">[17:38]</span> 是直接下载别人的代码来改</div>
+<div class="ts-line"><span class="ts-t">[17:40]</span> 还是通过 sdk 开发</div>
+<div class="ts-line"><span class="ts-t">[17:41]</span> 什么才是使用 harness 的正确姿势</div>
+<div class="ts-line"><span class="ts-t">[17:44]</span> 我认为可以把开发者需求分上三个层次</div>
+<div class="ts-line"><span class="ts-t">[17:47]</span> 第一个层次是扩展现有的 Agent</div>
+<div class="ts-line"><span class="ts-t">[17:49]</span> 你已经有了一个能用的 Agent 的产品</div>
+<div class="ts-line"><span class="ts-t">[17:51]</span> 只是想给它加一些功能</div>
+<div class="ts-line"><span class="ts-t">[17:53]</span> 让它更贴合自己的需求</div>
+<div class="ts-line"><span class="ts-t">[17:54]</span> 第二个层次是开发自己的 Agent 的产品</div>
+<div class="ts-line"><span class="ts-t">[17:56]</span> 你需要自己的产品界面</div>
+<div class="ts-line"><span class="ts-t">[17:58]</span> 业务功能和用户体系</div>
+<div class="ts-line"><span class="ts-t">[17:59]</span> 但是不想从零开发 Agent 的 loop</div>
+<div class="ts-line"><span class="ts-t">[18:01]</span> 第三个层次是彻底改造底层的 harness</div>
+<div class="ts-line"><span class="ts-t">[18:04]</span> 你对现成的核心机制都不满意</div>
+<div class="ts-line"><span class="ts-t">[18:06]</span> 你希望自己去修改甚至重新设计底层的实现</div>
+<div class="ts-line"><span class="ts-t">[18:09]</span> 这三个层次的开发目标不一样</div>
+<div class="ts-line"><span class="ts-t">[18:11]</span> 需要的技术能力也不一样</div>
+<div class="ts-line"><span class="ts-t">[18:13]</span> 我们就用派举的例子</div>
+<div class="ts-line"><span class="ts-t">[18:14]</span> 第一种是扩展现有的产品</div>
+<div class="ts-line"><span class="ts-t">[18:16]</span> 假设你是一名程序员</div>
+<div class="ts-line"><span class="ts-t">[18:17]</span> 公司内部已经在用派的 cli 去做编程工具</div>
+<div class="ts-line"><span class="ts-t">[18:20]</span> 但是你希望它更符合公司的开发流程</div>
+<div class="ts-line"><span class="ts-t">[18:22]</span> 比如说修改完代码之后自动检查代码的规范</div>
+<div class="ts-line"><span class="ts-t">[18:25]</span> 或者按照团队的要求生成片描述</div>
+<div class="ts-line"><span class="ts-t">[18:27]</span> 这个时候你只需要在安装好的派 cli 的基础上</div>
+<div class="ts-line"><span class="ts-t">[18:30]</span> 通过 extension 或者是 scale 增加功能的产品还是派</div>
+<div class="ts-line"><span class="ts-t">[18:34]</span> 只是变得更符合你们自己的要求</div>
+<div class="ts-line"><span class="ts-t">[18:36]</span> 这是第一个层次</div>
+<div class="ts-line"><span class="ts-t">[18:37]</span> 第二个层次是开发自己的 Agent 的产品</div>
+<div class="ts-line"><span class="ts-t">[18:39]</span> 现在你打算出去创业了</div>
+<div class="ts-line"><span class="ts-t">[18:41]</span> 做一个面向研发团队的 AI 编程产品</div>
+<div class="ts-line"><span class="ts-t">[18:44]</span> 还有自己的产品界面用户管理任务系统</div>
+<div class="ts-line"><span class="ts-t">[18:47]</span> 还可以让 Agent 的自动修改代码运行测试</div>
+<div class="ts-line"><span class="ts-t">[18:49]</span> 但是你不想从零开发</div>
+<div class="ts-line"><span class="ts-t">[18:51]</span> 这个时候就可以用到派的 sdk</div>
+<div class="ts-line"><span class="ts-t">[18:53]</span> 把派的执行能力集成到自己的应用里</div>
+<div class="ts-line"><span class="ts-t">[18:56]</span> 产品是你自己的</div>
+<div class="ts-line"><span class="ts-t">[18:57]</span> 只是底层附用了派的 Harness</div>
+<div class="ts-line"><span class="ts-t">[18:59]</span> 这个是第二个层次</div>
+<div class="ts-line"><span class="ts-t">[19:00]</span> 第三个层次是改造底层的 Harness</div>
+<div class="ts-line"><span class="ts-t">[19:02]</span> 假设你认为派默认的 Agent 的 loop 根本不符合自己的需求</div>
+<div class="ts-line"><span class="ts-t">[19:06]</span> 想要重新设计模型如何决策工具如何执行</div>
+<div class="ts-line"><span class="ts-t">[19:09]</span> 以及整个任务如何循环</div>
+<div class="ts-line"><span class="ts-t">[19:10]</span> 由于派是开源的</div>
+<div class="ts-line"><span class="ts-t">[19:12]</span> 你可以直接 fork 代码</div>
+<div class="ts-line"><span class="ts-t">[19:13]</span> 改它的核心圆码</div>
+<div class="ts-line"><span class="ts-t">[19:14]</span> 搭出自己的 Harness</div>
+<div class="ts-line"><span class="ts-t">[19:16]</span> 这就是第三个层次</div>
+<div class="ts-line"><span class="ts-t">[19:17]</span> 所以插件 sdk 圆码的改造</div>
+<div class="ts-line"><span class="ts-t">[19:20]</span> 其实解决的是三个不同的问题</div>
+<div class="ts-line"><span class="ts-t">[19:22]</span> 插件和 scale 主要解决的是如何扩展现有的能力</div>
+<div class="ts-line"><span class="ts-t">[19:25]</span> sdk 解决的是附用现成的执行能力开发自己的应用</div>
+<div class="ts-line"><span class="ts-t">[19:29]</span> 修改圆码只是当现有的扩展接口无法满足需求的时候</div>
+<div class="ts-line"><span class="ts-t">[19:32]</span> 直接改变底层的实现</div>
+<div class="ts-line"><span class="ts-t">[19:34]</span> 因此在做基础选行的时候</div>
+<div class="ts-line"><span class="ts-t">[19:36]</span> 我们要先想清楚自己的开发目标</div>
+<div class="ts-line"><span class="ts-t">[19:38]</span> 如果只是让现有的 Harness 更好用</div>
+<div class="ts-line"><span class="ts-t">[19:40]</span> 那优先考虑插件和 scale</div>
+<div class="ts-line"><span class="ts-t">[19:41]</span> 如果开发独立的 Harness 的产品</div>
+<div class="ts-line"><span class="ts-t">[19:43]</span> 重点看 sdk 和程序化接入的能力</div>
+<div class="ts-line"><span class="ts-t">[19:46]</span> 如果要深入改造 Harness</div>
+<div class="ts-line"><span class="ts-t">[19:48]</span> 才需要关注圆码的开放程度</div>
+<div class="ts-line"><span class="ts-t">[19:50]</span> 以及底层机制是否允许替换</div>
+<div class="ts-line"><span class="ts-t">[19:52]</span> 那开发自己的 Agent 的产品</div>
+<div class="ts-line"><span class="ts-t">[19:53]</span> 不代表必须开发自己的 Harness</div>
+<div class="ts-line"><span class="ts-t">[19:56]</span> 最后再回到开头的问题</div>
+<div class="ts-line"><span class="ts-t">[19:57]</span> 如果今天要开发一个 Agent</div>
+<div class="ts-line"><span class="ts-t">[19:59]</span> 到底应该怎么选</div>
+<div class="ts-line"><span class="ts-t">[20:00]</span> 首先看任务需求</div>
+<div class="ts-line"><span class="ts-t">[20:02]</span> 简单流程明确的任务可以选择轻量的 free more</div>
+<div class="ts-line"><span class="ts-t">[20:04]</span> 需要严格的流程控制和状态管理</div>
+<div class="ts-line"><span class="ts-t">[20:06]</span> 可以考虑 LangGraph</div>
+<div class="ts-line"><span class="ts-t">[20:08]</span> 如果是需要自主探索持续执行的复杂任务</div>
+<div class="ts-line"><span class="ts-t">[20:11]</span> 优先考虑 Harness</div>
+<div class="ts-line"><span class="ts-t">[20:12]</span> 其次看 Harness 的设计特点</div>
+<div class="ts-line"><span class="ts-t">[20:14]</span> 想要开箱即用</div>
+<div class="ts-line"><span class="ts-t">[20:15]</span> 可以选择 Claude-Agent-sdk</div>
+<div class="ts-line"><span class="ts-t">[20:17]</span> 希望开源灵活性和定制</div>
+<div class="ts-line"><span class="ts-t">[20:20]</span> 想要从极简的核心出发</div>
+<div class="ts-line"><span class="ts-t">[20:22]</span> 自己设计执行机制</div>
+<div class="ts-line"><span class="ts-t">[20:23]</span> 可以选择派</div>
+<div class="ts-line"><span class="ts-t">[20:24]</span> 开发 coding-Agent 可以考虑 OpenCode</div>
+<div class="ts-line"><span class="ts-t">[20:26]</span> 做长期的个人助手</div>
+<div class="ts-line"><span class="ts-t">[20:27]</span> 可以考虑 OpenClaw</div>
+<div class="ts-line"><span class="ts-t">[20:29]</span> 如果连 Agent 的 loop 都想替换</div>
+<div class="ts-line"><span class="ts-t">[20:31]</span> 可以研究 deep-seq-Harness</div>
+<div class="ts-line"><span class="ts-t">[20:33]</span> 所以 Agent 的技术选型的核心</div>
+<div class="ts-line"><span class="ts-t">[20:35]</span> 不是哪个框架功能最多</div>
+<div class="ts-line"><span class="ts-t">[20:37]</span> 而是它默认的执行机制是否符合你的业务</div>
+<div class="ts-line"><span class="ts-t">[20:40]</span> 以及你究竟想要多大的控制权</div>
+</div></details>
+<p><strong>附录 · 语音识别与三重校验方法</strong></p>
+<table>
+<tr><th>项目</th><th>说明</th></tr>
+<tr><td>音轨</td><td>`ffmpeg` 从原片提取 16 kHz 单声道 WAV</td></tr>
+<tr><td>识别模型</td><td>`faster-whisper 1.2.1` + `small`，CPU int8，`beam_size=5`，离线运行</td></tr>
+<tr><td>原始输出</td><td>622 段带起止时间码的转写</td></tr>
+<tr><td>繁简归一</td><td>`OpenCC t2s`</td></tr>
+<tr><td>第一重：ASR</td><td>完整口播，覆盖字幕省略的过渡句</td></tr>
+<tr><td>第二重：烧录字幕</td><td>逐帧 OCR 还原作者精简字幕，作为文字校对基准</td></tr>
+<tr><td>第三重：官方术语</td><td>本教程术语表与官方文档，强制校正专有名词拼写</td></tr>
+<tr><td>校正量</td><td>231 处 / 28 类，逐条见下方清单</td></tr>
+<tr><td>**边界**</td><td>**未做人工逐句听校**：ASR 与 OCR 都不能保证 100% 零偏差；专名与明显误识别已全部校正并附依据，可结合字幕对照复核。</td></tr>
+</table>
+<p><strong>附录 · ASR 校正清单（28 类 / 231 处）</strong></p>
+<p>按「校正为 + 依据」聚合，全部校正项附依据，可结合下方字幕对照复核。</p>
+<table>
+<tr><th>校正为</th><th>依据</th><th>出现次数</th></tr>
+<tr><td>Agent</td><td>通用技术词规范</td><td>131</td></tr>
+<tr><td>Harness</td><td>Harness</td><td>16</td></tr>
+<tr><td>Deep Agents</td><td>通用技术词规范</td><td>15</td></tr>
+<tr><td>Claude</td><td>Claude</td><td>15</td></tr>
+<tr><td>OpenClaw</td><td>OpenClaw</td><td>9</td></tr>
+<tr><td>OpenCode</td><td>OpenCode</td><td>6</td></tr>
+<tr><td>LangGraph</td><td>官方项目名</td><td>5</td></tr>
+<tr><td>Claude Agent SDK</td><td>官方项目名</td><td>5</td></tr>
+<tr><td>LangChain</td><td>官方术语表：launchin → LangChain</td><td>3</td></tr>
+<tr><td>OpenAI</td><td>官方术语表：open → OpenAI</td><td>3</td></tr>
+<tr><td>LlamaIndex</td><td>LlamaIndex</td><td>2</td></tr>
+<tr><td>Framework</td><td>Framework</td><td>2</td></tr>
+<tr><td>Runtime</td><td>官方术语表：roundtime → Runtime</td><td>2</td></tr>
+<tr><td>OpenCode</td><td>官方术语表：OpenCloud → OpenCode</td><td>2</td></tr>
+<tr><td>LangGraph</td><td>官方术语表：launchgraph → LangGraph</td><td>2</td></tr>
+<tr><td>Pi、DeepSeek Harness</td><td>项目名</td><td>1</td></tr>
+<tr><td>演进过程</td><td>框架演进</td><td>1</td></tr>
+<tr><td>梳理了</td><td>口播语义</td><td>1</td></tr>
+<tr><td>分析它们</td><td>指代项目</td><td>1</td></tr>
+<tr><td>CrewAI</td><td>官方术语表：ScrewAI → CrewAI</td><td>1</td></tr>
+<tr><td>around</td><td>官方术语表：round → around</td><td>1</td></tr>
+<tr><td>LangGraph</td><td>官方术语表：LangGraphg → LangGraph</td><td>1</td></tr>
+<tr><td>Runtime</td><td>官方术语表：RoundTime → Runtime</td><td>1</td></tr>
+<tr><td>DeepSeek</td><td>官方术语表：DeepSeq → DeepSeek</td><td>1</td></tr>
+<tr><td>Middleware</td><td>官方术语表：midware → Middleware</td><td>1</td></tr>
+<tr><td>Harness</td><td>官方术语表：harmless → Harness</td><td>1</td></tr>
+<tr><td>Hermes</td><td>官方术语表：harmes → Hermes</td><td>1</td></tr>
+<tr><td>Code</td><td>官方术语表：codes → Code</td><td>1</td></tr>
+</table>
 </section>
 
 <div class="footer">
