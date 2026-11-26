@@ -270,7 +270,7 @@ main{padding-top:22px}
   </g>
 <rect x="24" y="66" width="278" height="128" rx="10" fill="#eaf1ff" stroke="#5b8def" stroke-width="1.5"/>
     <text x="163.0" y="92" font-size="13" font-weight="800" fill="#1d4ed8" text-anchor="middle">只考核响应速度</text>
-    <text x="163.0" y="127.0" font-size="11.2" fill="#4a5b7a" text-anchor="middle">Agent 学会复言</text>
+    <text x="163.0" y="127.0" font-size="11.2" fill="#4a5b7a" text-anchor="middle">Agent 学会敷衍</text>
     <text x="163.0" y="147.0" font-size="11.2" fill="#4a5b7a" text-anchor="middle">给出短而无用的回答</text>
     <text x="163.0" y="167.0" font-size="11.2" fill="#4a5b7a" text-anchor="middle">强行提速 → 质量塌陷</text>
 <rect x="311" y="66" width="278" height="128" rx="10" fill="#fff8dd" stroke="#d9a92e" stroke-width="1.5"/>
@@ -290,7 +290,7 @@ main{padding-top:22px}
 </svg>
   <div class="cap">图 3｜单一指标诱导效应与平衡体系重绘</div>
 </div>
-<p><span class="tag t-video">视频原述</span>画面给出三个反例：只考核响应速度，Agent 学会给出短而无用的回答来强行提速；只考核回答深度，Agent 学会绕圈子、把简单问题复杂化；只考核安全性，Agent 变成「我无法回答」的拒绝机器。</p>
+<p><span class="tag t-video">视频原述</span>画面给出三个反例：只考核响应速度，Agent 学会敷衍、给出短而无用的回答来强行提速；只考核回答深度，Agent 学会绕圈子、把简单问题复杂化；只考核安全性，Agent 变成「我无法回答」的拒绝机器。</p>
 <div class="key"><strong>结论</strong>：真正优秀的 Metrics 不是一个数字，而是一套<strong>能够相互制衡的指标体系</strong>；这与本站《评测驱动 Agent 迭代 · 完全教程》的「主指标 + 护栏指标」是同一条原则。</div>
 </section>
 <section class="sec" id="s3">
@@ -542,7 +542,7 @@ main{padding-top:22px}
 <text x="36" y="112">任务解决率 Resolution Rate</text><text x="500" y="112" text-anchor="middle">(成功退款单数 + 合理拒绝并获用户接受单数) / 总退款会话数</text><text x="790" y="112" text-anchor="middle">≥ 85%</text>
 <text x="36" y="142">自动化退单率 Auto-Refund Rate</text><text x="500" y="142" text-anchor="middle">无需人工介入的退款成功单数 / 总退款成功单数</text><text x="790" y="142" text-anchor="middle">≥ 70%</text>
 <text x="36" y="172">资金损失率 Refund Leakage Rate</text><text x="500" y="172" text-anchor="middle">不应退款却执行了退款的金额 / 总退款金额</text><text x="790" y="172" text-anchor="middle">&lt; 0.1%</text>
-<text x="36" y="202">转化挽留率 Save Rate</text><text x="500" y="202" text-anchor="middle">被合理拒后未转人工投诉单数 / 总被拒绝退款单数</text><text x="790" y="202" text-anchor="middle">≥ 30%</text>
+<text x="36" y="202">转化挽留率 Save Rate</text><text x="500" y="202" text-anchor="middle">被合理拒绝后未转人工投诉单数 / 总被拒绝退款单数</text><text x="790" y="202" text-anchor="middle">≥ 30%</text>
 </g>
 <g stroke="#e4e7ec" stroke-width="1"><line x1="24" y1="94" x2="876" y2="94"/><line x1="24" y1="124" x2="876" y2="124"/><line x1="24" y1="154" x2="876" y2="154"/><line x1="24" y1="184" x2="876" y2="184"/><line x1="24" y1="214" x2="876" y2="214"/></g>
 <text x="36" y="244" font-size="10.8" fill="#667085">指标说明：任务解决率关注 Agent 是否独立完成闭环，无论结果是「退」还是「拒」；资金损失率是风控底线，防 prompt injection 或错误逻辑导致乱退款。</text>
@@ -746,7 +746,7 @@ main{padding-top:22px}
 <rect x="598" y="62" width="278" height="132" rx="10" fill="#e9f9f0" stroke="#39a97a" stroke-width="1.5"/>
     <text x="737.0" y="88" font-size="13" font-weight="800" fill="#177a52" text-anchor="middle">③ 可行动 Actionable</text>
     <text x="737.0" y="115.0" font-size="11.2" fill="#3c6b55" text-anchor="middle">每个维度对应一次产品优化</text>
-    <text x="737.0" y="135.0" font-size="11.2" fill="#3c6b55" text-anchor="middle">✗「感」「智商高」评完不知改哪</text>
+    <text x="737.0" y="135.0" font-size="11.2" fill="#3c6b55" text-anchor="middle">✗ 笼统主观维度评完不知改哪</text>
     <text x="737.0" y="155.0" font-size="11.2" fill="#3c6b55" text-anchor="middle">✓ prompt / personal / safety</text>
     <text x="737.0" y="175.0" font-size="11.2" fill="#3c6b55" text-anchor="middle">评测的目的是让产品变好</text>
 <rect x="120" y="216" width="660" height="62" rx="10" fill="#f5f7fa" stroke="#b6c0cf" stroke-width="1.5"/>
@@ -779,7 +779,7 @@ main{padding-top:22px}
     <text x="347.0" y="115.0" font-size="11.2" fill="#7a6330" text-anchor="middle">整个过程最值钱的一步</text>
     <text x="347.0" y="135.0" font-size="11.2" fill="#7a6330" text-anchor="middle">写的过程中才发现偏好</text>
     <text x="347.0" y="155.0" font-size="11.2" fill="#7a6330" text-anchor="middle">表格比段落好读</text>
-    <text x="347.0" y="175.0" font-size="11.2" fill="#7a6330" text-anchor="middle">「我帮你做」更友好</text>
+    <text x="347.0" y="175.0" font-size="11.2" fill="#7a6330" text-anchor="middle">「我帮你做」比「已为你处理」好</text>
 <rect x="464" y="62" width="206" height="132" rx="10" fill="#e9f9f0" stroke="#39a97a" stroke-width="1.5"/>
     <text x="567.0" y="88" font-size="13" font-weight="800" fill="#177a52" text-anchor="middle">③ 提炼维度</text>
     <text x="567.0" y="115.0" font-size="11.2" fill="#3c6b55" text-anchor="middle">把理想答案摆在一起</text>
@@ -1440,6 +1440,8 @@ if __name__ == "__main__":
 <table>
 <tr><th>来源写成了</th><th>正确写法</th><th>依据</th></tr>
 <tr><td><code>p95 &lt;15s</code> / <code>P95 &lt; 15s</code></td><td><code>P95 &lt; 1.5s</code></td><td>图 11 帧 Target 列裁剪放大逐字核对</td></tr>
+<tr><td><code>agent就会学会复言</code></td><td><code>Agent 学会敷衍</code></td><td>字幕 OCR 音近误字；与「给出短而无用的回答」语义一致</td></tr>
+<tr><td><code>Ruby是写成A感</code>、<code>智商高</code></td><td><code>Rubric 写成笼统主观维度</code>、<code>智商高</code></td><td>字幕 OCR 残字；图 16 不保留残字，按语义概括</td></tr>
 <tr><td><code>Astropy</code> 和 open AI</td><td>画面原文保留；疑为 <code>Anthropic</code> + <code>OpenAI</code></td><td>视频 ② 画面字幕 + 本系列已核对的 Anthropic 文章；不擅自改写</td></tr>
 <tr><td><code>Reeression Coverage</code></td><td><code>Regression Coverage</code></td><td>02:30 帧放大 + 上下文</td></tr>
 <tr><td><code>O6servable</code> / <code>Discrim inative</code></td><td><code>Observable</code> / <code>Discriminative</code></td><td>02:00 帧放大</td></tr>
