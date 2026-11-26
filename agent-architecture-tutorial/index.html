@@ -141,7 +141,7 @@ main{padding-top:22px}
   <p class="lead">基于抖音 @AI产品千媚《Agent 开发架构怎么选？7 个代表项目系统对比》逐帧还原：Framework → Runtime → Harness 三层抽象、七个代表性项目的默认机制与控制权、以及插件 / SDK / 源码改造三种开发起点，并补齐专业名词与工程判断依据。</p>
   <div class="meta">
     <span>视频时长 20:43</span><span>发布 2026-11-05</span><span>1920×1080 逐帧核对</span>
-    <span>4 大章节 · 10 段官方章节</span><span>20 张结构图重绘</span><span>7 个项目 · 60+ 术语</span>
+    <span>4 大章节 · 10 段官方章节</span><span>20 张结构图重绘</span><span>7 个项目 · 68 条术语</span>
   </div>
   <p class="srclink">原视频：<a href="https://v.douyin.com/KBn_HS3Q5D4/" target="_blank" rel="noopener">抖音分享链接</a> ｜ <a href="https://www.douyin.com/video/7704500449094339875" target="_blank" rel="noopener">网页版直链</a> ｜ 视频 ID <code>7704500449094339875</code></p>
 </div>
@@ -195,8 +195,8 @@ main{padding-top:22px}
     <text x="127" y="122" font-size="10.5" fill="#4a5b7a">Framework → Runtime → Harness</text>
     <rect x="244" y="60" width="412" height="72" rx="10" fill="#fff8dd" stroke="#d9a92e" stroke-width="1.6"/>
     <text x="450" y="86" font-size="13" font-weight="800" fill="#8a5f00">02 七个代表性 Harness 逐个看（06:27–16:47）</text>
-    <text x="450" y="106" font-size="10.8" fill="#7a6330">Claude Agent SDK 06:27 · Deep Agents 08:17 · Pi 10:10 · OpenCode 11:46</text>
-    <text x="450" y="122" font-size="10.8" fill="#7a6330">OpenClaw 13:01 · Hermes Agent 14:18 · DeepSeek Harness 15:23</text>
+    <text x="450" y="106" font-size="10.2" fill="#7a6330">Claude Agent SDK 06:27 · Deep Agents 08:17 · Pi 10:10 · OpenCode 11:46</text>
+    <text x="450" y="122" font-size="10.2" fill="#7a6330">OpenClaw 13:01 · Hermes Agent 14:18 · DeepSeek Harness 15:23</text>
     <rect x="670" y="60" width="206" height="72" rx="10" fill="#e9f9f0" stroke="#39a97a" stroke-width="1.6"/>
     <text x="773" y="86" font-size="13" font-weight="800" fill="#177a52">03 横向对比</text>
     <text x="773" y="106" font-size="11" fill="#3c6b55">16:47 · 两根轴</text>
@@ -763,12 +763,12 @@ agent = create_agent(
 
 <section class="sec" id="s7">
 <h2>7. 特殊存在：DeepSeek Harness</h2>
-<p><span class="tag t-video">视频原述</span>「最后一个 <strong>DeepSeek Harness</strong>，我把它单独拿出来，是因为它的技术设计和前面几个项目都不一样。」画面给出的关键词是 <strong>Everything is a Plugin（一切皆插件）</strong>。</p>
+<p><span class="tag t-video">视频原述</span>「最后一个 <strong>DeepSeek Harness</strong>，我把它单独拿出来，是因为它的技术设计和前面几个项目都不一样。」画面给出的关键词是 <strong>Everything is a Plugin</strong>（中文常译作「一切皆插件」；括号内为释义，画面原文是英文）。</p>
 <p><span class="tag t-video">视频原述</span>「很多 Harness 都支持插件，但通常只是增加工具 / Skill，或者在固定的执行机制上去扩展功能。不管是 Deep Agents、Pi 还是 OpenClaw，<strong>都有内置 Agent Loop</strong>，区别只在于允许多大程度的干预和改造。」</p>
 <div class="figure">
 <svg viewBox="0 0 900 300" xmlns="http://www.w3.org/2000/svg" font-family="-apple-system,PingFang SC,Microsoft YaHei,sans-serif">
   <g text-anchor="middle">
-    <text x="450" y="26" font-size="15" font-weight="800" fill="#1e2430">DeepSeek Harness：Everything is a Plugin（一切皆插件）</text>
+    <text x="450" y="26" font-size="15" font-weight="800" fill="#1e2430">DeepSeek Harness：Everything is a Plugin</text>
     <text x="450" y="44" font-size="11" fill="#7a8496">很多 Harness 都支持插件，但通常只是加工具 / Skill；DeepSeek Harness 连核心也可换</text>
   </g>
   <g text-anchor="middle" font-size="12">
@@ -1526,8 +1526,10 @@ if __name__ == "__main__":
 <tr><td><code>Fr Pi</code> / <code>FiPi</code> / <code>FI</code>（散点图标签）</td><td><code>Pi</code></td><td>16:48 / 17:12 / 17:18 帧放大</td></tr>
 <tr><td>「开相即用」「开柏即用」「完全享控」「完全拿控」</td><td>「开箱即用」「完全掌控」</td><td>17:21–17:27 滑块画面 + 字幕</td></tr>
 <tr><td>「直接与代码？错！」等字幕断句</td><td>按画面「下载别人的代码来改？还是通过 SDK 开发？」归纳</td><td>17:39–17:42 帧 + 字幕上下文</td></tr>
-<tr><td><code>如 Langchain</code> / <code>Deep agents</code> / <code>Claude agent SDK</code>（接口章节名大小写不一）</td><td><code>LangChain</code> / <code>Deep Agents</code> / <code>Claude Agent SDK</code></td><td>官方仓库与文档大小写</td></tr>
+<tr><td><code>如 Langchain</code> / <code>Deep agents</code> / <code>Claude agent SDK</code>（接口章节名大小写不一）</td><td><code>LangChain</code> / <code>Deep Agents</code> / <code>Claude Agent SDK</code></td><td>官方 <code>chapter_list</code> 章节名 + 仓库大小写</td></tr>
 <tr><td>官方章节 13:04 OpenClaw / 14:20 Hermes</td><td>画面目录 13:01 / 14:18；正文以画面为准，接口值另列</td><td>00:36 目录帧 vs <code>chapter_list</code></td></tr>
+<tr><td>画面滑块 OCR <code>キ一定越好</code></td><td>「<strong>不一定越好</strong>」／「不代表一定就越好」</td><td>17:21 帧放大 + 字幕「不代表一定就越好」</td></tr>
+<tr><td>画面 URL 的 OCR 大小写混排：<code>docs.Langchain.com</code> / <code>docs.opencLaw.ai</code> / <code>pi.dev/docs/Latest</code></td><td>规范域名 <code>docs.langchain.com</code> / <code>docs.openclaw.ai</code> / <code>pi.dev/docs/latest</code></td><td>画面 URL 放大校对 + 官方文档域名，均已验证 200 可达</td></tr>
 <tr><td>「模型自主规划，开发者不再预设步骤」被概括成「完全不需要流程」</td><td>视频原意是「流程无法预先枚举」，不等于放弃停止条件与验证</td><td>02 章画面四问 + 第 8 章控制权代价</td></tr>
 </table>
 
@@ -1535,7 +1537,7 @@ if __name__ == "__main__":
 <ol>
 <li><strong>视频</strong>：<a href="https://v.douyin.com/KBn_HS3Q5D4/" target="_blank" rel="noopener">抖音分享短链</a> → <a href="https://www.douyin.com/video/7704500449094339875" target="_blank" rel="noopener">网页版直链</a>；标题《Agent 开发架构怎么选？7 个代表项目系统对比》，作者 @AI产品千媚，2026-11-05 09:56:47 发布，时长 20:43.37（1243.37 s），1920×1080 / 30fps，文件 77.8 MB，视频 ID <code>7704500449094339875</code>。</li>
 <li><strong>逐帧</strong>：每 3 秒抽帧 <strong>414 张</strong>；macOS Vision <code>VNRecognizeTextRequest</code>（zh-Hans + en-US，accurate，关闭语言纠正）得到 <strong>5,349 行</strong>带坐标文本；按 y 坐标分离画面文字与烧录字幕，去重后得到 <strong>1,333 行</strong>画面文本与 <strong>402 行</strong>字幕时间线；对 4 大章节的关键帧（三阶段轴、三层抽象、OpenCode 权限表、DeepSeek 插件架构、两轴散点图、三层次图、选型矩阵）放大逐字目视校对。</li>
-<li><strong>官方资料核对</strong>：Claude Agent SDK（Anthropic 文档与 <code>anthropics/claude-agent-sdk-python</code>）、Deep Agents（LangChain 文档）、Pi（<code>badlogic/pi-mono</code> 与 pi.dev 文档）、OpenCode（官方文档）、OpenClaw（<code>docs.openclaw.ai</code>）、Hermes Agent（Nous Research 开源仓库）、DeepSeek Harness（<code>deepseek-harness.github.io</code>）。</li>
+<li><strong>官方资料核对</strong>（下列链接均为<strong>视频画面中出现过</strong>的文档地址，已逐个验证可访问）：Claude Agent SDK <a href="https://github.com/anthropics/claude-agent-sdk-python" target="_blank" rel="noopener">Python 仓库</a> · <a href="https://code.claude.com/docs/en/agent-sdk/hooks" target="_blank" rel="noopener">Hooks 文档</a>；<a href="https://docs.langchain.com/oss/python/deepagents/customization" target="_blank" rel="noopener">Deep Agents 定制文档</a>；<a href="https://pi.dev/docs/latest/extensions" target="_blank" rel="noopener">Pi Extensions</a>；<a href="https://opencode.ai/docs/agents" target="_blank" rel="noopener">OpenCode Agents</a>；<a href="https://docs.openclaw.ai/automation/cron-jobs" target="_blank" rel="noopener">OpenClaw Cron Jobs</a>；<a href="https://hermes-agent.nousresearch.com/docs/user-guide/features/skills" target="_blank" rel="noopener">Hermes Skills</a>；<a href="https://deepseek-harness.github.io/deepseek-harness/reference/" target="_blank" rel="noopener">DeepSeek Harness Reference</a>。补充的实现细节另参考各项目公开仓库与文档（如 <code>badlogic/pi-mono</code>、Nous Research 开源仓库、LangChain 文档）。</li>
 <li><strong>本系列互链</strong>：<a href="../rag-evaluation-tutorial/index.html">RAG 评测完全教程</a>、<a href="../agent-evaluation-tutorial/index.html">Agent 评测体系完全教程</a>、<a href="../agent-eval-driven-tutorial/index.html">评测驱动 Agent 迭代 · 完全教程</a>；第 13.3 节的验证层与第三篇指标体系对应。</li>
 </ol>
 <div class="warn"><strong>未做的部分（如实说明）</strong>：本轮未做语音逐字转写（ASR），口播内容依据烧录字幕 OCR 时间线 + 画面文字 + 官方章节名归纳；所有标注【视频原述】的句子均能在画面或字幕中找到对应，未凭空补写台词。视频中官网/仓库截图里的细小正文（如 DeepSeek 参考文档的中文段落）因分辨率有限只做结构还原，未逐字转录。</div>

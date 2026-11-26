@@ -357,7 +357,7 @@ flowchart LR
 
 ## 7. 特殊存在 DeepSeek Harness
 
-**【视频原述】**「最后一个 **DeepSeek Harness**，我把它单独拿出来，是因为它的技术设计和前面几个项目都不一样。」画面给出的关键词是 **Everything is a Plugin（一切皆插件）**。
+**【视频原述】**「最后一个 **DeepSeek Harness**，我把它单独拿出来，是因为它的技术设计和前面几个项目都不一样。」画面给出的关键词是 **Everything is a Plugin**（中文常译作「一切皆插件」；括号内为释义，画面原文是英文）。
 
 **【视频原述】**「很多 Harness 都支持插件，但通常只是增加工具 / Skill，或者在固定的执行机制上去扩展功能。不管是 Deep Agents、Pi 还是 OpenClaw，**都有内置 Agent Loop**，区别只在于允许多大程度的干预和改造。」
 
@@ -969,15 +969,17 @@ if __name__ == "__main__":
 | `Fr Pi` / `FiPi` / `FI`（散点图标签） | `Pi` | 16:48 / 17:12 / 17:18 帧放大 |
 | 「开相即用」「开柏即用」「完全享控」「完全拿控」 | 「开箱即用」「完全掌控」 | 17:21–17:27 滑块画面 + 字幕 |
 | 「直接与代码？错！」等字幕断句 | 按画面「下载别人的代码来改？还是通过 SDK 开发？」归纳 | 17:39–17:42 帧 + 字幕上下文 |
-| `如 Langchain` / `Deep agents` / `Claude agent SDK`（接口章节名大小写不一） | `LangChain` / `Deep Agents` / `Claude Agent SDK` | 官方仓库与文档大小写 |
+| `如 Langchain` / `Deep agents` / `Claude agent SDK`（接口章节名大小写不一） | `LangChain` / `Deep Agents` / `Claude Agent SDK` | 官方 `chapter_list` 章节名 + 仓库大小写 |
 | 官方章节 13:04 OpenClaw / 14:20 Hermes | 画面目录 13:01 / 14:18；正文以画面为准，接口值另列 | 00:36 目录帧 vs `chapter_list` |
+| 画面滑块 OCR `キ一定越好` | 「**不一定越好**」／「不代表一定就越好」 | 17:21 帧放大 + 字幕「不代表一定就越好」 |
+| 画面 URL 的 OCR 大小写混排：`docs.Langchain.com` / `docs.opencLaw.ai` / `pi.dev/docs/Latest` | 规范域名 `docs.langchain.com` / `docs.openclaw.ai` / `pi.dev/docs/latest` | 画面 URL 放大校对 + 官方文档域名，均已验证 200 可达 |
 | 「模型自主规划，开发者不再预设步骤」被概括成「完全不需要流程」 | 视频原意是「流程无法预先枚举」，不等于放弃停止条件与验证 | 02 章画面四问 + 第 8 章控制权代价 |
 
 ### 16.4 还原方法与资料
 
 1. **视频**：[抖音分享短链](https://v.douyin.com/KBn_HS3Q5D4/) → [网页版直链](https://www.douyin.com/video/7704500449094339875)；标题《Agent 开发架构怎么选？7 个代表项目系统对比》，作者 @AI产品千媚，2026-11-05 09:56:47 发布，时长 20:43.37（1243.37 s），1920×1080 / 30fps，文件 77.8 MB，视频 ID `7704500449094339875`。
 2. **逐帧**：每 3 秒抽帧 **414 张**；macOS Vision `VNRecognizeTextRequest`（zh-Hans + en-US，accurate，关闭语言纠正）得到 **5,349 行**带坐标文本；按 y 坐标分离画面文字与烧录字幕，去重后得到 **1,333 行**画面文本与 **402 行**字幕时间线；对 4 大章节的关键帧（三阶段轴、三层抽象、OpenCode 权限表、DeepSeek 插件架构、两轴散点图、三层次图、选型矩阵）放大逐字目视校对。
-3. **官方资料核对**：Claude Agent SDK（Anthropic 文档与 `anthropics/claude-agent-sdk-python`）、Deep Agents（LangChain 文档）、Pi（`badlogic/pi-mono` 与 pi.dev 文档）、OpenCode（官方文档）、OpenClaw（`docs.openclaw.ai`）、Hermes Agent（Nous Research 开源仓库）、DeepSeek Harness（`deepseek-harness.github.io`）。
+3. **官方资料核对**（下列链接均为**视频画面中出现过**的文档地址，已逐个验证可访问）：Claude Agent SDK [Python 仓库](https://github.com/anthropics/claude-agent-sdk-python) · [Hooks 文档](https://code.claude.com/docs/en/agent-sdk/hooks)；[Deep Agents 定制文档](https://docs.langchain.com/oss/python/deepagents/customization)；[Pi Extensions](https://pi.dev/docs/latest/extensions)；[OpenCode Agents](https://opencode.ai/docs/agents)；[OpenClaw Cron Jobs](https://docs.openclaw.ai/automation/cron-jobs)；[Hermes Skills](https://hermes-agent.nousresearch.com/docs/user-guide/features/skills)；[DeepSeek Harness Reference](https://deepseek-harness.github.io/deepseek-harness/reference/)。补充的实现细节另参考各项目公开仓库与文档（如 `badlogic/pi-mono`、Nous Research 开源仓库、LangChain 文档）。
 4. **本系列互链**：[RAG 评测完全教程（在线阅读）](../rag-evaluation-tutorial/RAG评测完全教程.html)、[Agent 评测体系完全教程（在线阅读）](../agent-evaluation-tutorial/Agent评测体系完全教程.html)、[评测驱动 Agent 迭代 · 完全教程（在线阅读）](../agent-eval-driven-tutorial/Agent评测驱动迭代完全教程.html)；13.3 节的验证层与第三篇指标体系对应。
 
 > ⚠️ **未做的部分（如实说明）**：本轮未做语音逐字转写（ASR），口播内容依据烧录字幕 OCR 时间线 + 画面文字 + 官方章节名归纳；所有标注【视频原述】的句子均能在画面或字幕中找到对应，未凭空补写台词。视频中官网/仓库截图里的细小正文（如 DeepSeek 参考文档的中文段落）因分辨率有限只做结构还原，未逐字转录。
