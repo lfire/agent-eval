@@ -89,6 +89,14 @@ main{padding-top:22px}
 </style>
   <link rel="stylesheet" href="../assets/code-blocks.css">
   <script src="../assets/code-blocks.js" defer></script>
+<style>
+.ts-box{margin:14px 0;padding:10px 14px;background:#f8fafc;border:1px solid #e5e9f0;border-radius:9px}
+.ts-box>summary{cursor:pointer;font-weight:700;color:#2563eb;font-size:13px}
+.ts-lines{margin-top:10px;max-height:430px;overflow:auto;padding-right:6px}
+.ts-line{font-size:12.5px;line-height:1.95;color:#46536a;padding:1px 0}
+.ts-t{color:#98a2b3;font-variant-numeric:tabular-nums;margin-right:8px}
+@media print{.ts-lines{max-height:none}.ts-box{break-inside:avoid}}
+</style>
 </head>
 <body>
 <div class="topbar">
@@ -218,6 +226,15 @@ main{padding-top:22px}
 <tr><td>结语</td><td>能到达什么程度</td><td>第 16 章</td></tr>
 </table>
 <div class="note">一句话：<strong>Judge 不是一把尺，而是一个有性格的面试官；完美的评估系统不存在，但可以构建一个「受控的系统」。</strong></div>
+<details class="ts-box"><summary>本章语音逐字稿（ASR · 已校正）（逐字 · 6 句）</summary>
+<div class="ts-lines">
+<div class="ts-line"><span class="ts-t">[00:00]</span> Hello 大家今天我们继续 Agent 评测相关的讨论</div>
+<div class="ts-line"><span class="ts-t">[00:04]</span> 好假设你一个场景啊你高高兴兴的写好了 Rubric</div>
+<div class="ts-line"><span class="ts-t">[00:08]</span> 配好了 GPT 作为裁判你跑了一遍 evaluation</div>
+<div class="ts-line"><span class="ts-t">[00:12]</span> 发现新版本的 Agent 分数比旧版本高了一大截</div>
+<div class="ts-line"><span class="ts-t">[00:15]</span> 你刚准备在群里欢呼突然随手发了几个 bi-case</div>
+<div class="ts-line"><span class="ts-t">[00:19]</span> 冷汗都下来了</div>
+</div></details>
 </section>
 <section class="sec" id="s2">
 <h2>2. 为什么 LLM Judge 会犯错</h2>
@@ -247,6 +264,16 @@ main{padding-top:22px}
 </div>
 <div class="key"><strong>核心判断</strong>：LLM Judge 本身也是一个大模型、也是一个 agent，它「进行概率预测」，依据训练数据给出判断——既然是预测，就必然<strong>有幻觉、有先入为主</strong>。所以建 evaluation 系统时，面对的不是确定性规则，而是「一个有性格、有偏见的面试官」。</div>
 <p><span class="tag t-extra">补充</span>这与本站《Agent 评测方法论》里「Test 验证正确性、Evaluation 衡量质量」是同一条逻辑链： Rule Judge 属于确定性判定，LLM Judge 属于概率性质量判断，二者的失效模式完全不同。</p>
+<details class="ts-box"><summary>本章语音逐字稿（ASR · 已校正）（逐字 · 7 句）</summary>
+<div class="ts-lines">
+<div class="ts-line"><span class="ts-t">[00:20]</span> 第一个场景一个回答只有20个字严谨一该解决了问题</div>
+<div class="ts-line"><span class="ts-t">[00:24]</span> 另一个回答啰里啰锁500个字全是废话</div>
+<div class="ts-line"><span class="ts-t">[00:27]</span> 结果 Judge 竟给了500个字的大高分</div>
+<div class="ts-line"><span class="ts-t">[00:30]</span> 第二个场景两个回答只量差不多</div>
+<div class="ts-line"><span class="ts-t">[00:33]</span> 但 Judge 总是得排在第一个的选项大高分</div>
+<div class="ts-line"><span class="ts-t">[00:36]</span> 你突然意识到我被 Judge 骗了</div>
+<div class="ts-line"><span class="ts-t">[00:38]</span> 他真的把我的产品带上一个看似完美实则地下的深渊</div>
+</div></details>
 </section>
 <section class="sec" id="s3">
 <h2>3. 三个「被 Judge 骗了」的开场场景</h2>
@@ -285,6 +312,17 @@ main{padding-top:22px}
 <li><strong>看似完美</strong>：新版本分数一片飘红，刚准备在群里欢呼，却意识到「我被 Judge 骗了」，它正在把产品带向一个看似完美的错误方向。</li>
 </ol>
 <div class="note">这三个场景分别对应后面的冗长偏见、位置偏见，以及「分数漂亮但区分度丢失」的综合后果。</div>
+<details class="ts-box"><summary>本章语音逐字稿（ASR · 已校正）（逐字 · 8 句）</summary>
+<div class="ts-lines">
+<div class="ts-line"><span class="ts-t">[00:42]</span> 为什么 Judge 会犯错</div>
+<div class="ts-line"><span class="ts-t">[00:45]</span> 那他的偏见都有哪些</div>
+<div class="ts-line"><span class="ts-t">[00:46]</span> 那最重要的是我们如何去修正这些偏见</div>
+<div class="ts-line"><span class="ts-t">[00:49]</span> 为什么 Judge 会犯错</div>
+<div class="ts-line"><span class="ts-t">[00:52]</span> 因为 Judge 本身也是一个大模型</div>
+<div class="ts-line"><span class="ts-t">[00:54]</span> 他本身也是一个 Agent</div>
+<div class="ts-line"><span class="ts-t">[00:55]</span> 他不是执行代码不是弱家计</div>
+<div class="ts-line"><span class="ts-t">[00:57]</span> 他是进行概率预测</div>
+</div></details>
 </section>
 <section class="sec" id="s4">
 <h2>4. 四类系统性偏见总览</h2>
@@ -323,6 +361,16 @@ main{padding-top:22px}
 <tr><td>4</td><td>老好人偏见</td><td>Lenience Bias</td><td>它不愿意当坏人</td><td>无惩罚机制就普遍给高分</td></tr>
 </table>
 <div class="key">关键点：这四类<strong>不是偶发错误，而是可复现、可对冲的系统性偏差</strong>。因此不能靠「换个提示词求它客观」，要靠工程化 SOP。</div>
+<details class="ts-box"><summary>本章语音逐字稿（ASR · 已校正）（逐字 · 7 句）</summary>
+<div class="ts-lines">
+<div class="ts-line"><span class="ts-t">[00:59]</span> 他在预测根据我的训练数据</div>
+<div class="ts-line"><span class="ts-t">[01:02]</span> 一个好答案通常长什么样啊</div>
+<div class="ts-line"><span class="ts-t">[01:04]</span> 既然是预测他就一定会有偏好有幻觉有先入为主</div>
+<div class="ts-line"><span class="ts-t">[01:07]</span> 所以当我们建立 Evasion 系统时</div>
+<div class="ts-line"><span class="ts-t">[01:10]</span> 你面对的不是一个标准的客图池</div>
+<div class="ts-line"><span class="ts-t">[01:12]</span> 而是一个有性格偏见的面试官</div>
+<div class="ts-line"><span class="ts-t">[01:15]</span> 好那要消除偏见先要看清楚偏见对不对</div>
+</div></details>
 </section>
 <section class="sec" id="s5">
 <h2>5. 偏见一：冗长偏见（Verbosity Bias）</h2>
@@ -351,6 +399,18 @@ main{padding-top:22px}
 <p><span class="tag t-video">视频原述</span>口播原意：「模型是个字数控，认为写得越多越好，哪怕里面夹杂了大量的幻觉和废话」。画面注释是「看起来认真的人」——长回答更容易显得认真、详实，于是被系统性高估。</p>
 <p><span class="tag t-extra">补充</span><strong>代价</strong>不只是评错：Agent 会学着「越啰嗦越好」，Token、时延、用户阅读成本同步恶化；而简洁准确的回答反而被低估。这是典型的<strong>指标诱导行为</strong>，与本站《Agent 评测指标系统》里「你衡量什么就得到什么」一致。</p>
 <div class="note"><strong>对冲</strong>：在 Rubric 里给简洁性设明确权重与扣分锚点，并提供满分范文作参照（见第 11 章）。</div>
+<details class="ts-box"><summary>本章语音逐字稿（ASR · 已校正）（逐字 · 9 句）</summary>
+<div class="ts-lines">
+<div class="ts-line"><span class="ts-t">[01:18]</span> 作为产品经理你会发现</div>
+<div class="ts-line"><span class="ts-t">[01:20]</span> Judge 常犯的错误有以下四种</div>
+<div class="ts-line"><span class="ts-t">[01:23]</span> 第一种拥藏偏见</div>
+<div class="ts-line"><span class="ts-t">[01:24]</span> 好记一点来说就是他看起来认真的人</div>
+<div class="ts-line"><span class="ts-t">[01:27]</span> 他经常会被骗</div>
+<div class="ts-line"><span class="ts-t">[01:28]</span> 那模型是个字数不控</div>
+<div class="ts-line"><span class="ts-t">[01:29]</span> 他潜意识力认为写的越多态度越诚恳质量就越高</div>
+<div class="ts-line"><span class="ts-t">[01:33]</span> 哪怕里面夹杂了大量的幻觉和废话</div>
+<div class="ts-line"><span class="ts-t">[01:36]</span> 就是你给这种人了有苦劳的人</div>
+</div></details>
 </section>
 <section class="sec" id="s6">
 <h2>6. 偏见二：位置偏见（Position Bias）</h2>
@@ -379,6 +439,17 @@ main{padding-top:22px}
 <p><span class="tag t-video">视频原述</span>口播：「A vs B 的话，他更倾向于选出现在前面的那个，第一眼印象往往占了便宜」。画面注释「第一印象决定结果」。</p>
 <p><span class="tag t-extra">补充</span><strong>代价</strong>是评测结果不可复现：同一对答案只要换个顺序，结论就可能翻转。这正是「直接打分」之外的另一类失效——<strong>相对比较也有偏见</strong>。</p>
 <div class="note"><strong>对冲</strong>：Pairwise + Swap，正序反序各测一次；两次结论不一致说明 Judge 在瞎猜，直接转人工介入（见第 13 章）。</div>
+<details class="ts-box"><summary>本章语音逐字稿（ASR · 已校正）（逐字 · 8 句）</summary>
+<div class="ts-lines">
+<div class="ts-line"><span class="ts-t">[01:39]</span> 那第二个就是位置偏见怎么说</div>
+<div class="ts-line"><span class="ts-t">[01:41]</span> 就是他相信第一印象</div>
+<div class="ts-line"><span class="ts-t">[01:44]</span> 就如果你让 Judge 做对比测试</div>
+<div class="ts-line"><span class="ts-t">[01:46]</span> A VS B 的话</div>
+<div class="ts-line"><span class="ts-t">[01:47]</span> 他更倾向于选出现在前面的那个</div>
+<div class="ts-line"><span class="ts-t">[01:50]</span> 就像人类批改试卷第一眼印象往往占了便宜</div>
+<div class="ts-line"><span class="ts-t">[01:54]</span> 就是位置偏见</div>
+<div class="ts-line"><span class="ts-t">[01:55]</span> 第三自我偏好偏见</div>
+</div></details>
 </section>
 <section class="sec" id="s7">
 <h2>7. 偏见三：自我偏好偏见（Self-Preference Bias）</h2>
@@ -407,6 +478,17 @@ main{padding-top:22px}
 <p><span class="tag t-video">视频原述</span>口播举例：「他总是很喜欢 Claude，喜欢 Claude 的回答，对亲生骨肉的语气风格」有天然偏好。画面注释「和自己一样的人」。</p>
 <p><span class="tag t-extra">补充</span><strong>代价</strong>：换裁判模型后分数系统性漂移，跨厂商、跨版本的比较失去意义；被测 Agent 若恰好与裁判不同源，会被不公平地低估。这也与本站《Agent 评测方法论》记录的「模型偏见」和「评分漂移」两坑对应。</p>
 <div class="note"><strong>对冲</strong>：回避原则（不用同源模型当裁判）+ 多厂商陪审团取均值 + 分歧样本人工复核（见第 12 章）。</div>
+<details class="ts-box"><summary>本章语音逐字稿（ASR · 已校正）（逐字 · 8 句）</summary>
+<div class="ts-lines">
+<div class="ts-line"><span class="ts-t">[01:57]</span> 就和自己一样的人他总是很喜欢</div>
+<div class="ts-line"><span class="ts-t">[01:59]</span> 就 GPT 喜欢 GPT 的回答 Claude 喜欢 Claude 的回答</div>
+<div class="ts-line"><span class="ts-t">[02:03]</span> 他们对亲身骨肉的语气风格有天然的亲近感</div>
+<div class="ts-line"><span class="ts-t">[02:06]</span> 第四老好人偏见</div>
+<div class="ts-line"><span class="ts-t">[02:08]</span> 就是他不愿意当坏人</div>
+<div class="ts-line"><span class="ts-t">[02:09]</span> 就如果你不给他明确的惩罚机制</div>
+<div class="ts-line"><span class="ts-t">[02:12]</span> Judge 倾向于给高分</div>
+<div class="ts-line"><span class="ts-t">[02:14]</span> 这就导致你的评估结果失去了区分度</div>
+</div></details>
 </section>
 <section class="sec" id="s8">
 <h2>8. 偏见四：老好人偏见（Lenience Bias）</h2>
@@ -435,6 +517,17 @@ main{padding-top:22px}
 <p><span class="tag t-video">视频原述</span>口播：「如果你不给他明确的惩罚机制，Judge 倾向于给高分，这就导致你的评估结果失去了区分度」。画面注释「它不愿意当坏人」。</p>
 <p><span class="tag t-extra">补充</span>这是四类里<strong>最隐蔽</strong>的一类：分数看起来都很好，没有明显错误，但所有版本都挤在 4–5 分，评测实际上已经失效。产品经理最容易在这一步被「一片飘红」误导。</p>
 <div class="note"><strong>对冲</strong>：Rubric 写清扣分档位、给满分范文拉出量表两端、并用人评校准基线检查分数分布（见第 11、15 章）。</div>
+<details class="ts-box"><summary>本章语音逐字稿（ASR · 已校正）（逐字 · 8 句）</summary>
+<div class="ts-lines">
+<div class="ts-line"><span class="ts-t">[02:16]</span> 全是优无法定位真正的 bug</div>
+<div class="ts-line"><span class="ts-t">[02:18]</span> 好如何消除大模型的偏见呢</div>
+<div class="ts-line"><span class="ts-t">[02:21]</span> 作为产品经理</div>
+<div class="ts-line"><span class="ts-t">[02:22]</span> 你不能指望裁判自觉对吧</div>
+<div class="ts-line"><span class="ts-t">[02:24]</span> 也不是在提示词里面要求模型你客观一点</div>
+<div class="ts-line"><span class="ts-t">[02:27]</span> 而是靠一套工程化的 SOP 取约束它</div>
+<div class="ts-line"><span class="ts-t">[02:31]</span> 第一种第一个就是立法典</div>
+<div class="ts-line"><span class="ts-t">[02:34]</span> 总结起来就是立法典</div>
+</div></details>
 </section>
 <section class="sec" id="s9">
 <h2>9. 共同后果：分数还在，区分度没了</h2>
@@ -479,6 +572,18 @@ main{padding-top:22px}
 <tr><td>位置/自我偏好叠加</td><td>相对排序随顺序与裁判模型漂移</td><td>不能</td></tr>
 </table>
 <div class="key">「评测失去区分度，等于没有评测」——<strong>主指标改善但护栏失守、回归集无退步</strong>这套上线判断，前提就是分数本身可比；偏见不处理，整套判断都是空中楼阁。</div>
+<details class="ts-box"><summary>本章语音逐字稿（ASR · 已校正）（逐字 · 9 句）</summary>
+<div class="ts-lines">
+<div class="ts-line"><span class="ts-t">[02:35]</span> 这是价值的灵魂啊</div>
+<div class="ts-line"><span class="ts-t">[02:37]</span> 就不仅仅是规则</div>
+<div class="ts-line"><span class="ts-t">[02:39]</span> 别只写请打分</div>
+<div class="ts-line"><span class="ts-t">[02:40]</span> 而是要在 Rubric 理明确权重</div>
+<div class="ts-line"><span class="ts-t">[02:42]</span> 比如简洁性占40% 超过三句话</div>
+<div class="ts-line"><span class="ts-t">[02:45]</span> 直接扣两分你看我这里面都是谅话了</div>
+<div class="ts-line"><span class="ts-t">[02:48]</span> 简洁性占40% 超过三句话直接扣两分</div>
+<div class="ts-line"><span class="ts-t">[02:52]</span> 第二就是你要给一个参考</div>
+<div class="ts-line"><span class="ts-t">[02:54]</span> 就给价借一个满分的范围</div>
+</div></details>
 </section>
 <section class="sec" id="s10">
 <h2>10. 消除偏见的总原则：工程化 SOP</h2>
@@ -520,6 +625,16 @@ main{padding-top:22px}
 <tr><td>5</td><td>做审计</td><td>Human Calibration</td><td>人机对齐测试</td></tr>
 </table>
 <div class="note">目标不是「消除所有偏见」——视频结语明确说完美的评估系统不存在；目标是<strong>了解并对冲偏见，构建一个受控的系统</strong>。</div>
+<details class="ts-box"><summary>本章语音逐字稿（ASR · 已校正）（逐字 · 7 句）</summary>
+<div class="ts-lines">
+<div class="ts-line"><span class="ts-t">[02:55]</span> 告诉他对比这个范围谁更接近谁赢</div>
+<div class="ts-line"><span class="ts-t">[02:58]</span> 有了参照物啊价值就不容易被长篇大论带篇</div>
+<div class="ts-line"><span class="ts-t">[03:02]</span> 这就能克服他喜欢写的长的这种答案</div>
+<div class="ts-line"><span class="ts-t">[03:07]</span> 第二就是我们说了他比较喜欢自己的回答</div>
+<div class="ts-line"><span class="ts-t">[03:10]</span> 那我们怎么让他去逼近亲呢</div>
+<div class="ts-line"><span class="ts-t">[03:12]</span> 第一种方这个很容易想吗</div>
+<div class="ts-line"><span class="ts-t">[03:14]</span> 就是你 GPT</div>
+</div></details>
 </section>
 <section class="sec" id="s11">
 <h2>11. 方法一 · 立法典：Rubric + Reference</h2>
@@ -554,6 +669,15 @@ main{padding-top:22px}
 <li><strong>满分范文</strong>：给裁判一个参考答案作参照物，「有了参照物，裁判就不容易被长篇大论带偏」。</li>
 </ul>
 <div class="note"><strong>【补充】</strong> 40%、3 句、2 分都是视频给出的示例数值，应按业务口径重新校准；本站《Agent 评测指标系统》的「Rubric 三要素（维度 / 分级 / 描述）」与「3 分是日常尺度」可直接配合使用。</div>
+<details class="ts-box"><summary>本章语音逐字稿（ASR · 已校正）（逐字 · 6 句）</summary>
+<div class="ts-lines">
+<div class="ts-line"><span class="ts-t">[03:16]</span> 你用 GPT 开发的 Agent 就不要用 GPT 去打分</div>
+<div class="ts-line"><span class="ts-t">[03:18]</span> 对吧就换一个模型去打分</div>
+<div class="ts-line"><span class="ts-t">[03:20]</span> 第二种怎么说呢就是你用多个不同的厂商的模型去打分</div>
+<div class="ts-line"><span class="ts-t">[03:24]</span> 然后如果裁判意见不一呢你再自己去审核一下去重裁一下</div>
+<div class="ts-line"><span class="ts-t">[03:27]</span> 这就是毕竟亲原则去解决了模型倾向于选择自己的回答的这个问题</div>
+<div class="ts-line"><span class="ts-t">[03:33]</span> 这个偏见第三个是换玩法</div>
+</div></details>
 </section>
 <section class="sec" id="s12">
 <h2>12. 方法二 · 避近亲：Avoidance + Ensemble</h2>
@@ -592,6 +716,17 @@ main{padding-top:22px}
 <tr><td>人工复核</td><td>分歧大的样本由人再审核</td><td>模型集体失准</td></tr>
 </table>
 <div class="note"><strong>【补充】</strong> 本站《Agent 评测方法论》记录的解法与此一致：「用不同家族的模型当裁判，或同时用多个模型打分取均值」，并建议每轮固定裁判版本与参数、保留 10%–20% 人工复评样本做校准基线。</div>
+<details class="ts-box"><summary>本章语音逐字稿（ASR · 已校正）（逐字 · 8 句）</summary>
+<div class="ts-lines">
+<div class="ts-line"><span class="ts-t">[03:35]</span> 这个就是放弃绝对打分改做选择题</div>
+<div class="ts-line"><span class="ts-t">[03:38]</span> 第一个就是你做这个 playwatch</div>
+<div class="ts-line"><span class="ts-t">[03:40]</span> 这个很出名了就来点对决</div>
+<div class="ts-line"><span class="ts-t">[03:42]</span> 其实我们在使用 chatbot</div>
+<div class="ts-line"><span class="ts-t">[03:44]</span> chatgbt 或者是 cloud 或者是 gmail 都会发现它会提供</div>
+<div class="ts-line"><span class="ts-t">[03:47]</span> a b 两个选择让你选对吧</div>
+<div class="ts-line"><span class="ts-t">[03:49]</span> 就是让价值在 a 和 b 之间选一个更好的模型和人一样</div>
+<div class="ts-line"><span class="ts-t">[03:53]</span> 它更擅长比大小而不擅长去直接打分</div>
+</div></details>
 </section>
 <section class="sec" id="s13">
 <h2>13. 方法三 · 换玩法：Pairwise + Swap</h2>
@@ -624,6 +759,17 @@ main{padding-top:22px}
 <li>不一致即标记为不可判定，转人工复核，而不是硬取一个平均分。</li>
 </ol>
 <div class="note"><strong>【补充】</strong> 这一招同时产出可复现的相对排序；工程实现见第 18 章的 <code>pairwise_swap.py</code>。</div>
+<details class="ts-box"><summary>本章语音逐字稿（ASR · 已校正）（逐字 · 8 句）</summary>
+<div class="ts-lines">
+<div class="ts-line"><span class="ts-t">[03:56]</span> 第二就是交换位置就是你先测 a 与 b 的比对比</div>
+<div class="ts-line"><span class="ts-t">[04:00]</span> 然后再测 b 对比 a</div>
+<div class="ts-line"><span class="ts-t">[04:02]</span> 如果价值两次选的不一致说明它在瞎猜</div>
+<div class="ts-line"><span class="ts-t">[04:04]</span> 这个 case 直接标记为平局或人工介入了</div>
+<div class="ts-line"><span class="ts-t">[04:07]</span> 就是测出来就人工介入</div>
+<div class="ts-line"><span class="ts-t">[04:09]</span> 第四个就是讲理由</div>
+<div class="ts-line"><span class="ts-t">[04:10]</span> 就证据要放在前面评分在后面</div>
+<div class="ts-line"><span class="ts-t">[04:12]</span> 这怎么说呢就是 prompt 的理强制要求</div>
+</div></details>
 </section>
 <section class="sec" id="s14">
 <h2>14. 方法四 · 讲理由：CoT Scoring</h2>
@@ -652,6 +798,17 @@ main{padding-top:22px}
 <p><span class="tag t-video">视频原述</span>画面注释「证据在前，评分在后」。口播给出的 prompt 结构：「<strong>请先根据 rubric 逐项写出评分理由，最后再给出结论</strong>」，并给出经验效果「胡乱打分的概率降低 <strong>70%</strong>」。</p>
 <p><span class="tag t-video">视频原述</span>这就像写判决书：先列依据、再给判决。先写理由会约束后续打分，也让评分过程可追溯、可复核。</p>
 <div class="note"><strong>【补充】</strong> 与本站 Judge 四原则里的「先看证据、结构化结果」同源；70% 为口播经验值，落地应自建 A/B 基线验证，不要直接当通用指标写进汇报。</div>
+<details class="ts-box"><summary>本章语音逐字稿（ASR · 已校正）（逐字 · 8 句）</summary>
+<div class="ts-lines">
+<div class="ts-line"><span class="ts-t">[04:15]</span> 仅先根据 Rubric 逐项写出评分理由</div>
+<div class="ts-line"><span class="ts-t">[04:18]</span> 最后再给出结论</div>
+<div class="ts-line"><span class="ts-t">[04:20]</span> 就当价你必须写出证据时</div>
+<div class="ts-line"><span class="ts-t">[04:22]</span> 它胡乱打分的概率会降低70%</div>
+<div class="ts-line"><span class="ts-t">[04:25]</span> 这就像写判决书</div>
+<div class="ts-line"><span class="ts-t">[04:26]</span> 必须先列法条再给判决</div>
+<div class="ts-line"><span class="ts-t">[04:29]</span> 所以说证据在前</div>
+<div class="ts-line"><span class="ts-t">[04:30]</span> 你就是你在 prompt 里面限制就完了</div>
+</div></details>
 </section>
 <section class="sec" id="s15">
 <h2>15. 方法五 · 做审计：Human Calibration</h2>
@@ -691,6 +848,20 @@ main{padding-top:22px}
 <tr><td>回修</td><td>低于门槛先重写 Rubric，再抽一轮</td><td>Rubric 新版本记录</td></tr>
 </table>
 <div class="key"><strong>100 case 与 80% 是视频给出的示例阈值</strong>，需按业务量、标注成本与风险等级校准；本站《Agent 评测方法论》给的是「保留 10%–20% 人工复评样本」，两者可拼成一套：小样本常态化校准 + 全量定期审计。</div>
+<details class="ts-box"><summary>本章语音逐字稿（ASR · 已校正）（逐字 · 11 句）</summary>
+<div class="ts-lines">
+<div class="ts-line"><span class="ts-t">[04:32]</span> 最后做审计</div>
+<div class="ts-line"><span class="ts-t">[04:33]</span> 这是最后也是最关键的闭环</div>
+<div class="ts-line"><span class="ts-t">[04:35]</span> 也就是 meta evasion</div>
+<div class="ts-line"><span class="ts-t">[04:38]</span> 就你得问一句裁判靠谱吗</div>
+<div class="ts-line"><span class="ts-t">[04:40]</span> 这是 LM 架子本身靠谱吗</div>
+<div class="ts-line"><span class="ts-t">[04:42]</span> 那怎么做呢</div>
+<div class="ts-line"><span class="ts-t">[04:43]</span> 就随机抽取100个 case</div>
+<div class="ts-line"><span class="ts-t">[04:44]</span> 请业务大专家打分</div>
+<div class="ts-line"><span class="ts-t">[04:46]</span> 再让架子打分</div>
+<div class="ts-line"><span class="ts-t">[04:47]</span> 只要当人机一致性大于80%的时候</div>
+<div class="ts-line"><span class="ts-t">[04:50]</span> 你的评估系统才算真正上岗</div>
+</div></details>
 </section>
 <section class="sec" id="s16">
 <h2>16. 结语与本站体系对齐</h2>
@@ -736,6 +907,19 @@ main{padding-top:22px}
 <tr><td>区分度 / 受控系统</td><td><a href="../agent-eval-driven-tutorial/指标地图.html">指标地图</a></td><td>主指标 + 护栏、P0/P1/P2 的上线判断前提</td></tr>
 </table>
 <div class="note"><strong>【补充】</strong> 本视频没有展开 pass@k、执行引擎并发隔离、Trace 归因等工程细节，需要时见第三篇与阿里工程实践章节。</div>
+<details class="ts-box"><summary>本章语音逐字稿（ASR · 已校正）（逐字 · 10 句）</summary>
+<div class="ts-lines">
+<div class="ts-line"><span class="ts-t">[04:52]</span> 就如果对其效率低了</div>
+<div class="ts-line"><span class="ts-t">[04:53]</span> 别跑 evaluation 先重写你的 Rubric</div>
+<div class="ts-line"><span class="ts-t">[04:56]</span> 最后吧</div>
+<div class="ts-line"><span class="ts-t">[04:57]</span> 就我们要接受个现实</div>
+<div class="ts-line"><span class="ts-t">[04:58]</span> 就是完美的诈值是不存在的</div>
+<div class="ts-line"><span class="ts-t">[05:01]</span> 那我们如果已经了解了它的偏见</div>
+<div class="ts-line"><span class="ts-t">[05:04]</span> 且设置了对偏见的对冲</div>
+<div class="ts-line"><span class="ts-t">[05:06]</span> 对吧</div>
+<div class="ts-line"><span class="ts-t">[05:07]</span> 我们就可以去构建一个受控的系统</div>
+<div class="ts-line"><span class="ts-t">[05:09]</span> 这是我们产品经理的目标</div>
+</div></details>
 </section>
 <section class="sec" id="s17">
 <h2>17. 补充篇 A：专业名词速查（42 条）</h2>
@@ -951,6 +1135,174 @@ if __name__ == "__main__":
 <li><strong>本系列互链</strong>：<a href="../rag-evaluation-tutorial/RAG评测完全教程.html">RAG 评测（在线阅读）</a> ｜ <a href="../agent-evaluation-tutorial/Agent评测体系完全教程.html">Agent 评测体系（在线阅读）</a> ｜ <a href="../agent-eval-driven-tutorial/Agent评测驱动迭代完全教程.html">评测驱动迭代（在线阅读）</a> ｜ <a href="../agent-architecture-tutorial/Agent开发架构选型完全教程.html">开发架构选型（在线阅读）</a> ｜ <a href="../agent-metrics-tutorial/Agent评测指标系统完全教程.html">评测指标系统（在线阅读）</a> ｜ <a href="../agent-eval-method-tutorial/Agent评测方法论完全教程.html">评测方法论（在线阅读）</a>。</li>
 </ol>
 <div class="warn"><strong>未做的部分（如实说明）</strong>：本轮未做语音逐字转写（ASR），口播依据烧录字幕 OCR 时间线 + 画面文字归纳；字幕识别噪声较大，涉及具体数值（70% / 100 case / 80% / 40% / 扣 2 分）均按字幕原文保留并标注为经验示例；画面手绘符号（如 <code>≠</code>）按语义还原。</div>
+<p><strong>附录 · 全片语音逐字稿（ASR · 128 段 · 按视频/章节分组）</strong></p>
+<p>由离线语音识别还原的完整口播，逐段保留时间码；点击标题展开。视频作者制作的烧录字幕为精简重排版，两者不完全逐字对应属正常现象。</p>
+<details class="ts-box"><summary>引言（逐字 · 14 句）</summary>
+<div class="ts-lines">
+<div class="ts-line"><span class="ts-t">[00:00]</span> Hello 大家今天我们继续 Agent 评测相关的讨论</div>
+<div class="ts-line"><span class="ts-t">[00:04]</span> 好假设你一个场景啊你高高兴兴的写好了 Rubric</div>
+<div class="ts-line"><span class="ts-t">[00:08]</span> 配好了 GPT 作为裁判你跑了一遍 evaluation</div>
+<div class="ts-line"><span class="ts-t">[00:12]</span> 发现新版本的 Agent 分数比旧版本高了一大截</div>
+<div class="ts-line"><span class="ts-t">[00:15]</span> 你刚准备在群里欢呼突然随手发了几个 bi-case</div>
+<div class="ts-line"><span class="ts-t">[00:19]</span> 冷汗都下来了</div>
+<div class="ts-line"><span class="ts-t">[00:20]</span> 第一个场景一个回答只有20个字严谨一该解决了问题</div>
+<div class="ts-line"><span class="ts-t">[00:24]</span> 另一个回答啰里啰锁500个字全是废话</div>
+<div class="ts-line"><span class="ts-t">[00:27]</span> 结果 Judge 竟给了500个字的大高分</div>
+<div class="ts-line"><span class="ts-t">[00:30]</span> 第二个场景两个回答只量差不多</div>
+<div class="ts-line"><span class="ts-t">[00:33]</span> 但 Judge 总是得排在第一个的选项大高分</div>
+<div class="ts-line"><span class="ts-t">[00:36]</span> 你突然意识到我被 Judge 骗了</div>
+<div class="ts-line"><span class="ts-t">[00:38]</span> 他真的把我的产品带上一个看似完美实则地下的深渊</div>
+<div class="ts-line"><span class="ts-t">[00:42]</span> 为什么 Judge 会犯错</div>
+</div></details>
+<details class="ts-box"><summary>LLM Judge 的偏见（逐字 · 41 句）</summary>
+<div class="ts-lines">
+<div class="ts-line"><span class="ts-t">[00:45]</span> 那他的偏见都有哪些</div>
+<div class="ts-line"><span class="ts-t">[00:46]</span> 那最重要的是我们如何去修正这些偏见</div>
+<div class="ts-line"><span class="ts-t">[00:49]</span> 为什么 Judge 会犯错</div>
+<div class="ts-line"><span class="ts-t">[00:52]</span> 因为 Judge 本身也是一个大模型</div>
+<div class="ts-line"><span class="ts-t">[00:54]</span> 他本身也是一个 Agent</div>
+<div class="ts-line"><span class="ts-t">[00:55]</span> 他不是执行代码不是弱家计</div>
+<div class="ts-line"><span class="ts-t">[00:57]</span> 他是进行概率预测</div>
+<div class="ts-line"><span class="ts-t">[00:59]</span> 他在预测根据我的训练数据</div>
+<div class="ts-line"><span class="ts-t">[01:02]</span> 一个好答案通常长什么样啊</div>
+<div class="ts-line"><span class="ts-t">[01:04]</span> 既然是预测他就一定会有偏好有幻觉有先入为主</div>
+<div class="ts-line"><span class="ts-t">[01:07]</span> 所以当我们建立 Evasion 系统时</div>
+<div class="ts-line"><span class="ts-t">[01:10]</span> 你面对的不是一个标准的客图池</div>
+<div class="ts-line"><span class="ts-t">[01:12]</span> 而是一个有性格偏见的面试官</div>
+<div class="ts-line"><span class="ts-t">[01:15]</span> 好那要消除偏见先要看清楚偏见对不对</div>
+<div class="ts-line"><span class="ts-t">[01:18]</span> 作为产品经理你会发现</div>
+<div class="ts-line"><span class="ts-t">[01:20]</span> Judge 常犯的错误有以下四种</div>
+<div class="ts-line"><span class="ts-t">[01:23]</span> 第一种拥藏偏见</div>
+<div class="ts-line"><span class="ts-t">[01:24]</span> 好记一点来说就是他看起来认真的人</div>
+<div class="ts-line"><span class="ts-t">[01:27]</span> 他经常会被骗</div>
+<div class="ts-line"><span class="ts-t">[01:28]</span> 那模型是个字数不控</div>
+<div class="ts-line"><span class="ts-t">[01:29]</span> 他潜意识力认为写的越多态度越诚恳质量就越高</div>
+<div class="ts-line"><span class="ts-t">[01:33]</span> 哪怕里面夹杂了大量的幻觉和废话</div>
+<div class="ts-line"><span class="ts-t">[01:36]</span> 就是你给这种人了有苦劳的人</div>
+<div class="ts-line"><span class="ts-t">[01:39]</span> 那第二个就是位置偏见怎么说</div>
+<div class="ts-line"><span class="ts-t">[01:41]</span> 就是他相信第一印象</div>
+<div class="ts-line"><span class="ts-t">[01:44]</span> 就如果你让 Judge 做对比测试</div>
+<div class="ts-line"><span class="ts-t">[01:46]</span> A VS B 的话</div>
+<div class="ts-line"><span class="ts-t">[01:47]</span> 他更倾向于选出现在前面的那个</div>
+<div class="ts-line"><span class="ts-t">[01:50]</span> 就像人类批改试卷第一眼印象往往占了便宜</div>
+<div class="ts-line"><span class="ts-t">[01:54]</span> 就是位置偏见</div>
+<div class="ts-line"><span class="ts-t">[01:55]</span> 第三自我偏好偏见</div>
+<div class="ts-line"><span class="ts-t">[01:57]</span> 就和自己一样的人他总是很喜欢</div>
+<div class="ts-line"><span class="ts-t">[01:59]</span> 就 GPT 喜欢 GPT 的回答 Claude 喜欢 Claude 的回答</div>
+<div class="ts-line"><span class="ts-t">[02:03]</span> 他们对亲身骨肉的语气风格有天然的亲近感</div>
+<div class="ts-line"><span class="ts-t">[02:06]</span> 第四老好人偏见</div>
+<div class="ts-line"><span class="ts-t">[02:08]</span> 就是他不愿意当坏人</div>
+<div class="ts-line"><span class="ts-t">[02:09]</span> 就如果你不给他明确的惩罚机制</div>
+<div class="ts-line"><span class="ts-t">[02:12]</span> Judge 倾向于给高分</div>
+<div class="ts-line"><span class="ts-t">[02:14]</span> 这就导致你的评估结果失去了区分度</div>
+<div class="ts-line"><span class="ts-t">[02:16]</span> 全是优无法定位真正的 bug</div>
+<div class="ts-line"><span class="ts-t">[02:18]</span> 好如何消除大模型的偏见呢</div>
+</div></details>
+<details class="ts-box"><summary>消除偏见的方法（逐字 · 66 句）</summary>
+<div class="ts-lines">
+<div class="ts-line"><span class="ts-t">[02:21]</span> 作为产品经理</div>
+<div class="ts-line"><span class="ts-t">[02:22]</span> 你不能指望裁判自觉对吧</div>
+<div class="ts-line"><span class="ts-t">[02:24]</span> 也不是在提示词里面要求模型你客观一点</div>
+<div class="ts-line"><span class="ts-t">[02:27]</span> 而是靠一套工程化的 SOP 取约束它</div>
+<div class="ts-line"><span class="ts-t">[02:31]</span> 第一种第一个就是立法典</div>
+<div class="ts-line"><span class="ts-t">[02:34]</span> 总结起来就是立法典</div>
+<div class="ts-line"><span class="ts-t">[02:35]</span> 这是价值的灵魂啊</div>
+<div class="ts-line"><span class="ts-t">[02:37]</span> 就不仅仅是规则</div>
+<div class="ts-line"><span class="ts-t">[02:39]</span> 别只写请打分</div>
+<div class="ts-line"><span class="ts-t">[02:40]</span> 而是要在 Rubric 理明确权重</div>
+<div class="ts-line"><span class="ts-t">[02:42]</span> 比如简洁性占40% 超过三句话</div>
+<div class="ts-line"><span class="ts-t">[02:45]</span> 直接扣两分你看我这里面都是谅话了</div>
+<div class="ts-line"><span class="ts-t">[02:48]</span> 简洁性占40% 超过三句话直接扣两分</div>
+<div class="ts-line"><span class="ts-t">[02:52]</span> 第二就是你要给一个参考</div>
+<div class="ts-line"><span class="ts-t">[02:54]</span> 就给价借一个满分的范围</div>
+<div class="ts-line"><span class="ts-t">[02:55]</span> 告诉他对比这个范围谁更接近谁赢</div>
+<div class="ts-line"><span class="ts-t">[02:58]</span> 有了参照物啊价值就不容易被长篇大论带篇</div>
+<div class="ts-line"><span class="ts-t">[03:02]</span> 这就能克服他喜欢写的长的这种答案</div>
+<div class="ts-line"><span class="ts-t">[03:07]</span> 第二就是我们说了他比较喜欢自己的回答</div>
+<div class="ts-line"><span class="ts-t">[03:10]</span> 那我们怎么让他去逼近亲呢</div>
+<div class="ts-line"><span class="ts-t">[03:12]</span> 第一种方这个很容易想吗</div>
+<div class="ts-line"><span class="ts-t">[03:14]</span> 就是你 GPT</div>
+<div class="ts-line"><span class="ts-t">[03:16]</span> 你用 GPT 开发的 Agent 就不要用 GPT 去打分</div>
+<div class="ts-line"><span class="ts-t">[03:18]</span> 对吧就换一个模型去打分</div>
+<div class="ts-line"><span class="ts-t">[03:20]</span> 第二种怎么说呢就是你用多个不同的厂商的模型去打分</div>
+<div class="ts-line"><span class="ts-t">[03:24]</span> 然后如果裁判意见不一呢你再自己去审核一下去重裁一下</div>
+<div class="ts-line"><span class="ts-t">[03:27]</span> 这就是毕竟亲原则去解决了模型倾向于选择自己的回答的这个问题</div>
+<div class="ts-line"><span class="ts-t">[03:33]</span> 这个偏见第三个是换玩法</div>
+<div class="ts-line"><span class="ts-t">[03:35]</span> 这个就是放弃绝对打分改做选择题</div>
+<div class="ts-line"><span class="ts-t">[03:38]</span> 第一个就是你做这个 playwatch</div>
+<div class="ts-line"><span class="ts-t">[03:40]</span> 这个很出名了就来点对决</div>
+<div class="ts-line"><span class="ts-t">[03:42]</span> 其实我们在使用 chatbot</div>
+<div class="ts-line"><span class="ts-t">[03:44]</span> chatgbt 或者是 cloud 或者是 gmail 都会发现它会提供</div>
+<div class="ts-line"><span class="ts-t">[03:47]</span> a b 两个选择让你选对吧</div>
+<div class="ts-line"><span class="ts-t">[03:49]</span> 就是让价值在 a 和 b 之间选一个更好的模型和人一样</div>
+<div class="ts-line"><span class="ts-t">[03:53]</span> 它更擅长比大小而不擅长去直接打分</div>
+<div class="ts-line"><span class="ts-t">[03:56]</span> 第二就是交换位置就是你先测 a 与 b 的比对比</div>
+<div class="ts-line"><span class="ts-t">[04:00]</span> 然后再测 b 对比 a</div>
+<div class="ts-line"><span class="ts-t">[04:02]</span> 如果价值两次选的不一致说明它在瞎猜</div>
+<div class="ts-line"><span class="ts-t">[04:04]</span> 这个 case 直接标记为平局或人工介入了</div>
+<div class="ts-line"><span class="ts-t">[04:07]</span> 就是测出来就人工介入</div>
+<div class="ts-line"><span class="ts-t">[04:09]</span> 第四个就是讲理由</div>
+<div class="ts-line"><span class="ts-t">[04:10]</span> 就证据要放在前面评分在后面</div>
+<div class="ts-line"><span class="ts-t">[04:12]</span> 这怎么说呢就是 prompt 的理强制要求</div>
+<div class="ts-line"><span class="ts-t">[04:15]</span> 仅先根据 Rubric 逐项写出评分理由</div>
+<div class="ts-line"><span class="ts-t">[04:18]</span> 最后再给出结论</div>
+<div class="ts-line"><span class="ts-t">[04:20]</span> 就当价你必须写出证据时</div>
+<div class="ts-line"><span class="ts-t">[04:22]</span> 它胡乱打分的概率会降低70%</div>
+<div class="ts-line"><span class="ts-t">[04:25]</span> 这就像写判决书</div>
+<div class="ts-line"><span class="ts-t">[04:26]</span> 必须先列法条再给判决</div>
+<div class="ts-line"><span class="ts-t">[04:29]</span> 所以说证据在前</div>
+<div class="ts-line"><span class="ts-t">[04:30]</span> 你就是你在 prompt 里面限制就完了</div>
+<div class="ts-line"><span class="ts-t">[04:32]</span> 最后做审计</div>
+<div class="ts-line"><span class="ts-t">[04:33]</span> 这是最后也是最关键的闭环</div>
+<div class="ts-line"><span class="ts-t">[04:35]</span> 也就是 meta evasion</div>
+<div class="ts-line"><span class="ts-t">[04:38]</span> 就你得问一句裁判靠谱吗</div>
+<div class="ts-line"><span class="ts-t">[04:40]</span> 这是 LM 架子本身靠谱吗</div>
+<div class="ts-line"><span class="ts-t">[04:42]</span> 那怎么做呢</div>
+<div class="ts-line"><span class="ts-t">[04:43]</span> 就随机抽取100个 case</div>
+<div class="ts-line"><span class="ts-t">[04:44]</span> 请业务大专家打分</div>
+<div class="ts-line"><span class="ts-t">[04:46]</span> 再让架子打分</div>
+<div class="ts-line"><span class="ts-t">[04:47]</span> 只要当人机一致性大于80%的时候</div>
+<div class="ts-line"><span class="ts-t">[04:50]</span> 你的评估系统才算真正上岗</div>
+<div class="ts-line"><span class="ts-t">[04:52]</span> 就如果对其效率低了</div>
+<div class="ts-line"><span class="ts-t">[04:53]</span> 别跑 evaluation 先重写你的 Rubric</div>
+<div class="ts-line"><span class="ts-t">[04:56]</span> 最后吧</div>
+</div></details>
+<details class="ts-box"><summary>结语（逐字 · 7 句）</summary>
+<div class="ts-lines">
+<div class="ts-line"><span class="ts-t">[04:57]</span> 就我们要接受个现实</div>
+<div class="ts-line"><span class="ts-t">[04:58]</span> 就是完美的诈值是不存在的</div>
+<div class="ts-line"><span class="ts-t">[05:01]</span> 那我们如果已经了解了它的偏见</div>
+<div class="ts-line"><span class="ts-t">[05:04]</span> 且设置了对偏见的对冲</div>
+<div class="ts-line"><span class="ts-t">[05:06]</span> 对吧</div>
+<div class="ts-line"><span class="ts-t">[05:07]</span> 我们就可以去构建一个受控的系统</div>
+<div class="ts-line"><span class="ts-t">[05:09]</span> 这是我们产品经理的目标</div>
+</div></details>
+<p><strong>附录 · 语音识别与三重校验方法</strong></p>
+<table>
+<tr><th>项目</th><th>说明</th></tr>
+<tr><td>音轨</td><td>`ffmpeg` 从原片提取 16 kHz 单声道 WAV</td></tr>
+<tr><td>识别模型</td><td>`faster-whisper 1.2.1` + `small`，CPU int8，`beam_size=5`，离线运行</td></tr>
+<tr><td>原始输出</td><td>128 段带起止时间码的转写</td></tr>
+<tr><td>繁简归一</td><td>`OpenCC t2s`</td></tr>
+<tr><td>第一重：ASR</td><td>完整口播，覆盖字幕省略的过渡句</td></tr>
+<tr><td>第二重：烧录字幕</td><td>逐帧 OCR 还原作者精简字幕，作为文字校对基准</td></tr>
+<tr><td>第三重：官方术语</td><td>本教程术语表与官方文档，强制校正专有名词拼写</td></tr>
+<tr><td>校正量</td><td>25 处 / 8 类，逐条见下方清单</td></tr>
+<tr><td>**边界**</td><td>**未做人工逐句听校**：ASR 与 OCR 都不能保证 100% 零偏差；专名与明显误识别已全部校正并附依据，可结合字幕对照复核。</td></tr>
+</table>
+<p><strong>附录 · ASR 校正清单（8 类 / 25 处）</strong></p>
+<p>按「校正为 + 依据」聚合，全部校正项附依据，可结合下方字幕对照复核。</p>
+<table>
+<tr><th>校正为</th><th>依据</th><th>出现次数</th></tr>
+<tr><td>Judge</td><td>LLM Judge</td><td>9</td></tr>
+<tr><td>Agent</td><td>通用技术词规范</td><td>4</td></tr>
+<tr><td>Rubric</td><td>官方术语 Rubric</td><td>3</td></tr>
+<tr><td>GPT</td><td>GPT 模型</td><td>3</td></tr>
+<tr><td>Claude</td><td>Claude</td><td>2</td></tr>
+<tr><td>prompt</td><td>prompt</td><td>2</td></tr>
+<tr><td>高了一大截</td><td>分数对比</td><td>1</td></tr>
+<tr><td>Rubric</td><td>官方术语表：Rubrik → Rubric</td><td>1</td></tr>
+</table>
 </section>
 <div class="footer">
   <p>本教程为学习整理产物：视频按 1080×1086 原片逐帧核对后重述；标注【补充】的内容来自公开官方文档与本系列既有教程，不属于视频原述。原视频与项目版权归各自作者所有。</p>
