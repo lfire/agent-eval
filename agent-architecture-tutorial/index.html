@@ -1,0 +1,1588 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Agent 开发架构选型 · 完全教程｜视频逐帧还原 + 系统化补全</title>
+<style>
+:root{
+  --bg:#f6f7f9; --card:#fff; --ink:#1e2430; --muted:#667085; --line:#e4e7ec;
+  --brand:#2563eb; --brand-soft:#eff4ff; --code:#111827;
+  --yellow:#fff4cc; --yellow-b:#d9a92e; --blue:#dce9ff; --blue-b:#5b8def;
+  --green:#dcf5e6; --green-b:#39a97a; --purple:#efe7ff; --purple-b:#9575e0;
+  --red:#ffe4e9; --red-b:#e0728d;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);
+  font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Hiragino Sans GB","Microsoft YaHei",Segoe UI,sans-serif;
+  font-size:15.5px;line-height:1.85;-webkit-font-smoothing:antialiased}
+a{color:var(--brand);text-decoration:none}a:hover{text-decoration:underline}
+.wrap{display:flex;gap:30px;max-width:1480px;margin:0 auto;padding:0 26px}
+nav.toc{width:262px;flex:none;position:sticky;top:0;height:100vh;overflow-y:auto;padding:28px 12px 60px 0;font-size:13.3px}
+nav.toc .brand{font-weight:800;font-size:16px;margin-bottom:4px}
+nav.toc .sub{color:var(--muted);font-size:12px;margin-bottom:18px}
+nav.toc ul{list-style:none;margin:0;padding:0}
+nav.toc li{margin:2px 0}
+nav.toc a{display:block;padding:5px 10px;border-radius:7px;color:#41495a}
+nav.toc a:hover,nav.toc a.active{background:var(--brand-soft);text-decoration:none;color:var(--brand);font-weight:700}
+nav.toc .lv1{font-weight:700;margin-top:10px;color:var(--ink)}
+nav.toc .lv2{padding-left:22px;font-size:12.7px}
+main{flex:1;min-width:0;max-width:1080px;padding:28px 0 100px}
+.hero{background:linear-gradient(135deg,#eef3ff 0%,#f8fbff 55%,#f0fbf5 100%);
+  border:1px solid #dce6f7;border-radius:16px;padding:34px 36px;margin-bottom:26px}
+.hero h1{font-size:31px;line-height:1.35;margin:0 0 10px;letter-spacing:.3px}
+.hero .lead{font-size:16px;color:#3f4a5f;margin:0 0 18px}
+.hero .meta{display:flex;flex-wrap:wrap;gap:9px}
+.hero .meta span{background:#fff;border:1px solid #dde5f2;border-radius:20px;padding:4px 13px;font-size:12.5px;color:#46536a}
+.srclink{font-size:13px;color:#46536a;margin:14px 0 0}
+.srclink a{font-weight:600}
+h2{font-size:24px;margin:52px 0 14px;padding-bottom:10px;border-bottom:2px solid var(--brand);letter-spacing:.2px}
+h3{font-size:19px;margin:34px 0 12px;color:#1b2a4a}
+h4{font-size:16px;margin:24px 0 8px;color:#344054}
+p{margin:12px 0}
+.sec{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:24px 28px;margin:20px 0;box-shadow:0 1px 2px rgba(16,24,40,.03)}
+.tag{display:inline-block;font-size:11.5px;font-weight:700;padding:2px 9px;border-radius:5px;vertical-align:2px;margin-right:6px;white-space:nowrap}
+.t-video{background:var(--brand-soft);color:#1d4ed8;border:1px solid #cddcfb}
+.t-extra{background:#fff2e0;color:#a85b00;border:1px solid #f5dcb8}
+.t-redraw{background:#e9f8ef;color:#177a52;border:1px solid #c7ecd7}
+.note{background:#f8fafc;border-left:4px solid var(--brand);border-radius:0 9px 9px 0;padding:13px 18px;margin:16px 0;color:#3b4557;font-size:14.5px}
+.warn{background:#fff8ec;border-left:4px solid #e9a23b;border-radius:0 9px 9px 0;padding:13px 18px;margin:16px 0;color:#5a451f;font-size:14.5px}
+.key{background:#eef6ff;border:1px solid #d6e6ff;border-radius:10px;padding:14px 18px;margin:16px 0}
+.leadin{color:#5a6475;font-size:14.5px;background:#f8fafc;border-left:3px solid #c7d7f5;border-radius:0 8px 8px 0;padding:9px 14px;margin:0 0 18px}
+table{border-collapse:collapse;width:100%;margin:16px 0;font-size:14px;background:#fff}
+th,td{border:1px solid var(--line);padding:9px 12px;text-align:left;vertical-align:top}
+th{background:#f2f5f9;font-weight:700;color:#2b3547}
+tr:nth-child(even) td{background:#fbfcfe}
+td code,th code,p code,li code{background:#f1f4f9;border-radius:4px;padding:1px 5px;font-size:12.8px;color:#1d4ed8;font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace}
+pre{background:var(--code);color:#e6edf7;border-radius:11px;padding:17px 19px;overflow:auto;font-size:12.8px;line-height:1.72;margin:16px 0;font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace}
+pre code{background:none;color:inherit;padding:0;font-size:inherit}
+ul,ol{padding-left:24px;margin:12px 0}li{margin:5px 0}
+.figure{background:#fff;border:1px solid var(--line);border-radius:13px;padding:18px 20px 14px;margin:22px 0}
+.figure svg{width:100%;height:auto;display:block}
+.figure .cap{font-size:12.8px;color:var(--muted);margin-top:10px;text-align:center}
+.summary{background:linear-gradient(135deg,#f4f8ff,#f7fdf9);border:1px solid #dce7f7;border-radius:14px;padding:22px 26px;margin:0 0 26px}
+.summary h2{margin:0 0 10px;font-size:20px;border:0;padding:0}
+.summary .route{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:16px}
+.summary .route div{background:#fff;border:1px solid #e0e8f4;border-radius:10px;padding:11px 13px;font-size:13px}
+.summary .route b{display:block;color:#1d4ed8;margin-bottom:3px}
+.summary table th:last-child,.summary table td:last-child{white-space:nowrap;padding-left:16px;padding-right:16px}
+.timeline td:first-child{white-space:nowrap;font-family:ui-monospace,Menlo,monospace;color:var(--brand);font-weight:700}
+.footer{margin-top:60px;padding-top:22px;border-top:1px solid var(--line);color:var(--muted);font-size:13px}
+#progress{position:fixed;top:0;left:0;height:3px;width:0;background:linear-gradient(90deg,#2563eb,#39a97a);z-index:120;transition:width .08s linear}
+#totop{position:fixed;right:24px;bottom:26px;z-index:110;border:1px solid #cddcfb;background:#fff;color:#1d4ed8;border-radius:22px;padding:8px 15px;font-size:13px;cursor:pointer;box-shadow:0 3px 12px rgba(16,24,40,.10);display:none}
+@media(max-width:980px){nav.toc{display:none}.summary .route{grid-template-columns:1fr}.hero{padding:24px}.sec{padding:18px}}
+@media print{nav.toc{display:none}.sec,.figure{break-inside:avoid}body{background:#fff}}
+/* ===== 顶部返回导航（与 Markdown 阅读版一致） ===== */
+.topbar{position:sticky;top:0;z-index:40;background:rgba(255,255,255,.95);
+  backdrop-filter:saturate(180%) blur(10px);border-bottom:1px solid var(--line);
+  padding:10px 22px;display:flex;align-items:center;gap:10px;flex-wrap:wrap;font-size:13px}
+.topbar .t{font-weight:800;font-size:14px;margin-right:auto;color:#1b2a4a}
+.topbar a.btn{border:1px solid #cddcfb;background:#fff;border-radius:7px;padding:5px 11px;
+  font-size:12.5px;color:var(--brand);font-weight:600;white-space:nowrap}
+.topbar a.btn:hover{background:var(--brand-soft);text-decoration:none}
+:root{--topH:56px}
+nav.toc{top:var(--topH);height:calc(100vh - var(--topH))}
+main{padding-top:22px}
+[id]{scroll-margin-top:calc(var(--topH) + 14px)}
+@media(max-width:980px){.topbar{padding:8px 14px}}
+@media print{.topbar{display:none}nav.toc{top:0;height:auto}main{padding-top:28px}}
+</style>
+</head>
+<body>
+<div class="topbar">
+  <span class="t">Agent 开发架构选型 · 完全教程 · 图文阅读版</span>
+  <a class="btn" href="../index.html">← 返回知识库</a>
+  <a class="btn" href="Agent开发架构选型完全教程.html">MD 在线阅读</a>
+  <a class="btn" href="Agent开发架构选型完全教程.md" download>下载 .md</a>
+</div>
+<div id="progress" aria-hidden="true"></div>
+<button id="totop" type="button" aria-label="回到顶部">↑ 回到顶部</button>
+<div class="wrap">
+<nav class="toc">
+  <div class="brand">Agent 开发架构选型 · 完全教程</div>
+  <div class="sub">视频逐帧还原 + 系统化补全</div>
+  <ul>
+    <li><a class="lv1" href="#s0">0. 视频速览与保真约定</a></li>
+    <li><a class="lv1" href="#s1">1. 全片结构地图</a></li>
+    <li><a class="lv1" href="#s2">2. 三层抽象与演进</a></li>
+    <li><a class="lv2" href="#s21">2.1 Framework（2022–2023）</a></li>
+    <li><a class="lv2" href="#s22">2.2 Runtime（2024）</a></li>
+    <li><a class="lv2" href="#s23">2.3 Harness（2025 起）</a></li>
+    <li><a class="lv1" href="#s3">3. 开发起点与三类划分</a></li>
+    <li><a class="lv1" href="#s4">4. 综合任务类</a></li>
+    <li><a class="lv2" href="#s41">4.1 Claude Agent SDK</a></li>
+    <li><a class="lv2" href="#s42">4.2 Deep Agents</a></li>
+    <li><a class="lv1" href="#s5">5. 编码类</a></li>
+    <li><a class="lv2" href="#s51">5.1 Pi</a></li>
+    <li><a class="lv2" href="#s52">5.2 OpenCode</a></li>
+    <li><a class="lv1" href="#s6">6. 个人助手类</a></li>
+    <li><a class="lv2" href="#s61">6.1 OpenClaw</a></li>
+    <li><a class="lv2" href="#s62">6.2 Hermes Agent</a></li>
+    <li><a class="lv1" href="#s7">7. 特殊存在：DeepSeek Harness</a></li>
+    <li><a class="lv1" href="#s8">8. 七个 Harness 横向对比</a></li>
+    <li><a class="lv1" href="#s9">9. 怎么用 Harness：三个层次</a></li>
+    <li><a class="lv1" href="#s10">10. 回到开头：怎么选</a></li>
+    <li><a class="lv1" href="#s11">11. 补充篇 A：专业名词速查</a></li>
+    <li><a class="lv1" href="#s12">12. 补充篇 B：七项目事实核对</a></li>
+    <li><a class="lv1" href="#s13">13. 补充篇 C：架构全景与选型方法</a></li>
+    <li><a class="lv1" href="#s14">14. 补充篇 D：可运行代码</a></li>
+    <li><a class="lv1" href="#s15">15. 补充篇 E：常见误区</a></li>
+    <li><a class="lv1" href="#s16">16. 附录</a></li>
+    <li><a class="lv2" href="#s161">16.1 章节时间轴</a></li>
+    <li><a class="lv2" href="#s162">16.2 配图速查</a></li>
+    <li><a class="lv2" href="#s163">16.3 校正表</a></li>
+    <li><a class="lv2" href="#s164">16.4 还原方法与资料</a></li>
+  </ul>
+</nav>
+
+<main>
+<div class="hero">
+  <h1>Agent 开发架构选型 · 完全教程</h1>
+  <p class="lead">基于抖音 @AI产品千媚《Agent 开发架构怎么选？7 个代表项目系统对比》逐帧还原：Framework → Runtime → Harness 三层抽象、七个代表性项目的默认机制与控制权、以及插件 / SDK / 源码改造三种开发起点，并补齐专业名词与工程判断依据。</p>
+  <div class="meta">
+    <span>视频时长 20:43</span><span>发布 2026-11-05</span><span>1920×1080 逐帧核对</span>
+    <span>4 大章节 · 10 段官方章节</span><span>20 张结构图重绘</span><span>7 个项目 · 60+ 术语</span>
+  </div>
+  <p class="srclink">原视频：<a href="https://v.douyin.com/KBn_HS3Q5D4/" target="_blank" rel="noopener">抖音分享链接</a> ｜ <a href="https://www.douyin.com/video/7704500449094339875" target="_blank" rel="noopener">网页版直链</a> ｜ 视频 ID <code>7704500449094339875</code></p>
+</div>
+
+<section class="summary">
+<h2>一页速览：整期视频的 6 个结论</h2>
+<table style="margin-top:6px">
+<tr><th>#</th><th>结论</th><th>展开位置</th></tr>
+<tr><td>1</td><td><strong>三层抽象不是互相淘汰</strong>：Framework 连接模型与工具，Runtime 管流程·状态·恢复，Harness 提供成套执行机制；上层复用下层</td><td><a href="#s2">第 2 章</a></td></tr>
+<tr><td>2</td><td><strong>演进改变的是开发起点</strong>：过去从模型/工具/数据搭起，现在可直接复用现成 Harness；但简单任务与严格流程场景仍值得用 Framework / Runtime</td><td><a href="#s3">第 3 章</a></td></tr>
+<tr><td>3</td><td><strong>七个项目按主服务场景分三类 + 一个特殊存在</strong>：综合任务（Claude Agent SDK / Deep Agents）、编码（Pi / OpenCode）、个人助手（OpenClaw / Hermes），DeepSeek Harness 以插件化架构自成一类</td><td><a href="#s3">第 3 章</a></td></tr>
+<tr><td>4</td><td><strong>选型看两根轴</strong>：默认帮你实现了多少机制 × 开放了多少控制权；工具调用、上下文管理、多 Agent 已是通用能力，不构成差异</td><td><a href="#s8">第 8 章</a></td></tr>
+<tr><td>5</td><td><strong>控制权 ≠ 一定越好</strong>：能改的越多，要承担的设计 / 调试 / 维护也越多</td><td><a href="#s8">第 8 章</a></td></tr>
+<tr><td>6</td><td><strong>插件 / SDK / 源码改造解决三个不同问题</strong>：扩展现有 Agent、开发自己的 Agent 产品、改造底层 Harness；开发自己的产品 ≠ 开发自己的 Harness</td><td><a href="#s9">第 9 章</a></td></tr>
+</table>
+<div class="route">
+<div><b>只想复现视频</b>读第 1–10 章；标【视频原述】的段落与 20 张重绘图覆盖全部画面要点</div>
+<div><b>想查概念</b>读 <a href="#s11">11. 专业名词速查</a>；所有英文名首次出现都给出定义</div>
+<div><b>想做选型</b>读 <a href="#s12">12. 七项目事实核对</a> + <a href="#s13">13. 架构全景</a> + <a href="#s10">10. 怎么选</a></div>
+</div>
+</section>
+
+<section class="sec" id="s0">
+<h2>0. 视频速览与保真约定</h2>
+<p class="leadin">先说明来源与还原口径，避免把补充内容误当成视频原述。</p>
+<p><span class="tag t-video">视频原述</span>《<strong>Agent 开发架构怎么选？7 个代表项目系统对比</strong>》，作者 <strong>@AI产品千媚</strong>，发布 <strong>2026-11-05</strong>，话题 <code>#agent开发 #vibecoding #pi #OpenClaw #Claude</code>。实测时长 <strong>20 分 43.4 秒</strong>（1243.37 秒），画面为 1920×1080 横屏 / 30fps：白底手绘风幻灯片 + 左下角主讲人画中画 + 官网/仓库截图穿插 + 底部烧录字幕。</p>
+<p>视频开头的金字塔里列出了 11 个项目：底层 <strong>LangChain、LangGraph、Claude Agent SDK、Deep Agents</strong>，中层 <strong>Pi、DeepSeek Harness、OpenCode</strong>，顶层 <strong>OpenClaw、Hermes Agent</strong>，配一个大问号「有什么区别」。全片按 4 大章节展开：三层抽象演进 → 七个代表性 Harness 逐个看 → 七个 Harness 横向对比 → 怎么用 Harness。</p>
+<div class="key">
+<strong>三种标记，请按此区分内容归属：</strong><br>
+<span class="tag t-video">视频原述</span>画面文字或烧录字幕中确实出现过的表述；<br>
+<span class="tag t-redraw">按画面重绘</span>把视频手绘图/表格按原结构画成矢量图，文字以画面为准；<br>
+<span class="tag t-extra">补充</span>视频未展开、由官方文档与公开资料补齐的术语、事实、架构与代码。
+</div>
+<div class="warn"><strong>保真边界。</strong>平台自动章节（10 段，从 00:36 起）是机器生成的时间码，与画面自带的章节目录（00:37 / 06:27 / 16:47 / 17:33）有几十秒差异；本教程一律以<strong>画面目录与逐帧文字</strong>为准，自动章节单独列在 <a href="#s161">16.1</a> 并在 <a href="#s163">16.3 校正表</a>标注差异。字幕由 OCR 抽取，个别错字（如「直接与代码？错！」「產市面上的 AgSnt飽」）已按画面与上下文校正；口播按烧录字幕时间线 + 画面文字归纳，未凭空补写台词。</div>
+<p><strong>还原方法（与前几篇教程相同口径）</strong>：解析分享短链 → 取视频 ID 与官方详情（10 段自动章节）→ 下载 1080P 原片 77.8 MB → 每 3 秒抽帧 <strong>414 张</strong> → macOS Vision <code>VNRecognizeTextRequest</code>（zh-Hans + en-US，accurate，关闭语言纠正）得到 <strong>5,349 行</strong>带坐标文本 → 按 y 坐标分离画面文字与烧录字幕，去重后得到 1,333 行画面文本与 402 行字幕时间线 → 对 4 大章节的关键帧放大逐字目视校对 → 与七个项目的官方资料交叉验证术语与事实。</p>
+</section>
+
+<section class="sec" id="s1">
+<h2>1. 全片结构地图</h2>
+<p class="leadin">画面自带的章节目录（00:36 帧）与官方详情接口的 10 段章节一起构成目录骨架。</p>
+<div class="figure">
+<svg viewBox="0 0 900 360" xmlns="http://www.w3.org/2000/svg" font-family="-apple-system,PingFang SC,Microsoft YaHei,sans-serif">
+  <g text-anchor="middle">
+    <text x="450" y="25" font-size="15" font-weight="800" fill="#1e2430">全片结构：4 大章节 · 10 段官方章节 · 7 个代表项目</text>
+    <text x="450" y="43" font-size="11" fill="#7a8496">画面目录时间码：00:37 / 06:27 / 16:47 / 17:33</text>
+  </g>
+  <g font-size="12" text-anchor="middle">
+    <rect x="24" y="60" width="206" height="72" rx="10" fill="#eaf1ff" stroke="#5b8def" stroke-width="1.6"/>
+    <text x="127" y="86" font-size="13" font-weight="800" fill="#1d4ed8">01 演进与影响</text>
+    <text x="127" y="106" font-size="11" fill="#4a5b7a">00:37 · 三层抽象</text>
+    <text x="127" y="122" font-size="10.5" fill="#4a5b7a">Framework → Runtime → Harness</text>
+    <rect x="244" y="60" width="412" height="72" rx="10" fill="#fff8dd" stroke="#d9a92e" stroke-width="1.6"/>
+    <text x="450" y="86" font-size="13" font-weight="800" fill="#8a5f00">02 七个代表性 Harness 逐个看（06:27–16:47）</text>
+    <text x="450" y="106" font-size="10.8" fill="#7a6330">Claude Agent SDK 06:27 · Deep Agents 08:17 · Pi 10:10 · OpenCode 11:46</text>
+    <text x="450" y="122" font-size="10.8" fill="#7a6330">OpenClaw 13:01 · Hermes Agent 14:18 · DeepSeek Harness 15:23</text>
+    <rect x="670" y="60" width="206" height="72" rx="10" fill="#e9f9f0" stroke="#39a97a" stroke-width="1.6"/>
+    <text x="773" y="86" font-size="13" font-weight="800" fill="#177a52">03 横向对比</text>
+    <text x="773" y="106" font-size="11" fill="#3c6b55">16:47 · 两根轴</text>
+    <text x="773" y="122" font-size="10.5" fill="#3c6b55">默认机制 × 控制权</text>
+    <rect x="24" y="146" width="206" height="72" rx="10" fill="#f3edff" stroke="#9575e0" stroke-width="1.6"/>
+    <text x="127" y="172" font-size="13" font-weight="800" fill="#6d42c9">04 怎么用 Harness</text>
+    <text x="127" y="192" font-size="11" fill="#5d4a91">17:33 · 三个层次</text>
+    <text x="127" y="208" font-size="10.5" fill="#5d4a91">插件 / SDK / 源码改造</text>
+    <rect x="244" y="146" width="412" height="72" rx="10" fill="#fff4cc" stroke="#d9a92e" stroke-width="1.6"/>
+    <text x="450" y="170" font-size="12.5" font-weight="800" fill="#8a5f00">开场：项目金字塔</text>
+    <text x="450" y="188" font-size="10.8" fill="#7a6330">底层 LangChain · LangGraph · Claude Agent SDK · Deep Agents</text>
+    <text x="450" y="204" font-size="10.8" fill="#7a6330">中层 Pi · DeepSeek Harness · OpenCode；顶层 OpenClaw · Hermes Agent</text>
+    <rect x="670" y="146" width="206" height="72" rx="10" fill="#ffeef1" stroke="#e0728d" stroke-width="1.6"/>
+    <text x="773" y="172" font-size="13" font-weight="800" fill="#b03a55">结尾结论</text>
+    <text x="773" y="192" font-size="11" fill="#8c4a5b">不是哪个框架功能最多</text>
+    <text x="773" y="208" font-size="10.5" fill="#8c4a5b">而是默认机制是否符合业务</text>
+  </g>
+  <rect x="90" y="238" width="720" height="96" rx="12" fill="#f5f7fa" stroke="#b6c0cf" stroke-width="1.4"/>
+  <g text-anchor="middle" font-size="11.5" fill="#344054">
+    <text x="450" y="264" font-size="13" font-weight="800">全片主线</text>
+    <text x="450" y="288">任务需求 → 三层抽象 → 七项目逐一看 → 两根轴横向对比 → 三个使用层次 → 选型结论</text>
+    <text x="450" y="310" font-size="10.8" fill="#5a6475">关键判断：默认帮你实现了多少机制 × 开放了多少控制权；控制权 ≠ 一定越好</text>
+  </g>
+</svg>
+  <div class="cap">图 1｜全片结构地图（按画面章节目录与官方章节重绘）</div>
+</div>
+<table class="timeline">
+<tr><th>时间（画面目录）</th><th>章节</th><th>本章对应</th><th>核心画面</th></tr>
+<tr><td>00:37</td><td>01 Agent 开发架构的演进与影响</td><td><a href="#s2">第 2–3 章</a></td><td>三阶段时间轴 2022 / 2024 / 2025；三层抽象；开发起点变化</td></tr>
+<tr><td>06:27</td><td>02 七个代表性 Harness 逐个看</td><td><a href="#s4">第 4–7 章</a></td><td>Claude Agent SDK / Deep Agents / Pi / OpenCode / OpenClaw / Hermes Agent / DeepSeek Harness</td></tr>
+<tr><td>16:47</td><td>03 七个 Harness 横向对比</td><td><a href="#s8">第 8 章</a></td><td>两根轴坐标图；控制权滑块；设计 / 调试 / 维护</td></tr>
+<tr><td>17:33</td><td>04 怎么用 Harness</td><td><a href="#s9">第 9–10 章</a></td><td>三个层次；Pi 的插件 / SDK / 源码改造；选型矩阵</td></tr>
+</table>
+<p>画面目录里第二章下列出七个项目与各自时间码：<code>06:27 Claude Agent SDK</code>、<code>08:17 Deep Agents</code>、<code>10:10 Pi</code>、<code>11:46 OpenCode</code>、<code>13:01 OpenClaw</code>、<code>14:18 Hermes Agent</code>、<code>15:23 DeepSeek Harness</code>。</p>
+<div class="note">全片可压成一句话：<strong>三层抽象（Framework / Runtime / Harness）→ 按场景分三类看七个项目 → 用「默认机制 × 控制权」两根轴横向对比 → 按三个层次决定怎么用 → 按任务需求与设计特点对号入座</strong>。</div>
+</section>
+
+<section class="sec" id="s2">
+<h2>2. 三层抽象与演进：Framework → Runtime → Harness</h2>
+<p><span class="tag t-video">视频原述</span>「我们先来看一下 Agent 开发架构演进，可以分成三个阶段：从 Agent Framework、Agent Runtime 再到现在越来越成熟的 Agent Harness。」画面时间轴标注 <strong>2022 / 2024 / 2025</strong>。</p>
+<div class="figure">
+<svg viewBox="0 0 900 300" xmlns="http://www.w3.org/2000/svg" font-family="-apple-system,PingFang SC,Microsoft YaHei,sans-serif">
+  <g text-anchor="middle">
+    <text x="450" y="26" font-size="15" font-weight="800" fill="#1e2430">Agent 开发架构演进：三个阶段</text>
+    <text x="450" y="44" font-size="11" fill="#7a8496">画面时间轴年份：2022 / 2024 / 2025；不是新技术取代旧技术，而是不同层次的技术抽象</text>
+  </g>
+  <line x1="90" y1="86" x2="810" y2="86" stroke="#8a94a6" stroke-width="1.8"/>
+  <g fill="#fff" stroke="#8a94a6" stroke-width="1.8">
+    <circle cx="210" cy="86" r="7"/><circle cx="450" cy="86" r="7"/><circle cx="690" cy="86" r="7"/>
+  </g>
+  <g text-anchor="middle" font-size="12.5" font-weight="800" fill="#344054">
+    <text x="210" y="70">2022</text><text x="450" y="70">2024</text><text x="690" y="70">2025</text>
+  </g>
+  <g text-anchor="middle" font-size="12">
+    <rect x="95" y="112" width="230" height="132" rx="12" fill="#eaf1ff" stroke="#5b8def" stroke-width="1.7"/>
+    <text x="210" y="140" font-size="15" font-weight="800" fill="#1d4ed8">Framework</text>
+    <text x="210" y="162" font-size="11.5" fill="#4a5b7a">连接模型与工具 · 封装基础能力</text>
+    <text x="210" y="184" font-size="11" fill="#4a5b7a">模型调用 / 工具接入 / 数据处理</text>
+    <text x="210" y="206" font-size="11" fill="#4a5b7a">LangChain、LlamaIndex、CrewAI</text>
+    <text x="210" y="230" font-size="10.5" fill="#4a5b7a">解决：减少重复开发</text>
+    <rect x="335" y="112" width="230" height="132" rx="12" fill="#fff8dd" stroke="#d9a92e" stroke-width="1.7"/>
+    <text x="450" y="140" font-size="15" font-weight="800" fill="#8a5f00">Runtime</text>
+    <text x="450" y="162" font-size="11.5" fill="#7a6330">流程 · 状态 · 恢复</text>
+    <text x="450" y="184" font-size="11" fill="#7a6330">步骤流转 / 何时暂停 / 异常恢复</text>
+    <text x="450" y="206" font-size="11" fill="#7a6330">2024 LangGraph 推出</text>
+    <text x="450" y="230" font-size="10.5" fill="#7a6330">解决：执行过程可管、可控</text>
+    <rect x="575" y="112" width="230" height="132" rx="12" fill="#e9f9f0" stroke="#39a97a" stroke-width="1.7"/>
+    <text x="690" y="140" font-size="15" font-weight="800" fill="#177a52">Harness</text>
+    <text x="690" y="162" font-size="11.5" fill="#3c6b55">成套执行机制</text>
+    <text x="690" y="184" font-size="11" fill="#3c6b55">Loop + 上下文 / 规划 / 文件 / 权限</text>
+    <text x="690" y="206" font-size="11" fill="#3c6b55">模型自主规划，开发者不再预设步骤</text>
+    <text x="690" y="230" font-size="10.5" fill="#3c6b55">解决：模型变强后的新工程问题</text>
+  </g>
+  <text x="450" y="276" font-size="11.5" font-weight="700" fill="#344054" text-anchor="middle">上层复用下层：Harness 复用 Framework 与 Runtime 的能力；三层是不同抽象层次，不是新旧替代</text>
+</svg>
+  <div class="cap">图 2｜三阶段演进时间轴（2022 / 2024 / 2025）重绘</div>
+</div>
+<div class="figure">
+<svg viewBox="0 0 900 320" xmlns="http://www.w3.org/2000/svg" font-family="-apple-system,PingFang SC,Microsoft YaHei,sans-serif">
+  <g text-anchor="middle">
+    <text x="450" y="26" font-size="15" font-weight="800" fill="#1e2430">01 · Agent 开发的三层抽象</text>
+    <text x="450" y="44" font-size="11" fill="#7a8496">画面原文：不是新取代旧，上层复用下层</text>
+  </g>
+  <g text-anchor="middle" font-size="12">
+    <rect x="150" y="66" width="600" height="64" rx="11" fill="#e9f9f0" stroke="#39a97a" stroke-width="1.7"/>
+    <text x="450" y="92" font-size="16" font-weight="800" fill="#177a52">Harness　成套执行机制</text>
+    <text x="450" y="114" font-size="11.5" fill="#3c6b55">现成的执行系统：Agent Loop + 上下文管理 + 规划 + 文件 + 权限</text>
+    <rect x="150" y="146" width="600" height="64" rx="11" fill="#fff8dd" stroke="#d9a92e" stroke-width="1.7"/>
+    <text x="450" y="172" font-size="16" font-weight="800" fill="#8a5f00">Runtime　流程 · 状态 · 恢复</text>
+    <text x="450" y="194" font-size="11.5" fill="#7a6330">让开发者控制执行过程：步骤、流转、暂停、异常恢复</text>
+    <rect x="150" y="226" width="600" height="64" rx="11" fill="#eaf1ff" stroke="#5b8def" stroke-width="1.7"/>
+    <text x="450" y="252" font-size="16" font-weight="800" fill="#1d4ed8">Framework　连接模型与工具</text>
+    <text x="450" y="274" font-size="11.5" fill="#4a5b7a">开发基础组件：模型调用、工具接入、数据处理</text>
+  </g>
+  <g stroke="#8a94a6" stroke-width="1.8">
+    <line x1="96" y1="278" x2="96" y2="90"/><line x1="96" y1="90" x2="88" y2="98"/><line x1="96" y1="90" x2="104" y2="98"/>
+  </g>
+  <text x="82" y="190" font-size="11" fill="#5a6475" text-anchor="middle" transform="rotate(-90 82 190)">上层复用下层</text>
+  <text x="450" y="310" font-size="11" fill="#5a6475" text-anchor="middle">LangChain 团队的例子：LangChain（基础组件）→ LangGraph（状态管理·持久化执行）→ Deep Agents（更完整的 Harness）</text>
+</svg>
+  <div class="cap">图 3｜Framework / Runtime / Harness 三层抽象关系重绘</div>
+</div>
+
+<h3 id="s21">2.1 第一阶段：Agent Framework（2022–2023）</h3>
+<p><span class="tag t-video">视频原述</span>「大概在 2022 年，大家就开始尝试基于大模型开发各种应用，但那个时候开发 Agent 的很多基础工作都要自己完成：怎么让模型使用外部的工具、怎么调用不同大模型、怎么接入知识库、怎么把工具执行的结果返回给模型、怎么让模型决定下一步……如果每开发一个 Agent 都要重写一遍，开发成本就太高了。」</p>
+<p>画面列出「每个 Agent 都要自己手搓」的四件事：<strong>使用外部工具、调用不同大模型、接入知识库、结果回传给模型</strong>。于是出现了一批把基础能力封装起来的框架：<strong>LangChain、LlamaIndex、CrewAI</strong> 等，覆盖<strong>模型调用 / 工具接入 / 数据处理</strong>。</p>
+<p><span class="tag t-video">视频原述</span>画面示例是「订单查询 Agent」：<code>用户提问 → LLM Agent → 订单查询接口 → 返回结果 → 回答用户</code>，代码框写着：</p>
+<pre><code>from langchain.agents import create_agent
+
+agent = create_agent(
+    model="claude-sonnet-4-5",
+    tools=[query_order],
+    system_prompt="你是订单客服…",
+)</code></pre>
+<p>只需定义提示词、调用规则与工具，很快就能搭出基础版本。<strong>这一类框架主要解决的是「减少重复开发」</strong>：把每个 Agent 都要写一遍的基础连接工作变成可复用组件。</p>
+
+<h3 id="s22">2.2 第二阶段：Agent Runtime（2024）</h3>
+<p><span class="tag t-video">视频原述</span>「随着 Agent 执行任务越来越复杂，仅仅把模型和工具连接起来还不够。比如我们要开发一个电商选品 Agent：读取商品信息 → 查询库存·价格·佣金 → 商品打分 → 生成选品结果。这里面的步骤很多，有些需要根据上一步的结果动态决定；如果任务执行到一半失败了，能不能接着之前的进度继续？如果某个环节需要人工确认，能不能先暂停、等用户确认之后再往下走？」</p>
+<p><span class="tag t-video">视频原述</span>「这已经不只是模型调用 + 工具接入了，我们还需要管理整个任务的执行流程。于是在 2024 年 LangChain 推出了 <strong>LangGraph</strong>，核心就是让开发者能够更明确地控制 Agent 的执行过程。」画面列出 Runtime 要回答的四个问题：</p>
+<ol>
+<li><strong>有哪些步骤</strong></li>
+<li><strong>步骤之间怎么流转</strong></li>
+<li><strong>什么时候暂停</strong>（人工确认，先暂停等人确认）</li>
+<li><strong>出现异常怎么恢复</strong>（从断点继续，不用重来）</li>
+</ol>
+<p><span class="tag t-video">视频原述</span>「Runtime 解决的是：怎么让 Agent 的执行过程可管、可控。」它在 Framework 之上补的是<strong>流程管理、状态持久化、暂停/恢复与人工介入</strong>。</p>
+
+<h3 id="s23">2.3 第三阶段：Agent Harness（2025 起）</h3>
+<p><span class="tag t-video">视频原述</span>「第三个阶段是 Agent Harness。随着模型推理与工具调用能力不断提高，Agent 的开发方式又发生了变化：以前开发者往往需要提前把流程安排好，但现在很多任务的流程根本没办法提前规划，也不可能枚举所有情况；现在只给模型一个目标，让它自己规划步骤、调用工具、分析结果，再不断调整下一步的行动。」</p>
+<p>画面示例是「研究一家公司的产品」：目标给定后，模型自己决定<strong>搜索资料 → 再搜一轮 → 验证关键信息 → 写代码分析数据 → 整理成报告</strong>。画面还用三个小标签对比了三种执行方式：<code>01 直线流程</code>、<code>02 暂停／恢复</code>、<code>03 自主规划</code>。</p>
+<p><span class="tag t-video">视频原述</span>「模型自主性提高之后，又带来了新的工程问题」——画面给出四个具体追问：</p>
+<ul>
+<li>Agent 连续执行到第 40 步，上下文从 184k 涨到 192k，<strong>上下文越来越长，怎么控制？</strong></li>
+<li><strong>文件和中间结果放哪里？</strong></li>
+<li><strong>何时调子 Agent？何时停？</strong></li>
+<li><strong>工具权限怎么管？</strong></li>
+</ul>
+<p><span class="tag t-video">视频原述</span>「于是 Agent Harness —— 围绕模型的一整套<strong>执行系统</strong>，也因此受到越来越多的关注。基础是 Agent Loop：模型的思考 → 调用工具 → 拿到结果 → 继续执行这个循环；在此之上还提供了上下文管理、规划、文件、权限这四类能力。过去这些能力都得自己手搓，现在现成的 Harness 已经帮我们做好了，我们可以直接使用这套现成的执行系统。」</p>
+<div class="figure">
+<svg viewBox="0 0 900 330" xmlns="http://www.w3.org/2000/svg" font-family="-apple-system,PingFang SC,Microsoft YaHei,sans-serif">
+  <g text-anchor="middle">
+    <text x="450" y="26" font-size="15" font-weight="800" fill="#1e2430">Agent Harness：围绕模型的一整套执行系统</text>
+    <text x="450" y="44" font-size="11" fill="#7a8496">基础：Agent Loop；之上：四类能力（上下文 · 规划 · 文件 · 权限）</text>
+  </g>
+  <g text-anchor="middle" font-size="12">
+    <rect x="36" y="70" width="240" height="230" rx="12" fill="#f5f7fa" stroke="#b6c0cf" stroke-width="1.5"/>
+    <text x="156" y="98" font-size="13.5" font-weight="800" fill="#344054">基础 · Agent Loop</text>
+    <g fill="#eaf1ff" stroke="#5b8def" stroke-width="1.5">
+      <rect x="66" y="116" width="180" height="38" rx="9"/><rect x="66" y="164" width="180" height="38" rx="9"/>
+      <rect x="66" y="212" width="180" height="38" rx="9"/>
+    </g>
+    <g font-size="11.5" fill="#1d4ed8" font-weight="700">
+      <text x="156" y="140">思考 → 调用工具</text>
+      <text x="156" y="188">拿到结果 → 继续循环</text>
+      <text x="156" y="236">直到达成目标</text>
+    </g>
+    <rect x="300" y="70" width="564" height="230" rx="12" fill="#fff" stroke="#d9e2f2" stroke-width="1.5"/>
+    <text x="582" y="98" font-size="13.5" font-weight="800" fill="#344054">之上 · 四类能力</text>
+    <g font-size="11.5">
+      <rect x="322" y="112" width="260" height="76" rx="9" fill="#eaf1ff" stroke="#5b8def" stroke-width="1.4"/>
+      <text x="452" y="138" font-size="12.5" font-weight="800" fill="#1d4ed8">上下文</text>
+      <text x="452" y="160" fill="#4a5b7a">组装、压缩、按需检索</text>
+      <rect x="594" y="112" width="248" height="76" rx="9" fill="#fff8dd" stroke="#d9a92e" stroke-width="1.4"/>
+      <text x="718" y="138" font-size="12.5" font-weight="800" fill="#8a5f00">规划</text>
+      <text x="718" y="160" fill="#7a6330">任务拆解、进度追踪</text>
+      <rect x="322" y="200" width="260" height="76" rx="9" fill="#e9f9f0" stroke="#39a97a" stroke-width="1.4"/>
+      <text x="452" y="226" font-size="12.5" font-weight="800" fill="#177a52">文件</text>
+      <text x="452" y="248" fill="#3c6b55">中间结果、大工具结果落盘</text>
+      <rect x="594" y="200" width="248" height="76" rx="9" fill="#f3edff" stroke="#9575e0" stroke-width="1.4"/>
+      <text x="718" y="226" font-size="12.5" font-weight="800" fill="#6d42c9">权限</text>
+      <text x="718" y="248" fill="#5d4a91">工具白名单、审批、沙箱</text>
+    </g>
+  </g>
+  <g stroke="#8a94a6" stroke-width="1.7" fill="none"><line x1="278" y1="185" x2="298" y2="185"/><line x1="290" y1="179" x2="298" y2="185"/><line x1="290" y1="191" x2="298" y2="185"/></g>
+  <text x="450" y="320" font-size="11" fill="#5a6475" text-anchor="middle">过去：这些能力都得自己手搓；现在：现成的 Harness 已经帮我们做好了，可以直接使用</text>
+</svg>
+  <div class="cap">图 4｜Harness 定义：基础 Agent Loop 与四类能力重绘</div>
+</div>
+<p><span class="tag t-video">视频原述</span>「当然了，Framework、Runtime、Harness 并不是简单的新技术取代旧技术：Harness 复用了 Framework 和 Runtime 的能力。<strong>LangChain 团队</strong>就是一个非常典型的例子——LangChain 主要提供开发基础组件，2024 年推出 LangGraph 做状态管理与持久化执行，2025 年又推出 Deep Agents，在前两者基础上提供一套更完整的 Harness。所以它们是随着模型能力和应用需求变化出现的<strong>不同层次的技术抽象</strong>，不是互相淘汰。」</p>
+<div class="key"><span class="tag t-extra">补充</span>这套三层划分与公开工程资料一致：<strong>Framework</strong> 给开发者定义行为、工具、路由、状态的抽象（LangChain / CrewAI / OpenAI Agents SDK）；<strong>Runtime</strong> 提供持久化执行、会话与进程生命周期、检查点与恢复（LangGraph / Temporal / Inngest）；<strong>Harness</strong> 是「一辆装配好的车」，打包了默认 system prompt、工具注册表、上下文工程、Hook 生命周期、沙箱与权限模型（Claude Code / Codex CLI / Cline）。三者回答的是不同问题，生产系统常同时使用：Framework 编排大流程，每个 Agent 在 Harness 内执行，Runtime 提供环境与状态。详见 <a href="#s11">11. 专业名词速查</a> 与 <a href="#s13">13. 架构全景</a>。</div>
+</section>
+
+<section class="sec" id="s3">
+<h2>3. 演进带来的影响与七项目的三类划分</h2>
+<p><span class="tag t-video">视频原述</span>「那这条技术演进路线影响的是什么呢？影响的就是 <strong>Agent 的开发起点</strong>：过去从模型、工具、数据这些基础组件开始搭；现在如果现成的 Harness 够用，就可以直接复用，不用从零搭。不过，如果你的业务足够简单，或者需要严格的执行流程 / 状态管理，Framework 和 Runtime 依然有价值 —— <strong>并不是所有 Agent 开发都需要 Harness</strong>。」</p>
+<div class="figure">
+<svg viewBox="0 0 900 270" xmlns="http://www.w3.org/2000/svg" font-family="-apple-system,PingFang SC,Microsoft YaHei,sans-serif">
+  <g text-anchor="middle">
+    <text x="450" y="26" font-size="15" font-weight="800" fill="#1e2430">演进带来的影响：Agent 开发的起点变了</text>
+    <text x="450" y="44" font-size="11" fill="#7a8496">并不是所有 Agent 开发都需要 Harness；业务足够简单、或需要严格流程/状态管理时依然可以用 Framework / Runtime</text>
+  </g>
+  <g text-anchor="middle" font-size="12">
+    <rect x="36" y="70" width="390" height="120" rx="12" fill="#f5f7fa" stroke="#b6c0cf" stroke-width="1.6"/>
+    <text x="231" y="98" font-size="14" font-weight="800" fill="#344054">过去：从基础组件开始</text>
+    <g font-size="11.5" fill="#4a5b7a">
+      <text x="231" y="124">起点 = 模型 + 工具 + 数据</text>
+      <text x="231" y="148">循环 / 记忆 / 权限 / 规划全部自己搭</text>
+      <text x="231" y="172">开发成本高，重复劳动多</text>
+    </g>
+    <rect x="474" y="70" width="390" height="120" rx="12" fill="#e9f9f0" stroke="#39a97a" stroke-width="1.6"/>
+    <text x="669" y="98" font-size="14" font-weight="800" fill="#177a52">现在：现成 Harness 够用就直接复用</text>
+    <g font-size="11.5" fill="#3c6b55">
+      <text x="669" y="124">起点 = 一套已装配好的执行系统</text>
+      <text x="669" y="148">循环 / 记忆 / 权限 / 规划开箱可用</text>
+      <text x="669" y="172">把精力放在业务与验收上</text>
+    </g>
+  </g>
+  <g stroke="#8a94a6" stroke-width="1.8" fill="none"><line x1="428" y1="130" x2="470" y2="130"/><line x1="462" y1="124" x2="470" y2="130"/><line x1="462" y1="136" x2="470" y2="130"/></g>
+  <rect x="120" y="206" width="660" height="46" rx="10" fill="#fff4cc" stroke="#d9a92e" stroke-width="1.4"/>
+  <text x="450" y="235" font-size="11.8" font-weight="700" fill="#8a5f00" text-anchor="middle">边界：简单任务 / 严格流程与状态管理 → 轻量 Framework（如 LangChain）或 Runtime（如 LangGraph）依然有价值</text>
+</svg>
+  <div class="cap">图 5｜开发起点变化与边界重绘</div>
+</div>
+<p><span class="tag t-video">视频原述</span>「讲完技术演进，我们按<strong>主要服务的场景</strong>把这些项目分成三类。」</p>
+<div class="figure">
+<svg viewBox="0 0 900 330" xmlns="http://www.w3.org/2000/svg" font-family="-apple-system,PingFang SC,Microsoft YaHei,sans-serif">
+  <g text-anchor="middle">
+    <text x="450" y="26" font-size="15" font-weight="800" fill="#1e2430">Harness 的三类划分 + 一个特殊存在</text>
+    <text x="450" y="44" font-size="11" fill="#7a8496">画面原文：按主要服务的场景 → 分成三类；分类不是严格的功能边界，各 Harness 能力已越来越接近</text>
+  </g>
+  <g text-anchor="middle" font-size="12">
+    <rect x="24" y="64" width="278" height="176" rx="11" fill="#eaf1ff" stroke="#5b8def" stroke-width="1.6"/>
+    <text x="163" y="92" font-size="14" font-weight="800" fill="#1d4ed8">综合任务类</text>
+    <g font-size="11.3" fill="#4a5b7a">
+      <text x="163" y="116">不局限于某一种业务</text>
+      <text x="163" y="138">研究 · 数据分析 · 文档处理</text>
+      <text x="163" y="166" font-size="12" font-weight="800" fill="#1d4ed8">Claude Agent SDK</text>
+      <text x="163" y="186" font-size="12" font-weight="800" fill="#1d4ed8">Deep Agents</text>
+      <text x="163" y="214" font-size="10.5" fill="#7a8496">代表：通用执行系统</text>
+    </g>
+    <rect x="311" y="64" width="278" height="176" rx="11" fill="#fff8dd" stroke="#d9a92e" stroke-width="1.6"/>
+    <text x="450" y="92" font-size="14" font-weight="800" fill="#8a5f00">编码类</text>
+    <g font-size="11.3" fill="#7a6330">
+      <text x="450" y="116">围绕软件开发场景设计</text>
+      <text x="450" y="138">代码搜索 · 命令执行 · 测试验证</text>
+      <text x="450" y="166" font-size="12" font-weight="800" fill="#8a5f00">Pi　/　OpenCode</text>
+      <text x="450" y="186" font-size="11" fill="#8a5f00">（以及 Codex CLI）</text>
+      <text x="450" y="214" font-size="10.5" fill="#7a8496">代表：Coding Agent 工作流</text>
+    </g>
+    <rect x="598" y="64" width="278" height="176" rx="11" fill="#e9f9f0" stroke="#39a97a" stroke-width="1.6"/>
+    <text x="737" y="92" font-size="14" font-weight="800" fill="#177a52">个人助手类</text>
+    <g font-size="11.3" fill="#3c6b55">
+      <text x="737" y="116">长期运行 · 记住用户</text>
+      <text x="737" y="138">多渠道交互 · 定时任务 · 持续服务</text>
+      <text x="737" y="166" font-size="12" font-weight="800" fill="#177a52">OpenClaw</text>
+      <text x="737" y="186" font-size="12" font-weight="800" fill="#177a52">Hermes Agent</text>
+      <text x="737" y="214" font-size="10.5" fill="#7a8496">代表：完整 Agent 系统</text>
+    </g>
+  </g>
+  <rect x="150" y="256" width="600" height="58" rx="11" fill="#f3edff" stroke="#9575e0" stroke-width="1.6"/>
+  <g text-anchor="middle" font-size="11.8">
+    <text x="450" y="282" font-size="13" font-weight="800" fill="#6d42c9">特殊存在：DeepSeek Harness</text>
+    <text x="450" y="302" fill="#5d4a91">不针对具体场景，特点在整个 Harness 高度插件化 · 组合模块；模型、工具、Session、Loop 都可替换</text>
+  </g>
+</svg>
+  <div class="cap">图 6｜三类场景划分与七个项目归属重绘</div>
+</div>
+<table>
+<tr><th>类别</th><th>视频给出的场景词</th><th>代表项目</th><th>共同点</th></tr>
+<tr><td><strong>综合任务类</strong></td><td>研究、数据分析、文档处理；不局限于某一种业务</td><td>Claude Agent SDK、Deep Agents</td><td>提供比较完整的通用 Harness</td></tr>
+<tr><td><strong>编码类</strong></td><td>代码理解、文件修改、代码执行、执行命令、测试验证</td><td>Pi、OpenCode（以及画面提到的 Codex CLI）</td><td>围绕软件开发场景设计，核心执行机制其实比较相似</td></tr>
+<tr><td><strong>个人助手类</strong></td><td>多渠道交互、定时任务、长期记忆、持续服务</td><td>OpenClaw、Hermes Agent</td><td>长期运行、记住用户；不只是完成一次任务</td></tr>
+<tr><td><strong>特殊存在</strong></td><td>不针对具体场景，特点在整个 Harness 高度插件化 · 组合模块</td><td>DeepSeek Harness</td><td>可以通过组合不同的模块，搭出不同执行方式</td></tr>
+</table>
+<p><span class="tag t-video">视频原述</span>「需要说明的是，上面的分类并不是严格的功能边界：各 Harness 的能力已经越来越接近了 —— Coding Agent 也能读取文件、处理数据、生成报告，通用 Agent 也能读写代码、执行命令。它们的主要区别在于<strong>默认提供了哪些能力、针对什么任务做了优化</strong>。另外，个人助手类项目不只是 Harness，而是<strong>完整的 Agent 系统 = Harness + 消息接入 + 任务调度 + …</strong>」</p>
+<div class="note"><span class="tag t-extra">补充</span>视频在 06:21–06:27 之间有一句容易被忽略的限定：Hermes / OpenClaw 这类「完整 Agent 系统」> 单纯 Harness。做选型时要把「执行系统」与「产品外壳」分开看：消息网关、定时任务、用户体系、渠道适配属于 Runtime / 产品层，不是 Harness 本身的职责。这个区分在第 8 章两根轴对比里很关键——三个场景化项目没有落在坐标轴上，正是因为它们的差异主要来自场景外壳。</div>
+</section>
+
+<section class="sec" id="s4">
+<h2>4. 综合任务类：Claude Agent SDK 与 Deep Agents</h2>
+<p><span class="tag t-video">视频原述</span>「首先是综合任务类。典型的代表是 Claude Agent SDK 和 Deep Agents，这两个项目都已经提供了比较完整的 Harness 能力，但设计思路明显不同。」</p>
+
+<h3 id="s41">4.1 Claude Agent SDK：把成熟 Harness 封装成可直接用的执行系统</h3>
+<p><span class="tag t-video">视频原述</span>「Claude Agent SDK 的本质是把 <strong>Claude Code 的 Harness</strong> 封装成了一套可以直接使用的执行系统。它已经替开发者做好了 Agent Loop、工具的发现与调用、Session 与上下文、以及子 Agent 的执行机制。你只需要配置<strong>自定义工具、Skill、子 Agent 和 Hook</strong>，通过这些定义来改变它的行为，而不能直接替换成另一套机制。」</p>
+<p>画面依次展示了 GitHub 仓库 <code>github.com/anthropics/claude-agent-sdk-python</code>、<code>pip install claude-agent-sdk</code> 与 <code>$ python agent.py</code>，并列出「已内置、开箱即用」的能力：<code>Read · Bash · Grep</code>、<code>Session · 上下文</code>、<code>子 Agent researcher</code>。</p>
+<p><span class="tag t-video">视频原述</span>「比如说通过 Hook，你可以在工具调用前检查参数、阻止执行，也可以在执行后去检查结果；还可以自定义系统的提示词。」画面给出 Hook 代码与三条注释：<code>① 检查参数</code>、<code>② 阻止执行</code>、<code>③ 执行后检查结果</code>，并展示 <code>options = ClaudeAgentOptions(hooks={"PreToolUse": [HookMatcher("Bash", [guard])], "PostToolUse": ...}, system_prompt="你是团队的数据分析助手", allowed_tools=["Bash","Read","query_orders"])</code>。</p>
+<div class="figure">
+<svg viewBox="0 0 900 300" xmlns="http://www.w3.org/2000/svg" font-family="-apple-system,PingFang SC,Microsoft YaHei,sans-serif">
+  <g text-anchor="middle">
+    <text x="450" y="26" font-size="15" font-weight="800" fill="#1e2430">Claude Agent SDK：核心机制是「预置的」</text>
+    <text x="450" y="44" font-size="11" fill="#7a8496">把 Claude Code 的 Harness 封装成可直接使用的执行系统；可以配置，但不能整体替换</text>
+  </g>
+  <g text-anchor="middle" font-size="12">
+    <rect x="40" y="66" width="400" height="196" rx="12" fill="#e9f9f0" stroke="#39a97a" stroke-width="1.7"/>
+    <text x="240" y="94" font-size="14" font-weight="800" fill="#177a52">可以</text>
+    <g font-size="11.8" fill="#3c6b55">
+      <text x="240" y="124">✓ 干预 Agent Loop（Hook 前置/后置）</text>
+      <text x="240" y="152">✓ 控制部分上下文内容</text>
+      <text x="240" y="180">✓ 扩展工具 / Skill / 子 Agent</text>
+      <text x="240" y="208">✓ 自定义系统提示词</text>
+      <text x="240" y="236">✓ 用 allowed_tools 限定工具白名单</text>
+    </g>
+    <rect x="460" y="66" width="400" height="196" rx="12" fill="#ffeef1" stroke="#e0728d" stroke-width="1.7"/>
+    <text x="660" y="94" font-size="14" font-weight="800" fill="#b03a55">不能</text>
+    <g font-size="11.8" fill="#8c4a5b">
+      <text x="660" y="124">✗ 替换整个执行循环</text>
+      <text x="660" y="152">✗ 接管上下文组装与压缩机制</text>
+      <text x="660" y="180">✗ 改写内置工具的底层实现</text>
+      <text x="660" y="208">✗ 把另一套与 Claude Code 不同的执行架构直接换进来</text>
+      <text x="660" y="236" font-size="10.8">限制：受 SDK 扩展接口约束</text>
+    </g>
+  </g>
+  <text x="450" y="286" font-size="11.3" fill="#5a6475" text-anchor="middle">取舍：复用成熟机制、大量减少基础开发 ↔ 放弃对核心执行方式的控制；适合认可默认执行方式、希望快速开发的团队</text>
+</svg>
+  <div class="cap">图 7｜Claude Agent SDK「可以 / 不能」对照重绘</div>
+</div>
+<p><span class="tag t-video">视频原述</span>「但它的核心机制是<strong>预置的</strong>：你可以干预 Agent Loop、控制部分上下文的内容、扩展工具，但不能替换整个执行循环、不能接管上下文组装和压缩的机制、也不能改写内置工具的底层实现。这个设计的取舍非常明确：优点是你不需要自己去设计整套执行系统，可以直接复用 Claude Code 的成熟机制，大量减少基础开发工作；限制也在这 —— 如果你需要一套与 Claude Code 不同的执行架构，就可能会受到 SDK 扩展接口的约束。」</p>
+<div class="key"><span class="tag t-video">视频原述</span>「所以 Claude Agent SDK 适合：<strong>你要认可 Claude Code 默认的执行方式，希望在此基础上快速开发</strong>；如果技术基础相对薄弱、或者可以借助 Vibe Coding 完成开发，它是最值得优先考虑的方案，不需要自己从零搭建 Harness。」</div>
+<div class="note"><span class="tag t-extra">补充</span>官方定位：Claude Agent SDK（原 Claude Code SDK 更名）把 Claude Code 的 agent harness 作为 Python / TypeScript 库暴露，内置文件读写编辑、Bash、Glob/Grep、Web 工具，外加权限系统、Hooks、Subagents、MCP、Skills 与可恢复 Session。Anthropic 同时提供另外三种路径：手写 Message API tool loop（只有自己定义的工具）、Tool Runner（在自定义工具上跑循环）、Managed Agents（Anthropic 托管沙箱）。SDK 是「harness only」——<strong>你仍需自己托管部署</strong>。它的设计前提是「给 Agent 一台计算机」，循环为 <code>gather context → take action → verify work → repeat</code>。</div>
+
+<h3 id="s42">4.2 Deep Agents：在 LangGraph 之上把执行策略做成可组合模块</h3>
+<p><span class="tag t-video">视频原述</span>「Deep Agents 同样提供了比较完整的 Harness。和 Claude Agent SDK 更强调复用一套成熟的执行机制不同，<strong>Deep Agents 更强调开放和可定制</strong>。」</p>
+<div class="figure">
+<svg viewBox="0 0 900 330" xmlns="http://www.w3.org/2000/svg" font-family="-apple-system,PingFang SC,Microsoft YaHei,sans-serif">
+  <g text-anchor="middle">
+    <text x="450" y="26" font-size="15" font-weight="800" fill="#1e2430">Deep Agents：在 LangGraph 之上封装，强调开放与可定制</text>
+    <text x="450" y="44" font-size="11" fill="#7a8496">画面原文：特点一 Middleware（中间件，执行策略拆成独立模块）；特点二 Backends（灵活选文件存储／执行环境）</text>
+  </g>
+  <g text-anchor="middle" font-size="12">
+    <rect x="90" y="62" width="720" height="52" rx="10" fill="#e9f9f0" stroke="#39a97a" stroke-width="1.6"/>
+    <text x="450" y="94" font-size="13.5" font-weight="800" fill="#177a52">Deep Agents：任务规划 · 文件系统 · 子 Agent · 自动摘要 · 权限 · 人工干预</text>
+    <rect x="90" y="126" width="720" height="52" rx="10" fill="#fff8dd" stroke="#d9a92e" stroke-width="1.6"/>
+    <text x="450" y="158" font-size="13.5" font-weight="800" fill="#8a5f00">LangGraph：状态管理 / 任务恢复 · 持久化执行 · 中断与人工审批</text>
+    <rect x="90" y="190" width="720" height="52" rx="10" fill="#eaf1ff" stroke="#5b8def" stroke-width="1.6"/>
+    <text x="450" y="222" font-size="13.5" font-weight="800" fill="#1d4ed8">LangChain / LangGraph 基础 Agent Loop：连接模型与工具</text>
+  </g>
+  <g text-anchor="middle" font-size="11.5">
+    <rect x="90" y="256" width="345" height="58" rx="9" fill="#f3edff" stroke="#9575e0" stroke-width="1.4"/>
+    <text x="262" y="280" font-size="12.5" font-weight="800" fill="#6d42c9">Middleware · 可替换执行策略</text>
+    <text x="262" y="300" fill="#5d4a91">自定义压缩 / 工具过滤 / 模型调用前改上下文</text>
+    <rect x="465" y="256" width="345" height="58" rx="9" fill="#fff4cc" stroke="#d9a92e" stroke-width="1.4"/>
+    <text x="637" y="280" font-size="12.5" font-weight="800" fill="#8a5f00">Backends · 可插拔存储与执行</text>
+    <text x="637" y="300" fill="#7a6330">本地文件 / 远程沙箱 / 持久化存储 / 组合路由</text>
+  </g>
+</svg>
+  <div class="cap">图 8｜Deep Agents 分层架构与两大特点重绘</div>
+</div>
+<p><span class="tag t-video">视频原述</span>「我们前面提到 Deep Agents 是建立在 LangChain / LangGraph 之上的：它自己的 Agent Loop 与状态管理、任务恢复来自 LangGraph，在这个基础上封装了<strong>任务规划、文件系统和子 Agent</strong> 等能力。它有两个特点。」</p>
+<h4>特点一：Middleware（中间件）</h4>
+<p><span class="tag t-video">视频原述</span>「Middleware，也就是中间件，把 Harness 的不同执行策略拆成独立模块，让开发者按需调整。比如说你对默认的上下文压缩方式不满意，可以自定义压缩策略；也可以在模型调用前修改上下文、调整可用工具。」画面代码框出现 <code>create_deep_agent(model=..., tools=[search, query_db], middleware=[MyCompaction(), ToolFilter()])</code>，并标注「# 替换压缩策略」「# 调整可用工具」。</p>
+<h4>特点二：Backends（可插拔文件系统 / 执行环境）</h4>
+<p><span class="tag t-video">视频原述</span>「可以灵活选择文件存储 / 执行环境：本地文件、远程沙箱、持久化存储，甚至用 CompositeBackend 把不同路径路由到不同后端，不绑定一种固定环境。你不需要把文件管理和代码执行自己写一遍。」画面给出 <code>backend=CompositeBackend(default=FilesystemBackend("./work"), routes={"/memories/": StoreBackend()})</code>。</p>
+<p><span class="tag t-video">视频原述</span>「相比较 Claude Agent SDK，你对这些内部机制的控制空间更大。」画面用「场景：企业 Agent · 服务多个客户」示意：客户 A / B / C 分别对应数据库、文件存储、沙箱环境。</p>
+<div class="figure">
+<svg viewBox="0 0 900 290" xmlns="http://www.w3.org/2000/svg" font-family="-apple-system,PingFang SC,Microsoft YaHei,sans-serif">
+  <g text-anchor="middle">
+    <text x="450" y="26" font-size="15" font-weight="800" fill="#1e2430">Claude Agent SDK vs Deep Agents：开放的控制点不同</text>
+    <text x="450" y="44" font-size="11" fill="#7a8496">画面原图为两栏刻度：内置机制 / 可扩展 / 可替换核心（● 实心表示程度）</text>
+  </g>
+  <g text-anchor="middle" font-size="12">
+    <rect x="50" y="62" width="380" height="176" rx="12" fill="#eaf1ff" stroke="#5b8def" stroke-width="1.6"/>
+    <text x="240" y="90" font-size="14" font-weight="800" fill="#1d4ed8">Claude Agent SDK</text>
+    <text x="240" y="114" font-size="11.5" fill="#4a5b7a">环形 Agent Loop：模型 → 工具 → 结果</text>
+    <g font-size="11.5" fill="#344054">
+      <text x="150" y="146">内置机制</text><text x="300" y="146" fill="#1d4ed8" font-weight="800">● ● ●</text>
+      <text x="150" y="176">可扩展</text><text x="300" y="176" fill="#1d4ed8" font-weight="800">● ○ ○</text>
+      <text x="150" y="206">可替换核心</text><text x="300" y="206" fill="#1d4ed8" font-weight="800">● ○ ○</text>
+    </g>
+    <text x="240" y="228" font-size="11" fill="#5a6475">开放控制点：Hook / 工具 / Skill / 子 Agent</text>
+    <rect x="470" y="62" width="380" height="176" rx="12" fill="#fff8dd" stroke="#d9a92e" stroke-width="1.6"/>
+    <text x="660" y="90" font-size="14" font-weight="800" fill="#8a5f00">Deep Agents</text>
+    <text x="660" y="114" font-size="11.5" fill="#7a6330">蓝色可替换模块：执行策略按需组合</text>
+    <g font-size="11.5" fill="#344054">
+      <text x="570" y="146">内置机制</text><text x="720" y="146" fill="#8a5f00" font-weight="800">● ● ○</text>
+      <text x="570" y="176">可扩展</text><text x="720" y="176" fill="#8a5f00" font-weight="800">● ● ●</text>
+      <text x="570" y="206">可替换核心</text><text x="720" y="206" fill="#8a5f00" font-weight="800">● ○ ○</text>
+    </g>
+    <text x="660" y="228" font-size="11" fill="#5a6475">把更多执行策略做成可配置模块</text>
+  </g>
+  <text x="450" y="266" font-size="11.3" fill="#5a6475" text-anchor="middle">结论：两者都提供完整 Harness；前者复用成熟执行方式，后者让企业按存储/执行环境/策略做定制</text>
+</svg>
+  <div class="cap">图 9｜两个综合任务类项目的控制权对照重绘</div>
+</div>
+<p><span class="tag t-video">视频原述</span>「所以如果你做的是企业的 Agent、需要服务多个客户，对数据的存储和执行环境又有特殊的需求，Deep Agents 的优点是<strong>默认完整，也能定制</strong>；它的限制是灵活性更高，意味着更多技术决策 —— 怎么配合执行环境、怎么组合不同的处理策略、本地运行还是远程沙箱，都要自己定。更适合既想复用成熟 Harness、又想灵活调整执行环境与运行策略的团队。」</p>
+<div class="note"><span class="tag t-extra">补充</span>官方把 Deep Agents 定义为 <em>"the batteries-included agent harness"</em>，默认提供 <code>write_todos</code> 规划、<code>ls/read_file/write_file/edit_file/glob/grep</code> 文件系统、<code>execute</code>（沙箱后端）、<code>task</code> 子 Agent、自动摘要压缩、声明式文件系统权限与人工审批中断。可插拔后端包括 StateBackend（内存状态）、FilesystemBackend（本地磁盘）、StoreBackend（LangGraph Store 跨线程持久化）、SandboxBackend（Modal / Daytona / Deno）与 CompositeBackend。大工具结果（默认超过约 20k tokens）会自动 offload 到文件系统，上下文里只留路径与预览 —— 这是与 Claude SDK「预置压缩机制」最本质的差别。</div>
+</section>
+
+<section class="sec" id="s5">
+<h2>5. 编码类：Pi 与 OpenCode</h2>
+<p><span class="tag t-video">视频原述</span>「接下来我们再来看看编码类，代表项目有 Pi 和 OpenCode（另外还有 Codex CLI）。Coding Agent 和综合任务类的 Agent，核心执行机制其实比较相似，区别是围绕软件开发场景设计，所以会更重视<strong>代码搜索、命令执行和测试验证</strong>。」</p>
+
+<h3 id="s51">5.1 Pi：极简，把更多设计留给开发者</h3>
+<p><span class="tag t-video">视频原述</span>「Pi 最大的特点是<strong>极简</strong>：尽量减少框架预置功能，把设计留给开发者。默认只有四个工具：<code>read / write / edit / bash</code>。像任务规划、多 Agent 协作这样的能力，Pi 并没有强制去内置一套固定的方案，而是通过 Extension 自己扩展。」</p>
+<div class="figure">
+<svg viewBox="0 0 900 300" xmlns="http://www.w3.org/2000/svg" font-family="-apple-system,PingFang SC,Microsoft YaHei,sans-serif">
+  <g text-anchor="middle">
+    <text x="450" y="26" font-size="15" font-weight="800" fill="#1e2430">Pi：极简核心，核心不动、往外扩展</text>
+    <text x="450" y="44" font-size="11" fill="#7a8496">画面原文：默认只有 4 个工具 read / write / edit / bash；任务规划、多 Agent 协作不强制内置固定方案</text>
+  </g>
+  <g text-anchor="middle" font-size="12">
+    <circle cx="450" cy="158" r="62" fill="#eaf1ff" stroke="#5b8def" stroke-width="2.2"/>
+    <text x="450" y="150" font-size="15" font-weight="800" fill="#1d4ed8">Pi 简单核心</text>
+    <text x="450" y="174" font-size="11" fill="#4a5b7a">read · write · edit · bash</text>
+    <g font-size="11.3">
+      <rect x="40" y="84" width="200" height="58" rx="9" fill="#f3edff" stroke="#9575e0" stroke-width="1.4"/>
+      <text x="140" y="108" font-size="12.5" font-weight="800" fill="#6d42c9">Extension</text>
+      <text x="140" y="128" fill="#5d4a91">自定义工具 / 拦截调用</text>
+      <rect x="40" y="176" width="200" height="58" rx="9" fill="#fff4cc" stroke="#d9a92e" stroke-width="1.4"/>
+      <text x="140" y="200" font-size="12.5" font-weight="800" fill="#8a5f00">Skill / Package</text>
+      <text x="140" y="220" fill="#7a6330">按需加规划、子 Agent</text>
+      <rect x="660" y="84" width="200" height="58" rx="9" fill="#e9f9f0" stroke="#39a97a" stroke-width="1.4"/>
+      <text x="760" y="108" font-size="12.5" font-weight="800" fill="#177a52">Pi SDK</text>
+      <text x="760" y="128" fill="#3c6b55">嵌入自己的产品</text>
+      <rect x="660" y="176" width="200" height="58" rx="9" fill="#ffeef1" stroke="#e0728d" stroke-width="1.4"/>
+      <text x="760" y="200" font-size="12.5" font-weight="800" fill="#b03a55">Fork 源码</text>
+      <text x="760" y="220" fill="#8c4a5b">重写 Agent Loop</text>
+    </g>
+  </g>
+  <g stroke="#8a94a6" stroke-width="1.5">
+    <line x1="242" y1="113" x2="386" y2="140"/><line x1="242" y1="205" x2="386" y2="178"/>
+    <line x1="658" y1="113" x2="514" y2="140"/><line x1="658" y1="205" x2="514" y2="178"/>
+  </g>
+  <text x="450" y="266" font-size="11.3" fill="#5a6475" text-anchor="middle">优点：核心简单灵活、不必接受过多预置策略；限制：高级能力要自己组合与维护，对技术能力要求更高</text>
+</svg>
+  <div class="cap">图 10｜Pi 极简核心与四层扩展路径重绘</div>
+</div>
+<p>画面展示了 Pi 的 README（<code>github.com/earendil-works/pi/.../coding-agent/README.md</code>）与官网 <code>pi.dev/docs/latest/extensions</code>：<em>"Pi is a minimal, extensible agent harness. Adapt Pi to your workflows, not the other way around."</em>，以及 <code>tools: read write edit bash</code>。</p>
+<p><span class="tag t-video">视频原述</span>「而且 Pi 的扩展机制也很开放：不只是加工具，还能深入干预执行过程 —— <strong>拦截工具调用、修改上下文、覆盖内置工具</strong>。」画面给出 <code>pi.on("tool_call", ...)</code>、<code>pi.on("context", trimContext)</code>、<code>pi.on("session_before_compact", myCompact)</code>、<code>pi.registerTool({ name: "read", ...safeRead })</code>，并列出官方 Extension 能力：自定义工具、事件拦截、用户交互、自定义 TUI 组件、自定义命令、Provider / MCP Server、权限门、Git checkpoint、路径保护。</p>
+<p><span class="tag t-video">视频原述</span>「那相比 Claude Agent SDK，Pi 在工具实现上的定制空间更大；而且它有 SDK，可以直接把 Agent 能力嵌入自己的产品 —— <strong>OpenClaw 早期就是通过复用 Pi 的能力来构建个人助手的</strong>。如果你想彻底重写 Agent Loop，它开源，可以直接改源码：画面展示了 <code>agent-loop.ts</code> 的 while 循环，以及技术团队 A / B / C 各自 fork 出自己的 Harness。」</p>
+<p><span class="tag t-video">视频原述</span>「它的优点是核心简单灵活，不必接受过多预置执行策略；限制就是很多高级能力需要自己组合和维护 —— 记忆、子 Agent、权限、规划都是『待组装』的空位。所以 Pi 更适合希望自己掌握 Agent 执行逻辑、从轻量核心出发开发自己 Agent 产品的团队。」</p>
+<div class="note"><span class="tag t-extra">补充</span>Pi（<code>@mariozechner/pi-coding-agent</code>，作者 Mario Zechner / badlogic，仓库 <code>badlogic/pi-mono</code>，TypeScript，MIT）的官方定位是 <em>A minimal terminal coding harness</em>。它刻意不内置 MCP、子 Agent、权限弹窗、Plan 模式、Todo、后台 Bash；系统提示词不到 1000 tokens（对比 Claude Code 约 14,000+、每次请求固定开销 Claude Code ≈32,800 / OpenCode ≈6,900 / Pi &lt;1,000 tokens，为公开社区实测口径，非视频原述）。扩展分三档：Extensions / Skills / Pi Packages（npm 或 git 分发）。SDK 侧的包包括 <code>pi-ai</code>（模型与 provider 抽象）、<code>pi-agent-core</code>（Agent 循环与工具执行）、<code>pi-coding-agent</code>（createAgentSession 等高层 API）、<code>pi-tui</code>。</div>
+
+<h3 id="s52">5.2 OpenCode：预置一整套软件开发工作机制</h3>
+<p><span class="tag t-video">视频原述</span>「如果说 Pi 追求的是极简，那 OpenCode 提供一套比较完整的软件开发工作机制。它不仅内置常用工具，还预置了不同的 Agent：<strong>Build Agent</strong> 负责改代码、跑命令；<strong>Plan Agent</strong> 负责分析问题、给方案，默认不直接修改普通项目文件；还有 <strong>Explore</strong> 等子 Agent 负责搜索、理解代码库。」</p>
+<div class="figure">
+<svg viewBox="0 0 900 290" xmlns="http://www.w3.org/2000/svg" font-family="-apple-system,PingFang SC,Microsoft YaHei,sans-serif">
+  <g text-anchor="middle">
+    <text x="450" y="26" font-size="15" font-weight="800" fill="#1e2430">OpenCode：不同 Agent 不同任务，使用不同的工具和权限</text>
+    <text x="450" y="44" font-size="11" fill="#7a8496">画面原表三列：Build / Plan / Explore；每列含「提示词 · 模型 · 权限」三行</text>
+  </g>
+  <g text-anchor="middle" font-size="12">
+    <rect x="50" y="64" width="250" height="176" rx="11" fill="#eaf1ff" stroke="#5b8def" stroke-width="1.7"/>
+    <text x="175" y="92" font-size="15" font-weight="800" fill="#1d4ed8">Build</text>
+    <text x="175" y="112" font-size="11.5" fill="#4a5b7a">改代码 · 跑命令</text>
+    <g font-size="11.3" fill="#4a5b7a">
+      <text x="175" y="140">提示词　✓</text><text x="175" y="164">模型　✓</text><text x="175" y="188">权限　✓</text>
+    </g>
+    <text x="175" y="220" font-size="11.5" font-weight="800" fill="#1d4ed8">edit · bash</text>
+    <rect x="325" y="64" width="250" height="176" rx="11" fill="#fff8dd" stroke="#d9a92e" stroke-width="1.7"/>
+    <text x="450" y="92" font-size="15" font-weight="800" fill="#8a5f00">Plan</text>
+    <text x="450" y="112" font-size="11.5" fill="#7a6330">分析 · 方案</text>
+    <g font-size="11.3" fill="#7a6330">
+      <text x="450" y="140">提示词　✓</text><text x="450" y="164">模型　✓</text><text x="450" y="188">权限　✓</text>
+    </g>
+    <text x="450" y="220" font-size="11.5" font-weight="800" fill="#8a5f00">只读（不改普通项目文件）</text>
+    <rect x="600" y="64" width="250" height="176" rx="11" fill="#e9f9f0" stroke="#39a97a" stroke-width="1.7"/>
+    <text x="725" y="92" font-size="15" font-weight="800" fill="#177a52">Explore</text>
+    <text x="725" y="112" font-size="11.5" fill="#3c6b55">搜索 · 理解</text>
+    <g font-size="11.3" fill="#3c6b55">
+      <text x="725" y="140">提示词　✓</text><text x="725" y="164">模型　✓</text><text x="725" y="188">权限　✓</text>
+    </g>
+    <text x="725" y="220" font-size="11.5" font-weight="800" fill="#177a52">grep · read</text>
+  </g>
+  <text x="450" y="266" font-size="11.3" fill="#5a6475" text-anchor="middle">不是写死的：可以增加自己的 Agent；常用工具与工作机制已整合好，但默认机制都围绕软件开发</text>
+</svg>
+  <div class="cap">图 11｜OpenCode 三种预置 Agent 权限表重绘</div>
+</div>
+<p><span class="tag t-video">视频原述</span>「不同 Agent 不同任务，使用不同的工具和权限 —— 而且不是写死的，可以增加自己的 Agent。画面示例：<code>&gt; 给订单列表加分页</code> 用 Build（<code>edit src/orders.ts</code>、<code>bash npm test</code>）；<code>Tab</code> 切到 Plan：<code>&gt; 先分析列表为什么慢</code>（只读分析，不改普通项目文件）；<code>@explore 找出所有调用 fetchOrders 的地方</code> → <code>grep fetchOrders → 6 处</code>。」</p>
+<p><span class="tag t-video">视频原述</span>「它的优点是已经把读写文件、终端命令、测试这些常用工具和工作机制整合好，开箱即用；如果你想开发自己的 Coding Agent，不需要重新设计整套系统。但它的很多默认机制都围绕软件开发 —— 如果你想做一个完全不同的业务 Agent（比如客服 / 财务），预置逻辑要大量调整。所以 OpenCode 更适合基于成熟开源 Coding Agent 开发自己的编程工具或软件开发 Agent；<strong>反过来，如果目标不是 Coding Agent，就优先考虑 Pi</strong>。」</p>
+<div class="note"><span class="tag t-extra">补充</span>OpenCode（Anomaly / 原 SST 团队，MIT，TypeScript + Bun）采用 <strong>client-server 架构</strong>：TUI / Desktop / Web / IDE 扩展作为客户端，本地 HTTP 服务器负责 Agent 运行时、工具执行、会话管理与 LSP 进程；SQLite 持久化会话。模型无关，通过 Models.dev 注册表可接 75+ provider（含本地 Ollama）。差异化能力是 <strong>LSP 集成</strong>：<code>/init</code> 自动检测语言并启动对应 LSP server，让 Agent 拿到诊断、跳转定义等 IDE 级信号。公开资料也提示过 client-server 架构带来的额外攻击面（曾出现未认证 RCE 漏洞，已修复）——这是「开箱即用」之外的运维代价。</div>
+</section>
+
+<section class="sec" id="s6">
+<h2>6. 个人助手类：OpenClaw 与 Hermes Agent</h2>
+<p><span class="tag t-video">视频原述</span>「前面介绍的更多围绕 Agent 怎么完成任务，接下来我们看个人助手类。这一类有一个明显的不同：<strong>它们不只是完成一次任务，而是长期运行、记住用户</strong>。而且它们不只是 Harness，而是完整的 Agent 系统 = Harness + 消息接入 + 任务调度 + …」</p>
+
+<h3 id="s61">6.1 OpenClaw：个人助手的管理中心</h3>
+<p><span class="tag t-video">视频原述</span>「OpenClaw 可以理解成是个人助手的<strong>管理中心</strong>。比如说你可以通过飞书、微信发消息，Gateway 会负责接收消息、识别用户和 Session，再交给 Agent 执行，最后把结果返回给用户。」</p>
+<div class="figure">
+<svg viewBox="0 0 900 300" xmlns="http://www.w3.org/2000/svg" font-family="-apple-system,PingFang SC,Microsoft YaHei,sans-serif">
+  <g text-anchor="middle">
+    <text x="450" y="26" font-size="15" font-weight="800" fill="#1e2430">OpenClaw：个人助手的管理中心（Gateway + Agent Runtime）</text>
+    <text x="450" y="44" font-size="11" fill="#7a8496">画面原文：飞书 / 微信 → Gateway 识别用户和 Session → Agent Runtime → 结果返回；核心价值＝执行能力 + 消息渠道 + 长期任务管理整合到一起</text>
+  </g>
+  <g text-anchor="middle" font-size="12">
+    <rect x="24" y="72" width="150" height="132" rx="11" fill="#eaf1ff" stroke="#5b8def" stroke-width="1.6"/>
+    <text x="99" y="100" font-size="13" font-weight="800" fill="#1d4ed8">消息渠道</text>
+    <g font-size="11.2" fill="#4a5b7a">
+      <text x="99" y="126">飞书 / 微信 / 企微</text>
+      <text x="99" y="148">邮件 / 更多渠道</text>
+      <text x="99" y="172">定时触发 / 事件触发</text>
+    </g>
+    <rect x="196" y="72" width="180" height="132" rx="11" fill="#fff8dd" stroke="#d9a92e" stroke-width="1.6"/>
+    <text x="286" y="100" font-size="13" font-weight="800" fill="#8a5f00">Gateway</text>
+    <g font-size="11.2" fill="#7a6330">
+      <text x="286" y="126">接收消息</text><text x="286" y="148">识别用户 &amp; Session</text>
+      <text x="286" y="172">调度与回传结果</text>
+    </g>
+    <rect x="398" y="72" width="240" height="132" rx="11" fill="#e9f9f0" stroke="#39a97a" stroke-width="1.6"/>
+    <text x="518" y="100" font-size="13" font-weight="800" fill="#177a52">OpenClaw Agent Runtime</text>
+    <g font-size="11.2" fill="#3c6b55">
+      <text x="518" y="126">Agent Loop / 上下文</text>
+      <text x="518" y="148">工具执行 / 插件</text>
+      <text x="518" y="172">会话持久化 / 沙箱</text>
+    </g>
+    <rect x="660" y="72" width="216" height="132" rx="11" fill="#f3edff" stroke="#9575e0" stroke-width="1.6"/>
+    <text x="768" y="100" font-size="13" font-weight="800" fill="#6d42c9">长期任务</text>
+    <g font-size="11.2" fill="#5d4a91">
+      <text x="768" y="126">cron / automations</text>
+      <text x="768" y="148">每天自动整理信息</text>
+      <text x="768" y="172">定期生成报告</text>
+    </g>
+  </g>
+  <g stroke="#8a94a6" stroke-width="1.8" fill="none">
+    <line x1="176" y1="138" x2="194" y2="138"/><line x1="187" y1="133" x2="194" y2="138"/><line x1="187" y1="143" x2="194" y2="138"/>
+    <line x1="378" y1="138" x2="396" y2="138"/><line x1="389" y1="133" x2="396" y2="138"/><line x1="389" y1="143" x2="396" y2="138"/>
+    <line x1="640" y1="138" x2="658" y2="138"/><line x1="651" y1="133" x2="658" y2="138"/><line x1="651" y1="143" x2="658" y2="138"/>
+  </g>
+  <rect x="120" y="222" width="660" height="56" rx="10" fill="#fff4cc" stroke="#d9a92e" stroke-width="1.4"/>
+  <text x="450" y="246" font-size="11.8" font-weight="700" fill="#8a5f00" text-anchor="middle">演进：早期复用 Pi Agent SDK → 现在有自己的 Runtime；限制：部署与维护成本更高，普通任务型 Agent 不必上这套</text>
+  <text x="450" y="268" font-size="10.8" fill="#7a6330" text-anchor="middle">画面命令示例：openclaw cron add --name"早报" --cron "0 9 * * *" --message"整理今天的行…"</text>
+</svg>
+  <div class="cap">图 12｜OpenClaw Gateway 架构与长期任务重绘</div>
+</div>
+<p><span class="tag t-video">视频原述</span>「它还内置了<strong>定时任务和事件触发</strong>，可以每天自动整理信息、定期生成报告，不用用户每次手动发起。」画面给出 <code>docs.openclaw.ai/automation/cron-jobs</code> 与命令 <code>openclaw cron add --name "早报" --cron "0 9 * * *" --message "整理今天的行…"</code>。</p>
+<p><span class="tag t-video">视频原述</span>「前面提到 OpenClaw 早期是通过复用 Pi Agent SDK 构建个人助手的；现在它已经发展出了自己的 Agent Runtime，能够独立地管理 Agent Loop、上下文、工具执行和会话，并通过插件扩展能力。<strong>核心价值是把执行能力、消息渠道和长期任务管理整合到了一起</strong>。如果你想搭建一个长期运行的个人助手，不用从零搭消息接入、任务调度和会话管理这些基础设施。限制也很明显：部署和维护成本更高，普通的任务型 Agent 未必需要。」</p>
+<div class="note"><span class="tag t-extra">补充</span>OpenClaw 官方文档写明运行的是「源自 pi-mono 的嵌入式 Agent Runtime」：通过 <code>createAgentSession()</code> 直接实例化 Pi SDK，而非子进程调用；Gateway 负责渠道、Session 解析、队列串行化与生命周期事件桥接。工作区（<code>agents.defaults.workspace</code>）是唯一 cwd，首轮会自动注入 <code>AGENTS.md</code>（操作指令）、<code>SOUL.md</code>（人格与边界）、<code>TOOLS.md</code>、<code>IDENTITY.md</code>、<code>USER.md</code> 等引导文件；<code>BOOTSTRAP.md</code> 为一次性启动仪式，完成后删除。这与「记住用户」的产品诉求直接对应。</div>
+
+<h3 id="s62">6.2 Hermes Agent：持续学习，把经验沉淀成 Skill</h3>
+<p><span class="tag t-video">视频原述</span>「另一个就是 Hermes。和 OpenClaw 相似的地方是多渠道交互能力、定时任务、长期记忆；它最有特点的是<strong>持续学习机制</strong> —— 不只是让 Agent 记住过去的对话，而是把完成任务的经验沉淀下来。」</p>
+<div class="figure">
+<svg viewBox="0 0 900 300" xmlns="http://www.w3.org/2000/svg" font-family="-apple-system,PingFang SC,Microsoft YaHei,sans-serif">
+  <g text-anchor="middle">
+    <text x="450" y="26" font-size="15" font-weight="800" fill="#1e2430">Hermes Agent：持续学习（完成任务 → 沉淀经验 → 后面复用）</text>
+    <text x="450" y="44" font-size="11" fill="#7a8496">和 OpenClaw 相似：多渠道 / 定时任务 / 长期记忆；最有特点的是 Memory + Skill 的闭环</text>
+  </g>
+  <g text-anchor="middle" font-size="12">
+    <rect x="40" y="70" width="270" height="112" rx="11" fill="#eaf1ff" stroke="#5b8def" stroke-width="1.6"/>
+    <text x="175" y="98" font-size="14" font-weight="800" fill="#1d4ed8">Memory</text>
+    <text x="175" y="120" font-size="11.3" fill="#4a5b7a">保存长期信息</text>
+    <text x="175" y="144" font-size="11" fill="#4a5b7a">偏好：结论先行、要数据</text>
+    <text x="175" y="164" font-size="11" fill="#4a5b7a">项目背景：电商后台</text>
+    <rect x="330" y="70" width="270" height="112" rx="11" fill="#fff8dd" stroke="#d9a92e" stroke-width="1.6"/>
+    <text x="465" y="98" font-size="14" font-weight="800" fill="#8a5f00">Skill</text>
+    <text x="465" y="120" font-size="11.3" fill="#7a6330">保存完成某类任务的方法</text>
+    <text x="465" y="144" font-size="11" fill="#7a6330">例：写周报，写几次 → 总结方法</text>
+    <text x="465" y="164" font-size="11" fill="#7a6330">存成 weekly-report/SKILL.md</text>
+    <rect x="620" y="70" width="240" height="112" rx="11" fill="#e9f9f0" stroke="#39a97a" stroke-width="1.6"/>
+    <text x="740" y="98" font-size="14" font-weight="800" fill="#177a52">优点</text>
+    <text x="740" y="122" font-size="11.2" fill="#3c6b55">第 1 次 10 步</text>
+    <text x="740" y="144" font-size="11.2" fill="#3c6b55">第 2 次 6 步</text>
+    <text x="740" y="166" font-size="11.2" fill="#3c6b55">第 3 次 3 步 → 越用越顺手</text>
+  </g>
+  <g text-anchor="middle" font-size="12">
+    <rect x="100" y="204" width="180" height="52" rx="10" fill="#f5f7fa" stroke="#b6c0cf" stroke-width="1.5"/>
+    <text x="190" y="236" font-size="13" font-weight="700" fill="#344054">完成任务</text>
+    <rect x="360" y="204" width="180" height="52" rx="10" fill="#f3edff" stroke="#9575e0" stroke-width="1.7"/>
+    <text x="450" y="236" font-size="13" font-weight="700" fill="#6d42c9">沉淀经验</text>
+    <rect x="620" y="204" width="180" height="52" rx="10" fill="#fff4cc" stroke="#d9a92e" stroke-width="1.5"/>
+    <text x="710" y="236" font-size="13" font-weight="700" fill="#8a5f00">后面复用</text>
+  </g>
+  <g stroke="#8a94a6" stroke-width="1.8" fill="none">
+    <line x1="282" y1="230" x2="358" y2="230"/><line x1="349" y1="225" x2="358" y2="230"/><line x1="349" y1="235" x2="358" y2="230"/>
+    <line x1="542" y1="230" x2="618" y2="230"/><line x1="609" y1="225" x2="618" y2="230"/><line x1="609" y1="235" x2="618" y2="230"/>
+  </g>
+  <text x="450" y="282" font-size="11.2" fill="#5a6475" text-anchor="middle">限制：错误的经验也会被沉淀、后面可能一直重复；应对：修改记忆和技能需人工审批</text>
+</svg>
+  <div class="cap">图 13｜Hermes 持续学习闭环重绘</div>
+</div>
+<p><span class="tag t-video">视频原述</span>「这里面有两个核心设计：<strong>Memory 用来保存用户的偏好和长期信息</strong>（画面例子：偏好『结论先行、要数据』，项目背景『电商后台』）；<strong>Skill 则用来保存完成某类任务的方法</strong>。比如说你经常让 Agent 帮你写周报，最开始你需要告诉他周报的结构，写几次之后 Agent 可能会逐渐把这套方法总结出来，存成 Skill（画面：<code>weekly-report/SKILL.md</code>），以后再写周报直接复用这套方法就行。」</p>
+<p><span class="tag t-video">视频原述</span>「所以它的特点是把任务执行、记忆和技能积累串起来，让 Agent 在长期使用过程中越用越顺手（画面：第 1 次 10 步 → 第 2 次 6 步 → 第 3 次 3 步）。好处是同一类任务越用越顺手；但<strong>错误的经验也会被沉淀，后面可能就会一直重复这个错误</strong>，所以它也对记忆和技能的修改做人工审批。总结：想要完整个人助手、接入 IM（飞书/微信/企微），可以优先考虑 OpenClaw。」</p>
+<div class="note"><span class="tag t-extra">补充</span>Hermes Agent 是 Nous Research 开源的 self-improving agent（Python，MIT），核心是 <strong>E-A-A-S 闭环：Execute → Evaluate → Abstract → Store</strong>：任务完成后反思表现，用 <code>skill_manage</code> 把可复用模式写成 Markdown 技能文件，并更新 <code>MEMORY.md</code> / <code>USER.md</code>；下次遇到相似任务先查技能库与 FTS5 会话索引。内置 40+ 工具，涵盖文件、Shell、浏览器、Web、消息渠道与自然语言 Cron。公开源码分析还指出它是「prompt-cache-first 的同步 ReAct 内核」：系统提示词在会话期间冻结，压缩是唯一允许的改写，新能力默认走 skill / plugin / MCP 而非往核心加工具。视频里「错误经验也会沉淀」正是这类自学习系统的典型风险。</div>
+</section>
+
+<section class="sec" id="s7">
+<h2>7. 特殊存在：DeepSeek Harness</h2>
+<p><span class="tag t-video">视频原述</span>「最后一个 <strong>DeepSeek Harness</strong>，我把它单独拿出来，是因为它的技术设计和前面几个项目都不一样。」画面给出的关键词是 <strong>Everything is a Plugin（一切皆插件）</strong>。</p>
+<p><span class="tag t-video">视频原述</span>「很多 Harness 都支持插件，但通常只是增加工具 / Skill，或者在固定的执行机制上去扩展功能。不管是 Deep Agents、Pi 还是 OpenClaw，<strong>都有内置 Agent Loop</strong>，区别只在于允许多大程度的干预和改造。」</p>
+<div class="figure">
+<svg viewBox="0 0 900 300" xmlns="http://www.w3.org/2000/svg" font-family="-apple-system,PingFang SC,Microsoft YaHei,sans-serif">
+  <g text-anchor="middle">
+    <text x="450" y="26" font-size="15" font-weight="800" fill="#1e2430">DeepSeek Harness：Everything is a Plugin（一切皆插件）</text>
+    <text x="450" y="44" font-size="11" fill="#7a8496">很多 Harness 都支持插件，但通常只是加工具 / Skill；DeepSeek Harness 连核心也可换</text>
+  </g>
+  <g text-anchor="middle" font-size="12">
+    <rect x="40" y="66" width="380" height="176" rx="12" fill="#f5f7fa" stroke="#b6c0cf" stroke-width="1.6"/>
+    <text x="230" y="94" font-size="13.5" font-weight="800" fill="#344054">多数 Harness</text>
+    <rect x="100" y="108" width="260" height="52" rx="9" fill="#2b3547"/>
+    <text x="230" y="140" font-size="13" font-weight="800" fill="#fff">Agent Loop 🔒（内置）</text>
+    <rect x="100" y="172" width="120" height="44" rx="8" fill="#fff" stroke="#c7d0de" stroke-width="1.3"/>
+    <text x="160" y="200" font-size="11.8" fill="#344054">+ 工具</text>
+    <rect x="240" y="172" width="120" height="44" rx="8" fill="#fff" stroke="#c7d0de" stroke-width="1.3"/>
+    <text x="300" y="200" font-size="11.8" fill="#344054">+ Skill</text>
+    <rect x="460" y="66" width="400" height="176" rx="12" fill="#eaf1ff" stroke="#5b8def" stroke-width="1.7"/>
+    <text x="660" y="94" font-size="13.5" font-weight="800" fill="#1d4ed8">DeepSeek Harness</text>
+    <g fill="#3b5bdb" stroke="none">
+      <rect x="490" y="108" width="160" height="44" rx="8"/><rect x="670" y="108" width="160" height="44" rx="8"/>
+      <rect x="490" y="164" width="160" height="44" rx="8"/><rect x="670" y="164" width="160" height="44" rx="8"/>
+    </g>
+    <g font-size="12.5" font-weight="800" fill="#fff">
+      <text x="570" y="136">模型</text><text x="750" y="136">工具</text>
+      <text x="570" y="192">Session</text><text x="750" y="192">Agent Loop</text>
+    </g>
+    <text x="660" y="228" font-size="11" fill="#1d4ed8">都可替换的插件（底层：Cordis 插件架构）</text>
+  </g>
+  <text x="450" y="270" font-size="11.3" fill="#5a6475" text-anchor="middle">不满意默认 Loop → 写 plugins/my-loop.ts，用 ctx.provide("agent-loop", …) 换掉，而不改框架核心代码</text>
+  <text x="450" y="290" font-size="10.8" fill="#7a8496" text-anchor="middle">代价：内部机制多、组合与维护复杂；适合研究和定制 Harness 底层架构的团队</text>
+</svg>
+  <div class="cap">图 14｜DeepSeek Harness「一切皆插件」对照重绘</div>
+</div>
+<p><span class="tag t-video">视频原述</span>「DeepSeek Harness 更进一步：<strong>它把模型、工具、Session、Agent Loop 都设计成了可以替换的插件</strong>。如果你对默认的 Agent Loop 不满意，可以组合插件把它替换掉，而不用直接去改框架的核心代码。」</p>
+<p>画面展示官方文档 <code>deepseek-harness.github.io/deepseek-harness/reference/…</code> 的服务声明 / 实现包关系图，以及示意代码：</p>
+<pre><code>// plugins/my-loop.ts（画面标注：示意）
+// 默认 Agent Loop 不满意？写个插件换掉
+export const name = "my-agent-loop";
+ctx.provide("agent-loop", new PlanThenAct());   // 不改框架核心代码</code></pre>
+<p><span class="tag t-video">视频原述</span>画面左侧两行小字点明底层：<code>底层：Cordis 插件架构</code>、<code>模块协作 · 组合出执行方式</code>，并列出 <code>model · tools · session · loop 全部可替换</code>。也就是说，它把不同功能做成相互协作的模块，让开发者组合出不同的执行方式。</p>
+<h3>7.1 与 Pi 的对比：两种「灵活」不是一回事</h3>
+<p><span class="tag t-video">视频原述</span>「它和 Pi 虽然都强调灵活，但思路不同：<strong>Pi 是尽量让核心保持简单</strong>；<strong>而 DeepSeek Harness 是把核心本身也做成了可以替换的模块</strong>。」</p>
+<div class="figure">
+<svg viewBox="0 0 900 270" xmlns="http://www.w3.org/2000/svg" font-family="-apple-system,PingFang SC,Microsoft YaHei,sans-serif">
+  <g text-anchor="middle">
+    <text x="450" y="26" font-size="15" font-weight="800" fill="#1e2430">Pi 和 DeepSeek 都灵活，思路不同</text>
+    <text x="450" y="44" font-size="11" fill="#7a8496">画面原文：Pi 是尽量让核心保持简单；DeepSeek Harness 是把核心本身也做成可替换的模块</text>
+  </g>
+  <g text-anchor="middle" font-size="12">
+    <rect x="60" y="66" width="360" height="160" rx="12" fill="#eaf1ff" stroke="#5b8def" stroke-width="1.7"/>
+    <text x="240" y="96" font-size="14" font-weight="800" fill="#1d4ed8">Pi　核心不动，往外扩展</text>
+    <circle cx="240" cy="158" r="44" fill="#3b5bdb"/>
+    <text x="240" y="154" font-size="12.5" font-weight="800" fill="#fff">简单核心</text>
+    <text x="240" y="174" font-size="10.5" fill="#dbe6ff">4 个工具</text>
+    <g fill="#f3edff" stroke="#9575e0" stroke-width="1.3">
+      <rect x="86" y="130" width="72" height="30" rx="7"/><rect x="322" y="130" width="72" height="30" rx="7"/>
+      <rect x="86" y="176" width="72" height="30" rx="7"/><rect x="322" y="176" width="72" height="30" rx="7"/>
+    </g>
+    <g font-size="10.5" fill="#6d42c9">
+      <text x="122" y="150">扩展</text><text x="358" y="150">扩展</text>
+      <text x="122" y="196">扩展</text><text x="358" y="196">扩展</text>
+    </g>
+    <rect x="480" y="66" width="360" height="160" rx="12" fill="#fff8dd" stroke="#d9a92e" stroke-width="1.7"/>
+    <text x="660" y="96" font-size="14" font-weight="800" fill="#8a5f00">DeepSeek Harness　核心也能替换</text>
+    <g fill="#3b5bdb">
+      <rect x="510" y="120" width="130" height="42" rx="8"/><rect x="680" y="120" width="130" height="42" rx="8"/>
+      <rect x="510" y="172" width="130" height="42" rx="8"/><rect x="680" y="172" width="130" height="42" rx="8"/>
+    </g>
+    <g font-size="11.5" font-weight="700" fill="#fff">
+      <text x="575" y="146">模型</text><text x="745" y="146">工具</text>
+      <text x="575" y="198">Session</text><text x="745" y="198">新 Loop</text>
+    </g>
+  </g>
+  <text x="450" y="252" font-size="11.3" fill="#5a6475" text-anchor="middle">自由程度非常高（可研究不同 Agent Loop、搭自己的 Harness 平台）；但普通业务未必需要这么高的自由度</text>
+</svg>
+  <div class="cap">图 15｜Pi vs DeepSeek Harness 的两种灵活重绘</div>
+</div>
+<table>
+<tr><th>维度</th><th>Pi</th><th>DeepSeek Harness</th></tr>
+<tr><td>核心策略</td><td>核心极简且不动，能力往外挂（Extension / Skill / Package）</td><td>核心拆成服务声明与可替换实现，Loop 也能换</td></tr>
+<tr><td>替换成本</td><td>加扩展很轻；要重写 Loop 需 fork 源码</td><td>写插件即可替换，不动框架核心代码</td></tr>
+<tr><td>认知负担</td><td>低：只需理解 4 个工具与事件接口</td><td>高：要理解服务声明、实现包、组合点之间的协作</td></tr>
+<tr><td>典型用途</td><td>从轻量核心出发做自己的 Agent 产品</td><td>研究不同 Agent Loop、搭自己的 Harness 平台</td></tr>
+</table>
+<p><span class="tag t-video">视频原述</span>「优点是<strong>自由程度非常高</strong>：可以研究不同 Agent Loop，或者想搭建自己的 Agent Harness 平台时，灵活组合底层能力。代价是<strong>开发者需要理解更多的内部机制，模块之间的组合和维护也比较复杂</strong>。更适合想要研究和定制 Harness 底层架构的开发团队，普通业务未必需要这么高的自由度。」</p>
+<div class="note"><span class="tag t-extra">补充</span>官方表述是 <em>Model + Harness = Agent</em>：Harness 负责「模型之外的一切」，并通过服务（service）/ 实现包（provider）/ 组合点（composition seam）把能力解耦；<code>ctx.provide("agent-loop", …)</code> 属于服务注册式的替换，而非补丁式 Hook。这与 Claude Agent SDK 的 <code>PreToolUse / PostToolUse</code>（只能拦截）、Deep Agents 的 Middleware（能替换策略但不能换 Loop）构成一条清晰的<strong>控制粒度阶梯</strong>：<em>拦截 → 替换策略 → 替换核心</em>。</div>
+</section>
+
+<section class="sec" id="s8">
+<h2>8. 七个 Harness 横向对比：两根轴</h2>
+<p><span class="tag t-video">视频原述</span>「7 个项目都介绍完了，我们用一张表来对比一下不同 Harness。最大的差异，<strong>不在于有没有</strong>：工具调用、上下文管理、多 Agent —— 这些已经是比较通用的能力了。」</p>
+<p><span class="tag t-video">视频原述</span>「真正的差异是<strong>它们默认帮开发者实现了什么机制，又开放了多少控制权</strong>。」画面据此画了一张两轴坐标图：纵轴「默认帮你实现了多少机制」（下少上多），横轴「开放了多少控制权」（左少右多）。</p>
+<div class="figure">
+<svg viewBox="0 0 900 400" xmlns="http://www.w3.org/2000/svg" font-family="-apple-system,PingFang SC,Microsoft YaHei,sans-serif">
+  <g text-anchor="middle">
+    <text x="450" y="24" font-size="15" font-weight="800" fill="#1e2430">七个 Harness 横向对比：两根轴</text>
+    <text x="450" y="42" font-size="11" fill="#7a8496">工具调用、上下文管理、多 Agent 已是通用能力；差异在「默认帮你实现了多少机制」与「开放了多少控制权」</text>
+  </g>
+  <g stroke="#e8edf5" stroke-width="1">
+    <line x1="170" y1="78" x2="170" y2="286"/><line x1="310" y1="78" x2="310" y2="286"/>
+    <line x1="450" y1="78" x2="450" y2="286"/><line x1="590" y1="78" x2="590" y2="286"/>
+    <line x1="730" y1="78" x2="730" y2="286"/>
+    <line x1="170" y1="78" x2="836" y2="78"/><line x1="170" y1="150" x2="836" y2="150"/>
+    <line x1="170" y1="220" x2="836" y2="220"/><line x1="170" y1="286" x2="836" y2="286"/>
+  </g>
+  <g stroke="#344054" stroke-width="1.8" fill="none">
+    <path d="M170 286 V74 M166 80 L170 74 L174 80"/>
+    <path d="M170 286 H836 M830 282 L836 286 L830 290"/>
+  </g>
+  <g font-size="11.5" fill="#344054">
+    <text x="170" y="66" text-anchor="start" font-weight="700">默认帮你实现了多少机制</text>
+    <text x="160" y="86" text-anchor="end">多</text><text x="160" y="286" text-anchor="end">少</text>
+    <text x="836" y="308" text-anchor="end" font-weight="700">开放了多少控制权 →</text>
+  </g>
+  <g>
+    <circle cx="215" cy="109" r="7" fill="#2563eb" stroke="#fff" stroke-width="2"/>
+    <rect x="229" y="94" width="162" height="30" rx="9" fill="#fff" stroke="#c7d0de" stroke-width="1.3"/>
+    <text x="310" y="114" font-size="11.5" font-weight="800" fill="#1d4ed8" text-anchor="middle">Claude Agent SDK</text>
+    <circle cx="430" cy="169" r="7" fill="#d9a92e" stroke="#fff" stroke-width="2"/>
+    <rect x="444" y="154" width="150" height="30" rx="9" fill="#fff" stroke="#c7d0de" stroke-width="1.3"/>
+    <text x="519" y="174" font-size="11.5" font-weight="800" fill="#8a5f00" text-anchor="middle">Deep Agents</text>
+    <circle cx="690" cy="129" r="7" fill="#39a97a" stroke="#fff" stroke-width="2"/>
+    <rect x="704" y="114" width="166" height="30" rx="9" fill="#fff" stroke="#c7d0de" stroke-width="1.3"/>
+    <text x="787" y="134" font-size="11.5" font-weight="800" fill="#177a52" text-anchor="middle">DeepSeek Harness</text>
+    <circle cx="630" cy="239" r="7" fill="#9575e0" stroke="#fff" stroke-width="2"/>
+    <rect x="644" y="224" width="90" height="30" rx="9" fill="#fff" stroke="#c7d0de" stroke-width="1.3"/>
+    <text x="689" y="244" font-size="11.5" font-weight="800" fill="#6d42c9" text-anchor="middle">Pi</text>
+  </g>
+  <g text-anchor="middle" font-size="11.5">
+    <rect x="326" y="320" width="548" height="62" rx="10" fill="#fff4cc" stroke="#d9a92e" stroke-width="1.4"/>
+    <text x="600" y="342" font-size="12" font-weight="800" fill="#8a5f00">场景化设计（针对特定场景，不落在两根轴上）</text>
+    <text x="430" y="364" font-size="11" fill="#7a6330">OpenCode · 软件开发工作流</text>
+    <text x="600" y="364" font-size="11" fill="#7a6330">OpenClaw · 个人助手·长期运行</text>
+    <text x="770" y="364" font-size="11" fill="#7a6330">Hermes · 持续学习·经验沉淀</text>
+  </g>
+</svg>
+  <div class="cap">图 16｜七个 Harness 横向对比坐标图（按视频画面逐点重绘）</div>
+</div>
+<table>
+<tr><th>项目</th><th>画面中的定位</th><th>默认机制</th><th>开放的控制权</th></tr>
+<tr><td><strong>Claude Agent SDK</strong></td><td>预置了成熟的执行机制</td><td>最多（Claude Code 全套 Harness）</td><td>最少（Hook / 工具 / Skill / 子 Agent）</td></tr>
+<tr><td><strong>Deep Agents</strong></td><td>执行策略做成可组合的模块</td><td>完整</td><td>中（Middleware / Backends 可替换策略与环境）</td></tr>
+<tr><td><strong>DeepSeek Harness</strong></td><td>连核心也可换</td><td>可组装、不预设业务</td><td>最多（model / tools / session / loop 全可替换）</td></tr>
+<tr><td><strong>Pi</strong></td><td>核心极简，默认机制少</td><td>最少（4 个工具）</td><td>高（Extension / SDK / fork 三档）</td></tr>
+<tr><td><strong>OpenCode</strong></td><td rowspan="3">场景化设计 · 针对特定场景（画面把它们放在坐标轴下方，<strong>不落在两根轴上</strong>）</td><td>预置软件开发工作流</td><td>Build / Plan / Explore 与自定义 Agent</td></tr>
+<tr><td><strong>OpenClaw</strong></td><td>个人助手 · 长期运行</td><td>Gateway / 渠道 / 会话 / cron 插件</td></tr>
+<tr><td><strong>Hermes Agent</strong></td><td>持续学习 · 经验沉淀</td><td>Memory / Skill 与人工审批</td></tr>
+</table>
+<div class="note"><span class="tag t-extra">补充</span>为什么三个场景化项目不落轴？因为它们的差异主要来自<strong>场景外壳</strong>（消息渠道、定时任务、工作流预置、记忆与技能积累），而不是「默认机制 × 控制权」这一对通用维度。把它们硬塞进坐标图会掩盖真正的选型信号：先判断你要不要这个场景外壳，再在同一场景内比较控制粒度。</div>
+<h3>8.1 但是：控制权 ≠ 一定越好</h3>
+<div class="figure">
+<svg viewBox="0 0 900 250" xmlns="http://www.w3.org/2000/svg" font-family="-apple-system,PingFang SC,Microsoft YaHei,sans-serif">
+  <g text-anchor="middle">
+    <text x="450" y="26" font-size="15" font-weight="800" fill="#1e2430">但是：控制权 ≠ 一定越好</text>
+    <text x="450" y="44" font-size="11" fill="#7a8496">画面为一条滑块：左端「开箱即用」，右端「完全掌控」，滑块偏右</text>
+  </g>
+  <rect x="120" y="70" width="660" height="46" rx="23" fill="#f1f4f9"/>
+  <rect x="120" y="70" width="530" height="46" rx="23" fill="#3b5bdb"/>
+  <circle cx="650" cy="93" r="16" fill="#fff" stroke="#3b5bdb" stroke-width="3"/>
+  <g font-size="12" fill="#5a6475" text-anchor="middle">
+    <text x="170" y="140">开箱即用</text><text x="730" y="140">完全掌控</text>
+  </g>
+  <text x="450" y="180" font-size="16" font-weight="800" fill="#e5484d" text-anchor="middle">能改的越多，要承担的也越多</text>
+  <g text-anchor="middle" font-size="12">
+    <rect x="230" y="194" width="120" height="34" rx="8" fill="#f5f7fa" stroke="#c7d0de" stroke-width="1.3"/>
+    <text x="290" y="216" fill="#344054">设计</text>
+    <rect x="390" y="194" width="120" height="34" rx="8" fill="#f5f7fa" stroke="#c7d0de" stroke-width="1.3"/>
+    <text x="450" y="216" fill="#344054">调试</text>
+    <rect x="550" y="194" width="120" height="34" rx="8" fill="#f5f7fa" stroke="#c7d0de" stroke-width="1.3"/>
+    <text x="610" y="216" fill="#344054">维护</text>
+  </g>
+  <text x="450" y="244" font-size="11" fill="#5a6475" text-anchor="middle">选型：不只看自由度，还要看默认机制是否符合业务</text>
+</svg>
+  <div class="cap">图 17｜控制权滑块与设计/调试/维护代价重绘</div>
+</div>
+<p><span class="tag t-video">视频原述</span>画面用一条滑块给出限制：左端「开箱即用」，右端「完全掌控」，中间一行红字 <strong>「能改的越多，要承担的也越多」</strong>，下面并列三个词：<strong>设计 / 调试 / 维护</strong>。「所以<strong>选型时不只看自由度，还要看默认机制是否符合自己的业务需求</strong>。」</p>
+<div class="key"><span class="tag t-extra">补充</span>把这句话落成可操作的判断：控制权带来的不是「能力」，而是<strong>责任转移</strong>。每多拿到一个可替换点，就要自己回答四件事——默认实现应该是什么、边界条件怎么定、出错如何定位、上游升级后如何回归。若团队没有对应的工程与评测能力，高自由度会直接转化为不稳定。相关验证方法见本系列第三篇 <a href="../agent-eval-driven-tutorial/index.html">《评测驱动 Agent 迭代》</a>：改过 Harness 之后，需要靠回归评测证明没有退步。</div>
+</section>
+
+<section class="sec" id="s9">
+<h2>9. 怎么用 Harness：三个层次（用 Pi 举例）</h2>
+<p><span class="tag t-video">视频原述</span>「已经确定了要用哪个 Harness，然后呢？下载别人的代码来改？还是通过 SDK 开发？<strong>什么才是使用 Harness 的正确姿势？</strong>我认为可以把开发者需求分成三个层次。」</p>
+<div class="figure">
+<svg viewBox="0 0 900 340" xmlns="http://www.w3.org/2000/svg" font-family="-apple-system,PingFang SC,Microsoft YaHei,sans-serif">
+  <g text-anchor="middle">
+    <text x="450" y="26" font-size="15" font-weight="800" fill="#1e2430">怎么用 Harness：开发者需求分成三个层次（用 Pi 举例）</text>
+    <text x="450" y="44" font-size="11" fill="#7a8496">画面原文：插件 / Skill · SDK · 源码改造是三个不同的问题；开发自己的 Agent 产品 ≠ 开发自己的 Harness</text>
+  </g>
+  <g text-anchor="middle" font-size="12">
+    <rect x="24" y="64" width="278" height="212" rx="11" fill="#eaf1ff" stroke="#5b8def" stroke-width="1.6"/>
+    <text x="163" y="92" font-size="13" font-weight="800" fill="#1d4ed8">① 扩展现有 Agent</text>
+    <g font-size="11.2" fill="#4a5b7a">
+      <text x="163" y="118">已有能用的 Agent，只想加功能</text>
+      <text x="163" y="142">Pi CLI · 公司在用</text>
+      <text x="163" y="164">+ 自动检查代码规范</text>
+      <text x="163" y="186">+ 按要求生成 PR 描述</text>
+      <text x="163" y="212" font-size="11.8" font-weight="800" fill="#1d4ed8">Extension / Skill</text>
+      <text x="163" y="236" font-size="10.8" fill="#7a8496">产品还是 Pi → 插件 / Skill</text>
+    </g>
+    <rect x="311" y="64" width="278" height="212" rx="11" fill="#fff8dd" stroke="#d9a92e" stroke-width="1.6"/>
+    <text x="450" y="92" font-size="13" font-weight="800" fill="#8a5f00">② 开发自己的 Agent 产品</text>
+    <g font-size="11.2" fill="#7a6330">
+      <text x="450" y="118">自己的界面 · 业务 · 用户体系</text>
+      <text x="450" y="142">不从零写 Agent Loop</text>
+      <text x="450" y="164">你的 AI 编程产品</text>
+      <text x="450" y="186">界面 / 用户管理 / 任务系统</text>
+      <text x="450" y="212" font-size="11.8" font-weight="800" fill="#8a5f00">Pi SDK（底层复用）</text>
+      <text x="450" y="236" font-size="10.8" fill="#7a8496">产品是你的 → SDK</text>
+    </g>
+    <rect x="598" y="64" width="278" height="212" rx="11" fill="#e9f9f0" stroke="#39a97a" stroke-width="1.6"/>
+    <text x="737" y="92" font-size="13" font-weight="800" fill="#177a52">③ 改造底层 Harness</text>
+    <g font-size="11.2" fill="#3c6b55">
+      <text x="737" y="118">对现成核心机制不满意</text>
+      <text x="737" y="142">修改甚至重新设计</text>
+      <text x="737" y="164">决策 → 执行 → 循环</text>
+      <text x="737" y="186">fork · 改核心源码</text>
+      <text x="737" y="212" font-size="11.8" font-weight="800" fill="#177a52">搭出自己的 Harness</text>
+      <text x="737" y="236" font-size="10.8" fill="#7a8496">→ 改源码（扩展接口不够用时）</text>
+    </g>
+  </g>
+  <rect x="90" y="290" width="720" height="42" rx="10" fill="#f5f7fa" stroke="#b6c0cf" stroke-width="1.4"/>
+  <text x="450" y="316" font-size="11.8" font-weight="700" fill="#344054" text-anchor="middle">先想清楚开发目标：让现有 Agent 更好用 → 插件；开发独立产品 → SDK；深入改造 Harness → 看源码开放程度</text>
+</svg>
+  <div class="cap">图 18｜三个层次与 Pi 的三种开发目标重绘</div>
+</div>
+<ol>
+<li><strong>扩展现有的 Agent</strong>：已有能用的 Agent 产品，只想加功能。</li>
+<li><strong>开发自己的 Agent 产品</strong>：自己的界面、业务功能和用户体系，但不想从零开发 Agent Loop。</li>
+<li><strong>改造底层的 Harness</strong>：对现成的核心机制都不满意，希望自己修改甚至重新设计。</li>
+</ol>
+<p><span class="tag t-video">视频原述</span>「这三个层次的开发目标不一样，<strong>技术能力要求也不同</strong>。我们就用 Pi 举个例子。」</p>
+<h3>9.1 层次一：Extension / Skill —— 产品还是 Pi</h3>
+<p><span class="tag t-video">视频原述</span>「假设你是一名程序员，公司在用 <strong>Pi CLI</strong> 做编程工具，希望它更符合公司开发流程：比如 <code>+ 自动检查代码规范</code>、<code>+ 按要求生成 PR 描述</code>。你只需要在安装好的 Pi CLI 基础上，通过 <strong>Extension 或 Skill</strong> 加上这些功能，让它变得更符合你们自己的要求 —— <strong>产品还是 Pi</strong>。」</p>
+<h3>9.2 层次二：Pi SDK —— 产品是你的，底层复用 Pi</h3>
+<p><span class="tag t-video">视频原述</span>「现在你打算出去创业，做自己的 <strong>AI 编程产品</strong>：界面、用户管理、任务系统、运行测试都要自己做。这个时候就可以用 <strong>Pi SDK</strong>，把 Pi 的执行能力集成到自己的应用里 —— <strong>产品是你的，只是底层复用了 Pi Harness</strong>。」</p>
+<h3>9.3 层次三：改源码 —— 扩展接口不够用时</h3>
+<p><span class="tag t-video">视频原述</span>「假设你认为 Pi 默认的 Agent Loop 不够好，想重新设计<strong>模型如何决策、如何执行、整个任务如何循环</strong>，那就需要 fork、改它的核心源码，搭出自己的 Harness。」</p>
+<p><span class="tag t-video">视频原述</span>「所以<strong>插件 · SDK · 源码改造是三个不同的问题</strong>：插件 / Skill 解决『如何扩展现有 Agent』；SDK 解决『复用现成的执行能力，开发自己的应用』；改源码是『现有的扩展接口无法满足需求的时候』才需要。」</p>
+<div class="key"><span class="tag t-video">视频原述</span>「因此在做技术选型时，要<strong>先想清楚自己的开发目标</strong>：让现有 Agent 更好用 → 插件和 Skill；开发独立的 Agent 产品 → SDK；深入改造 Harness → 才需要关注源码的开放程度。」画面最后强调一句：<strong>「开发自己的 Agent 产品 ≠ 开发自己的 Harness」</strong>。</div>
+<table>
+<tr><th>层次</th><th>开发目标</th><th>手段</th><th>产品归属</th><th>典型成本</th></tr>
+<tr><td>① 扩展现有 Agent</td><td>加功能、贴合流程</td><td>Extension / Skill / Plugin</td><td>还是原产品</td><td>低：写扩展、跟着上游升级</td></tr>
+<tr><td>② 做自己的产品</td><td>自己的界面 / 用户 / 业务</td><td>SDK（底层复用 Harness）</td><td>是你的产品</td><td>中：产品工程 + 版本适配</td></tr>
+<tr><td>③ 改造底层 Harness</td><td>重设计决策 · 执行 · 循环</td><td>fork 源码 / 服务级替换</td><td>是你的 Harness</td><td>高：长期维护分叉、自行回归</td></tr>
+</table>
+<div class="note"><span class="tag t-extra">补充</span>这三个层次不是「等级高低」，而是<strong>问题边界</strong>。一个常见误判是：为了给产品加一个自定义审批界面就去 fork 整个 Harness；实际上这是层次 ①/② 的问题，用 Hook 或 SDK 就能解决。反过来，若确实要改变 Agent Loop 的决策顺序，靠堆插件通常会导致逻辑散落在多个 Hook 里、难以调试 —— 这时才该进入层次 ③。判断依据是「需求是否落在扩展接口的能力边界内」，而不是「团队想不想掌控源码」。</div>
+</section>
+
+<section class="sec" id="s10">
+<h2>10. 回到开头：怎么选</h2>
+<p><span class="tag t-video">视频原述</span>「如果今天要开发一个 Agent，<strong>首先看任务需求</strong>」，画面给出三行对号入座：</p>
+<table>
+<tr><th>任务需求</th><th>选择</th><th>理由</th></tr>
+<tr><td>简单任务、步骤明确</td><td><strong>Framework</strong>（如 LangChain）</td><td>把模型与工具接起来就够了，不需要自主循环</td></tr>
+<tr><td>严格流程、状态管理</td><td><strong>Runtime</strong>（如 LangGraph）</td><td>要显式控制步骤、暂停、恢复与人工确认</td></tr>
+<tr><td>需要模型自主探索、持续执行</td><td><strong>Harness</strong></td><td>流程无法预先枚举，需要成套执行机制</td></tr>
+</table>
+<p><span class="tag t-video">视频原述</span>「<strong>其次看 Harness 的设计特点</strong>，按需求对号入座」：</p>
+<div class="figure">
+<svg viewBox="0 0 900 360" xmlns="http://www.w3.org/2000/svg" font-family="-apple-system,PingFang SC,Microsoft YaHei,sans-serif">
+  <g text-anchor="middle">
+    <text x="450" y="24" font-size="15" font-weight="800" fill="#1e2430">回到开头：怎么选</text>
+    <text x="450" y="42" font-size="11" fill="#7a8496">先看任务需求，其次看 Harness 的设计特点；对号入座</text>
+  </g>
+  <g text-anchor="middle" font-size="11.8">
+    <rect x="30" y="58" width="160" height="52" rx="10" fill="#2b3547"/>
+    <text x="110" y="90" font-size="13" font-weight="800" fill="#fff">任务需求</text>
+    <rect x="222" y="58" width="190" height="42" rx="8" fill="#fff" stroke="#c7d0de" stroke-width="1.3"/>
+    <text x="317" y="84" fill="#344054">简单任务 · 步骤明确</text>
+    <rect x="452" y="58" width="190" height="42" rx="8" fill="#eaf1ff" stroke="#5b8def" stroke-width="1.5"/>
+    <text x="547" y="84" font-weight="800" fill="#1d4ed8">Framework 如 LangChain</text>
+    <rect x="222" y="110" width="190" height="42" rx="8" fill="#fff" stroke="#c7d0de" stroke-width="1.3"/>
+    <text x="317" y="136" fill="#344054">严格流程 · 状态管理</text>
+    <rect x="452" y="110" width="190" height="42" rx="8" fill="#fff8dd" stroke="#d9a92e" stroke-width="1.5"/>
+    <text x="547" y="136" font-weight="800" fill="#8a5f00">Runtime 如 LangGraph</text>
+    <rect x="222" y="162" width="190" height="42" rx="8" fill="#fff" stroke="#c7d0de" stroke-width="1.3"/>
+    <text x="317" y="188" fill="#344054">自主探索 · 持续执行</text>
+    <rect x="452" y="162" width="190" height="42" rx="8" fill="#e9f9f0" stroke="#39a97a" stroke-width="1.5"/>
+    <text x="547" y="188" font-weight="800" fill="#177a52">Harness（进入下一段）</text>
+  </g>
+  <g stroke="#8a94a6" stroke-width="1.4" fill="none">
+    <line x1="192" y1="84" x2="220" y2="84"/><line x1="212" y1="80" x2="220" y2="84"/><line x1="212" y1="88" x2="220" y2="84"/>
+    <line x1="414" y1="84" x2="450" y2="84"/><line x1="442" y1="80" x2="450" y2="84"/><line x1="442" y1="88" x2="450" y2="84"/>
+    <line x1="192" y1="136" x2="220" y2="136"/><line x1="212" y1="132" x2="220" y2="136"/><line x1="212" y1="140" x2="220" y2="136"/>
+    <line x1="414" y1="136" x2="450" y2="136"/><line x1="442" y1="132" x2="450" y2="136"/><line x1="442" y1="140" x2="450" y2="136"/>
+    <line x1="192" y1="188" x2="220" y2="188"/><line x1="212" y1="184" x2="220" y2="188"/><line x1="212" y1="192" x2="220" y2="188"/>
+    <line x1="414" y1="188" x2="450" y2="188"/><line x1="442" y1="184" x2="450" y2="188"/><line x1="442" y1="192" x2="450" y2="188"/>
+  </g>
+  <text x="450" y="232" font-size="13" font-weight="800" fill="#1b2a4a" text-anchor="middle">其次看 Harness 的设计特点</text>
+  <g text-anchor="middle" font-size="11.5">
+    <rect x="30" y="246" width="270" height="42" rx="8" fill="#eaf1ff" stroke="#5b8def" stroke-width="1.4"/>
+    <text x="165" y="266" fill="#4a5b7a">想要开箱即用</text>
+    <text x="165" y="282" font-weight="800" fill="#1d4ed8">Claude Agent SDK</text>
+    <rect x="315" y="246" width="270" height="42" rx="8" fill="#fff8dd" stroke="#d9a92e" stroke-width="1.4"/>
+    <text x="450" y="266" fill="#7a6330">开源 · 灵活 · 可定制</text>
+    <text x="450" y="282" font-weight="800" fill="#8a5f00">Deep Agents</text>
+    <rect x="600" y="246" width="270" height="42" rx="8" fill="#f3edff" stroke="#9575e0" stroke-width="1.4"/>
+    <text x="735" y="266" fill="#5d4a91">从极简核心出发</text>
+    <text x="735" y="282" font-weight="800" fill="#6d42c9">Pi</text>
+    <rect x="30" y="296" width="270" height="42" rx="8" fill="#e9f9f0" stroke="#39a97a" stroke-width="1.4"/>
+    <text x="165" y="316" fill="#3c6b55">开发 Coding Agent</text>
+    <text x="165" y="332" font-weight="800" fill="#177a52">OpenCode</text>
+    <rect x="315" y="296" width="270" height="42" rx="8" fill="#fff4cc" stroke="#d9a92e" stroke-width="1.4"/>
+    <text x="450" y="316" fill="#7a6330">做长期的个人助手</text>
+    <text x="450" y="332" font-weight="800" fill="#8a5f00">OpenClaw</text>
+    <rect x="600" y="296" width="270" height="42" rx="8" fill="#ffeef1" stroke="#e0728d" stroke-width="1.4"/>
+    <text x="735" y="316" fill="#8c4a5b">连 Agent Loop 都想换</text>
+    <text x="735" y="332" font-weight="800" fill="#b03a55">DeepSeek Harness</text>
+  </g>
+  <text x="450" y="356" font-size="11.3" font-weight="700" fill="#344054" text-anchor="middle">结论：Agent 选型的核心，不是哪个框架功能最多，而是它默认的执行机制是否符合你的业务</text>
+</svg>
+  <div class="cap">图 19｜任务需求与 Harness 设计特点的选型矩阵重绘</div>
+</div>
+<table>
+<tr><th>你的诉求</th><th>画面给出的建议</th></tr>
+<tr><td>想要开箱即用</td><td>Claude Agent SDK</td></tr>
+<tr><td>开源 · 灵活 · 可定制</td><td>Deep Agents</td></tr>
+<tr><td>从极简核心出发、自己设计执行机制</td><td>Pi</td></tr>
+<tr><td>开发 Coding Agent</td><td>OpenCode</td></tr>
+<tr><td>做长期的个人助手 / 接入 IM</td><td>OpenClaw</td></tr>
+<tr><td>连 Agent Loop 都想替换</td><td>DeepSeek Harness</td></tr>
+</table>
+<div class="note"><span class="tag t-extra">补充</span>结尾的选型矩阵画面没有单列 Hermes；按第 6 章的定位，它应补在「做长期的个人助手」一栏，与 OpenClaw 并列，差异在于<strong>是否把「经验沉淀成 Skill / 持续学习」作为核心诉求</strong>。此外，矩阵里的「Framework / Runtime」两行不是被 Harness 淘汰的旧选项，而是与第 3 章的边界条件首尾呼应：简单流程与强流程控制仍然是它们的主场。</div>
+<div class="key"><span class="tag t-video">视频原述</span>全片最后一句：「所以，<strong>Agent 选型的核心，不是哪个框架功能最多，而是它默认的执行机制是否符合你的业务</strong>。」</div>
+<p>把整期视频压成一条可执行的判断链：<strong>任务能不能预先枚举流程？</strong>（能 → Framework / Runtime；不能 → Harness）→ <strong>要不要某个场景外壳？</strong>（要 → 先选场景化项目）→ <strong>默认机制是否合用？</strong>（合用 → 直接用；不合用 → 看扩展接口够不够）→ <strong>还不够？</strong>（才考虑 SDK 自建产品或 fork 改造）→ <strong>每改一处，用回归评测证明没有退步</strong>。</p>
+</section>
+<section class="sec" id="s11">
+<h2>11. 补充篇 A：专业名词速查（68 条）</h2>
+<p class="leadin"><span class="tag t-extra">补充</span>视频口播里出现但没展开的英文名，按「抽象层 → Harness 组件 → 控制与扩展 → 工程与运维 → 项目专有」分组给出定义。所有条目都是本片语境下的含义，不是通用词典释义。</p>
+
+<h3>11.1 抽象与架构（10 条）</h3>
+<table>
+<tr><th>术语</th><th>英文 / 别名</th><th>释义</th><th>本片落点</th></tr>
+<tr><td>Agent</td><td>智能体</td><td>能基于模型输出自主决定下一步、调用工具并持续执行直到达成目标的系统</td><td>全片对象</td></tr>
+<tr><td>Agent Framework</td><td>框架</td><td>把模型调用、工具接入、数据处理封装成可复用组件的库</td><td>2022 阶段</td></tr>
+<tr><td>Agent Runtime</td><td>运行时</td><td>管理执行流程、状态持久化、暂停/恢复与人工介入的一层</td><td>2024 阶段</td></tr>
+<tr><td>Agent Harness</td><td>执行系统 / 脚手架</td><td>围绕模型的成套执行机制：Agent Loop + 上下文 / 规划 / 文件 / 权限</td><td>2025 阶段；全片主角</td></tr>
+<tr><td>Execution System</td><td>执行系统</td><td>视频对 Harness 的中文叫法，强调「一整套」而非单个组件</td><td>03:xx 画面原文</td></tr>
+<tr><td>Agent Loop</td><td>主循环 / ReAct 循环</td><td>模型思考 → 调用工具 → 拿到结果 → 继续，直到满足停止条件</td><td>Harness 的基础</td></tr>
+<tr><td>Model + Harness = Agent</td><td>—</td><td>模型负责决策，Harness 负责模型之外的一切</td><td>DeepSeek Harness 官方表述</td></tr>
+<tr><td>开发起点</td><td>starting point</td><td>项目从哪一层开始写：从模型/工具搭起，还是直接复用现成 Harness</td><td>第 3 章「演进影响的是什么」</td></tr>
+<tr><td>技术抽象层次</td><td>layers of abstraction</td><td>三层不是新旧替代，上层复用下层能力</td><td>第 2 章结尾</td></tr>
+<tr><td>场景外壳</td><td>product shell</td><td>消息渠道、定时任务、用户体系、渠道适配等产品层能力</td><td>个人助手类 ≠ 单纯 Harness</td></tr>
+</table>
+
+<h3>11.2 Harness 内部组件（18 条）</h3>
+<table>
+<tr><th>术语</th><th>英文 / 别名</th><th>释义</th></tr>
+<tr><td>上下文</td><td>Context</td><td>每轮送给模型的全部信息：系统提示词、历史、工具结果、文件内容</td></tr>
+<tr><td>上下文工程</td><td>Context Engineering</td><td>决定「何时放什么进上下文」的一套策略，含组装、裁剪、检索、卸载</td></tr>
+<tr><td>上下文压缩</td><td>Compaction / Summarization</td><td>上下文接近窗口上限时，把历史摘要化以腾出空间</td></tr>
+<tr><td>工具调用</td><td>Tool Calling / Function Calling</td><td>模型输出结构化调用请求，由 Harness 执行并回填结果</td></tr>
+<tr><td>工具注册表</td><td>Tool Registry</td><td>登记可用工具的名称、参数 schema 与执行函数</td></tr>
+<tr><td>工具模式</td><td>Tool Schema</td><td>工具入参/出参的结构化描述，模型据此生成合法调用</td></tr>
+<tr><td>状态</td><td>State</td><td>任务执行到哪一步、有哪些中间结果的可持久化数据</td></tr>
+<tr><td>检查点</td><td>Checkpointer</td><td>把状态按步骤落盘，支持断点续跑与回放</td></tr>
+<tr><td>会话</td><td>Session</td><td>一次连续交互的上下文与身份容器，可恢复</td></tr>
+<tr><td>记忆</td><td>Memory</td><td>跨会话保留的用户偏好、项目背景与长期信息</td></tr>
+<tr><td>规划</td><td>Planning / Todo</td><td>把目标拆成可跟踪的步骤，如 <code>write_todos</code></td></tr>
+<tr><td>子 Agent</td><td>Subagent</td><td>主 Agent 委派子任务给独立上下文的 Agent 执行</td></tr>
+<tr><td>技能</td><td>Skill</td><td>以文件形式保存的「某类任务怎么做」的可复用方法</td></tr>
+<tr><td>中间件</td><td>Middleware</td><td>把执行策略（压缩、工具过滤、模型调用前改写）做成可替换模块</td></tr>
+<tr><td>后端</td><td>Backend</td><td>文件存储与代码执行的实际承载环境</td></tr>
+<tr><td>文件后端</td><td>FilesystemBackend / StoreBackend / SandboxBackend</td><td>本地磁盘 / 跨线程持久存储 / 远程沙箱三类实现</td></tr>
+<tr><td>组合后端</td><td>CompositeBackend</td><td>按路径把不同目录路由到不同后端</td></tr>
+<tr><td>沙箱</td><td>Sandbox</td><td>隔离执行环境，限制文件系统与网络权限</td></tr>
+</table>
+
+<h3>11.3 控制与扩展（16 条）</h3>
+<table>
+<tr><th>术语</th><th>英文 / 别名</th><th>释义</th></tr>
+<tr><td>钩子</td><td>Hook</td><td>在生命周期节点插入自定义逻辑，可拦截、校验、阻止</td></tr>
+<tr><td>前后置钩子</td><td>PreToolUse / PostToolUse</td><td>工具调用前检查参数 / 调用后检查结果，典型如 Claude Agent SDK</td></tr>
+<tr><td>权限</td><td>Permission / allowed_tools</td><td>限定某 Agent 能调用哪些工具、能否写文件、能否执行 Bash</td></tr>
+<tr><td>人工介入</td><td>Human-in-the-loop / 人工审批</td><td>敏感动作前暂停，等人确认再继续</td></tr>
+<tr><td>插件 / 扩展</td><td>Plugin / Extension</td><td>在不改核心的前提下加工具、加命令、拦事件</td></tr>
+<tr><td>软件开发包</td><td>SDK</td><td>把 Harness 的执行能力作为库嵌入自己的产品</td></tr>
+<tr><td>源码分叉</td><td>Fork</td><td>复制上游源码独立改造，需自行承担合并与回归成本</td></tr>
+<tr><td>模型上下文协议</td><td>MCP</td><td>工具/数据源与 Agent 之间的标准化接入协议</td></tr>
+<tr><td>模型适配器</td><td>Provider / LLM Adapter</td><td>屏蔽不同模型厂商 API 差异的适配层</td></tr>
+<tr><td>服务声明</td><td>Service / Seam</td><td>先声明「需要什么能力」，再由实现包提供，二者解耦</td></tr>
+<tr><td>组合点</td><td>Composition Seam</td><td>多个实现包被装配成一种执行方式的位置</td></tr>
+<tr><td>插件架构</td><td>Cordis</td><td>DeepSeek Harness 底层所用的服务注册 / 依赖注入式插件架构</td></tr>
+<tr><td>服务注册</td><td><code>ctx.provide("agent-loop", …)</code></td><td>用自定义实现替换默认 Agent Loop，不改框架核心代码</td></tr>
+<tr><td>扩展包</td><td>Pi Package</td><td>Pi 中按 npm / git 分发的扩展集合</td></tr>
+<tr><td>语言服务协议</td><td>LSP</td><td>让 Coding Agent 获得诊断、跳转定义等 IDE 级信号</td></tr>
+<tr><td>停止条件 / 验证</td><td>Stop Condition / Verification</td><td>判断何时结束循环、结果是否真的达成目标</td></tr>
+</table>
+
+<h3>11.4 工程与运维（12 条）</h3>
+<table>
+<tr><th>术语</th><th>英文 / 别名</th><th>释义</th></tr>
+<tr><td>氛围编程</td><td>Vibe Coding</td><td>借助 AI 完成开发、弱化手写代码的工作方式；视频用它说明 SDK 的低门槛</td></tr>
+<tr><td>网关</td><td>Gateway</td><td>接收渠道消息、识别用户与 Session、调度 Agent 并回传结果</td></tr>
+<tr><td>渠道</td><td>Channel</td><td>飞书 / 微信 / 企业微信 / 邮件等消息入口</td></tr>
+<tr><td>定时任务</td><td>Cron / Automation</td><td>按时间或事件自动触发任务，无需用户每次发起</td></tr>
+<tr><td>队列串行化</td><td>Queue Serialization</td><td>同一会话的消息按序执行，避免并发写坏状态</td></tr>
+<tr><td>持久化执行</td><td>Durable / Persistent Execution</td><td>进程重启后从检查点继续执行</td></tr>
+<tr><td>幂等</td><td>Idempotency</td><td>同一动作重试多次不产生额外副作用</td></tr>
+<tr><td>重试与超时</td><td>Retry / Timeout</td><td>工具失败后的退避重试与单次执行上限</td></tr>
+<tr><td>可观测性</td><td>Trace / Observability</td><td>记录每一步的决策、工具调用与结果，用于归因</td></tr>
+<tr><td>评测与回归</td><td>Evals / Regression</td><td>用固定任务集验证改动没有让旧能力退步</td></tr>
+<tr><td>客户端-服务端架构</td><td>Client-server</td><td>TUI / IDE / Web 作为客户端，本地服务承载 Agent 运行时</td></tr>
+<tr><td>技术锁定</td><td>Lock-in</td><td>深度依赖某套默认机制后，迁移成本变高</td></tr>
+</table>
+
+<h3>11.5 项目专有（12 条）</h3>
+<table>
+<tr><th>术语</th><th>释义</th></tr>
+<tr><td>Claude Code</td><td>Anthropic 的终端 Coding Agent，其执行机制被 Claude Agent SDK 复用</td></tr>
+<tr><td>Claude Agent SDK</td><td>把 Claude Code 的 harness 暴露为 Python / TypeScript 库；原 Claude Code SDK 更名</td></tr>
+<tr><td>LangGraph</td><td>LangChain 团队 2024 年推出的状态图 / 持久化执行 Runtime</td></tr>
+<tr><td>Deep Agents</td><td>LangChain 团队 2025 年推出的 batteries-included agent harness，构建于 LangGraph 之上</td></tr>
+<tr><td>Pi / pi-mono</td><td>Mario Zechner 的极简 TypeScript coding harness 及其 monorepo</td></tr>
+<tr><td>Pi SDK</td><td><code>pi-ai</code> / <code>pi-agent-core</code> / <code>pi-coding-agent</code> / <code>pi-tui</code> 等可嵌入包</td></tr>
+<tr><td>Build / Plan / Explore</td><td>OpenCode 预置的三种 Agent：改代码 / 只读分析 / 搜索理解，各自有独立权限</td></tr>
+<tr><td>OpenClaw Gateway</td><td>负责渠道接入、Session 解析、串行调度与生命周期事件桥接的控制中心</td></tr>
+<tr><td>OpenClaw Agent Runtime</td><td>源自 pi-mono 的嵌入式运行时，现在可独立管理 Loop / 上下文 / 工具 / 会话</td></tr>
+<tr><td>Hermes Memory / Skill</td><td>前者存长期信息与偏好，后者存完成某类任务的方法</td></tr>
+<tr><td>E-A-A-S</td><td>Hermes 的 Execute → Evaluate → Abstract → Store 自改进闭环</td></tr>
+<tr><td>Everything is a Plugin</td><td>DeepSeek Harness 的设计口号：模型 / 工具 / Session / Loop 全部可替换</td></tr>
+</table>
+</section>
+
+<section class="sec" id="s12">
+<h2>12. 补充篇 B：七项目事实核对</h2>
+<p class="leadin"><span class="tag t-extra">补充</span>下表把视频原述与公开官方资料并排核对。凡标注「官方」的字段为视频未展开、由项目文档补齐；视频对项目的定位表述一律保留原意。</p>
+<table>
+<tr><th>项目</th><th>官方定位 / 形态</th><th>默认实现（视频 + 官方）</th><th>开放的控制点</th><th>主要限制</th></tr>
+<tr><td><strong>Claude Agent SDK</strong></td><td>Anthropic 官方 Python / TS 库；把 Claude Code harness 作为库暴露</td><td>Agent Loop、Read/Bash/Grep 等内置工具、Session 与上下文、子 Agent、权限、Hooks、Skills、MCP</td><td>Hook（PreToolUse / PostToolUse）、自定义工具 / Skill / 子 Agent、system_prompt、allowed_tools</td><td>核心机制预置：不能替换整个执行循环、不能接管上下文组装与压缩、不能改写内置工具底层</td></tr>
+<tr><td><strong>Deep Agents</strong></td><td>LangChain 团队的 <em>batteries-included agent harness</em>，构建于 LangChain / LangGraph 之上</td><td><code>write_todos</code> 规划、文件系统工具、<code>execute</code> 沙箱、<code>task</code> 子 Agent、自动摘要、人工审批中断</td><td>Middleware（压缩策略、工具过滤、模型调用前改上下文）、可插拔 Backends（State / Filesystem / Store / Sandbox / Composite）</td><td>灵活意味着更多技术决策：执行环境、策略组合、本地还是沙箱都要自己定</td></tr>
+<tr><td><strong>Pi</strong></td><td>Mario Zechner 的极简 TypeScript 终端 coding harness（<code>badlogic/pi-mono</code>，MIT）</td><td>仅 <code>read / write / edit / bash</code> 四个工具；刻意不内置 MCP、子 Agent、Plan 模式、Todo、权限弹窗</td><td>Extension（事件拦截、覆盖内置工具）、Skill / Pi Package、Pi SDK、fork 源码改 <code>agent-loop.ts</code></td><td>高级能力是「待组装」的空位，记忆 / 子 Agent / 权限 / 规划都要自己组合维护</td></tr>
+<tr><td><strong>OpenCode</strong></td><td>Anomaly（原 SST）开源 Coding Agent，TypeScript + Bun，client-server 架构，SQLite 持久化</td><td>Build / Plan / Explore 三种预置 Agent 及权限、常用开发工具、测试、LSP 集成、75+ provider</td><td>自定义 Agent（提示词 / 模型 / 权限可分别配置）、插件与配置</td><td>默认机制都围绕软件开发；做非编码业务 Agent 要大量调整；client-server 增加运维面</td></tr>
+<tr><td><strong>OpenClaw</strong></td><td>长期运行的个人助手系统；Gateway + 嵌入式 Agent Runtime + 渠道 + 定时任务</td><td>多渠道接入、Session 解析与队列串行化、cron / 事件触发、工作区引导文件（AGENTS.md / SOUL.md / USER.md 等）</td><td>插件扩展、渠道与 cron 配置、工作区与人格文件</td><td>部署与维护成本更高；普通任务型 Agent 不必上这套基础设施</td></tr>
+<tr><td><strong>Hermes Agent</strong></td><td>Nous Research 开源的 self-improving agent（Python，MIT）</td><td>多渠道、自然语言 Cron、长期记忆、40+ 工具、FTS5 会话索引、E-A-A-S 经验沉淀</td><td><code>skill_manage</code> 写技能、MEMORY.md / USER.md 更新、技能与记忆修改的人工审批</td><td>错误经验也会被沉淀并反复复用；自学习结果需要人工审核与回归</td></tr>
+<tr><td><strong>DeepSeek Harness</strong></td><td>高度插件化的 Harness 研究 / 平台项目；官方表述 <em>Model + Harness = Agent</em></td><td>不预设业务场景；以服务声明 + 实现包 + 组合点装配出执行方式</td><td>model / tools / session / loop 全部可替换；<code>ctx.provide("agent-loop", …)</code> 换默认 Loop</td><td>内部机制多、组合与维护复杂；普通业务未必需要这么高的自由度</td></tr>
+</table>
+<div class="warn"><strong>核对边界。</strong>视频中的产品定位、优缺点与画面代码均按逐帧文字保留；许可证、语言、内部包名、LSP / FTS5 / E-A-A-S 等实现细节属于【补充】，来自各项目公开文档与仓库。这些项目迭代很快，具体 API 名称请以官方最新文档为准，本表用于理解架构差异，不作为版本兼容承诺。</div>
+<h3>12.1 一张「控制粒度阶梯」表</h3>
+<table>
+<tr><th>档位</th><th>能改什么</th><th>代表</th><th>对应风险</th></tr>
+<tr><td>L0 配置</td><td>提示词、工具白名单、模型选择</td><td>全部项目</td><td>最低；改动可枚举</td></tr>
+<tr><td>L1 拦截</td><td>工具调用前后校验、阻止、改写结果</td><td>Claude Agent SDK Hook、Pi 事件</td><td>低；逻辑可能散落多个 Hook</td></tr>
+<tr><td>L2 替换策略</td><td>压缩策略、工具过滤、存储与执行环境</td><td>Deep Agents Middleware / Backends</td><td>中；组合爆炸、需回归</td></tr>
+<tr><td>L3 替换核心</td><td>Agent Loop 本身、Session 实现</td><td>DeepSeek Harness 服务注册</td><td>高；需自建验证与评测</td></tr>
+<tr><td>L4 分叉源码</td><td>任何实现</td><td>Pi fork、任何开源项目</td><td>最高；长期承担合并与维护</td></tr>
+</table>
+</section>
+
+<section class="sec" id="s13">
+<h2>13. 补充篇 C：架构全景与选型方法</h2>
+<p class="leadin"><span class="tag t-extra">补充</span>视频用「基础 Agent Loop + 四类能力」概括 Harness。下图按公开工程资料补齐完整职责，便于逐项核对七个项目，也便于把「选型」变成可勾选的清单。</p>
+<div class="figure">
+<svg viewBox="0 0 900 320" xmlns="http://www.w3.org/2000/svg" font-family="-apple-system,PingFang SC,Microsoft YaHei,sans-serif">
+  <g text-anchor="middle">
+    <text x="450" y="26" font-size="15" font-weight="800" fill="#1e2430">补充：一个生产级 Harness 的通用职责分层</text>
+    <text x="450" y="44" font-size="11" fill="#7a8496">视频以「基础 Agent Loop + 四类能力」概括；下图按公开工程资料补齐完整职责，便于逐项核对七个项目</text>
+  </g>
+  <g text-anchor="middle" font-size="11.5">
+    <rect x="30" y="62" width="200" height="106" rx="10" fill="#eaf1ff" stroke="#5b8def" stroke-width="1.5"/>
+    <text x="130" y="88" font-size="12.5" font-weight="800" fill="#1d4ed8">信息层</text>
+    <g fill="#4a5b7a" font-size="10.8">
+      <text x="130" y="110">上下文组装 / 压缩</text><text x="130" y="130">状态与记忆</text><text x="130" y="150">按需检索 / 摘要</text>
+    </g>
+    <rect x="245" y="62" width="200" height="106" rx="10" fill="#fff8dd" stroke="#d9a92e" stroke-width="1.5"/>
+    <text x="345" y="88" font-size="12.5" font-weight="800" fill="#8a5f00">执行层</text>
+    <g fill="#7a6330" font-size="10.8">
+      <text x="345" y="110">Agent Loop</text><text x="345" y="130">工具注册 / 路由</text><text x="345" y="150">子 Agent 委派</text>
+    </g>
+    <rect x="460" y="62" width="200" height="106" rx="10" fill="#e9f9f0" stroke="#39a97a" stroke-width="1.5"/>
+    <text x="560" y="88" font-size="12.5" font-weight="800" fill="#177a52">控制层</text>
+    <g fill="#3c6b55" font-size="10.8">
+      <text x="560" y="110">权限 / 审批 / 沙箱</text><text x="560" y="130">超时 / 重试 / 幂等</text><text x="560" y="150">停止条件</text>
+    </g>
+    <rect x="675" y="62" width="200" height="106" rx="10" fill="#f3edff" stroke="#9575e0" stroke-width="1.5"/>
+    <text x="775" y="88" font-size="12.5" font-weight="800" fill="#6d42c9">验证层</text>
+    <g fill="#5d4a91" font-size="10.8">
+      <text x="775" y="110">终态检查 / 测试</text><text x="775" y="130">trace / 可观测性</text><text x="775" y="150">评测与回归</text>
+    </g>
+  </g>
+  <g stroke="#8a94a6" stroke-width="1.5" fill="none">
+    <line x1="232" y1="115" x2="243" y2="115"/><line x1="238" y1="111" x2="243" y2="115"/><line x1="238" y1="119" x2="243" y2="115"/>
+    <line x1="447" y1="115" x2="458" y2="115"/><line x1="453" y1="111" x2="458" y2="115"/><line x1="453" y1="119" x2="458" y2="115"/>
+    <line x1="662" y1="115" x2="673" y2="115"/><line x1="668" y1="111" x2="673" y2="115"/><line x1="668" y1="119" x2="673" y2="115"/>
+  </g>
+  <rect x="60" y="186" width="780" height="52" rx="10" fill="#f5f7fa" stroke="#b6c0cf" stroke-width="1.4"/>
+  <text x="450" y="210" font-size="12" font-weight="800" fill="#344054" text-anchor="middle">Runtime 承载环境与生命周期：会话/进程、工作区、隔离、持久化与恢复、资源限制</text>
+  <text x="450" y="230" font-size="10.8" fill="#5a6475" text-anchor="middle">Sandbox / Infrastructure 在最底层；Framework 与 SDK 是开发期接口，MCP 位于工具集成边界</text>
+  <text x="450" y="266" font-size="11.2" fill="#5a6475" text-anchor="middle">对照本系列第三篇：评测体系评的是 outcome + trace，恰好对应这里的「验证层」与「可观测性」</text>
+  <text x="450" y="296" font-size="10.8" fill="#7a8496" text-anchor="middle">Model + Harness = Agent（DeepSeek Harness 官方表述）；Harness 决定「模型之外的一切」</text>
+</svg>
+  <div class="cap">图 20｜补充：生产级 Harness 通用职责分层</div>
+</div>
+<h3>13.1 五步选型法</h3>
+<ol>
+<li><strong>判定流程可枚举性</strong>：能写出固定步骤 → Framework；需要暂停/恢复/人工确认 → Runtime；流程无法枚举 → 进入下一步。</li>
+<li><strong>判定场景外壳</strong>：是否需要 IM 渠道、定时任务、长期记忆、代码库理解？需要则先圈定场景化项目（OpenCode / OpenClaw / Hermes）。</li>
+<li><strong>逐项核对默认机制</strong>：上下文压缩、文件系统、子 Agent、权限、停止条件、验证——把「必须自己定」的列出来。</li>
+<li><strong>定位控制粒度</strong>：上表 L0–L4，找到满足需求的最低档位；能用 L1 解决就不要上 L3/L4。</li>
+<li><strong>评估责任成本</strong>：设计、调试、维护、上游升级回归，以及有没有评测集能证明改动没退步。</li>
+</ol>
+<h3>13.2 需求 → 最低档位对照表</h3>
+<table>
+<tr><th>需求</th><th>最低档位</th><th>典型做法</th></tr>
+<tr><td>换个系统提示词 / 限定工具</td><td>L0</td><td>配置 <code>system_prompt</code> / <code>allowed_tools</code></td></tr>
+<tr><td>工具执行前拦危险命令</td><td>L1</td><td><code>PreToolUse</code> Hook 检查参数并阻止</td></tr>
+<tr><td>换上下文压缩算法 / 换存储环境</td><td>L2</td><td>自定义 Middleware / CompositeBackend</td></tr>
+<tr><td>改「先规划后执行」的决策顺序</td><td>L3</td><td>服务注册替换 Agent Loop</td></tr>
+<tr><td>连工具执行语义都要重写</td><td>L4</td><td>fork 源码，自建回归评测</td></tr>
+</table>
+<h3>13.3 与评测体系的衔接</h3>
+<p>本系列前三篇讲的是<strong>怎么证明 Agent 变好了</strong>，本篇讲的是<strong>Agent 的执行系统怎么选</strong>。两者在「验证层」交汇：无论选 L0 还是 L4，只要改动了默认机制，就应该有一组固定任务（Outcome）+ 执行轨迹（Trace）+ 成本 / 时延护栏，用来判断这次改动是进步还是退步。尤其 L3/L4 改了 Loop，表面成功率可能不变，但步骤数、重试次数、工具误用率会明显漂移 —— 这类差异只有 trace 级指标能发现。详见 <a href="../agent-eval-driven-tutorial/index.html">评测驱动 Agent 迭代 · 完全教程</a> 与 <a href="../agent-evaluation-tutorial/index.html">Agent 评测体系完全教程</a>。</p>
+</section>
+
+<section class="sec" id="s14">
+<h2>14. 补充篇 D：可运行代码</h2>
+<p class="leadin"><span class="tag t-extra">补充</span>以下四段均为<strong>纯 Python 标准库、可直接运行</strong>的最小实现，用来把本篇的抽象概念变成可触摸的行为：两轴打分、最小 Harness、三档控制粒度、三层次判定。不依赖任何 LLM API。</p>
+
+<h3>14.1 两轴选型打分器</h3>
+<p>把「默认机制 × 控制权」两根轴量化：先给项目打四维分，再按业务需求的权重排序。<code>fit</code> 越接近需求画像越合适，<code>cost</code> 是必须自己承担的责任分。</p>
+<pre><code># harness_select.py —— python3 harness_select.py
+PROJECTS = {
+    #                 默认机制, 控制权, 场景化, 责任成本(越高越重)
+    "Claude Agent SDK": (5, 1, 0, 1),
+    "Deep Agents":     (4, 3, 0, 3),
+    "OpenCode":        (4, 2, 5, 2),
+    "OpenClaw":        (4, 2, 5, 4),
+    "Hermes Agent":    (4, 2, 5, 4),
+    "Pi":              (1, 4, 0, 4),
+    "DeepSeek Harness":(2, 5, 0, 5),
+}
+
+def rank(need_default, need_control, need_scenario, cost_tolerance=5):
+    """need_* 取 1..5；cost_tolerance 越低越不愿承担维护责任。"""
+    rows = []
+    for name, (d, c, s, cost) in PROJECTS.items():
+        gap = abs(d - need_default) + abs(c - need_control) + abs(s - need_scenario)
+        penalty = max(0, cost - cost_tolerance) * 1.5
+        rows.append((gap + penalty, name, gap, penalty))
+    return sorted(rows)
+
+if __name__ == "__main__":
+    print("场景 A：开箱即用做通用任务，团队不想维护底层")
+    for score, name, gap, pen in rank(5, 1, 0, cost_tolerance=2)[:3]:
+        print(f"  {name:&lt;18} 差距={gap} 责任惩罚={pen} 综合={score}")
+    print("场景 B：要自己设计 Loop，且能承担维护")
+    for score, name, gap, pen in rank(1, 5, 0, cost_tolerance=5)[:3]:
+        print(f"  {name:&lt;18} 差距={gap} 责任惩罚={pen} 综合={score}")
+    print("场景 C：做长期个人助手 / 接 IM")
+    for score, name, gap, pen in rank(4, 2, 5, cost_tolerance=4)[:3]:
+        print(f"  {name:&lt;18} 差距={gap} 责任惩罚={pen} 综合={score}")</code></pre>
+<div class="note"><strong>实测输出（择要）</strong>：场景 A 首选 <code>Claude Agent SDK</code>（差距 0）；场景 B <code>DeepSeek Harness</code> 与 <code>Pi</code> 并列第一（差距均为 1）；场景 C 首选 <code>OpenCode / OpenClaw / Hermes</code> 这一组场景化项目。分数只用于把讨论结构化，不能替业务判断。</div>
+
+<h3>14.2 一个能跑起来的最小 Harness</h3>
+<p>用规则模拟「模型决策」，把 Harness 的五件事做全：工具注册、上下文组装与压缩、权限门、停止条件、trace 记录。运行后会看到完整执行轨迹。</p>
+<pre><code># mini_harness.py —— python3 mini_harness.py
+import json
+
+class MiniHarness:
+    def __init__(self, tools, allowed, max_steps=6, compact_after=4):
+        self.tools, self.allowed = tools, set(allowed)
+        self.max_steps, self.compact_after = max_steps, compact_after
+        self.ctx, self.trace = [], []
+
+    def _compact(self):
+        if len(self.ctx) > self.compact_after:
+            head = self.ctx[0]
+            self.ctx = [head, {"role": "system", "text": f"[已压缩 {len(self.ctx)-2} 条历史]"}] + self.ctx[-1:]
+            self.trace.append("COMPACT")
+
+    def decide(self, goal):
+        """规则版模型：没查过就查，查过没写就写，写完就停。"""
+        done = {t["tool"] for t in self.trace if isinstance(t, dict)}
+        if "search" not in done: return "search", {"q": goal}
+        if "write" not in done:  return "write", {"path": "report.md", "text": goal}
+        return "finish", {}
+
+    def run(self, goal):
+        self.ctx.append({"role": "user", "text": goal})
+        for step in range(1, self.max_steps + 1):
+            name, args = self.decide(goal)
+            if name == "finish":
+                self.trace.append({"step": step, "tool": "finish", "result": "done"})
+                break
+            if name not in self.allowed:                       # 权限门
+                self.trace.append({"step": step, "tool": name, "result": "BLOCKED"})
+                break
+            result = self.tools[name](**args)                  # 执行工具
+            self.ctx.append({"role": "tool", "text": json.dumps(result, ensure_ascii=False)})
+            self.trace.append({"step": step, "tool": name, "result": result})
+            self._compact()                                    # 上下文压缩
+        return {"steps": len(self.trace), "context": self.ctx, "trace": self.trace}
+
+TOOLS = {
+    "search": lambda q: {"hits": 3, "query": q},
+    "write":  lambda path, text: {"path": path, "bytes": len(text)},
+}
+if __name__ == "__main__":
+    h = MiniHarness(TOOLS, allowed=["search"], max_steps=6, compact_after=2)
+    print("—— 只放行 search ——")
+    print(json.dumps(h.run("调研 Harness 选型"), ensure_ascii=False, indent=2))
+    h2 = MiniHarness(TOOLS, allowed=["search", "write"], max_steps=6, compact_after=2)
+    print("—— 放行 search + write ——")
+    print(json.dumps(h2.run("调研 Harness 选型"), ensure_ascii=False, indent=2))</code></pre>
+<div class="note"><strong>实测结论</strong>：只放行 <code>search</code> 时，Agent 在第 2 步被权限门 <code>BLOCKED</code>，循环提前终止；放行两个工具后走完 <code>search → write → finish</code>，并在上下文超过阈值时触发 <code>COMPACT</code>。这正好复现了视频里「上下文越来越长怎么控制」「工具权限怎么管」两个追问的最小形态。</div>
+
+<h3>14.3 三档控制粒度：拦截 → 替换策略 → 替换核心</h3>
+<p>把第 12.1 节的 L1/L2/L3 写成一个内核，直观看出每多开一个控制点会发生什么。</p>
+<pre><code># control_granularity.py —— python3 control_granularity.py
+class Kernel:
+    def __init__(self):
+        self.hooks = {"PreToolUse": [], "PostToolUse": []}   # L1
+        self.compactor = lambda ctx: ctx[-4:]                 # L2（可替换策略）
+        self.loop = self.default_loop                         # L3（可替换核心）
+
+    def provide(self, service, impl):
+        if service == "agent-loop": self.loop = impl          # 对应 ctx.provide
+        elif service == "compactor": self.compactor = impl
+
+    def default_loop(self, tasks):
+        return ["ACT " + t for t in tasks]
+
+    def plan_then_act(self, tasks):
+        return ["PLAN " + ",".join(tasks)] + ["ACT " + t for t in tasks]
+
+    def call(self, tool, arg, ctx):
+        for hook in self.hooks["PreToolUse"]:
+            if hook(tool, arg) is False: return "BLOCKED"
+        ctx.append(tool + ":" + arg)
+        ctx = self.compactor(ctx)
+        for hook in self.hooks["PostToolUse"]: hook(tool, arg)
+        return ctx
+
+if __name__ == "__main__":
+    k = Kernel()
+    k.hooks["PreToolUse"].append(lambda t, a: False if "rm" in a else True)
+    print("L1 拦截:", k.call("bash", "rm -rf /", []))
+    print("默认 Loop:", k.loop(["read", "write"]))
+    k.provide("compactor", lambda c: ["[摘要]"] + c[-1:])     # L2
+    print("L2 压缩:", k.call("read", "a.md", ["x:1", "y:2", "z:3", "w:4"]))
+    k.provide("agent-loop", k.plan_then_act)                   # L3
+    print("L3 换核:", k.loop(["read", "write"]))</code></pre>
+<div class="note"><strong>实测输出</strong>：<code>L1 拦截: BLOCKED</code>；<code>默认 Loop: ['ACT read', 'ACT write']</code>；<code>L2 压缩: ['[摘要]', 'read:a.md']</code>；<code>L3 换核: ['PLAN read,write', 'ACT read', 'ACT write']</code>。三段分别对应 Claude Agent SDK 的 Hook、Deep Agents 的 Middleware、DeepSeek Harness 的服务注册。</div>
+
+<h3>14.4 三层次判定器：插件 / SDK / 源码改造</h3>
+<p>输入你的开发目标，输出应该停在哪个层次，避免「为加个按钮去 fork」。</p>
+<pre><code># three_levels.py —— python3 three_levels.py
+def decide(*, own_product=False, custom_ui=False, own_users=False,
+           change_loop=False, extension_enough=True):
+    if change_loop:
+        return ("③ 改造底层 Harness", "fork 源码 / 服务级替换 Loop", "高：自建回归评测")
+    if own_product or custom_ui or own_users:
+        return ("② 开发自己的 Agent 产品", "用 SDK 复用执行能力", "中：产品工程 + 版本适配")
+    if not extension_enough:
+        return ("② 或 ③（需先确认接口边界）", "优先确认 SDK 能否覆盖", "中～高")
+    return ("① 扩展现有 Agent", "Extension / Skill / Plugin", "低：跟随上游升级")
+
+CASES = [
+    ("给公司 Pi CLI 加代码规范检查", dict()),
+    ("做自有 AI 编程产品：界面 + 用户体系", dict(custom_ui=True, own_users=True)),
+    ("重新设计模型决策与循环顺序", dict(change_loop=True)),
+    ("想加审批，但 Hook 参数不够用", dict(extension_enough=False)),
+]
+if __name__ == "__main__":
+    for name, kw in CASES:
+        level, how, cost = decide(**kw)
+        print(f"{name}\n   → {level} | {how} | 成本 {cost}")</code></pre>
+<div class="note"><strong>实测输出（择要）</strong>：加规范检查 → <code>① 扩展现有 Agent</code>；自有产品 → <code>② 开发自己的 Agent 产品</code>；改循环 → <code>③ 改造底层 Harness</code>。与视频第 9 章三个例子一一对应。注意判定顺序：<strong>先问是否要改 Loop，再问是否是自己的产品</strong>，因为改 Loop 的需求不能被 SDK 满足。</div>
+</section>
+
+<section class="sec" id="s15">
+<h2>15. 补充篇 E：常见误区</h2>
+<p class="leadin"><span class="tag t-extra">补充</span>这一章把视频里隐含的取舍，以及工程实践中最容易踩的坑逐条写明。</p>
+<table>
+<tr><th>#</th><th>误区</th><th>为什么错</th><th>正确做法</th></tr>
+<tr><td>1</td><td>Harness 是 LangGraph / Framework 的新版本，用了它就该全换掉</td><td>三层是不同抽象层次，上层复用下层；生产系统常同时用</td><td>Framework 编排大流程，Runtime 管状态与恢复，Agent 在 Harness 内执行</td></tr>
+<tr><td>2</td><td>所有 Agent 开发都应该上 Harness</td><td>视频明确限定：简单任务 / 严格流程场景，Framework 与 Runtime 依然有价值</td><td>先看流程是否可枚举，再决定起点</td></tr>
+<tr><td>3</td><td>按「功能数量」选型</td><td>工具调用、上下文管理、多 Agent 已是通用能力，不是差异点</td><td>看「默认实现了什么机制」×「开放了多少控制权」</td></tr>
+<tr><td>4</td><td>控制权越高越好</td><td>能改的越多，设计 / 调试 / 维护责任越大</td><td>取满足需求的<strong>最低控制粒度</strong>（第 12.1 节 L0–L4）</td></tr>
+<tr><td>5</td><td>把 OpenClaw / Hermes 与 Claude Agent SDK 放在同一根轴上比</td><td>前者是「完整 Agent 系统 = Harness + 消息接入 + 任务调度」，差异来自场景外壳</td><td>先判断要不要场景外壳，再在同一场景内比控制粒度</td></tr>
+<tr><td>6</td><td>开发自己的 Agent 产品 = 要开发自己的 Harness</td><td>视频结尾特意划了不等号；产品外壳与执行系统是两层</td><td>用 SDK 复用执行能力，把精力放在界面 / 用户 / 业务</td></tr>
+<tr><td>7</td><td>为了加一个小功能直接 fork 源码</td><td>把层次 ① 的问题做成层次 ③，长期承担合并成本</td><td>先确认 Hook / Extension / SDK 是否够用</td></tr>
+<tr><td>8</td><td>靠堆 Hook 就能改变 Agent Loop 的决策顺序</td><td>拦截点分散，逻辑隐式、难调试、难回归</td><td>确实要改决策顺序时，进入服务级替换（L3）</td></tr>
+<tr><td>9</td><td>「可定制」等于「开箱可用」</td><td>Deep Agents 灵活但执行环境、策略组合、沙箱与否都要自己定</td><td>把技术决策列成清单并逐项确认责任人与验收方式</td></tr>
+<tr><td>10</td><td>自学习 / Skill 沉淀一定越用越好</td><td>错误经验也会被沉淀并反复复用（视频明确点出）</td><td>记忆与技能修改加人工审批，并保留回归评测</td></tr>
+<tr><td>11</td><td>改了默认机制，看成功率没变就算没退步</td><td>Loop 改动常表现为步骤数、重试、工具误用率漂移，成功率可能不变</td><td>同时看 Outcome 与 Trace，配护栏指标</td></tr>
+<tr><td>12</td><td>SDK 自带权限就等于生产安全</td><td>权限白名单、审批与沙箱是三件事；client-server 架构还有额外攻击面</td><td>最小权限 + 人工审批 + 隔离沙箱 + 命令审计</td></tr>
+</table>
+<h3>15.1 按症状归因速查</h3>
+<table>
+<tr><th>症状</th><th>优先检查</th><th>可能落在</th></tr>
+<tr><td>上下文越来越长、成本飙升</td><td>压缩策略、大工具结果是否落盘</td><td>信息层 / L2</td></tr>
+<tr><td>Agent 反复重试不收敛</td><td>停止条件、验证与超时</td><td>控制层 / 验证层</td></tr>
+<tr><td>工具被误调用或越权</td><td>权限白名单、PreToolUse、沙箱</td><td>控制层 / L1</td></tr>
+<tr><td>改版本后旧任务退步</td><td>回归评测集与 trace 对比</td><td>验证层</td></tr>
+<tr><td>长期助手重复同一个错误</td><td>被沉淀的错误 Skill / Memory</td><td>记忆层 / 人工审批</td></tr>
+</table>
+</section>
+
+<section class="sec" id="s16">
+<h2>16. 附录</h2>
+
+<h3 id="s161">16.1 章节时间轴</h3>
+<p><strong>画面自带目录（00:36 帧，逐字）</strong>：</p>
+<table class="timeline">
+<tr><th>时间</th><th>画面目录</th><th>本教程</th></tr>
+<tr><td>00:37</td><td>01 Agent 开发架构的演进与影响</td><td><a href="#s2">第 2–3 章</a></td></tr>
+<tr><td>06:27</td><td>02 七个代表性 Harness 逐个看</td><td><a href="#s4">第 4–7 章</a></td></tr>
+<tr><td>16:47</td><td>03 七个 Harness 横向对比</td><td><a href="#s8">第 8 章</a></td></tr>
+<tr><td>17:33</td><td>04 怎么用 Harness</td><td><a href="#s9">第 9–10 章</a></td></tr>
+</table>
+<p><strong>官方详情接口 <code>chapter_list</code>（10 段，逐字）</strong>：</p>
+<table class="timeline">
+<tr><th>时间</th><th>章节名（原文）</th><th>本教程</th></tr>
+<tr><td>00:36</td><td>Agent 开发架构的演进</td><td><a href="#s2">第 2–3 章</a></td></tr>
+<tr><td>06:26</td><td>Claude agent SDK</td><td><a href="#s41">4.1</a></td></tr>
+<tr><td>08:17</td><td>Deep agents</td><td><a href="#s42">4.2</a></td></tr>
+<tr><td>10:09</td><td>Pi</td><td><a href="#s51">5.1</a></td></tr>
+<tr><td>11:46</td><td>OpenCode</td><td><a href="#s52">5.2</a></td></tr>
+<tr><td>13:04</td><td>OpenClaw</td><td><a href="#s61">6.1</a></td></tr>
+<tr><td>14:20</td><td>Hermes</td><td><a href="#s62">6.2</a></td></tr>
+<tr><td>15:23</td><td>DeepSeek harness</td><td><a href="#s7">第 7 章</a></td></tr>
+<tr><td>16:47</td><td>七个 harness 比较</td><td><a href="#s8">第 8 章</a></td></tr>
+<tr><td>17:32</td><td>怎么用 harness 框架</td><td><a href="#s9">第 9–10 章</a></td></tr>
+</table>
+<div class="warn"><strong>差异说明。</strong>两套目录有几十秒偏差：画面目录的七项目时间码是 <code>06:27 / 08:17 / 10:10 / 11:46 / 13:01 / 14:18 / 15:23</code>，官方接口为 <code>06:26 / 08:17 / 10:09 / 11:46 / 13:04 / 14:20 / 15:23</code>；第四章画面 17:33、接口 17:32。本教程行文一律以<strong>画面目录与逐帧文字</strong>为准，接口章节单独列在这里备查。</div>
+
+<h3 id="s162">16.2 配图速查（20 张）</h3>
+<table>
+<tr><th>#</th><th>图名</th><th>时间点 / 来源</th><th>所在章节</th></tr>
+<tr><td>1</td><td>全片结构地图</td><td>00:36 画面目录 + 官方章节</td><td><a href="#s1">1</a></td></tr>
+<tr><td>2</td><td>三阶段演进时间轴 2022 / 2024 / 2025</td><td>00:37 画面</td><td><a href="#s2">2</a></td></tr>
+<tr><td>3</td><td>Framework / Runtime / Harness 三层抽象</td><td>01 章画面</td><td><a href="#s2">2</a></td></tr>
+<tr><td>4</td><td>Harness：Agent Loop + 四类能力</td><td>01 章画面「执行系统」</td><td><a href="#s23">2.3</a></td></tr>
+<tr><td>5</td><td>开发起点变化与边界</td><td>06:00 前后画面</td><td><a href="#s3">3</a></td></tr>
+<tr><td>6</td><td>三类场景划分 + 一个特殊存在</td><td>06:27 画面</td><td><a href="#s3">3</a></td></tr>
+<tr><td>7</td><td>Claude Agent SDK「可以 / 不能」</td><td>06:27–08:17 画面</td><td><a href="#s41">4.1</a></td></tr>
+<tr><td>8</td><td>Deep Agents 分层架构与两大特点</td><td>08:17–10:10 画面</td><td><a href="#s42">4.2</a></td></tr>
+<tr><td>9</td><td>两个综合任务类项目控制权对照</td><td>09:xx 画面刻度图</td><td><a href="#s42">4.2</a></td></tr>
+<tr><td>10</td><td>Pi 极简核心与四层扩展路径</td><td>10:10–11:46 画面</td><td><a href="#s51">5.1</a></td></tr>
+<tr><td>11</td><td>OpenCode 三种预置 Agent 权限表</td><td>11:46–13:01 画面</td><td><a href="#s52">5.2</a></td></tr>
+<tr><td>12</td><td>OpenClaw Gateway 架构与长期任务</td><td>13:01–14:18 画面</td><td><a href="#s61">6.1</a></td></tr>
+<tr><td>13</td><td>Hermes 持续学习闭环</td><td>14:18–15:23 画面</td><td><a href="#s62">6.2</a></td></tr>
+<tr><td>14</td><td>DeepSeek Harness「一切皆插件」</td><td>15:23–16:12 画面</td><td><a href="#s7">7</a></td></tr>
+<tr><td>15</td><td>Pi vs DeepSeek Harness 两种灵活</td><td>16:12 画面对比</td><td><a href="#s7">7.1</a></td></tr>
+<tr><td>16</td><td>七个 Harness 横向对比坐标图</td><td>16:47–17:21 画面</td><td><a href="#s8">8</a></td></tr>
+<tr><td>17</td><td>控制权滑块与设计 / 调试 / 维护</td><td>17:21 画面</td><td><a href="#s8">8.1</a></td></tr>
+<tr><td>18</td><td>三个层次与 Pi 的三种开发目标</td><td>17:33–19:33 画面</td><td><a href="#s9">9</a></td></tr>
+<tr><td>19</td><td>任务需求与设计特点选型矩阵</td><td>19:57–20:43 画面</td><td><a href="#s10">10</a></td></tr>
+<tr><td>20</td><td>【补充】生产级 Harness 通用职责分层</td><td>公开工程资料，非视频画面</td><td><a href="#s13">13</a></td></tr>
+</table>
+
+<h3 id="s163">16.3 校正表（OCR 与自动摘要）</h3>
+<table>
+<tr><th>来源写成了</th><th>正确写法</th><th>依据</th></tr>
+<tr><td>「メ方」「產市面上的 AgSnt飽」等乱码</td><td>口播断句处无有效画面文字，按上下文不补写台词</td><td>放大帧 + 字幕时间线</td></tr>
+<tr><td><code>Agent Lor</code> / <code>Agent Looρ</code> / <code>Lor</code></td><td><code>Agent Loop</code></td><td>15:39 / 15:45 帧放大目视</td></tr>
+<tr><td><code>pLugins/my-Loop.ts</code> / <code>PLanThenAct</code> / <code>Gordis</code></td><td><code>plugins/my-loop.ts</code> / <code>PlanThenAct</code> / <code>Cordis</code></td><td>15:57–16:06 帧 + 官方文档命名</td></tr>
+<tr><td><code>ctx.provide（"agent-Loop"，…）</code></td><td><code>ctx.provide("agent-loop", …)</code></td><td>画面示意代码 + 服务命名惯例</td></tr>
+<tr><td><code>Fr Pi</code> / <code>FiPi</code> / <code>FI</code>（散点图标签）</td><td><code>Pi</code></td><td>16:48 / 17:12 / 17:18 帧放大</td></tr>
+<tr><td>「开相即用」「开柏即用」「完全享控」「完全拿控」</td><td>「开箱即用」「完全掌控」</td><td>17:21–17:27 滑块画面 + 字幕</td></tr>
+<tr><td>「直接与代码？错！」等字幕断句</td><td>按画面「下载别人的代码来改？还是通过 SDK 开发？」归纳</td><td>17:39–17:42 帧 + 字幕上下文</td></tr>
+<tr><td><code>如 Langchain</code> / <code>Deep agents</code> / <code>Claude agent SDK</code>（接口章节名大小写不一）</td><td><code>LangChain</code> / <code>Deep Agents</code> / <code>Claude Agent SDK</code></td><td>官方仓库与文档大小写</td></tr>
+<tr><td>官方章节 13:04 OpenClaw / 14:20 Hermes</td><td>画面目录 13:01 / 14:18；正文以画面为准，接口值另列</td><td>00:36 目录帧 vs <code>chapter_list</code></td></tr>
+<tr><td>「模型自主规划，开发者不再预设步骤」被概括成「完全不需要流程」</td><td>视频原意是「流程无法预先枚举」，不等于放弃停止条件与验证</td><td>02 章画面四问 + 第 8 章控制权代价</td></tr>
+</table>
+
+<h3 id="s164">16.4 还原方法与资料</h3>
+<ol>
+<li><strong>视频</strong>：<a href="https://v.douyin.com/KBn_HS3Q5D4/" target="_blank" rel="noopener">抖音分享短链</a> → <a href="https://www.douyin.com/video/7704500449094339875" target="_blank" rel="noopener">网页版直链</a>；标题《Agent 开发架构怎么选？7 个代表项目系统对比》，作者 @AI产品千媚，2026-11-05 09:56:47 发布，时长 20:43.37（1243.37 s），1920×1080 / 30fps，文件 77.8 MB，视频 ID <code>7704500449094339875</code>。</li>
+<li><strong>逐帧</strong>：每 3 秒抽帧 <strong>414 张</strong>；macOS Vision <code>VNRecognizeTextRequest</code>（zh-Hans + en-US，accurate，关闭语言纠正）得到 <strong>5,349 行</strong>带坐标文本；按 y 坐标分离画面文字与烧录字幕，去重后得到 <strong>1,333 行</strong>画面文本与 <strong>402 行</strong>字幕时间线；对 4 大章节的关键帧（三阶段轴、三层抽象、OpenCode 权限表、DeepSeek 插件架构、两轴散点图、三层次图、选型矩阵）放大逐字目视校对。</li>
+<li><strong>官方资料核对</strong>：Claude Agent SDK（Anthropic 文档与 <code>anthropics/claude-agent-sdk-python</code>）、Deep Agents（LangChain 文档）、Pi（<code>badlogic/pi-mono</code> 与 pi.dev 文档）、OpenCode（官方文档）、OpenClaw（<code>docs.openclaw.ai</code>）、Hermes Agent（Nous Research 开源仓库）、DeepSeek Harness（<code>deepseek-harness.github.io</code>）。</li>
+<li><strong>本系列互链</strong>：<a href="../rag-evaluation-tutorial/index.html">RAG 评测完全教程</a>、<a href="../agent-evaluation-tutorial/index.html">Agent 评测体系完全教程</a>、<a href="../agent-eval-driven-tutorial/index.html">评测驱动 Agent 迭代 · 完全教程</a>；第 13.3 节的验证层与第三篇指标体系对应。</li>
+</ol>
+<div class="warn"><strong>未做的部分（如实说明）</strong>：本轮未做语音逐字转写（ASR），口播内容依据烧录字幕 OCR 时间线 + 画面文字 + 官方章节名归纳；所有标注【视频原述】的句子均能在画面或字幕中找到对应，未凭空补写台词。视频中官网/仓库截图里的细小正文（如 DeepSeek 参考文档的中文段落）因分辨率有限只做结构还原，未逐字转录。</div>
+</section>
+
+<div class="footer">
+  <p>本教程为学习整理产物：视频内容按 1920×1080 原片逐帧核对后重述；标注【补充】的内容来自公开官方文档与资料，不属于视频原述。原视频与项目版权归各自作者所有。</p>
+  <p>姊妹篇：<a href="../rag-evaluation-tutorial/index.html">RAG 评测完全教程</a> ｜ <a href="../agent-evaluation-tutorial/index.html">Agent 评测体系完全教程</a> ｜ <a href="../agent-eval-driven-tutorial/index.html">评测驱动 Agent 迭代完全教程</a> ｜ <a href="../index.html">返回知识库首页</a></p>
+</div>
+</main>
+</div>
+<script>
+(function () {
+  var bar = document.getElementById('progress');
+  var top = document.getElementById('totop');
+  var links = Array.prototype.slice.call(document.querySelectorAll('nav.toc a'));
+  var byId = {};
+  links.forEach(function (a) {
+    var id = a.getAttribute('href').slice(1);
+    if (document.getElementById(id)) byId[id] = a;
+  });
+  function update() {
+    var doc = document.documentElement;
+    var scrollTop = window.scrollY || doc.scrollTop || 0;
+    var max = doc.scrollHeight - doc.clientHeight;
+    if (bar) bar.style.width = (max > 0 ? Math.min(100, scrollTop / max * 100) : 0) + '%';
+    if (top) top.style.display = scrollTop > 600 ? 'block' : 'none';
+    var current = null;
+    Object.keys(byId).forEach(function (id) {
+      var el = document.getElementById(id);
+      if (el && el.getBoundingClientRect().top <= 150) current = id;
+    });
+    links.forEach(function (a) { a.classList.remove('active'); });
+    if (current && byId[current]) byId[current].classList.add('active');
+  }
+  window.addEventListener('scroll', update, { passive: true });
+  window.addEventListener('resize', update);
+  if (top) top.addEventListener('click', function () { window.scrollTo({ top: 0, behavior: 'smooth' }); });
+  update();
+})();
+</script>
+<script>
+(function(){
+  var bar=document.querySelector('.topbar'), root=document.documentElement;
+  function sync(){ if(bar) root.style.setProperty('--topH', Math.round(bar.getBoundingClientRect().height)+'px'); }
+  sync(); window.addEventListener('resize', sync);
+})();
+</script>
+</body>
+</html>

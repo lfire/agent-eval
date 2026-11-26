@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 """零第三方依赖的 Markdown -> 静态 HTML 构建器。
 
-站点只维护一份 .md 源文件；本脚本在 GitHub Actions 构建时把三份教程
+站点只维护一份 .md 源文件；本脚本在 GitHub Actions 构建时把四份教程
 渲染成带目录、表格、代码块与 Mermaid 渐进增强的 HTML 阅读页。
 本地亦可运行：python3 tools/build_md.py
 """
@@ -15,6 +15,7 @@ TARGETS = [
     ("rag-evaluation-tutorial/RAG评测完全教程.md", "RAG 评测完全教程", "rag-evaluation-tutorial/index.html", "RAG / 评测"),
     ("agent-evaluation-tutorial/Agent评测体系完全教程.md", "Agent 评测体系完全教程", "agent-evaluation-tutorial/index.html", "Agent / 评测体系"),
     ("agent-eval-driven-tutorial/Agent评测驱动迭代完全教程.md", "评测驱动 Agent 迭代 · 完全教程", "agent-eval-driven-tutorial/index.html", "Agent / 迭代"),
+    ("agent-architecture-tutorial/Agent开发架构选型完全教程.md", "Agent 开发架构选型 · 完全教程", "agent-architecture-tutorial/index.html", "Agent / 架构选型"),
 ]
 
 FENCE = re.compile(r"^```([^\s`]*)\s*$")
@@ -364,7 +365,8 @@ def main():
         body = (body
                 .replace("../rag-evaluation-tutorial/index.html", "../rag-evaluation-tutorial/RAG评测完全教程.html")
                 .replace("../agent-evaluation-tutorial/index.html", "../agent-evaluation-tutorial/Agent评测体系完全教程.html")
-                .replace("../agent-eval-driven-tutorial/index.html", "../agent-eval-driven-tutorial/Agent评测驱动迭代完全教程.html"))
+                .replace("../agent-eval-driven-tutorial/index.html", "../agent-eval-driven-tutorial/Agent评测驱动迭代完全教程.html")
+                .replace("../agent-architecture-tutorial/index.html", "../agent-architecture-tutorial/Agent开发架构选型完全教程.html"))
         out = md.with_suffix(".html")
         out.write_text(page(title, subtitle, figure_url, md, body, r.toc), encoding="utf-8")
         print(f"OK  {md.relative_to(ROOT)}  ->  {out.relative_to(ROOT)}  "
