@@ -274,7 +274,7 @@ main{padding-top:22px}
 <details class="ts-box"><summary>本章语音逐字稿（ASR · 已校正）（逐字 · 60 句）</summary>
 <div class="ts-lines">
 <div class="ts-line"><span class="ts-t">[00:00]</span> 如果今天让你开发一个 Agent 第一步应该做什么</div>
-<div class="ts-line"><span class="ts-t">[00:03]</span> 直接写代码错要先选一个适合你的开源基础框架</div>
+<div class="ts-line"><span class="ts-t">[00:03]</span> 直接写代码？错，要先选一个适合你的开源基础框架</div>
 <div class="ts-line"><span class="ts-t">[00:07]</span> 现在市面上的 Agent 的开发框架越来越多</div>
 <div class="ts-line"><span class="ts-t">[00:10]</span> 从 LangGraph 到 Claude Agent SDK</div>
 <div class="ts-line"><span class="ts-t">[00:13]</span> Deep Agents 还有 Pi、DeepSeek Harness</div>
@@ -318,11 +318,11 @@ main{padding-top:22px}
 <div class="ts-line"><span class="ts-t">[01:30]</span> 给它接入订单查询的接口</div>
 <div class="ts-line"><span class="ts-t">[01:31]</span> 再配置好提示词和调用的规则</div>
 <div class="ts-line"><span class="ts-t">[01:33]</span> 很快就能搭出一个基础版本</div>
-<div class="ts-line"><span class="ts-t">[01:35]</span> LangChain、LlamaIndexCrewAII</div>
+<div class="ts-line"><span class="ts-t">[01:35]</span> LangChain、LlamaIndex、CrewAI</div>
 <div class="ts-line"><span class="ts-t">[01:37]</span> 都属于这一类的 Framework</div>
 <div class="ts-line"><span class="ts-t">[01:39]</span> 他们主要解决的是减少重复开发</div>
 <div class="ts-line"><span class="ts-t">[01:41]</span> 让 Agent 更容易构建</div>
-<div class="ts-line"><span class="ts-t">[01:43]</span> 那第二阶段是 Agent 的 aRuntime</div>
+<div class="ts-line"><span class="ts-t">[01:43]</span> 那第二阶段是 Agent Runtime</div>
 <div class="ts-line"><span class="ts-t">[01:45]</span> 随着 Agent 的执行任务越来越复杂</div>
 <div class="ts-line"><span class="ts-t">[01:47]</span> 大家发现</div>
 <div class="ts-line"><span class="ts-t">[01:48]</span> 仅仅把模型和工具连接起来还不够</div>
@@ -491,7 +491,7 @@ agent = create_agent(
 <div class="ts-line"><span class="ts-t">[02:16]</span> 这些已经不只是模型调用和工具接入的事情了</div>
 <div class="ts-line"><span class="ts-t">[02:20]</span> 我们还需要管理整个任务的执行流程</div>
 <div class="ts-line"><span class="ts-t">[02:22]</span> 保存执行的状态处理中断和恢复</div>
-<div class="ts-line"><span class="ts-t">[02:25]</span> 于是在2024年 LangGraph 推出了 LangGraph</div>
+<div class="ts-line"><span class="ts-t">[02:25]</span> 于是在 2024 年，LangChain 团队推出了 LangGraph</div>
 <div class="ts-line"><span class="ts-t">[02:28]</span> 它的核心就是让开发者能够更聪明地</div>
 <div class="ts-line"><span class="ts-t">[02:31]</span> 控制 Agent 的执行过程</div>
 <div class="ts-line"><span class="ts-t">[02:32]</span> 比如任务有哪些步骤</div>
@@ -642,7 +642,7 @@ agent = create_agent(
 <div class="ts-line"><span class="ts-t">[04:23]</span> 在前两者的基础上提供一套更加完整的 Agent Harness</div>
 <div class="ts-line"><span class="ts-t">[04:27]</span> 今天的 Deep Agents 仍然是建立在 LangChain 和 LangGraph 之上的</div>
 <div class="ts-line"><span class="ts-t">[04:31]</span> 所以这三个阶段并不是互相淘汰的关系</div>
-<div class="ts-line"><span class="ts-t">[04:34]</span> 而是随着模型能力和应用需求的开发</div>
+<div class="ts-line"><span class="ts-t">[04:34]</span> 而是随着模型能力和应用需求的发展</div>
 <div class="ts-line"><span class="ts-t">[04:37]</span> 出现的不同层次的技术抽象</div>
 <div class="ts-line"><span class="ts-t">[04:39]</span> 这条技术演进路线影响的是什么呢</div>
 <div class="ts-line"><span class="ts-t">[04:41]</span> 影响的就是 Agent 的开发的起点</div>
@@ -998,7 +998,7 @@ agent = create_agent(
 <div class="ts-line"><span class="ts-t">[09:51]</span> 怎么组合不同的处理策略</div>
 <div class="ts-line"><span class="ts-t">[09:52]</span> 都会增加一定的开发和维护成本</div>
 <div class="ts-line"><span class="ts-t">[09:55]</span> 所以 Deep Agents 更适合这样的团队</div>
-<div class="ts-line"><span class="ts-t">[09:57]</span> 你即向复用成熟的 Harness</div>
+<div class="ts-line"><span class="ts-t">[09:57]</span> 你既想复用成熟的 Harness</div>
 <div class="ts-line"><span class="ts-t">[09:58]</span> 又需要灵活调整上下文</div>
 <div class="ts-line"><span class="ts-t">[10:00]</span> 执行环境和运行策略</div>
 <div class="ts-line"><span class="ts-t">[10:02]</span> Claude Agent SDK</div>
@@ -1122,7 +1122,7 @@ agent = create_agent(
 <div class="ts-line"><span class="ts-t">[10:27]</span> 所以会更重视代码的搜索文件的修改</div>
 <div class="ts-line"><span class="ts-t">[10:30]</span> 命令的执行和测试验证</div>
 <div class="ts-line"><span class="ts-t">[10:32]</span> 首先是派</div>
-<div class="ts-line"><span class="ts-t">[10:33]</span> 派最大的特点是基减</div>
+<div class="ts-line"><span class="ts-t">[10:33]</span> Pi 最大的特点是极简</div>
 <div class="ts-line"><span class="ts-t">[10:35]</span> 尽可能的减少框架预置的功能</div>
 <div class="ts-line"><span class="ts-t">[10:36]</span> 把更多的设计留给了开发者</div>
 <div class="ts-line"><span class="ts-t">[10:38]</span> 它内置了基础的 Agent 的 loop</div>
@@ -1135,7 +1135,7 @@ agent = create_agent(
 <div class="ts-line"><span class="ts-t">[10:55]</span> 不只能增加工具</div>
 <div class="ts-line"><span class="ts-t">[10:57]</span> 还能深入干预执行过程</div>
 <div class="ts-line"><span class="ts-t">[10:58]</span> 比如说拦截工具的调用</div>
-<div class="ts-line"><span class="ts-t">[11:00]</span> 修改上线文、提缓压缩策略</div>
+<div class="ts-line"><span class="ts-t">[11:00]</span> 修改上下文，替换压缩策略</div>
 <div class="ts-line"><span class="ts-t">[11:02]</span> 甚至覆盖内置工具的实现</div>
 <div class="ts-line"><span class="ts-t">[11:04]</span> 那相比 Claude Agent SDK</div>
 <div class="ts-line"><span class="ts-t">[11:06]</span> 它在执行策略和工具实现上的定制空间更大</div>
@@ -1143,23 +1143,23 @@ agent = create_agent(
 <div class="ts-line"><span class="ts-t">[11:10]</span> 可以直接把 Agent 的能力嵌入自己的产品</div>
 <div class="ts-line"><span class="ts-t">[11:12]</span> 那 OpenClaw 早期就是通过</div>
 <div class="ts-line"><span class="ts-t">[11:14]</span> 复用 Pi 的能力来构建个人助手的</div>
-<div class="ts-line"><span class="ts-t">[11:16]</span> 那另外Pi 的核心代码是开源的</div>
-<div class="ts-line"><span class="ts-t">[11:18]</span> 如果你想彻底重新 Agent 的 loop</div>
+<div class="ts-line"><span class="ts-t">[11:16]</span> 另外 Pi 的核心代码是开源的</div>
+<div class="ts-line"><span class="ts-t">[11:18]</span> 如果你想彻底重写 Agent 的 loop</div>
 <div class="ts-line"><span class="ts-t">[11:20]</span> 可以直接改源码</div>
 <div class="ts-line"><span class="ts-t">[11:21]</span> 所以很多有能力的技术团队</div>
-<div class="ts-line"><span class="ts-t">[11:23]</span> 想要打造自己的 harness 的时候都会选择派</div>
+<div class="ts-line"><span class="ts-t">[11:23]</span> 想要打造自己的 harness 的时候都会选择 Pi</div>
 <div class="ts-line"><span class="ts-t">[11:26]</span> 那它的优点是核心简单、灵活</div>
 <div class="ts-line"><span class="ts-t">[11:29]</span> 开发者可以根据自己的需求构建 harness</div>
 <div class="ts-line"><span class="ts-t">[11:31]</span> 不必接受过多预置的执行策略</div>
 <div class="ts-line"><span class="ts-t">[11:33]</span> 那它的限制</div>
 <div class="ts-line"><span class="ts-t">[11:34]</span> 就是很多的高级能力需要自己组合和维护</div>
 <div class="ts-line"><span class="ts-t">[11:37]</span> 那对于开发者的技术能力是有一定要求的</div>
-<div class="ts-line"><span class="ts-t">[11:39]</span> 所以派更适合这样的团队</div>
+<div class="ts-line"><span class="ts-t">[11:39]</span> 所以 Pi 更适合这样的团队</div>
 <div class="ts-line"><span class="ts-t">[11:41]</span> 你希望自己掌握 Agent 的执行逻辑</div>
 <div class="ts-line"><span class="ts-t">[11:43]</span> 从一个轻量的核心出发</div>
 <div class="ts-line"><span class="ts-t">[11:45]</span> 开发自己 Agent 的产品</div>
 <div class="ts-line"><span class="ts-t">[11:47]</span> 那接下来是 OpenCode</div>
-<div class="ts-line"><span class="ts-t">[11:48]</span> 如果说派追求的是极简</div>
+<div class="ts-line"><span class="ts-t">[11:48]</span> 如果说 Pi 追求的是极简</div>
 <div class="ts-line"><span class="ts-t">[11:50]</span> 让开发者自己决定做什么扩展</div>
 <div class="ts-line"><span class="ts-t">[11:52]</span> 那 OpenCode 的思路就是提供一套比较完整的</div>
 <div class="ts-line"><span class="ts-t">[11:55]</span> 软件开发工作机制</div>
@@ -1167,7 +1167,7 @@ agent = create_agent(
 <div class="ts-line"><span class="ts-t">[11:58]</span> 还预置了不同的 Agent 的角色和执行方式</div>
 <div class="ts-line"><span class="ts-t">[12:00]</span> 比如说Build Agent 负责实际开发</div>
 <div class="ts-line"><span class="ts-t">[12:02]</span> 可以修改代码执行命令</div>
-<div class="ts-line"><span class="ts-t">[12:04]</span> Plan Agent 主要负责分析问题指定方案</div>
+<div class="ts-line"><span class="ts-t">[12:04]</span> Plan Agent 主要负责分析问题、制定方案</div>
 <div class="ts-line"><span class="ts-t">[12:06]</span> 默认不直接修改普通项目文件</div>
 <div class="ts-line"><span class="ts-t">[12:09]</span> 还有 explore 等子 Agent 用于搜索和理解代码库</div>
 <div class="ts-line"><span class="ts-t">[12:12]</span> 也就是说 OpenCode 已经帮开发者设计好了</div>
@@ -1288,9 +1288,9 @@ ctx.provide("agent-loop", new PlanThenAct());   // 不改框架核心代码</cod
 <div class="ts-line"><span class="ts-t">[12:54]</span> 如果你的目标不是 coding Agent</div>
 <div class="ts-line"><span class="ts-t">[12:56]</span> 更希望从一个简单的核心出发</div>
 <div class="ts-line"><span class="ts-t">[12:58]</span> 自由设计执行方式</div>
-<div class="ts-line"><span class="ts-t">[12:59]</span> 那 py 可能更合适</div>
+<div class="ts-line"><span class="ts-t">[12:59]</span> 那 Pi 可能更合适</div>
 <div class="ts-line"><span class="ts-t">[13:01]</span> 前面介绍了 Claude Agent SDK Deep Agents</div>
-<div class="ts-line"><span class="ts-t">[13:04]</span> 以及 py 和 OpenCode</div>
+<div class="ts-line"><span class="ts-t">[13:04]</span> 以及 Pi 和 OpenCode</div>
 <div class="ts-line"><span class="ts-t">[13:06]</span> 更多是围绕着 Agent</div>
 <div class="ts-line"><span class="ts-t">[13:07]</span> 怎么完成任务来设计的</div>
 <div class="ts-line"><span class="ts-t">[13:08]</span> 接下来我们看一下个人助手类的</div>
@@ -1481,7 +1481,7 @@ ctx.provide("agent-loop", new PlanThenAct());   // 不改框架核心代码</cod
 <div class="ts-line"><span class="ts-t">[15:49]</span> DeepSeek Harness 更进一步</div>
 <div class="ts-line"><span class="ts-t">[15:51]</span> 它把模型工具 session</div>
 <div class="ts-line"><span class="ts-t">[15:53]</span> 甚至最核心的 Agent loop</div>
-<div class="ts-line"><span class="ts-t">[15:55]</span> 都设计成了可以可替换的插件</div>
+<div class="ts-line"><span class="ts-t">[15:55]</span> 都设计成了可替换的插件</div>
 <div class="ts-line"><span class="ts-t">[15:57]</span> 也就是说</div>
 <div class="ts-line"><span class="ts-t">[15:58]</span> 如果你对默认的 Agent loop 不满意</div>
 <div class="ts-line"><span class="ts-t">[16:00]</span> 你可以通过开发</div>
@@ -1490,12 +1490,12 @@ ctx.provide("agent-loop", new PlanThenAct());   // 不改框架核心代码</cod
 <div class="ts-line"><span class="ts-t">[16:05]</span> 它的底层采用 Code 插件架构</div>
 <div class="ts-line"><span class="ts-t">[16:07]</span> 把不同的功能组成了相互协作的模块</div>
 <div class="ts-line"><span class="ts-t">[16:09]</span> 让你可以组合出不同的执行方式</div>
-<div class="ts-line"><span class="ts-t">[16:12]</span> 它和派虽然都强调灵活</div>
+<div class="ts-line"><span class="ts-t">[16:12]</span> 它和 Pi 虽然都强调灵活</div>
 <div class="ts-line"><span class="ts-t">[16:13]</span> 但是思路不一样</div>
 <div class="ts-line"><span class="ts-t">[16:14]</span> 派是尽量让核心保持简单的开发者</div>
 <div class="ts-line"><span class="ts-t">[16:17]</span> 可以在这上面去扩展</div>
 <div class="ts-line"><span class="ts-t">[16:18]</span> 而 DeepSeek Harness 是把核心本身</div>
-<div class="ts-line"><span class="ts-t">[16:21]</span> 也做成了可以提款的模块</div>
+<div class="ts-line"><span class="ts-t">[16:21]</span> 也做成了可以替换的模块</div>
 <div class="ts-line"><span class="ts-t">[16:22]</span> 这种设计的优点是</div>
 <div class="ts-line"><span class="ts-t">[16:24]</span> 自由程度非常高</div>
 <div class="ts-line"><span class="ts-t">[16:25]</span> 如果你想研究不同的 Agent loop 的效果</div>
@@ -1592,8 +1592,8 @@ ctx.provide("agent-loop", new PlanThenAct());   // 不改框架核心代码</cod
 <div class="ts-line"><span class="ts-t">[17:05]</span> Claude Agent SDK 预置了成熟的执行机制</div>
 <div class="ts-line"><span class="ts-t">[17:07]</span> Deep Agents 把更多的执行策略做成了可组合的模块</div>
 <div class="ts-line"><span class="ts-t">[17:11]</span> Pi 尽可能的保持核心简单</div>
-<div class="ts-line"><span class="ts-t">[17:13]</span> DeepSeek Harness 都是连核心机制也可以替换</div>
-<div class="ts-line"><span class="ts-t">[17:16]</span> 而 OpenAI codOpenAIen Claude 和 harness</div>
+<div class="ts-line"><span class="ts-t">[17:13]</span> DeepSeek Harness 则是连核心机制也可以替换</div>
+<div class="ts-line"><span class="ts-t">[17:16]</span> 而 OpenCode、OpenClaw 和 Hermes</div>
 <div class="ts-line"><span class="ts-t">[17:18]</span> 更多体现的是针对特定场景的设计</div>
 <div class="ts-line"><span class="ts-t">[17:20]</span> 但是控制权越大</div>
 <div class="ts-line"><span class="ts-t">[17:21]</span> 不代表一定就越好</div>
@@ -1602,12 +1602,12 @@ ctx.provide("agent-loop", new PlanThenAct());   // 不改框架核心代码</cod
 <div class="ts-line"><span class="ts-t">[17:26]</span> 调试和维护工作也越多</div>
 <div class="ts-line"><span class="ts-t">[17:27]</span> 所以选型的时候不仅要看自由度</div>
 <div class="ts-line"><span class="ts-t">[17:29]</span> 还要看这些默认机制是否符合自己的业务需求</div>
-<div class="ts-line"><span class="ts-t">[17:33]</span> ok 经过一番分析</div>
+<div class="ts-line"><span class="ts-t">[17:33]</span> OK，经过一番分析</div>
 <div class="ts-line"><span class="ts-t">[17:35]</span> 你已经确定了要用哪个 harness 开发</div>
 <div class="ts-line"><span class="ts-t">[17:37]</span> 然后呢</div>
 <div class="ts-line"><span class="ts-t">[17:37]</span> 它应该怎么用</div>
 <div class="ts-line"><span class="ts-t">[17:38]</span> 是直接下载别人的代码来改</div>
-<div class="ts-line"><span class="ts-t">[17:40]</span> 还是通过 sdk 开发</div>
+<div class="ts-line"><span class="ts-t">[17:40]</span> 还是通过 SDK 开发</div>
 <div class="ts-line"><span class="ts-t">[17:41]</span> 什么才是使用 harness 的正确姿势</div>
 <div class="ts-line"><span class="ts-t">[17:44]</span> 我认为可以把开发者需求分成三个层次</div>
 <div class="ts-line"><span class="ts-t">[17:47]</span> 第一个层次是扩展现有的 Agent</div>
@@ -1623,14 +1623,14 @@ ctx.provide("agent-loop", new PlanThenAct());   // 不改框架核心代码</cod
 <div class="ts-line"><span class="ts-t">[18:06]</span> 你希望自己去修改甚至重新设计底层的实现</div>
 <div class="ts-line"><span class="ts-t">[18:09]</span> 这三个层次的开发目标不一样</div>
 <div class="ts-line"><span class="ts-t">[18:11]</span> 需要的技术能力也不一样</div>
-<div class="ts-line"><span class="ts-t">[18:13]</span> 我们就用派举的例子</div>
+<div class="ts-line"><span class="ts-t">[18:13]</span> 我们就用 Pi 举的例子</div>
 <div class="ts-line"><span class="ts-t">[18:14]</span> 第一种是扩展现有的产品</div>
 <div class="ts-line"><span class="ts-t">[18:16]</span> 假设你是一名程序员</div>
-<div class="ts-line"><span class="ts-t">[18:17]</span> 公司内部已经在用派的 cli 去做编程工具</div>
+<div class="ts-line"><span class="ts-t">[18:17]</span> 公司内部已经在用 Pi 的 CLI 去做编程工具</div>
 <div class="ts-line"><span class="ts-t">[18:20]</span> 但是你希望它更符合公司的开发流程</div>
 <div class="ts-line"><span class="ts-t">[18:22]</span> 比如说修改完代码之后自动检查代码的规范</div>
-<div class="ts-line"><span class="ts-t">[18:25]</span> 或者按照团队的要求生成片描述</div>
-<div class="ts-line"><span class="ts-t">[18:27]</span> 这个时候你只需要在安装好的派 cli 的基础上</div>
+<div class="ts-line"><span class="ts-t">[18:25]</span> 或者按照团队的要求生成 PR 描述</div>
+<div class="ts-line"><span class="ts-t">[18:27]</span> 这个时候你只需要在安装好的 Pi CLI 的基础上</div>
 <div class="ts-line"><span class="ts-t">[18:30]</span> 通过 extension 或者是 Skills 增加功能的产品还是派</div>
 <div class="ts-line"><span class="ts-t">[18:34]</span> 只是变得更符合你们自己的要求</div>
 <div class="ts-line"><span class="ts-t">[18:36]</span> 这是第一个层次</div>
@@ -1720,26 +1720,26 @@ ctx.provide("agent-loop", new PlanThenAct());   // 不改框架核心代码</cod
 <div class="ts-line"><span class="ts-t">[18:39]</span> 现在你打算出去创业了</div>
 <div class="ts-line"><span class="ts-t">[18:41]</span> 做一个面向研发团队的 AI 编程产品</div>
 <div class="ts-line"><span class="ts-t">[18:44]</span> 还有自己的产品界面用户管理任务系统</div>
-<div class="ts-line"><span class="ts-t">[18:47]</span> 还可以让 Agent 的自动修改代码运行测试</div>
+<div class="ts-line"><span class="ts-t">[18:47]</span> 还可以让 Agent 自动修改代码运行测试</div>
 <div class="ts-line"><span class="ts-t">[18:49]</span> 但是你不想从零开发</div>
-<div class="ts-line"><span class="ts-t">[18:51]</span> 这个时候就可以用到派的 sdk</div>
+<div class="ts-line"><span class="ts-t">[18:51]</span> 这个时候就可以用到 Pi 的 SDK</div>
 <div class="ts-line"><span class="ts-t">[18:53]</span> 把派的执行能力集成到自己的应用里</div>
 <div class="ts-line"><span class="ts-t">[18:56]</span> 产品是你自己的</div>
-<div class="ts-line"><span class="ts-t">[18:57]</span> 只是底层复用了派的 Harness</div>
+<div class="ts-line"><span class="ts-t">[18:57]</span> 只是底层复用了 Pi 的 Harness</div>
 <div class="ts-line"><span class="ts-t">[18:59]</span> 这个是第二个层次</div>
 <div class="ts-line"><span class="ts-t">[19:00]</span> 第三个层次是改造底层的 Harness</div>
-<div class="ts-line"><span class="ts-t">[19:02]</span> 假设你认为派默认的 Agent 的 loop 根本不符合自己的需求</div>
+<div class="ts-line"><span class="ts-t">[19:02]</span> 假设你认为 Pi 默认的 Agent 的 loop 根本不符合自己的需求</div>
 <div class="ts-line"><span class="ts-t">[19:06]</span> 想要重新设计模型如何决策工具如何执行</div>
 <div class="ts-line"><span class="ts-t">[19:09]</span> 以及整个任务如何循环</div>
-<div class="ts-line"><span class="ts-t">[19:10]</span> 由于派是开源的</div>
+<div class="ts-line"><span class="ts-t">[19:10]</span> 由于 Pi 是开源的</div>
 <div class="ts-line"><span class="ts-t">[19:12]</span> 你可以直接 fork 代码</div>
 <div class="ts-line"><span class="ts-t">[19:13]</span> 改它的核心源码</div>
 <div class="ts-line"><span class="ts-t">[19:14]</span> 搭出自己的 Harness</div>
 <div class="ts-line"><span class="ts-t">[19:16]</span> 这就是第三个层次</div>
-<div class="ts-line"><span class="ts-t">[19:17]</span> 所以插件 sdk 源码的改造</div>
+<div class="ts-line"><span class="ts-t">[19:17]</span> 所以插件、SDK、源码的改造</div>
 <div class="ts-line"><span class="ts-t">[19:20]</span> 其实解决的是三个不同的问题</div>
 <div class="ts-line"><span class="ts-t">[19:22]</span> 插件和 Skills 主要解决的是如何扩展现有的能力</div>
-<div class="ts-line"><span class="ts-t">[19:25]</span> sdk 解决的是复用现成的执行能力开发自己的应用</div>
+<div class="ts-line"><span class="ts-t">[19:25]</span> SDK 解决的是复用现成的执行能力开发自己的应用</div>
 <div class="ts-line"><span class="ts-t">[19:29]</span> 修改源码只是当现有的扩展接口无法满足需求的时候</div>
 <div class="ts-line"><span class="ts-t">[19:32]</span> 直接改变底层的实现</div>
 <div class="ts-line"><span class="ts-t">[19:34]</span> 因此在做基础选型的时候</div>
@@ -1747,7 +1747,7 @@ ctx.provide("agent-loop", new PlanThenAct());   // 不改框架核心代码</cod
 <div class="ts-line"><span class="ts-t">[19:38]</span> 如果只是让现有的 Harness 更好用</div>
 <div class="ts-line"><span class="ts-t">[19:40]</span> 那优先考虑插件和 Skills</div>
 <div class="ts-line"><span class="ts-t">[19:41]</span> 如果开发独立的 Harness 的产品</div>
-<div class="ts-line"><span class="ts-t">[19:43]</span> 重点看 sdk 和程序化接入的能力</div>
+<div class="ts-line"><span class="ts-t">[19:43]</span> 重点看 SDK 和程序化接入的能力</div>
 <div class="ts-line"><span class="ts-t">[19:46]</span> 如果要深入改造 Harness</div>
 <div class="ts-line"><span class="ts-t">[19:48]</span> 才需要关注源码的开放程度</div>
 <div class="ts-line"><span class="ts-t">[19:50]</span> 以及底层机制是否允许替换</div>
@@ -2236,7 +2236,7 @@ if __name__ == "__main__":
 <details class="ts-box"><summary>开篇与三层抽象（逐字 · 150 句）</summary>
 <div class="ts-lines">
 <div class="ts-line"><span class="ts-t">[00:00]</span> 如果今天让你开发一个 Agent 第一步应该做什么</div>
-<div class="ts-line"><span class="ts-t">[00:03]</span> 直接写代码错要先选一个适合你的开源基础框架</div>
+<div class="ts-line"><span class="ts-t">[00:03]</span> 直接写代码？错，要先选一个适合你的开源基础框架</div>
 <div class="ts-line"><span class="ts-t">[00:07]</span> 现在市面上的 Agent 的开发框架越来越多</div>
 <div class="ts-line"><span class="ts-t">[00:10]</span> 从 LangGraph 到 Claude Agent SDK</div>
 <div class="ts-line"><span class="ts-t">[00:13]</span> Deep Agents 还有 Pi、DeepSeek Harness</div>
@@ -2280,11 +2280,11 @@ if __name__ == "__main__":
 <div class="ts-line"><span class="ts-t">[01:30]</span> 给它接入订单查询的接口</div>
 <div class="ts-line"><span class="ts-t">[01:31]</span> 再配置好提示词和调用的规则</div>
 <div class="ts-line"><span class="ts-t">[01:33]</span> 很快就能搭出一个基础版本</div>
-<div class="ts-line"><span class="ts-t">[01:35]</span> LangChain、LlamaIndexCrewAII</div>
+<div class="ts-line"><span class="ts-t">[01:35]</span> LangChain、LlamaIndex、CrewAI</div>
 <div class="ts-line"><span class="ts-t">[01:37]</span> 都属于这一类的 Framework</div>
 <div class="ts-line"><span class="ts-t">[01:39]</span> 他们主要解决的是减少重复开发</div>
 <div class="ts-line"><span class="ts-t">[01:41]</span> 让 Agent 更容易构建</div>
-<div class="ts-line"><span class="ts-t">[01:43]</span> 那第二阶段是 Agent 的 aRuntime</div>
+<div class="ts-line"><span class="ts-t">[01:43]</span> 那第二阶段是 Agent Runtime</div>
 <div class="ts-line"><span class="ts-t">[01:45]</span> 随着 Agent 的执行任务越来越复杂</div>
 <div class="ts-line"><span class="ts-t">[01:47]</span> 大家发现</div>
 <div class="ts-line"><span class="ts-t">[01:48]</span> 仅仅把模型和工具连接起来还不够</div>
@@ -2305,7 +2305,7 @@ if __name__ == "__main__":
 <div class="ts-line"><span class="ts-t">[02:16]</span> 这些已经不只是模型调用和工具接入的事情了</div>
 <div class="ts-line"><span class="ts-t">[02:20]</span> 我们还需要管理整个任务的执行流程</div>
 <div class="ts-line"><span class="ts-t">[02:22]</span> 保存执行的状态处理中断和恢复</div>
-<div class="ts-line"><span class="ts-t">[02:25]</span> 于是在2024年 LangGraph 推出了 LangGraph</div>
+<div class="ts-line"><span class="ts-t">[02:25]</span> 于是在 2024 年，LangChain 团队推出了 LangGraph</div>
 <div class="ts-line"><span class="ts-t">[02:28]</span> 它的核心就是让开发者能够更聪明地</div>
 <div class="ts-line"><span class="ts-t">[02:31]</span> 控制 Agent 的执行过程</div>
 <div class="ts-line"><span class="ts-t">[02:32]</span> 比如任务有哪些步骤</div>
@@ -2367,7 +2367,7 @@ if __name__ == "__main__":
 <div class="ts-line"><span class="ts-t">[04:23]</span> 在前两者的基础上提供一套更加完整的 Agent Harness</div>
 <div class="ts-line"><span class="ts-t">[04:27]</span> 今天的 Deep Agents 仍然是建立在 LangChain 和 LangGraph 之上的</div>
 <div class="ts-line"><span class="ts-t">[04:31]</span> 所以这三个阶段并不是互相淘汰的关系</div>
-<div class="ts-line"><span class="ts-t">[04:34]</span> 而是随着模型能力和应用需求的开发</div>
+<div class="ts-line"><span class="ts-t">[04:34]</span> 而是随着模型能力和应用需求的发展</div>
 <div class="ts-line"><span class="ts-t">[04:37]</span> 出现的不同层次的技术抽象</div>
 <div class="ts-line"><span class="ts-t">[04:39]</span> 这条技术演进路线影响的是什么呢</div>
 <div class="ts-line"><span class="ts-t">[04:41]</span> 影响的就是 Agent 的开发的起点</div>
@@ -2525,7 +2525,7 @@ if __name__ == "__main__":
 <div class="ts-line"><span class="ts-t">[09:51]</span> 怎么组合不同的处理策略</div>
 <div class="ts-line"><span class="ts-t">[09:52]</span> 都会增加一定的开发和维护成本</div>
 <div class="ts-line"><span class="ts-t">[09:55]</span> 所以 Deep Agents 更适合这样的团队</div>
-<div class="ts-line"><span class="ts-t">[09:57]</span> 你即向复用成熟的 Harness</div>
+<div class="ts-line"><span class="ts-t">[09:57]</span> 你既想复用成熟的 Harness</div>
 <div class="ts-line"><span class="ts-t">[09:58]</span> 又需要灵活调整上下文</div>
 <div class="ts-line"><span class="ts-t">[10:00]</span> 执行环境和运行策略</div>
 <div class="ts-line"><span class="ts-t">[10:02]</span> Claude Agent SDK</div>
@@ -2547,7 +2547,7 @@ if __name__ == "__main__":
 <div class="ts-line"><span class="ts-t">[10:27]</span> 所以会更重视代码的搜索文件的修改</div>
 <div class="ts-line"><span class="ts-t">[10:30]</span> 命令的执行和测试验证</div>
 <div class="ts-line"><span class="ts-t">[10:32]</span> 首先是派</div>
-<div class="ts-line"><span class="ts-t">[10:33]</span> 派最大的特点是基减</div>
+<div class="ts-line"><span class="ts-t">[10:33]</span> Pi 最大的特点是极简</div>
 <div class="ts-line"><span class="ts-t">[10:35]</span> 尽可能的减少框架预置的功能</div>
 <div class="ts-line"><span class="ts-t">[10:36]</span> 把更多的设计留给了开发者</div>
 <div class="ts-line"><span class="ts-t">[10:38]</span> 它内置了基础的 Agent 的 loop</div>
@@ -2560,7 +2560,7 @@ if __name__ == "__main__":
 <div class="ts-line"><span class="ts-t">[10:55]</span> 不只能增加工具</div>
 <div class="ts-line"><span class="ts-t">[10:57]</span> 还能深入干预执行过程</div>
 <div class="ts-line"><span class="ts-t">[10:58]</span> 比如说拦截工具的调用</div>
-<div class="ts-line"><span class="ts-t">[11:00]</span> 修改上线文、提缓压缩策略</div>
+<div class="ts-line"><span class="ts-t">[11:00]</span> 修改上下文，替换压缩策略</div>
 <div class="ts-line"><span class="ts-t">[11:02]</span> 甚至覆盖内置工具的实现</div>
 <div class="ts-line"><span class="ts-t">[11:04]</span> 那相比 Claude Agent SDK</div>
 <div class="ts-line"><span class="ts-t">[11:06]</span> 它在执行策略和工具实现上的定制空间更大</div>
@@ -2568,23 +2568,23 @@ if __name__ == "__main__":
 <div class="ts-line"><span class="ts-t">[11:10]</span> 可以直接把 Agent 的能力嵌入自己的产品</div>
 <div class="ts-line"><span class="ts-t">[11:12]</span> 那 OpenClaw 早期就是通过</div>
 <div class="ts-line"><span class="ts-t">[11:14]</span> 复用 Pi 的能力来构建个人助手的</div>
-<div class="ts-line"><span class="ts-t">[11:16]</span> 那另外Pi 的核心代码是开源的</div>
-<div class="ts-line"><span class="ts-t">[11:18]</span> 如果你想彻底重新 Agent 的 loop</div>
+<div class="ts-line"><span class="ts-t">[11:16]</span> 另外 Pi 的核心代码是开源的</div>
+<div class="ts-line"><span class="ts-t">[11:18]</span> 如果你想彻底重写 Agent 的 loop</div>
 <div class="ts-line"><span class="ts-t">[11:20]</span> 可以直接改源码</div>
 <div class="ts-line"><span class="ts-t">[11:21]</span> 所以很多有能力的技术团队</div>
-<div class="ts-line"><span class="ts-t">[11:23]</span> 想要打造自己的 harness 的时候都会选择派</div>
+<div class="ts-line"><span class="ts-t">[11:23]</span> 想要打造自己的 harness 的时候都会选择 Pi</div>
 <div class="ts-line"><span class="ts-t">[11:26]</span> 那它的优点是核心简单、灵活</div>
 <div class="ts-line"><span class="ts-t">[11:29]</span> 开发者可以根据自己的需求构建 harness</div>
 <div class="ts-line"><span class="ts-t">[11:31]</span> 不必接受过多预置的执行策略</div>
 <div class="ts-line"><span class="ts-t">[11:33]</span> 那它的限制</div>
 <div class="ts-line"><span class="ts-t">[11:34]</span> 就是很多的高级能力需要自己组合和维护</div>
 <div class="ts-line"><span class="ts-t">[11:37]</span> 那对于开发者的技术能力是有一定要求的</div>
-<div class="ts-line"><span class="ts-t">[11:39]</span> 所以派更适合这样的团队</div>
+<div class="ts-line"><span class="ts-t">[11:39]</span> 所以 Pi 更适合这样的团队</div>
 <div class="ts-line"><span class="ts-t">[11:41]</span> 你希望自己掌握 Agent 的执行逻辑</div>
 <div class="ts-line"><span class="ts-t">[11:43]</span> 从一个轻量的核心出发</div>
 <div class="ts-line"><span class="ts-t">[11:45]</span> 开发自己 Agent 的产品</div>
 <div class="ts-line"><span class="ts-t">[11:47]</span> 那接下来是 OpenCode</div>
-<div class="ts-line"><span class="ts-t">[11:48]</span> 如果说派追求的是极简</div>
+<div class="ts-line"><span class="ts-t">[11:48]</span> 如果说 Pi 追求的是极简</div>
 <div class="ts-line"><span class="ts-t">[11:50]</span> 让开发者自己决定做什么扩展</div>
 <div class="ts-line"><span class="ts-t">[11:52]</span> 那 OpenCode 的思路就是提供一套比较完整的</div>
 <div class="ts-line"><span class="ts-t">[11:55]</span> 软件开发工作机制</div>
@@ -2592,7 +2592,7 @@ if __name__ == "__main__":
 <div class="ts-line"><span class="ts-t">[11:58]</span> 还预置了不同的 Agent 的角色和执行方式</div>
 <div class="ts-line"><span class="ts-t">[12:00]</span> 比如说Build Agent 负责实际开发</div>
 <div class="ts-line"><span class="ts-t">[12:02]</span> 可以修改代码执行命令</div>
-<div class="ts-line"><span class="ts-t">[12:04]</span> Plan Agent 主要负责分析问题指定方案</div>
+<div class="ts-line"><span class="ts-t">[12:04]</span> Plan Agent 主要负责分析问题、制定方案</div>
 <div class="ts-line"><span class="ts-t">[12:06]</span> 默认不直接修改普通项目文件</div>
 <div class="ts-line"><span class="ts-t">[12:09]</span> 还有 explore 等子 Agent 用于搜索和理解代码库</div>
 <div class="ts-line"><span class="ts-t">[12:12]</span> 也就是说 OpenCode 已经帮开发者设计好了</div>
@@ -2621,9 +2621,9 @@ if __name__ == "__main__":
 <div class="ts-line"><span class="ts-t">[12:54]</span> 如果你的目标不是 coding Agent</div>
 <div class="ts-line"><span class="ts-t">[12:56]</span> 更希望从一个简单的核心出发</div>
 <div class="ts-line"><span class="ts-t">[12:58]</span> 自由设计执行方式</div>
-<div class="ts-line"><span class="ts-t">[12:59]</span> 那 py 可能更合适</div>
+<div class="ts-line"><span class="ts-t">[12:59]</span> 那 Pi 可能更合适</div>
 <div class="ts-line"><span class="ts-t">[13:01]</span> 前面介绍了 Claude Agent SDK Deep Agents</div>
-<div class="ts-line"><span class="ts-t">[13:04]</span> 以及 py 和 OpenCode</div>
+<div class="ts-line"><span class="ts-t">[13:04]</span> 以及 Pi 和 OpenCode</div>
 <div class="ts-line"><span class="ts-t">[13:06]</span> 更多是围绕着 Agent</div>
 <div class="ts-line"><span class="ts-t">[13:07]</span> 怎么完成任务来设计的</div>
 <div class="ts-line"><span class="ts-t">[13:08]</span> 接下来我们看一下个人助手类的</div>
@@ -2723,7 +2723,7 @@ if __name__ == "__main__":
 <div class="ts-line"><span class="ts-t">[15:49]</span> DeepSeek Harness 更进一步</div>
 <div class="ts-line"><span class="ts-t">[15:51]</span> 它把模型工具 session</div>
 <div class="ts-line"><span class="ts-t">[15:53]</span> 甚至最核心的 Agent loop</div>
-<div class="ts-line"><span class="ts-t">[15:55]</span> 都设计成了可以可替换的插件</div>
+<div class="ts-line"><span class="ts-t">[15:55]</span> 都设计成了可替换的插件</div>
 <div class="ts-line"><span class="ts-t">[15:57]</span> 也就是说</div>
 <div class="ts-line"><span class="ts-t">[15:58]</span> 如果你对默认的 Agent loop 不满意</div>
 <div class="ts-line"><span class="ts-t">[16:00]</span> 你可以通过开发</div>
@@ -2732,12 +2732,12 @@ if __name__ == "__main__":
 <div class="ts-line"><span class="ts-t">[16:05]</span> 它的底层采用 Code 插件架构</div>
 <div class="ts-line"><span class="ts-t">[16:07]</span> 把不同的功能组成了相互协作的模块</div>
 <div class="ts-line"><span class="ts-t">[16:09]</span> 让你可以组合出不同的执行方式</div>
-<div class="ts-line"><span class="ts-t">[16:12]</span> 它和派虽然都强调灵活</div>
+<div class="ts-line"><span class="ts-t">[16:12]</span> 它和 Pi 虽然都强调灵活</div>
 <div class="ts-line"><span class="ts-t">[16:13]</span> 但是思路不一样</div>
 <div class="ts-line"><span class="ts-t">[16:14]</span> 派是尽量让核心保持简单的开发者</div>
 <div class="ts-line"><span class="ts-t">[16:17]</span> 可以在这上面去扩展</div>
 <div class="ts-line"><span class="ts-t">[16:18]</span> 而 DeepSeek Harness 是把核心本身</div>
-<div class="ts-line"><span class="ts-t">[16:21]</span> 也做成了可以提款的模块</div>
+<div class="ts-line"><span class="ts-t">[16:21]</span> 也做成了可以替换的模块</div>
 <div class="ts-line"><span class="ts-t">[16:22]</span> 这种设计的优点是</div>
 <div class="ts-line"><span class="ts-t">[16:24]</span> 自由程度非常高</div>
 <div class="ts-line"><span class="ts-t">[16:25]</span> 如果你想研究不同的 Agent loop 的效果</div>
@@ -2762,8 +2762,8 @@ if __name__ == "__main__":
 <div class="ts-line"><span class="ts-t">[17:05]</span> Claude Agent SDK 预置了成熟的执行机制</div>
 <div class="ts-line"><span class="ts-t">[17:07]</span> Deep Agents 把更多的执行策略做成了可组合的模块</div>
 <div class="ts-line"><span class="ts-t">[17:11]</span> Pi 尽可能的保持核心简单</div>
-<div class="ts-line"><span class="ts-t">[17:13]</span> DeepSeek Harness 都是连核心机制也可以替换</div>
-<div class="ts-line"><span class="ts-t">[17:16]</span> 而 OpenAI codOpenAIen Claude 和 harness</div>
+<div class="ts-line"><span class="ts-t">[17:13]</span> DeepSeek Harness 则是连核心机制也可以替换</div>
+<div class="ts-line"><span class="ts-t">[17:16]</span> 而 OpenCode、OpenClaw 和 Hermes</div>
 <div class="ts-line"><span class="ts-t">[17:18]</span> 更多体现的是针对特定场景的设计</div>
 <div class="ts-line"><span class="ts-t">[17:20]</span> 但是控制权越大</div>
 <div class="ts-line"><span class="ts-t">[17:21]</span> 不代表一定就越好</div>
@@ -2772,12 +2772,12 @@ if __name__ == "__main__":
 <div class="ts-line"><span class="ts-t">[17:26]</span> 调试和维护工作也越多</div>
 <div class="ts-line"><span class="ts-t">[17:27]</span> 所以选型的时候不仅要看自由度</div>
 <div class="ts-line"><span class="ts-t">[17:29]</span> 还要看这些默认机制是否符合自己的业务需求</div>
-<div class="ts-line"><span class="ts-t">[17:33]</span> ok 经过一番分析</div>
+<div class="ts-line"><span class="ts-t">[17:33]</span> OK，经过一番分析</div>
 <div class="ts-line"><span class="ts-t">[17:35]</span> 你已经确定了要用哪个 harness 开发</div>
 <div class="ts-line"><span class="ts-t">[17:37]</span> 然后呢</div>
 <div class="ts-line"><span class="ts-t">[17:37]</span> 它应该怎么用</div>
 <div class="ts-line"><span class="ts-t">[17:38]</span> 是直接下载别人的代码来改</div>
-<div class="ts-line"><span class="ts-t">[17:40]</span> 还是通过 sdk 开发</div>
+<div class="ts-line"><span class="ts-t">[17:40]</span> 还是通过 SDK 开发</div>
 <div class="ts-line"><span class="ts-t">[17:41]</span> 什么才是使用 harness 的正确姿势</div>
 <div class="ts-line"><span class="ts-t">[17:44]</span> 我认为可以把开发者需求分成三个层次</div>
 <div class="ts-line"><span class="ts-t">[17:47]</span> 第一个层次是扩展现有的 Agent</div>
@@ -2793,14 +2793,14 @@ if __name__ == "__main__":
 <div class="ts-line"><span class="ts-t">[18:06]</span> 你希望自己去修改甚至重新设计底层的实现</div>
 <div class="ts-line"><span class="ts-t">[18:09]</span> 这三个层次的开发目标不一样</div>
 <div class="ts-line"><span class="ts-t">[18:11]</span> 需要的技术能力也不一样</div>
-<div class="ts-line"><span class="ts-t">[18:13]</span> 我们就用派举的例子</div>
+<div class="ts-line"><span class="ts-t">[18:13]</span> 我们就用 Pi 举的例子</div>
 <div class="ts-line"><span class="ts-t">[18:14]</span> 第一种是扩展现有的产品</div>
 <div class="ts-line"><span class="ts-t">[18:16]</span> 假设你是一名程序员</div>
-<div class="ts-line"><span class="ts-t">[18:17]</span> 公司内部已经在用派的 cli 去做编程工具</div>
+<div class="ts-line"><span class="ts-t">[18:17]</span> 公司内部已经在用 Pi 的 CLI 去做编程工具</div>
 <div class="ts-line"><span class="ts-t">[18:20]</span> 但是你希望它更符合公司的开发流程</div>
 <div class="ts-line"><span class="ts-t">[18:22]</span> 比如说修改完代码之后自动检查代码的规范</div>
-<div class="ts-line"><span class="ts-t">[18:25]</span> 或者按照团队的要求生成片描述</div>
-<div class="ts-line"><span class="ts-t">[18:27]</span> 这个时候你只需要在安装好的派 cli 的基础上</div>
+<div class="ts-line"><span class="ts-t">[18:25]</span> 或者按照团队的要求生成 PR 描述</div>
+<div class="ts-line"><span class="ts-t">[18:27]</span> 这个时候你只需要在安装好的 Pi CLI 的基础上</div>
 <div class="ts-line"><span class="ts-t">[18:30]</span> 通过 extension 或者是 Skills 增加功能的产品还是派</div>
 <div class="ts-line"><span class="ts-t">[18:34]</span> 只是变得更符合你们自己的要求</div>
 <div class="ts-line"><span class="ts-t">[18:36]</span> 这是第一个层次</div>
@@ -2808,26 +2808,26 @@ if __name__ == "__main__":
 <div class="ts-line"><span class="ts-t">[18:39]</span> 现在你打算出去创业了</div>
 <div class="ts-line"><span class="ts-t">[18:41]</span> 做一个面向研发团队的 AI 编程产品</div>
 <div class="ts-line"><span class="ts-t">[18:44]</span> 还有自己的产品界面用户管理任务系统</div>
-<div class="ts-line"><span class="ts-t">[18:47]</span> 还可以让 Agent 的自动修改代码运行测试</div>
+<div class="ts-line"><span class="ts-t">[18:47]</span> 还可以让 Agent 自动修改代码运行测试</div>
 <div class="ts-line"><span class="ts-t">[18:49]</span> 但是你不想从零开发</div>
-<div class="ts-line"><span class="ts-t">[18:51]</span> 这个时候就可以用到派的 sdk</div>
+<div class="ts-line"><span class="ts-t">[18:51]</span> 这个时候就可以用到 Pi 的 SDK</div>
 <div class="ts-line"><span class="ts-t">[18:53]</span> 把派的执行能力集成到自己的应用里</div>
 <div class="ts-line"><span class="ts-t">[18:56]</span> 产品是你自己的</div>
-<div class="ts-line"><span class="ts-t">[18:57]</span> 只是底层复用了派的 Harness</div>
+<div class="ts-line"><span class="ts-t">[18:57]</span> 只是底层复用了 Pi 的 Harness</div>
 <div class="ts-line"><span class="ts-t">[18:59]</span> 这个是第二个层次</div>
 <div class="ts-line"><span class="ts-t">[19:00]</span> 第三个层次是改造底层的 Harness</div>
-<div class="ts-line"><span class="ts-t">[19:02]</span> 假设你认为派默认的 Agent 的 loop 根本不符合自己的需求</div>
+<div class="ts-line"><span class="ts-t">[19:02]</span> 假设你认为 Pi 默认的 Agent 的 loop 根本不符合自己的需求</div>
 <div class="ts-line"><span class="ts-t">[19:06]</span> 想要重新设计模型如何决策工具如何执行</div>
 <div class="ts-line"><span class="ts-t">[19:09]</span> 以及整个任务如何循环</div>
-<div class="ts-line"><span class="ts-t">[19:10]</span> 由于派是开源的</div>
+<div class="ts-line"><span class="ts-t">[19:10]</span> 由于 Pi 是开源的</div>
 <div class="ts-line"><span class="ts-t">[19:12]</span> 你可以直接 fork 代码</div>
 <div class="ts-line"><span class="ts-t">[19:13]</span> 改它的核心源码</div>
 <div class="ts-line"><span class="ts-t">[19:14]</span> 搭出自己的 Harness</div>
 <div class="ts-line"><span class="ts-t">[19:16]</span> 这就是第三个层次</div>
-<div class="ts-line"><span class="ts-t">[19:17]</span> 所以插件 sdk 源码的改造</div>
+<div class="ts-line"><span class="ts-t">[19:17]</span> 所以插件、SDK、源码的改造</div>
 <div class="ts-line"><span class="ts-t">[19:20]</span> 其实解决的是三个不同的问题</div>
 <div class="ts-line"><span class="ts-t">[19:22]</span> 插件和 Skills 主要解决的是如何扩展现有的能力</div>
-<div class="ts-line"><span class="ts-t">[19:25]</span> sdk 解决的是复用现成的执行能力开发自己的应用</div>
+<div class="ts-line"><span class="ts-t">[19:25]</span> SDK 解决的是复用现成的执行能力开发自己的应用</div>
 <div class="ts-line"><span class="ts-t">[19:29]</span> 修改源码只是当现有的扩展接口无法满足需求的时候</div>
 <div class="ts-line"><span class="ts-t">[19:32]</span> 直接改变底层的实现</div>
 <div class="ts-line"><span class="ts-t">[19:34]</span> 因此在做基础选型的时候</div>
@@ -2835,7 +2835,7 @@ if __name__ == "__main__":
 <div class="ts-line"><span class="ts-t">[19:38]</span> 如果只是让现有的 Harness 更好用</div>
 <div class="ts-line"><span class="ts-t">[19:40]</span> 那优先考虑插件和 Skills</div>
 <div class="ts-line"><span class="ts-t">[19:41]</span> 如果开发独立的 Harness 的产品</div>
-<div class="ts-line"><span class="ts-t">[19:43]</span> 重点看 sdk 和程序化接入的能力</div>
+<div class="ts-line"><span class="ts-t">[19:43]</span> 重点看 SDK 和程序化接入的能力</div>
 <div class="ts-line"><span class="ts-t">[19:46]</span> 如果要深入改造 Harness</div>
 <div class="ts-line"><span class="ts-t">[19:48]</span> 才需要关注源码的开放程度</div>
 <div class="ts-line"><span class="ts-t">[19:50]</span> 以及底层机制是否允许替换</div>
@@ -2916,21 +2916,21 @@ if __name__ == "__main__":
 <h3 id="script-full">16.8 完整连读脚本（ASR 整理稿 · 323 句 / 67 段）</h3>
 <p>以下由本章附录的 ASR 逐字稿合并而成：<strong>已按术语表与上下文校正 ASR 音译错字，并补充标点符号与分段</strong>。标点依据语音停顿与语义停顿，分段依据视频官方章节（或各支视频）边界，每组内每五句一段；需要逐句核对时请展开上方「全片语音逐字稿」。</p>
 <p class="script-h"><strong>开篇与三层抽象</strong><span>（00:00–05:11）</span></p>
-<p class="script-p">如果今天让你开发一个 Agent 第一步应该做什么，直接写代码错要先选一个适合你的开源基础框架。现在市面上的 Agent 的开发框架越来越多，从 LangGraph 到 Claude Agent SDK。Deep Agents 还有 Pi、DeepSeek Harness，这些项目到底有什么区别应该怎么选？这期视频我们就系统地梳理了 Agent 的开发框架的演进过程，重点对比七个比较有代表性的项目。</p>
+<p class="script-p">如果今天让你开发一个 Agent 第一步应该做什么，直接写代码？错，要先选一个适合你的开源基础框架。现在市面上的 Agent 的开发框架越来越多，从 LangGraph 到 Claude Agent SDK。Deep Agents 还有 Pi、DeepSeek Harness，这些项目到底有什么区别应该怎么选？这期视频我们就系统地梳理了 Agent 的开发框架的演进过程，重点对比七个比较有代表性的项目。</p>
 <p class="script-p">分析它们各自的基础特点优势和限制。最后再讲一个非常实际的问题。如果我们今天真的要开发一个 Agent，到底应该怎么使用这些框架。那内容比较长，大家可以根据章节直接调到感兴趣的部分。在开始具体选型之前，我们先来看一下 Agent 开发架构的演进。</p>
 <p class="script-p">大体上可以分成三个阶段，从早期的 Agent Framework。到后来的 Agent Runtime，再到现在越来越成熟的 Agent Harness。第一阶段是 Agent Framework，大概在2022年 2023年。随着大语言模型流行起来，大家就开始尝试基于大模型。开发各种应用，但那个时候开发 Agent 的很多基础工作。</p>
 <p class="script-p">都要自己完成，比如说怎么调不同的大模型。怎么让模型使用外部的工具，怎么接入知识库，怎么把工具执行的结果返回给模型。让它决定下一步做什么。那如果每开发一个 Agent，都要把这些功能重写一遍。开发成本就太高了。</p>
 <p class="script-p">所以就出现了 LangChain、LlamaIndex 这样的开发框架。那他们把模型的调用工具的接入、数据的处理，以及构建 Agent 的一些基础能力封装起来。那开发者不需要每次都从零开始。比如说我们要开发一个订单查询的 Agent，可以先在 LangChain 里面去定义一个 Agent。给它接入订单查询的接口，再配置好提示词和调用的规则，很快就能搭出一个基础版本。</p>
 <p class="script-p">LangChain、LlamaIndex、CrewAI，都属于这一类的 Framework。他们主要解决的是减少重复开发，让 Agent 更容易构建。那第二阶段是 Agent 的 Runtime，随着 Agent 的执行任务越来越复杂。大家发现：仅仅把模型和工具连接起来还不够。比如我们要开发一个电商选品的 Agent，要先读取商品的信息。</p>
 <p class="script-p">然后查询库存、价格、佣金。接着给商品打分，最后再生成选品的结果。这里面的步骤很多，有些必须要按照固定的顺序执行。有些则需要根据上一步的结果，决定接下来该怎么做？如果任务执行到一半失败了，能不能接着之前的进度继续。</p>
-<p class="script-p">如果某个环节需要人工确认，能不能先暂停，等用户确认之后再往下走。这些已经不只是模型调用和工具接入的事情了，我们还需要管理整个任务的执行流程。保存执行的状态处理中断和恢复。于是在2024年 LangGraph 推出了 LangGraph，它的核心就是让开发者能够更聪明地，控制 Agent 的执行过程。比如任务有哪些步骤，步骤之间怎么流转。</p>
+<p class="script-p">如果某个环节需要人工确认，能不能先暂停，等用户确认之后再往下走。这些已经不只是模型调用和工具接入的事情了，我们还需要管理整个任务的执行流程。保存执行的状态处理中断和恢复。于是在 2024 年，LangChain 团队推出了 LangGraph，它的核心就是让开发者能够更聪明地，控制 Agent 的执行过程。比如任务有哪些步骤，步骤之间怎么流转。</p>
 <p class="script-p">什么时候暂停，以及出现了异常怎么恢复。Runtime 解决的是，怎么让 Agent 的执行过程可管理、可恢复。第三个阶段是 Agent Harness，随着模型的推理能力。工具调用能力不断提高，Agent 的开发方式又发生了变化。以前开发一个复杂的 Agent，开发者往往需要提前把很多执行流程安排好。</p>
 <p class="script-p">但现实中有些任务的流程，根本没有办法提前规划。也不可能枚举所有的情况。所以我们开始希望只给模型一个目标，让它自己去规划步骤。调用工具、分析结果，再不断地调整下一步的行动。比如让 Agent 帮我们研究一家公司的产品。</p>
 <p class="script-p">那模型可以自己决定先搜什么样的资料，哪些信息需要进一步验证。要不要写一段代码分析数据。最后怎么整理成报告，这些步骤，不一定需要开发者提前全部规定好。但是模型的自主性提高之后，又带来了新的工程问题。比如说 Agent 的连续执行几十步，积累了大量的上下文。</p>
 <p class="script-p">怎么避免它越来越长，任务执行的过程中文件和中间结果放在哪里。什么时候应该调用子 Agent，什么时候应该停止。怎么管理工具的权限，这些问题逐渐变成了 Agent 开发的重点。Agent Harness 因此受到越来越多的关注。那 harness 可以理解成，围绕着模型的一整套执行的系统。</p>
 <p class="script-p">它包含基础的 Agent loop，也就是模型的思考、调用工具拿到结果。继续执行这个循环，在此之上还提供了上下文的管理。任务规划、文件系统、工具权限的能力，过去这些能力都得自己手写。现在成熟的 harness 已经帮我们做好了，我们可以直接使用这套现成的执行系统。再根据业务需求去扩展，当然 Framework runtime harness。</p>
 <p class="script-p">并不是简单的新技术取代旧技术，实际上 harness 本身就复用了 Framework 和 Runtime 的能力。LangChain 团队就是一个非常典型的例子，2022年推出了 LangChain 主要提供 Agent 的开发的技术组件。2024年推出了 LangGraph，补充了状态管理和持久化的执行能力。</p>
-<p class="script-p">2025年又推出了 Deep Agents，在前两者的基础上提供一套更加完整的 Agent Harness。今天的 Deep Agents 仍然是建立在 LangChain 和 LangGraph 之上的，所以这三个阶段并不是互相淘汰的关系。而是随着模型能力和应用需求的开发，出现的不同层次的技术抽象。这条技术演进路线影响的是什么呢，影响的就是 Agent 的开发的起点。</p>
+<p class="script-p">2025年又推出了 Deep Agents，在前两者的基础上提供一套更加完整的 Agent Harness。今天的 Deep Agents 仍然是建立在 LangChain 和 LangGraph 之上的，所以这三个阶段并不是互相淘汰的关系。而是随着模型能力和应用需求的发展，出现的不同层次的技术抽象。这条技术演进路线影响的是什么呢，影响的就是 Agent 的开发的起点。</p>
 <p class="script-p">过去我们可能要从模型工具这些技术组件开始，一点一点去组装一个 Agent。现在如果现成的 harness 的执行机制能满足需求，就可以直接复用，不用再从零搭建。那起点变得更高了。不过你的业务如果足够简单，或者需要严格的执行流程状态管理。那 Framework 和 Runtime 依然有价值，依然可以用，并不是所有的 Agent 的开发都需要用到 harness。</p>
 <p class="script-p">讲完技术的演进，我们再来看看目前有哪些值得关注的 harness。按照主要服务的场景。</p>
 <p class="script-h"><strong>代表项目（上）</strong><span>（05:11–10:23）</span></p>
@@ -2944,22 +2944,22 @@ if __name__ == "__main__":
 <p class="script-p">优点是你不需要自己去设计整套执行系统，可以直接复用 Claude code 的成熟的机制。减少大量的基础开发工作，限制也在这，你对核心机制的控制权有限。如果你需要一套与 Claude code 的完全不同的执行架构，就可能会受到 SDK 扩展接口的约束。所以 Claude Agent SDK 更适合这样的团队，你要认可 Claude code 默认的执行方式。希望在此基础上快速开发自己的业务的 Agent。</p>
 <p class="script-p">对于小白来说，如果技术基础相对薄弱。但有一定的开发能力，或者是可以借助 vibe coding 完成开发。那它是最值得优先考虑的方案。因为它封装的程度比较高，不需要自己从零搭建 Harness。接下来是 LangChain 的 Deep Agents，它和 Claude Agent SDK 一样。</p>
 <p class="script-p">也提供了比较完整的 Harness。那两者最大的区别是，Claude Agent SDK 更强调。复用一套成熟的执行机制，而 Deep Agents 更强调开放和可定制。那我们前面提到，Deep Agents 是建立在 LangChain 和 LangGraph 之上的，那它的 Agent loop 是由 LangChain 提供。那状态管理和任务恢复，由 LangGraph 负责。</p>
-<p class="script-p">它在这个基础上封装了任务规划，上下文管理文件系统和子 Agent 的能力。它比较有特点的设计有两个。第一个是 midware，也就是中间件，那可以理解成。把 Harness 的不同执行策略拆成独立的模块，让开发者按需调整。比如说你对默认的上下文压缩方式不满意，你就可以直接替换相应的处理策略。</p>
+<p class="script-p">它在这个基础上封装了任务规划，上下文管理文件系统和子 Agent 的能力。它比较有特点的设计有两个。第一个是 middleware，也就是中间件，那可以理解成。把 Harness 的不同执行策略拆成独立的模块，让开发者按需调整。比如说你对默认的上下文压缩方式不满意，你就可以直接替换相应的处理策略。</p>
 <p class="script-p">也可以在模型调用前去修改上下文，调整可用的工具，那相比较 Claude Agent SDK。你对这些内部机制的控制空间更大。那第二个是 Deep Agents，可以灵活的去选择文件存储和代码的执行环境。比如说 Agent 需要分析数据，生成文件，你可以让它使用本地的文件。也可以让它进入远程的沙箱来执行代码，还可以把需要长期保存的信息。</p>
 <p class="script-p">放在持久化的存储中。那这样的好处是。不必绑定在一种固定的环境里，可以根据不同业务的需求选择合适的实现方式。所以如果你做的是企业的 Agent，需要服务多个客户。对数据的存储和执行环境又有特殊的需求。</p>
 <p class="script-p">那这一点会更有价值。那 Deep Agents 的优点是，既提供了一套默认的 Harness。又给开发者保留了更大的定制空间。那它的限制是灵活性更高。那开发者就需要自己做的技术决策就更多，你比如说怎么配合执行环境。</p>
-<p class="script-p">怎么组合不同的处理策略，都会增加一定的开发和维护成本。所以 Deep Agents 更适合这样的团队，你即向复用成熟的 Harness。又需要灵活调整上下文，执行环境和运行策略。Claude Agent SDK，主要开放的是执行过程中的控制点。而 Deep Agents 则把更多的执行策略做成了，可以配置拓展和组合的模块。</p>
-<p class="script-p">那说完综合任务类的，接下来我们再来看看编码类的，也就是 coding Agent Harness。那它代表的项目有派，OpenCode 和 codex CLI。coding Agent 和综合任务类的 Agent，核心执行机制其实比较相似。</p>
+<p class="script-p">怎么组合不同的处理策略，都会增加一定的开发和维护成本。所以 Deep Agents 更适合这样的团队，你既想复用成熟的 Harness。又需要灵活调整上下文，执行环境和运行策略。Claude Agent SDK，主要开放的是执行过程中的控制点。而 Deep Agents 则把更多的执行策略做成了，可以配置拓展和组合的模块。</p>
+<p class="script-p">那说完综合任务类的，接下来我们再来看看编码类的，也就是 coding Agent Harness。那它代表的项目有 Pi、OpenCode 和 Codex CLI。coding Agent 和综合任务类的 Agent，核心执行机制其实比较相似。</p>
 <p class="script-h"><strong>代表项目（下）</strong><span>（10:23–15:34）</span></p>
-<p class="script-p">区别在于 coding Agent，是围绕着软件开发场景设计的，所以会更重视代码的搜索文件的修改。命令的执行和测试验证。首先是派，派最大的特点是基减。尽可能的减少框架预置的功能，把更多的设计留给了开发者。它内置了基础的 Agent 的 loop。</p>
-<p class="script-p">但是默认只有四个工具，读取文件、写入文件、编辑文件和执行命令。那像任务的规划多 Agent 的协作这样的能力，派并没有强制去内置一套固定的方案。而是允许开发者通过 extension 自己扩展。而且派的扩展机制也很开放，不只能增加工具，还能深入干预执行过程。比如说拦截工具的调用，修改上线文、提缓压缩策略。</p>
-<p class="script-p">甚至覆盖内置工具的实现。那相比 Claude Agent SDK，它在执行策略和工具实现上的定制空间更大。派还提供 SDK，可以直接把 Agent 的能力嵌入自己的产品。那 OpenClaw 早期就是通过，复用 Pi 的能力来构建个人助手的，那另外Pi 的核心代码是开源的。如果你想彻底重新 Agent 的 loop，可以直接改源码，所以很多有能力的技术团队。</p>
-<p class="script-p">想要打造自己的 harness 的时候都会选择派。那它的优点是核心简单、灵活，开发者可以根据自己的需求构建 harness。不必接受过多预置的执行策略。那它的限制，就是很多的高级能力需要自己组合和维护。那对于开发者的技术能力是有一定要求的，所以派更适合这样的团队。</p>
-<p class="script-p">你希望自己掌握 Agent 的执行逻辑，从一个轻量的核心出发。开发自己 Agent 的产品。那接下来是 OpenCode。如果说派追求的是极简，让开发者自己决定做什么扩展。那 OpenCode 的思路就是提供一套比较完整的，软件开发工作机制。</p>
-<p class="script-p">它不仅内置了 Agent 的 loop，还预置了不同的 Agent 的角色和执行方式。比如说Build Agent 负责实际开发，可以修改代码执行命令。Plan Agent 主要负责分析问题指定方案，默认不直接修改普通项目文件。还有 explore 等子 Agent 用于搜索和理解代码库。也就是说 OpenCode 已经帮开发者设计好了，一整套软件开发的工作方式。</p>
+<p class="script-p">区别在于 coding Agent，是围绕着软件开发场景设计的，所以会更重视代码的搜索文件的修改。命令的执行和测试验证。首先是 Pi，Pi 最大的特点是极简。尽可能的减少框架预置的功能，把更多的设计留给了开发者。它内置了基础的 Agent 的 loop。</p>
+<p class="script-p">但是默认只有四个工具，读取文件、写入文件、编辑文件和执行命令。那像任务的规划多 Agent 的协作这样的能力，派并没有强制去内置一套固定的方案。而是允许开发者通过 extension 自己扩展。而且派的扩展机制也很开放，不只能增加工具，还能深入干预执行过程。比如说拦截工具的调用，修改上下文，替换压缩策略。</p>
+<p class="script-p">甚至覆盖内置工具的实现。那相比 Claude Agent SDK，它在执行策略和工具实现上的定制空间更大。派还提供 SDK，可以直接把 Agent 的能力嵌入自己的产品。那 OpenClaw 早期就是通过，复用 Pi 的能力来构建个人助手的，另外 Pi 的核心代码是开源的。如果你想彻底重写 Agent 的 loop，可以直接改源码，所以很多有能力的技术团队。</p>
+<p class="script-p">想要打造自己的 harness 的时候都会选择 Pi。那它的优点是核心简单、灵活，开发者可以根据自己的需求构建 harness。不必接受过多预置的执行策略。那它的限制，就是很多的高级能力需要自己组合和维护。那对于开发者的技术能力是有一定要求的，所以 Pi 更适合这样的团队。</p>
+<p class="script-p">你希望自己掌握 Agent 的执行逻辑，从一个轻量的核心出发。开发自己 Agent 的产品。那接下来是 OpenCode。如果说 Pi 追求的是极简，让开发者自己决定做什么扩展。那 OpenCode 的思路就是提供一套比较完整的，软件开发工作机制。</p>
+<p class="script-p">它不仅内置了 Agent 的 loop，还预置了不同的 Agent 的角色和执行方式。比如说Build Agent 负责实际开发，可以修改代码执行命令。Plan Agent 主要负责分析问题、制定方案，默认不直接修改普通项目文件。还有 explore 等子 Agent 用于搜索和理解代码库。也就是说 OpenCode 已经帮开发者设计好了，一整套软件开发的工作方式。</p>
 <p class="script-p">不同 Agent 负责不同的任务，使用不同的工具和权限。不过这些角色也不是写死的，你可以修改他们的提示词、模型和权限。也可以增加自己 Agent，通过插件去扩展功能。它的优点是已经把软件开发，常用的工具和工作机制整合好了。如果你想开发自己的 coding Agent，可以直接复用，不需要重新设计整套系统。</p>
 <p class="script-p">但限制也在这，它的很多默认机制。都是围绕着软件开发设计的，如果你想做一个完全不同的业务 Agent。可能需要调整大量的预置逻辑。所以 OpenCode 更适合这样的团队，你想要基于一个成熟的开源 coding Agent。直接开发自己的编程工具，或者是软件开发 Agent。</p>
-<p class="script-p">反过来，如果你的目标不是 coding Agent。更希望从一个简单的核心出发，自由设计执行方式。那 py 可能更合适，前面介绍了 Claude Agent SDK Deep Agents。以及 py 和 OpenCode，更多是围绕着 Agent。怎么完成任务来设计的，接下来我们看一下个人助手类的，代表的项目就是 OpenClaw 和 Hermes。</p>
+<p class="script-p">反过来，如果你的目标不是 coding Agent。更希望从一个简单的核心出发，自由设计执行方式。那 Pi 可能更合适，前面介绍了 Claude Agent SDK Deep Agents。以及 Pi 和 OpenCode，更多是围绕着 Agent 怎么完成任务来设计的，接下来我们看一下个人助手类的，代表的项目就是 OpenClaw 和 Hermes。</p>
 <p class="script-p">这一类有一个明显的不同，他们不只是完成一次任务。而是希望 Agent 能够长期运行，记住用户的信息，甚至主动发起任务。那先来看 OpenClaw，它的核心设计之一是 Gateway。可以理解成是个人助手的管理中心。比如说你可以通过飞书，微信给 Agent 的发送任务。</p>
 <p class="script-p">Gateway 会负责接收消息，识别用户和 session。再交给对应的 Agent 的执行。那最后再把结果返回给用户，它还内置了定时任务事件触发的机制。可以每天自动整理信息，定期生成报告，不用用户每次手动发起。那前面提到 OpenClaw 早期是基于，派的 Agent SDK 构建的，那现在它已经发展出了自己的 Agent Runtime。</p>
 <p class="script-p">能够独立的管理 Agent loop，上下文工具执行，也可以通过插件去扩展能力。所以 OpenClaw 的核心价值，是把 Agent 的执行能力。消息渠道和长期任务管理整合到了一起。那有了它，如果你想搭建一个长期运行的个人助手。就不需要从零开发消息接入、任务调度和会话管理。</p>
@@ -2970,21 +2970,21 @@ if __name__ == "__main__":
 <p class="script-p">总结一下，如果你想要搭建一个完整的个人助手。或者想要 Agent 接入微信，企微飞书等渠道，那可以优先考虑 OpenClaw。最后一个是 DeepSeek Harness，我把它单独拿出来。是因为它的技术设计和前面的几个项目，都不太一样，DeepSeek Harness 的特点是。everything is a plugin，一切皆插件。</p>
 <p class="script-h"><strong>怎么用与怎么选</strong><span>（15:34–20:42）</span></p>
 <p class="script-p">那很多的 harness 都支持插件。但通常只是增加工具 Skills，或者在固定的执行机制上去扩展功能。无论是 Claude Agent SDK Deep Agents，Pi 还是 OpenClaw。它们都有内置的 Agent loop，区别只在于允许多大程度的干预和改造。DeepSeek Harness 更进一步，它把模型工具 session。</p>
-<p class="script-p">甚至最核心的 Agent loop，都设计成了可以可替换的插件。也就是说，如果你对默认的 Agent loop 不满意。你可以通过开发，组合插件把它替换掉。而不用直接去改框架的核心代码，它的底层采用 插件架构。把不同的功能组成了相互协作的模块，让你可以组合出不同的执行方式。</p>
-<p class="script-p">它和派虽然都强调灵活。但是思路不一样，派是尽量让核心保持简单的开发者。可以在这上面去扩展，而 DeepSeek Harness 是把核心本身。也做成了可以提款的模块，这种设计的优点是，自由程度非常高。如果你想研究不同的 Agent loop 的效果，或者想搭建自己的 Agent Harness 平台。</p>
+<p class="script-p">甚至最核心的 Agent loop，都设计成了可替换的插件。也就是说，如果你对默认的 Agent loop 不满意。你可以通过开发，组合插件把它替换掉。而不用直接去改框架的核心代码，它的底层采用 插件架构。把不同的功能组成了相互协作的模块，让你可以组合出不同的执行方式。</p>
+<p class="script-p">它和 Pi 虽然都强调灵活。但是思路不一样，Pi 是尽量让核心保持简单，开发者可以在这上面去扩展，而 DeepSeek Harness 是把核心本身。也做成了可以替换的模块，这种设计的优点是，自由程度非常高。如果你想研究不同的 Agent loop 的效果，或者想搭建自己的 Agent Harness 平台。</p>
 <p class="script-p">那就可以灵活的去组合底层的能力。但是代价就是开发者需要理解更多的内部机制，模块之间的组合和维护也比较复杂。所以 DeepSeek Harness 更适合想要研究和定制，harness 底层架构的开发团队。如果只是一个普通的业务 Agent，未必需要这么高的自由度。七个项目都介绍完了，我们用一张表来对比一下。</p>
 <p class="script-p">从这张表可以看出来，不同 harness 最大的差异。不在于有没有工具的调用，上下文管理或者多 Agent。这些已经是比较通用的能力了，真正的区别是，他们默认帮开发者实现了什么机制。又开放了多少控制权，Claude Agent SDK 预置了成熟的执行机制。Deep Agents 把更多的执行策略做成了可组合的模块，Pi 尽可能的保持核心简单。</p>
-<p class="script-p">DeepSeek Harness 都是连核心机制也可以替换，而 OpenCode OpenClaw 和 harness。更多体现的是针对特定场景的设计。但是控制权越大，不代表一定就越好。因为可以改的东西多，意味着你要承担的设计。调试和维护工作也越多。</p>
-<p class="script-p">所以选型的时候不仅要看自由度，还要看这些默认机制是否符合自己的业务需求？ok 经过一番分析，你已经确定了要用哪个 harness 开发。然后呢，它应该怎么用，是直接下载别人的代码来改。还是通过 sdk 开发，什么才是使用 harness 的正确姿势。我认为可以把开发者需求分成三个层次。</p>
+<p class="script-p">DeepSeek Harness 则是连核心机制也可以替换，而 OpenCode、OpenClaw 和 Hermes，更多体现的是针对特定场景的设计。但是控制权越大，不代表一定就越好。因为可以改的东西多，意味着你要承担的设计。调试和维护工作也越多。</p>
+<p class="script-p">所以选型的时候不仅要看自由度，还要看这些默认机制是否符合自己的业务需求？OK，经过一番分析，你已经确定了要用哪个 harness 开发。然后呢，它应该怎么用，是直接下载别人的代码来改。还是通过 SDK 开发，什么才是使用 harness 的正确姿势。我认为可以把开发者需求分成三个层次。</p>
 <p class="script-p">第一个层次是扩展现有的 Agent，你已经有了一个能用的 Agent 的产品。只是想给它加一些功能，让它更贴合自己的需求。第二个层次是开发自己的 Agent 的产品，你需要自己的产品界面。业务功能和用户体系。但是不想从零开发 Agent 的 loop。</p>
-<p class="script-p">第三个层次是彻底改造底层的 harness，你对现成的核心机制都不满意。你希望自己去修改甚至重新设计底层的实现，这三个层次的开发目标不一样。需要的技术能力也不一样，我们就用派举的例子。第一种是扩展现有的产品。假设你是一名程序员，公司内部已经在用派的 cli 去做编程工具。</p>
-<p class="script-p">但是你希望它更符合公司的开发流程。比如说修改完代码之后自动检查代码的规范，或者按照团队的要求生成片描述。这个时候你只需要在安装好的派 cli 的基础上，通过 extension 或者是 Skills 增加功能的产品还是派。只是变得更符合你们自己的要求，这是第一个层次，第二个层次是开发自己的 Agent 的产品。现在你打算出去创业了，做一个面向研发团队的 AI 编程产品。</p>
-<p class="script-p">还有自己的产品界面用户管理任务系统，还可以让 Agent 的自动修改代码运行测试。但是你不想从零开发，这个时候就可以用到派的 sdk。把派的执行能力集成到自己的应用里，产品是你自己的，只是底层复用了派的 Harness。这个是第二个层次。第三个层次是改造底层的 Harness。</p>
-<p class="script-p">假设你认为派默认的 Agent 的 loop 根本不符合自己的需求，想要重新设计模型如何决策工具如何执行。以及整个任务如何循环，由于派是开源的，你可以直接 fork 代码。改它的核心源码，搭出自己的 Harness。这就是第三个层次。所以插件 sdk 源码的改造。</p>
-<p class="script-p">其实解决的是三个不同的问题，插件和 Skills 主要解决的是如何扩展现有的能力。sdk 解决的是复用现成的执行能力开发自己的应用，修改源码只是当现有的扩展接口无法满足需求的时候，直接改变底层的实现。因此在做基础选型的时候，我们要先想清楚自己的开发目标。如果只是让现有的 Harness 更好用。那优先考虑插件和 Skills。</p>
-<p class="script-p">如果开发独立的 Harness 的产品，重点看 sdk 和程序化接入的能力。如果要深入改造 Harness，才需要关注源码的开放程度。以及底层机制是否允许替换？那开发自己的 Agent 的产品，不代表必须开发自己的 Harness。最后再回到开头的问题。</p>
+<p class="script-p">第三个层次是彻底改造底层的 harness，你对现成的核心机制都不满意。你希望自己去修改甚至重新设计底层的实现，这三个层次的开发目标不一样。需要的技术能力也不一样，我们就用 Pi 举的例子。第一种是扩展现有的产品。假设你是一名程序员，公司内部已经在用 Pi 的 CLI 去做编程工具。</p>
+<p class="script-p">但是你希望它更符合公司的开发流程。比如说修改完代码之后自动检查代码的规范，或者按照团队的要求生成 PR 描述。这个时候你只需要在安装好的 Pi CLI 的基础上，通过 extension 或者是 Skills 增加功能的产品还是 Pi。只是变得更符合你们自己的要求，这是第一个层次，第二个层次是开发自己的 Agent 的产品。现在你打算出去创业了，做一个面向研发团队的 AI 编程产品。</p>
+<p class="script-p">还有自己的产品界面用户管理任务系统，还可以让 Agent 自动修改代码运行测试。但是你不想从零开发，这个时候就可以用到 Pi 的 SDK。把派的执行能力集成到自己的应用里，产品是你自己的，只是底层复用了 Pi 的 Harness。这个是第二个层次。第三个层次是改造底层的 Harness。</p>
+<p class="script-p">假设你认为 Pi 默认的 Agent 的 loop 根本不符合自己的需求，想要重新设计模型如何决策工具如何执行。以及整个任务如何循环，由于 Pi 是开源的，你可以直接 fork 代码。改它的核心源码，搭出自己的 Harness。这就是第三个层次。所以插件、SDK、源码的改造。</p>
+<p class="script-p">其实解决的是三个不同的问题，插件和 Skills 主要解决的是如何扩展现有的能力。SDK 解决的是复用现成的执行能力开发自己的应用，修改源码只是当现有的扩展接口无法满足需求的时候，直接改变底层的实现。因此在做基础选型的时候，我们要先想清楚自己的开发目标。如果只是让现有的 Harness 更好用。那优先考虑插件和 Skills。</p>
+<p class="script-p">如果开发独立的 Harness 的产品，重点看 SDK 和程序化接入的能力。如果要深入改造 Harness，才需要关注源码的开放程度。以及底层机制是否允许替换？那开发自己的 Agent 的产品，不代表必须开发自己的 Harness。最后再回到开头的问题。</p>
 <p class="script-p">如果今天要开发一个 Agent，到底应该怎么选，首先看任务需求。简单流程明确的任务可以选择轻量的 Framework，需要严格的流程控制和状态管理。可以考虑 LangGraph。如果是需要自主探索持续执行的复杂任务，优先考虑 Harness。其次看 Harness 的设计特点，想要开箱即用，可以选择 Claude Agent SDK。</p>
-<p class="script-p">希望开源灵活性和定制。想要从极简的核心出发，自己设计执行机制。可以选择派，开发 coding-Agent 可以考虑 OpenCode。做长期的个人助手，可以考虑 OpenClaw。如果连 Agent 的 loop 都想替换，可以研究 DeepSeek Harness。</p>
+<p class="script-p">希望开源灵活性和定制。想要从极简的核心出发，自己设计执行机制。可以选择 Pi，开发 coding Agent 可以考虑 OpenCode。做长期的个人助手，可以考虑 OpenClaw。如果连 Agent 的 loop 都想替换，可以研究 DeepSeek Harness。</p>
 <p class="script-p">所以 Agent 的技术选型的核心，不是哪个框架功能最多。而是它默认的执行机制是否符合你的业务，以及你究竟想要多大的控制权。</p>
 </section>
 
