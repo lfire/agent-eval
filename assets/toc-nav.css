@@ -1,0 +1,308 @@
+/* ==========================================================================
+   toc-nav.css —— 全站「目录 / 顶部导航」统一体验层
+   适用：9 篇图文版 index.html + tools/build_md.py 生成的 Markdown 阅读页
+   加载位置：各页所有内联 <style> 之后，用于覆盖历史样式（单一维护源）
+   ========================================================================== */
+:root{
+  --nav-w:286px;
+  --nav-bg:#ffffff;
+  --nav-line:#e6ebf3;
+  --nav-ink:#3d4859;
+  --nav-dim:#8b97a8;
+  --nav-brand:#2563eb;
+  --nav-soft:#eef4ff;
+  --nav-hover:#f3f7ff;
+  --nav-thumb:#c2cfe2;
+  --nav-thumb-hover:#99aecb;
+  --nav-top:var(--topH, 56px);
+}
+
+/* ---------- 1. 统一细滚动条（页面 / 侧栏 / 逐字稿 / 代码 / 表格） ---------- */
+html{scrollbar-width:thin;scrollbar-color:var(--nav-thumb) transparent}
+::-webkit-scrollbar{width:10px;height:10px}
+::-webkit-scrollbar-track{background:transparent}
+::-webkit-scrollbar-thumb{
+  background:var(--nav-thumb);
+  border:2px solid transparent;
+  background-clip:padding-box;
+  border-radius:999px;
+}
+::-webkit-scrollbar-thumb:hover{
+  background:var(--nav-thumb-hover);
+  border:2px solid transparent;
+  background-clip:padding-box;
+}
+::-webkit-scrollbar-corner{background:transparent}
+nav.toc,.ts-lines,pre,table,.cb-body{
+  scrollbar-width:thin;
+  scrollbar-color:var(--nav-thumb) transparent;
+}
+pre,.cb-body{scrollbar-color:#5b687c transparent}
+pre::-webkit-scrollbar-thumb,.cb-body::-webkit-scrollbar-thumb{
+  background:#5b687c;
+  border:2px solid transparent;
+  background-clip:padding-box;
+}
+pre::-webkit-scrollbar-thumb:hover,.cb-body::-webkit-scrollbar-thumb:hover{
+  background:#7a879b;
+  border:2px solid transparent;
+  background-clip:padding-box;
+}
+
+/* ---------- 2. 顶部导航：始终单行，标题过长省略而非折行 ---------- */
+.topbar{
+  flex-wrap:nowrap;
+  align-items:center;
+  gap:9px;
+  padding:9px 20px;
+  min-height:52px;
+  z-index:60;
+}
+.topbar .t{
+  flex:1 1 0%;
+  min-width:0;
+  margin-right:0;
+  white-space:nowrap;
+  overflow:hidden;
+  text-overflow:ellipsis;
+  font-size:13.5px;
+  font-weight:800;
+  color:#1b2a4a;
+  letter-spacing:.1px;
+}
+.topbar a.btn,#nav-toggle{
+  flex:none;
+  white-space:nowrap;
+  border:1px solid #d6e2f7;
+  background:#fff;
+  border-radius:8px;
+  padding:6px 11px;
+  font-size:12.3px;
+  font-weight:600;
+  line-height:1.35;
+  color:var(--nav-brand);
+  transition:background .15s ease,border-color .15s ease;
+}
+.topbar a.btn:hover,#nav-toggle:hover{
+  background:var(--nav-soft);
+  border-color:#b9cdf5;
+  text-decoration:none;
+}
+#nav-toggle{
+  display:none;
+  cursor:pointer;
+  font-family:inherit;
+  align-items:center;
+  gap:5px;
+}
+#nav-mask{display:none}
+
+/* ---------- 3. 侧栏目录：面板化 + 固定头部 ---------- */
+nav.toc{
+  width:var(--nav-w);
+  flex:none;
+  position:sticky;
+  top:calc(var(--nav-top) + 14px);
+  height:calc(100vh - var(--nav-top) - 28px);
+  margin:14px 0;
+  padding:0;
+  background:var(--nav-bg);
+  border:1px solid var(--nav-line);
+  border-radius:14px;
+  box-shadow:0 3px 14px rgba(16,24,40,.045);
+  overflow-y:auto;
+  overscroll-behavior:contain;
+  font-size:13px;
+}
+.nav-head{
+  position:sticky;
+  top:0;
+  z-index:4;
+  background:rgba(255,255,255,.97);
+  -webkit-backdrop-filter:blur(8px);
+  backdrop-filter:blur(8px);
+  padding:16px 16px 12px;
+  border-bottom:1px solid var(--nav-line);
+  border-radius:14px 14px 0 0;
+  margin-bottom:6px;
+}
+.nav-head .brand,.nav-head .h{
+  margin:0 0 3px;
+  font-size:15px;
+  font-weight:800;
+  line-height:1.45;
+  letter-spacing:.2px;
+  color:#1b2a4a;
+  overflow-wrap:anywhere;
+}
+.nav-head .sub{
+  margin:0;
+  font-size:11.8px;
+  line-height:1.5;
+  color:var(--nav-dim);
+  overflow-wrap:anywhere;
+}
+nav.toc ul{list-style:none;margin:0;padding:6px 10px 20px}
+nav.toc li{margin:1px 0;list-style:none}
+.nav-foot{display:none}
+
+/* ---------- 4. 目录项：折行整齐、层级清晰、激活有指示条 ---------- */
+nav.toc a{
+  display:block;
+  position:relative;
+  margin:0;
+  padding:7px 12px 7px 14px;
+  border-radius:8px;
+  color:var(--nav-ink);
+  font-size:13px;
+  font-weight:400;
+  line-height:1.6;
+  text-decoration:none;
+  overflow-wrap:anywhere;
+  word-break:normal;
+  transition:background .15s ease,color .15s ease;
+}
+nav.toc a:hover{
+  background:var(--nav-hover);
+  color:var(--nav-brand);
+  font-weight:600;
+  text-decoration:none;
+}
+nav.toc a.active,nav.toc a.on{
+  background:var(--nav-soft);
+  color:var(--nav-brand);
+  font-weight:700;
+}
+nav.toc a.active::before,nav.toc a.on::before{
+  content:"";
+  position:absolute;
+  left:2px;
+  top:9px;
+  bottom:9px;
+  width:3px;
+  border-radius:3px;
+  background:var(--nav-brand);
+}
+/* 一级：分组标题 */
+nav.toc a.lv1,
+nav.toc li:not(.lv3) > a:not(.lv1):not(.lv2){
+  margin-top:11px;
+  padding-top:9px;
+  font-size:13.2px;
+  font-weight:700;
+  color:#27344c;
+}
+nav.toc ul > li:first-child > a.lv1,
+nav.toc ul > li:first-child > a:not(.lv1):not(.lv2){
+  margin-top:0;
+  padding-top:7px;
+}
+/* 二级 / 三级：竖线 + 悬挂缩进，长标题折行后仍对齐 */
+nav.toc a.lv2,
+nav.toc li.lv3 > a{
+  margin-left:16px;
+  padding-left:23px;
+  text-indent:-9px;
+  border-left:1px solid #e5ebf4;
+  border-radius:0 8px 8px 0;
+  font-size:12.6px;
+  color:#5c6879;
+}
+nav.toc a.lv2:hover,
+nav.toc li.lv3 > a:hover{
+  background:var(--nav-hover);
+  color:var(--nav-brand);
+}
+nav.toc a.lv2.active::before,
+nav.toc li.lv3 > a.active::before,
+nav.toc a.lv2.on::before,
+nav.toc li.lv3 > a.on::before{left:2px}
+
+/* ---------- 5. 窄屏：侧栏变抽屉，目录不再消失 ---------- */
+@media(max-width:980px){
+  .wrap{padding:0 14px}
+  /* 窄屏允许长英文 / 代码片段在任意位置断行，避免把整页撑宽 */
+  main p,main li,main td,main th,main h1,main h2,main h3,main h4,
+  .note,.warn,.key,.lead,.hero .lead,.cap,.ts-line,.script-p,
+  main code:not(pre code){overflow-wrap:anywhere}
+  nav.toc{
+    display:block!important;
+    position:fixed;
+    left:0;
+    top:var(--nav-top);
+    height:calc(100vh - var(--nav-top));
+    width:min(88vw,320px);
+    margin:0;
+    border-left:0;
+    border-radius:0 16px 16px 0;
+    box-shadow:10px 0 34px rgba(16,24,40,.18);
+    transform:translateX(-105%);
+    transition:transform .26s cubic-bezier(.22,.61,.36,1);
+    z-index:210;
+  }
+  body.nav-open nav.toc{transform:translateX(0)}
+  .nav-head{border-radius:0 16px 0 0}
+  #nav-toggle{display:inline-flex}
+  #nav-toggle[aria-expanded="true"]{background:var(--nav-soft);border-color:#b9cdf5}
+  /* 抽屉底部保留窄屏被隐藏的顶部导航入口 */
+  .nav-foot{
+    display:none;
+    position:sticky;
+    bottom:0;
+    z-index:3;
+    padding:10px 14px 16px;
+    background:rgba(255,255,255,.97);
+    -webkit-backdrop-filter:blur(8px);
+    backdrop-filter:blur(8px);
+    border-top:1px solid var(--nav-line);
+  }
+  .nav-foot a{
+    display:block;
+    margin:6px 0 0;
+    padding:8px 12px;
+    border:1px solid #d6e2f7;
+    border-radius:8px;
+    background:#fff;
+    color:var(--nav-brand);
+    font-size:12.5px;
+    font-weight:600;
+    text-align:center;
+    text-indent:0;
+    text-decoration:none;
+  }
+  .nav-foot a:hover{background:var(--nav-soft);text-decoration:none}
+  #nav-mask{
+    display:block;
+    position:fixed;
+    top:var(--nav-top);
+    right:0;
+    bottom:0;
+    left:0;
+    background:rgba(16,24,40,.34);
+    opacity:0;
+    pointer-events:none;
+    transition:opacity .22s ease;
+    z-index:205;
+  }
+  body.nav-open #nav-mask{opacity:1;pointer-events:auto}
+}
+@media(max-width:640px){
+  .topbar{padding:8px 12px;gap:7px}
+  .topbar .t{font-size:12.5px}
+  .topbar a.btn{padding:5px 9px;font-size:11.8px}
+  .topbar a.btn:nth-of-type(n+2){display:none}
+  .nav-foot{display:block}
+  /* 长表格 / 长代码块改为容器内横向滚动，避免撑破整页 */
+  main table{display:block;overflow-x:auto;max-width:100%}
+  /* 窄屏大标题缩小，避免出现孤字折行 */
+  .hero h1{font-size:23px;line-height:1.4}
+  main h1,article h1{font-size:24px;line-height:1.4}
+}
+
+/* ---------- 6. 打印 / 动效偏好 ---------- */
+@media print{
+  nav.toc,.topbar,#nav-toggle,#nav-mask{display:none!important}
+}
+@media(prefers-reduced-motion:reduce){
+  nav.toc,nav.toc a,#nav-mask,.topbar a.btn,#nav-toggle{transition:none!important}
+}

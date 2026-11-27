@@ -356,6 +356,8 @@ def page(title, subtitle, figure_url, md_path, body, toc):
 <style>{CSS}</style>
 <link rel="stylesheet" href="../assets/code-blocks.css">
 <script src="../assets/code-blocks.js" defer></script>
+<link rel="stylesheet" href="../assets/toc-nav.css">
+<script src="../assets/toc-nav.js" defer></script>
 </head>
 <body>
 <div id="progress" aria-hidden="true"></div>
