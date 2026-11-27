@@ -246,7 +246,7 @@ main{padding-top:22px}
 <div class="ts-line"><span class="ts-t">[00:12]</span> 那这个视频大体会分三部分</div>
 <div class="ts-line"><span class="ts-t">[00:14]</span> 第一部分我会说一下 RAG 评测</div>
 <div class="ts-line"><span class="ts-t">[00:16]</span> 我们一整个体系架构的什么样子</div>
-<div class="ts-line"><span class="ts-t">[00:18]</span> 第二部分会详解每一部分</div>
+<div class="ts-line"><span class="ts-t">[00:18]</span> 第二部分会详解每一步分</div>
 <div class="ts-line"><span class="ts-t">[00:20]</span> 我们应该怎么做</div>
 <div class="ts-line"><span class="ts-t">[00:21]</span> 以及我们企业里面是怎么落地的</div>
 <div class="ts-line"><span class="ts-t">[00:23]</span> 第三方面我们会说一下</div>
@@ -264,7 +264,7 @@ main{padding-top:22px}
 <div class="ts-line"><span class="ts-t">[00:53]</span> 最后根据跑出来的数据</div>
 <div class="ts-line"><span class="ts-t">[00:55]</span> 去把评测的指标算出来</div>
 <div class="ts-line"><span class="ts-t">[00:57]</span> 这就是我们一种的练习</div>
-<div class="ts-line"><span class="ts-t">[00:59]</span> 下面我们就来具体看一下每一部分是怎么做的</div>
+<div class="ts-line"><span class="ts-t">[00:59]</span> 下面我们就来具体看一下每一步分是怎么做的</div>
 <div class="ts-line"><span class="ts-t">[01:01]</span> 首先第一部分选框架</div>
 </div></details>
 </section>
@@ -429,19 +429,19 @@ main{padding-top:22px}
 <div class="ts-line"><span class="ts-t">[01:17]</span> 我们适用的 ALI 的 evaluate sscore</div>
 <div class="ts-line"><span class="ts-t">[01:21]</span> 做了一个统一的调度</div>
 <div class="ts-line"><span class="ts-t">[01:22]</span> 因为 RAG 系统分两部分</div>
-<div class="ts-line"><span class="ts-t">[01:24]</span> 第一部分是解锁</div>
+<div class="ts-line"><span class="ts-t">[01:24]</span> 第一部分是检索</div>
 <div class="ts-line"><span class="ts-t">[01:26]</span> 第二部分是生成</div>
 <div class="ts-line"><span class="ts-t">[01:27]</span> 为了评价我检索这一部分的效果</div>
 <div class="ts-line"><span class="ts-t">[01:29]</span> 我们用的是 MTEB</div>
 <div class="ts-line"><span class="ts-t">[01:31]</span> 这个开源的框架</div>
 <div class="ts-line"><span class="ts-t">[01:33]</span> 为了评价生成这一部分的效果</div>
-<div class="ts-line"><span class="ts-t">[01:35]</span> 我们用的是 RAG Assessment 这个框架</div>
+<div class="ts-line"><span class="ts-t">[01:35]</span> 我们用的是 RAGAS 这个框架</div>
 <div class="ts-line"><span class="ts-t">[01:38]</span> MTEB 有一些指标</div>
-<div class="ts-line"><span class="ts-t">[01:39]</span> 比如说照毁率准确率</div>
-<div class="ts-line"><span class="ts-t">[01:41]</span> NDCJMRR Hit Rate</div>
-<div class="ts-line"><span class="ts-t">[01:43]</span> RAG AS 有一些指标是</div>
+<div class="ts-line"><span class="ts-t">[01:39]</span> 比如说召回率准确率</div>
+<div class="ts-line"><span class="ts-t">[01:41]</span> NDCG、MRR、Hit Rate</div>
+<div class="ts-line"><span class="ts-t">[01:43]</span> RAGAS 有一些指标是</div>
 <div class="ts-line"><span class="ts-t">[01:45]</span> Context Precision Recall</div>
-<div class="ts-line"><span class="ts-t">[01:47]</span> Face Phone List</div>
+<div class="ts-line"><span class="ts-t">[01:47]</span> Faithfulness</div>
 <div class="ts-line"><span class="ts-t">[01:48]</span> 这些指标我们一会会详细介绍</div>
 <div class="ts-line"><span class="ts-t">[01:50]</span> 然后选完框架之后</div>
 <div class="ts-line"><span class="ts-t">[01:51]</span> 我们下一步就来设计我们的 Baseline</div>
@@ -449,17 +449,17 @@ main{padding-top:22px}
 <div class="ts-line"><span class="ts-t">[01:55]</span> 第一个是你可以设计出不同的方案</div>
 <div class="ts-line"><span class="ts-t">[01:58]</span> 比如说</div>
 <div class="ts-line"><span class="ts-t">[01:59]</span> 那我第一条 Baseline 就可以干嘛呢</div>
-<div class="ts-line"><span class="ts-t">[02:01]</span> 纯线量减走</div>
-<div class="ts-line"><span class="ts-t">[02:03]</span> 那第二条 Baseline 就可以混合减走</div>
-<div class="ts-line"><span class="ts-t">[02:06]</span> 加上我的观念4.0</div>
+<div class="ts-line"><span class="ts-t">[02:01]</span> 纯向量检索</div>
+<div class="ts-line"><span class="ts-t">[02:03]</span> 那第二条 Baseline 就可以混合检索</div>
+<div class="ts-line"><span class="ts-t">[02:06]</span> 加上我的关键词 4.0</div>
 <div class="ts-line"><span class="ts-t">[02:07]</span> 那第三个方案</div>
-<div class="ts-line"><span class="ts-t">[02:08]</span> 我可以验证我充牌的一个效果</div>
+<div class="ts-line"><span class="ts-t">[02:08]</span> 我可以验证我重排的一个效果</div>
 <div class="ts-line"><span class="ts-t">[02:10]</span> 加上一个 RERANK</div>
 <div class="ts-line"><span class="ts-t">[02:12]</span> 那这样的话</div>
 <div class="ts-line"><span class="ts-t">[02:12]</span> 这三条 Baseline 就能测出不同的效果</div>
-<div class="ts-line"><span class="ts-t">[02:15]</span> 这是我们的好象</div>
+<div class="ts-line"><span class="ts-t">[02:15]</span> 这是我们的横向</div>
 <div class="ts-line"><span class="ts-t">[02:16]</span> 那剩下我们还可以怎么测呢</div>
-<div class="ts-line"><span class="ts-t">[02:18]</span> 比如说纯线量减走里面</div>
+<div class="ts-line"><span class="ts-t">[02:18]</span> 比如说纯向量检索里面</div>
 <div class="ts-line"><span class="ts-t">[02:20]</span> 我们可以改变它的某个参数</div>
 <div class="ts-line"><span class="ts-t">[02:22]</span> 做一个 Parameter Swap</div>
 <div class="ts-line"><span class="ts-t">[02:24]</span> 比如说它的 Top-K 可以取1</div>
@@ -467,17 +467,17 @@ main{padding-top:22px}
 <div class="ts-line"><span class="ts-t">[02:28]</span> 那这样的话</div>
 <div class="ts-line"><span class="ts-t">[02:30]</span> 我就可以得到一个更精细的效果</div>
 <div class="ts-line"><span class="ts-t">[02:32]</span> 所以说</div>
-<div class="ts-line"><span class="ts-t">[02:32]</span> 横向和正向就形成了不同的实验方案</div>
+<div class="ts-line"><span class="ts-t">[02:32]</span> 横向和纵向就形成了不同的实验方案</div>
 <div class="ts-line"><span class="ts-t">[02:36]</span> 横向的话就是我确定好每一组方案</div>
-<div class="ts-line"><span class="ts-t">[02:39]</span> 我先做一个粗牌</div>
+<div class="ts-line"><span class="ts-t">[02:39]</span> 我先做一个粗排</div>
 <div class="ts-line"><span class="ts-t">[02:41]</span> 确定好哪一种方案是最好的</div>
-<div class="ts-line"><span class="ts-t">[02:43]</span> 正向的话</div>
+<div class="ts-line"><span class="ts-t">[02:43]</span> 纵向的话</div>
 <div class="ts-line"><span class="ts-t">[02:43]</span> 我们确定每种方案里面</div>
 <div class="ts-line"><span class="ts-t">[02:45]</span> 它具体的参数怎么调</div>
 <div class="ts-line"><span class="ts-t">[02:47]</span> 这是属于一种精调</div>
 <div class="ts-line"><span class="ts-t">[02:49]</span> 那我所有这些方案需要跑的次数</div>
 <div class="ts-line"><span class="ts-t">[02:51]</span> 就是每条 Baseline</div>
-<div class="ts-line"><span class="ts-t">[02:53]</span> 都用它的参数 Swap 的次数再求合</div>
+<div class="ts-line"><span class="ts-t">[02:53]</span> 都用它的参数 Swap 的次数再求和</div>
 <div class="ts-line"><span class="ts-t">[02:56]</span> 这就是我们 Baseline 的设计</div>
 <div class="ts-line"><span class="ts-t">[02:57]</span> 那设定完 Baseline 之后</div>
 <div class="ts-line"><span class="ts-t">[02:58]</span> 我们就要准备我们的数据了</div>
@@ -489,8 +489,8 @@ main{padding-top:22px}
 <div class="ts-line"><span class="ts-t">[03:12]</span> 它里面会存语料库的一些信息</div>
 <div class="ts-line"><span class="ts-t">[03:15]</span> 比如说语料库的 ID</div>
 <div class="ts-line"><span class="ts-t">[03:17]</span> 比如说它的标题</div>
-<div class="ts-line"><span class="ts-t">[03:18]</span> 比如说它的证文</div>
-<div class="ts-line"><span class="ts-t">[03:20]</span> 这里面是完整的证文</div>
+<div class="ts-line"><span class="ts-t">[03:18]</span> 比如说它的正文</div>
+<div class="ts-line"><span class="ts-t">[03:20]</span> 这里面是完整的正文</div>
 <div class="ts-line"><span class="ts-t">[03:21]</span> 那第二个 JSONL 还会存一个 Corpus</div>
 <div class="ts-line"><span class="ts-t">[03:23]</span> 指的是我的问题集</div>
 <div class="ts-line"><span class="ts-t">[03:25]</span> 那第三个会存一个 Corpore relevance</div>
@@ -499,43 +499,43 @@ main{padding-top:22px}
 <div class="ts-line"><span class="ts-t">[03:33]</span> 语料库里面的一个文档</div>
 <div class="ts-line"><span class="ts-t">[03:34]</span> 以及一个相关性</div>
 <div class="ts-line"><span class="ts-t">[03:36]</span> 对这个相关性是什么意思呢</div>
-<div class="ts-line"><span class="ts-t">[03:38]</span> 就是我们会让人力去标入每一个问题</div>
+<div class="ts-line"><span class="ts-t">[03:38]</span> 就是我们会让人力去标注每一个问题</div>
 <div class="ts-line"><span class="ts-t">[03:42]</span> 和它对应的语料库里面的一个关系</div>
 <div class="ts-line"><span class="ts-t">[03:44]</span> 如果说越相关</div>
 <div class="ts-line"><span class="ts-t">[03:45]</span> 我这个分数越高</div>
-<div class="ts-line"><span class="ts-t">[03:47]</span> 注意这里是人据表的</div>
+<div class="ts-line"><span class="ts-t">[03:47]</span> 注意这里是人工标注的</div>
 <div class="ts-line"><span class="ts-t">[03:48]</span> 就是我们要请一些了解业务的人</div>
-<div class="ts-line"><span class="ts-t">[03:51]</span> 去给它们标入一下</div>
+<div class="ts-line"><span class="ts-t">[03:51]</span> 去给它们标注一下</div>
 <div class="ts-line"><span class="ts-t">[03:52]</span> 那这个数据是干嘛的呢</div>
 <div class="ts-line"><span class="ts-t">[03:54]</span> 以后我们讲指标的时候会提到它</div>
-<div class="ts-line"><span class="ts-t">[03:56]</span> 那这就是 MTV 需要准备的平色的数据</div>
-<div class="ts-line"><span class="ts-t">[03:58]</span> 那第二个是我们生存平色的数据</div>
-<div class="ts-line"><span class="ts-t">[04:01]</span> 这其实就是为我们 reg assessment 的这个框架准备</div>
+<div class="ts-line"><span class="ts-t">[03:56]</span> 那这就是 MTEB 需要准备的评测的数据</div>
+<div class="ts-line"><span class="ts-t">[03:58]</span> 那第二个是我们生存评测的数据</div>
+<div class="ts-line"><span class="ts-t">[04:01]</span> 这其实就是为我们 RAGAS 的这个框架准备</div>
 <div class="ts-line"><span class="ts-t">[04:04]</span> 那这个框架具体来说就是一张表</div>
 <div class="ts-line"><span class="ts-t">[04:06]</span> 然后这张表里面有四个字段</div>
-<div class="ts-line"><span class="ts-t">[04:08]</span> 第一个字段是应付的问题</div>
+<div class="ts-line"><span class="ts-t">[04:08]</span> 第一个字段是用户的问题</div>
 <div class="ts-line"><span class="ts-t">[04:09]</span> 第二个字段是检索的结果</div>
 <div class="ts-line"><span class="ts-t">[04:11]</span> 第三个字段是标准的答案</div>
 <div class="ts-line"><span class="ts-t">[04:13]</span> 第四个字段是实际的答案</div>
 <div class="ts-line"><span class="ts-t">[04:15]</span> 那你看这里</div>
-<div class="ts-line"><span class="ts-t">[04:16]</span> 我们应付的问题和标准的答案</div>
+<div class="ts-line"><span class="ts-t">[04:16]</span> 我们用户的问题和标准的答案</div>
 <div class="ts-line"><span class="ts-t">[04:19]</span> 其实都是可以提前确定的</div>
 <div class="ts-line"><span class="ts-t">[04:20]</span> 但是检索的结果和实际的答案</div>
-<div class="ts-line"><span class="ts-t">[04:23]</span> 要等我们 Base line 实际跑完之后</div>
-<div class="ts-line"><span class="ts-t">[04:25]</span> 再回天回来</div>
+<div class="ts-line"><span class="ts-t">[04:23]</span> 要等我们 Baseline 实际跑完之后</div>
+<div class="ts-line"><span class="ts-t">[04:25]</span> 再回填回来</div>
 <div class="ts-line"><span class="ts-t">[04:26]</span> 那这样的话</div>
-<div class="ts-line"><span class="ts-t">[04:27]</span> 两个框架需要了两大平分数据</div>
+<div class="ts-line"><span class="ts-t">[04:27]</span> 两个框架需要了两大评测数据</div>
 <div class="ts-line"><span class="ts-t">[04:29]</span> 都已经准备好了</div>
-<div class="ts-line"><span class="ts-t">[04:30]</span> 下面我们就开始跑我们的 Base line</div>
-<div class="ts-line"><span class="ts-t">[04:32]</span> 根据我们前面这种证交矩阵</div>
+<div class="ts-line"><span class="ts-t">[04:30]</span> 下面我们就开始跑我们的 Baseline</div>
+<div class="ts-line"><span class="ts-t">[04:32]</span> 根据我们前面这种正交矩阵</div>
 <div class="ts-line"><span class="ts-t">[04:34]</span> 我们确定好了几种方案</div>
 <div class="ts-line"><span class="ts-t">[04:36]</span> 把所有的数据跑完</div>
 <div class="ts-line"><span class="ts-t">[04:38]</span> 跑完之后</div>
 <div class="ts-line"><span class="ts-t">[04:39]</span> 我们根据得到的结果</div>
-<div class="ts-line"><span class="ts-t">[04:40]</span> 把生存平分数据里面</div>
-<div class="ts-line"><span class="ts-t">[04:42]</span> 还缺了数据回天回来</div>
+<div class="ts-line"><span class="ts-t">[04:40]</span> 把生成评测数据里面</div>
+<div class="ts-line"><span class="ts-t">[04:42]</span> 还缺了数据回填回来</div>
 <div class="ts-line"><span class="ts-t">[04:44]</span> 那这样的话</div>
-<div class="ts-line"><span class="ts-t">[04:45]</span> 我们整到数据是不是就全了</div>
+<div class="ts-line"><span class="ts-t">[04:45]</span> 我们整套数据是不是就全了</div>
 <div class="ts-line"><span class="ts-t">[04:47]</span> 那下面就剩最后一步了</div>
 <div class="ts-line"><span class="ts-t">[04:48]</span> 就是我们要跑我们的评测框架</div>
 <div class="ts-line"><span class="ts-t">[04:50]</span> 然后去介绍我们的指标</div>
@@ -547,15 +547,15 @@ main{padding-top:22px}
 <div class="ts-line"><span class="ts-t">[05:01]</span> 各自的五个指标</div>
 <div class="ts-line"><span class="ts-t">[05:03]</span> 比如说 MTEB 这里会计算五个指标</div>
 <div class="ts-line"><span class="ts-t">[05:05]</span> 召回率准确率</div>
-<div class="ts-line"><span class="ts-t">[05:06]</span> NDCG MRR Keterate</div>
+<div class="ts-line"><span class="ts-t">[05:06]</span> NDCG MRR Hit Rate</div>
 <div class="ts-line"><span class="ts-t">[05:08]</span> 我们这里</div>
 <div class="ts-line"><span class="ts-t">[05:09]</span> 具体看一下</div>
 <div class="ts-line"><span class="ts-t">[05:10]</span> 这五个指标分别代表什么含义</div>
 <div class="ts-line"><span class="ts-t">[05:12]</span> 以及它会怎么算</div>
 <div class="ts-line"><span class="ts-t">[05:13]</span> 召回率的意思是</div>
 <div class="ts-line"><span class="ts-t">[05:15]</span> 我要看你实际筛选出的结果</div>
-<div class="ts-line"><span class="ts-t">[05:17]</span> 它有没有筛选权</div>
-<div class="ts-line"><span class="ts-t">[05:20]</span> 比如说我们看这个势力图</div>
+<div class="ts-line"><span class="ts-t">[05:17]</span> 它有没有筛选全</div>
+<div class="ts-line"><span class="ts-t">[05:20]</span> 比如说我们看这个示例图</div>
 <div class="ts-line"><span class="ts-t">[05:21]</span> 我们看第一个问题</div>
 <div class="ts-line"><span class="ts-t">[05:23]</span> 我问这个问题之后</div>
 <div class="ts-line"><span class="ts-t">[05:24]</span> 我期望召回的结果是</div>
@@ -570,7 +570,7 @@ main{padding-top:22px}
 <div class="ts-line"><span class="ts-t">[05:39]</span> 就是100%</div>
 <div class="ts-line"><span class="ts-t">[05:40]</span> 对吧</div>
 <div class="ts-line"><span class="ts-t">[05:41]</span> 那什么是准确率呢</div>
-<div class="ts-line"><span class="ts-t">[05:42]</span> 准确率值的就是</div>
+<div class="ts-line"><span class="ts-t">[05:42]</span> 准确率指的是就是</div>
 <div class="ts-line"><span class="ts-t">[05:44]</span> 你此次召回的文档里面</div>
 <div class="ts-line"><span class="ts-t">[05:45]</span> 有多少是跟我期望的相关的</div>
 <div class="ts-line"><span class="ts-t">[05:49]</span> 那我们知道</div>
@@ -579,23 +579,23 @@ main{padding-top:22px}
 <div class="ts-line"><span class="ts-t">[05:54]</span> 那它的准确率就是3除以5</div>
 <div class="ts-line"><span class="ts-t">[05:56]</span> 就是60%</div>
 <div class="ts-line"><span class="ts-t">[05:58]</span> 第三个指标</div>
-<div class="ts-line"><span class="ts-t">[05:59]</span> 黑德瑞德</div>
-<div class="ts-line"><span class="ts-t">[06:00]</span> 黑德瑞德是什么意思呢</div>
-<div class="ts-line"><span class="ts-t">[06:00]</span> 其实从黑德瑞德到 MRR</div>
+<div class="ts-line"><span class="ts-t">[05:59]</span> Hit Rate</div>
+<div class="ts-line"><span class="ts-t">[06:00]</span> Hit Rate是什么意思呢</div>
+<div class="ts-line"><span class="ts-t">[06:00]</span> 其实从Hit Rate到 MRR</div>
 <div class="ts-line"><span class="ts-t">[06:02]</span> 到 NDCG</div>
 <div class="ts-line"><span class="ts-t">[06:03]</span> 是逐渐清晰的一个指标信息</div>
 <div class="ts-line"><span class="ts-t">[06:06]</span> 他们的含义都是指的</div>
 <div class="ts-line"><span class="ts-t">[06:07]</span> 我召回的效果</div>
-<div class="ts-line"><span class="ts-t">[06:08]</span> 黑德瑞德指的是</div>
+<div class="ts-line"><span class="ts-t">[06:08]</span> Hit Rate指的是</div>
 <div class="ts-line"><span class="ts-t">[06:10]</span> 你此次召回的结果里面</div>
 <div class="ts-line"><span class="ts-t">[06:12]</span> 有没有至少一个</div>
 <div class="ts-line"><span class="ts-t">[06:13]</span> 是我期望的文档</div>
-<div class="ts-line"><span class="ts-t">[06:16]</span> 它是一个布尔直啊</div>
+<div class="ts-line"><span class="ts-t">[06:16]</span> 它是一个布尔值啊</div>
 <div class="ts-line"><span class="ts-t">[06:17]</span> 就是只要你至少有一个</div>
 <div class="ts-line"><span class="ts-t">[06:18]</span> 它就是1</div>
 <div class="ts-line"><span class="ts-t">[06:19]</span> 如果它一个都没有</div>
 <div class="ts-line"><span class="ts-t">[06:20]</span> 就是0</div>
-<div class="ts-line"><span class="ts-t">[06:21]</span> 那 MRR 其实更惊喜了</div>
+<div class="ts-line"><span class="ts-t">[06:21]</span> 那 MRR 其实更精细了</div>
 <div class="ts-line"><span class="ts-t">[06:24]</span> 就是它会算</div>
 <div class="ts-line"><span class="ts-t">[06:25]</span> 你实际排名里面召回的文档</div>
 <div class="ts-line"><span class="ts-t">[06:28]</span> 第一个相关的它的排名</div>
@@ -614,16 +614,16 @@ main{padding-top:22px}
 <div class="ts-line"><span class="ts-t">[06:46]</span> 就是0.5</div>
 <div class="ts-line"><span class="ts-t">[06:47]</span> 大家理解了吗</div>
 <div class="ts-line"><span class="ts-t">[06:49]</span> 再看 NDCG</div>
-<div class="ts-line"><span class="ts-t">[06:50]</span> NDCG 这个指标就更长样了</div>
+<div class="ts-line"><span class="ts-t">[06:50]</span> NDCG 这个指标就更复杂了</div>
 <div class="ts-line"><span class="ts-t">[06:53]</span> 就是我们前面</div>
-<div class="ts-line"><span class="ts-t">[06:54]</span> 黑德瑞德和 MRR</div>
+<div class="ts-line"><span class="ts-t">[06:54]</span> Hit Rate和 MRR</div>
 <div class="ts-line"><span class="ts-t">[06:55]</span> 其实指的都是有没有</div>
 <div class="ts-line"><span class="ts-t">[06:56]</span> 以及第一个的排序</div>
 <div class="ts-line"><span class="ts-t">[06:57]</span> NDCG 指的是整体的一个排序</div>
 <div class="ts-line"><span class="ts-t">[06:59]</span> NDCG 它具体计算是很麻烦的</div>
-<div class="ts-line"><span class="ts-t">[07:03]</span> 对但是我可以给大家概括</div>
+<div class="ts-line"><span class="ts-t">[07:03]</span> 但是我可以给大家概括</div>
 <div class="ts-line"><span class="ts-t">[07:04]</span> 就是它首先会根据我们前面</div>
-<div class="ts-line"><span class="ts-t">[07:07]</span> 我们是不是在这个债项里面</div>
+<div class="ts-line"><span class="ts-t">[07:07]</span> 我们是不是在这个标注里面</div>
 <div class="ts-line"><span class="ts-t">[07:09]</span> 一个相关性的一个分数对吧</div>
 <div class="ts-line"><span class="ts-t">[07:11]</span> 会根据这个分数</div>
 <div class="ts-line"><span class="ts-t">[07:12]</span> 去算一个值</div>
@@ -639,9 +639,9 @@ main{padding-top:22px}
 <div class="ts-line"><span class="ts-t">[07:30]</span> 你此次实际跑出来的分数</div>
 <div class="ts-line"><span class="ts-t">[07:32]</span> 并且它这个公式</div>
 <div class="ts-line"><span class="ts-t">[07:34]</span> 保证了如果说你的结果</div>
-<div class="ts-line"><span class="ts-t">[07:36]</span> 它的检测数的文档</div>
+<div class="ts-line"><span class="ts-t">[07:36]</span> 它的检索出的文档</div>
 <div class="ts-line"><span class="ts-t">[07:38]</span> 以及它的排序越接近理想情况</div>
-<div class="ts-line"><span class="ts-t">[07:41]</span> 它的值值越大</div>
+<div class="ts-line"><span class="ts-t">[07:41]</span> 它的值越大</div>
 <div class="ts-line"><span class="ts-t">[07:42]</span> 如果说检测出来的文档</div>
 <div class="ts-line"><span class="ts-t">[07:44]</span> 和它的排序差了越多</div>
 <div class="ts-line"><span class="ts-t">[07:46]</span> 它的 NDCG 就会越小</div>
@@ -650,14 +650,14 @@ main{padding-top:22px}
 <div class="ts-line"><span class="ts-t">[07:50]</span> 它的全名叫做按位置去折损</div>
 <div class="ts-line"><span class="ts-t">[07:53]</span> 所以说它能反映出</div>
 <div class="ts-line"><span class="ts-t">[07:54]</span> 整体的一个文档的</div>
-<div class="ts-line"><span class="ts-t">[07:56]</span> 密证情况以及排名情况</div>
+<div class="ts-line"><span class="ts-t">[07:56]</span> 命中情况以及排名情况</div>
 <div class="ts-line"><span class="ts-t">[07:58]</span> 然后刚刚我们说的这些概念</div>
 <div class="ts-line"><span class="ts-t">[08:00]</span> 其实都是基于单个问题</div>
-<div class="ts-line"><span class="ts-t">[08:02]</span> 因为我们一次跑评</div>
+<div class="ts-line"><span class="ts-t">[08:02]</span> 因为我们一次评测</div>
 <div class="ts-line"><span class="ts-t">[08:03]</span> 所以我们要跑很多问题</div>
 <div class="ts-line"><span class="ts-t">[08:04]</span> 那最后我们会把所有问题的指标</div>
-<div class="ts-line"><span class="ts-t">[08:06]</span> 做一个算数平均值</div>
-<div class="ts-line"><span class="ts-t">[08:08]</span> 作为我们整个评测级的一个指标</div>
+<div class="ts-line"><span class="ts-t">[08:06]</span> 做一个算术平均值</div>
+<div class="ts-line"><span class="ts-t">[08:08]</span> 作为我们整个评测集的一个指标</div>
 <div class="ts-line"><span class="ts-t">[08:10]</span> 那这就是我们 MTEB</div>
 <div class="ts-line"><span class="ts-t">[08:12]</span> 算 GT 指标的一个过程</div>
 <div class="ts-line"><span class="ts-t">[08:13]</span> 但是实际上因为指标比较多</div>
@@ -668,12 +668,12 @@ main{padding-top:22px}
 <div class="ts-line"><span class="ts-t">[08:22]</span> 因为召回率能够直接反映</div>
 <div class="ts-line"><span class="ts-t">[08:23]</span> 你召回率全不全</div>
 <div class="ts-line"><span class="ts-t">[08:24]</span> 至于准不准这个其实不重要</div>
-<div class="ts-line"><span class="ts-t">[08:25]</span> 因为你除了粗照尾</div>
-<div class="ts-line"><span class="ts-t">[08:27]</span> 会不会还有军牌</div>
+<div class="ts-line"><span class="ts-t">[08:25]</span> 因为你除了粗召回</div>
+<div class="ts-line"><span class="ts-t">[08:27]</span> 会不会还有精排</div>
 <div class="ts-line"><span class="ts-t">[08:28]</span> 那 NDCG 它能够反映</div>
 <div class="ts-line"><span class="ts-t">[08:31]</span> 整体的一个情况</div>
 <div class="ts-line"><span class="ts-t">[08:32]</span> 所以我们主要考虑这两个指标</div>
-<div class="ts-line"><span class="ts-t">[08:34]</span> 那关于 RAG Assignment 的这个框架</div>
+<div class="ts-line"><span class="ts-t">[08:34]</span> 那关于 RAGAS 的这个框架</div>
 <div class="ts-line"><span class="ts-t">[08:36]</span> 其实也很简单</div>
 <div class="ts-line"><span class="ts-t">[08:37]</span> 我们知道上面我们说过</div>
 <div class="ts-line"><span class="ts-t">[08:39]</span> 我们准备数据的时候</div>
@@ -682,17 +682,17 @@ main{padding-top:22px}
 <div class="ts-line"><span class="ts-t">[08:44]</span> 那这个指标其实就是</div>
 <div class="ts-line"><span class="ts-t">[08:45]</span> 分析了这四个字段之间的相互关系</div>
 <div class="ts-line"><span class="ts-t">[08:48]</span> 比如说</div>
-<div class="ts-line"><span class="ts-t">[08:49]</span> 我应付的问题</div>
+<div class="ts-line"><span class="ts-t">[08:49]</span> 我用户的问题</div>
 <div class="ts-line"><span class="ts-t">[08:50]</span> 对吧</div>
-<div class="ts-line"><span class="ts-t">[08:50]</span> 和你的生效纹</div>
+<div class="ts-line"><span class="ts-t">[08:50]</span> 和你的上下文</div>
 <div class="ts-line"><span class="ts-t">[08:51]</span> 其实就是我们刚刚</div>
 <div class="ts-line"><span class="ts-t">[08:54]</span> MTEB 里边的一个准确率</div>
 <div class="ts-line"><span class="ts-t">[08:56]</span> 对吧</div>
-<div class="ts-line"><span class="ts-t">[08:56]</span> 那 Recode 就是召回率</div>
+<div class="ts-line"><span class="ts-t">[08:56]</span> 那 Recall 就是召回率</div>
 <div class="ts-line"><span class="ts-t">[08:58]</span> 对吧</div>
-<div class="ts-line"><span class="ts-t">[08:59]</span> 正常说的什么意思呢</div>
+<div class="ts-line"><span class="ts-t">[08:59]</span> 忠实度是什么意思呢</div>
 <div class="ts-line"><span class="ts-t">[09:00]</span> 就是你的回答</div>
-<div class="ts-line"><span class="ts-t">[09:01]</span> 有没有基于你的生效纹去做</div>
+<div class="ts-line"><span class="ts-t">[09:01]</span> 有没有基于你的上下文去做</div>
 <div class="ts-line"><span class="ts-t">[09:03]</span> 对吧</div>
 <div class="ts-line"><span class="ts-t">[09:03]</span> 有没有出现幻觉</div>
 <div class="ts-line"><span class="ts-t">[09:04]</span> 准确率是什么呢</div>
@@ -700,10 +700,10 @@ main{padding-top:22px}
 <div class="ts-line"><span class="ts-t">[09:06]</span> 有没有和我预计的回答是一样的</div>
 <div class="ts-line"><span class="ts-t">[09:08]</span> 对吧</div>
 <div class="ts-line"><span class="ts-t">[09:09]</span> 那相关性的什么呢</div>
-<div class="ts-line"><span class="ts-t">[09:11]</span> 就是你深深地回答和我用户的问题</div>
+<div class="ts-line"><span class="ts-t">[09:11]</span> 就是你生成的回答和我用户的问题</div>
 <div class="ts-line"><span class="ts-t">[09:12]</span> 相不相关</div>
-<div class="ts-line"><span class="ts-t">[09:13]</span> 切不切提</div>
-<div class="ts-line"><span class="ts-t">[09:14]</span> 所以 RAG Assignment</div>
+<div class="ts-line"><span class="ts-t">[09:13]</span> 切不切题</div>
+<div class="ts-line"><span class="ts-t">[09:14]</span> 所以 RAGAS</div>
 <div class="ts-line"><span class="ts-t">[09:15]</span> 这里面的五个指标</div>
 <div class="ts-line"><span class="ts-t">[09:17]</span> 就是基于我们这张表里的四个字段</div>
 <div class="ts-line"><span class="ts-t">[09:19]</span> 它们的相互关系</div>
@@ -712,29 +712,29 @@ main{padding-top:22px}
 <div class="ts-line"><span class="ts-t">[09:22]</span> 它这里算的话就</div>
 <div class="ts-line"><span class="ts-t">[09:24]</span> 相比比较复杂</div>
 <div class="ts-line"><span class="ts-t">[09:25]</span> 就是会分两步</div>
-<div class="ts-line"><span class="ts-t">[09:26]</span> 每一个算都会先应大模型</div>
+<div class="ts-line"><span class="ts-t">[09:26]</span> 每一个算都会先用大模型</div>
 <div class="ts-line"><span class="ts-t">[09:29]</span> 做一个局部的判断</div>
-<div class="ts-line"><span class="ts-t">[09:30]</span> 再加一个确认性的公式</div>
+<div class="ts-line"><span class="ts-t">[09:30]</span> 再加一个确定性的公式</div>
 <div class="ts-line"><span class="ts-t">[09:32]</span> 对</div>
 <div class="ts-line"><span class="ts-t">[09:33]</span> 我们这里只提</div>
 <div class="ts-line"><span class="ts-t">[09:34]</span> 两个比较重要的指标的计算</div>
-<div class="ts-line"><span class="ts-t">[09:36]</span> 一个是真诚度</div>
-<div class="ts-line"><span class="ts-t">[09:37]</span> 因为真诚度它分析的是</div>
-<div class="ts-line"><span class="ts-t">[09:39]</span> 我们生存的回答和上下文的一个关系</div>
+<div class="ts-line"><span class="ts-t">[09:36]</span> 一个是忠实度</div>
+<div class="ts-line"><span class="ts-t">[09:37]</span> 因为忠实度它分析的是</div>
+<div class="ts-line"><span class="ts-t">[09:39]</span> 我们生成的回答和上下文的一个关系</div>
 <div class="ts-line"><span class="ts-t">[09:41]</span> 它能够反映出你有没有幻觉</div>
-<div class="ts-line"><span class="ts-t">[09:44]</span> 我们首先会大模型把答案拆成陈数据</div>
-<div class="ts-line"><span class="ts-t">[09:47]</span> 一个一个陈数据</div>
+<div class="ts-line"><span class="ts-t">[09:44]</span> 我们首先会大模型把答案拆成陈述句</div>
+<div class="ts-line"><span class="ts-t">[09:47]</span> 一个一个陈述句</div>
 <div class="ts-line"><span class="ts-t">[09:49]</span> 然后大模型逐字的去判</div>
-<div class="ts-line"><span class="ts-t">[09:50]</span> 每个陈数据能不能由上下文去推出</div>
+<div class="ts-line"><span class="ts-t">[09:50]</span> 每个陈述句能不能由上下文去推出</div>
 <div class="ts-line"><span class="ts-t">[09:53]</span> 所以它就可以反映出</div>
 <div class="ts-line"><span class="ts-t">[09:55]</span> 你每个句子是不是真诚</div>
 <div class="ts-line"><span class="ts-t">[09:56]</span> 有没有幻觉</div>
 <div class="ts-line"><span class="ts-t">[09:57]</span> 然后最后算出来你真诚的句数</div>
-<div class="ts-line"><span class="ts-t">[10:00]</span> 厨余总的句数</div>
-<div class="ts-line"><span class="ts-t">[10:00]</span> 这就是你的真诚度</div>
+<div class="ts-line"><span class="ts-t">[10:00]</span> 除以总的句数</div>
+<div class="ts-line"><span class="ts-t">[10:00]</span> 这就是你的忠实度</div>
 <div class="ts-line"><span class="ts-t">[10:02]</span> 那第二个比较关键的是</div>
-<div class="ts-line"><span class="ts-t">[10:04]</span> 这个 quatness</div>
-<div class="ts-line"><span class="ts-t">[10:06]</span> 它会把幻觉的回答和生存的回答</div>
+<div class="ts-line"><span class="ts-t">[10:04]</span> 这个 Answer Correctness</div>
+<div class="ts-line"><span class="ts-t">[10:06]</span> 它会把幻觉的回答和生成的回答</div>
 <div class="ts-line"><span class="ts-t">[10:08]</span> 所有的回答都差了一个句子</div>
 <div class="ts-line"><span class="ts-t">[10:10]</span> 然后去算它们的 TP</div>
 <div class="ts-line"><span class="ts-t">[10:12]</span> FP</div>
@@ -746,13 +746,13 @@ main{padding-top:22px}
 <div class="ts-line"><span class="ts-t">[10:20]</span> 加上0.25乘以幻觉的度</div>
 <div class="ts-line"><span class="ts-t">[10:22]</span> 去剧套对中的一个字</div>
 <div class="ts-line"><span class="ts-t">[10:24]</span> 这其实是我们</div>
-<div class="ts-line"><span class="ts-t">[10:24]</span> Rug Assessment 的里面</div>
-<div class="ts-line"><span class="ts-t">[10:25]</span> 原码的一些逻辑了</div>
+<div class="ts-line"><span class="ts-t">[10:24]</span> RAGAS 的里面</div>
+<div class="ts-line"><span class="ts-t">[10:25]</span> 源码的一些逻辑了</div>
 <div class="ts-line"><span class="ts-t">[10:26]</span> 大家不用太在意</div>
 <div class="ts-line"><span class="ts-t">[10:28]</span> 已经可以说一下这个 relevancy</div>
 <div class="ts-line"><span class="ts-t">[10:31]</span> 这个 relevancy 的剧套也很有意思</div>
-<div class="ts-line"><span class="ts-t">[10:32]</span> 它会算你硬货的问题</div>
-<div class="ts-line"><span class="ts-t">[10:33]</span> 生存的回答相不相关</div>
+<div class="ts-line"><span class="ts-t">[10:32]</span> 它会算你用户的问题</div>
+<div class="ts-line"><span class="ts-t">[10:33]</span> 生成的回答相不相关</div>
 <div class="ts-line"><span class="ts-t">[10:34]</span> 它怎么算的呢</div>
 <div class="ts-line"><span class="ts-t">[10:35]</span> 它会把你这个回答交给大模型</div>
 <div class="ts-line"><span class="ts-t">[10:37]</span> 让这个大模型去反过来判断</div>
@@ -771,26 +771,26 @@ main{padding-top:22px}
 <div class="ts-line"><span class="ts-t">[11:02]</span> 然后这就是我们整套的一个评测流程</div>
 <div class="ts-line"><span class="ts-t">[11:04]</span> 对吧</div>
 <div class="ts-line"><span class="ts-t">[11:05]</span> 然后这里再说一下</div>
-<div class="ts-line"><span class="ts-t">[11:06]</span> 我们评测方法的一个驾顾的思考</div>
+<div class="ts-line"><span class="ts-t">[11:06]</span> 我们评测方法的一个架构的思考</div>
 <div class="ts-line"><span class="ts-t">[11:08]</span> 其实我们评测里面</div>
-<div class="ts-line"><span class="ts-t">[11:10]</span> 如果从爵士类角度可以分很多种</div>
+<div class="ts-line"><span class="ts-t">[11:10]</span> 如果从技术角度可以分很多种</div>
 <div class="ts-line"><span class="ts-t">[11:13]</span> 就是第一个是我们的人工评测</div>
 <div class="ts-line"><span class="ts-t">[11:14]</span> 对吧</div>
 <div class="ts-line"><span class="ts-t">[11:15]</span> 就是找我们一些专门的这些数据标注员</div>
 <div class="ts-line"><span class="ts-t">[11:18]</span> 他们其实是最可信的</div>
 <div class="ts-line"><span class="ts-t">[11:20]</span> 但他们的人工成本比较高</div>
-<div class="ts-line"><span class="ts-t">[11:22]</span> 第二个就是大模型作为一个榨子</div>
+<div class="ts-line"><span class="ts-t">[11:22]</span> 第二个就是大模型作为一个裁判</div>
 <div class="ts-line"><span class="ts-t">[11:24]</span> 这种是比较可信的</div>
 <div class="ts-line"><span class="ts-t">[11:25]</span> 而且成本比较低</div>
 <div class="ts-line"><span class="ts-t">[11:26]</span> 现在也是比较火的一个方向</div>
-<div class="ts-line"><span class="ts-t">[11:28]</span> 传送的话就是我们一些自动指标</div>
+<div class="ts-line"><span class="ts-t">[11:28]</span> 传统的话就是我们一些自动指标</div>
 <div class="ts-line"><span class="ts-t">[11:31]</span> 我们根据我们跑的评测的结果</div>
 <div class="ts-line"><span class="ts-t">[11:32]</span> 去自动算一些指标</div>
 <div class="ts-line"><span class="ts-t">[11:33]</span> 对这种也很便宜</div>
-<div class="ts-line"><span class="ts-t">[11:35]</span> 但是它比较丝绊</div>
-<div class="ts-line"><span class="ts-t">[11:36]</span> 再就是蒸气匹配</div>
-<div class="ts-line"><span class="ts-t">[11:37]</span> 这种就是依稀训练性的断言</div>
-<div class="ts-line"><span class="ts-t">[11:40]</span> 我们生产场应该是用这种自动指标</div>
+<div class="ts-line"><span class="ts-t">[11:35]</span> 但是它比较死板</div>
+<div class="ts-line"><span class="ts-t">[11:36]</span> 再就是精确匹配</div>
+<div class="ts-line"><span class="ts-t">[11:37]</span> 这种就是一些确定性的断言</div>
+<div class="ts-line"><span class="ts-t">[11:40]</span> 我们生产上应该是用这种自动指标</div>
 <div class="ts-line"><span class="ts-t">[11:44]</span> 对吧</div>
 <div class="ts-line"><span class="ts-t">[11:44]</span> 做一个兜底</div>
 <div class="ts-line"><span class="ts-t">[11:45]</span> 然后用大模型做一个规模化</div>
@@ -1343,46 +1343,46 @@ main{padding-top:22px}
 <p><span class="tag t-extra">补充 · 工程落地要点</span>影子流量（shadow traffic）指把真实请求复制一份打到新版本但<strong>不把结果返回给用户</strong>，用来零风险对比；A/B 要保证分流稳定（同一用户始终落同一桶）；LLM Judge 线上通常只抽 5%–10% 流量并异步执行，避免把评测成本压进主链路；「query 分布漂移」可用 embedding 聚类、类目占比、拒答率、新词率等指标监测；视频中的红线是「延迟不超预算」；工程上还应预先定义幻觉率、越权检索、P95 超时等红线，且回滚动作要自动化；bad case 回流需经人工去标识化与打标，再并入 golden dataset，形成数据飞轮。</p>
 <details class="ts-box"><summary>本章语音逐字稿（ASR · 已校正）（逐字 · 41 句）</summary>
 <div class="ts-lines">
-<div class="ts-line"><span class="ts-t">[11:55]</span> 我们这个上线和底线应该怎么做</div>
+<div class="ts-line"><span class="ts-t">[11:55]</span> 我们这个上线和迭代应该怎么做</div>
 <div class="ts-line"><span class="ts-t">[11:56]</span> 那总体来说是一个数据飞轮的概念</div>
-<div class="ts-line"><span class="ts-t">[11:59]</span> 主要包括四部</div>
+<div class="ts-line"><span class="ts-t">[11:59]</span> 主要包括四步</div>
 <div class="ts-line"><span class="ts-t">[12:00]</span> 第一步就是我们会检测</div>
 <div class="ts-line"><span class="ts-t">[12:02]</span> 我们上面的模糊指标</div>
 <div class="ts-line"><span class="ts-t">[12:04]</span> 比如说我们检索阶段</div>
 <div class="ts-line"><span class="ts-t">[12:06]</span> 我们要看召回率和 NGCD</div>
-<div class="ts-line"><span class="ts-t">[12:08]</span> 那盛场阶段我们会看重重度和重视率</div>
+<div class="ts-line"><span class="ts-t">[12:08]</span> 那生成阶段我们会看忠实度和相关性</div>
 <div class="ts-line"><span class="ts-t">[12:11]</span> 包括我们还会看一些</div>
 <div class="ts-line"><span class="ts-t">[12:13]</span> 系统的一些延迟</div>
 <div class="ts-line"><span class="ts-t">[12:14]</span> 成本</div>
 <div class="ts-line"><span class="ts-t">[12:15]</span> 安全</div>
 <div class="ts-line"><span class="ts-t">[12:16]</span> 还有稳定性</div>
-<div class="ts-line"><span class="ts-t">[12:18]</span> Pascale</div>
+<div class="ts-line"><span class="ts-t">[12:18]</span> 可扩展性</div>
 <div class="ts-line"><span class="ts-t">[12:18]</span> 这些</div>
 <div class="ts-line"><span class="ts-t">[12:19]</span> 那如果说满足我们的一个标准</div>
 <div class="ts-line"><span class="ts-t">[12:21]</span> 比如说我们这次优化的项</div>
-<div class="ts-line"><span class="ts-t">[12:23]</span> 要大一等上一版</div>
+<div class="ts-line"><span class="ts-t">[12:23]</span> 要大于上一版</div>
 <div class="ts-line"><span class="ts-t">[12:24]</span> 而且比较显著</div>
 <div class="ts-line"><span class="ts-t">[12:25]</span> 第二个是其他那些不关键的指标</div>
-<div class="ts-line"><span class="ts-t">[12:27]</span> 他们也要在人杀范围内</div>
+<div class="ts-line"><span class="ts-t">[12:27]</span> 他们也要在合理范围内</div>
 <div class="ts-line"><span class="ts-t">[12:29]</span> 然后包括我们系统的延迟成本</div>
 <div class="ts-line"><span class="ts-t">[12:32]</span> 不超预算</div>
-<div class="ts-line"><span class="ts-t">[12:33]</span> 我们一般会恢徒发布</div>
+<div class="ts-line"><span class="ts-t">[12:33]</span> 我们一般会灰度发布</div>
 <div class="ts-line"><span class="ts-t">[12:34]</span> 发布之后我们要在线上监控</div>
 <div class="ts-line"><span class="ts-t">[12:36]</span> 要看它的一些系统指标</div>
-<div class="ts-line"><span class="ts-t">[12:38]</span> 质量以及 query 名为飘移</div>
+<div class="ts-line"><span class="ts-t">[12:38]</span> 质量以及 query 没有漂移</div>
 <div class="ts-line"><span class="ts-t">[12:40]</span> 如果出问题的话我们就都回滚</div>
 <div class="ts-line"><span class="ts-t">[12:42]</span> 对吧</div>
 <div class="ts-line"><span class="ts-t">[12:42]</span> 那如果没出问题</div>
-<div class="ts-line"><span class="ts-t">[12:43]</span> 我们也要把线上应用反复的一个白的 case</div>
+<div class="ts-line"><span class="ts-t">[12:43]</span> 我们也要把线上应用反复的一个Bad Case</div>
 <div class="ts-line"><span class="ts-t">[12:46]</span> 再补进我们的评测集</div>
-<div class="ts-line"><span class="ts-t">[12:47]</span> 再做下一次的迪戴</div>
+<div class="ts-line"><span class="ts-t">[12:47]</span> 再做下一次的迭代</div>
 <div class="ts-line"><span class="ts-t">[12:49]</span> 那这样我们就成为一个 loop</div>
-<div class="ts-line"><span class="ts-t">[12:51]</span> 我们数据飞轮就越战越准</div>
-<div class="ts-line"><span class="ts-t">[12:53]</span> 这就是我们上线以迪戴的一个过程</div>
+<div class="ts-line"><span class="ts-t">[12:51]</span> 我们数据飞轮就越转越准</div>
+<div class="ts-line"><span class="ts-t">[12:53]</span> 这就是我们上线以迭代的一个过程</div>
 <div class="ts-line"><span class="ts-t">[12:56]</span> 那说到这</div>
 <div class="ts-line"><span class="ts-t">[12:57]</span> 整个 RAG 的评测体系就介绍了差不多了</div>
 <div class="ts-line"><span class="ts-t">[12:59]</span> 如果大家有什么问题</div>
-<div class="ts-line"><span class="ts-t">[13:00]</span> 可以在推荐器跟我交流</div>
+<div class="ts-line"><span class="ts-t">[13:00]</span> 可以在评论区跟我交流</div>
 <div class="ts-line"><span class="ts-t">[13:02]</span> 嗯拜拜</div>
 </div></details>
 </section>
@@ -1691,7 +1691,7 @@ def check(current, baseline=None, tolerance=0.02):
 <div class="ts-line"><span class="ts-t">[00:12]</span> 那这个视频大体会分三部分</div>
 <div class="ts-line"><span class="ts-t">[00:14]</span> 第一部分我会说一下 RAG 评测</div>
 <div class="ts-line"><span class="ts-t">[00:16]</span> 我们一整个体系架构的什么样子</div>
-<div class="ts-line"><span class="ts-t">[00:18]</span> 第二部分会详解每一部分</div>
+<div class="ts-line"><span class="ts-t">[00:18]</span> 第二部分会详解每一步分</div>
 <div class="ts-line"><span class="ts-t">[00:20]</span> 我们应该怎么做</div>
 <div class="ts-line"><span class="ts-t">[00:21]</span> 以及我们企业里面是怎么落地的</div>
 <div class="ts-line"><span class="ts-t">[00:23]</span> 第三方面我们会说一下</div>
@@ -1712,7 +1712,7 @@ def check(current, baseline=None, tolerance=0.02):
 <div class="ts-line"><span class="ts-t">[00:53]</span> 最后根据跑出来的数据</div>
 <div class="ts-line"><span class="ts-t">[00:55]</span> 去把评测的指标算出来</div>
 <div class="ts-line"><span class="ts-t">[00:57]</span> 这就是我们一种的练习</div>
-<div class="ts-line"><span class="ts-t">[00:59]</span> 下面我们就来具体看一下每一部分是怎么做的</div>
+<div class="ts-line"><span class="ts-t">[00:59]</span> 下面我们就来具体看一下每一步分是怎么做的</div>
 <div class="ts-line"><span class="ts-t">[01:01]</span> 首先第一部分选框架</div>
 </div></details>
 <details class="ts-box"><summary>选择框架（逐字 · 23 句）</summary>
@@ -1725,19 +1725,19 @@ def check(current, baseline=None, tolerance=0.02):
 <div class="ts-line"><span class="ts-t">[01:17]</span> 我们适用的 ALI 的 evaluate sscore</div>
 <div class="ts-line"><span class="ts-t">[01:21]</span> 做了一个统一的调度</div>
 <div class="ts-line"><span class="ts-t">[01:22]</span> 因为 RAG 系统分两部分</div>
-<div class="ts-line"><span class="ts-t">[01:24]</span> 第一部分是解锁</div>
+<div class="ts-line"><span class="ts-t">[01:24]</span> 第一部分是检索</div>
 <div class="ts-line"><span class="ts-t">[01:26]</span> 第二部分是生成</div>
 <div class="ts-line"><span class="ts-t">[01:27]</span> 为了评价我检索这一部分的效果</div>
 <div class="ts-line"><span class="ts-t">[01:29]</span> 我们用的是 MTEB</div>
 <div class="ts-line"><span class="ts-t">[01:31]</span> 这个开源的框架</div>
 <div class="ts-line"><span class="ts-t">[01:33]</span> 为了评价生成这一部分的效果</div>
-<div class="ts-line"><span class="ts-t">[01:35]</span> 我们用的是 RAG Assessment 这个框架</div>
+<div class="ts-line"><span class="ts-t">[01:35]</span> 我们用的是 RAGAS 这个框架</div>
 <div class="ts-line"><span class="ts-t">[01:38]</span> MTEB 有一些指标</div>
-<div class="ts-line"><span class="ts-t">[01:39]</span> 比如说照毁率准确率</div>
-<div class="ts-line"><span class="ts-t">[01:41]</span> NDCJMRR Hit Rate</div>
-<div class="ts-line"><span class="ts-t">[01:43]</span> RAG AS 有一些指标是</div>
+<div class="ts-line"><span class="ts-t">[01:39]</span> 比如说召回率准确率</div>
+<div class="ts-line"><span class="ts-t">[01:41]</span> NDCG、MRR、Hit Rate</div>
+<div class="ts-line"><span class="ts-t">[01:43]</span> RAGAS 有一些指标是</div>
 <div class="ts-line"><span class="ts-t">[01:45]</span> Context Precision Recall</div>
-<div class="ts-line"><span class="ts-t">[01:47]</span> Face Phone List</div>
+<div class="ts-line"><span class="ts-t">[01:47]</span> Faithfulness</div>
 <div class="ts-line"><span class="ts-t">[01:48]</span> 这些指标我们一会会详细介绍</div>
 <div class="ts-line"><span class="ts-t">[01:50]</span> 然后选完框架之后</div>
 </div></details>
@@ -1748,17 +1748,17 @@ def check(current, baseline=None, tolerance=0.02):
 <div class="ts-line"><span class="ts-t">[01:55]</span> 第一个是你可以设计出不同的方案</div>
 <div class="ts-line"><span class="ts-t">[01:58]</span> 比如说</div>
 <div class="ts-line"><span class="ts-t">[01:59]</span> 那我第一条 Baseline 就可以干嘛呢</div>
-<div class="ts-line"><span class="ts-t">[02:01]</span> 纯线量减走</div>
-<div class="ts-line"><span class="ts-t">[02:03]</span> 那第二条 Baseline 就可以混合减走</div>
-<div class="ts-line"><span class="ts-t">[02:06]</span> 加上我的观念4.0</div>
+<div class="ts-line"><span class="ts-t">[02:01]</span> 纯向量检索</div>
+<div class="ts-line"><span class="ts-t">[02:03]</span> 那第二条 Baseline 就可以混合检索</div>
+<div class="ts-line"><span class="ts-t">[02:06]</span> 加上我的关键词 4.0</div>
 <div class="ts-line"><span class="ts-t">[02:07]</span> 那第三个方案</div>
-<div class="ts-line"><span class="ts-t">[02:08]</span> 我可以验证我充牌的一个效果</div>
+<div class="ts-line"><span class="ts-t">[02:08]</span> 我可以验证我重排的一个效果</div>
 <div class="ts-line"><span class="ts-t">[02:10]</span> 加上一个 RERANK</div>
 <div class="ts-line"><span class="ts-t">[02:12]</span> 那这样的话</div>
 <div class="ts-line"><span class="ts-t">[02:12]</span> 这三条 Baseline 就能测出不同的效果</div>
-<div class="ts-line"><span class="ts-t">[02:15]</span> 这是我们的好象</div>
+<div class="ts-line"><span class="ts-t">[02:15]</span> 这是我们的横向</div>
 <div class="ts-line"><span class="ts-t">[02:16]</span> 那剩下我们还可以怎么测呢</div>
-<div class="ts-line"><span class="ts-t">[02:18]</span> 比如说纯线量减走里面</div>
+<div class="ts-line"><span class="ts-t">[02:18]</span> 比如说纯向量检索里面</div>
 <div class="ts-line"><span class="ts-t">[02:20]</span> 我们可以改变它的某个参数</div>
 <div class="ts-line"><span class="ts-t">[02:22]</span> 做一个 Parameter Swap</div>
 <div class="ts-line"><span class="ts-t">[02:24]</span> 比如说它的 Top-K 可以取1</div>
@@ -1766,17 +1766,17 @@ def check(current, baseline=None, tolerance=0.02):
 <div class="ts-line"><span class="ts-t">[02:28]</span> 那这样的话</div>
 <div class="ts-line"><span class="ts-t">[02:30]</span> 我就可以得到一个更精细的效果</div>
 <div class="ts-line"><span class="ts-t">[02:32]</span> 所以说</div>
-<div class="ts-line"><span class="ts-t">[02:32]</span> 横向和正向就形成了不同的实验方案</div>
+<div class="ts-line"><span class="ts-t">[02:32]</span> 横向和纵向就形成了不同的实验方案</div>
 <div class="ts-line"><span class="ts-t">[02:36]</span> 横向的话就是我确定好每一组方案</div>
-<div class="ts-line"><span class="ts-t">[02:39]</span> 我先做一个粗牌</div>
+<div class="ts-line"><span class="ts-t">[02:39]</span> 我先做一个粗排</div>
 <div class="ts-line"><span class="ts-t">[02:41]</span> 确定好哪一种方案是最好的</div>
-<div class="ts-line"><span class="ts-t">[02:43]</span> 正向的话</div>
+<div class="ts-line"><span class="ts-t">[02:43]</span> 纵向的话</div>
 <div class="ts-line"><span class="ts-t">[02:43]</span> 我们确定每种方案里面</div>
 <div class="ts-line"><span class="ts-t">[02:45]</span> 它具体的参数怎么调</div>
 <div class="ts-line"><span class="ts-t">[02:47]</span> 这是属于一种精调</div>
 <div class="ts-line"><span class="ts-t">[02:49]</span> 那我所有这些方案需要跑的次数</div>
 <div class="ts-line"><span class="ts-t">[02:51]</span> 就是每条 Baseline</div>
-<div class="ts-line"><span class="ts-t">[02:53]</span> 都用它的参数 Swap 的次数再求合</div>
+<div class="ts-line"><span class="ts-t">[02:53]</span> 都用它的参数 Swap 的次数再求和</div>
 <div class="ts-line"><span class="ts-t">[02:56]</span> 这就是我们 Baseline 的设计</div>
 <div class="ts-line"><span class="ts-t">[02:57]</span> 那设定完 Baseline 之后</div>
 </div></details>
@@ -1791,8 +1791,8 @@ def check(current, baseline=None, tolerance=0.02):
 <div class="ts-line"><span class="ts-t">[03:12]</span> 它里面会存语料库的一些信息</div>
 <div class="ts-line"><span class="ts-t">[03:15]</span> 比如说语料库的 ID</div>
 <div class="ts-line"><span class="ts-t">[03:17]</span> 比如说它的标题</div>
-<div class="ts-line"><span class="ts-t">[03:18]</span> 比如说它的证文</div>
-<div class="ts-line"><span class="ts-t">[03:20]</span> 这里面是完整的证文</div>
+<div class="ts-line"><span class="ts-t">[03:18]</span> 比如说它的正文</div>
+<div class="ts-line"><span class="ts-t">[03:20]</span> 这里面是完整的正文</div>
 <div class="ts-line"><span class="ts-t">[03:21]</span> 那第二个 JSONL 还会存一个 Corpus</div>
 <div class="ts-line"><span class="ts-t">[03:23]</span> 指的是我的问题集</div>
 <div class="ts-line"><span class="ts-t">[03:25]</span> 那第三个会存一个 Corpore relevance</div>
@@ -1801,43 +1801,43 @@ def check(current, baseline=None, tolerance=0.02):
 <div class="ts-line"><span class="ts-t">[03:33]</span> 语料库里面的一个文档</div>
 <div class="ts-line"><span class="ts-t">[03:34]</span> 以及一个相关性</div>
 <div class="ts-line"><span class="ts-t">[03:36]</span> 对这个相关性是什么意思呢</div>
-<div class="ts-line"><span class="ts-t">[03:38]</span> 就是我们会让人力去标入每一个问题</div>
+<div class="ts-line"><span class="ts-t">[03:38]</span> 就是我们会让人力去标注每一个问题</div>
 <div class="ts-line"><span class="ts-t">[03:42]</span> 和它对应的语料库里面的一个关系</div>
 <div class="ts-line"><span class="ts-t">[03:44]</span> 如果说越相关</div>
 <div class="ts-line"><span class="ts-t">[03:45]</span> 我这个分数越高</div>
-<div class="ts-line"><span class="ts-t">[03:47]</span> 注意这里是人据表的</div>
+<div class="ts-line"><span class="ts-t">[03:47]</span> 注意这里是人工标注的</div>
 <div class="ts-line"><span class="ts-t">[03:48]</span> 就是我们要请一些了解业务的人</div>
-<div class="ts-line"><span class="ts-t">[03:51]</span> 去给它们标入一下</div>
+<div class="ts-line"><span class="ts-t">[03:51]</span> 去给它们标注一下</div>
 <div class="ts-line"><span class="ts-t">[03:52]</span> 那这个数据是干嘛的呢</div>
 <div class="ts-line"><span class="ts-t">[03:54]</span> 以后我们讲指标的时候会提到它</div>
-<div class="ts-line"><span class="ts-t">[03:56]</span> 那这就是 MTV 需要准备的平色的数据</div>
-<div class="ts-line"><span class="ts-t">[03:58]</span> 那第二个是我们生存平色的数据</div>
-<div class="ts-line"><span class="ts-t">[04:01]</span> 这其实就是为我们 reg assessment 的这个框架准备</div>
+<div class="ts-line"><span class="ts-t">[03:56]</span> 那这就是 MTEB 需要准备的评测的数据</div>
+<div class="ts-line"><span class="ts-t">[03:58]</span> 那第二个是我们生存评测的数据</div>
+<div class="ts-line"><span class="ts-t">[04:01]</span> 这其实就是为我们 RAGAS 的这个框架准备</div>
 <div class="ts-line"><span class="ts-t">[04:04]</span> 那这个框架具体来说就是一张表</div>
 <div class="ts-line"><span class="ts-t">[04:06]</span> 然后这张表里面有四个字段</div>
-<div class="ts-line"><span class="ts-t">[04:08]</span> 第一个字段是应付的问题</div>
+<div class="ts-line"><span class="ts-t">[04:08]</span> 第一个字段是用户的问题</div>
 <div class="ts-line"><span class="ts-t">[04:09]</span> 第二个字段是检索的结果</div>
 <div class="ts-line"><span class="ts-t">[04:11]</span> 第三个字段是标准的答案</div>
 <div class="ts-line"><span class="ts-t">[04:13]</span> 第四个字段是实际的答案</div>
 <div class="ts-line"><span class="ts-t">[04:15]</span> 那你看这里</div>
-<div class="ts-line"><span class="ts-t">[04:16]</span> 我们应付的问题和标准的答案</div>
+<div class="ts-line"><span class="ts-t">[04:16]</span> 我们用户的问题和标准的答案</div>
 <div class="ts-line"><span class="ts-t">[04:19]</span> 其实都是可以提前确定的</div>
 <div class="ts-line"><span class="ts-t">[04:20]</span> 但是检索的结果和实际的答案</div>
-<div class="ts-line"><span class="ts-t">[04:23]</span> 要等我们 Base line 实际跑完之后</div>
-<div class="ts-line"><span class="ts-t">[04:25]</span> 再回天回来</div>
+<div class="ts-line"><span class="ts-t">[04:23]</span> 要等我们 Baseline 实际跑完之后</div>
+<div class="ts-line"><span class="ts-t">[04:25]</span> 再回填回来</div>
 <div class="ts-line"><span class="ts-t">[04:26]</span> 那这样的话</div>
-<div class="ts-line"><span class="ts-t">[04:27]</span> 两个框架需要了两大平分数据</div>
+<div class="ts-line"><span class="ts-t">[04:27]</span> 两个框架需要了两大评测数据</div>
 <div class="ts-line"><span class="ts-t">[04:29]</span> 都已经准备好了</div>
-<div class="ts-line"><span class="ts-t">[04:30]</span> 下面我们就开始跑我们的 Base line</div>
-<div class="ts-line"><span class="ts-t">[04:32]</span> 根据我们前面这种证交矩阵</div>
+<div class="ts-line"><span class="ts-t">[04:30]</span> 下面我们就开始跑我们的 Baseline</div>
+<div class="ts-line"><span class="ts-t">[04:32]</span> 根据我们前面这种正交矩阵</div>
 <div class="ts-line"><span class="ts-t">[04:34]</span> 我们确定好了几种方案</div>
 <div class="ts-line"><span class="ts-t">[04:36]</span> 把所有的数据跑完</div>
 <div class="ts-line"><span class="ts-t">[04:38]</span> 跑完之后</div>
 <div class="ts-line"><span class="ts-t">[04:39]</span> 我们根据得到的结果</div>
-<div class="ts-line"><span class="ts-t">[04:40]</span> 把生存平分数据里面</div>
-<div class="ts-line"><span class="ts-t">[04:42]</span> 还缺了数据回天回来</div>
+<div class="ts-line"><span class="ts-t">[04:40]</span> 把生成评测数据里面</div>
+<div class="ts-line"><span class="ts-t">[04:42]</span> 还缺了数据回填回来</div>
 <div class="ts-line"><span class="ts-t">[04:44]</span> 那这样的话</div>
-<div class="ts-line"><span class="ts-t">[04:45]</span> 我们整到数据是不是就全了</div>
+<div class="ts-line"><span class="ts-t">[04:45]</span> 我们整套数据是不是就全了</div>
 <div class="ts-line"><span class="ts-t">[04:47]</span> 那下面就剩最后一步了</div>
 </div></details>
 <details class="ts-box"><summary>计算指标（逐字 · 234 句）</summary>
@@ -1852,15 +1852,15 @@ def check(current, baseline=None, tolerance=0.02):
 <div class="ts-line"><span class="ts-t">[05:01]</span> 各自的五个指标</div>
 <div class="ts-line"><span class="ts-t">[05:03]</span> 比如说 MTEB 这里会计算五个指标</div>
 <div class="ts-line"><span class="ts-t">[05:05]</span> 召回率准确率</div>
-<div class="ts-line"><span class="ts-t">[05:06]</span> NDCG MRR Keterate</div>
+<div class="ts-line"><span class="ts-t">[05:06]</span> NDCG MRR Hit Rate</div>
 <div class="ts-line"><span class="ts-t">[05:08]</span> 我们这里</div>
 <div class="ts-line"><span class="ts-t">[05:09]</span> 具体看一下</div>
 <div class="ts-line"><span class="ts-t">[05:10]</span> 这五个指标分别代表什么含义</div>
 <div class="ts-line"><span class="ts-t">[05:12]</span> 以及它会怎么算</div>
 <div class="ts-line"><span class="ts-t">[05:13]</span> 召回率的意思是</div>
 <div class="ts-line"><span class="ts-t">[05:15]</span> 我要看你实际筛选出的结果</div>
-<div class="ts-line"><span class="ts-t">[05:17]</span> 它有没有筛选权</div>
-<div class="ts-line"><span class="ts-t">[05:20]</span> 比如说我们看这个势力图</div>
+<div class="ts-line"><span class="ts-t">[05:17]</span> 它有没有筛选全</div>
+<div class="ts-line"><span class="ts-t">[05:20]</span> 比如说我们看这个示例图</div>
 <div class="ts-line"><span class="ts-t">[05:21]</span> 我们看第一个问题</div>
 <div class="ts-line"><span class="ts-t">[05:23]</span> 我问这个问题之后</div>
 <div class="ts-line"><span class="ts-t">[05:24]</span> 我期望召回的结果是</div>
@@ -1875,7 +1875,7 @@ def check(current, baseline=None, tolerance=0.02):
 <div class="ts-line"><span class="ts-t">[05:39]</span> 就是100%</div>
 <div class="ts-line"><span class="ts-t">[05:40]</span> 对吧</div>
 <div class="ts-line"><span class="ts-t">[05:41]</span> 那什么是准确率呢</div>
-<div class="ts-line"><span class="ts-t">[05:42]</span> 准确率值的就是</div>
+<div class="ts-line"><span class="ts-t">[05:42]</span> 准确率指的是就是</div>
 <div class="ts-line"><span class="ts-t">[05:44]</span> 你此次召回的文档里面</div>
 <div class="ts-line"><span class="ts-t">[05:45]</span> 有多少是跟我期望的相关的</div>
 <div class="ts-line"><span class="ts-t">[05:49]</span> 那我们知道</div>
@@ -1884,23 +1884,23 @@ def check(current, baseline=None, tolerance=0.02):
 <div class="ts-line"><span class="ts-t">[05:54]</span> 那它的准确率就是3除以5</div>
 <div class="ts-line"><span class="ts-t">[05:56]</span> 就是60%</div>
 <div class="ts-line"><span class="ts-t">[05:58]</span> 第三个指标</div>
-<div class="ts-line"><span class="ts-t">[05:59]</span> 黑德瑞德</div>
-<div class="ts-line"><span class="ts-t">[06:00]</span> 黑德瑞德是什么意思呢</div>
-<div class="ts-line"><span class="ts-t">[06:00]</span> 其实从黑德瑞德到 MRR</div>
+<div class="ts-line"><span class="ts-t">[05:59]</span> Hit Rate</div>
+<div class="ts-line"><span class="ts-t">[06:00]</span> Hit Rate是什么意思呢</div>
+<div class="ts-line"><span class="ts-t">[06:00]</span> 其实从Hit Rate到 MRR</div>
 <div class="ts-line"><span class="ts-t">[06:02]</span> 到 NDCG</div>
 <div class="ts-line"><span class="ts-t">[06:03]</span> 是逐渐清晰的一个指标信息</div>
 <div class="ts-line"><span class="ts-t">[06:06]</span> 他们的含义都是指的</div>
 <div class="ts-line"><span class="ts-t">[06:07]</span> 我召回的效果</div>
-<div class="ts-line"><span class="ts-t">[06:08]</span> 黑德瑞德指的是</div>
+<div class="ts-line"><span class="ts-t">[06:08]</span> Hit Rate指的是</div>
 <div class="ts-line"><span class="ts-t">[06:10]</span> 你此次召回的结果里面</div>
 <div class="ts-line"><span class="ts-t">[06:12]</span> 有没有至少一个</div>
 <div class="ts-line"><span class="ts-t">[06:13]</span> 是我期望的文档</div>
-<div class="ts-line"><span class="ts-t">[06:16]</span> 它是一个布尔直啊</div>
+<div class="ts-line"><span class="ts-t">[06:16]</span> 它是一个布尔值啊</div>
 <div class="ts-line"><span class="ts-t">[06:17]</span> 就是只要你至少有一个</div>
 <div class="ts-line"><span class="ts-t">[06:18]</span> 它就是1</div>
 <div class="ts-line"><span class="ts-t">[06:19]</span> 如果它一个都没有</div>
 <div class="ts-line"><span class="ts-t">[06:20]</span> 就是0</div>
-<div class="ts-line"><span class="ts-t">[06:21]</span> 那 MRR 其实更惊喜了</div>
+<div class="ts-line"><span class="ts-t">[06:21]</span> 那 MRR 其实更精细了</div>
 <div class="ts-line"><span class="ts-t">[06:24]</span> 就是它会算</div>
 <div class="ts-line"><span class="ts-t">[06:25]</span> 你实际排名里面召回的文档</div>
 <div class="ts-line"><span class="ts-t">[06:28]</span> 第一个相关的它的排名</div>
@@ -1919,16 +1919,16 @@ def check(current, baseline=None, tolerance=0.02):
 <div class="ts-line"><span class="ts-t">[06:46]</span> 就是0.5</div>
 <div class="ts-line"><span class="ts-t">[06:47]</span> 大家理解了吗</div>
 <div class="ts-line"><span class="ts-t">[06:49]</span> 再看 NDCG</div>
-<div class="ts-line"><span class="ts-t">[06:50]</span> NDCG 这个指标就更长样了</div>
+<div class="ts-line"><span class="ts-t">[06:50]</span> NDCG 这个指标就更复杂了</div>
 <div class="ts-line"><span class="ts-t">[06:53]</span> 就是我们前面</div>
-<div class="ts-line"><span class="ts-t">[06:54]</span> 黑德瑞德和 MRR</div>
+<div class="ts-line"><span class="ts-t">[06:54]</span> Hit Rate和 MRR</div>
 <div class="ts-line"><span class="ts-t">[06:55]</span> 其实指的都是有没有</div>
 <div class="ts-line"><span class="ts-t">[06:56]</span> 以及第一个的排序</div>
 <div class="ts-line"><span class="ts-t">[06:57]</span> NDCG 指的是整体的一个排序</div>
 <div class="ts-line"><span class="ts-t">[06:59]</span> NDCG 它具体计算是很麻烦的</div>
-<div class="ts-line"><span class="ts-t">[07:03]</span> 对但是我可以给大家概括</div>
+<div class="ts-line"><span class="ts-t">[07:03]</span> 但是我可以给大家概括</div>
 <div class="ts-line"><span class="ts-t">[07:04]</span> 就是它首先会根据我们前面</div>
-<div class="ts-line"><span class="ts-t">[07:07]</span> 我们是不是在这个债项里面</div>
+<div class="ts-line"><span class="ts-t">[07:07]</span> 我们是不是在这个标注里面</div>
 <div class="ts-line"><span class="ts-t">[07:09]</span> 一个相关性的一个分数对吧</div>
 <div class="ts-line"><span class="ts-t">[07:11]</span> 会根据这个分数</div>
 <div class="ts-line"><span class="ts-t">[07:12]</span> 去算一个值</div>
@@ -1944,9 +1944,9 @@ def check(current, baseline=None, tolerance=0.02):
 <div class="ts-line"><span class="ts-t">[07:30]</span> 你此次实际跑出来的分数</div>
 <div class="ts-line"><span class="ts-t">[07:32]</span> 并且它这个公式</div>
 <div class="ts-line"><span class="ts-t">[07:34]</span> 保证了如果说你的结果</div>
-<div class="ts-line"><span class="ts-t">[07:36]</span> 它的检测数的文档</div>
+<div class="ts-line"><span class="ts-t">[07:36]</span> 它的检索出的文档</div>
 <div class="ts-line"><span class="ts-t">[07:38]</span> 以及它的排序越接近理想情况</div>
-<div class="ts-line"><span class="ts-t">[07:41]</span> 它的值值越大</div>
+<div class="ts-line"><span class="ts-t">[07:41]</span> 它的值越大</div>
 <div class="ts-line"><span class="ts-t">[07:42]</span> 如果说检测出来的文档</div>
 <div class="ts-line"><span class="ts-t">[07:44]</span> 和它的排序差了越多</div>
 <div class="ts-line"><span class="ts-t">[07:46]</span> 它的 NDCG 就会越小</div>
@@ -1955,14 +1955,14 @@ def check(current, baseline=None, tolerance=0.02):
 <div class="ts-line"><span class="ts-t">[07:50]</span> 它的全名叫做按位置去折损</div>
 <div class="ts-line"><span class="ts-t">[07:53]</span> 所以说它能反映出</div>
 <div class="ts-line"><span class="ts-t">[07:54]</span> 整体的一个文档的</div>
-<div class="ts-line"><span class="ts-t">[07:56]</span> 密证情况以及排名情况</div>
+<div class="ts-line"><span class="ts-t">[07:56]</span> 命中情况以及排名情况</div>
 <div class="ts-line"><span class="ts-t">[07:58]</span> 然后刚刚我们说的这些概念</div>
 <div class="ts-line"><span class="ts-t">[08:00]</span> 其实都是基于单个问题</div>
-<div class="ts-line"><span class="ts-t">[08:02]</span> 因为我们一次跑评</div>
+<div class="ts-line"><span class="ts-t">[08:02]</span> 因为我们一次评测</div>
 <div class="ts-line"><span class="ts-t">[08:03]</span> 所以我们要跑很多问题</div>
 <div class="ts-line"><span class="ts-t">[08:04]</span> 那最后我们会把所有问题的指标</div>
-<div class="ts-line"><span class="ts-t">[08:06]</span> 做一个算数平均值</div>
-<div class="ts-line"><span class="ts-t">[08:08]</span> 作为我们整个评测级的一个指标</div>
+<div class="ts-line"><span class="ts-t">[08:06]</span> 做一个算术平均值</div>
+<div class="ts-line"><span class="ts-t">[08:08]</span> 作为我们整个评测集的一个指标</div>
 <div class="ts-line"><span class="ts-t">[08:10]</span> 那这就是我们 MTEB</div>
 <div class="ts-line"><span class="ts-t">[08:12]</span> 算 GT 指标的一个过程</div>
 <div class="ts-line"><span class="ts-t">[08:13]</span> 但是实际上因为指标比较多</div>
@@ -1973,12 +1973,12 @@ def check(current, baseline=None, tolerance=0.02):
 <div class="ts-line"><span class="ts-t">[08:22]</span> 因为召回率能够直接反映</div>
 <div class="ts-line"><span class="ts-t">[08:23]</span> 你召回率全不全</div>
 <div class="ts-line"><span class="ts-t">[08:24]</span> 至于准不准这个其实不重要</div>
-<div class="ts-line"><span class="ts-t">[08:25]</span> 因为你除了粗照尾</div>
-<div class="ts-line"><span class="ts-t">[08:27]</span> 会不会还有军牌</div>
+<div class="ts-line"><span class="ts-t">[08:25]</span> 因为你除了粗召回</div>
+<div class="ts-line"><span class="ts-t">[08:27]</span> 会不会还有精排</div>
 <div class="ts-line"><span class="ts-t">[08:28]</span> 那 NDCG 它能够反映</div>
 <div class="ts-line"><span class="ts-t">[08:31]</span> 整体的一个情况</div>
 <div class="ts-line"><span class="ts-t">[08:32]</span> 所以我们主要考虑这两个指标</div>
-<div class="ts-line"><span class="ts-t">[08:34]</span> 那关于 RAG Assignment 的这个框架</div>
+<div class="ts-line"><span class="ts-t">[08:34]</span> 那关于 RAGAS 的这个框架</div>
 <div class="ts-line"><span class="ts-t">[08:36]</span> 其实也很简单</div>
 <div class="ts-line"><span class="ts-t">[08:37]</span> 我们知道上面我们说过</div>
 <div class="ts-line"><span class="ts-t">[08:39]</span> 我们准备数据的时候</div>
@@ -1987,17 +1987,17 @@ def check(current, baseline=None, tolerance=0.02):
 <div class="ts-line"><span class="ts-t">[08:44]</span> 那这个指标其实就是</div>
 <div class="ts-line"><span class="ts-t">[08:45]</span> 分析了这四个字段之间的相互关系</div>
 <div class="ts-line"><span class="ts-t">[08:48]</span> 比如说</div>
-<div class="ts-line"><span class="ts-t">[08:49]</span> 我应付的问题</div>
+<div class="ts-line"><span class="ts-t">[08:49]</span> 我用户的问题</div>
 <div class="ts-line"><span class="ts-t">[08:50]</span> 对吧</div>
-<div class="ts-line"><span class="ts-t">[08:50]</span> 和你的生效纹</div>
+<div class="ts-line"><span class="ts-t">[08:50]</span> 和你的上下文</div>
 <div class="ts-line"><span class="ts-t">[08:51]</span> 其实就是我们刚刚</div>
 <div class="ts-line"><span class="ts-t">[08:54]</span> MTEB 里边的一个准确率</div>
 <div class="ts-line"><span class="ts-t">[08:56]</span> 对吧</div>
-<div class="ts-line"><span class="ts-t">[08:56]</span> 那 Recode 就是召回率</div>
+<div class="ts-line"><span class="ts-t">[08:56]</span> 那 Recall 就是召回率</div>
 <div class="ts-line"><span class="ts-t">[08:58]</span> 对吧</div>
-<div class="ts-line"><span class="ts-t">[08:59]</span> 正常说的什么意思呢</div>
+<div class="ts-line"><span class="ts-t">[08:59]</span> 忠实度是什么意思呢</div>
 <div class="ts-line"><span class="ts-t">[09:00]</span> 就是你的回答</div>
-<div class="ts-line"><span class="ts-t">[09:01]</span> 有没有基于你的生效纹去做</div>
+<div class="ts-line"><span class="ts-t">[09:01]</span> 有没有基于你的上下文去做</div>
 <div class="ts-line"><span class="ts-t">[09:03]</span> 对吧</div>
 <div class="ts-line"><span class="ts-t">[09:03]</span> 有没有出现幻觉</div>
 <div class="ts-line"><span class="ts-t">[09:04]</span> 准确率是什么呢</div>
@@ -2005,10 +2005,10 @@ def check(current, baseline=None, tolerance=0.02):
 <div class="ts-line"><span class="ts-t">[09:06]</span> 有没有和我预计的回答是一样的</div>
 <div class="ts-line"><span class="ts-t">[09:08]</span> 对吧</div>
 <div class="ts-line"><span class="ts-t">[09:09]</span> 那相关性的什么呢</div>
-<div class="ts-line"><span class="ts-t">[09:11]</span> 就是你深深地回答和我用户的问题</div>
+<div class="ts-line"><span class="ts-t">[09:11]</span> 就是你生成的回答和我用户的问题</div>
 <div class="ts-line"><span class="ts-t">[09:12]</span> 相不相关</div>
-<div class="ts-line"><span class="ts-t">[09:13]</span> 切不切提</div>
-<div class="ts-line"><span class="ts-t">[09:14]</span> 所以 RAG Assignment</div>
+<div class="ts-line"><span class="ts-t">[09:13]</span> 切不切题</div>
+<div class="ts-line"><span class="ts-t">[09:14]</span> 所以 RAGAS</div>
 <div class="ts-line"><span class="ts-t">[09:15]</span> 这里面的五个指标</div>
 <div class="ts-line"><span class="ts-t">[09:17]</span> 就是基于我们这张表里的四个字段</div>
 <div class="ts-line"><span class="ts-t">[09:19]</span> 它们的相互关系</div>
@@ -2017,29 +2017,29 @@ def check(current, baseline=None, tolerance=0.02):
 <div class="ts-line"><span class="ts-t">[09:22]</span> 它这里算的话就</div>
 <div class="ts-line"><span class="ts-t">[09:24]</span> 相比比较复杂</div>
 <div class="ts-line"><span class="ts-t">[09:25]</span> 就是会分两步</div>
-<div class="ts-line"><span class="ts-t">[09:26]</span> 每一个算都会先应大模型</div>
+<div class="ts-line"><span class="ts-t">[09:26]</span> 每一个算都会先用大模型</div>
 <div class="ts-line"><span class="ts-t">[09:29]</span> 做一个局部的判断</div>
-<div class="ts-line"><span class="ts-t">[09:30]</span> 再加一个确认性的公式</div>
+<div class="ts-line"><span class="ts-t">[09:30]</span> 再加一个确定性的公式</div>
 <div class="ts-line"><span class="ts-t">[09:32]</span> 对</div>
 <div class="ts-line"><span class="ts-t">[09:33]</span> 我们这里只提</div>
 <div class="ts-line"><span class="ts-t">[09:34]</span> 两个比较重要的指标的计算</div>
-<div class="ts-line"><span class="ts-t">[09:36]</span> 一个是真诚度</div>
-<div class="ts-line"><span class="ts-t">[09:37]</span> 因为真诚度它分析的是</div>
-<div class="ts-line"><span class="ts-t">[09:39]</span> 我们生存的回答和上下文的一个关系</div>
+<div class="ts-line"><span class="ts-t">[09:36]</span> 一个是忠实度</div>
+<div class="ts-line"><span class="ts-t">[09:37]</span> 因为忠实度它分析的是</div>
+<div class="ts-line"><span class="ts-t">[09:39]</span> 我们生成的回答和上下文的一个关系</div>
 <div class="ts-line"><span class="ts-t">[09:41]</span> 它能够反映出你有没有幻觉</div>
-<div class="ts-line"><span class="ts-t">[09:44]</span> 我们首先会大模型把答案拆成陈数据</div>
-<div class="ts-line"><span class="ts-t">[09:47]</span> 一个一个陈数据</div>
+<div class="ts-line"><span class="ts-t">[09:44]</span> 我们首先会大模型把答案拆成陈述句</div>
+<div class="ts-line"><span class="ts-t">[09:47]</span> 一个一个陈述句</div>
 <div class="ts-line"><span class="ts-t">[09:49]</span> 然后大模型逐字的去判</div>
-<div class="ts-line"><span class="ts-t">[09:50]</span> 每个陈数据能不能由上下文去推出</div>
+<div class="ts-line"><span class="ts-t">[09:50]</span> 每个陈述句能不能由上下文去推出</div>
 <div class="ts-line"><span class="ts-t">[09:53]</span> 所以它就可以反映出</div>
 <div class="ts-line"><span class="ts-t">[09:55]</span> 你每个句子是不是真诚</div>
 <div class="ts-line"><span class="ts-t">[09:56]</span> 有没有幻觉</div>
 <div class="ts-line"><span class="ts-t">[09:57]</span> 然后最后算出来你真诚的句数</div>
-<div class="ts-line"><span class="ts-t">[10:00]</span> 厨余总的句数</div>
-<div class="ts-line"><span class="ts-t">[10:00]</span> 这就是你的真诚度</div>
+<div class="ts-line"><span class="ts-t">[10:00]</span> 除以总的句数</div>
+<div class="ts-line"><span class="ts-t">[10:00]</span> 这就是你的忠实度</div>
 <div class="ts-line"><span class="ts-t">[10:02]</span> 那第二个比较关键的是</div>
-<div class="ts-line"><span class="ts-t">[10:04]</span> 这个 quatness</div>
-<div class="ts-line"><span class="ts-t">[10:06]</span> 它会把幻觉的回答和生存的回答</div>
+<div class="ts-line"><span class="ts-t">[10:04]</span> 这个 Answer Correctness</div>
+<div class="ts-line"><span class="ts-t">[10:06]</span> 它会把幻觉的回答和生成的回答</div>
 <div class="ts-line"><span class="ts-t">[10:08]</span> 所有的回答都差了一个句子</div>
 <div class="ts-line"><span class="ts-t">[10:10]</span> 然后去算它们的 TP</div>
 <div class="ts-line"><span class="ts-t">[10:12]</span> FP</div>
@@ -2051,13 +2051,13 @@ def check(current, baseline=None, tolerance=0.02):
 <div class="ts-line"><span class="ts-t">[10:20]</span> 加上0.25乘以幻觉的度</div>
 <div class="ts-line"><span class="ts-t">[10:22]</span> 去剧套对中的一个字</div>
 <div class="ts-line"><span class="ts-t">[10:24]</span> 这其实是我们</div>
-<div class="ts-line"><span class="ts-t">[10:24]</span> Rug Assessment 的里面</div>
-<div class="ts-line"><span class="ts-t">[10:25]</span> 原码的一些逻辑了</div>
+<div class="ts-line"><span class="ts-t">[10:24]</span> RAGAS 的里面</div>
+<div class="ts-line"><span class="ts-t">[10:25]</span> 源码的一些逻辑了</div>
 <div class="ts-line"><span class="ts-t">[10:26]</span> 大家不用太在意</div>
 <div class="ts-line"><span class="ts-t">[10:28]</span> 已经可以说一下这个 relevancy</div>
 <div class="ts-line"><span class="ts-t">[10:31]</span> 这个 relevancy 的剧套也很有意思</div>
-<div class="ts-line"><span class="ts-t">[10:32]</span> 它会算你硬货的问题</div>
-<div class="ts-line"><span class="ts-t">[10:33]</span> 生存的回答相不相关</div>
+<div class="ts-line"><span class="ts-t">[10:32]</span> 它会算你用户的问题</div>
+<div class="ts-line"><span class="ts-t">[10:33]</span> 生成的回答相不相关</div>
 <div class="ts-line"><span class="ts-t">[10:34]</span> 它怎么算的呢</div>
 <div class="ts-line"><span class="ts-t">[10:35]</span> 它会把你这个回答交给大模型</div>
 <div class="ts-line"><span class="ts-t">[10:37]</span> 让这个大模型去反过来判断</div>
@@ -2079,26 +2079,26 @@ def check(current, baseline=None, tolerance=0.02):
 </div></details>
 <details class="ts-box"><summary>评测方法架构（逐字 · 27 句）</summary>
 <div class="ts-lines">
-<div class="ts-line"><span class="ts-t">[11:06]</span> 我们评测方法的一个驾顾的思考</div>
+<div class="ts-line"><span class="ts-t">[11:06]</span> 我们评测方法的一个架构的思考</div>
 <div class="ts-line"><span class="ts-t">[11:08]</span> 其实我们评测里面</div>
-<div class="ts-line"><span class="ts-t">[11:10]</span> 如果从爵士类角度可以分很多种</div>
+<div class="ts-line"><span class="ts-t">[11:10]</span> 如果从技术角度可以分很多种</div>
 <div class="ts-line"><span class="ts-t">[11:13]</span> 就是第一个是我们的人工评测</div>
 <div class="ts-line"><span class="ts-t">[11:14]</span> 对吧</div>
 <div class="ts-line"><span class="ts-t">[11:15]</span> 就是找我们一些专门的这些数据标注员</div>
 <div class="ts-line"><span class="ts-t">[11:18]</span> 他们其实是最可信的</div>
 <div class="ts-line"><span class="ts-t">[11:20]</span> 但他们的人工成本比较高</div>
-<div class="ts-line"><span class="ts-t">[11:22]</span> 第二个就是大模型作为一个榨子</div>
+<div class="ts-line"><span class="ts-t">[11:22]</span> 第二个就是大模型作为一个裁判</div>
 <div class="ts-line"><span class="ts-t">[11:24]</span> 这种是比较可信的</div>
 <div class="ts-line"><span class="ts-t">[11:25]</span> 而且成本比较低</div>
 <div class="ts-line"><span class="ts-t">[11:26]</span> 现在也是比较火的一个方向</div>
-<div class="ts-line"><span class="ts-t">[11:28]</span> 传送的话就是我们一些自动指标</div>
+<div class="ts-line"><span class="ts-t">[11:28]</span> 传统的话就是我们一些自动指标</div>
 <div class="ts-line"><span class="ts-t">[11:31]</span> 我们根据我们跑的评测的结果</div>
 <div class="ts-line"><span class="ts-t">[11:32]</span> 去自动算一些指标</div>
 <div class="ts-line"><span class="ts-t">[11:33]</span> 对这种也很便宜</div>
-<div class="ts-line"><span class="ts-t">[11:35]</span> 但是它比较丝绊</div>
-<div class="ts-line"><span class="ts-t">[11:36]</span> 再就是蒸气匹配</div>
-<div class="ts-line"><span class="ts-t">[11:37]</span> 这种就是依稀训练性的断言</div>
-<div class="ts-line"><span class="ts-t">[11:40]</span> 我们生产场应该是用这种自动指标</div>
+<div class="ts-line"><span class="ts-t">[11:35]</span> 但是它比较死板</div>
+<div class="ts-line"><span class="ts-t">[11:36]</span> 再就是精确匹配</div>
+<div class="ts-line"><span class="ts-t">[11:37]</span> 这种就是一些确定性的断言</div>
+<div class="ts-line"><span class="ts-t">[11:40]</span> 我们生产上应该是用这种自动指标</div>
 <div class="ts-line"><span class="ts-t">[11:44]</span> 对吧</div>
 <div class="ts-line"><span class="ts-t">[11:44]</span> 做一个兜底</div>
 <div class="ts-line"><span class="ts-t">[11:45]</span> 然后用大模型做一个规模化</div>
@@ -2109,46 +2109,46 @@ def check(current, baseline=None, tolerance=0.02):
 </div></details>
 <details class="ts-box"><summary>上线和迭代（逐字 · 41 句）</summary>
 <div class="ts-lines">
-<div class="ts-line"><span class="ts-t">[11:55]</span> 我们这个上线和底线应该怎么做</div>
+<div class="ts-line"><span class="ts-t">[11:55]</span> 我们这个上线和迭代应该怎么做</div>
 <div class="ts-line"><span class="ts-t">[11:56]</span> 那总体来说是一个数据飞轮的概念</div>
-<div class="ts-line"><span class="ts-t">[11:59]</span> 主要包括四部</div>
+<div class="ts-line"><span class="ts-t">[11:59]</span> 主要包括四步</div>
 <div class="ts-line"><span class="ts-t">[12:00]</span> 第一步就是我们会检测</div>
 <div class="ts-line"><span class="ts-t">[12:02]</span> 我们上面的模糊指标</div>
 <div class="ts-line"><span class="ts-t">[12:04]</span> 比如说我们检索阶段</div>
 <div class="ts-line"><span class="ts-t">[12:06]</span> 我们要看召回率和 NGCD</div>
-<div class="ts-line"><span class="ts-t">[12:08]</span> 那盛场阶段我们会看重重度和重视率</div>
+<div class="ts-line"><span class="ts-t">[12:08]</span> 那生成阶段我们会看忠实度和相关性</div>
 <div class="ts-line"><span class="ts-t">[12:11]</span> 包括我们还会看一些</div>
 <div class="ts-line"><span class="ts-t">[12:13]</span> 系统的一些延迟</div>
 <div class="ts-line"><span class="ts-t">[12:14]</span> 成本</div>
 <div class="ts-line"><span class="ts-t">[12:15]</span> 安全</div>
 <div class="ts-line"><span class="ts-t">[12:16]</span> 还有稳定性</div>
-<div class="ts-line"><span class="ts-t">[12:18]</span> Pascale</div>
+<div class="ts-line"><span class="ts-t">[12:18]</span> 可扩展性</div>
 <div class="ts-line"><span class="ts-t">[12:18]</span> 这些</div>
 <div class="ts-line"><span class="ts-t">[12:19]</span> 那如果说满足我们的一个标准</div>
 <div class="ts-line"><span class="ts-t">[12:21]</span> 比如说我们这次优化的项</div>
-<div class="ts-line"><span class="ts-t">[12:23]</span> 要大一等上一版</div>
+<div class="ts-line"><span class="ts-t">[12:23]</span> 要大于上一版</div>
 <div class="ts-line"><span class="ts-t">[12:24]</span> 而且比较显著</div>
 <div class="ts-line"><span class="ts-t">[12:25]</span> 第二个是其他那些不关键的指标</div>
-<div class="ts-line"><span class="ts-t">[12:27]</span> 他们也要在人杀范围内</div>
+<div class="ts-line"><span class="ts-t">[12:27]</span> 他们也要在合理范围内</div>
 <div class="ts-line"><span class="ts-t">[12:29]</span> 然后包括我们系统的延迟成本</div>
 <div class="ts-line"><span class="ts-t">[12:32]</span> 不超预算</div>
-<div class="ts-line"><span class="ts-t">[12:33]</span> 我们一般会恢徒发布</div>
+<div class="ts-line"><span class="ts-t">[12:33]</span> 我们一般会灰度发布</div>
 <div class="ts-line"><span class="ts-t">[12:34]</span> 发布之后我们要在线上监控</div>
 <div class="ts-line"><span class="ts-t">[12:36]</span> 要看它的一些系统指标</div>
-<div class="ts-line"><span class="ts-t">[12:38]</span> 质量以及 query 名为飘移</div>
+<div class="ts-line"><span class="ts-t">[12:38]</span> 质量以及 query 没有漂移</div>
 <div class="ts-line"><span class="ts-t">[12:40]</span> 如果出问题的话我们就都回滚</div>
 <div class="ts-line"><span class="ts-t">[12:42]</span> 对吧</div>
 <div class="ts-line"><span class="ts-t">[12:42]</span> 那如果没出问题</div>
-<div class="ts-line"><span class="ts-t">[12:43]</span> 我们也要把线上应用反复的一个白的 case</div>
+<div class="ts-line"><span class="ts-t">[12:43]</span> 我们也要把线上应用反复的一个Bad Case</div>
 <div class="ts-line"><span class="ts-t">[12:46]</span> 再补进我们的评测集</div>
-<div class="ts-line"><span class="ts-t">[12:47]</span> 再做下一次的迪戴</div>
+<div class="ts-line"><span class="ts-t">[12:47]</span> 再做下一次的迭代</div>
 <div class="ts-line"><span class="ts-t">[12:49]</span> 那这样我们就成为一个 loop</div>
-<div class="ts-line"><span class="ts-t">[12:51]</span> 我们数据飞轮就越战越准</div>
-<div class="ts-line"><span class="ts-t">[12:53]</span> 这就是我们上线以迪戴的一个过程</div>
+<div class="ts-line"><span class="ts-t">[12:51]</span> 我们数据飞轮就越转越准</div>
+<div class="ts-line"><span class="ts-t">[12:53]</span> 这就是我们上线以迭代的一个过程</div>
 <div class="ts-line"><span class="ts-t">[12:56]</span> 那说到这</div>
 <div class="ts-line"><span class="ts-t">[12:57]</span> 整个 RAG 的评测体系就介绍了差不多了</div>
 <div class="ts-line"><span class="ts-t">[12:59]</span> 如果大家有什么问题</div>
-<div class="ts-line"><span class="ts-t">[13:00]</span> 可以在推荐器跟我交流</div>
+<div class="ts-line"><span class="ts-t">[13:00]</span> 可以在评论区跟我交流</div>
 <div class="ts-line"><span class="ts-t">[13:02]</span> 嗯拜拜</div>
 </div></details>
 <h3 id="asr-method">5.6 语音识别与三重校验方法</h3>
@@ -2196,61 +2196,61 @@ def check(current, baseline=None, tolerance=0.02):
 <tr><td>Precision</td><td>官方术语表：precession → Precision</td><td>1</td></tr>
 </table>
 <h3 id="script-full">5.8 完整连读脚本（ASR 整理稿 · 225 句 / 46 段）</h3>
-<p>以下由本章附录的 ASR 逐字稿合并而成：<strong>文字一字未改，仅补充标点符号与分段</strong>。标点依据语音停顿与语义停顿，分段依据视频官方章节（或各支视频）边界，每组内每五句一段；需要逐句核对时请展开上方「全片语音逐字稿」。</p>
+<p>以下由本章附录的 ASR 逐字稿合并而成：<strong>已按术语表与上下文校正 ASR 音译错字，并补充标点符号与分段</strong>。标点依据语音停顿与语义停顿，分段依据视频官方章节（或各支视频）边界，每组内每五句一段；需要逐句核对时请展开上方「全片语音逐字稿」。</p>
 <p class="script-h"><strong>引言</strong><span>（00:00–00:34）</span></p>
 <p class="script-p">hello 大家好我是小副。如果面试官问你你在项目里面是怎么做的 RAG 的评测，你会怎么回答？那如果你对评测这个问题还不太熟悉，就不妨换几分钟跟我一起学习一下。那这个视频大体会分三部分。第一部分我会说一下 RAG 评测，我们一整个体系架构的什么样子。</p>
-<p class="script-p">第二部分会详解每一部分，我们应该怎么做，以及我们企业里面是怎么落地的。第三方面我们会说一下：评测之后我们是如何上线和迭代。最终是用一个 loop 去持续的 self-evolution。那好不多说我们直接开始。首先第一部分。</p>
+<p class="script-p">第二部分会详解每一步分，我们应该怎么做，以及我们企业里面是怎么落地的。第三方面我们会说一下：评测之后我们是如何上线和迭代。最终是用一个 loop 去持续的 self-evolution。那好不多说我们直接开始。首先第一部分。</p>
 <p class="script-h"><strong>架构</strong><span>（00:34–01:03）</span></p>
 <p class="script-p">其实关于评测不只是 RAG，就是我们 Agent 里面也有评测嘛对吧。其实所有的评测大体都是属于一套体系。首先你要先选好你的框架。其次你要设计你跑了这个 Baseline。然后你要准备好你的评测集。</p>
-<p class="script-p">接着你要用这些评测集去跑你的 Baseline。最后根据跑出来的数据，去把评测的指标算出来。这就是我们一种的练习，下面我们就来具体看一下每一部分是怎么做的，首先第一部分选框架。</p>
+<p class="script-p">接着你要用这些评测集去跑你的 Baseline。最后根据跑出来的数据，去把评测的指标算出来。这就是我们一种的练习，下面我们就来具体看一下每一步分是怎么做的，首先第一部分选框架。</p>
 <p class="script-h"><strong>选择框架</strong><span>（01:04–01:51）</span></p>
-<p class="script-p">其实这里就分为两种：你可以用一些开源的比较好的框架。你也可以去自研框架，我们这里是用了业内比较好用一些开源框架。比如说我们整个 RAG 系统，我们适用的 ALI 的 evaluated scope。做了一个统一的调度。因为 RAG 系统分两部分。</p>
-<p class="script-p">第一部分是解锁。第二部分是生成，为了评价我检索这一部分的效果。我们用的是 MTEB，这个开源的框架。为了评价生成这一部分的效果，我们用的是 RAG Assessment 这个框架。MTEB 有一些指标。</p>
-<p class="script-p">比如说照毁率准确率，NDCJMRR Hit Rate。RAG AS 有一些指标是，Contest Precession Recall。Face Phone List，这些指标我们一会会详细介绍。然后选完框架之后。</p>
+<p class="script-p">其实这里就分为两种：你可以用一些开源的比较好的框架。你也可以去自研框架，我们这里是用了业内比较好用一些开源框架。比如说我们整个 RAG 系统，我们适用的 阿里的 EvalScope。做了一个统一的调度。因为 RAG 系统分两部分。</p>
+<p class="script-p">第一部分是检索。第二部分是生成，为了评价我检索这一部分的效果。我们用的是 MTEB，这个开源的框架。为了评价生成这一部分的效果，我们用的是 RAGAS 这个框架。MTEB 有一些指标。</p>
+<p class="script-p">比如说召回率准确率，NDCG、MRR、Hit Rate。RAGAS 有一些指标是，Context Precision / Recall。Faithfulness，这些指标我们一会会详细介绍。然后选完框架之后。</p>
 <p class="script-h"><strong>设计 baselines</strong><span>（01:51–02:58）</span></p>
-<p class="script-p">我们下一步就来设计我们的 Baseline，Baseline 的设计其实有两个维度。第一个是你可以设计出不同的方案。比如说，那我第一条 Baseline 就可以干嘛呢？纯线量减走。那第二条 Baseline 就可以混合减走，加上我的观念4.0。</p>
-<p class="script-p">那第三个方案，我可以验证我充牌的一个效果。加上一个 RERANK。那这样的话，这三条 Baseline 就能测出不同的效果。这是我们的好象。那剩下我们还可以怎么测呢？</p>
-<p class="script-p">比如说纯线量减走里面，我们可以改变它的某个参数。做一个 Parameter Swap。比如说它的 TopK 可以取1，可以取3可以取5。那这样的话，我就可以得到一个更精细的效果。所以说，横向和正向就形成了不同的实验方案。</p>
-<p class="script-p">横向的话就是我确定好每一组方案，我先做一个粗牌。确定好哪一种方案是最好的，正向的话，我们确定每种方案里面。它具体的参数怎么调，这是属于一种精调。那我所有这些方案需要跑的次数，就是每条 Baseline。都用它的参数 Swap 的次数再求合，这就是我们 Baseline 的设计。那设定完 Baseline 之后。</p>
+<p class="script-p">我们下一步就来设计我们的 Baseline，Baseline 的设计其实有两个维度。第一个是你可以设计出不同的方案。比如说，那我第一条 Baseline 就可以干嘛呢？纯向量检索。那第二条 Baseline 就可以混合检索，加上我的关键词 4.0。</p>
+<p class="script-p">那第三个方案，我可以验证我重排的一个效果。加上一个 RERANK。那这样的话，这三条 Baseline 就能测出不同的效果。这是我们的横向。那剩下我们还可以怎么测呢？</p>
+<p class="script-p">比如说纯向量检索里面，我们可以改变它的某个参数。做一个 Parameter Swap。比如说它的 TopK 可以取1，可以取3可以取5。那这样的话，我就可以得到一个更精细的效果。所以说，横向和纵向就形成了不同的实验方案。</p>
+<p class="script-p">横向的话就是我确定好每一组方案，我先做一个粗排。确定好哪一种方案是最好的，纵向的话，我们确定每种方案里面。它具体的参数怎么调，这是属于一种精调。那我所有这些方案需要跑的次数，就是每条 Baseline。都用它的参数 Swap 的次数再求和，这就是我们 Baseline 的设计。那设定完 Baseline 之后。</p>
 <p class="script-h"><strong>准备数据</strong><span>（02:58–04:48）</span></p>
 <p class="script-p">我们就要准备我们的数据了。那其实这里是要准备两套数据。因为我们前面的是两套框架，MTEB 这个框架需要的数据有三个 JSONL。我们分别来看它们的格式。第一个 JSONL 是 Corpus，它里面会存语料库的一些信息。</p>
-<p class="script-p">比如说语料库的 ID。比如说它的标题，比如说它的证文，这里面是完整的证文。那第二个 JSONL 还会存一个 Corpus，指的是我的问题集。那第三个会存一个 Corpore Relevances，问题相关性的一个标注。这里面就会首先存一个问题，语料库里面的一个文档。</p>
-<p class="script-p">以及一个相关性。对这个相关性是什么意思呢，就是我们会让人力去标入每一个问题。和它对应的语料库里面的一个关系。如果说越相关，我这个分数越高。注意这里是人据表的，就是我们要请一些了解业务的人。</p>
-<p class="script-p">去给它们标入一下。那这个数据是干嘛的呢，以后我们讲指标的时候会提到它。那这就是 MTV 需要准备的平色的数据。那第二个是我们生存平色的数据，这其实就是为我们 reg assessment 的这个框架准备。那这个框架具体来说就是一张表。</p>
-<p class="script-p">然后这张表里面有四个字段。第一个字段是应付的问题。第二个字段是检索的结果。第三个字段是标准的答案。第四个字段是实际的答案。</p>
-<p class="script-p">那你看这里，我们应付的问题和标准的答案。其实都是可以提前确定的，但是检索的结果和实际的答案。要等我们 Base line 实际跑完之后，再回天回来，那这样的话。两个框架需要了两大平分数据，都已经准备好了，下面我们就开始跑我们的 Base line。根据我们前面这种证交矩阵，我们确定好了几种方案。</p>
-<p class="script-p">把所有的数据跑完，跑完之后，我们根据得到的结果。把生存平分数据里面，还缺了数据回天回来。那这样的话，我们整到数据是不是就全了。那下面就剩最后一步了。</p>
+<p class="script-p">比如说语料库的 ID。比如说它的标题，比如说它的正文，这里面是完整的正文。那第二个 JSONL 还会存一个 Corpus，指的是我的问题集。那第三个会存一个 qrels，问题相关性的一个标注。这里面就会首先存一个问题，语料库里面的一个文档。</p>
+<p class="script-p">以及一个相关性。对这个相关性是什么意思呢，就是我们会让人力去标注每一个问题。和它对应的语料库里面的一个关系。如果说越相关，我这个分数越高。注意这里是人工标注的，就是我们要请一些了解业务的人。</p>
+<p class="script-p">去给它们标注一下。那这个数据是干嘛的呢，以后我们讲指标的时候会提到它。那这就是 MTEB 需要准备的评测的数据。那第二个是我们生存评测的数据，这其实就是为我们 RAGAS 的这个框架准备。那这个框架具体来说就是一张表。</p>
+<p class="script-p">然后这张表里面有四个字段。第一个字段是用户的问题。第二个字段是检索的结果。第三个字段是标准的答案。第四个字段是实际的答案。</p>
+<p class="script-p">那你看这里，我们用户的问题和标准的答案。其实都是可以提前确定的，但是检索的结果和实际的答案。要等我们 Baseline 实际跑完之后，再回填回来，那这样的话。两个框架需要了两大评测数据，都已经准备好了，下面我们就开始跑我们的 Baseline。根据我们前面这种正交矩阵，我们确定好了几种方案。</p>
+<p class="script-p">把所有的数据跑完，跑完之后，我们根据得到的结果。把生成评测数据里面，还缺了数据回填回来。那这样的话，我们整套数据是不是就全了。那下面就剩最后一步了。</p>
 <p class="script-h"><strong>计算指标</strong><span>（04:48–11:06）</span></p>
-<p class="script-p">就是我们要跑我们的评测框架。然后去介绍我们的指标，这个时候我们 Avaliated scope。就会把我们跑完的数据，交给这两个框架，MTEB 和 RAG assessment。让他们去计算分别，各自的五个指标，比如说 MTEB 这里会计算五个指标。召回率准确率，NDCG MRR Keterate。</p>
-<p class="script-p">我们这里，具体看一下，这五个指标分别代表什么含义。以及它会怎么算，召回率的意思是，我要看你实际筛选出的结果。它有没有筛选权，比如说我们看这个势力图。我们看第一个问题，我问这个问题之后，我期望召回的结果是。第一个文档，第二个文档，第三个文档对吧。</p>
-<p class="script-p">那假如说你实际召回的文档，里面有五个文档，并且123都在里面。就是你召回全了，那说明你的召回率。就是100%，对吧，那什么是准确率呢？准确率值的就是，你此次召回的文档里面。有多少是跟我期望的相关的，那我们知道，相关的是123嘛对吧。</p>
-<p class="script-p">你像这个7和9就是不相关。那它的准确率就是3除以5，就是60%，第三个指标。黑德瑞德，黑德瑞德是什么意思呢？其实从黑德瑞德到 MRR，到 NDCG，是逐渐清晰的一个指标信息。他们的含义都是指的，我召回的效果，黑德瑞德指的是。</p>
-<p class="script-p">你此次召回的结果里面，有没有至少一个，是我期望的文档。它是一个布尔直啊，就是只要你至少有一个。它就是1，如果它一个都没有，就是0。那 MRR 其实更惊喜了，就是它会算，你实际排名里面召回的文档。第一个相关的它的排名。</p>
+<p class="script-p">就是我们要跑我们的评测框架。然后去介绍我们的指标，这个时候我们 EvalScope。就会把我们跑完的数据，交给这两个框架，MTEB 和 RAG assessment。让他们去计算分别，各自的五个指标，比如说 MTEB 这里会计算五个指标。召回率准确率，NDCG MRR Hit Rate。</p>
+<p class="script-p">我们这里，具体看一下，这五个指标分别代表什么含义。以及它会怎么算，召回率的意思是，我要看你实际筛选出的结果。它有没有筛选全，比如说我们看这个示例图。我们看第一个问题，我问这个问题之后，我期望召回的结果是。第一个文档，第二个文档，第三个文档对吧。</p>
+<p class="script-p">那假如说你实际召回的文档，里面有五个文档，并且123都在里面。就是你召回全了，那说明你的召回率。就是100%，对吧，那什么是准确率呢？准确率指的是就是，你此次召回的文档里面。有多少是跟我期望的相关的，那我们知道，相关的是123嘛对吧。</p>
+<p class="script-p">你像这个7和9就是不相关。那它的准确率就是3除以5，就是60%，第三个指标。Hit Rate，Hit Rate是什么意思呢？其实从Hit Rate到 MRR，到 NDCG，是逐渐清晰的一个指标信息。他们的含义都是指的，我召回的效果，Hit Rate指的是。</p>
+<p class="script-p">你此次召回的结果里面，有没有至少一个，是我期望的文档。它是一个布尔值啊，就是只要你至少有一个。它就是1，如果它一个都没有，就是0。那 MRR 其实更精细了，就是它会算，你实际排名里面召回的文档。第一个相关的它的排名。</p>
 <p class="script-p">比如说我们这个，文档3，它是第一个相关的对吧。它会取一个倒数，那它就是1分之1。答案就是1嘛对吧。那假如说我们看这个问题2，我们期望的是5和6 对吧。我们第一个召回的，是不是5，它排的第二名。</p>
-<p class="script-p">那它就是1除1 2，就是0.5。大家理解了吗，再看 NDCG，NDCG 这个指标就更长样了。就是我们前面，黑德瑞德和 MRR。其实指的都是有没有，以及第一个的排序。NDCG 指的是整体的一个排序，NDCG 它具体计算是很麻烦的，对但是我可以给大家概括。</p>
-<p class="script-p">就是它首先会根据我们前面，我们是不是在这个债项里面。一个相关性的一个分数对吧，会根据这个分数，去算一个值。如果说你的检测结果，是满足我期望的这个结果。那这个公式算出来的值，就是1，也就是说我这个 NDCG。NDCG 就是最理想的情况下，它的一个分数就是1。</p>
-<p class="script-p">那前面这个 NDCG 是啥呢，NDCG 指的就是，你此次实际跑出来的分数。并且它这个公式，保证了如果说你的结果。它的检测数的文档，以及它的排序越接近理想情况。它的值值越大，如果说检测出来的文档。和它的排序差了越多，它的 NDCG 就会越小。</p>
-<p class="script-p">它满足中美长单调性。那这就是 NDCG，它的全名叫做按位置去折损。所以说它能反映出，整体的一个文档的，密证情况以及排名情况。然后刚刚我们说的这些概念。其实都是基于单个问题。</p>
-<p class="script-p">因为我们一次跑评。所以我们要跑很多问题。那最后我们会把所有问题的指标，做一个算数平均值。作为我们整个评测级的一个指标。那这就是我们 MTEB，算 GT 指标的一个过程。</p>
-<p class="script-p">但是实际上因为指标比较多，我们其实，线上主要看的是两个指标。一个是一个召回率，一个是 NDCG。因为召回率能够直接反映，你召回率全不全，至于准不准这个其实不重要。因为你除了粗照尾，会不会还有军牌，那 NDCG 它能够反映。整体的一个情况，所以我们主要考虑这两个指标。</p>
-<p class="script-p">那关于 RAG Assignment 的这个框架。其实也很简单，我们知道上面我们说过。我们准备数据的时候，它的样子是这样的，它是一张表里面有四个字段。那这个指标其实就是，分析了这四个字段之间的相互关系。比如说，我应付的问题，对吧。</p>
-<p class="script-p">和你的生效纹，其实就是我们刚刚。MTEB 里边的一个准确率。对吧，那 Recode 就是召回率。对吧，正常说的什么意思呢？就是你的回答，有没有基于你的生效纹去做。</p>
-<p class="script-p">对吧，有没有出现幻觉，准确率是什么呢？就是你召回的回答，有没有和我预计的回答是一样的，对吧。那相关性的什么呢，就是你深深地回答和我用户的问题。相不相关，切不切提，所以 RAG Assignment。这里面的五个指标，就是基于我们这张表里的四个字段。</p>
-<p class="script-p">它们的相互关系，很好理解对吧，然后具体怎么算呢？它这里算的话就，相比比较复杂，就是会分两步。每一个算都会先应大模型，做一个局部的判断。再加一个确认性的公式。对，我们这里只提，两个比较重要的指标的计算。</p>
-<p class="script-p">一个是真诚度，因为真诚度它分析的是，我们生存的回答和上下文的一个关系。它能够反映出你有没有幻觉，我们首先会大模型把答案拆成陈数据。一个一个陈数据，然后大模型逐字的去判。每个陈数据能不能由上下文去推出。所以它就可以反映出，你每个句子是不是真诚。</p>
-<p class="script-p">有没有幻觉，然后最后算出来你真诚的句数。厨余总的句数，这就是你的真诚度。那第二个比较关键的是，这个 quatness。它会把幻觉的回答和生存的回答，所有的回答都差了一个句子。然后去算它们的 TP，FP，FN 这几个指标。</p>
-<p class="script-p">算出一个事实 F1，算出 F1之后，还会经过一个加权0.75。乘以 F1，加上0.25乘以幻觉的度。去剧套对中的一个字，这其实是我们，Rug Assessment 的里面。原码的一些逻辑了，大家不用太在意，已经可以说一下这个 relevancy。这个 relevancy 的剧套也很有意思，它会算你硬货的问题。</p>
-<p class="script-p">生存的回答相不相关，它怎么算的呢，它会把你这个回答交给大模型。让这个大模型去反过来判断，你在问什么问题，然后把你真实的问题。和大模型反推的问题，算一下它们的相似度。然后把这个相似度作为分数，我觉得这个很有意思。就是反向推问题，算问题的相似度，以及这里面我们能够看到。</p>
-<p class="script-p">就是我们 relevancy 和 precession。其实是跟我们 MTEB 里面是重合的，但是它们算的方式不一样。然后这就是我们整套的一个评测流程。对吧，然后这里再说一下：</p>
+<p class="script-p">那它就是1除1 2，就是0.5。大家理解了吗，再看 NDCG，NDCG 这个指标就更复杂了。就是我们前面，Hit Rate和 MRR。其实指的都是有没有，以及第一个的排序。NDCG 指的是整体的一个排序，NDCG 它具体计算是很麻烦的，但是我可以给大家概括。</p>
+<p class="script-p">就是它首先会根据我们前面，我们是不是在这个标注里面。一个相关性的一个分数对吧，会根据这个分数，去算一个值。如果说你的检测结果，是满足我期望的这个结果。那这个公式算出来的值，就是1，也就是说我这个 NDCG。NDCG 就是最理想的情况下，它的一个分数就是1。</p>
+<p class="script-p">那前面这个 NDCG 是啥呢，NDCG 指的就是，你此次实际跑出来的分数。并且它这个公式，保证了如果说你的结果。它的检索出的文档，以及它的排序越接近理想情况。它的值越大，如果说检测出来的文档。和它的排序差了越多，它的 NDCG 就会越小。</p>
+<p class="script-p">它满足中美长单调性。那这就是 NDCG，它的全名叫做按位置去折损。所以说它能反映出，整体的一个文档的，命中情况以及排名情况。然后刚刚我们说的这些概念。其实都是基于单个问题。</p>
+<p class="script-p">因为我们一次评测。所以我们要跑很多问题。那最后我们会把所有问题的指标，做一个算术平均值。作为我们整个评测集的一个指标。那这就是我们 MTEB，算 GT 指标的一个过程。</p>
+<p class="script-p">但是实际上因为指标比较多，我们其实，线上主要看的是两个指标。一个是一个召回率，一个是 NDCG。因为召回率能够直接反映，你召回率全不全，至于准不准这个其实不重要。因为你除了粗召回，会不会还有精排，那 NDCG 它能够反映。整体的一个情况，所以我们主要考虑这两个指标。</p>
+<p class="script-p">那关于 RAGAS 的这个框架。其实也很简单，我们知道上面我们说过。我们准备数据的时候，它的样子是这样的，它是一张表里面有四个字段。那这个指标其实就是，分析了这四个字段之间的相互关系。比如说，我用户的问题，对吧。</p>
+<p class="script-p">和你的上下文，其实就是我们刚刚。MTEB 里边的一个准确率。对吧，那 Recall 就是召回率。对吧，忠实度是什么意思呢？就是你的回答，有没有基于你的上下文去做。</p>
+<p class="script-p">对吧，有没有出现幻觉，准确率是什么呢？就是你召回的回答，有没有和我预计的回答是一样的，对吧。那相关性的什么呢，就是你生成的回答和我用户的问题。相不相关，切不切题，所以 RAGAS。这里面的五个指标，就是基于我们这张表里的四个字段。</p>
+<p class="script-p">它们的相互关系，很好理解对吧，然后具体怎么算呢？它这里算的话就，相比比较复杂，就是会分两步。每一个算都会先用大模型，做一个局部的判断。再加一个确定性的公式。对，我们这里只提，两个比较重要的指标的计算。</p>
+<p class="script-p">一个是忠实度，因为忠实度它分析的是，我们生成的回答和上下文的一个关系。它能够反映出你有没有幻觉，我们首先会大模型把答案拆成陈述句。一个一个陈述句，然后大模型逐字的去判。每个陈述句能不能由上下文去推出。所以它就可以反映出，你每个句子是不是真诚。</p>
+<p class="script-p">有没有幻觉，然后最后算出来你真诚的句数。除以总的句数，这就是你的忠实度。那第二个比较关键的是，这个 Answer Correctness。它会把幻觉的回答和生成的回答，所有的回答都差了一个句子。然后去算它们的 TP，FP，FN 这几个指标。</p>
+<p class="script-p">算出一个事实 F1，算出 F1之后，还会经过一个加权0.75。乘以 F1，加上0.25乘以幻觉的度。去剧套对中的一个字，这其实是我们，RAGAS 的里面。源码的一些逻辑了，大家不用太在意，已经可以说一下这个 relevancy。这个 relevancy 的剧套也很有意思，它会算你用户的问题。</p>
+<p class="script-p">生成的回答相不相关，它怎么算的呢，它会把你这个回答交给大模型。让这个大模型去反过来判断，你在问什么问题，然后把你真实的问题。和大模型反推的问题，算一下它们的相似度。然后把这个相似度作为分数，我觉得这个很有意思。就是反向推问题，算问题的相似度，以及这里面我们能够看到。</p>
+<p class="script-p">就是我们 relevancy 和 Precision。其实是跟我们 MTEB 里面是重合的，但是它们算的方式不一样。然后这就是我们整套的一个评测流程。对吧，然后这里再说一下：</p>
 <p class="script-h"><strong>评测方法架构</strong><span>（11:06–11:55）</span></p>
-<p class="script-p">我们评测方法的一个驾顾的思考。其实我们评测里面。如果从爵士类角度可以分很多种，就是第一个是我们的人工评测。对吧，就是找我们一些专门的这些数据标注员。他们其实是最可信的，但他们的人工成本比较高。</p>
-<p class="script-p">第二个就是大模型作为一个榨子，这种是比较可信的，而且成本比较低。现在也是比较火的一个方向，传送的话就是我们一些自动指标。我们根据我们跑的评测的结果，去自动算一些指标。对这种也很便宜，但是它比较丝绊，再就是蒸气匹配。这种就是依稀训练性的断言，我们生产场应该是用这种自动指标。</p>
+<p class="script-p">我们评测方法的一个架构的思考。其实我们评测里面。如果从技术角度可以分很多种，就是第一个是我们的人工评测。对吧，就是找我们一些专门的这些数据标注员。他们其实是最可信的，但他们的人工成本比较高。</p>
+<p class="script-p">第二个就是大模型作为一个裁判，这种是比较可信的，而且成本比较低。现在也是比较火的一个方向，传统的话就是我们一些自动指标。我们根据我们跑的评测的结果，去自动算一些指标。对这种也很便宜，但是它比较死板，再就是精确匹配。这种就是一些确定性的断言，我们生产上应该是用这种自动指标。</p>
 <p class="script-p">对吧，做一个兜底，然后用大模型做一个规模化。最后有一些人工的抽样，去做一个校准，那这就是我们整个评测的练习。那最后我们说一下：</p>
 <p class="script-h"><strong>上线和迭代</strong><span>（11:55–13:03）</span></p>
-<p class="script-p">我们这个上线和底线应该怎么做？那总体来说是一个数据飞轮的概念，主要包括四部，第一步就是我们会检测。我们上面的模糊指标。比如说我们检索阶段，我们要看召回率和 NGCD。那盛场阶段我们会看重重度和重视率，包括我们还会看一些。</p>
-<p class="script-p">系统的一些延迟、成本、安全。还有稳定性，Pascale，这些。那如果说满足我们的一个标准。比如说我们这次优化的项，要大一等上一版，而且比较显著。第二个是其他那些不关键的指标，他们也要在人杀范围内。</p>
-<p class="script-p">然后包括我们系统的延迟成本，不超预算，我们一般会恢徒发布。发布之后我们要在线上监控，要看它的一些系统指标。质量以及 query 名为飘移。如果出问题的话我们就都回滚。对吧，那如果没出问题，我们也要把线上应用反复的一个白的 case。</p>
-<p class="script-p">再补进我们的评测集，再做下一次的迪戴。那这样我们就成为一个 loop，我们数据飞轮就越战越准。这就是我们上线以迪戴的一个过程。那说到这，整个 RAG 的评测体系就介绍了差不多了。如果大家有什么问题，可以在推荐器跟我交流。嗯拜拜。</p>
+<p class="script-p">我们这个上线和迭代应该怎么做？那总体来说是一个数据飞轮的概念，主要包括四步，第一步就是我们会检测。我们上面的模糊指标。比如说我们检索阶段，我们要看召回率和 NGCD。那生成阶段我们会看忠实度和相关性，包括我们还会看一些。</p>
+<p class="script-p">系统的一些延迟、成本、安全。还有稳定性，可扩展性，这些。那如果说满足我们的一个标准。比如说我们这次优化的项，要大于上一版，而且比较显著。第二个是其他那些不关键的指标，他们也要在合理范围内。</p>
+<p class="script-p">然后包括我们系统的延迟成本，不超预算，我们一般会灰度发布。发布之后我们要在线上监控，要看它的一些系统指标。质量以及 query 没有漂移。如果出问题的话我们就都回滚。对吧，那如果没出问题，我们也要把线上应用反复的一个Bad Case。</p>
+<p class="script-p">再补进我们的评测集，再做下一次的迭代。那这样我们就成为一个 loop，我们数据飞轮就越转越准。这就是我们上线以迭代的一个过程。那说到这，整个 RAG 的评测体系就介绍了差不多了。如果大家有什么问题，可以在评论区跟我交流。嗯拜拜。</p>
 </section>
 
 
