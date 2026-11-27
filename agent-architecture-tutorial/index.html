@@ -959,7 +959,7 @@ agent = create_agent(
 <div class="ts-line"><span class="ts-t">[08:33]</span> Deep Agents 是建立在 LangChain 和 LangGraph 之上的</div>
 <div class="ts-line"><span class="ts-t">[08:36]</span> 那它的 Agent loop 是由 LangChain 提供</div>
 <div class="ts-line"><span class="ts-t">[08:38]</span> 那状态管理和任务恢复</div>
-<div class="ts-line"><span class="ts-t">[08:40]</span> 负责由 LangGraph 负责</div>
+<div class="ts-line"><span class="ts-t">[08:40]</span> 由 LangGraph 负责</div>
 <div class="ts-line"><span class="ts-t">[08:42]</span> 它在这个基础上封装了任务规划</div>
 <div class="ts-line"><span class="ts-t">[08:44]</span> 上下文管理文件系统和子 Agent 的能力</div>
 <div class="ts-line"><span class="ts-t">[08:47]</span> 它比较有特点的设计有两个</div>
@@ -2486,7 +2486,7 @@ if __name__ == "__main__":
 <div class="ts-line"><span class="ts-t">[08:33]</span> Deep Agents 是建立在 LangChain 和 LangGraph 之上的</div>
 <div class="ts-line"><span class="ts-t">[08:36]</span> 那它的 Agent loop 是由 LangChain 提供</div>
 <div class="ts-line"><span class="ts-t">[08:38]</span> 那状态管理和任务恢复</div>
-<div class="ts-line"><span class="ts-t">[08:40]</span> 负责由 LangGraph 负责</div>
+<div class="ts-line"><span class="ts-t">[08:40]</span> 由 LangGraph 负责</div>
 <div class="ts-line"><span class="ts-t">[08:42]</span> 它在这个基础上封装了任务规划</div>
 <div class="ts-line"><span class="ts-t">[08:44]</span> 上下文管理文件系统和子 Agent 的能力</div>
 <div class="ts-line"><span class="ts-t">[08:47]</span> 它比较有特点的设计有两个</div>
@@ -2920,7 +2920,7 @@ if __name__ == "__main__":
 <p class="script-p">分析它们各自的基础特点优势和限制。最后再讲一个非常实际的问题。如果我们今天真的要开发一个 Agent，到底应该怎么使用这些框架。那内容比较长，大家可以根据章节直接调到感兴趣的部分。在开始具体选型之前，我们先来看一下 Agent 开发架构的演进。</p>
 <p class="script-p">大体上可以分成三个阶段，从早期的 Agent Framework。到后来的 Agent Runtime，再到现在越来越成熟的 Agent Harness。第一阶段是 Agent Framework，大概在2022年 2023年。随着大语言模型流行起来，大家就开始尝试基于大模型。开发各种应用，但那个时候开发 Agent 的很多基础工作。</p>
 <p class="script-p">都要自己完成，比如说怎么调不同的大模型。怎么让模型使用外部的工具，怎么接入知识库，怎么把工具执行的结果返回给模型。让它决定下一步做什么。那如果每开发一个 Agent，都要把这些功能重写一遍。开发成本就太高了。</p>
-<p class="script-p">所以就出现了 LangChain、LlamaIndex 这样的开发框架。那他们把模型的调用工具的介入，数据的处理，以及构建 Agent 的一些基础能力封装起来。那开发者不需要每次都从零开始。比如说我们要开发一个订单查询的 Agent，可以先在 LangChain 里面去定义一个 Agent。给它接入订单查询的接口，再配置好提示词和调用的规则，很快就能搭出一个基础版本。</p>
+<p class="script-p">所以就出现了 LangChain、LlamaIndex 这样的开发框架。那他们把模型的调用工具的接入、数据的处理，以及构建 Agent 的一些基础能力封装起来。那开发者不需要每次都从零开始。比如说我们要开发一个订单查询的 Agent，可以先在 LangChain 里面去定义一个 Agent。给它接入订单查询的接口，再配置好提示词和调用的规则，很快就能搭出一个基础版本。</p>
 <p class="script-p">LangChain、LlamaIndex、CrewAI，都属于这一类的 Framework。他们主要解决的是减少重复开发，让 Agent 更容易构建。那第二阶段是 Agent 的 Runtime，随着 Agent 的执行任务越来越复杂。大家发现：仅仅把模型和工具连接起来还不够。比如我们要开发一个电商选品的 Agent，要先读取商品的信息。</p>
 <p class="script-p">然后查询库存、价格、佣金。接着给商品打分，最后再生成选品的结果。这里面的步骤很多，有些必须要按照固定的顺序执行。有些则需要根据上一步的结果，决定接下来该怎么做？如果任务执行到一半失败了，能不能接着之前的进度继续。</p>
 <p class="script-p">如果某个环节需要人工确认，能不能先暂停，等用户确认之后再往下走。这些已经不只是模型调用和工具接入的事情了，我们还需要管理整个任务的执行流程。保存执行的状态处理中断和恢复。于是在2024年 LangGraph 推出了 LangGraph，它的核心就是让开发者能够更聪明地，控制 Agent 的执行过程。比如任务有哪些步骤，步骤之间怎么流转。</p>
@@ -2943,7 +2943,7 @@ if __name__ == "__main__":
 <p class="script-p">也支持开发者增加自己的业务工具。但它的核心机制是预置的，你可以干预 Agent loop。却不能任意替换整个执行循环，你可以控制部分上下文的内容。但是不能完全接管上下文组装和压缩的机制，你可以去扩展工具。但是不能直接改写内置工具的底层实现，这个设计的取舍非常明确。</p>
 <p class="script-p">优点是你不需要自己去设计整套执行系统，可以直接复用 Claude code 的成熟的机制。减少大量的基础开发工作，限制也在这，你对核心机制的控制权有限。如果你需要一套与 Claude code 的完全不同的执行架构，就可能会受到 SDK 扩展接口的约束。所以 Claude Agent SDK 更适合这样的团队，你要认可 Claude code 默认的执行方式。希望在此基础上快速开发自己的业务的 Agent。</p>
 <p class="script-p">对于小白来说，如果技术基础相对薄弱。但有一定的开发能力，或者是可以借助 vibe coding 完成开发。那它是最值得优先考虑的方案。因为它封装的程度比较高，不需要自己从零搭建 Harness。接下来是 LangChain 的 Deep Agents，它和 Claude Agent SDK 一样。</p>
-<p class="script-p">也提供了比较完整的 Harness。那两者最大的区别是，Claude Agent SDK 更强调。复用一套成熟的执行机制，而 Deep Agents 更强调开放和可定制。那我们前面提到，Deep Agents 是建立在 LangChain 和 LangGraph 之上的，那它的 Agent loop 是由 LangChain 提供。那状态管理和任务恢复，负责由 LangGraph 负责。</p>
+<p class="script-p">也提供了比较完整的 Harness。那两者最大的区别是，Claude Agent SDK 更强调。复用一套成熟的执行机制，而 Deep Agents 更强调开放和可定制。那我们前面提到，Deep Agents 是建立在 LangChain 和 LangGraph 之上的，那它的 Agent loop 是由 LangChain 提供。那状态管理和任务恢复，由 LangGraph 负责。</p>
 <p class="script-p">它在这个基础上封装了任务规划，上下文管理文件系统和子 Agent 的能力。它比较有特点的设计有两个。第一个是 midware，也就是中间件，那可以理解成。把 Harness 的不同执行策略拆成独立的模块，让开发者按需调整。比如说你对默认的上下文压缩方式不满意，你就可以直接替换相应的处理策略。</p>
 <p class="script-p">也可以在模型调用前去修改上下文，调整可用的工具，那相比较 Claude Agent SDK。你对这些内部机制的控制空间更大。那第二个是 Deep Agents，可以灵活的去选择文件存储和代码的执行环境。比如说 Agent 需要分析数据，生成文件，你可以让它使用本地的文件。也可以让它进入远程的沙箱来执行代码，还可以把需要长期保存的信息。</p>
 <p class="script-p">放在持久化的存储中。那这样的好处是。不必绑定在一种固定的环境里，可以根据不同业务的需求选择合适的实现方式。所以如果你做的是企业的 Agent，需要服务多个客户。对数据的存储和执行环境又有特殊的需求。</p>
@@ -2962,7 +2962,7 @@ if __name__ == "__main__":
 <p class="script-p">反过来，如果你的目标不是 coding Agent。更希望从一个简单的核心出发，自由设计执行方式。那 py 可能更合适，前面介绍了 Claude Agent SDK Deep Agents。以及 py 和 OpenCode，更多是围绕着 Agent。怎么完成任务来设计的，接下来我们看一下个人助手类的，代表的项目就是 OpenClaw 和 Hermes。</p>
 <p class="script-p">这一类有一个明显的不同，他们不只是完成一次任务。而是希望 Agent 能够长期运行，记住用户的信息，甚至主动发起任务。那先来看 OpenClaw，它的核心设计之一是 Gateway。可以理解成是个人助手的管理中心。比如说你可以通过飞书，微信给 Agent 的发送任务。</p>
 <p class="script-p">Gateway 会负责接收消息，识别用户和 session。再交给对应的 Agent 的执行。那最后再把结果返回给用户，它还内置了定时任务事件触发的机制。可以每天自动整理信息，定期生成报告，不用用户每次手动发起。那前面提到 OpenClaw 早期是基于，派的 Agent SDK 构建的，那现在它已经发展出了自己的 Agent Runtime。</p>
-<p class="script-p">能够独立的管理 Agent loop，上下文工具执行，也可以通过插件去扩展能力。所以 OpenClaw 的核心价值，是把 Agent 的执行能力。消息渠道和长期任务管理整合到了一起。那有了它，如果你想搭建一个长期运行的个人助手。就不需要从零开发消息，介入任务调度和会话管理。</p>
+<p class="script-p">能够独立的管理 Agent loop，上下文工具执行，也可以通过插件去扩展能力。所以 OpenClaw 的核心价值，是把 Agent 的执行能力。消息渠道和长期任务管理整合到了一起。那有了它，如果你想搭建一个长期运行的个人助手。就不需要从零开发消息接入、任务调度和会话管理。</p>
 <p class="script-p">这些基础的设施，那它的限制也很明显。作为一套相对完整的系统，它的部署和维护的成本更高。如果只是想开发一个普通的任务型 Agent，很多能力可能根本用不上。那另一个就是 Hermes，它和 OpenClaw 有很多相似的能力。比如说多渠道的交互能力，定时任务和长期记忆。</p>
 <p class="script-p">它最有特点的是持续学习机制，它不只是让 Agent 的记住过去的对话。还希望 Agent 能把完成任务的经验沉淀下来，留到后面复用，这里面有两个核心设计。memory 还有 skill，memory 是用来保存用户的偏好。项目背景的长期信息，skill 的用来保存完成某类任务的方法。比如说你经常让 Agent 的帮你写周报，最开始你需要告诉它。</p>
 <p class="script-p">周报的结构重点和写作方式。那写了几次之后，Agent 可能会逐渐总结出一套有效的方法。把它存成 skill，以后再写周报，直接复用这套方法就行。不用每次都重新摸索。所以它的特点是，把任务执行记忆和技能积累连接起来。</p>

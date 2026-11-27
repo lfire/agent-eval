@@ -494,7 +494,7 @@ main{padding-top:22px}
 <div class="ts-lines">
 <div class="ts-line"><span class="ts-t">[01:06]</span> 输入提示词模型给出回答</div>
 <div class="ts-line"><span class="ts-t">[01:08]</span> 以前很多的评测都是围绕着最终的回答展开</div>
-<div class="ts-line"><span class="ts-t">[01:11]</span> 答案准备准确</div>
+<div class="ts-line"><span class="ts-t">[01:11]</span> 答案准不准确</div>
 <div class="ts-line"><span class="ts-t">[01:12]</span> 有没有幻觉</div>
 <div class="ts-line"><span class="ts-t">[01:13]</span> 相关性怎么样</div>
 <div class="ts-line"><span class="ts-t">[01:13]</span> 语言质量怎么样</div>
@@ -2386,7 +2386,7 @@ def run_suite(suite, agent, env_factory, trials=3, workers=3):
 <div class="ts-lines">
 <div class="ts-line"><span class="ts-t">[01:06]</span> 输入提示词模型给出回答</div>
 <div class="ts-line"><span class="ts-t">[01:08]</span> 以前很多的评测都是围绕着最终的回答展开</div>
-<div class="ts-line"><span class="ts-t">[01:11]</span> 答案准备准确</div>
+<div class="ts-line"><span class="ts-t">[01:11]</span> 答案准不准确</div>
 <div class="ts-line"><span class="ts-t">[01:12]</span> 有没有幻觉</div>
 <div class="ts-line"><span class="ts-t">[01:13]</span> 相关性怎么样</div>
 <div class="ts-line"><span class="ts-t">[01:13]</span> 语言质量怎么样</div>
@@ -2892,7 +2892,7 @@ def run_suite(suite, agent, env_factory, trials=3, workers=3):
 <p class="script-p">每次修改到底有没有让产品变好，而这里经常被忽视的一环就是评测。评测却为 Agent 的迭代就很容易变成，凭感觉改哪儿、漏了什么。所以评测必须从产品设计时就介入，成为决定产品改什么怎么改。能不能上线的关键依据，今年1月，Anthropic 发布了一篇 Agent 的评测的文章。系统地讨论了 Agent 的评测应该怎么设计，最近阿里的技术团队也发布了一篇。</p>
 <p class="script-p">Agent 的评测体系设计与工程实践，又给出了具体的工程落地思路。那今天呢，我们就把这两篇放在一起。讲清楚 Agent 的评测到底应该怎么做，视频的最后，我也整理了一个评测的指标地图。方便大家对照自己的产品使用，内容比较多，信息密度很大。大家可以按照时间轴切换到感兴趣的章节，想反复阅读的也可以找我要文字版。传统大模型的调用。</p>
 <p class="script-h"><strong>Agent 的错误发生位置</strong><span>（01:06–02:17）</span></p>
-<p class="script-p">输入提示词模型给出回答，以前很多的评测都是围绕着最终的回答展开。答案准备准确，有没有幻觉，相关性怎么样。语言质量怎么样，但 Agent 不一样。Agent 的接到任务要先理解需求，安排步骤，再调用工具读取结果。再决定下一步，有的时候还要改文件。</p>
+<p class="script-p">输入提示词模型给出回答，以前很多的评测都是围绕着最终的回答展开。答案准不准确，有没有幻觉，相关性怎么样。语言质量怎么样，但 Agent 不一样。Agent 的接到任务要先理解需求，安排步骤，再调用工具读取结果。再决定下一步，有的时候还要改文件。</p>
 <p class="script-p">更新订单，情况不对再调整计划。所以 Agent 的错误，不是只发生在最后生成答案的那一刻。而是发生在整条执行链路上的任何一个地方。比如说退款，订单找错了，后面的工具调用再顺利。也是给错误的订单退款，金额传错了，接口返回成功。</p>
 <p class="script-p">退的金额也是错的，所以 Agent 的评测。必须是要覆盖一次完整的任务执行，他说了什么，做了什么。最后系统变成了什么状态，都得有记录，而这些步骤又是连在一起的。你为了修改工具，改了提示词，有可能会影响任务的路由。为了让他记住更多的信息，又可能增加干扰，眼前的几个任务变好了。</p>
 <p class="script-p">那其他的任务有没有受影响，靠感觉是看不出来的，评测要改变的。就是这个被动的局面，让问题尽量在用户之前暴露出来。不少团队做评测，上来就列准确率，召回率。幻觉率，指标列了一大堆，到底怎么才算是上线标准。没人说得清，我把这两篇文章的思路。</p>

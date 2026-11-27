@@ -1473,7 +1473,7 @@ main{padding-top:22px}
 <div class="ts-line"><span class="ts-t">[视频③ 05:51]</span> 再在通过的 Trial 中比较软性质量</div>
 <div class="ts-line"><span class="ts-t">[视频③ 05:53]</span> 开放性的质量</div>
 <div class="ts-line"><span class="ts-t">[视频③ 05:55]</span> 任务也可以设置部分的得分</div>
-<div class="ts-line"><span class="ts-t">[视频③ 05:57]</span> 但是每一步分都要对应一个</div>
+<div class="ts-line"><span class="ts-t">[视频③ 05:57]</span> 但是每一部分都要对应一个</div>
 <div class="ts-line"><span class="ts-t">[视频③ 05:58]</span> 独立的可以解释的成功维度</div>
 </div></details>
 </section>
@@ -2294,7 +2294,7 @@ if __name__ == "__main__":
 <div class="ts-line"><span class="ts-t">[视频③ 05:51]</span> 再在通过的 Trial 中比较软性质量</div>
 <div class="ts-line"><span class="ts-t">[视频③ 05:53]</span> 开放性的质量</div>
 <div class="ts-line"><span class="ts-t">[视频③ 05:55]</span> 任务也可以设置部分的得分</div>
-<div class="ts-line"><span class="ts-t">[视频③ 05:57]</span> 但是每一步分都要对应一个</div>
+<div class="ts-line"><span class="ts-t">[视频③ 05:57]</span> 但是每一部分都要对应一个</div>
 <div class="ts-line"><span class="ts-t">[视频③ 05:58]</span> 独立的可以解释的成功维度</div>
 <div class="ts-line"><span class="ts-t">[视频③ 06:00]</span> 第五步</div>
 <div class="ts-line"><span class="ts-t">[视频③ 06:01]</span> 先测 Grader 再用 Grader 测 Agent</div>
@@ -2430,7 +2430,7 @@ if __name__ == "__main__":
 <p class="script-p">如果模型判断和人工判断持续分歧，应该先修正 Rubric。证据输入或者是分类的边界，不要直接去扩大自动评分的规模。所以三类 Grader 的顺序其实很明确，能够确定性验证的条件先交给代码。需要理解语义和质量的部分再交给模型。最后用少量的人工样本，持续的校准模型的评分。</p>
 <p class="script-p">OpenAI 当前的 Evals API，提供了字符串检查。文本相似度，模型评分，Python Grader 和 MultiGrader 等方式。评测数据和模型输出，可以通过结构化变量传入不同的 Grader。第四步，别让一个总分掩盖关键失败。三类 Grader 完成各自的判断以后，还需要决定这些分数如何组合。</p>
 <p class="script-p">天气任务可以拆成四个维度，是否调用工具？调用参数是否正确，回答是否忠于工具数据？表达是否清晰，前三项决定任务是否真正成功？他们应该是必须通过的硬条件，表达质量可以作为独立的分数。用来区分，完成任务以后的质量差异。</p>
-<p class="script-p">但是如果把他们全部算进一个平均分，一次没有搜索，但是表达很好的回答。仍然可以拿到看似不错的总分，这个分数无法反映任务是成功的，更稳妥的做法。是先用硬条件判断任务是否通过，再在通过的 Trial 中比较软性质量。开放性的质量，任务也可以设置部分的得分。但是每一步分都要对应一个，独立的可以解释的成功维度。</p>
+<p class="script-p">但是如果把他们全部算进一个平均分，一次没有搜索，但是表达很好的回答。仍然可以拿到看似不错的总分，这个分数无法反映任务是成功的，更稳妥的做法。是先用硬条件判断任务是否通过，再在通过的 Trial 中比较软性质量。开放性的质量，任务也可以设置部分的得分。但是每一部分都要对应一个，独立的可以解释的成功维度。</p>
 <p class="script-p">第五步，先测 Grader 再用 Grader 测 Agent。Grader 本身也是一个需要验证的系统。如果 Grader 会把正确的回答判错，后面越跑越多，积累的只会是更多的错误分数。第一期已经为 Task 准备了参考解法，现在可以再准备几组已知的样本。一组应该通过，一组应该失败，再加上几条比较容易出现分歧的边界样本。</p>
 <p class="script-p">先看 Code-based Grader 能不能放过正确结果。并且拦住已知的错误，再用人工标注结果。校准 LLM Grader 的准确性和分类边界，每次修改 Rubric 评分模型。或者是分数组合方式以后，这批的样本都应该重新跑一遍。这一步一完成以后，你才能知道分数变化。</p>
 <p class="script-p">确实是来子 Agent 的表现，而不是 Grader 自己改变了判断。到这里第二层就搭完了，一条 Task 进入可重置的测试环境。Agent 完成一次 Trial，Eval Harness 保留 Outcome 和 Transcript。确定性 Grader 先检查硬条件，模型 Grader 再评价语义质量。最后用少量的人工样本持续去校准，这样得到的评分才能被解释和复查。</p>
