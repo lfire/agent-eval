@@ -461,7 +461,7 @@ main{padding-top:22px}
 <div class="ts-line"><span class="ts-t">[02:16]</span> 那剩下我们还可以怎么测呢</div>
 <div class="ts-line"><span class="ts-t">[02:18]</span> 比如说纯向量检索里面</div>
 <div class="ts-line"><span class="ts-t">[02:20]</span> 我们可以改变它的某个参数</div>
-<div class="ts-line"><span class="ts-t">[02:22]</span> 做一个 Parameter Swap</div>
+<div class="ts-line"><span class="ts-t">[02:22]</span> 做一个 Parameter Sweep</div>
 <div class="ts-line"><span class="ts-t">[02:24]</span> 比如说它的 Top-K 可以取1</div>
 <div class="ts-line"><span class="ts-t">[02:26]</span> 可以取3可以取5</div>
 <div class="ts-line"><span class="ts-t">[02:28]</span> 那这样的话</div>
@@ -477,7 +477,7 @@ main{padding-top:22px}
 <div class="ts-line"><span class="ts-t">[02:47]</span> 这是属于一种精调</div>
 <div class="ts-line"><span class="ts-t">[02:49]</span> 那我所有这些方案需要跑的次数</div>
 <div class="ts-line"><span class="ts-t">[02:51]</span> 就是每条 Baseline</div>
-<div class="ts-line"><span class="ts-t">[02:53]</span> 都用它的参数 Swap 的次数再求和</div>
+<div class="ts-line"><span class="ts-t">[02:53]</span> 都用它的参数 Sweep 的次数再求和</div>
 <div class="ts-line"><span class="ts-t">[02:56]</span> 这就是我们 Baseline 的设计</div>
 <div class="ts-line"><span class="ts-t">[02:57]</span> 那设定完 Baseline 之后</div>
 <div class="ts-line"><span class="ts-t">[02:58]</span> 我们就要准备我们的数据了</div>
@@ -584,7 +584,7 @@ main{padding-top:22px}
 <div class="ts-line"><span class="ts-t">[06:00]</span> 其实从 Hit Rate 到 MRR</div>
 <div class="ts-line"><span class="ts-t">[06:02]</span> 到 NDCG</div>
 <div class="ts-line"><span class="ts-t">[06:03]</span> 是逐渐清晰的一个指标信息</div>
-<div class="ts-line"><span class="ts-t">[06:06]</span> 他们的含义都是指的</div>
+<div class="ts-line"><span class="ts-t">[06:06]</span> 它们的含义都是指</div>
 <div class="ts-line"><span class="ts-t">[06:07]</span> 我召回的效果</div>
 <div class="ts-line"><span class="ts-t">[06:08]</span> Hit Rate指的是</div>
 <div class="ts-line"><span class="ts-t">[06:10]</span> 你此次召回的结果里面</div>
@@ -1363,7 +1363,7 @@ main{padding-top:22px}
 <div class="ts-line"><span class="ts-t">[12:23]</span> 要大于上一版</div>
 <div class="ts-line"><span class="ts-t">[12:24]</span> 而且比较显著</div>
 <div class="ts-line"><span class="ts-t">[12:25]</span> 第二个是其他那些不关键的指标</div>
-<div class="ts-line"><span class="ts-t">[12:27]</span> 他们也要在合理范围内</div>
+<div class="ts-line"><span class="ts-t">[12:27]</span> 它们也要在合理范围内</div>
 <div class="ts-line"><span class="ts-t">[12:29]</span> 然后包括我们系统的延迟成本</div>
 <div class="ts-line"><span class="ts-t">[12:32]</span> 不超预算</div>
 <div class="ts-line"><span class="ts-t">[12:33]</span> 我们一般会灰度发布</div>
@@ -1760,7 +1760,7 @@ def check(current, baseline=None, tolerance=0.02):
 <div class="ts-line"><span class="ts-t">[02:16]</span> 那剩下我们还可以怎么测呢</div>
 <div class="ts-line"><span class="ts-t">[02:18]</span> 比如说纯向量检索里面</div>
 <div class="ts-line"><span class="ts-t">[02:20]</span> 我们可以改变它的某个参数</div>
-<div class="ts-line"><span class="ts-t">[02:22]</span> 做一个 Parameter Swap</div>
+<div class="ts-line"><span class="ts-t">[02:22]</span> 做一个 Parameter Sweep</div>
 <div class="ts-line"><span class="ts-t">[02:24]</span> 比如说它的 Top-K 可以取1</div>
 <div class="ts-line"><span class="ts-t">[02:26]</span> 可以取3可以取5</div>
 <div class="ts-line"><span class="ts-t">[02:28]</span> 那这样的话</div>
@@ -1776,7 +1776,7 @@ def check(current, baseline=None, tolerance=0.02):
 <div class="ts-line"><span class="ts-t">[02:47]</span> 这是属于一种精调</div>
 <div class="ts-line"><span class="ts-t">[02:49]</span> 那我所有这些方案需要跑的次数</div>
 <div class="ts-line"><span class="ts-t">[02:51]</span> 就是每条 Baseline</div>
-<div class="ts-line"><span class="ts-t">[02:53]</span> 都用它的参数 Swap 的次数再求和</div>
+<div class="ts-line"><span class="ts-t">[02:53]</span> 都用它的参数 Sweep 的次数再求和</div>
 <div class="ts-line"><span class="ts-t">[02:56]</span> 这就是我们 Baseline 的设计</div>
 <div class="ts-line"><span class="ts-t">[02:57]</span> 那设定完 Baseline 之后</div>
 </div></details>
@@ -1889,7 +1889,7 @@ def check(current, baseline=None, tolerance=0.02):
 <div class="ts-line"><span class="ts-t">[06:00]</span> 其实从 Hit Rate 到 MRR</div>
 <div class="ts-line"><span class="ts-t">[06:02]</span> 到 NDCG</div>
 <div class="ts-line"><span class="ts-t">[06:03]</span> 是逐渐清晰的一个指标信息</div>
-<div class="ts-line"><span class="ts-t">[06:06]</span> 他们的含义都是指的</div>
+<div class="ts-line"><span class="ts-t">[06:06]</span> 它们的含义都是指</div>
 <div class="ts-line"><span class="ts-t">[06:07]</span> 我召回的效果</div>
 <div class="ts-line"><span class="ts-t">[06:08]</span> Hit Rate指的是</div>
 <div class="ts-line"><span class="ts-t">[06:10]</span> 你此次召回的结果里面</div>
@@ -2129,7 +2129,7 @@ def check(current, baseline=None, tolerance=0.02):
 <div class="ts-line"><span class="ts-t">[12:23]</span> 要大于上一版</div>
 <div class="ts-line"><span class="ts-t">[12:24]</span> 而且比较显著</div>
 <div class="ts-line"><span class="ts-t">[12:25]</span> 第二个是其他那些不关键的指标</div>
-<div class="ts-line"><span class="ts-t">[12:27]</span> 他们也要在合理范围内</div>
+<div class="ts-line"><span class="ts-t">[12:27]</span> 它们也要在合理范围内</div>
 <div class="ts-line"><span class="ts-t">[12:29]</span> 然后包括我们系统的延迟成本</div>
 <div class="ts-line"><span class="ts-t">[12:32]</span> 不超预算</div>
 <div class="ts-line"><span class="ts-t">[12:33]</span> 我们一般会灰度发布</div>
@@ -2204,14 +2204,14 @@ def check(current, baseline=None, tolerance=0.02):
 <p class="script-p">其实关于评测不只是 RAG，就是我们 Agent 里面也有评测嘛对吧。其实所有的评测大体都是属于一套体系。首先你要先选好你的框架。其次你要设计你的 Baseline。然后你要准备好你的评测集。</p>
 <p class="script-p">接着你要用这些评测集去跑你的 Baseline。最后根据跑出来的数据，去把评测的指标算出来。这就是我们整体的链路，下面我们就来具体看一下每一部分是怎么做的，首先第一部分选框架。</p>
 <p class="script-h"><strong>选择框架</strong><span>（01:04–01:51）</span></p>
-<p class="script-p">其实这里就分为两种：你可以用一些开源的比较好的框架。你也可以去自研框架，我们这里是用了业内比较好用一些开源框架。比如说我们整个 RAG 系统，我们使用的是阿里的 EvalScope。做了一个统一的调度。因为 RAG 系统分两部分。</p>
-<p class="script-p">第一部分是检索。第二部分是生成，为了评价我检索这一部分的效果。我们用的是 MTEB，这个开源的框架。为了评价生成这一部分的效果，我们用的是 RAGAS 这个框架。MTEB 有一些指标。</p>
-<p class="script-p">比如说召回率准确率，NDCG、MRR、Hit Rate。RAGAS 有一些指标是，Context Precision / Recall。Faithfulness，这些指标我们一会会详细介绍。然后选完框架之后。</p>
+<p class="script-p">其实这里就分为两种：你可以用一些开源的比较好的框架。你也可以去自研框架，我们这里是用了业内比较好用一些开源框架。比如说我们整个 RAG 系统，我们使用的是阿里的 EvalScope，做了一个统一的调度。因为 RAG 系统分两部分。</p>
+<p class="script-p">第一部分是检索。第二部分是生成，为了评价我检索这一部分的效果，我们用的是 MTEB，这个开源的框架。为了评价生成这一部分的效果，我们用的是 RAGAS 这个框架。MTEB 有一些指标。</p>
+<p class="script-p">比如说召回率、准确率、NDCG、MRR、Hit Rate。RAGAS 有一些指标是，Context Precision / Recall、Faithfulness 等，这些指标我们一会会详细介绍。然后选完框架之后。</p>
 <p class="script-h"><strong>设计 baselines</strong><span>（01:51–02:58）</span></p>
 <p class="script-p">我们下一步就来设计我们的 Baseline，Baseline 的设计其实有两个维度。第一个是你可以设计出不同的方案。比如说，那我第一条 Baseline 就可以干嘛呢？纯向量检索。那第二条 Baseline 就可以混合检索，加上我的关键词 BM25。</p>
 <p class="script-p">那第三个方案，我可以验证我重排的一个效果。加上一个 RERANK。那这样的话，这三条 Baseline 就能测出不同的效果。这是我们的横向。那剩下我们还可以怎么测呢？</p>
-<p class="script-p">比如说纯向量检索里面，我们可以改变它的某个参数。做一个 Parameter Swap。比如说它的 TopK 可以取1，可以取3可以取5。那这样的话，我就可以得到一个更精细的效果。所以说，横向和纵向就形成了不同的实验方案。</p>
-<p class="script-p">横向的话就是我确定好每一组方案，我先做一个粗排。确定好哪一种方案是最好的，纵向的话，我们确定每种方案里面。它具体的参数怎么调，这是属于一种精调。那我所有这些方案需要跑的次数，就是每条 Baseline。都用它的参数 Swap 的次数再求和，这就是我们 Baseline 的设计。那设定完 Baseline 之后。</p>
+<p class="script-p">比如说纯向量检索里面，我们可以改变它的某个参数。做一个 Parameter Sweep。比如说它的 Top-K 可以取 1，可以取3可以取5。那这样的话，我就可以得到一个更精细的效果。所以说，横向和纵向就形成了不同的实验方案。</p>
+<p class="script-p">横向的话就是我确定好每一组方案，我先做一个粗排。确定好哪一种方案是最好的，纵向的话，我们确定每种方案里面。它具体的参数怎么调，这是属于一种精调。那我所有这些方案需要跑的次数，就是每条 Baseline。都用它的参数 Sweep 的次数再求和，这就是我们 Baseline 的设计。那设定完 Baseline 之后。</p>
 <p class="script-h"><strong>准备数据</strong><span>（02:58–04:48）</span></p>
 <p class="script-p">我们就要准备我们的数据了。那其实这里是要准备两套数据。因为我们前面的是两套框架，MTEB 这个框架需要的数据有三个 JSONL。我们分别来看它们的格式。第一个 JSONL 是 Corpus，它里面会存语料库的一些信息。</p>
 <p class="script-p">比如说语料库的 ID。比如说它的标题，比如说它的正文，这里面是完整的正文。那第二个 JSONL 还会存一个 queries，指的是我的问题集。那第三个会存一个 qrels，问题相关性的一个标注。这里面就会首先存一个问题，语料库里面的一个文档。</p>
@@ -2221,36 +2221,36 @@ def check(current, baseline=None, tolerance=0.02):
 <p class="script-p">那你看这里，我们用户的问题和标准的答案。其实都是可以提前确定的，但是检索的结果和实际的答案。要等我们 Baseline 实际跑完之后，再回填回来，那这样的话。两个框架需要了两大评测数据，都已经准备好了，下面我们就开始跑我们的 Baseline。根据我们前面这种正交矩阵，我们确定好了几种方案。</p>
 <p class="script-p">把所有的数据跑完，跑完之后，我们根据得到的结果。把生成评测数据里面，还缺了数据回填回来。那这样的话，我们整套数据是不是就全了。那下面就剩最后一步了。</p>
 <p class="script-h"><strong>计算指标</strong><span>（04:48–11:06）</span></p>
-<p class="script-p">就是我们要跑我们的评测框架。然后去介绍我们的指标，这个时候我们 EvalScope。就会把我们跑完的数据，交给这两个框架，MTEB 和 RAGAS。让他们分别计算各自的五个指标，比如说 MTEB 这里会计算五个指标。召回率准确率，NDCG MRR Hit Rate。</p>
-<p class="script-p">我们这里，具体看一下，这五个指标分别代表什么含义。以及它会怎么算，召回率的意思是，我要看你实际筛选出的结果。它有没有筛选全，比如说我们看这个示例图。我们看第一个问题，我问这个问题之后，我期望召回的结果是。第一个文档，第二个文档，第三个文档对吧。</p>
-<p class="script-p">那假如说你实际召回的文档，里面有五个文档，并且123都在里面。就是你召回全了，那说明你的召回率。就是100%，对吧，那什么是准确率呢？准确率指的是就是，你此次召回的文档里面。有多少是跟我期望的相关的，那我们知道，相关的是123嘛对吧。</p>
-<p class="script-p">你像这个7和9就是不相关。那它的准确率就是3除以5，就是60%，第三个指标。Hit Rate，Hit Rate是什么意思呢？其实从 Hit Rate 到 MRR，到 NDCG，是逐渐清晰的一个指标信息。他们的含义都是指的，我召回的效果，Hit Rate指的是。</p>
-<p class="script-p">你此次召回的结果里面，有没有至少一个，是我期望的文档。它是一个布尔值啊，就是只要你至少有一个。它就是1，如果它一个都没有，就是0。那 MRR 其实更精细了，就是它会算，你实际排名里面召回的文档。第一个相关的它的排名。</p>
-<p class="script-p">比如说我们这个，文档3，它是第一个相关的对吧。它会取一个倒数，那它就是1分之1。答案就是1嘛对吧。那假如说我们看这个问题2，我们期望的是5和6 对吧。我们第一个召回的，是不是5，它排的第二名。</p>
-<p class="script-p">那它就是 1 除以 2，就是 0.5。大家理解了吗，再看 NDCG，NDCG 这个指标就更复杂了。就是我们前面，Hit Rate和 MRR。其实指的都是有没有，以及第一个的排序。NDCG 指的是整体的一个排序，NDCG 它具体计算是很麻烦的，但是我可以给大家概括。</p>
-<p class="script-p">就是它首先会根据我们前面，我们是不是在这个标注里面。一个相关性的一个分数对吧，会根据这个分数，去算一个值。如果说你的检测结果，是满足我期望的这个结果。那这个公式算出来的值，就是1，也就是说我这个 NDCG。NDCG 就是最理想的情况下，它的一个分数就是1。</p>
-<p class="script-p">那前面这个 NDCG 是啥呢，NDCG 指的就是，你此次实际跑出来的分数。并且它这个公式，保证了如果说你的结果。它的检索出的文档，以及它的排序越接近理想情况。它的值越大，如果说检测出来的文档。和它的排序差了越多，它的 NDCG 就会越小。</p>
-<p class="script-p">它满足这种单调性。那这就是 NDCG，它的全名叫做按位置去折损。所以说它能反映出，整体的一个文档的，命中情况以及排名情况。然后刚刚我们说的这些概念。其实都是基于单个问题。</p>
-<p class="script-p">因为我们一次评测。所以我们要跑很多问题。那最后我们会把所有问题的指标，做一个算术平均值。作为我们整个评测集的一个指标。那这就是我们 MTEB，算 GT 指标的一个过程。</p>
-<p class="script-p">但是实际上因为指标比较多，我们其实，线上主要看的是两个指标。一个是召回率，一个是 NDCG。因为召回率能够直接反映，你召回得全不全，至于准不准这个其实不重要。因为你粗召回之后，还会不会有精排，那 NDCG 它能够反映。整体的一个情况，所以我们主要考虑这两个指标。</p>
+<p class="script-p">就是我们要跑我们的评测框架。然后去介绍我们的指标，这个时候我们 EvalScope 就会把我们跑完的数据，交给这两个框架 MTEB 和 RAGAS，让它们分别计算各自的五个指标，比如说 MTEB 这里会计算五个指标。召回率准确率，NDCG MRR Hit Rate。</p>
+<p class="script-p">我们这里，具体看一下，这五个指标分别代表什么含义。以及它会怎么算，召回率的意思是，我要看你实际筛选出的结果。它有没有筛选全，比如说我们看这个示例图。我们看第一个问题，我问这个问题之后，我期望召回的结果是：第一个文档、第二个文档、第三个文档，对吧。</p>
+<p class="script-p">那假如说你实际召回的文档，里面有五个文档，并且123都在里面。就是你召回全了，那说明你的召回率就是 100%，对吧，那什么是准确率呢？准确率指的是就是，你此次召回的文档里面。有多少是跟我期望的相关的，那我们知道，相关的是123嘛对吧。</p>
+<p class="script-p">你像这个7和9就是不相关。那它的准确率就是3除以5，就是60%，第三个指标 Hit Rate。Hit Rate 是什么意思呢？其实从 Hit Rate 到 MRR，到 NDCG，是逐渐清晰的一组指标。它们的含义都是指我召回的效果，Hit Rate 指的是。</p>
+<p class="script-p">你此次召回的结果里面，有没有至少一个，是我期望的文档。它是一个布尔值啊，就是只要你至少有一个，它就是 1，如果它一个都没有，就是0。那 MRR 其实更精细了，就是它会算，你实际排名里面召回的文档。第一个相关的它的排名。</p>
+<p class="script-p">比如说我们这个，文档3，它是第一个相关的对吧。它会取一个倒数，那它就是 1/1，答案就是 1 嘛，对吧。那假如说我们看这个问题2，我们期望的是5和6 对吧。我们第一个召回的，是不是5，它排的第二名。</p>
+<p class="script-p">那它就是 1 除以 2，就是 0.5。大家理解了吗，再看 NDCG，NDCG 这个指标就更复杂了。就是我们前面 Hit Rate 和 MRR，其实指的都是有没有，以及第一个的排序。NDCG 指的是整体的一个排序，NDCG 它具体计算是很麻烦的，但是我可以给大家概括：</p>
+<p class="script-p">就是它首先会根据我们前面在这个标注里的一个相关性分数，对吧，会根据这个分数，去算一个值。如果说你的检测结果满足我期望的这个结果，那这个公式算出来的值就是 1，也就是说我这个 NDCG，NDCG 就是最理想的情况下，它的一个分数就是1。</p>
+<p class="script-p">那前面这个 NDCG 是啥呢，NDCG 指的就是，你此次实际跑出来的分数。并且它这个公式保证了，如果说你的结果检索出的文档，以及它的排序越接近理想情况。它的值越大；如果说检索出来的文档和它的排序差得越多，它的 NDCG 就会越小。</p>
+<p class="script-p">它满足这种单调性，那这就是 NDCG，它的全名叫做按位置去折损。所以说它能反映出整体的文档命中情况以及排名情况。然后刚刚我们说的这些概念。其实都是基于单个问题。</p>
+<p class="script-p">因为我们一次评测，所以要跑很多问题。那最后我们会把所有问题的指标，做一个算术平均值。作为我们整个评测集的一个指标，那这就是我们 MTEB 算 GT 指标的一个过程。</p>
+<p class="script-p">但是实际上因为指标比较多，我们线上主要看的是两个指标。一个是召回率，一个是 NDCG。因为召回率能够直接反映，你召回得全不全，至于准不准这个其实不重要。因为你粗召回之后，还会不会有精排，那 NDCG 它能够反映。整体的一个情况，所以我们主要考虑这两个指标。</p>
 <p class="script-p">那关于 RAGAS 的这个框架。其实也很简单，我们知道上面我们说过。我们准备数据的时候，它的样子是这样的，它是一张表里面有四个字段。那这个指标其实就是，分析了这四个字段之间的相互关系。比如说，我用户的问题，对吧。</p>
-<p class="script-p">和你的上下文，其实就是我们刚刚。MTEB 里边的一个准确率。对吧，那 Recall 就是召回率。对吧，忠实度是什么意思呢？就是你的回答，有没有基于你的上下文去做。</p>
-<p class="script-p">对吧，有没有出现幻觉，准确率是什么呢？就是你召回的回答，有没有和我预计的回答是一样的，对吧。那相关性是什么呢，就是你生成的回答和我用户的问题。相不相关，切不切题，所以 RAGAS。这里面的五个指标，就是基于我们这张表里的四个字段。</p>
-<p class="script-p">它们的相互关系，很好理解对吧，然后具体怎么算呢？它这里算的话就，相比比较复杂，就是会分两步。每一个指标都会先用大模型，做一个局部的判断。再加一个确定性的公式。对，我们这里只提，两个比较重要的指标的计算。</p>
-<p class="script-p">一个是忠实度，因为忠实度它分析的是，我们生成的回答和上下文的一个关系。它能够反映出你有没有幻觉，我们首先会大模型把答案拆成陈述句。一个一个陈述句，然后大模型逐句的去判。每个陈述句能不能由上下文去推出。所以它就可以反映出，你每个句子是不是忠实。</p>
-<p class="script-p">有没有幻觉，然后最后算出来你忠实的句数。除以总的句数，这就是你的忠实度。那第二个比较关键的是，这个 Answer Correctness。它会把标准答案和生成的回答，所有的回答都拆成句子。然后去算它们的 TP，FP，FN 这几个指标。</p>
-<p class="script-p">算出一个事实 F1，算出 F1之后，还会经过一个加权0.75。乘以 F1，加上 0.25 乘以语义相似度，去计算最终的一个分数。这其实是我们，RAGAS 里面源码的一些逻辑了，大家不用太在意，也可以说一下这个 relevancy。这个 relevancy 的计算也很有意思，它会算你用户的问题和生成的回答相不相关。</p>
-<p class="script-p">它怎么算的呢，它会把你这个回答交给大模型。让这个大模型去反过来判断，你在问什么问题，然后把你真实的问题。和大模型反推的问题，算一下它们的相似度。然后把这个相似度作为分数，我觉得这个很有意思。就是反向推问题，算问题的相似度，以及这里面我们能够看到。</p>
-<p class="script-p">就是我们 relevancy 和 Precision。其实是跟我们 MTEB 里面是重合的，但是它们算的方式不一样。然后这就是我们整套的一个评测流程。对吧，然后这里再说一下：</p>
+<p class="script-p">和你的上下文，其实就是我们刚刚 MTEB 里边的准确率。对吧，那 Recall 就是召回率。对吧，忠实度是什么意思呢？就是你的回答有没有基于你的上下文去做。</p>
+<p class="script-p">对吧，有没有出现幻觉，准确率是什么呢？就是你召回的回答有没有和我预计的回答一样，对吧。那相关性是什么呢，就是你生成的回答和我用户的问题。相不相关，切不切题，所以 RAGAS 这里面的五个指标，就是基于我们这张表里的四个字段。</p>
+<p class="script-p">它们的相互关系，很好理解对吧，然后具体怎么算呢？它这里算的话就相对比较复杂，就是会分两步。每一个指标都会先用大模型做一个局部的判断，再加一个确定性的公式。对，我们这里只提两个比较重要的指标的计算。</p>
+<p class="script-p">一个是忠实度，因为忠实度分析的是我们生成的回答和上下文的关系。它能够反映出你有没有幻觉，我们首先会让大模型把答案拆成陈述句。拆成一个一个陈述句，然后大模型逐句去判每个陈述句能不能由上下文推出。所以它就可以反映出，你每个句子是不是忠实。</p>
+<p class="script-p">有没有幻觉，然后最后算出来你忠实的句数除以总的句数，这就是你的忠实度。那第二个比较关键的是，这个 Answer Correctness。它会把标准答案和生成的回答都拆成句子。然后去算它们的 TP，FP，FN 这几个指标。</p>
+<p class="script-p">算出一个事实 F1，算出 F1 之后，还会经过一个加权 0.75 乘以 F1，加上 0.25 乘以语义相似度，去计算最终的一个分数。这其实是我们，RAGAS 里面源码的一些逻辑了，大家不用太在意，也可以说一下这个 relevancy。这个 relevancy 的计算也很有意思，它会算你用户的问题和生成的回答相不相关。</p>
+<p class="script-p">它怎么算的呢，它会把你这个回答交给大模型。让这个大模型去反过来判断，你在问什么问题，然后把你真实的问题和大模型反推的问题，算一下它们的相似度。然后把这个相似度作为分数，我觉得这个很有意思。就是反向推问题，算问题的相似度，以及这里面我们能够看到。</p>
+<p class="script-p">就是我们 Relevancy 和 Precision，其实跟我们 MTEB 里面是重合的，但是它们算的方式不一样。然后这就是我们整套的一个评测流程。对吧，然后这里再说一下：</p>
 <p class="script-h"><strong>评测方法架构</strong><span>（11:06–11:55）</span></p>
-<p class="script-p">我们评测方法的一个架构的思考。其实我们评测里面。如果从技术角度可以分很多种，就是第一个是我们的人工评测。对吧，就是找我们一些专门的这些数据标注员。他们其实是最可信的，但他们的人工成本比较高。</p>
-<p class="script-p">第二个就是大模型作为一个裁判，这种是比较可信的，而且成本比较低。现在也是比较火的一个方向，传统的话就是我们一些自动指标。我们根据我们跑的评测的结果，去自动算一些指标。对这种也很便宜，但是它比较死板，再就是精确匹配。这种就是一些确定性的断言，我们生产上应该是用这种自动指标。</p>
-<p class="script-p">对吧，做一个兜底，然后用大模型做一个规模化。最后有一些人工的抽样，去做一个校准，那这就是我们整个评测的链路。那最后我们说一下：</p>
+<p class="script-p">我们评测方法的一个架构的思考。其实我们评测里面，如果从技术角度可以分很多种，就是第一个是我们的人工评测。对吧，就是找我们一些专门的这些数据标注员。他们其实是最可信的，但他们的人工成本比较高。</p>
+<p class="script-p">第二个就是大模型作为一个裁判，这种是比较可信的，而且成本比较低。现在也是比较火的一个方向，传统的话就是我们一些自动指标，我们根据跑的评测结果，去自动算一些指标。这种也很便宜，但是它比较死板，再就是精确匹配，这种就是一些确定性的断言，我们生产上应该是用这种自动指标。</p>
+<p class="script-p">对吧，做一个兜底，然后用大模型做规模化。最后有一些人工的抽样，去做一个校准，那这就是我们整个评测的链路。那最后我们说一下：</p>
 <p class="script-h"><strong>上线和迭代</strong><span>（11:55–13:03）</span></p>
-<p class="script-p">我们这个上线和迭代应该怎么做？那总体来说是一个数据飞轮的概念，主要包括四步，第一步就是我们会检测。我们上面的模糊指标。比如说我们检索阶段，我们要看召回率和 NDCG。那生成阶段我们会看忠实度和相关性，包括我们还会看一些。</p>
-<p class="script-p">系统的一些延迟、成本、安全。还有稳定性，可扩展性，这些。那如果说满足我们的一个标准。比如说我们这次优化的项，要大于上一版，而且比较显著。第二个是其他那些不关键的指标，他们也要在合理范围内。</p>
-<p class="script-p">然后包括我们系统的延迟成本，不超预算，我们一般会灰度发布。发布之后我们要在线上监控，要看它的一些系统指标。质量以及 query 有没有漂移。如果出问题的话我们就回滚。对吧，那如果没出问题，我们也要把线上用户反馈的 Bad Case。</p>
-<p class="script-p">再补进我们的评测集，再做下一次的迭代。那这样我们就成为一个 loop，我们数据飞轮就越转越准。这就是我们上线与迭代的一个过程。那说到这，整个 RAG 的评测体系就介绍了差不多了。如果大家有什么问题，可以在评论区跟我交流。嗯拜拜。</p>
+<p class="script-p">我们这个上线和迭代应该怎么做？那总体来说是一个数据飞轮的概念，主要包括四步，第一步就是我们会检测上面的模糊指标。比如说我们检索阶段，我们要看召回率和 NDCG。那生成阶段我们会看忠实度和相关性，包括我们还会看一些。</p>
+<p class="script-p">系统的一些延迟、成本、安全。还有稳定性，可扩展性，这些。那如果说满足我们的一个标准，比如说我们这次优化的项，要大于上一版，而且比较显著。第二个是其他那些不关键的指标，它们也要在合理范围内。</p>
+<p class="script-p">然后包括我们系统的延迟成本，不超预算，我们一般会灰度发布。发布之后我们要在线上监控，要看它的一些系统指标。质量以及 query 有没有漂移。如果出问题的话我们就回滚；对吧，那如果没出问题，我们也要把线上用户反馈的 Bad Case。</p>
+<p class="script-p">再补进我们的评测集，再做下一次的迭代。这样就形成了一个 loop，我们数据飞轮就越转越准。这就是我们上线与迭代的一个过程。那说到这，整个 RAG 的评测体系就介绍了差不多了。如果大家有什么问题，可以在评论区跟我交流。嗯拜拜。</p>
 </section>
 
 
